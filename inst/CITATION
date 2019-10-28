@@ -1,0 +1,19 @@
+citHeader("To cite codex in publications use:")
+
+citEntry(entry = "Manual",
+  title        = "{codex}: Representation of Archaeological Data",
+  author       = c(person("Nicolas", "Frerebeau", role = "aut")),
+  year         = "2019",
+  organization = "Université Bordeaux Montaigne",
+  address      = "Pessac, France",
+  note         = "R package version 0.0.0.9000",
+  url          = "https://doi.org/xxx",
+
+  textVersion  =
+  paste("Frerebeau, Nicolas (2019).",
+        "codex: Representation of Archaeological Data.",
+        "R package version 0.0.0.9000",
+        "Université Bordeaux Montaigne, Pessac, France.",
+        "DOI xxx.",
+        "URL https://cran.r-project.org/package=codex.")
+)
