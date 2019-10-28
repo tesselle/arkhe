@@ -14,7 +14,7 @@ A collection of classes that represent
     represent time and space information) are implemented.
 }
 \details{
-\codexr{ll}{
+\tabular{ll}{
  \strong{Package:} \tab codex \cr
  \strong{Type:} \tab Package \cr
  \strong{Version:} \tab 0.0.0.9000 \cr
@@ -35,7 +35,7 @@ Useful links:
 \author{
 \strong{Full list of authors and contributors} (alphabetic order)
 
-\codexr{ll}{
+\tabular{ll}{
  Nicolas Frerebeau \tab \emph{Université Bordeaux Montaigne, France} \cr
 }
 
