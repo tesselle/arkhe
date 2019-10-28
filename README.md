@@ -6,7 +6,7 @@
 <!-- badges: start -->
 
 [![Appveyor build
-status](https://ci.appveyor.com/api/projects/status/xxx/branch/master?svg=true)](https://ci.appveyor.com/project/nfrerebeau/codex/branch/master)
+status](https://ci.appveyor.com/api/projects/status/7xt157mqcny0pht1?svg=true)](https://ci.appveyor.com/project/nfrerebeau/codex)
 [![Travis build
 Status](https://travis-ci.org/nfrerebeau/codex.svg?branch=master)](https://travis-ci.org/nfrerebeau/codex)
 [![codecov](https://codecov.io/gh/nfrerebeau/codex/branch/master/graph/badge.svg)](https://codecov.io/gh/nfrerebeau/codex)
