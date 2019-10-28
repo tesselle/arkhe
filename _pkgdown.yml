@@ -1,0 +1,18 @@
+url: http://codex.archaeo.science
+development:
+  mode: auto
+
+reference:
+- title: Classes
+  contents:
+  - has_concept("matrix")
+  - has_concept("class")
+- title: Getters and Setters
+  contents:
+  - has_concept("mutator")
+- title: Chronology
+  contents:
+  - has_concept("time")
+- title: Geography
+  contents:
+  - has_concept("space")
