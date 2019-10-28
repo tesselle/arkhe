@@ -27,9 +27,15 @@ RoxygenNote: 6.1.1
 Collate: 
     'AllClasses.R'
     'AllGenerics.R'
+    'predicates.R'
+    'check.R'
     'codex-package.R'
     'coerce.R'
     'extract.R'
     'initialize.R'
     'show.R'
+    'utilities.R'
     'uuid.R'
+    'validate.R'
+Suggests: 
+    testthat
