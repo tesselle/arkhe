@@ -47,7 +47,7 @@ Numeric values are coerced to \code{\link{logical}} as by
  unique within the same class, but two objects of different classes can have
  the same ID. This makes it possible to identify objects representing the
  same initial data and associate them with the results of specific
- computations (e. g. \link[=seriate]{seriation}).
+ computations.
 }
 
 \section{Get and set}{

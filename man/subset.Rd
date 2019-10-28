@@ -27,17 +27,13 @@
 \item{x}{An object from which to extract element(s) or in which to replace
 element(s).}
 
-\item{i, j}{Indices specifying elements to extract or replace. Indices are
+\item{i}{Indices specifying elements to extract or replace. Indices are
 \code{\link{numeric}}, \code{\link{integer}} or \code{\link{character}}
 vectors or empty (missing) or \code{NULL}. Numeric values are coerced to
 \code{\link{integer}} as by \code{\link{as.integer}} (and hence truncated
 towards zero). Character vectors will be matched to the name of the
 elements. An empty index (a comma separated blank) indicates that all
 entries in that dimension are selected.}
-
-\item{drop}{A \code{\link{logical}} scalar: should the result be coerced to
-the lowest possible dimension? This only works for extracting elements,
-not for the replacement.}
 }
 \value{
 A subsetted object.

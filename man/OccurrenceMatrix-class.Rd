@@ -20,7 +20,7 @@ A co-occurrence matrix is a symmetric matrix with zeros on its main diagonal,
  unique within the same class, but two objects of different classes can have
  the same ID. This makes it possible to identify objects representing the
  same initial data and associate them with the results of specific
- computations (e. g. \link[=seriate]{seriation}).
+ computations.
 }
 
 \section{Get and set}{
