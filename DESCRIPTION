@@ -24,3 +24,12 @@ Imports:
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
+Collate: 
+    'AllClasses.R'
+    'AllGenerics.R'
+    'codex-package.R'
+    'coerce.R'
+    'extract.R'
+    'initialize.R'
+    'show.R'
+    'uuid.R'
