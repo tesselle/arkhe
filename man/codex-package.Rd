@@ -5,9 +5,13 @@
 \alias{codex-package}
 \alias{_PACKAGE}
 \alias{codex}
-\title{codex: What the Package Does (One Line, Title Case)}
+\title{codex: Representation of Archaeological Data}
 \description{
-What the package does (one paragraph).
+A collection of classes that represent
+    archaeological data. This package provides a set of S4 classes that
+    extend the basic matrix data type and a set of generic methods and
+    functions. In addition, a few classes of general interest (e.g. that
+    represent time and space information) are implemented.
 }
 \details{
 \codexr{ll}{

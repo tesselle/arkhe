@@ -1,13 +1,17 @@
 Package: codex
-Title: What the Package Does (One Line, Title Case)
+Title: Representation of Archaeological Data
 Version: 0.0.0.9000
 Authors@R: 
-    c(person(given = "Nicolas",
-             family = "Frerebeau",
-             role = c("aut", "cre"),
-             email = "nicolas.frerebeau@u-bordeaux-montaigne.fr",
-             comment = c(ORCID = "https://orcid.org/0000-0001-5759-4944")))
-Description: What the package does (one paragraph).
+    person(given = "Nicolas",
+           family = "Frerebeau",
+           role = c("aut", "cre"),
+           email = "nicolas.frerebeau@u-bordeaux-montaigne.fr",
+           comment = c(ORCID = "https://orcid.org/0000-0001-5759-4944"))
+Description: A collection of classes that represent
+    archaeological data. This package provides a set of S4 classes that
+    extend the basic matrix data type and a set of generic methods and
+    functions. In addition, a few classes of general interest (e.g. that
+    represent time and space information) are implemented.
 License: GPL-3
 URL: http://codex.archaeo.science,
     http://github.com/nfrerebeau/codex,
@@ -15,6 +19,8 @@ URL: http://codex.archaeo.science,
 BugReports: http://github.com/nfrerebeau/codex/issues
 Depends: 
     R (>= 3.2)
+Imports: 
+    methods
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
