@@ -22,7 +22,7 @@ Downloads](http://cranlogs.r-pkg.org/badges/codex)](https://cran.r-project.org/p
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 [![Lifecycle:
-maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
 [![DOI](https://zenodo.org/badge/DOI/xxx.svg)](https://doi.org/xxx)
 <!-- badges: end -->
@@ -37,14 +37,16 @@ implemented.
 
 ## Installation
 
-You can install the released version of **codex** from
-[CRAN](https://CRAN.R-project.org) with:
+<!--You can install the released version of **codex** from [CRAN](https://CRAN.R-project.org) with:
 
-``` r
+
+```r
 install.packages("codex")
 ```
 
-Or install the development version from GitHub with:
+Or-->
+
+You can install the development version from GitHub with:
 
 ``` r
 # install.packages("devtools")
@@ -55,8 +57,10 @@ remotes::install_github("nfrerebeau/codex")
 
 ``` r
 # Load package
-library(tabula)
+library(codex)
 ```
+
+### Matrix
 
 **codex** provides a set of S4 classes that extend the basic `matrix`
 data type. These new classes represent different special types of
