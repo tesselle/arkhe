@@ -78,14 +78,15 @@ setMethod(
     # Time coordinates
     dates <- get_dates(from)
     if (any(lengths(dates) == 0)) {
-      dates <- matrix(data = rep(NA_real_, 2 * nrow(from)), ncol = 2)
-      dates <- as.data.frame(dates)
+      dates <- list(rep(NA_real_, nrow(from)), rep(NA_real_, nrow(from)))
       message("No dates were set, NA generated.")
     }
-    colnames(dates) <- c("DATE_VALUE", "DATE_ERROR")
+    names(dates) <- c("DATE_VALUE", "DATE_ERROR")
 
     # XYZ_index <- !vapply(X = coords, FUN = anyNA, FUN.VALUE = logical(1))
-    cbind.data.frame(SITE = rownames(from), coords, dates, from)
+    feat <- cbind.data.frame(SITE = rownames(from), coords, dates, from)
+    attr(feat, "epsg") <- epsg
+    return(feat)
   }
 )
 
@@ -103,7 +104,8 @@ setAs(
 
 ## To CountMatrix ==============================================================
 matrix2count <- function(from) {
-  data <- data.matrix(from)
+  data <- data.matrix(from, rownames.force = NA)
+  data <- make_dimnames(data) # Force dimnames
   whole_numbers <- apply(
     X = data,
     MARGIN = 2,
@@ -118,6 +120,7 @@ setAs(from = "data.frame", to = "CountMatrix", def = matrix2count)
 ## To FrequencyMatrix ==========================================================
 matrix2frequency <- function(from) {
   data <- data.matrix(from)
+  data <- make_dimnames(data) # Force dimnames
   totals <- rowSums(data)
   freq <- data / totals
   dimnames(freq) <- dimnames(data)
@@ -129,7 +132,8 @@ setAs(from = "data.frame", to = "FrequencyMatrix", def = matrix2frequency)
 ## To SimilarityMatrix =========================================================
 matrix2similarity <- function(from) {
   data <- data.matrix(from)
-  rownames(data) <- colnames(from)
+  data <- make_colnames(data) # Force dimnames
+  rownames(data) <- colnames(data)
   .SimilarityMatrix(data, method = "unknown", id = generate_uuid())
 }
 setAs(from = "matrix", to = "SimilarityMatrix", def = matrix2similarity)
@@ -186,6 +190,7 @@ matrix2incidence <- function(from) {
   } else {
     data.matrix(from)
   }
+  data <- make_dimnames(data) # Force dimnames
   data <- data > 0
   if (isS4(from)) {
     id <- from@id
