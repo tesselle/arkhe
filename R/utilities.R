@@ -88,8 +88,6 @@ rownames_to_column <- function(x, factor = TRUE, id = "id") {
   y <- cbind.data.frame(row_names, x, stringsAsFactors = FALSE)
 
   id <- id[[1L]]
-  if (is.character(id) && nchar(id) > 0) {
-    colnames(y) <- c(id, colnames(x))
-  }
+  colnames(y) <- c(id, colnames(x))
   y
 }

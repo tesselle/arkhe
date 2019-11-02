@@ -128,6 +128,9 @@ test_that("*Matrix > OccurrenceMatrix", {
 })
 test_that("AbundanceMatrix > features", {
   A <- as_count(mtx_count)
+
+  expect_message(as_features(A))
+
   set_dates(A) <- list(value = seq_len(5), error = seq_len(5))
   set_coordinates(A) <- list(x = seq_len(5), y = seq_len(5), z = seq_len(5))
   set_epsg(A) <- 123
