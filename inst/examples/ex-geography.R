@@ -10,7 +10,7 @@ get_coordinates(A1)
 
 \donttest{
 ## Convert to a sf object (the sf package must be installed on your machine)
-# feat <- get_features(A1)
+# feat <- as_features(A1)
 # sf::st_as_sf(feat, crs = 4326, coords = c("X", "Y"), dim = "XY",
 #              remove = FALSE, na.fail = TRUE)
 }

@@ -2,46 +2,6 @@
 #' @include AllGenerics.R AllClasses.R
 NULL
 
-# \code{as_matrix} attempts to coerce \code{from} in a suitable way, i. e. to a
-# \linkS4class{CountMatrix} or an \linkS4class{IncidenceMatrix}.
-# @rdname coerce
-# @aliases as_matrix,matrix-method
-# setMethod(
-#   f = "as_matrix",
-#   signature = signature(from = "matrix"),
-#   definition = function(from) {
-#     if (!is.numeric(from))
-#       stop("A numeric matrix is expected.", call. = FALSE)
-#
-#     if (all(is_binary(from))) {
-#       methods::as(from, "IncidenceMatrix")
-#     } else if (all(is_whole(from))) {
-#       methods::as(from, "CountMatrix")
-#     } else {
-#       stop("Check your input data.", call. = FALSE)
-#     }
-#   }
-# )
-
-# @rdname coerce
-# @aliases as_matrix,data.frame-method
-# setMethod(
-#   f = "as_matrix",
-#   signature = signature(from = "data.frame"),
-#   definition = function(from) {
-#     if (!all(lapply(X = from, FUN = is.numeric)))
-#       stop("A numeric data frame is expected.", call. = FALSE)
-#
-#     if (!all(lapply(X = from, FUN = function(x) all(is_binary(x))))) {
-#       methods::as(from, "IncidenceMatrix")
-#     } else if (!all(lapply(X = from, FUN = function(x) all(is_whole(x))))) {
-#       methods::as(from, "CountMatrix")
-#     } else {
-#       stop("Check your input data.", call. = FALSE)
-#     }
-#   }
-# )
-
 #' @export
 #' @rdname coerce
 #' @aliases as_count,ANY-method
@@ -97,9 +57,49 @@ setMethod(
   }
 )
 
-## From NumericMatrix ==========================================================
-setAs(from = "NumericMatrix", to = "data.frame", def = function(from)
-  as.data.frame(methods::S3Part(from, strictS3 = TRUE, "matrix")))
+#' @export
+#' @rdname coerce
+#' @aliases as_features,AbundanceMatrix-method
+setMethod(
+  f = "as_features",
+  signature = "AbundanceMatrix",
+  definition = function(from) {
+    # Spatial coordinates
+    epsg <- get_epsg(from)
+    coords <- get_coordinates(from)
+
+    if (any(lengths(coords) == 0)) {
+      coords <- matrix(data = rep(NA_real_, 3 * nrow(from)), ncol = 3,
+                       dimnames = list(NULL, c("X", "Y", "Z")))
+      coords <- as.data.frame(coords)
+      message("No coordinates were set, NA generated.")
+    }
+
+    # Time coordinates
+    dates <- get_dates(from)
+    if (any(lengths(dates) == 0)) {
+      dates <- matrix(data = rep(NA_real_, 2 * nrow(from)), ncol = 2)
+      dates <- as.data.frame(dates)
+      message("No dates were set, NA generated.")
+    }
+    colnames(dates) <- c("DATE_VALUE", "DATE_ERROR")
+
+    # XYZ_index <- !vapply(X = coords, FUN = anyNA, FUN.VALUE = logical(1))
+    cbind.data.frame(SITE = rownames(from), coords, dates, from)
+  }
+)
+
+# To data.frame ================================================================
+setAs(
+  from = "Matrix",
+  to = "data.frame",
+  def = function(from) {
+    x <- methods::as(from, "matrix")
+    x <- as.data.frame(x)
+    attr(x, "id") <- from[["id"]]
+    x
+  }
+)
 
 ## To CountMatrix ==============================================================
 matrix2count <- function(from) {
@@ -179,10 +179,6 @@ setAs(
   }
 )
 
-## From LogicalMatrix ==========================================================
-setAs(from = "LogicalMatrix", to = "data.frame", def = function(from)
-  as.data.frame(methods::S3Part(from, strictS3 = TRUE, "matrix")))
-
 ## To IncidenceMatrix ==========================================================
 matrix2incidence <- function(from) {
   data <- if (isS4(from)) {
@@ -250,10 +246,13 @@ matrix2occurrence <- function(from) {
   .OccurrenceMatrix(C, id = id)
 }
 
-setAs(from = "matrix", to = "OccurrenceMatrix", def = matrix2occurrence)
-setAs(from = "data.frame", to = "OccurrenceMatrix", def = matrix2occurrence)
+setAs(from = "matrix", to = "OccurrenceMatrix",
+      def = matrix2occurrence)
+setAs(from = "data.frame", to = "OccurrenceMatrix",
+      def = matrix2occurrence)
 
-setAs(from = "CountMatrix", to = "OccurrenceMatrix", def = matrix2occurrence)
+setAs(from = "CountMatrix", to = "OccurrenceMatrix",
+      def = matrix2occurrence)
 setAs(from = "FrequencyMatrix", to = "OccurrenceMatrix",
       def = matrix2occurrence)
 setAs(from = "IncidenceMatrix", to = "OccurrenceMatrix",

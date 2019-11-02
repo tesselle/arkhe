@@ -13,11 +13,14 @@
 \alias{as_occurrence-method}
 \alias{as_similarity}
 \alias{as_similarity-method}
+\alias{as_features}
+\alias{as_features-method}
 \alias{as_count,ANY-method}
 \alias{as_frequency,ANY-method}
 \alias{as_incidence,ANY-method}
 \alias{as_occurrence,ANY-method}
 \alias{as_similarity,ANY-method}
+\alias{as_features,AbundanceMatrix-method}
 \title{Coerce}
 \usage{
 as_count(from)
@@ -30,6 +33,8 @@ as_occurrence(from)
 
 as_similarity(from)
 
+as_features(from)
+
 \S4method{as_count}{ANY}(from)
 
 \S4method{as_frequency}{ANY}(from)
@@ -39,13 +44,15 @@ as_similarity(from)
 \S4method{as_occurrence}{ANY}(from)
 
 \S4method{as_similarity}{ANY}(from)
+
+\S4method{as_features}{AbundanceMatrix}(from)
 }
 \arguments{
 \item{from}{A numeric \code{\link{matrix}} or \code{\link{data.frame}} to be
 coerced.}
 }
 \value{
-A \linkS4class{CountMatrix} or an \linkS4class{IncidenceMatrix}.
+A coerced object.
 }
 \description{
 Coerce
@@ -62,6 +69,11 @@ The following methods coerce a \code{matrix} or \code{data.frame} to a
   \code{as_occurrence} \tab \linkS4class{OccurrenceMatrix} \cr
   \code{as_similarity} \tab \linkS4class{SimilarityMatrix}
  }
+
+ \code{as_features} converts an \code{AbundanceMatrix} object to a
+ collection of features (i.e. a\code{\link{data.frame}} with
+ dates and coordinates columns) that can be used for spatial manipulation
+ with \pkg{sf}.
 }
 \examples{
 ## Create a count matrix

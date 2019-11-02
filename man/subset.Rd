@@ -71,7 +71,7 @@ A2 <- as_count(B)
 all(A1 == A2)
 }
 \seealso{
-Other mutator: \code{\link{access}}
+Other mutator: \code{\link{mutator}}
 }
 \author{
 N. Frerebeau

@@ -25,7 +25,7 @@
 #'   set the EPSG of \code{x} according to \code{value}. Numeric values are
 #'   coerced to \code{\link{integer}} as by \code{\link{as.integer}} (and hence
 #'   truncated towards zero).}
-#'   \item{\code{get_features(x)}}{Convert an \code{AbundanceMatrix}
+#'   \item{\code{as_features(x)}}{Convert an \code{AbundanceMatrix}
 #'   object to a \code{\link[=data.frame]{data frame}} with dates and
 #'   coordinates columns.}
 #'  }

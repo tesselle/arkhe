@@ -15,26 +15,26 @@ NULL
 #' @author N. Frerebeau
 #' @docType methods
 #' @family mutator
-#' @name access
-#' @rdname access
+#' @name mutator
+#' @rdname mutator
 #' @aliases get set
 NULL
 
-#' @rdname access
+#' @rdname mutator
 #' @aliases get_id-method
 setGeneric(
   name = "get_id",
   def = function(object) standardGeneric("get_id")
 )
 
-#' @rdname access
+#' @rdname mutator
 #' @aliases get_totals-method
 setGeneric(
   name = "get_totals",
   def = function(object) standardGeneric("get_totals")
 )
 
-#' @rdname access
+#' @rdname mutator
 #' @aliases set_totals-method
 setGeneric(
   name = "set_totals<-",
@@ -84,7 +84,12 @@ NULL
 #'   \code{as_occurrence} \tab \linkS4class{OccurrenceMatrix} \cr
 #'   \code{as_similarity} \tab \linkS4class{SimilarityMatrix}
 #'  }
-#' @return A \linkS4class{CountMatrix} or an \linkS4class{IncidenceMatrix}.
+#'
+#'  \code{as_features} converts an \code{AbundanceMatrix} object to a
+#'  collection of features (i.e. a\code{\link{data.frame}} with
+#'  dates and coordinates columns) that can be used for spatial manipulation
+#'  with \pkg{sf}.
+#' @return A coerced object.
 #' @example inst/examples/ex-coerce.R
 #' @author N. Frerebeau
 #' @docType methods
@@ -92,13 +97,6 @@ NULL
 #' @name coerce
 #' @rdname coerce
 NULL
-
-# @rdname coerce
-# @aliases as_matrix-method
-# setGeneric(
-#   name = "as_matrix",
-#   def = function(from) standardGeneric("as_matrix")
-# )
 
 #' @rdname coerce
 #' @aliases as_count-method
@@ -133,6 +131,13 @@ setGeneric(
 setGeneric(
   name = "as_similarity",
   def = function(from) standardGeneric("as_similarity")
+)
+
+#' @rdname coerce
+#' @aliases as_features-method
+setGeneric(
+  name = "as_features",
+  def = function(from) standardGeneric("as_features")
 )
 
 
@@ -205,11 +210,6 @@ setGeneric(
 #'   and "\code{y}" but not "\code{z}", the vertical coordinates will be ignored
 #'   (and \code{NA} will be generated).}
 #'  }
-#'
-#'  \code{get_features} converts an \code{AbundanceMatrix} object to a
-#'  collection of features (i.e. a\code{\link{data.frame}} with
-#'  dates and coordinates columns) that can be used for spatial manipulation
-#'  with \pkg{sf}.
 #' @example inst/examples/ex-geography.R
 #' @author N. Frerebeau
 #' @family geography
@@ -217,13 +217,6 @@ setGeneric(
 #' @name space
 #' @rdname space
 NULL
-
-#' @rdname space
-#' @aliases get_features-method
-setGeneric(
-  name = "get_features",
-  def = function(object) standardGeneric("get_features")
-)
 
 #' @rdname space
 #' @aliases get_coordinates-method
