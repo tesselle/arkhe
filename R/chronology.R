@@ -26,7 +26,7 @@ make_dates <- function(value) {
         y <- value[, 2]
       }
     } else {
-      stop("`value` should have at least 2 columns.", call. = FALSE)
+      stop("`value` must have at least 2 columns.", call. = FALSE)
     }
   } else if(is.list(value)) {
     if (all(c("value", "error") %in% names(value))) {
@@ -40,7 +40,7 @@ make_dates <- function(value) {
   } else if (is.numeric(value) || is.integer(value) || is.character(value)) {
     x <- value
     y <- rep_len(0, length.out = length(x))
-    if (getOption("verbose")) message("Errors are missing, NA generated.")
+    warning("Errors are missing, NA generated.", call. = FALSE)
   } else if (is.null(value)) {
     x <- y <- numeric(0)
   } else {
@@ -49,7 +49,8 @@ make_dates <- function(value) {
   }
   # If `x` is a character vector, try to convert from roman numbers
   if (is.character(x)) {
-    x <- as.numeric(utils::as.roman(x))
+    roman <- utils::as.roman(x)
+    x <- as.numeric(roman)
   }
   # Replace NA with zeros
   y[is.na(y)] <- 0
@@ -66,6 +67,7 @@ setMethod(
     value <- make_dates(value)
     rows_value <- rownames(value)
     rows_object <- rownames(object)
+
     i <- nrow(object)
     if (all(dim(value) == c(i, 2)) || nrow(value) == 0) {
       # Same dimensions or unset

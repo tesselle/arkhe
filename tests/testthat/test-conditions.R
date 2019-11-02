@@ -10,13 +10,13 @@ test_that("Error", {
 })
 
 test_that("Warning", {
-  X <- suppressWarnings(catch_conditions(warning("W")))
+  X <- catch_conditions(warning("W"))
   expect_equivalent(X[[1]][1], c("W"))
   expect_equal(class(X[[1]]), c("simpleWarning", "warning", "condition"))
 })
 
 test_that("Message", {
-  X <- suppressMessages(catch_conditions(message("M")))
+  X <- catch_conditions(message("M"))
   expect_equivalent(X[[1]][1], c("M\n"))
   expect_equal(class(X[[1]]), c("simpleMessage", "message", "condition"))
 })

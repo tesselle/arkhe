@@ -1,0 +1,54 @@
+context("Chronology")
+
+test_that("dates can be set with a matrix or data.frame", {
+  X <- matrix(data = sample(1:10, 20, TRUE), nrow = 10)
+  expect_type(make_dates(X), "double")
+
+  X <- matrix(data = sample(1:10, 20, TRUE), nrow = 10,
+              dimnames = list(NULL, c("value", "error")))
+  expect_type(make_dates(X), "double")
+
+  X <- matrix(data = sample(1:10, 10, TRUE), nrow = 10)
+  expect_error(make_dates(X), "must have at least 2 columns")
+})
+test_that("dates can be set with a list", {
+  X <- list(value = seq_len(10), error = rep(0, 10))
+  expect_type(make_dates(X), "double")
+
+  X <- list(value = seq_len(10))
+  expect_error(make_dates(X), "does not have components")
+})
+test_that("dates can be set with a numeric or integer vector", {
+  X <- seq_len(10)
+  expect_warning(make_dates(X), "Errors are missing, NA generated.")
+})
+test_that("dates can be set with a character vector", {
+  roman <- c("I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X")
+  X <- make_dates(roman)
+  expect_type(X, "double")
+  expect_equal(dim(X), c(10, 2))
+  expect_equal(X[, 1], seq_len(10))
+  expect_equal(X[, 2], rep(0, times = 10))
+
+  expect_warning(make_dates(LETTERS))
+})
+test_that("dates cannot be set with garbage", {
+  expect_type(make_dates(NULL), "double")
+  expect_error(make_dates(NA), "a list, a matrix or a data frame is expected")
+})
+test_that("dates can be set to an AbundanceMatrix", {
+  X <- CountMatrix(data = sample(1:10, 100, TRUE), nrow = 10)
+  Y <- matrix(data = sample(1:10, 20, TRUE), nrow = 10)
+
+  options("verbose" = TRUE)
+  expect_message(set_dates(X) <- Y, "10 dates were set.")
+  expect_type(get_dates(X), "list")
+  expect_equivalent(lengths(get_dates(X)), c(10, 10))
+
+  Z <- Y[1:5, ]
+  rownames(Z) <- LETTERS[seq_len(5)]
+  expect_message(suppressWarnings(set_dates(X) <- Z), "0 dates were set.")
+  expect_warning(suppressMessages(set_dates(X) <- Z), "do not match")
+
+  expect_error(suppressWarnings(set_dates(X) <- "Y"), "Cannot interpret")
+})

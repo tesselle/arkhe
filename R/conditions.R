@@ -35,11 +35,11 @@ catch_conditions <- function(expr) {
   conditions <- list()
   add_mess <- function(cnd) {
     conditions <<- append(conditions, list(cnd))
-    suppressMessages(cnd)
+    invokeRestart("muffleMessage")
   }
   add_warn <- function(cnd) {
     conditions <<- append(conditions, list(cnd))
-    suppressWarnings(cnd)
+    invokeRestart("muffleWarning")
   }
   add_err <- function(cnd) {
     conditions <<- append(conditions, list(cnd))
