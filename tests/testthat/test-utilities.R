@@ -52,4 +52,5 @@ test_that("Row and column names", {
   expect_true(is.factor(A[[1]]))
   A <- rownames_to_column(mtx, factor = FALSE)
   expect_true(!is.factor(A[[1]]))
+  expect_error(rownames_to_column(LETTERS))
 })
