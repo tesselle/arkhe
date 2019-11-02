@@ -42,4 +42,7 @@ Collate:
     'validate.R'
 Suggests: 
     covr,
-    testthat
+    testthat,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
