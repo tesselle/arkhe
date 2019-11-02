@@ -5,6 +5,9 @@
 #' \code{is_empty} checks if a vector or list is empty.
 #'
 #' \code{is_named} checks if an object is named.
+#'
+#' \code{is_uuid} checks if a string is a canonically formatted UUID that is
+#' Version 1 through 5 and is the appropriate Variant as per RFC4122.
 #' @param x An object to be tested.
 #' @return A \code{\link{logical}} scalar.
 #' @keywords internal
@@ -20,6 +23,11 @@ is_empty <- function(x) {
 #' @rdname predicate-utils
 is_named <- function(x) {
   length(names(x)) != 0
+}
+#' @rdname predicate-utils
+is_uuid <- function(x) {
+  pattern <- "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+  grepl(pattern, x)
 }
 
 # ==============================================================================

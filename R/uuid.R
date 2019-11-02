@@ -4,9 +4,6 @@
 #'
 #' \code{generate_uuid} generates a universally unique identifier (UUID Version
 #' 4 and Variant 1).
-#'
-#' \code{is_uuid} checks if a string is a canonically formatted UUID that is
-#' Version 1 through 5 and is the appropriate Variant as per RFC4122.
 #' @param x A \code{\link{character}} string (UUID).
 #' @param seed A single \code{\link{integer}} specifying the seeds.
 #'  If \code{NULL} (the default) the seed will be re-initialized.
@@ -16,14 +13,9 @@
 #'  re-initialized during execution (unless \code{seed} is not \code{NULL}).
 #'  To prevent any side effects, the random number generator (RNG) state is
 #'  saved and restored when the function exits.
-#' @return
-#'  \code{generate_uuid} returns a 36 characters long \code{\link{character}}
-#'  string.
-#'
-#'  \code{is_uuid} returns a \code{\link{logical}} scalar.
+#' @return A 36 characters long \code{\link{character}} string.
 #' @seealso \link{set.seed}
 #' @author N. Frerebeau
-#' @name uuid
 #' @keywords internal
 generate_uuid <- function(seed = NULL) {
   # Save and restore the random number generator (RNG) state
@@ -52,28 +44,4 @@ generate_uuid <- function(seed = NULL) {
     collapse = "-"
   )
   uuid
-}
-
-#' @rdname uuid
-#' @keywords internal
-is_uuid <- function(x) {
-  pattern <- "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
-  grepl(pattern, x)
-}
-
-check_uuid <- function(x) {
-  arg <- deparse(substitute(x))
-  if (!is_uuid(x)) {
-    msg <- sprintf("%s must be an UUID.", sQuote(arg))
-    throw_error("error_bad_uuid", msg)
-  }
-}
-
-compare_uuid <- function(x, y) {
-  check_uuid(x)
-  check_uuid(y)
-
-  if (x != y) {
-    stop(sprintf("UUIDs do not match:\n* %s\n* %s", x, y), call. = FALSE)
-  }
 }

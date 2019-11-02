@@ -136,6 +136,15 @@ check_names <- function(x, expected = NULL, margin = c(1, 2)) {
     throw_error("error_bad_names", msg)
   }
 }
+#' @rdname check-attribute
+check_uuid <- function(x) {
+  arg <- deparse(substitute(x))
+  if (!is_uuid(x)) {
+    msg <- sprintf("%s must be an UUID.", sQuote(arg))
+    throw_error("error_bad_uuid", msg)
+  }
+}
+
 
 # =================================================================== NA/NaN/Inf
 #' Check Missing Values
