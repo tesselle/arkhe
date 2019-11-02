@@ -50,7 +50,7 @@ test_that("scalar type checks return an error", {
   cnd <- catch_conditions(check_scalar(logical(2), expected = "logical"))
   expect_s3_class(cnd[[1]], "error_bad_scalar")
 })
-test_that("object property checks return an error", {
+test_that("object attribute checks return an error", {
   cnd <- catch_conditions(check_length(LETTERS, expected = 10))
   expect_s3_class(cnd[[1]], "error_bad_dimension")
 
@@ -114,8 +114,12 @@ test_that("numeric data checks return an error", {
   cnd <- catch_conditions(check_numbers(k, expected = "whole", tolerance = 0.2))
   expect_s3_class(cnd[[1]], "error_bad_number")
 
-  k <- seq(from = 1, to = 10, by = 1)
+  k <- c(2, 4, 6, 8, 10)
   cnd <- catch_conditions(check_numbers(k, expected = "odd"))
+  expect_s3_class(cnd[[1]], "error_bad_number")
+
+  k <- c(1, 3, 5, 7, 9)
+  cnd <- catch_conditions(check_numbers(k, expected = "even"))
   expect_s3_class(cnd[[1]], "error_bad_number")
 
   cnd <- catch_conditions(check_constant(k))
@@ -124,17 +128,9 @@ test_that("numeric data checks return an error", {
 test_that("matrix checks return an error", {
   k <- matrix(sample(1:5, 50, TRUE), nrow = 5, ncol = 10)
 
-  cnd <- catch_conditions(check_matrix(k, expected = "square"))
+  cnd <- catch_conditions(check_square(k))
   expect_s3_class(cnd[[1]], "error_bad_matrix")
 
-  cnd <- catch_conditions(check_matrix(k, expected = "symmetric"))
+  cnd <- catch_conditions(check_symmetric(k))
   expect_s3_class(cnd[[1]], "error_bad_matrix")
-
-  cnd <- catch_conditions(check_constant(k))
-  expect_s3_class(cnd[[1]], "error_bad_value")
-})
-test_that("matrix checks return an error", {
-  k <- paste0(LETTERS, collapse = "")
-  cnd <- catch_conditions(check_uuid(k))
-  expect_s3_class(cnd[[1]], "error_bad_uuid")
 })

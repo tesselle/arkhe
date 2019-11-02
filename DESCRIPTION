@@ -31,6 +31,7 @@ Collate:
     'check.R'
     'codex-package.R'
     'coerce.R'
+    'conditions.R'
     'extract.R'
     'initialize.R'
     'show.R'

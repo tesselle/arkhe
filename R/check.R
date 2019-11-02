@@ -2,17 +2,21 @@
 #' @include predicates.R
 NULL
 
-#' Check data inputs
+# ======================================================================== Types
+#' Check Data Types
 #'
 #' @param x An object to be checked.
-#' @param expected An appropriate expected value.
-#' @return
-#'  Throw an error if any.
+#' @param expected A \code{\link{character}} string specifying the expected
+#' type.
+#' @return Throw an error, if any.
 #' @author N. Frerebeau
-#' @name check
-#' @keywords internal error
-#' @noRd
+#' @family check
+#' @keywords internal
+#' @name check-type
+#' @rdname check-type
+NULL
 
+#' @rdname check-type
 check_type <- function(x, expected) {
   arg <- deparse(substitute(x))
   predicate <- switch(
@@ -32,7 +36,7 @@ check_type <- function(x, expected) {
     throw_error("error_bad_type", msg)
   }
 }
-
+#' @rdname check-type
 check_scalar <- function(x, expected) {
   arg <- deparse(substitute(x))
   predicate <- switch(
@@ -53,6 +57,20 @@ check_scalar <- function(x, expected) {
   }
 }
 
+# =================================================================== Attributes
+#' Check Object Attributes
+#'
+#' @param x An object to be checked.
+#' @param expected An appropriate expected value.
+#' @return Throw an error, if any.
+#' @author N. Frerebeau
+#' @family check
+#' @keywords internal
+#' @name check-attribute
+#' @rdname check-attribute
+NULL
+
+#' @rdname check-attribute
 check_length <- function(x, expected) {
   arg <- deparse(substitute(x))
   n <- length(x)
@@ -61,7 +79,7 @@ check_length <- function(x, expected) {
     throw_error("error_bad_dimension", msg)
   }
 }
-
+#' @rdname check-attribute
 check_lengths <- function(x, expected = NULL) {
   arg <- deparse(substitute(x))
   n <- lengths(x)
@@ -81,7 +99,7 @@ check_lengths <- function(x, expected = NULL) {
     }
   }
 }
-
+#' @rdname check-attribute
 check_dimension <- function(x, expected) {
   arg <- deparse(substitute(x))
   n <- dim(x)
@@ -93,7 +111,7 @@ check_dimension <- function(x, expected) {
     throw_error("error_bad_dimension", msg)
   }
 }
-
+#' @rdname check-attribute
 check_names <- function(x, expected = NULL, margin = c(1, 2)) {
   arg <- deparse(substitute(x))
   if (is.array(x) || is.data.frame(x)) {
@@ -119,6 +137,21 @@ check_names <- function(x, expected = NULL, margin = c(1, 2)) {
   }
 }
 
+# =================================================================== NA/NaN/Inf
+#' Check Missing Values
+#'
+#' Checks if an object contains any missing (\code{NA}, \code{NaN}) or infinite
+#' (\code{Inf}) value.
+#' @param x An object to be checked.
+#' @return Throw an error, if any.
+#' @author N. Frerebeau
+#' @family check
+#' @keywords internal
+#' @name check-missing
+#' @rdname check-missing
+NULL
+
+#' @rdname check-missing
 check_missing <- function(x) {
   arg <- deparse(substitute(x))
   n <- sum(is.na(x))
@@ -128,7 +161,7 @@ check_missing <- function(x) {
     throw_error("error_data_missing", msg)
   }
 }
-
+#' @rdname check-missing
 check_infinite <- function(x) {
   arg <- deparse(substitute(x))
   n <- sum(is.infinite(x))
@@ -139,13 +172,29 @@ check_infinite <- function(x) {
   }
 }
 
-check_numbers <- function(x, expected = c("positive", "whole", "odd"), ...) {
+# ===================================================================== Numerric
+#' Check Numeric Values
+#'
+#' @param x A \code{\link{numeric}} object to be checked.
+#' @param expected An appropriate expected value.
+#' @return Throw an error, if any.
+#' @author N. Frerebeau
+#' @family check
+#' @keywords internal
+#' @name check-numeric
+#' @rdname check-numeric
+NULL
+
+#' @rdname check-numeric
+check_numbers <- function(x, expected = c("positive", "whole", "odd", "even"),
+                          ...) {
   arg <- deparse(substitute(x))
   predicate <- switch(
     expected,
     positive = is_positive,
     whole = is_whole,
     odd = is_odd,
+    even = is_even,
     stop("Can't find a predicate for this: ", expected, call. = FALSE)
   )
   if (!all(predicate(x, ...))) {
@@ -171,104 +220,33 @@ check_constant <- function(x) {
   }
 }
 
-check_matrix <- function(x, expected = c("square", "symmetric")) {
+# ======================================================================= Matrix
+#' Check Matrix
+#'
+#' @param x A \code{\link{matrix}} to be checked.
+#' @param expected An appropriate expected value.
+#' @return Throw an error, if any.
+#' @author N. Frerebeau
+#' @family check
+#' @keywords internal
+#' @name check-matrix
+#' @rdname check-matrix
+NULL
+
+#' @rdname check-matrix
+check_square <- function(x) {
   arg <- deparse(substitute(x))
-  predicate <- switch(
-    expected,
-    square = is_square,
-    symmetric = is_symmetric,
-    stop("Can't find a predicate for this matrix: ", expected, call. = FALSE)
-  )
-  if (!predicate(x)) {
-    msg <- sprintf("%s must be a %s matrix.", sQuote(arg), expected)
+  if (!is_square(x)) {
+    k <- paste0(dim(x), collapse = " x ")
+    msg <- sprintf("%s must be a square matrix, not %s.", sQuote(arg), k)
     throw_error("error_bad_matrix", msg)
   }
 }
-
-# =================================================================== conditions
-#' Conditions
-#'
-#' @param message A \code{\link{character}} string specifying the error
-#'  message.
-#' @param call The call.
-#' @param object An object to which error messages are related.
-#' @param errors A \code{\link{character}} vector giving the error messages.
-#' @param ... Extra arguments.
-#' @return
-#'  Throw an error if \code{errors} is of non-zero length, returns \code{TRUE}
-#'  if not.
-#' @author N. Frerebeau
-#' @name conditions
-#' @keywords internal error
-#' @noRd
-
-throw_error <- function(.subclass, message, call = NULL, ...) {
-  # TODO: gettext
-  err <- structure(
-    list(
-      message = message,
-      call = call,
-      ...
-    ),
-    class = c(.subclass, "error", "condition")
-  )
-  stop(err)
-}
-
-catch_conditions <- function(expr) {
-  conditions <- list()
-  add_mess <- function(cnd) {
-    conditions <<- append(conditions, list(cnd))
-    suppressMessages(cnd)
+#' @rdname check-matrix
+check_symmetric <- function(x) {
+  arg <- deparse(substitute(x))
+  if (!is_symmetric(x)) {
+    msg <- sprintf("%s must be a symmetric matrix.", sQuote(arg))
+    throw_error("error_bad_matrix", msg)
   }
-  add_warn <- function(cnd) {
-    conditions <<- append(conditions, list(cnd))
-    suppressWarnings(cnd)
-  }
-  add_err <- function(cnd) {
-    conditions <<- append(conditions, list(cnd))
-  }
-
-  tryCatch(
-    error = add_err,
-    withCallingHandlers(
-      message = add_mess,
-      warning = add_warn,
-      expr
-    )
-  )
-  return(conditions)
-}
-
-throw_error_class <- function(object, errors) {
-  errors <- compact(is_empty, errors)
-  if (!is_empty(errors)) {
-    messages <- lapply(
-      X = names(errors),
-      FUN = function(slot, errors) {
-        vapply(X = errors[[slot]], FUN = `[[`, FUN.VALUE = "character", 1)
-      },
-      errors = errors
-    )
-    error_msg <- sprintf("%s object initialization:\n*  %s",
-                         dQuote(class(object)),
-                         paste0(unlist(messages), collapse = "\n*  "))
-    err <- structure(
-      list(message = error_msg, call = NULL),
-      class = c("error_class_initialize", "error", "condition")
-    )
-    stop(err)
-  } else {
-    TRUE
-  }
-}
-
-throw_message_class <- function(class, verbose = getOption("verbose")) {
-  msg <- structure(
-    list(
-      message = sprintf("%s instance initialization...\n", dQuote(class))
-    ),
-    class = c("message_class_initialize", "message", "condition")
-  )
-  if (verbose) message(msg)
 }

@@ -169,7 +169,7 @@ setValidity(
     errors <- list(
       # Check data
       data = c(
-        catch_conditions(check_matrix(data, expected = "symmetric"))
+        catch_conditions(check_symmetric(data))
       )
     )
 
@@ -189,7 +189,7 @@ setValidity(
     errors <- list(
       # Check data
       data = c(
-        catch_conditions(check_matrix(data, expected = "symmetric"))
+        catch_conditions(check_symmetric(data))
       ),
       # Check method
       method = c(
