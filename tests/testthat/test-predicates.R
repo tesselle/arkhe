@@ -3,6 +3,11 @@ context("Predicates")
 test_that("utility predicates return a logical scalar", {
   expect_true(is_empty(numeric(0)))
   expect_false(is_empty(numeric(1)))
+
+  a <- seq_len(5)
+  expect_false(is_named(a))
+  names(a) <- letters[a]
+  expect_true(is_named(a))
 })
 test_that("type predicates return a logical scalar", {
   expect_true(is_list(list()))
@@ -70,6 +75,7 @@ test_that("scalar type predicates return a logical scalar", {
 test_that("numeric predicates return a logical vector", {
   expect_type(is_odd(c(1, 3, 5, 7, 9)), "logical")
   expect_false(is_odd(2))
+  expect_false(is_even(1))
 
   expect_type(is_positive(c(0, 1, 2, 3, 4)), "logical")
   expect_true(all(is_positive(c(0, 1, 2, 3, 4), strict = FALSE)))
@@ -93,7 +99,8 @@ test_that("numeric predicates return a logical vector", {
   expect_false(is_equal(c(1, 1, 1, NA, 1), na.rm = FALSE))
   expect_false(is_equal(c(1, 2, 1, 1, 1)))
   expect_error(is_equal(LETTERS))
-
+})
+test_that("trend predicates return a logical scalar", {
   expect_true(is_increasing(c(1, 2, 3, 4, 5)))
   expect_true(is_increasing(c(1, 1, 1, 1, 1)))
   expect_true(is_increasing(c(1, 2, 3, NA, 5), na.rm = TRUE))
