@@ -1,6 +1,6 @@
 Package: codex
 Title: Representation of Archaeological Data
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: 
     person(given = "Nicolas",
            family = "Frerebeau",
@@ -9,9 +9,11 @@ Authors@R:
            comment = c(ORCID = "https://orcid.org/0000-0001-5759-4944"))
 Description: A collection of classes that represent
     archaeological data. This package provides a set of S4 classes that
-    extend the basic matrix data type and a set of generic methods and
-    functions. In addition, a few classes of general interest (e.g. that
-    represent time and space information) are implemented.
+    extend the basic matrix data type (abundance matrix and stratigraphic
+    matrix) upon which package developers can build subclasses. It also
+    provides a set of generic methods (mutators and coercion mechanisms)
+    and functions (e.g. predicates). In addition, a few classes of general
+    interest (e.g. that represent chronological data) are implemented.
 License: GPL-3
 URL: http://codex.archaeo.science,
     http://github.com/nfrerebeau/codex,
@@ -21,6 +23,13 @@ Depends:
     R (>= 3.2)
 Imports: 
     methods
+Suggests: 
+    covr,
+    knitr,
+    rmarkdown,
+    testthat
+VignetteBuilder: 
+    knitr
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
@@ -40,9 +49,3 @@ Collate:
     'utilities.R'
     'uuid.R'
     'validate.R'
-Suggests: 
-    covr,
-    testthat,
-    knitr,
-    rmarkdown
-VignetteBuilder: knitr

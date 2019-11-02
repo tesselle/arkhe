@@ -20,9 +20,9 @@ Downloads](http://cranlogs.r-pkg.org/badges/codex)](https://cran.r-project.org/p
 
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
-developed.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+experimental](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 
 [![DOI](https://zenodo.org/badge/DOI/xxx.svg)](https://doi.org/xxx)
 <!-- badges: end -->
@@ -30,9 +30,12 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 ## Overview
 
 A collection of classes that represent archaeological data. This package
-provides a set of S4 classes that extend the basic matrix data type and
-a set of generic methods and functions. In addition, a few classes of
-general interest (e.g. that represent time and space information) are
+provides a set of S4 classes that extend the basic matrix data type
+(abundance matrix and stratigraphic matrix) upon which package
+developers can build subclasses. It also provides a set of generic
+methods (mutators and coercion mechanisms) and functions
+(e.g. predicates). In addition, a few classes of general interest
+(e.g. that represent chronological data) are
 implemented.
 
 ## Installation
@@ -67,10 +70,9 @@ data type. These new classes represent different special types of
 matrix.
 
   - Abundance matrix:
-      - `CountMatrix` represents count data,
-      - `FrequencyMatrix` represents relative frequency data.
-  - Logical matrix:
-      - `IncidenceMatrix` represents presence/absence data.
+      - `CountMatrix` represents count data (numeric),
+      - `FrequencyMatrix` represents relative frequency data (numeric).
+      - `IncidenceMatrix` represents presence/absence data (logical).
   - Other numeric matrix:
       - `OccurrenceMatrix` represents a co-occurrence matrix.
       - `SimilarityMatrix` represents a (dis)similarity matrix.

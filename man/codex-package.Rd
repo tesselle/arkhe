@@ -9,15 +9,17 @@
 \description{
 A collection of classes that represent
     archaeological data. This package provides a set of S4 classes that
-    extend the basic matrix data type and a set of generic methods and
-    functions. In addition, a few classes of general interest (e.g. that
-    represent time and space information) are implemented.
+    extend the basic matrix data type (abundance matrix and stratigraphic
+    matrix) upon which package developers can build subclasses. It also
+    provides a set of generic methods (mutators and coercion mechanisms)
+    and functions (e.g. predicates). In addition, a few classes of general
+    interest (e.g. that represent chronological data) are implemented.
 }
 \details{
 \tabular{ll}{
  \strong{Package:} \tab codex \cr
  \strong{Type:} \tab Package \cr
- \strong{Version:} \tab 0.0.0.9000 \cr
+ \strong{Version:} \tab 0.1.0 \cr
  \strong{License:} \tab GPL-3 \cr
  \strong{DOI:} \tab \href{https://doi.org/xxx}{xxx}
 }
