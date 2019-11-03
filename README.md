@@ -24,7 +24,7 @@ developed.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repos
 [![Lifecycle:
 maturing](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
-[![DOI](https://zenodo.org/badge/DOI/xxx.svg)](https://doi.org/xxx)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3526659.svg)](https://doi.org/10.5281/zenodo.3526659)
 <!-- badges: end -->
 
 ## Overview

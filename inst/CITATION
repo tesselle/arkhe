@@ -7,11 +7,13 @@ citEntry(entry = "Manual",
   organization = "Université Bordeaux Montaigne",
   address      = "Pessac, France",
   note         = "R package version 0.1.0",
+  url          = "https://doi.org/10.5281/zenodo.3526659",
 
   textVersion  =
   paste("Frerebeau, Nicolas (2019).",
         "codex: Representation of Archaeological Data.",
         "R package version 0.1.0",
         "Université Bordeaux Montaigne, Pessac, France.",
+        "DOI 10.5281/zenodo.3526659.",
         "URL https://cran.r-project.org/package=codex.")
 )
