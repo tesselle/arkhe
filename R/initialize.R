@@ -1,6 +1,6 @@
 # CLASSES INITIALIZATION
 
-## SpaceTime ===================================================================
+# ==================================================================== SpaceTime
 SpaceTime <- function(
   dates = matrix(0, 0, 2, dimnames = list(NULL, c("value", "error"))),
   coordinates = matrix(0, 0, 3, dimnames = list(NULL, c("X", "Y", "Z"))),
@@ -16,7 +16,7 @@ SpaceTime <- function(
   )
 }
 
-## *Matrix =====================================================================
+# ====================================================================== *Matrix
 Matrix <- function(...) {
   throw_message_class("Matrix")
   .Matrix(..., id = generate_uuid(seed = NULL))
@@ -24,10 +24,6 @@ Matrix <- function(...) {
 NumericMatrix <- function(data = matrix(0, 0, 0), ...) {
   throw_message_class("NumericMatrix")
   .NumericMatrix(Matrix(data), ...)
-}
-LogicalMatrix <- function(data = matrix(FALSE, 0, 0), ...) {
-  throw_message_class("LogicalMatrix")
-  .LogicalMatrix(Matrix(data), ...)
 }
 OccurrenceMatrix <- function(data = matrix(0, 0, 0), ...) {
   throw_message_class("OccurrenceMatrix")
@@ -37,7 +33,16 @@ SimilarityMatrix <- function(data = matrix(0, 0, 0), method = "unknown", ...) {
   throw_message_class("SimilarityMatrix")
   .SimilarityMatrix(NumericMatrix(data), method = as.character(method), ...)
 }
+LogicalMatrix <- function(data = matrix(FALSE, 0, 0), ...) {
+  throw_message_class("LogicalMatrix")
+  .LogicalMatrix(Matrix(data), ...)
+}
+StratigraphicMatrix <- function(data = matrix(FALSE, 0, 0), ...) {
+  throw_message_class("LogicalMatrix")
+  .StratigraphicMatrix(LogicalMatrix(data), ...)
+}
 
+# -------------------------------------------------------------- AbundanceMatrix
 #' Matrix constructor
 #'
 #' @inheritParams base::matrix
@@ -73,6 +78,17 @@ CountMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
   M <- buildMatrix(data, nrow, ncol, byrow, dimnames,
                    missing(nrow), missing(ncol))
   .CountMatrix(NumericMatrix(M), ...)
+}
+
+#' @export
+#' @rdname FrequencyMatrix-class
+FrequencyMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
+                            dimnames = NULL, ...) {
+  throw_message_class("FrequencyMatrix")
+  M <- buildMatrix(data, nrow, ncol, byrow, dimnames,
+                   missing(nrow), missing(ncol))
+  M <- M / rowSums(M)
+  .FrequencyMatrix(NumericMatrix(M), ...)
 }
 
 #' @export

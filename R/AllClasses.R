@@ -47,7 +47,7 @@
   )
 )
 
-## Matrix ======================================================================
+# ======================================================================= Matrix
 #' Matrix
 #'
 #' An S4 class to represent a matrix. This class extends the \code{base}
@@ -112,7 +112,7 @@
   contains = "matrix"
 )
 
-## Numeric matrix --------------------------------------------------------------
+# --------------------------------------------------------------- Numeric matrix
 #' Numeric matrix
 #'
 #' An S4 class to represent a numeric matrix.
@@ -160,10 +160,8 @@
 #' Frequency matrix
 #'
 #' An S4 class to represent a relative frequency matrix.
+#' @inheritParams base::matrix
 #' @slot total A \code{\link{numeric}} vector.
-#' @details
-#'  To ensure data integrity, a \code{FrequencyMatrix} can only be created by
-#'  coercion from a \linkS4class{CountMatrix} (see examples).
 #' @inheritSection Matrix-class Matrix ID
 #' @section Get and set:
 #'  In the code snippets below, \code{x} is a \code{FrequencyMatrix} object.
@@ -241,7 +239,7 @@
   contains = "NumericMatrix"
 )
 
-## Logical matrix --------------------------------------------------------------
+# --------------------------------------------------------------- Logical matrix
 #' Logical matrix
 #'
 #' An S4 class to represent a logical matrix.
@@ -274,7 +272,6 @@
 #' @return
 #'  TODO
 #' @seealso \linkS4class{LogicalMatrix}, \linkS4class{SpaceTime}
-#' @family logical matrix
 #' @example inst/examples/ex-logical-class.R
 #' @author N. Frerebeau
 #' @family matrix
@@ -285,7 +282,26 @@
   contains = c("LogicalMatrix", "SpaceTime")
 )
 
-## Abundance matrix ------------------------------------------------------------
+#' Stratigraphy
+#'
+#' An S4 class to represent a stratigraphic matrix.
+#' @details
+#'  A stratigraphic matrix represents directed relationships between
+#'  stratigraphic units. A stratigraphic matrix is an adjacency matrix (a non
+#'  symetric square matrix with zeros on its main diagonal), suitable to build
+#'  a directed acyclic graph (DAG).
+#' @seealso \linkS4class{LogicalMatrix}
+#' @example inst/examples/ex-stratigraphy.R
+#' @author N. Frerebeau
+#' @family matrix
+#' @docType class
+#' @aliases StratigraphicMatrix-class
+.StratigraphicMatrix <- setClass(
+  Class = "StratigraphicMatrix",
+  contains = "LogicalMatrix"
+)
+
+# ------------------------------------------------------------- Abundance matrix
 setClassUnion(
   name = "AbundanceMatrix",
   members = c("CountMatrix", "FrequencyMatrix", "IncidenceMatrix")

@@ -246,3 +246,53 @@ is_square <- function(x) {
 is_symmetric <- function(x) {
   if (is.matrix(x)) identical(x, t(x)) else FALSE
 }
+
+# ==============================================================================
+#' Graph Predicates
+#'
+#' \code{is_dag} checks if a graph has a topological ordering (i.e. is a
+#' directed acyclic graph) using Kahn's algorithm.
+#' @param x An adjacency \code{\link{matrix}} to be tested.
+#' @return A \code{\link{logical}} scalar.
+#' @references
+#'  Kahn, A. B. (1962). Topological sorting of large networks.
+#'  \emph{Communications of the ACM}, 5(11), p. 558-562.
+#'  DOI: \href{https://doi.org/10.1145/368996.369025}{10.1145/368996.369025}.
+#' @family predicates
+#' @name predicate-graph
+#' @rdname predicate-graph
+#' @noRd
+is_dag <- function(x) {
+  # Get edges
+  G <- matrix2edges(x)
+  # Find nodes which have no incoming edges
+  S <- which(colSums(x) == 0)
+  # List that will contain the sorted elements
+  L <- list()
+
+  if (length(S) == 0)
+    return(FALSE)
+
+  k <- 1L
+  while (k == 1 || length(S) != 0) {
+    # Remove a node n from S and add n to tail of L
+    n <- S[[1]]
+    S <- S[-1]
+    L <- append(L, n)
+    # For each node m with an edge e from n to m
+    e <- which(G[, 1] == n)
+    m <- G[e, 2]
+    # Do remove edge e from the graph
+    G <- G[-e, , drop = FALSE]
+    # If m has no other incoming edges then insert m into S
+    if (nrow(G) != 0) {
+      m <- m[!(m %in% G[, 2])]
+      if (length(m) != 0)
+        S <- append(S, m)
+    } else {
+      break()
+    }
+    k <- k + 1
+  }
+  return(nrow(G) == 0)
+}

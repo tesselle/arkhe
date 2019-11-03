@@ -82,13 +82,20 @@ NULL
 #'   \code{as_frequency} \tab \linkS4class{FrequencyMatrix} \cr
 #'   \code{as_incidence} \tab \linkS4class{IncidenceMatrix} \cr
 #'   \code{as_occurrence} \tab \linkS4class{OccurrenceMatrix} \cr
-#'   \code{as_similarity} \tab \linkS4class{SimilarityMatrix}
+#'   \code{as_similarity} \tab \linkS4class{SimilarityMatrix} \cr
+#'   \code{as_stratigraphy} \tab \linkS4class{StratigraphicMatrix}
 #'  }
 #'
 #'  \code{as_features} converts an \code{AbundanceMatrix} object to a
 #'  collection of features (i.e. a\code{\link{data.frame}} with
 #'  dates and coordinates columns) that can be used for spatial manipulation
 #'  with \pkg{sf}.
+#'
+#'  \code{as_stratigraphy} converts a set of stratigraphic relationships (edges)
+#'  to a stratigraphic (adjacency) matrix. \code{from} can be a
+#'  \code{\link{matrix}}, \code{\link{list}}, or \code{\link{data.frame}}:
+#'  the first column/component is assumed to contain the bottom units and the
+#'  second the top units.
 #' @return A coerced object.
 #' @example inst/examples/ex-coerce.R
 #' @author N. Frerebeau
@@ -140,6 +147,12 @@ setGeneric(
   def = function(from) standardGeneric("as_features")
 )
 
+#' @rdname coerce
+#' @aliases as_stratigraphy-method
+setGeneric(
+  name = "as_stratigraphy",
+  def = function(from) standardGeneric("as_stratigraphy")
+)
 
 # =================================================================== Chronology
 #' Chronological Information

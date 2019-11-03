@@ -107,6 +107,7 @@ Other matrix: \code{\link{CountMatrix-class}},
   \code{\link{Matrix-class}},
   \code{\link{NumericMatrix-class}},
   \code{\link{SimilarityMatrix-class}},
+  \code{\link{StratigraphicMatrix-class}},
   \code{\link{coerce}}
 }
 \author{

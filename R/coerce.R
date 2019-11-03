@@ -90,6 +90,17 @@ setMethod(
   }
 )
 
+#' @export
+#' @rdname coerce
+#' @aliases as_stratigraphy,ANY-method
+setMethod(
+  f = "as_stratigraphy",
+  signature = signature(from = "ANY"),
+  definition = function(from) {
+    methods::as(from, "StratigraphicMatrix")
+  }
+)
+
 # To data.frame ================================================================
 setAs(
   from = "Matrix",
@@ -138,6 +149,52 @@ matrix2similarity <- function(from) {
 }
 setAs(from = "matrix", to = "SimilarityMatrix", def = matrix2similarity)
 setAs(from = "data.frame", to = "SimilarityMatrix", def = matrix2similarity)
+
+## To OccurrenceMatrix =========================================================
+matrix2occurrence <- function(from) {
+  data <- if (isS4(from)) {
+    methods::S3Part(from, strictS3 = TRUE, "matrix")
+  } else {
+    data.matrix(from)
+  }
+  data <- data > 0
+  p <- ncol(data)
+  m <- nrow(data)
+  labels <- if (is.null(colnames(data))) {
+    paste0("V", seq_len(p))
+  } else {
+    colnames(data)
+  }
+
+  # @param indices A length-two numeric vector
+  # @param data A numeric or logical matrix
+  fun <- function(indices, data) {
+    sum(data[, indices[1]] + data[, indices[2]] == 2)
+  }
+  # Get all combinations of variables, taken 2 at a time
+  combine <- utils::combn(seq_len(p), 2, simplify = TRUE)
+  occurrence <- apply(X = combine, MARGIN = 2, FUN = fun, data = data) / m
+
+  C <- matrix(data = FALSE, nrow = p, ncol = p, dimnames = list(labels, labels))
+  C[lower.tri(C, diag = FALSE)] <- occurrence
+  C <- t(C)
+  C[lower.tri(C, diag = FALSE)] <- occurrence
+
+  id <- ifelse(isS4(from), from@id, generate_uuid())
+  .OccurrenceMatrix(C, id = id)
+}
+
+setAs(from = "matrix", to = "OccurrenceMatrix",
+      def = matrix2occurrence)
+setAs(from = "data.frame", to = "OccurrenceMatrix",
+      def = matrix2occurrence)
+
+setAs(from = "CountMatrix", to = "OccurrenceMatrix",
+      def = matrix2occurrence)
+setAs(from = "FrequencyMatrix", to = "OccurrenceMatrix",
+      def = matrix2occurrence)
+setAs(from = "IncidenceMatrix", to = "OccurrenceMatrix",
+      def = matrix2occurrence)
 
 ## CountMatrix <> FrequencyMatrix ==============================================
 setAs(
@@ -217,48 +274,34 @@ setAs(from = "data.frame", to = "IncidenceMatrix", def = matrix2incidence)
 setAs(from = "CountMatrix", to = "IncidenceMatrix", def = matrix2incidence)
 setAs(from = "FrequencyMatrix", to = "IncidenceMatrix", def = matrix2incidence)
 
-## To OccurrenceMatrix ---------------------------------------------------------
-matrix2occurrence <- function(from) {
-  data <- if (isS4(from)) {
-    methods::S3Part(from, strictS3 = TRUE, "matrix")
-  } else {
-    data.matrix(from)
-  }
-  data <- data > 0
-  p <- ncol(data)
-  m <- nrow(data)
-  labels <- if (is.null(colnames(data))) {
-    paste0("V", seq_len(p))
-  } else {
-    colnames(data)
-  }
+## To StratigraphicMatrix ======================================================
+edges2matrix <- function(from) {
+  from <- as.data.frame(from)
+  # Get all layers
+  layers <- unique(unlist(from))
+  layers <- layers[order(layers)]
+  # Coerce layers to factors
+  edges <- lapply(X = from, FUN = factor, levels = layers)
+  # Build adjacency matrix
+  adj <- stats::xtabs(~ edges[[1]] + edges[[2]])
+  adj <- matrix(data = as.logical(adj), nrow = length(layers),
+                dimnames = list(layers, layers))
 
-  # @param indices A length-two numeric vector
-  # @param data A numeric or logical matrix
-  fun <- function(indices, data) {
-    sum(data[, indices[1]] + data[, indices[2]] == 2)
+  .StratigraphicMatrix(adj, id = generate_uuid())
+}
+matrix2edges <- function(from) {
+  edges <- matrix(data = NA, nrow = 0, ncol = 2)
+  nodes <- seq_len(nrow(from))
+  for (i in nodes) {
+    to <- which(from[i, ])
+    if (length(to) != 0) {
+      e <- cbind(form = i, to = to)
+      edges <- rbind(edges, e)
+    }
   }
-  # Get all combinations of variables, taken 2 at a time
-  combine <- utils::combn(seq_len(p), 2, simplify = TRUE)
-  occurrence <- apply(X = combine, MARGIN = 2, FUN = fun, data = data) / m
-
-  C <- matrix(data = FALSE, nrow = p, ncol = p, dimnames = list(labels, labels))
-  C[lower.tri(C, diag = FALSE)] <- occurrence
-  C <- t(C)
-  C[lower.tri(C, diag = FALSE)] <- occurrence
-
-  id <- ifelse(isS4(from), from@id, generate_uuid())
-  .OccurrenceMatrix(C, id = id)
+  return(edges)
 }
 
-setAs(from = "matrix", to = "OccurrenceMatrix",
-      def = matrix2occurrence)
-setAs(from = "data.frame", to = "OccurrenceMatrix",
-      def = matrix2occurrence)
-
-setAs(from = "CountMatrix", to = "OccurrenceMatrix",
-      def = matrix2occurrence)
-setAs(from = "FrequencyMatrix", to = "OccurrenceMatrix",
-      def = matrix2occurrence)
-setAs(from = "IncidenceMatrix", to = "OccurrenceMatrix",
-      def = matrix2occurrence)
+setAs(from = "matrix", to = "StratigraphicMatrix", def = edges2matrix)
+setAs(from = "data.frame", to = "StratigraphicMatrix", def = edges2matrix)
+setAs(from = "list", to = "StratigraphicMatrix", def = edges2matrix)

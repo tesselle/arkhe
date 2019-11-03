@@ -259,3 +259,23 @@ check_symmetric <- function(x) {
     throw_error("error_bad_matrix", msg)
   }
 }
+
+# ======================================================================== Graph
+#' Check Graph
+#'
+#' @param x A \code{\link{matrix}} to be checked.
+#' @param expected An appropriate expected value.
+#' @return Throw an error, if any.
+#' @author N. Frerebeau
+#' @family check
+#' @keywords internal
+#' @name check-graph
+#' @rdname check-graph
+#' @noRd
+check_dag <- function(x) {
+  arg <- deparse(substitute(x))
+  if (!is_dag(x)) {
+    msg <- sprintf("%s must not contain cycles.", sQuote(arg))
+    throw_error("error_bad_graph", msg)
+  }
+}

@@ -220,10 +220,30 @@ setValidity(
   }
 )
 
-## IncidenceMatrix -------------------------------------------------------------
+# -------------------------------------------------------------- IncidenceMatrix
 # setValidity(
 #   Class = "IncidenceMatrix",
 #   method = function(object) {
 #
 #   }
 # )
+
+# ---------------------------------------------------------- StratigraphicMatrix
+setValidity(
+  Class = "StratigraphicMatrix",
+  method = function(object) {
+    # Get data
+    data <- methods::S3Part(object, strictS3 = TRUE, "matrix")
+
+    errors <- list(
+      # Check data
+      data = c(
+        catch_conditions(check_square(data)),
+        catch_conditions(check_dag(data))
+      )
+    )
+
+    # Return errors, if any
+    throw_error_class(object, errors)
+  }
+)

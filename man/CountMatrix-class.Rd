@@ -135,6 +135,7 @@ Other matrix: \code{\link{FrequencyMatrix-class}},
   \code{\link{NumericMatrix-class}},
   \code{\link{OccurrenceMatrix-class}},
   \code{\link{SimilarityMatrix-class}},
+  \code{\link{StratigraphicMatrix-class}},
   \code{\link{coerce}}
 }
 \author{

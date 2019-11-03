@@ -15,12 +15,15 @@
 \alias{as_similarity-method}
 \alias{as_features}
 \alias{as_features-method}
+\alias{as_stratigraphy}
+\alias{as_stratigraphy-method}
 \alias{as_count,ANY-method}
 \alias{as_frequency,ANY-method}
 \alias{as_incidence,ANY-method}
 \alias{as_occurrence,ANY-method}
 \alias{as_similarity,ANY-method}
 \alias{as_features,AbundanceMatrix-method}
+\alias{as_stratigraphy,ANY-method}
 \title{Coerce}
 \usage{
 as_count(from)
@@ -35,6 +38,8 @@ as_similarity(from)
 
 as_features(from)
 
+as_stratigraphy(from)
+
 \S4method{as_count}{ANY}(from)
 
 \S4method{as_frequency}{ANY}(from)
@@ -46,6 +51,8 @@ as_features(from)
 \S4method{as_similarity}{ANY}(from)
 
 \S4method{as_features}{AbundanceMatrix}(from)
+
+\S4method{as_stratigraphy}{ANY}(from)
 }
 \arguments{
 \item{from}{A numeric \code{\link{matrix}} or \code{\link{data.frame}} to be
@@ -67,13 +74,20 @@ The following methods coerce a \code{matrix} or \code{data.frame} to a
   \code{as_frequency} \tab \linkS4class{FrequencyMatrix} \cr
   \code{as_incidence} \tab \linkS4class{IncidenceMatrix} \cr
   \code{as_occurrence} \tab \linkS4class{OccurrenceMatrix} \cr
-  \code{as_similarity} \tab \linkS4class{SimilarityMatrix}
+  \code{as_similarity} \tab \linkS4class{SimilarityMatrix} \cr
+  \code{as_stratigraphy} \tab \linkS4class{StratigraphicMatrix}
  }
 
  \code{as_features} converts an \code{AbundanceMatrix} object to a
  collection of features (i.e. a\code{\link{data.frame}} with
  dates and coordinates columns) that can be used for spatial manipulation
  with \pkg{sf}.
+
+ \code{as_stratigraphy} converts a set of stratigraphic relationships (edges)
+ to a stratigraphic (adjacency) matrix. \code{from} can be a
+ \code{\link{matrix}}, \code{\link{list}}, or \code{\link{data.frame}}:
+ the first column/component is assumed to contain the bottom units and the
+ second the top units.
 }
 \examples{
 ## Create a count matrix
@@ -103,7 +117,8 @@ Other matrix: \code{\link{CountMatrix-class}},
   \code{\link{Matrix-class}},
   \code{\link{NumericMatrix-class}},
   \code{\link{OccurrenceMatrix-class}},
-  \code{\link{SimilarityMatrix-class}}
+  \code{\link{SimilarityMatrix-class}},
+  \code{\link{StratigraphicMatrix-class}}
 }
 \author{
 N. Frerebeau
