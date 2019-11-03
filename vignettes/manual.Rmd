@@ -1,5 +1,5 @@
 ---
-title: "Matrix Classes"
+title: "Manual"
 author: "N. Frerebeau"
 date: "`r Sys.Date()`"
 output:
@@ -11,7 +11,7 @@ header-includes:
    - \usepackage{amsmath}
    - \usepackage{amssymb}
 vignette: >
-  %\VignetteIndexEntry{Matrix Classes}
+  %\VignetteIndexEntry{Manual}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 editor_options: 

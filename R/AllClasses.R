@@ -146,7 +146,6 @@
 #'  and then coerced to \code{\link{integer}} as by
 #'  \code{\link[base]{as.integer}}.
 #' @seealso \linkS4class{NumericMatrix}, \linkS4class{SpaceTime}
-#' @family abundance matrix
 #' @example inst/examples/ex-abundance-class.R
 #' @author N. Frerebeau
 #' @family matrix
@@ -172,7 +171,6 @@
 #' @inheritSection Matrix-class Access
 #' @inheritSection Matrix-class Subset
 #' @seealso \linkS4class{NumericMatrix}, \linkS4class{SpaceTime}
-#' @family abundance matrix
 #' @example inst/examples/ex-abundance-class.R
 #' @author N. Frerebeau
 #' @family matrix
@@ -202,7 +200,6 @@
 #' @inheritSection Matrix-class Access
 #' @inheritSection Matrix-class Subset
 #' @seealso \linkS4class{NumericMatrix}
-#' @family abundance matrix
 #' @example inst/examples/ex-abundance-class.R
 #' @author N. Frerebeau
 #' @family matrix

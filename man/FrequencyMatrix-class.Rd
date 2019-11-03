@@ -124,9 +124,6 @@ all(A1 == A2)
 \seealso{
 \linkS4class{NumericMatrix}, \linkS4class{SpaceTime}
 
-Other abundance matrix: \code{\link{CountMatrix-class}},
-  \code{\link{OccurrenceMatrix-class}}
-
 Other matrix: \code{\link{CountMatrix-class}},
   \code{\link{IncidenceMatrix-class}},
   \code{\link{LogicalMatrix-class}},
@@ -140,5 +137,4 @@ Other matrix: \code{\link{CountMatrix-class}},
 \author{
 N. Frerebeau
 }
-\concept{abundance matrix}
 \concept{matrix}

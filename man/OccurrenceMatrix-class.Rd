@@ -97,9 +97,6 @@ all(A1 == A2)
 \seealso{
 \linkS4class{NumericMatrix}
 
-Other abundance matrix: \code{\link{CountMatrix-class}},
-  \code{\link{FrequencyMatrix-class}}
-
 Other matrix: \code{\link{CountMatrix-class}},
   \code{\link{FrequencyMatrix-class}},
   \code{\link{IncidenceMatrix-class}},
@@ -113,5 +110,4 @@ Other matrix: \code{\link{CountMatrix-class}},
 \author{
 N. Frerebeau
 }
-\concept{abundance matrix}
 \concept{matrix}
