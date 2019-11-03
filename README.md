@@ -20,9 +20,9 @@ Downloads](http://cranlogs.r-pkg.org/badges/codex)](https://cran.r-project.org/p
 
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
-developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+developed.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 [![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+maturing](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
 [![DOI](https://zenodo.org/badge/DOI/xxx.svg)](https://doi.org/xxx)
 <!-- badges: end -->
@@ -71,13 +71,15 @@ matrix.
 
   - Abundance matrix:
       - `CountMatrix` represents count data (numeric),
-      - `FrequencyMatrix` represents relative frequency data (numeric).
-      - `IncidenceMatrix` represents presence/absence data (logical).
-  - Other numeric matrix:
-      - `OccurrenceMatrix` represents a co-occurrence matrix.
-      - `SimilarityMatrix` represents a (dis)similarity matrix.
+      - `FrequencyMatrix` represents relative frequency data (numeric),
+      - `IncidenceMatrix` represents presence/absence data (logical),
+  - Numeric matrix:
+      - `OccurrenceMatrix` represents a co-occurrence matrix,
+      - `SimilarityMatrix` represents a (dis)similarity matrix,
+  - Logical matrix:
+      - `StratigraphicMatrix` represents a stratigraphic matrix.
 
-*It assumes that you keep your data tidy*: each variable (type/taxa)
+*It assumes that you keep your data tidy*: each variable (type/taxon)
 must be saved in its own column and each observation (sample/case) must
 be saved in its own row.
 
@@ -85,7 +87,7 @@ These new classes are of simple use, on the same way as the base
 `matrix`:
 
 ``` r
-# Define a count data matrix
+## Define a count data matrix
 quanti <- CountMatrix(data = sample(0:10, 100, TRUE),
                       nrow = 10, ncol = 10)
 
