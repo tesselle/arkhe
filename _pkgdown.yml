@@ -16,3 +16,6 @@ reference:
 - title: Geography
   contents:
   - has_concept("space")
+- title: Predicates
+  contents:
+  - has_concept("predicates")
