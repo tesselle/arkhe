@@ -87,8 +87,9 @@ FrequencyMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
   throw_message_class("FrequencyMatrix")
   M <- buildMatrix(data, nrow, ncol, byrow, dimnames,
                    missing(nrow), missing(ncol))
-  M <- M / rowSums(M)
-  .FrequencyMatrix(NumericMatrix(M), ...)
+  totals <- rowSums(M)
+  M <- M / totals
+  .FrequencyMatrix(NumericMatrix(M), totals = totals, ...)
 }
 
 #' @export

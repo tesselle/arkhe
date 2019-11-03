@@ -225,6 +225,32 @@ test_that("Initialize a FrequencyMatrix instance", {
   expect_s3_class(cnd[[1]], "error_class_initialize")
   expect_true(grepl("must be numeric; not logical.", cnd[[1]]$message))
 })
+test_that("FrequencyMatrix constructor", {
+  options("verbose" = TRUE)
+  cnd <- catch_conditions(FrequencyMatrix())
+  expect_length(cnd, 4)
+  for (i in seq_len(3)) {
+    expect_s3_class(cnd[[i]], "message_class_initialize")
+  }
+
+  freq_matrix1 <- FrequencyMatrix(
+    data = sample(0:10, 100, TRUE),
+    ncol = 20
+  )
+  expect_length(freq_matrix1@totals, 5)
+  expect_equal(dim(freq_matrix1), c(5, 20))
+  expect_equal(dimnames(freq_matrix1),
+               list(as.character(1:5), paste0("V", 1:20)))
+
+  freq_matrix2 <- FrequencyMatrix(
+    data = sample(0:10, 100, TRUE),
+    nrow = 20,
+    dimnames = list(NULL, LETTERS[1:5])
+  )
+  expect_equal(dim(freq_matrix2), c(20, 5))
+  expect_equal(dimnames(freq_matrix2),
+               list(as.character(1:20), LETTERS[1:5]))
+})
 
 ## Co-occurrenceMatrix matrix --------------------------------------------------
 test_that("OccurrenceMatrix constructor", {

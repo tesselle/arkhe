@@ -24,7 +24,7 @@ test_that("dates can be set with a numeric or integer vector", {
 })
 test_that("dates can be set with a character vector", {
   roman <- c("I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X")
-  X <- make_dates(roman)
+  X <- suppressWarnings(make_dates(roman))
   expect_type(X, "double")
   expect_equal(dim(X), c(10, 2))
   expect_equal(X[, 1], seq_len(10))
