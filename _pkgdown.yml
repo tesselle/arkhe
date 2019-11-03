@@ -6,7 +6,6 @@ reference:
 - title: Classes
   contents:
   - has_concept("matrix")
-  - has_concept("class")
 - title: Getters and Setters
   contents:
   - has_concept("mutator")
