@@ -289,8 +289,6 @@ is_dag <- function(x) {
       m <- m[!(m %in% G[, 2])]
       if (length(m) != 0)
         S <- append(S, m)
-    } else {
-      break()
     }
     k <- k + 1
   }

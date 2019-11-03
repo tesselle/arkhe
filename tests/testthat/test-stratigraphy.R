@@ -23,6 +23,13 @@ test_that("Initialize a StratigraphicMatrix instance", {
   # Empty instence
   expect_s4_class(.StratigraphicMatrix(), "StratigraphicMatrix")
 })
+test_that("StratigraphicMatrix constructor", {
+  options("verbose" = TRUE)
+  cnd <- catch_conditions(StratigraphicMatrix())
+  for (i in seq_len(2)) {
+    expect_s3_class(cnd[[i]], "message_class_initialize")
+  }
+})
 test_that("non DAG fails", {
   harris1 <- rbind(harris, c(1, 9))
   cnd <- catch_conditions(as_stratigraphy(harris1))
