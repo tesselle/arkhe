@@ -79,7 +79,7 @@ NULL
 #'
 #'  \tabular{ll}{
 #'   \strong{Method} \tab \strong{Target} \cr
-#'   \code{as_count} \tab \linkS4class{CountMatrix} \cr
+#'   \code{as_count} \tab \linkS4class{AbsoluteFrequencyMatrix} \cr
 #'   \code{as_frequency} \tab \linkS4class{RelativeFrequencyMatrix} \cr
 #'   \code{as_incidence} \tab \linkS4class{IncidenceMatrix} \cr
 #'   \code{as_occurrence} \tab \linkS4class{OccurrenceMatrix} \cr
@@ -161,7 +161,7 @@ setGeneric(
 #' \code{set_dates} and \code{get_dates} allow to get or set the dates of an
 #' object.
 #' @param object A \eqn{m \times p}{m x p} matrix of count data (typically of
-#'  class \linkS4class{CountMatrix}).
+#'  class \linkS4class{Matrix}).
 #' @param value A possible value for the element(s) of \code{object} (see
 #'  below).
 #' @details

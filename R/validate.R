@@ -58,9 +58,9 @@ setValidity(
   }
 )
 
-## CountMatrix -----------------------------------------------------------------
+## AbsoluteFrequencyMatrix -----------------------------------------------------
 setValidity(
-  Class = "CountMatrix",
+  Class = "AbsoluteFrequencyMatrix",
   method = function(object) {
     # Get data
     data <- methods::S3Part(object, strictS3 = TRUE, "matrix")

@@ -6,9 +6,9 @@ mtx_freq <- mtx_count / rowSums(mtx_count)
 mtx_incid <- matrix(as.logical(sample(0:1, 50, TRUE)), ncol = 10)
 mtx_sim <- matrix(1, nrow = 5, ncol = 5)
 
-test_that("matrix objects can be coerced to CountMatrix", {
+test_that("matrix objects can be coerced to AbsoluteFrequencyMatrix", {
   A <- as_count(mtx_count)
-  expect_s4_class(A, "CountMatrix")
+  expect_s4_class(A, "AbsoluteFrequencyMatrix")
   expect_equivalent(as(A, "matrix"), mtx_count)
 })
 test_that("matrix objects can be coerced to RelativeFrequencyMatrix", {
@@ -47,9 +47,9 @@ df_freq <- as.data.frame(mtx_freq)
 df_incid <- as.data.frame(mtx_incid)
 df_sim <- as.data.frame(mtx_sim)
 
-test_that("data.frame <> CountMatrix", {
+test_that("data.frame <> AbsoluteFrequencyMatrix", {
   A <- as_count(df_count)
-  expect_s4_class(A, "CountMatrix")
+  expect_s4_class(A, "AbsoluteFrequencyMatrix")
   expect_equivalent(as(A, "data.frame"), df_count)
 })
 test_that("data.frame <> RelativeFrequencyMatrix", {
@@ -83,12 +83,12 @@ test_that("data.frame <> SimilarityMatrix", {
 })
 
 # *Matrix ======================================================================
-count <- as(mtx_count, "CountMatrix")
+count <- as(mtx_count, "AbsoluteFrequencyMatrix")
 freq <- as(mtx_freq, "RelativeFrequencyMatrix")
 incid <- as(mtx_incid, "IncidenceMatrix")
 occ <- as(mtx_incid, "OccurrenceMatrix")
 
-test_that("CountMatrix <> RelativeFrequencyMatrix", {
+test_that("AbsoluteFrequencyMatrix <> RelativeFrequencyMatrix", {
   count1 <- as_count(mtx_count)
   freq1 <- as_frequency(count1)
   count2 <- as_count(freq1)
@@ -97,8 +97,8 @@ test_that("CountMatrix <> RelativeFrequencyMatrix", {
   freq1@totals <- numeric(0)
   expect_error(as_count(freq1), "Cannot calculate absolute frequencies")
 })
-test_that("*Matrix > CountMatrix", {
-  expect_s4_class(as_count(count), "CountMatrix")
+test_that("*Matrix > AbsoluteFrequencyMatrix", {
+  expect_s4_class(as_count(count), "AbsoluteFrequencyMatrix")
   # expect_error(as_count(occ))
 })
 test_that("*Matrix > RelativeFrequencyMatrix", {

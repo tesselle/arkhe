@@ -2,8 +2,7 @@
 
 export(CountMatrix)
 export(IncidenceMatrix)
-export(RelativeFrequencyMatrix)
-exportClasses(CountMatrix)
+exportClasses(AbsoluteFrequencyMatrix)
 exportClasses(RelativeFrequencyMatrix)
 exportMethods("[<-")
 exportMethods("[[<-")

@@ -72,7 +72,7 @@ method used.}
 \seealso{
 \linkS4class{NumericMatrix}
 
-Other matrix: \code{\link{CountMatrix-class}},
+Other matrix: \code{\link{AbsoluteFrequencyMatrix-class}},
   \code{\link{IncidenceMatrix-class}},
   \code{\link{LogicalMatrix-class}},
   \code{\link{Matrix-class}},

@@ -67,8 +67,8 @@ test_that("NumericMatrix constructor", {
 ## Count matrix ----------------------------------------------------------------
 test_that("Initialize a CountMatrix instance", {
   options("verbose" = FALSE)
-  expect_s4_class(.CountMatrix(), "CountMatrix")
-  expect_s4_class(CountMatrix(1), "CountMatrix")
+  expect_s4_class(.AbsoluteFrequencyMatrix(), "AbsoluteFrequencyMatrix")
+  expect_s4_class(CountMatrix(1), "AbsoluteFrequencyMatrix")
 
   # Try relative frequencies
   cnd <- catch_conditions(CountMatrix(1.1))

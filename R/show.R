@@ -30,7 +30,7 @@ setMethod(
 # Numeric matrix ===============================================================
 setMethod(
   f = "show",
-  signature = "CountMatrix",
+  signature = "AbsoluteFrequencyMatrix",
   definition = function(object) {
     data <- methods::S3Part(object, strictS3 = TRUE, "matrix")
     m <- nrow(data)

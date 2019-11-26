@@ -88,9 +88,10 @@
   contains = "Matrix"
 )
 
-#' Count matrix
+#' Absolute Frequency Matrix
 #'
-#' An S4 class to represent a count matrix.
+#' An S4 class to represent an absolute frequency matrix (i.e. the number of
+#' times a given datum occurs in a dataset).
 #' @inheritParams base::matrix
 #' @inheritSection Matrix-class Matrix ID
 #' @inheritSection Matrix-class Get and set
@@ -105,16 +106,17 @@
 #' @author N. Frerebeau
 #' @family matrix
 #' @docType class
-#' @exportClass CountMatrix
-#' @aliases CountMatrix-class
-.CountMatrix <- setClass(
-  Class = "CountMatrix",
+#' @exportClass AbsoluteFrequencyMatrix
+#' @aliases AbsoluteFrequencyMatrix-class
+.AbsoluteFrequencyMatrix <- setClass(
+  Class = "AbsoluteFrequencyMatrix",
   contains = "NumericMatrix"
 )
 
 #' Relative Frequency Matrix
 #'
-#' An S4 class to represent a relative frequency matrix.
+#' An S4 class to represent a relative frequency matrix (i.e. the fraction of
+#' times a given datum occurs in a dataset).
 #' @inheritParams base::matrix
 #' @slot id A \code{\link{character}} string specifying the unique
 #'  identifier of the matrix (UUID v4).
@@ -258,5 +260,6 @@
 # ------------------------------------------------------------- Abundance matrix
 setClassUnion(
   name = "AbundanceMatrix",
-  members = c("CountMatrix", "RelativeFrequencyMatrix", "IncidenceMatrix")
+  members = c("AbsoluteFrequencyMatrix", "RelativeFrequencyMatrix",
+              "IncidenceMatrix")
 )

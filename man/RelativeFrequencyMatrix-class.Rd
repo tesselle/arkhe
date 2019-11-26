@@ -31,7 +31,8 @@ RelativeFrequencyMatrix(data = 0, nrow = 1, ncol = 1,
 \item{...}{additional arguments to be passed to or from methods.}
 }
 \description{
-An S4 class to represent a relative frequency matrix.
+An S4 class to represent a relative frequency matrix (i.e. the fraction of
+times a given datum occurs in a dataset).
 }
 \section{Slots}{
 
@@ -137,7 +138,7 @@ all(A1 == A2)
 \seealso{
 \linkS4class{NumericMatrix}
 
-Other matrix: \code{\link{CountMatrix-class}},
+Other matrix: \code{\link{AbsoluteFrequencyMatrix-class}},
   \code{\link{IncidenceMatrix-class}},
   \code{\link{LogicalMatrix-class}},
   \code{\link{Matrix-class}},

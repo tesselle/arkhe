@@ -79,7 +79,7 @@ changes in a future release).}
 \seealso{
 \link[base]{matrix}
 
-Other matrix: \code{\link{CountMatrix-class}},
+Other matrix: \code{\link{AbsoluteFrequencyMatrix-class}},
   \code{\link{IncidenceMatrix-class}},
   \code{\link{LogicalMatrix-class}},
   \code{\link{NumericMatrix-class}},

@@ -107,7 +107,7 @@ D <- as_incidence(C)
 \seealso{
 \linkS4class{LogicalMatrix}
 
-Other matrix: \code{\link{CountMatrix-class}},
+Other matrix: \code{\link{AbsoluteFrequencyMatrix-class}},
   \code{\link{LogicalMatrix-class}},
   \code{\link{Matrix-class}},
   \code{\link{NumericMatrix-class}},

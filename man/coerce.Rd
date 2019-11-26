@@ -67,7 +67,7 @@ The following methods coerce a \code{matrix} or \code{data.frame} to a
 
  \tabular{ll}{
   \strong{Method} \tab \strong{Target} \cr
-  \code{as_count} \tab \linkS4class{CountMatrix} \cr
+  \code{as_count} \tab \linkS4class{AbsoluteFrequencyMatrix} \cr
   \code{as_frequency} \tab \linkS4class{RelativeFrequencyMatrix} \cr
   \code{as_incidence} \tab \linkS4class{IncidenceMatrix} \cr
   \code{as_occurrence} \tab \linkS4class{OccurrenceMatrix} \cr
@@ -107,7 +107,7 @@ C <- as_incidence(A1)
 D <- as_occurrence(A1)
 }
 \seealso{
-Other matrix: \code{\link{CountMatrix-class}},
+Other matrix: \code{\link{AbsoluteFrequencyMatrix-class}},
   \code{\link{IncidenceMatrix-class}},
   \code{\link{LogicalMatrix-class}},
   \code{\link{Matrix-class}},

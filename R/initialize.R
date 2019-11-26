@@ -64,17 +64,16 @@ buildMatrix <- function(data, nrow, ncol, byrow, dimnames,
 }
 
 #' @export
-#' @rdname CountMatrix-class
+#' @rdname AbsoluteFrequencyMatrix-class
 CountMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
                         dimnames = NULL, ...) {
   M <- buildMatrix(data, nrow, ncol, byrow, dimnames,
                    missing(nrow), missing(ncol))
   throw_message("codex_message_class",
-                "<CountMatrix> instance initialized.\n")
-  .CountMatrix(NumericMatrix(M), ...)
+                "<AbsoluteFrequencyMatrix> instance initialized.\n")
+  .AbsoluteFrequencyMatrix(NumericMatrix(M), ...)
 }
 
-#' @export
 #' @rdname RelativeFrequencyMatrix-class
 RelativeFrequencyMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
                             dimnames = NULL, ...) {

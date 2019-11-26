@@ -22,7 +22,7 @@ set_dates(object) <- value
 }
 \arguments{
 \item{object}{A \eqn{m \times p}{m x p} matrix of count data (typically of
-class \linkS4class{CountMatrix}).}
+class \linkS4class{Matrix}).}
 
 \item{value}{A possible value for the element(s) of \code{object} (see
 below).}
