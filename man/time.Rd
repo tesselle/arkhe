@@ -8,8 +8,8 @@
 \alias{set_dates<-}
 \alias{set_dates-method}
 \alias{get_dates,AbundanceMatrix-method}
-\alias{set_dates<-,AbundanceMatrix-method}
-\alias{set_dates,AbundanceMatrix-method}
+\alias{set_dates<-,Matrix-method}
+\alias{set_dates,Matrix-method}
 \title{Chronological Information}
 \usage{
 get_dates(object)
@@ -18,7 +18,7 @@ set_dates(object) <- value
 
 \S4method{get_dates}{AbundanceMatrix}(object)
 
-\S4method{set_dates}{AbundanceMatrix}(object) <- value
+\S4method{set_dates}{Matrix}(object) <- value
 }
 \arguments{
 \item{object}{A \eqn{m \times p}{m x p} matrix of count data (typically of
@@ -26,6 +26,9 @@ class \linkS4class{CountMatrix}).}
 
 \item{value}{A possible value for the element(s) of \code{object} (see
 below).}
+}
+\value{
+\code{get_dates} returns a two-columns \code{\link{data.frame}}.
 }
 \description{
 \code{set_dates} and \code{get_dates} allow to get or set the dates of an
@@ -47,6 +50,41 @@ An attempt is made to interpret the argument \code{value} in a suitable way.
   \emph{Note} that if \code{value} has columns named "\code{value}" and
   "\code{error}", these columns will be used.}
  }
+}
+\examples{
+## Create a count data matrix
+A1 <- CountMatrix(data = sample(0:10, 100, TRUE), nrow = 10, ncol = 10,
+                  dimnames = list(LETTERS[1:10], NULL))
+
+## Set dates as a matrix
+B <- matrix(data = sample(0:10, 20, TRUE), nrow = 10, ncol = 2)
+set_dates(A1) <- B
+get_dates(A1)
+
+## Set dates as a data.frame
+B <- data.frame(sample(0:10, 5, TRUE), sample(0:10, 5, TRUE),
+                row.names = LETTERS[seq(1, 10, 2)])
+set_dates(A1) <- B
+get_dates(A1)
+
+## Set dates as a list
+B <- list(value = sample(0:10, 10, TRUE), error = sample(0:10, 10, TRUE))
+set_dates(A1) <- B
+get_dates(A1)
+
+## Set dates as a numeric vector
+B <- sample(0:10, 10, TRUE)
+suppressWarnings(set_dates(A1) <- B)
+get_dates(A1)
+
+## Set dates as a character vector
+B <- c("X", "IX", "VIII", "VII", "VI", "V", "IV", "III", "II", "I")
+set_dates(A1) <- B
+get_dates(A1)
+
+## Unset dates
+set_dates(A1) <- NULL
+get_dates(A1)
 }
 \author{
 N. Frerebeau

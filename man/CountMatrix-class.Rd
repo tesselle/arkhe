@@ -30,16 +30,8 @@ CountMatrix(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
 
 \item{...}{additional arguments to be passed to or from methods.}
 }
-\value{
-TODO
-}
 \description{
 An S4 class to represent a count matrix.
-}
-\note{
-Numeric values are \code{\link[base:round]{rounded}} to zero decimal places
- and then coerced to \code{\link{integer}} as by
- \code{\link[base]{as.integer}}.
 }
 \section{Matrix ID}{
 
@@ -56,6 +48,8 @@ Numeric values are \code{\link[base:round]{rounded}} to zero decimal places
  In the code snippets below, \code{x} is a \code{*Matrix} object.
  \describe{
   \item{\code{get_id(x)}}{Get the ID of \code{x}.}
+  \item{\code{get_dates(x)} and \code{set_dates(x) <- value}}{Get or set
+  the dates of \code{x}.}
  }
 }
 
@@ -88,8 +82,8 @@ Numeric values are \code{\link[base:round]{rounded}} to zero decimal places
   An empty index (a comma separated blank) indicates that all
   entries in that dimension are selected.
   Returns an object of the same class as \code{x}.}
-  \item{\code{x[[i]]}}{Extracts informations from a slot selected by
-  subscript \code{i}. \code{i} should be one of "\code{id}" or \code{NULL}.}
+  \item{\code{x[[i]]}}{Extracts a single element selected by subscript
+  \code{i}.}
  }
 }
 
@@ -107,7 +101,7 @@ rownames(A1) # Get the rownames
 rownames(A1) <- LETTERS[1:10] # Set the row names
 
 ## Subset
-A1[["id"]] # Get the matrix ID
+A1[[1]] # Get the matrix ID
 A1[, ] # Get all values
 A1[1, ] # Get the first row
 A1[c("A", "B", "C"), ] # Get the first three rows
@@ -123,7 +117,7 @@ A2 <- as_count(B)
 all(A1 == A2)
 }
 \seealso{
-\linkS4class{NumericMatrix}, \linkS4class{SpaceTime}
+\linkS4class{NumericMatrix}
 
 Other matrix: \code{\link{FrequencyMatrix-class}},
   \code{\link{IncidenceMatrix-class}},

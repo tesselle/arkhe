@@ -1,52 +1,5 @@
 # CLASSES DEFINITION
 
-## =============================================================================
-#' Space and Time
-#'
-#' An S4 class to represent space-time informations.
-#' @slot dates A two column \code{\link{numeric}} matrix giving
-#'  the date \code{value} and \code{error}, respectively.
-#' @slot coordinates A three columns \code{\link{numeric}} matrix
-#'  (\code{x}, \code{y} and \code{z}) giving the geographic coordinates
-#'  (longitude, latitude and elevation, respectively).
-#' @slot epsg An \code{\link{integer}} giving the EPSG code of the spatial
-#'  reference system used. Numeric values are coerced to \code{\link{integer}}
-#'  as by \code{\link{as.integer}} (and hence truncated towards zero).
-#' @section Get and set:
-#'  In the code snippets below, \code{x} is a \code{SpaceTime} object.
-#'  \describe{
-#'   \item{\code{get_dates(x)}, \code{set_dates(x) <- value}}{Get or set the dates
-#'   of \code{x} according to \code{value}
-#'   (see \code{\link[=set_dates<-]{set_dates}} for details).}
-#'   \item{\code{get_coordinates(x)}, \code{set_coordinates(x) <- value}}{Get or
-#'   set the geographical coordinates of \code{x} according to \code{value}
-#'   (see \code{\link[=set_coordinates<-]{set_coordinates}} for details).}
-#'   \item{\code{get_epsg(x)}, \code{set_epsg(x) <- value}}{Get or
-#'   set the EPSG of \code{x} according to \code{value}. Numeric values are
-#'   coerced to \code{\link{integer}} as by \code{\link{as.integer}} (and hence
-#'   truncated towards zero).}
-#'   \item{\code{as_features(x)}}{Convert an \code{AbundanceMatrix}
-#'   object to a \code{\link[=data.frame]{data frame}} with dates and
-#'   coordinates columns.}
-#'  }
-#' @author N. Frerebeau
-#' @docType class
-#' @aliases SpaceTime-class
-#' @keywords internal
-.SpaceTime <- setClass(
-  Class = "SpaceTime",
-  slots = c(
-    dates = "matrix",
-    coordinates = "matrix",
-    epsg = "integer"
-  ),
-  prototype = list(
-    dates = matrix(0, 0, 2, dimnames = list(NULL, c("value", "error"))),
-    coordinates = matrix(0, 0, 3, dimnames = list(NULL, c("X", "Y", "Z"))),
-    epsg = as.integer(0)
-  )
-)
-
 # ======================================================================= Matrix
 #' Matrix
 #'
@@ -54,6 +7,10 @@
 #' \link[base]{matrix}.
 #' @slot id A \code{\link{character}} string specifying the unique
 #'  identifier of the matrix (UUID v4).
+#' @slot dates A \code{\link{list}} giving the dates of each assemblage.
+#' @slot coordinates A \code{\link{list}} giving the geographical coordinates of
+#'  each assemblage (must considered as experimental and subject to major
+#'  changes in a future release).
 #' @section Matrix ID:
 #'  When a matrix is first created, an identifier is generated (UUID v4).
 #'  This ID is preserved when coercing to another class. Thus, the object ID is
@@ -65,6 +22,8 @@
 #'  In the code snippets below, \code{x} is a \code{*Matrix} object.
 #'  \describe{
 #'   \item{\code{get_id(x)}}{Get the ID of \code{x}.}
+#'   \item{\code{get_dates(x)} and \code{set_dates(x) <- value}}{Get or set
+#'   the dates of \code{x}.}
 #'  }
 #' @section Access:
 #'  In the code snippets below, \code{x} is a \code{*Matrix} object.
@@ -91,8 +50,8 @@
 #'   An empty index (a comma separated blank) indicates that all
 #'   entries in that dimension are selected.
 #'   Returns an object of the same class as \code{x}.}
-#'   \item{\code{x[[i]]}}{Extracts informations from a slot selected by
-#'   subscript \code{i}. \code{i} should be one of "\code{id}" or \code{NULL}.}
+#'   \item{\code{x[[i]]}}{Extracts a single element selected by subscript
+#'   \code{i}.}
 #'  }
 #' @seealso \link[base]{matrix}
 #' @author N. Frerebeau
@@ -103,11 +62,9 @@
 .Matrix <- setClass(
   Class = "Matrix",
   slots = c(
-    id = "character"
-  ),
-  prototype = prototype(
-    matrix(0, 0, 0),
-    id = "00000000-0000-4000-a000-000000000000"
+    id = "character",
+    dates = "list",
+    coordinates = "list"
   ),
   contains = "matrix"
 )
@@ -139,53 +96,58 @@
 #' @inheritSection Matrix-class Get and set
 #' @inheritSection Matrix-class Access
 #' @inheritSection Matrix-class Subset
-#' @return
-#'  TODO
-#' @note
-#'  Numeric values are \code{\link[base:round]{rounded}} to zero decimal places
-#'  and then coerced to \code{\link{integer}} as by
-#'  \code{\link[base]{as.integer}}.
-#' @seealso \linkS4class{NumericMatrix}, \linkS4class{SpaceTime}
+# @note
+#  Numeric values are \code{\link[base:round]{rounded}} to zero decimal places
+#  and then coerced to \code{\link{integer}} as by
+#  \code{\link[base]{as.integer}}.
+#' @seealso \linkS4class{NumericMatrix}
 #' @example inst/examples/ex-abundance-class.R
 #' @author N. Frerebeau
 #' @family matrix
 #' @docType class
+#' @exportClass CountMatrix
 #' @aliases CountMatrix-class
 .CountMatrix <- setClass(
   Class = "CountMatrix",
-  contains = c("NumericMatrix", "SpaceTime")
+  contains = "NumericMatrix"
 )
 
 #' Frequency matrix
 #'
 #' An S4 class to represent a relative frequency matrix.
 #' @inheritParams base::matrix
-#' @slot total A \code{\link{numeric}} vector.
+#' @slot id A \code{\link{character}} string specifying the unique
+#'  identifier of the matrix (UUID v4).
+#' @slot dates A \code{\link{list}} giving the dates of each assemblage.
+#' @slot coordinates A \code{\link{list}} giving the geographical coordinates of
+#'  each assemblage (must considered as experimental and subject to major
+#'  changes in a future release).
+#' @slot totals A \code{\link{numeric}} vector.
 #' @inheritSection Matrix-class Matrix ID
 #' @section Get and set:
 #'  In the code snippets below, \code{x} is a \code{FrequencyMatrix} object.
 #'  \describe{
 #'   \item{\code{get_id(x)}}{Get the unique ID of \code{x}.}
-#'   \item{\code{get_totals(x)}}{Get the row sums (counts) of \code{x}.}
+#'   \item{\code{get_totals(x)} and \code{get_totals(x) <- value}}{Get and set
+#'   the row sums (counts) of \code{x}.}
+#'   \item{\code{get_dates(x)} and \code{set_dates(x) <- value}}{Get or set
+#'   the dates of \code{x}.}
 #'  }
 #' @inheritSection Matrix-class Access
 #' @inheritSection Matrix-class Subset
-#' @seealso \linkS4class{NumericMatrix}, \linkS4class{SpaceTime}
+#' @seealso \linkS4class{NumericMatrix}
 #' @example inst/examples/ex-abundance-class.R
 #' @author N. Frerebeau
 #' @family matrix
 #' @docType class
+#' @exportClass FrequencyMatrix
 #' @aliases FrequencyMatrix-class
 .FrequencyMatrix <- setClass(
   Class = "FrequencyMatrix",
   slots = c(
     totals = "numeric"
   ),
-  prototype = prototype(
-    matrix(0, 0, 0),
-    totals = numeric(0)
-  ),
-  contains = c("NumericMatrix", "SpaceTime")
+  contains = "NumericMatrix"
 )
 
 #' Co-occurrence matrix
@@ -229,10 +191,6 @@
   slots = c(
     method = "character"
   ),
-  prototype = prototype(
-    matrix(0, 0, 0),
-    method = "unknown"
-  ),
   contains = "NumericMatrix"
 )
 
@@ -266,9 +224,7 @@
 #' @inheritSection Matrix-class Get and set
 #' @inheritSection Matrix-class Access
 #' @inheritSection Matrix-class Subset
-#' @return
-#'  TODO
-#' @seealso \linkS4class{LogicalMatrix}, \linkS4class{SpaceTime}
+#' @seealso \linkS4class{LogicalMatrix}
 #' @example inst/examples/ex-logical-class.R
 #' @author N. Frerebeau
 #' @family matrix
@@ -276,7 +232,7 @@
 #' @aliases IncidenceMatrix-class
 .IncidenceMatrix <- setClass(
   Class = "IncidenceMatrix",
-  contains = c("LogicalMatrix", "SpaceTime")
+  contains = "LogicalMatrix"
 )
 
 #' Stratigraphy

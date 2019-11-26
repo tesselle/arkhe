@@ -47,13 +47,14 @@ setGeneric(
 #' Operators acting on objects to extract or replace parts.
 #' @param x An object from which to extract element(s) or in which to replace
 #'  element(s).
-#' @param i Indices specifying elements to extract or replace. Indices are
+#' @param i,j Indices specifying elements to extract or replace. Indices are
 #'  \code{\link{numeric}}, \code{\link{integer}} or \code{\link{character}}
 #'  vectors or empty (missing) or \code{NULL}. Numeric values are coerced to
 #'  \code{\link{integer}} as by \code{\link{as.integer}} (and hence truncated
 #'  towards zero). Character vectors will be matched to the name of the
 #'  elements. An empty index (a comma separated blank) indicates that all
 #'  entries in that dimension are selected.
+#' @param value A possible value for the element(s) of \code{x}.
 # @param drop A \code{\link{logical}} scalar: should the result be coerced to
 #  the lowest possible dimension? This only works for extracting elements,
 #  not for the replacement.
@@ -179,6 +180,9 @@ setGeneric(
 #'   \emph{Note} that if \code{value} has columns named "\code{value}" and
 #'   "\code{error}", these columns will be used.}
 #'  }
+#' @return
+#'  \code{get_dates} returns a two-columns \code{\link{data.frame}}.
+#' @example inst/examples/ex-chronology.R
 #' @author N. Frerebeau
 #' @family chronology
 #' @docType methods
@@ -198,63 +202,4 @@ setGeneric(
 setGeneric(
   name = "set_dates<-",
   def = function(object, value) standardGeneric("set_dates<-")
-)
-
-# ==================================================================== Geography
-#' Spatial Information
-#'
-#' Deal with spatial information.
-#' @param object An object from which to get or set element(s).
-#' @param value A possible value for the element(s) of \code{object} (see
-#'  below).
-#' @details
-#'  An attempt is made to interpret the argument \code{value} in a way suitable
-#'  for geographic coordinates. If \code{value} is a:
-#'  \describe{
-#'   \item{\code{list}}{containing components "\code{x}", "\code{y}" and
-#'   "\code{z}", these are used to define coordinates (longitude, latitude and
-#'   elevation, respectively). If "\code{z}" is missing, the vertical
-#'   coordinates will be ignored (and \code{NA} will be generated).}
-#'   \item{\code{matrix} or \code{data.frame} with two or more columns}{the
-#'   first is assumed to contain the \code{x} values, the second the \code{y}
-#'   and the third the \code{z} values. \emph{Note} that if \code{value} has
-#'   columns named "\code{x}", "\code{y}" and "\code{z}", these columns will be
-#'   used. If \code{value} has only two columns or has columns named "\code{x}"
-#'   and "\code{y}" but not "\code{z}", the vertical coordinates will be ignored
-#'   (and \code{NA} will be generated).}
-#'  }
-#' @example inst/examples/ex-geography.R
-#' @author N. Frerebeau
-#' @family geography
-#' @docType methods
-#' @name space
-#' @rdname space
-NULL
-
-#' @rdname space
-#' @aliases get_coordinates-method
-setGeneric(
-  name = "get_coordinates",
-  def = function(object) standardGeneric("get_coordinates")
-)
-
-#' @rdname space
-#' @aliases set_coordinates-method
-setGeneric(
-  name = "set_coordinates<-",
-  def = function(object, value) standardGeneric("set_coordinates<-")
-)
-
-#' @rdname space
-#' @aliases get_epsg-method
-setGeneric(
-  name = "get_epsg",
-  def = function(object) standardGeneric("get_epsg")
-)
-
-#' @rdname space
-#' @aliases set_epsg-method
-setGeneric(
-  name = "set_epsg<-",
-  def = function(object, value) standardGeneric("set_epsg<-")
 )

@@ -24,8 +24,8 @@ Check Data Types
 }
 \seealso{
 Other check: \code{\link{check-attribute}},
-  \code{\link{check-matrix}}, \code{\link{check-missing}},
-  \code{\link{check-numeric}}
+  \code{\link{check-graph}}, \code{\link{check-matrix}},
+  \code{\link{check-missing}}, \code{\link{check-numeric}}
 }
 \author{
 N. Frerebeau

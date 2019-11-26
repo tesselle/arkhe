@@ -55,7 +55,7 @@ rownames(A1) # Get the rownames
 rownames(A1) <- LETTERS[1:10] # Set the row names
 
 ## Subset
-A1[["id"]] # Get the matrix ID
+A1[[1]] # Get the matrix ID
 A1[, ] # Get all values
 A1[1, ] # Get the first row
 A1[c("A", "B", "C"), ] # Get the first three rows

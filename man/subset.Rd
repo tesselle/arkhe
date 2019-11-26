@@ -3,37 +3,31 @@
 \docType{methods}
 \name{subset}
 \alias{subset}
-\alias{[[,SpaceTime-method}
-\alias{[[,CountMatrix-method}
-\alias{[[,FrequencyMatrix-method}
-\alias{[[,IncidenceMatrix-method}
-\alias{[[,OccurrenceMatrix-method}
-\alias{[[,SimilarityMatrix-method}
+\alias{[<-,Matrix-method}
+\alias{[,Matrix-method}
+\alias{[[<-,Matrix-method}
+\alias{[[,Matrix-method}
 \title{Extract or Replace Parts of an Object}
 \usage{
-\S4method{[[}{SpaceTime}(x, i)
+\S4method{[}{Matrix}(x, i, j) <- value
 
-\S4method{[[}{CountMatrix}(x, i)
+\S4method{[}{Matrix}(x, i, j) <- value
 
-\S4method{[[}{FrequencyMatrix}(x, i)
-
-\S4method{[[}{IncidenceMatrix}(x, i)
-
-\S4method{[[}{OccurrenceMatrix}(x, i)
-
-\S4method{[[}{SimilarityMatrix}(x, i)
+\S4method{[[}{Matrix}(x, i) <- value
 }
 \arguments{
 \item{x}{An object from which to extract element(s) or in which to replace
 element(s).}
 
-\item{i}{Indices specifying elements to extract or replace. Indices are
+\item{i, j}{Indices specifying elements to extract or replace. Indices are
 \code{\link{numeric}}, \code{\link{integer}} or \code{\link{character}}
 vectors or empty (missing) or \code{NULL}. Numeric values are coerced to
 \code{\link{integer}} as by \code{\link{as.integer}} (and hence truncated
 towards zero). Character vectors will be matched to the name of the
 elements. An empty index (a comma separated blank) indicates that all
 entries in that dimension are selected.}
+
+\item{value}{A possible value for the element(s) of \code{x}.}
 }
 \value{
 A subsetted object.
@@ -55,7 +49,7 @@ rownames(A1) # Get the rownames
 rownames(A1) <- LETTERS[1:10] # Set the row names
 
 ## Subset
-A1[["id"]] # Get the matrix ID
+A1[[1]] # Get the matrix ID
 A1[, ] # Get all values
 A1[1, ] # Get the first row
 A1[c("A", "B", "C"), ] # Get the first three rows

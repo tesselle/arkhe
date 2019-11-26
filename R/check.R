@@ -11,9 +11,9 @@ NULL
 #' @return Throw an error, if any.
 #' @author N. Frerebeau
 #' @family check
-#' @keywords internal
 #' @name check-type
 #' @rdname check-type
+#' @keywords internal
 NULL
 
 #' @rdname check-type
@@ -65,9 +65,9 @@ check_scalar <- function(x, expected) {
 #' @return Throw an error, if any.
 #' @author N. Frerebeau
 #' @family check
-#' @keywords internal
 #' @name check-attribute
 #' @rdname check-attribute
+#' @keywords internal
 NULL
 
 #' @rdname check-attribute
@@ -92,7 +92,7 @@ check_lengths <- function(x, expected = NULL) {
     }
   } else {
     expected <- as.integer(expected)
-    if (is_empty(n) || !identical(n, expected)) {
+    if (is_empty(n) || any(n != expected)) {
       msg <- sprintf("Elements of %s must have the following lengths %s; not %s.",
                      sQuote(arg), paste0(expected, collapse = ", "), m)
       throw_error("error_bad_dimension", msg)
@@ -139,12 +139,15 @@ check_names <- function(x, expected = NULL, margin = c(1, 2)) {
 #' @rdname check-attribute
 check_uuid <- function(x) {
   arg <- deparse(substitute(x))
-  if (!is_uuid(x)) {
+  if (length(x) == 0 || !is_uuid(x)) {
     msg <- sprintf("%s must be an UUID.", sQuote(arg))
     throw_error("error_bad_uuid", msg)
   }
+  # if (x == "00000000-0000-4000-a000-000000000000") {
+  #   msg <- sprintf("%s seems wrong.", sQuote(arg))
+  #   throw_warning("error_bad_uuid", msg)
+  # }
 }
-
 
 # =================================================================== NA/NaN/Inf
 #' Check Missing Values
@@ -155,9 +158,9 @@ check_uuid <- function(x) {
 #' @return Throw an error, if any.
 #' @author N. Frerebeau
 #' @family check
-#' @keywords internal
 #' @name check-missing
 #' @rdname check-missing
+#' @keywords internal
 NULL
 
 #' @rdname check-missing
@@ -189,9 +192,9 @@ check_infinite <- function(x) {
 #' @return Throw an error, if any.
 #' @author N. Frerebeau
 #' @family check
-#' @keywords internal
 #' @name check-numeric
 #' @rdname check-numeric
+#' @keywords internal
 NULL
 
 #' @rdname check-numeric
@@ -211,7 +214,7 @@ check_numbers <- function(x, expected = c("positive", "whole", "odd", "even"),
     throw_error("error_bad_number", msg)
   }
 }
-
+#' @rdname check-numeric
 check_constant <- function(x) {
   arg <- deparse(substitute(x))
   # Check rowSums for array
@@ -237,9 +240,9 @@ check_constant <- function(x) {
 #' @return Throw an error, if any.
 #' @author N. Frerebeau
 #' @family check
-#' @keywords internal
 #' @name check-matrix
 #' @rdname check-matrix
+#' @keywords internal
 NULL
 
 #' @rdname check-matrix
@@ -268,10 +271,12 @@ check_symmetric <- function(x) {
 #' @return Throw an error, if any.
 #' @author N. Frerebeau
 #' @family check
-#' @keywords internal
 #' @name check-graph
 #' @rdname check-graph
-#' @noRd
+#' @keywords internal
+NULL
+
+#' @rdname check-graph
 check_dag <- function(x) {
   arg <- deparse(substitute(x))
   if (!is_dag(x)) {

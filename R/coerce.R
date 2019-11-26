@@ -59,39 +59,6 @@ setMethod(
 
 #' @export
 #' @rdname coerce
-#' @aliases as_features,AbundanceMatrix-method
-setMethod(
-  f = "as_features",
-  signature = "AbundanceMatrix",
-  definition = function(from) {
-    # Spatial coordinates
-    epsg <- get_epsg(from)
-    coords <- get_coordinates(from)
-
-    if (any(lengths(coords) == 0)) {
-      coords <- matrix(data = rep(NA_real_, 3 * nrow(from)), ncol = 3,
-                       dimnames = list(NULL, c("X", "Y", "Z")))
-      coords <- as.data.frame(coords)
-      message("No coordinates were set, NA generated.")
-    }
-
-    # Time coordinates
-    dates <- get_dates(from)
-    if (any(lengths(dates) == 0)) {
-      dates <- list(rep(NA_real_, nrow(from)), rep(NA_real_, nrow(from)))
-      message("No dates were set, NA generated.")
-    }
-    names(dates) <- c("DATE_VALUE", "DATE_ERROR")
-
-    # XYZ_index <- !vapply(X = coords, FUN = anyNA, FUN.VALUE = logical(1))
-    feat <- cbind.data.frame(SITE = rownames(from), coords, dates, from)
-    attr(feat, "epsg") <- epsg
-    return(feat)
-  }
-)
-
-#' @export
-#' @rdname coerce
 #' @aliases as_stratigraphy,ANY-method
 setMethod(
   f = "as_stratigraphy",
@@ -108,7 +75,7 @@ setAs(
   def = function(from) {
     x <- methods::as(from, "matrix")
     x <- as.data.frame(x)
-    attr(x, "id") <- from[["id"]]
+    attr(x, "id") <- from@id
     x
   }
 )
@@ -208,9 +175,7 @@ setAs(
       freq,
       totals = totals,
       id = from@id,
-      dates = from@dates,
-      coordinates = from@coordinates,
-      epsg = from@epsg
+      dates = from@dates
     )
   }
 )
@@ -233,9 +198,7 @@ setAs(
     .CountMatrix(
       integer,
       id = from@id,
-      dates = from@dates,
-      coordinates = from@coordinates,
-      epsg = from@epsg
+      dates = from@dates
     )
   }
 )
@@ -252,20 +215,12 @@ matrix2incidence <- function(from) {
   if (isS4(from)) {
     id <- from@id
     dates <- from@dates
-    coordinates <- from@coordinates
-    epsg <- from@epsg
   } else {
     id <- generate_uuid()
-    dates <- matrix(0, 0, 2, dimnames = list(NULL, c("value", "error")))
-    coordinates <- matrix(0, 0, 3, dimnames = list(NULL, c("X", "Y", "Z")))
-    epsg <- 0L
   }
   .IncidenceMatrix(
     data,
-    id = id,
-    dates = dates,
-    coordinates = coordinates,
-    epsg = epsg
+    id = id
   )
 }
 setAs(from = "matrix", to = "IncidenceMatrix", def = matrix2incidence)

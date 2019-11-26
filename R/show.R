@@ -57,8 +57,9 @@ setMethod(
     data <- methods::S3Part(object, strictS3 = TRUE, "matrix")
     m <- nrow(data)
     p <- ncol(data)
+    k <- ifelse(length(object@method) == 0, "unknown", object@method)
     cat(sprintf("%d x %d (dis)similarity matrix (%s):\n(%s)\n",
-                m, p, object@method, object@id))
+                m, p, k, object@id))
     print(data)
   }
 )

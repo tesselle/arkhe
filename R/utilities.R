@@ -18,8 +18,8 @@
 #'  expression.
 #' @references
 #'  Wickham, H. (2014). \emph{Advanced R}. London: Chapman & Hall. The R Series.
-#' @keywords internal utilities
 #' @family utilities
+#' @keywords internal utilities
 #' @noRd
 `%||%` <- function(x, y) {
   if (!is.null(x) || length(x) != 0) x else y
@@ -51,8 +51,8 @@ extract <- function(x, pattern) {
 #'  created column.
 #' @return A data.frame
 #' @author N. Frerebeau
-#' @keywords internal utilities
 #' @family utilities
+#' @keywords internal utilities
 #' @noRd
 make_rownames <- function(x) {
   if (!is.matrix(x) && !is.data.frame(x))

@@ -43,7 +43,6 @@ Collate:
     'coerce.R'
     'conditions.R'
     'extract.R'
-    'geography.R'
     'initialize.R'
     'show.R'
     'utilities.R'

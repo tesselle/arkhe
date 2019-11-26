@@ -10,9 +10,6 @@ test_that("matrix objects can be coerced to CountMatrix", {
   A <- as_count(mtx_count)
   expect_s4_class(A, "CountMatrix")
   expect_equivalent(as(A, "matrix"), mtx_count)
-
-  expect_message(as_count(mtx_freq))
-  expect_message(as_count(mtx_incid))
 })
 test_that("matrix objects can be coerced to FrequencyMatrix", {
   B <- as_frequency(mtx_freq)
@@ -54,9 +51,6 @@ test_that("data.frame <> CountMatrix", {
   A <- as_count(df_count)
   expect_s4_class(A, "CountMatrix")
   expect_equivalent(as(A, "data.frame"), df_count)
-
-  expect_message(as_count(df_freq))
-  expect_message(as_count(df_incid))
 })
 test_that("data.frame <> FrequencyMatrix", {
   B <- as_frequency(df_freq)
@@ -105,8 +99,6 @@ test_that("CountMatrix <> FrequencyMatrix", {
 })
 test_that("*Matrix > CountMatrix", {
   expect_s4_class(as_count(count), "CountMatrix")
-  expect_message(as_count(freq))
-  expect_message(as_count(incid))
   # expect_error(as_count(occ))
 })
 test_that("*Matrix > FrequencyMatrix", {
@@ -125,18 +117,4 @@ test_that("*Matrix > OccurrenceMatrix", {
   expect_s4_class(as_occurrence(count), "OccurrenceMatrix")
   expect_s4_class(as_occurrence(freq), "OccurrenceMatrix")
   expect_s4_class(as_occurrence(incid), "OccurrenceMatrix")
-})
-test_that("AbundanceMatrix > features", {
-  A <- as_count(mtx_count)
-
-  expect_message(as_features(A))
-
-  set_dates(A) <- list(value = seq_len(5), error = seq_len(5))
-  set_coordinates(A) <- list(x = seq_len(5), y = seq_len(5), z = seq_len(5))
-  set_epsg(A) <- 123
-
-  B <- as_features(A)
-  expect_s3_class(B, "data.frame")
-  expect_equal(dim(B), c(5, 16))
-  expect_equal(attr(B, "epsg"), 123)
 })

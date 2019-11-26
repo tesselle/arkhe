@@ -10,10 +10,10 @@
 #' Version 1 through 5 and is the appropriate Variant as per RFC4122.
 #' @param x An object to be tested.
 #' @return A \code{\link{logical}} scalar.
-#' @keywords internal
 #' @family predicates
 #' @name predicate-utils
 #' @rdname predicate-utils
+#' @keywords internal
 NULL
 
 #' @rdname predicate-utils
@@ -38,6 +38,7 @@ is_uuid <- function(x) {
 #' @family predicates
 #' @name predicate-type
 #' @rdname predicate-type
+#' @keywords internal
 NULL
 
 #' @rdname predicate-type
@@ -75,7 +76,15 @@ is_logical <- function(x) {
 }
 #' @rdname predicate-type
 is_error <- function(x) {
-  inherits(x, "try-error") || inherits(x, "error")
+  inherits(x, "try-error") || inherits(x, "simpleError") || inherits(x, "error")
+}
+#' @rdname predicate-type
+is_warning <- function(x) {
+  inherits(x, "simpleWarning") || inherits(x, "warning")
+}
+#' @rdname predicate-type
+is_message <- function(x) {
+  inherits(x, "simpleMessage") || inherits(x, "message")
 }
 
 # ==============================================================================
@@ -86,6 +95,7 @@ is_error <- function(x) {
 #' @family predicates
 #' @name predicate-scalar
 #' @rdname predicate-scalar
+#' @keywords internal
 NULL
 
 #' @rdname predicate-scalar
@@ -144,6 +154,7 @@ is_scalar_logical <- function(x) {
 #' @family predicates
 #' @name predicate-numeric
 #' @rdname predicate-numeric
+#' @keywords internal
 NULL
 
 #' @rdname predicate-numeric
@@ -191,6 +202,7 @@ is_binary <- function(x) {
 #' @family predicates
 #' @name predicate-trend
 #' @rdname predicate-trend
+#' @keywords internal
 NULL
 
 #' @rdname predicate-trend
@@ -236,6 +248,7 @@ is_overlapping <- function(x, y) {
 #' @family predicates
 #' @name predicate-matrix
 #' @rdname predicate-matrix
+#' @keywords internal
 NULL
 
 #' @rdname predicate-matrix
@@ -261,7 +274,10 @@ is_symmetric <- function(x) {
 #' @family predicates
 #' @name predicate-graph
 #' @rdname predicate-graph
-#' @noRd
+#' @keywords internal
+NULL
+
+#' @rdname predicate-graph
 is_dag <- function(x) {
   # Get edges
   G <- matrix2edges(x)

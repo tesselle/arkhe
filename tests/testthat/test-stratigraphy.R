@@ -26,16 +26,18 @@ test_that("Initialize a StratigraphicMatrix instance", {
 test_that("StratigraphicMatrix constructor", {
   options("verbose" = TRUE)
   cnd <- catch_conditions(StratigraphicMatrix())
-  for (i in seq_len(2)) {
-    expect_s3_class(cnd[[i]], "message_class_initialize")
+  for (i in seq_len(3)) {
+    expect_s3_class(cnd[[i]], "codex_message_class")
   }
 })
 test_that("non DAG fails", {
   harris1 <- rbind(harris, c(1, 9))
   cnd <- catch_conditions(as_stratigraphy(harris1))
-  expect_s3_class(cnd[[1]], "error_class_initialize")
+  expect_s3_class(cnd[[1]], "codex_error_class")
+  expect_true(grepl("must not contain cycles", cnd[[1]]$message))
 
   harris2 <- rbind(harris, c(6, 8))
   cnd <- catch_conditions(as_stratigraphy(harris2))
-  expect_s3_class(cnd[[1]], "error_class_initialize")
+  expect_s3_class(cnd[[1]], "codex_error_class")
+  expect_true(grepl("must not contain cycles", cnd[[1]]$message))
 })

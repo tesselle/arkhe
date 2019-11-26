@@ -23,10 +23,12 @@ A \code{\link{logical}} scalar.
 \code{is_symmetric} checks if a matrix is symmetric.
 }
 \seealso{
-Other predicates: \code{\link{predicate-numeric}},
+Other predicates: \code{\link{predicate-graph}},
+  \code{\link{predicate-numeric}},
   \code{\link{predicate-scalar}},
   \code{\link{predicate-trend}},
   \code{\link{predicate-type}},
   \code{\link{predicate-utils}}
 }
 \concept{predicates}
+\keyword{internal}

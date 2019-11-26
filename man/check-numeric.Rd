@@ -3,9 +3,12 @@
 \name{check-numeric}
 \alias{check-numeric}
 \alias{check_numbers}
+\alias{check_constant}
 \title{Check Numeric Values}
 \usage{
 check_numbers(x, expected = c("positive", "whole", "odd", "even"), ...)
+
+check_constant(x)
 }
 \arguments{
 \item{x}{A \code{\link{numeric}} object to be checked.}
@@ -20,8 +23,8 @@ Check Numeric Values
 }
 \seealso{
 Other check: \code{\link{check-attribute}},
-  \code{\link{check-matrix}}, \code{\link{check-missing}},
-  \code{\link{check-type}}
+  \code{\link{check-graph}}, \code{\link{check-matrix}},
+  \code{\link{check-missing}}, \code{\link{check-type}}
 }
 \author{
 N. Frerebeau

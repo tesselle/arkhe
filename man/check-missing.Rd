@@ -22,8 +22,8 @@ Checks if an object contains any missing (\code{NA}, \code{NaN}) or infinite
 }
 \seealso{
 Other check: \code{\link{check-attribute}},
-  \code{\link{check-matrix}}, \code{\link{check-numeric}},
-  \code{\link{check-type}}
+  \code{\link{check-graph}}, \code{\link{check-matrix}},
+  \code{\link{check-numeric}}, \code{\link{check-type}}
 }
 \author{
 N. Frerebeau

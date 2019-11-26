@@ -14,6 +14,12 @@ An S4 class to represent a matrix. This class extends the \code{base}
 \describe{
 \item{\code{id}}{A \code{\link{character}} string specifying the unique
 identifier of the matrix (UUID v4).}
+
+\item{\code{dates}}{A \code{\link{list}} giving the dates of each assemblage.}
+
+\item{\code{coordinates}}{A \code{\link{list}} giving the geographical coordinates of
+each assemblage (must considered as experimental and subject to major
+changes in a future release).}
 }}
 
 \section{Matrix ID}{
@@ -31,6 +37,8 @@ identifier of the matrix (UUID v4).}
  In the code snippets below, \code{x} is a \code{*Matrix} object.
  \describe{
   \item{\code{get_id(x)}}{Get the ID of \code{x}.}
+  \item{\code{get_dates(x)} and \code{set_dates(x) <- value}}{Get or set
+  the dates of \code{x}.}
  }
 }
 
@@ -63,8 +71,8 @@ identifier of the matrix (UUID v4).}
   An empty index (a comma separated blank) indicates that all
   entries in that dimension are selected.
   Returns an object of the same class as \code{x}.}
-  \item{\code{x[[i]]}}{Extracts informations from a slot selected by
-  subscript \code{i}. \code{i} should be one of "\code{id}" or \code{NULL}.}
+  \item{\code{x[[i]]}}{Extracts a single element selected by subscript
+  \code{i}.}
  }
 }
 

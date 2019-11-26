@@ -2,39 +2,6 @@
 #' @include AllClasses.R
 NULL
 
-# SpaceTime ====================================================================
-setValidity(
-  Class = "SpaceTime",
-  method = function(object) {
-    # Get data
-    dates <- object@dates
-    coordinates <- object@coordinates
-    epsg <- object@epsg
-
-    # Check dates
-    errors <- list(
-      dates = c(
-        catch_conditions(check_type(dates, expected = "numeric")),
-        catch_conditions(check_infinite(dates)),
-        catch_conditions(check_names(dates, expected = c("value", "error"),
-                                     margin = 2))
-      ),
-      coordinates = c(
-        catch_conditions(check_type(coordinates, expected = "numeric")),
-        catch_conditions(check_infinite(coordinates)),
-        catch_conditions(check_names(coordinates, expected = c("X", "Y", "Z"),
-                                     margin = 2))
-      ),
-      epsg = c(
-        catch_conditions(check_scalar(epsg, expected = "integer")),
-        catch_conditions(check_missing(epsg))
-      )
-    )
-
-    # Return errors if any
-    throw_error_class(object, errors)
-  }
-)
 # Matrix =======================================================================
 setValidity(
   Class = "Matrix",
@@ -42,48 +9,59 @@ setValidity(
     # Get data
     data <- S3Part(object, strictS3 = TRUE, "matrix")
     id <- object@id
+    dates <- object@dates
 
+    # Check
     errors <- list(
       # Check data
-      data = c(
-        catch_conditions(check_missing(data)),
-        catch_conditions(check_infinite(data))
-      ),
+      catch_conditions(check_missing(data)),
+      catch_conditions(check_infinite(data)),
       # Check id
-      id = c(
-        catch_conditions(check_uuid(id))
-      )
+      catch_conditions(check_uuid(id))
     )
+    if (nrow(data) > 0 && length(dates) != 0) {
+      errors <- append(
+        errors,
+        list(
+          # Check dates
+          catch_conditions(check_length(dates, nrow(data))),
+          catch_conditions(check_lengths(dates, 2)),
+          catch_conditions(check_names(dates, margin = 1, rownames(data)))
+        )
+      )
+    }
 
     # Return errors if any
-    throw_error_class(object, errors)
+    check_class(object, errors)
   }
 )
 setValidity(
   Class = "AbundanceMatrix",
   method = function(object) {
-    # Get data
-    data <- S3Part(object, strictS3 = TRUE, "matrix")
-    dates <- object@dates
-    coordinates <- object@coordinates
-    n <- nrow(data)
-
-    errors <- list()
-    if (length(dates) != 0 && nrow(dates) > 0) {
-      # Check dates
-      errors[["dates"]] <- c(
-        catch_conditions(check_length(dates, expected = n * 2))
-      )
-    }
-    if (length(coordinates) != 0 && nrow(coordinates) > 0) {
-      # Check coordinates
-      errors[["coordinates"]] <- c(
-        catch_conditions(check_length(coordinates, expected = n * 3))
-      )
-    }
-
-    # Return errors if any
-    throw_error_class(object, errors)
+    # # Get data
+    # data <- S3Part(object, strictS3 = TRUE, "matrix")
+    # dates <- object@dates
+    # coordinates <- object@coordinates
+    # n <- nrow(data)
+    #
+    # errors <- list()
+    # # Check dates
+    # if (length(dates) != 0 && nrow(dates) > 0) {
+    #   errors <- append(
+    #     errors,
+    #     catch_conditions(check_length(dates, expected = n * 2))
+    #   )
+    # }
+    # # Check coordinates
+    # if (length(coordinates) != 0 && nrow(coordinates) > 0) {
+    #   errors <- append(
+    #     errors,
+    #     catch_conditions(check_length(coordinates, expected = n * 3))
+    #   )
+    # }
+    #
+    # # Return errors if any
+    # check_class(object, errors)
   }
 )
 
@@ -96,11 +74,11 @@ setValidity(
 
     errors <- list(
       # Check data
-      data = catch_conditions(check_type(data, expected = "numeric"))
+      catch_conditions(check_type(data, "numeric"))
     )
 
     # Return errors if any
-    throw_error_class(object, errors)
+    check_class(object, errors)
   }
 )
 
@@ -110,23 +88,22 @@ setValidity(
   method = function(object) {
     # Get data
     data <- methods::S3Part(object, strictS3 = TRUE, "matrix")
+    # dates <- object@dates
+    # coordinates <- object@coordinates
 
     errors <- list(
       # Check data
-      data = c(
-        catch_conditions(check_numbers(data, expected = "positive",
-                                       strict = FALSE)),
-        catch_conditions(check_numbers(data, expected = "whole"))
-      )
+      catch_conditions(check_numbers(data, "positive", strict = FALSE)),
+      catch_conditions(check_numbers(data, "whole"))
     )
     # Messages
     # TODO: warning instead of message?
-    if (all(is_binary(data)))
-      message("Your matrix contains only 0s and 1s.\n",
-              "You should consider using an incidence matrix instead.")
+    # if (all(is_binary(data)))
+    #   message("Your matrix contains only 0s and 1s.\n",
+    #           "You should consider using an incidence matrix instead.")
 
     # Return errors, if any
-    throw_error_class(object, errors)
+    check_class(object, errors)
   }
 )
 
@@ -137,25 +114,19 @@ setValidity(
     # Get data
     data <- methods::S3Part(object, strictS3 = TRUE, "matrix")
     totals <- object@totals
-    dates <- object@dates
-    coordinates <- object@coordinates
-    n <- nrow(data)
+    # dates <- object@dates
+    # coordinates <- object@coordinates
 
     errors <- list(
       # Check data
-      data = c(
-        catch_conditions(check_numbers(data, expected = "positive",
-                                       strict = FALSE)),
-        catch_conditions(check_constant(data))
-      ),
+      catch_conditions(check_numbers(data, "positive", strict = FALSE)),
+      catch_conditions(check_constant(data)),
       # Check totals
-      totals = c(
-        catch_conditions(check_length(totals, expected = n))
-      )
+      catch_conditions(check_length(totals, expected = nrow(data)))
     )
 
     # Return errors, if any
-    throw_error_class(object, errors)
+    check_class(object, errors)
   }
 )
 
@@ -168,13 +139,11 @@ setValidity(
 
     errors <- list(
       # Check data
-      data = c(
-        catch_conditions(check_symmetric(data))
-      )
+      catch_conditions(check_symmetric(data))
     )
 
     # Return errors, if any
-    throw_error_class(object, errors)
+    check_class(object, errors)
   }
 )
 
@@ -188,18 +157,14 @@ setValidity(
 
     errors <- list(
       # Check data
-      data = c(
-        catch_conditions(check_symmetric(data))
-      ),
+      catch_conditions(check_symmetric(data)),
       # Check method
-      method = c(
-        catch_conditions(check_scalar(method, expected = "character")),
-        catch_conditions(check_missing(method))
-      )
+      catch_conditions(check_scalar(method, "character")),
+      catch_conditions(check_missing(method))
     )
 
     # Return errors, if any
-    throw_error_class(object, errors)
+    check_class(object, errors)
   }
 )
 
@@ -212,11 +177,11 @@ setValidity(
 
     errors <- list(
       # Check data
-      data = catch_conditions(check_type(data, expected = "logical"))
+      catch_conditions(check_type(data, "logical"))
     )
 
     # Return errors if any
-    throw_error_class(object, errors)
+    check_class(object, errors)
   }
 )
 
@@ -237,13 +202,51 @@ setValidity(
 
     errors <- list(
       # Check data
-      data = c(
-        catch_conditions(check_square(data)),
-        catch_conditions(check_dag(data))
-      )
+      catch_conditions(check_square(data)),
+      catch_conditions(check_dag(data))
     )
 
     # Return errors, if any
-    throw_error_class(object, errors)
+    check_class(object, errors)
   }
 )
+
+# =================================================================== Diagnostic
+#' Class Diagnostic
+#'
+#' @param object An object to which error messages are related.
+#' @param conditions A \code{\link{list}} of condition messages.
+#' @param verbose A \code{\link{logical}} scalar: should extra information
+#'  be reported?
+#' @return
+#'  Throw an error if \code{conditions} is of non-zero length, returns \code{TRUE}
+#'  if not.
+#' @author N. Frerebeau
+#' @keywords internal error
+#' @noRd
+check_class <- function(object, conditions) {
+  cnd <- compact(is_empty, conditions)
+  cnd <- unlist(cnd, recursive = FALSE)
+
+  # Check if any warning
+  wrn_idx <- vapply(X = cnd, FUN = is_warning, FUN.VALUE = logical(1))
+  if (any(wrn_idx)) {
+    wrn_msg <- vapply(X = cnd[wrn_idx], FUN = `[[`,
+                      FUN.VALUE = character(1), "message")
+    wrn <- sprintf("<%s> instance initialization:\n%s", class(object),
+                   paste0("* ", unlist(wrn_msg), collapse = "\n"))
+    throw_warning("codex_warning_class", wrn, call = NULL)
+  }
+
+  # Check if any error
+  err_idx <- vapply(X = cnd, FUN = is_error, FUN.VALUE = logical(1))
+  if (any(err_idx)) {
+    err_msg <- vapply(X = cnd[err_idx], FUN = `[[`,
+                      FUN.VALUE = character(1), "message")
+    err <- sprintf("<%s> instance initialization:\n%s", class(object),
+                   paste0("* ", err_msg, collapse = "\n"))
+    throw_error("codex_error_class", err, call = NULL)
+  }
+
+  return(TRUE)
+}

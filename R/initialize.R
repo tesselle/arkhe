@@ -1,45 +1,37 @@
 # CLASSES INITIALIZATION
 
-# ==================================================================== SpaceTime
-SpaceTime <- function(
-  dates = matrix(0, 0, 2, dimnames = list(NULL, c("value", "error"))),
-  coordinates = matrix(0, 0, 3, dimnames = list(NULL, c("X", "Y", "Z"))),
-  epsg = 0, ...
-) {
-  throw_message_class("SpaceTime")
-  colnames(coordinates) <- toupper(colnames(coordinates))
-  .SpaceTime(
-    dates = dates,
-    coordinates = coordinates,
-    epsg = as.integer(epsg),
-    ...
-  )
-}
-
 # ====================================================================== *Matrix
-Matrix <- function(...) {
-  throw_message_class("Matrix")
-  .Matrix(..., id = generate_uuid(seed = NULL))
+Matrix <- function(..., id, dates) {
+  id <- if (missing(id)) generate_uuid(NULL) else id
+  dates <- if (missing(dates)) list() else dates
+  throw_message("codex_message_class",
+                "<Matrix> instance initialized.\n")
+  .Matrix(..., id = id, dates = dates)
 }
-NumericMatrix <- function(data = matrix(0, 0, 0), ...) {
-  throw_message_class("NumericMatrix")
-  .NumericMatrix(Matrix(data), ...)
+NumericMatrix <- function(...) {
+  throw_message("codex_message_class",
+                "<NumericMatrix> instance initialized.\n")
+  .NumericMatrix(Matrix(...))
 }
-OccurrenceMatrix <- function(data = matrix(0, 0, 0), ...) {
-  throw_message_class("OccurrenceMatrix")
-  .OccurrenceMatrix(NumericMatrix(data), ...)
+LogicalMatrix <- function(...) {
+  throw_message("codex_message_class",
+                "<LogicalMatrix> instance initialized.\n")
+  .LogicalMatrix(Matrix(...))
 }
-SimilarityMatrix <- function(data = matrix(0, 0, 0), method = "unknown", ...) {
-  throw_message_class("SimilarityMatrix")
-  .SimilarityMatrix(NumericMatrix(data), method = as.character(method), ...)
+OccurrenceMatrix <- function(...) {
+  throw_message("codex_message_class",
+                "<OccurrenceMatrix> instance initialized.\n")
+  .OccurrenceMatrix(NumericMatrix(...))
 }
-LogicalMatrix <- function(data = matrix(FALSE, 0, 0), ...) {
-  throw_message_class("LogicalMatrix")
-  .LogicalMatrix(Matrix(data), ...)
+SimilarityMatrix <- function(..., method = "unknown") {
+  throw_message("codex_message_class",
+                "<SimilarityMatrix> instance initialized.\n")
+  .SimilarityMatrix(NumericMatrix(...), method = method)
 }
-StratigraphicMatrix <- function(data = matrix(FALSE, 0, 0), ...) {
-  throw_message_class("LogicalMatrix")
-  .StratigraphicMatrix(LogicalMatrix(data), ...)
+StratigraphicMatrix <- function(...) {
+  throw_message("codex_message_class",
+                "<StratigraphicMatrix> instance initialized.\n")
+  .StratigraphicMatrix(LogicalMatrix(...))
 }
 
 # -------------------------------------------------------------- AbundanceMatrix
@@ -52,7 +44,6 @@ StratigraphicMatrix <- function(data = matrix(FALSE, 0, 0), ...) {
 #'  unspecified?
 #' @return A \link{\code{matrix}}.
 #' @author N. Frerebeau
-#' @name matrix-constructors
 #' @keywords internal
 #' @noRd
 buildMatrix <- function(data, nrow, ncol, byrow, dimnames,
@@ -60,12 +51,14 @@ buildMatrix <- function(data, nrow, ncol, byrow, dimnames,
   k <- length(data)
   if (rows) nrow <- k / ncol
   if (cols) ncol <- k / nrow
-  if (is.null(dimnames)) {
-    dimnames <- list(seq_len(nrow), paste("V", seq_len(ncol), sep = ""))
-  } else {
-    if (is.null(dimnames[[1]])) dimnames[[1]] <- seq_len(nrow)
-    if (is.null(dimnames[[2]])) dimnames[[2]] <- paste0("V", seq_len(ncol))
-  }
+
+  if (is.null(dimnames))
+    dimnames <- list(NULL, NULL)
+  if (is.null(dimnames[[1]]) && nrow > 0)
+    dimnames[[1]] <- seq_len(nrow)
+  if (is.null(dimnames[[2]]) && ncol > 0)
+    dimnames[[2]] <- paste0("V", seq_len(ncol))
+
   M <- matrix(data, nrow, ncol, byrow, dimnames)
   return(M)
 }
@@ -74,9 +67,10 @@ buildMatrix <- function(data, nrow, ncol, byrow, dimnames,
 #' @rdname CountMatrix-class
 CountMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
                         dimnames = NULL, ...) {
-  throw_message_class("CountMatrix")
   M <- buildMatrix(data, nrow, ncol, byrow, dimnames,
                    missing(nrow), missing(ncol))
+  throw_message("codex_message_class",
+                "<CountMatrix> instance initialized.\n")
   .CountMatrix(NumericMatrix(M), ...)
 }
 
@@ -84,21 +78,23 @@ CountMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
 #' @rdname FrequencyMatrix-class
 FrequencyMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
                             dimnames = NULL, ...) {
-  throw_message_class("FrequencyMatrix")
   M <- buildMatrix(data, nrow, ncol, byrow, dimnames,
                    missing(nrow), missing(ncol))
   totals <- rowSums(M)
   M <- M / totals
-  .FrequencyMatrix(NumericMatrix(M), totals = totals, ...)
+  throw_message("codex_message_class",
+                "<FrequencyMatrix> instance initialized.\n")
+  .FrequencyMatrix(NumericMatrix(M), ..., totals = totals)
 }
 
 #' @export
 #' @rdname IncidenceMatrix-class
 IncidenceMatrix <- function(data = FALSE, nrow = 1, ncol = 1, byrow = FALSE,
                             dimnames = NULL, ...) {
-  throw_message_class("IncidenceMatrix")
   data <- as.logical(data)
   M <- buildMatrix(data, nrow, ncol, byrow, dimnames,
                    missing(nrow), missing(ncol))
+  throw_message("codex_message_class",
+                "<IncidenceMatrix> instance initialized.\n")
   .IncidenceMatrix(LogicalMatrix(M), ...)
 }

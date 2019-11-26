@@ -30,9 +30,6 @@ IncidenceMatrix(data = FALSE, nrow = 1, ncol = 1, byrow = FALSE,
 
 \item{...}{additional arguments to be passed to or from methods.}
 }
-\value{
-TODO
-}
 \description{
 An S4 class to represent an incidence (presence/absence) matrix.
 }
@@ -55,6 +52,8 @@ Numeric values are coerced to \code{\link{logical}} as by
  In the code snippets below, \code{x} is a \code{*Matrix} object.
  \describe{
   \item{\code{get_id(x)}}{Get the ID of \code{x}.}
+  \item{\code{get_dates(x)} and \code{set_dates(x) <- value}}{Get or set
+  the dates of \code{x}.}
  }
 }
 
@@ -87,8 +86,8 @@ Numeric values are coerced to \code{\link{logical}} as by
   An empty index (a comma separated blank) indicates that all
   entries in that dimension are selected.
   Returns an object of the same class as \code{x}.}
-  \item{\code{x[[i]]}}{Extracts informations from a slot selected by
-  subscript \code{i}. \code{i} should be one of "\code{id}" or \code{NULL}.}
+  \item{\code{x[[i]]}}{Extracts a single element selected by subscript
+  \code{i}.}
  }
 }
 
@@ -106,7 +105,7 @@ C <- CountMatrix(data = sample(0:10, 100, TRUE),
 D <- as_incidence(C)
 }
 \seealso{
-\linkS4class{LogicalMatrix}, \linkS4class{SpaceTime}
+\linkS4class{LogicalMatrix}
 
 Other matrix: \code{\link{CountMatrix-class}},
   \code{\link{FrequencyMatrix-class}},

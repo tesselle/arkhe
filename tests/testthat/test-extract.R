@@ -1,10 +1,5 @@
 context("Extract")
 
-test_that("SpaceTime", {
-  space_time <- new("SpaceTime")
-  expect_type(space_time[["dates"]], "list")
-  expect_type(space_time[["coordinates"]], "list")
-})
 test_that("AbundanceMatrix", {
   options("verbose" = TRUE)
   A1 <- CountMatrix(data = sample(0:10, 100, TRUE),
@@ -16,6 +11,7 @@ test_that("NumericMatrix", {
   mtx_count <- matrix(sample(1:100, 100, TRUE), ncol = 10,
                       dimnames = list(LETTERS[1:10], LETTERS[26:17]))
   freq <- .FrequencyMatrix(mtx_count / rowSums(mtx_count),
+                           id = generate_uuid(),
                            totals = rowSums(mtx_count))
 
   expect_equal(get_totals(freq), rowSums(mtx_count))

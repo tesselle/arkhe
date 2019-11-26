@@ -11,6 +11,8 @@
 \alias{is_character}
 \alias{is_logical}
 \alias{is_error}
+\alias{is_warning}
+\alias{is_message}
 \title{Type Predicates}
 \usage{
 is_list(x)
@@ -30,6 +32,10 @@ is_character(x)
 is_logical(x)
 
 is_error(x)
+
+is_warning(x)
+
+is_message(x)
 }
 \arguments{
 \item{x}{An object to be tested.}
@@ -41,10 +47,12 @@ A \code{\link{logical}} scalar.
 Type Predicates
 }
 \seealso{
-Other predicates: \code{\link{predicate-matrix}},
+Other predicates: \code{\link{predicate-graph}},
+  \code{\link{predicate-matrix}},
   \code{\link{predicate-numeric}},
   \code{\link{predicate-scalar}},
   \code{\link{predicate-trend}},
   \code{\link{predicate-utils}}
 }
 \concept{predicates}
+\keyword{internal}

@@ -4,20 +4,26 @@ NULL
 
 #' Conditions
 #'
-#' @param message A \code{\link{character}} string specifying the error
-#'  message.
+#' \code{throw_error} stops execution of the current expression and executes an
+#' error action.
+#'
+#' \code{throw_message} generates a diagnostic message from its arguments.
+#'
+#' \code{catch_conditions} handles unusual conditions.
+#' @param .subclass A \code{\link{character}} string specifying the class of
+#'  the message to be returned.
+#' @param message A \code{\link{character}} string specifying the message to be
+#'  returned.
 #' @param call The call.
-#' @param object An object to which error messages are related.
-#' @param errors A \code{\link{character}} vector giving the error messages.
 #' @param ... Extra arguments.
-#' @return
-#'  Throw an error if \code{errors} is of non-zero length, returns \code{TRUE}
-#'  if not.
 #' @author N. Frerebeau
 #' @name conditions
+#' @rdname conditions
+#' @family condition
 #' @keywords internal error
-#' @noRd
+NULL
 
+#' @rdname conditions
 throw_error <- function(.subclass, message, call = NULL, ...) {
   # TODO: gettext
   err <- structure(
@@ -30,61 +36,56 @@ throw_error <- function(.subclass, message, call = NULL, ...) {
   )
   stop(err)
 }
-
+#' @rdname conditions
+throw_warning <- function(.subclass, message, call = NULL, ...) {
+  wrn <- structure(
+    list(
+      message = message,
+      call = call,
+      ...
+    ),
+    class = c(.subclass, "warning", "condition")
+  )
+  warning(wrn)
+}
+#' @rdname conditions
+throw_message <- function(.subclass, message,
+                          verbose = getOption("verbose"), ...) {
+  msg <- structure(
+    list(
+      message = message,
+      ...
+    ),
+    class = c(.subclass, "message", "condition")
+  )
+  if (verbose) {
+    message(msg)
+  } else {
+    NULL
+  }
+}
+#' @rdname conditions
 catch_conditions <- function(expr) {
-  conditions <- list()
-  add_mess <- function(cnd) {
-    conditions <<- append(conditions, list(cnd))
+  cnd <- list()
+  add_msg <- function(x) {
+    cnd <<- append(cnd, list(x))
     invokeRestart("muffleMessage")
   }
-  add_warn <- function(cnd) {
-    conditions <<- append(conditions, list(cnd))
+  add_wrn <- function(x) {
+    cnd <<- append(cnd, list(x))
     invokeRestart("muffleWarning")
   }
-  add_err <- function(cnd) {
-    conditions <<- append(conditions, list(cnd))
+  add_err <- function(x) {
+    cnd <<- append(cnd, list(x))
   }
 
   tryCatch(
     error = add_err,
     withCallingHandlers(
-      message = add_mess,
-      warning = add_warn,
+      message = add_msg,
+      warning = add_wrn,
       expr
     )
   )
-  return(conditions)
-}
-
-throw_error_class <- function(object, errors) {
-  errors <- compact(is_empty, errors)
-  if (!is_empty(errors)) {
-    messages <- lapply(
-      X = names(errors),
-      FUN = function(slot, errors) {
-        vapply(X = errors[[slot]], FUN = `[[`, FUN.VALUE = "character", 1)
-      },
-      errors = errors
-    )
-    error_msg <- sprintf("%s object initialization:\n*  %s",
-                         dQuote(class(object)),
-                         paste0(unlist(messages), collapse = "\n*  "))
-    err <- structure(
-      list(message = error_msg, call = NULL),
-      class = c("error_class_initialize", "error", "condition")
-    )
-    stop(err)
-  } else {
-    TRUE
-  }
-}
-
-throw_message_class <- function(class, verbose = getOption("verbose")) {
-  msg <- structure(
-    list(
-      message = sprintf("%s instance initialization...\n", dQuote(class))
-    ),
-    class = c("message_class_initialize", "message", "condition")
-  )
-  if (verbose) message(msg)
+  return(cnd)
 }
