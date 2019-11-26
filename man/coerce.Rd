@@ -68,7 +68,7 @@ The following methods coerce a \code{matrix} or \code{data.frame} to a
  \tabular{ll}{
   \strong{Method} \tab \strong{Target} \cr
   \code{as_count} \tab \linkS4class{CountMatrix} \cr
-  \code{as_frequency} \tab \linkS4class{FrequencyMatrix} \cr
+  \code{as_frequency} \tab \linkS4class{RelativeFrequencyMatrix} \cr
   \code{as_incidence} \tab \linkS4class{IncidenceMatrix} \cr
   \code{as_occurrence} \tab \linkS4class{OccurrenceMatrix} \cr
   \code{as_similarity} \tab \linkS4class{SimilarityMatrix} \cr
@@ -108,12 +108,12 @@ D <- as_occurrence(A1)
 }
 \seealso{
 Other matrix: \code{\link{CountMatrix-class}},
-  \code{\link{FrequencyMatrix-class}},
   \code{\link{IncidenceMatrix-class}},
   \code{\link{LogicalMatrix-class}},
   \code{\link{Matrix-class}},
   \code{\link{NumericMatrix-class}},
   \code{\link{OccurrenceMatrix-class}},
+  \code{\link{RelativeFrequencyMatrix-class}},
   \code{\link{SimilarityMatrix-class}},
   \code{\link{StratigraphicMatrix-class}}
 }

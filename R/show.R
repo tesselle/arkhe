@@ -35,18 +35,18 @@ setMethod(
     data <- methods::S3Part(object, strictS3 = TRUE, "matrix")
     m <- nrow(data)
     p <- ncol(data)
-    cat(sprintf("%d x %d count data matrix:\n(%s)\n", m, p, object@id))
+    cat(sprintf("%d x %d absolute frequency matrix:\n(%s)\n", m, p, object@id))
     print(data)
   }
 )
 setMethod(
   f = "show",
-  signature = "FrequencyMatrix",
+  signature = "RelativeFrequencyMatrix",
   definition = function(object) {
     data <- methods::S3Part(object, strictS3 = TRUE, "matrix")
     m <- nrow(data)
     p <- ncol(data)
-    cat(sprintf("%d x %d frequency data matrix:\n(%s)\n", m, p, object@id))
+    cat(sprintf("%d x %d relative frequency matrix:\n(%s)\n", m, p, object@id))
     print(data)
   }
 )

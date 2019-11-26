@@ -100,11 +100,11 @@ all(A1 == A2)
 \linkS4class{NumericMatrix}
 
 Other matrix: \code{\link{CountMatrix-class}},
-  \code{\link{FrequencyMatrix-class}},
   \code{\link{IncidenceMatrix-class}},
   \code{\link{LogicalMatrix-class}},
   \code{\link{Matrix-class}},
   \code{\link{NumericMatrix-class}},
+  \code{\link{RelativeFrequencyMatrix-class}},
   \code{\link{SimilarityMatrix-class}},
   \code{\link{StratigraphicMatrix-class}},
   \code{\link{coerce}}

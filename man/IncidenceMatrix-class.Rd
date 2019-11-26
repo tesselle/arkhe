@@ -108,11 +108,11 @@ D <- as_incidence(C)
 \linkS4class{LogicalMatrix}
 
 Other matrix: \code{\link{CountMatrix-class}},
-  \code{\link{FrequencyMatrix-class}},
   \code{\link{LogicalMatrix-class}},
   \code{\link{Matrix-class}},
   \code{\link{NumericMatrix-class}},
   \code{\link{OccurrenceMatrix-class}},
+  \code{\link{RelativeFrequencyMatrix-class}},
   \code{\link{SimilarityMatrix-class}},
   \code{\link{StratigraphicMatrix-class}},
   \code{\link{coerce}}

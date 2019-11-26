@@ -12,10 +12,10 @@ test_that("Numeric matrix", {
   expect_output(show(A), "An object of class \"NumericMatrix\"")
 
   B <- CountMatrix(matrix(1))
-  expect_output(show(B), "count data matrix")
+  expect_output(show(B), "absolute frequency matrix")
 
-  C <- FrequencyMatrix(matrix(1))
-  expect_output(show(C), "frequency data matrix")
+  C <- RelativeFrequencyMatrix(matrix(1))
+  expect_output(show(C), "relative frequency matrix")
 
   D <- SimilarityMatrix(matrix(1))
   expect_output(show(D), "similarity matrix")

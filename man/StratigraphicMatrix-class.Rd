@@ -41,12 +41,12 @@ strati <- as_stratigraphy(harris)
 \linkS4class{LogicalMatrix}
 
 Other matrix: \code{\link{CountMatrix-class}},
-  \code{\link{FrequencyMatrix-class}},
   \code{\link{IncidenceMatrix-class}},
   \code{\link{LogicalMatrix-class}},
   \code{\link{Matrix-class}},
   \code{\link{NumericMatrix-class}},
   \code{\link{OccurrenceMatrix-class}},
+  \code{\link{RelativeFrequencyMatrix-class}},
   \code{\link{SimilarityMatrix-class}},
   \code{\link{coerce}}
 }

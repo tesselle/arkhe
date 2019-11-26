@@ -112,7 +112,7 @@
   contains = "NumericMatrix"
 )
 
-#' Frequency matrix
+#' Relative Frequency Matrix
 #'
 #' An S4 class to represent a relative frequency matrix.
 #' @inheritParams base::matrix
@@ -125,7 +125,8 @@
 #' @slot totals A \code{\link{numeric}} vector.
 #' @inheritSection Matrix-class Matrix ID
 #' @section Get and set:
-#'  In the code snippets below, \code{x} is a \code{FrequencyMatrix} object.
+#'  In the code snippets below, \code{x} is a \code{RelativeFrequencyMatrix}
+#'  object.
 #'  \describe{
 #'   \item{\code{get_id(x)}}{Get the unique ID of \code{x}.}
 #'   \item{\code{get_totals(x)} and \code{get_totals(x) <- value}}{Get and set
@@ -140,10 +141,10 @@
 #' @author N. Frerebeau
 #' @family matrix
 #' @docType class
-#' @exportClass FrequencyMatrix
-#' @aliases FrequencyMatrix-class
-.FrequencyMatrix <- setClass(
-  Class = "FrequencyMatrix",
+#' @exportClass RelativeFrequencyMatrix
+#' @aliases RelativeFrequencyMatrix-class
+.RelativeFrequencyMatrix <- setClass(
+  Class = "RelativeFrequencyMatrix",
   slots = c(
     totals = "numeric"
   ),
@@ -257,5 +258,5 @@
 # ------------------------------------------------------------- Abundance matrix
 setClassUnion(
   name = "AbundanceMatrix",
-  members = c("CountMatrix", "FrequencyMatrix", "IncidenceMatrix")
+  members = c("CountMatrix", "RelativeFrequencyMatrix", "IncidenceMatrix")
 )

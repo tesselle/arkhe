@@ -80,7 +80,7 @@ NULL
 #'  \tabular{ll}{
 #'   \strong{Method} \tab \strong{Target} \cr
 #'   \code{as_count} \tab \linkS4class{CountMatrix} \cr
-#'   \code{as_frequency} \tab \linkS4class{FrequencyMatrix} \cr
+#'   \code{as_frequency} \tab \linkS4class{RelativeFrequencyMatrix} \cr
 #'   \code{as_incidence} \tab \linkS4class{IncidenceMatrix} \cr
 #'   \code{as_occurrence} \tab \linkS4class{OccurrenceMatrix} \cr
 #'   \code{as_similarity} \tab \linkS4class{SimilarityMatrix} \cr

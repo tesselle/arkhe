@@ -66,11 +66,11 @@ An S4 class to represent a numeric matrix.
 \linkS4class{Matrix}
 
 Other matrix: \code{\link{CountMatrix-class}},
-  \code{\link{FrequencyMatrix-class}},
   \code{\link{IncidenceMatrix-class}},
   \code{\link{LogicalMatrix-class}},
   \code{\link{Matrix-class}},
   \code{\link{OccurrenceMatrix-class}},
+  \code{\link{RelativeFrequencyMatrix-class}},
   \code{\link{SimilarityMatrix-class}},
   \code{\link{StratigraphicMatrix-class}},
   \code{\link{coerce}}

@@ -20,7 +20,7 @@ setMethod(
   f = "as_frequency",
   signature = signature(from = "ANY"),
   definition = function(from) {
-    methods::as(from, "FrequencyMatrix")
+    methods::as(from, "RelativeFrequencyMatrix")
   }
 )
 
@@ -95,17 +95,17 @@ matrix2count <- function(from) {
 setAs(from = "matrix", to = "CountMatrix", def = matrix2count)
 setAs(from = "data.frame", to = "CountMatrix", def = matrix2count)
 
-## To FrequencyMatrix ==========================================================
+## To RelativeFrequencyMatrix ==================================================
 matrix2frequency <- function(from) {
   data <- data.matrix(from)
   data <- make_dimnames(data) # Force dimnames
   totals <- rowSums(data)
   freq <- data / totals
   dimnames(freq) <- dimnames(data)
-  .FrequencyMatrix(freq, totals = totals, id = generate_uuid())
+  .RelativeFrequencyMatrix(freq, totals = totals, id = generate_uuid())
 }
-setAs(from = "matrix", to = "FrequencyMatrix", def = matrix2frequency)
-setAs(from = "data.frame", to = "FrequencyMatrix", def = matrix2frequency)
+setAs(from = "matrix", to = "RelativeFrequencyMatrix", def = matrix2frequency)
+setAs(from = "data.frame", to = "RelativeFrequencyMatrix", def = matrix2frequency)
 
 ## To SimilarityMatrix =========================================================
 matrix2similarity <- function(from) {
@@ -158,20 +158,20 @@ setAs(from = "data.frame", to = "OccurrenceMatrix",
 
 setAs(from = "CountMatrix", to = "OccurrenceMatrix",
       def = matrix2occurrence)
-setAs(from = "FrequencyMatrix", to = "OccurrenceMatrix",
+setAs(from = "RelativeFrequencyMatrix", to = "OccurrenceMatrix",
       def = matrix2occurrence)
 setAs(from = "IncidenceMatrix", to = "OccurrenceMatrix",
       def = matrix2occurrence)
 
-## CountMatrix <> FrequencyMatrix ==============================================
+## CountMatrix <> RelativeFrequencyMatrix ======================================
 setAs(
   from = "CountMatrix",
-  to = "FrequencyMatrix",
+  to = "RelativeFrequencyMatrix",
   def = function(from) {
     counts <- methods::S3Part(from, strictS3 = TRUE, "matrix")
     totals <- rowSums(counts)
     freq <- counts / totals
-    .FrequencyMatrix(
+    .RelativeFrequencyMatrix(
       freq,
       totals = totals,
       id = from@id,
@@ -180,7 +180,7 @@ setAs(
   }
 )
 setAs(
-  from = "FrequencyMatrix",
+  from = "RelativeFrequencyMatrix",
   to = "CountMatrix",
   def = function(from) {
     freq <- methods::S3Part(from, strictS3 = TRUE, "matrix")
@@ -227,7 +227,7 @@ setAs(from = "matrix", to = "IncidenceMatrix", def = matrix2incidence)
 setAs(from = "data.frame", to = "IncidenceMatrix", def = matrix2incidence)
 
 setAs(from = "CountMatrix", to = "IncidenceMatrix", def = matrix2incidence)
-setAs(from = "FrequencyMatrix", to = "IncidenceMatrix", def = matrix2incidence)
+setAs(from = "RelativeFrequencyMatrix", to = "IncidenceMatrix", def = matrix2incidence)
 
 ## To StratigraphicMatrix ======================================================
 edges2matrix <- function(from) {

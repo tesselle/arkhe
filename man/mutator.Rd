@@ -12,9 +12,9 @@
 \alias{set_totals<-}
 \alias{set_totals-method}
 \alias{get_id,ANY-method}
-\alias{get_totals,FrequencyMatrix-method}
-\alias{set_totals<-,FrequencyMatrix-method}
-\alias{set_totals,FrequencyMatrix-method}
+\alias{get_totals,RelativeFrequencyMatrix-method}
+\alias{set_totals<-,RelativeFrequencyMatrix-method}
+\alias{set_totals,RelativeFrequencyMatrix-method}
 \title{Get or Set Parts of an Object}
 \usage{
 get_id(object)
@@ -25,9 +25,9 @@ set_totals(object) <- value
 
 \S4method{get_id}{ANY}(object)
 
-\S4method{get_totals}{FrequencyMatrix}(object)
+\S4method{get_totals}{RelativeFrequencyMatrix}(object)
 
-\S4method{set_totals}{FrequencyMatrix}(object) <- value
+\S4method{set_totals}{RelativeFrequencyMatrix}(object) <- value
 }
 \arguments{
 \item{object}{An object from which to get or set element(s).}

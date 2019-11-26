@@ -11,13 +11,13 @@ test_that("matrix objects can be coerced to CountMatrix", {
   expect_s4_class(A, "CountMatrix")
   expect_equivalent(as(A, "matrix"), mtx_count)
 })
-test_that("matrix objects can be coerced to FrequencyMatrix", {
+test_that("matrix objects can be coerced to RelativeFrequencyMatrix", {
   B <- as_frequency(mtx_freq)
-  expect_s4_class(B, "FrequencyMatrix")
+  expect_s4_class(B, "RelativeFrequencyMatrix")
   expect_equivalent(as(B, "matrix"), mtx_freq)
 
-  expect_s4_class(as_frequency(mtx_count), "FrequencyMatrix")
-  expect_s4_class(as_frequency(mtx_incid), "FrequencyMatrix")
+  expect_s4_class(as_frequency(mtx_count), "RelativeFrequencyMatrix")
+  expect_s4_class(as_frequency(mtx_incid), "RelativeFrequencyMatrix")
 })
 test_that("matrix objects can be coerced to IncidenceMatrix", {
   C <- as_incidence(mtx_incid)
@@ -52,13 +52,13 @@ test_that("data.frame <> CountMatrix", {
   expect_s4_class(A, "CountMatrix")
   expect_equivalent(as(A, "data.frame"), df_count)
 })
-test_that("data.frame <> FrequencyMatrix", {
+test_that("data.frame <> RelativeFrequencyMatrix", {
   B <- as_frequency(df_freq)
-  expect_s4_class(B, "FrequencyMatrix")
+  expect_s4_class(B, "RelativeFrequencyMatrix")
   expect_equivalent(as(B, "data.frame"), df_freq)
 
-  expect_s4_class(as_frequency(df_count), "FrequencyMatrix")
-  expect_s4_class(as_frequency(df_incid), "FrequencyMatrix")
+  expect_s4_class(as_frequency(df_count), "RelativeFrequencyMatrix")
+  expect_s4_class(as_frequency(df_incid), "RelativeFrequencyMatrix")
 })
 test_that("data.frame <> IncidenceMatrix", {
   C <- as_incidence(df_incid)
@@ -84,11 +84,11 @@ test_that("data.frame <> SimilarityMatrix", {
 
 # *Matrix ======================================================================
 count <- as(mtx_count, "CountMatrix")
-freq <- as(mtx_freq, "FrequencyMatrix")
+freq <- as(mtx_freq, "RelativeFrequencyMatrix")
 incid <- as(mtx_incid, "IncidenceMatrix")
 occ <- as(mtx_incid, "OccurrenceMatrix")
 
-test_that("CountMatrix <> FrequencyMatrix", {
+test_that("CountMatrix <> RelativeFrequencyMatrix", {
   count1 <- as_count(mtx_count)
   freq1 <- as_frequency(count1)
   count2 <- as_count(freq1)
@@ -101,10 +101,10 @@ test_that("*Matrix > CountMatrix", {
   expect_s4_class(as_count(count), "CountMatrix")
   # expect_error(as_count(occ))
 })
-test_that("*Matrix > FrequencyMatrix", {
-  expect_s4_class(as_frequency(count), "FrequencyMatrix")
-  expect_s4_class(as_frequency(freq), "FrequencyMatrix")
-  expect_s4_class(as_frequency(incid), "FrequencyMatrix")
+test_that("*Matrix > RelativeFrequencyMatrix", {
+  expect_s4_class(as_frequency(count), "RelativeFrequencyMatrix")
+  expect_s4_class(as_frequency(freq), "RelativeFrequencyMatrix")
+  expect_s4_class(as_frequency(incid), "RelativeFrequencyMatrix")
   # expect_error(as_frequency(occ))
 })
 test_that("*Matrix > IncidenceMatrix", {

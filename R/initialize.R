@@ -75,16 +75,16 @@ CountMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
 }
 
 #' @export
-#' @rdname FrequencyMatrix-class
-FrequencyMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
+#' @rdname RelativeFrequencyMatrix-class
+RelativeFrequencyMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
                             dimnames = NULL, ...) {
   M <- buildMatrix(data, nrow, ncol, byrow, dimnames,
                    missing(nrow), missing(ncol))
   totals <- rowSums(M)
   M <- M / totals
   throw_message("codex_message_class",
-                "<FrequencyMatrix> instance initialized.\n")
-  .FrequencyMatrix(NumericMatrix(M), ..., totals = totals)
+                "<RelativeFrequencyMatrix> instance initialized.\n")
+  .RelativeFrequencyMatrix(NumericMatrix(M), ..., totals = totals)
 }
 
 #' @export

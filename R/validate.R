@@ -35,35 +35,11 @@ setValidity(
     check_class(object, errors)
   }
 )
-setValidity(
-  Class = "AbundanceMatrix",
-  method = function(object) {
-    # # Get data
-    # data <- S3Part(object, strictS3 = TRUE, "matrix")
-    # dates <- object@dates
-    # coordinates <- object@coordinates
-    # n <- nrow(data)
-    #
-    # errors <- list()
-    # # Check dates
-    # if (length(dates) != 0 && nrow(dates) > 0) {
-    #   errors <- append(
-    #     errors,
-    #     catch_conditions(check_length(dates, expected = n * 2))
-    #   )
-    # }
-    # # Check coordinates
-    # if (length(coordinates) != 0 && nrow(coordinates) > 0) {
-    #   errors <- append(
-    #     errors,
-    #     catch_conditions(check_length(coordinates, expected = n * 3))
-    #   )
-    # }
-    #
-    # # Return errors if any
-    # check_class(object, errors)
-  }
-)
+# setValidity(
+#   Class = "AbundanceMatrix",
+#   method = function(object) {
+#   }
+# )
 
 # NumericMatrix ================================================================
 setValidity(
@@ -107,9 +83,9 @@ setValidity(
   }
 )
 
-## FrequencyMatrix -------------------------------------------------------------
+## RelativeFrequencyMatrix -----------------------------------------------------
 setValidity(
-  Class = "FrequencyMatrix",
+  Class = "RelativeFrequencyMatrix",
   method = function(object) {
     # Get data
     data <- methods::S3Part(object, strictS3 = TRUE, "matrix")
