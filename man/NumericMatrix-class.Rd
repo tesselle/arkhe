@@ -4,7 +4,7 @@
 \name{NumericMatrix-class}
 \alias{NumericMatrix-class}
 \alias{.NumericMatrix}
-\title{Numeric matrix}
+\title{Numeric Matrix}
 \description{
 An S4 class to represent a numeric matrix.
 }

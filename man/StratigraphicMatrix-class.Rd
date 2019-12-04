@@ -4,7 +4,7 @@
 \name{StratigraphicMatrix-class}
 \alias{StratigraphicMatrix-class}
 \alias{.StratigraphicMatrix}
-\title{Stratigraphy}
+\title{Stratigraphic Matrix}
 \description{
 An S4 class to represent a stratigraphic matrix.
 }

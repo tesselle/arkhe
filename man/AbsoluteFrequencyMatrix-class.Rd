@@ -4,6 +4,7 @@
 \name{AbsoluteFrequencyMatrix-class}
 \alias{AbsoluteFrequencyMatrix-class}
 \alias{.AbsoluteFrequencyMatrix}
+\alias{CountMatrix-class}
 \alias{CountMatrix}
 \title{Absolute Frequency Matrix}
 \usage{

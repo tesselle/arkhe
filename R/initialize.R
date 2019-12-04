@@ -1,38 +1,26 @@
 # CLASSES INITIALIZATION
 
 # ====================================================================== *Matrix
-Matrix <- function(..., id, dates) {
-  id <- if (missing(id)) generate_uuid(NULL) else id
-  dates <- if (missing(dates)) list() else dates
-  throw_message("codex_message_class",
-                "<Matrix> instance initialized.\n")
-  .Matrix(..., id = id, dates = dates)
-}
-NumericMatrix <- function(...) {
-  throw_message("codex_message_class",
-                "<NumericMatrix> instance initialized.\n")
-  .NumericMatrix(Matrix(...))
-}
-LogicalMatrix <- function(...) {
-  throw_message("codex_message_class",
-                "<LogicalMatrix> instance initialized.\n")
-  .LogicalMatrix(Matrix(...))
-}
-OccurrenceMatrix <- function(...) {
-  throw_message("codex_message_class",
-                "<OccurrenceMatrix> instance initialized.\n")
-  .OccurrenceMatrix(NumericMatrix(...))
-}
-SimilarityMatrix <- function(..., method = "unknown") {
-  throw_message("codex_message_class",
-                "<SimilarityMatrix> instance initialized.\n")
-  .SimilarityMatrix(NumericMatrix(...), method = method)
-}
-StratigraphicMatrix <- function(...) {
-  throw_message("codex_message_class",
-                "<StratigraphicMatrix> instance initialized.\n")
-  .StratigraphicMatrix(LogicalMatrix(...))
-}
+setMethod(
+  f = "initialize",
+  signature = "Matrix",
+  definition = function(.Object, ..., id) {
+    .Object@id <- if (missing(id)) generate_uuid() else id
+    .Object <- methods::callNextMethod()
+    methods::validObject(.Object)
+    .Object
+  }
+)
+setMethod(
+  f = "initialize",
+  signature = "SimilarityMatrix",
+  definition = function(.Object, ..., method) {
+    .Object@method <- if (missing(method)) "unknown" else method
+    .Object <- methods::callNextMethod()
+    methods::validObject(.Object)
+    .Object
+  }
+)
 
 # -------------------------------------------------------------- AbundanceMatrix
 #' Matrix constructor
@@ -69,21 +57,17 @@ CountMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
                         dimnames = NULL, ...) {
   M <- buildMatrix(data, nrow, ncol, byrow, dimnames,
                    missing(nrow), missing(ncol))
-  throw_message("codex_message_class",
-                "<AbsoluteFrequencyMatrix> instance initialized.\n")
-  .AbsoluteFrequencyMatrix(NumericMatrix(M), ...)
+  .AbsoluteFrequencyMatrix(M, ...)
 }
 
-#' @rdname RelativeFrequencyMatrix-class
-RelativeFrequencyMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
+# @rdname RelativeFrequencyMatrix-class
+FrequencyMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
                             dimnames = NULL, ...) {
   M <- buildMatrix(data, nrow, ncol, byrow, dimnames,
                    missing(nrow), missing(ncol))
   totals <- rowSums(M)
   M <- M / totals
-  throw_message("codex_message_class",
-                "<RelativeFrequencyMatrix> instance initialized.\n")
-  .RelativeFrequencyMatrix(NumericMatrix(M), ..., totals = totals)
+  .RelativeFrequencyMatrix(M, ..., totals = totals)
 }
 
 #' @export
@@ -93,7 +77,5 @@ IncidenceMatrix <- function(data = FALSE, nrow = 1, ncol = 1, byrow = FALSE,
   data <- as.logical(data)
   M <- buildMatrix(data, nrow, ncol, byrow, dimnames,
                    missing(nrow), missing(ncol))
-  throw_message("codex_message_class",
-                "<IncidenceMatrix> instance initialized.\n")
-  .IncidenceMatrix(LogicalMatrix(M), ...)
+  .IncidenceMatrix(M, ...)
 }

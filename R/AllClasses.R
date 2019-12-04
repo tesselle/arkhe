@@ -70,7 +70,7 @@
 )
 
 # --------------------------------------------------------------- Numeric matrix
-#' Numeric matrix
+#' Numeric Matrix
 #'
 #' An S4 class to represent a numeric matrix.
 #' @inheritSection Matrix-class Matrix ID
@@ -106,8 +106,8 @@
 #' @author N. Frerebeau
 #' @family matrix
 #' @docType class
-#' @exportClass AbsoluteFrequencyMatrix
-#' @aliases AbsoluteFrequencyMatrix-class
+#' @export .AbsoluteFrequencyMatrix
+#' @aliases AbsoluteFrequencyMatrix-class CountMatrix-class
 .AbsoluteFrequencyMatrix <- setClass(
   Class = "AbsoluteFrequencyMatrix",
   contains = "NumericMatrix"
@@ -143,7 +143,7 @@
 #' @author N. Frerebeau
 #' @family matrix
 #' @docType class
-#' @exportClass RelativeFrequencyMatrix
+#' @export .RelativeFrequencyMatrix
 #' @aliases RelativeFrequencyMatrix-class
 .RelativeFrequencyMatrix <- setClass(
   Class = "RelativeFrequencyMatrix",
@@ -153,7 +153,7 @@
   contains = "NumericMatrix"
 )
 
-#' Co-occurrence matrix
+#' Co-Occurrence Matrix
 #'
 #' An S4 class to represent a co-occurrence matrix.
 #' @details
@@ -169,13 +169,14 @@
 #' @author N. Frerebeau
 #' @family matrix
 #' @docType class
+#' @export .OccurrenceMatrix
 #' @aliases OccurrenceMatrix-class
 .OccurrenceMatrix <- setClass(
   Class = "OccurrenceMatrix",
   contains = "NumericMatrix"
 )
 
-#' Similarity matrix
+#' Similarity Matrix
 #'
 #' An S4 class to represent a (dis)similarity matrix.
 #' @slot method A \code{\link{character}} string specifying the distance
@@ -188,6 +189,7 @@
 #' @family matrix
 #' @author N. Frerebeau
 #' @docType class
+#' @export .SimilarityMatrix
 #' @aliases SimilarityMatrix-class
 .SimilarityMatrix <- setClass(
   Class = "SimilarityMatrix",
@@ -198,7 +200,7 @@
 )
 
 # --------------------------------------------------------------- Logical matrix
-#' Logical matrix
+#' Logical Matrix
 #'
 #' An S4 class to represent a logical matrix.
 #' @inheritSection Matrix-class Matrix ID
@@ -216,7 +218,7 @@
   contains = "Matrix"
 )
 
-#' Incidence matrix
+#' Incidence Matrix
 #'
 #' An S4 class to represent an incidence (presence/absence) matrix.
 #' @inheritParams base::matrix
@@ -232,13 +234,14 @@
 #' @author N. Frerebeau
 #' @family matrix
 #' @docType class
+#' @export .IncidenceMatrix
 #' @aliases IncidenceMatrix-class
 .IncidenceMatrix <- setClass(
   Class = "IncidenceMatrix",
   contains = "LogicalMatrix"
 )
 
-#' Stratigraphy
+#' Stratigraphic Matrix
 #'
 #' An S4 class to represent a stratigraphic matrix.
 #' @details
@@ -251,6 +254,7 @@
 #' @author N. Frerebeau
 #' @family matrix
 #' @docType class
+#' @export .StratigraphicMatrix
 #' @aliases StratigraphicMatrix-class
 .StratigraphicMatrix <- setClass(
   Class = "StratigraphicMatrix",

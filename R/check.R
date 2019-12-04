@@ -217,18 +217,9 @@ check_numbers <- function(x, expected = c("positive", "whole", "odd", "even"),
 #' @rdname check-numeric
 check_constant <- function(x) {
   arg <- deparse(substitute(x))
-  # Check rowSums for array
-  if (is.matrix(x) || is.data.frame(x)) {
-    x <- rowSums(x)
-    if (!is_equal(x)) {
-      msg <- sprintf("%s must have constant row sums.", sQuote(arg))
-      throw_error("error_bad_value", msg)
-    }
-  } else {
-    if (!is_equal(x)) {
-      msg <- sprintf("%s must be constant.", sQuote(arg))
-      throw_error("error_bad_value", msg)
-    }
+  if (!is_equal(x)) {
+    msg <- sprintf("%s must be constant.", sQuote(arg))
+    throw_error("error_bad_value", msg)
   }
 }
 

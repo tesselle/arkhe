@@ -5,7 +5,7 @@
 \alias{IncidenceMatrix-class}
 \alias{.IncidenceMatrix}
 \alias{IncidenceMatrix}
-\title{Incidence matrix}
+\title{Incidence Matrix}
 \usage{
 IncidenceMatrix(data = FALSE, nrow = 1, ncol = 1, byrow = FALSE,
   dimnames = NULL, ...)

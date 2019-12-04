@@ -16,14 +16,17 @@
 #' @keywords internal
 NULL
 
+#' @export
 #' @rdname predicate-utils
 is_empty <- function(x) {
   length(x) == 0
 }
+#' @export
 #' @rdname predicate-utils
 is_named <- function(x) {
   length(names(x)) != 0
 }
+#' @export
 #' @rdname predicate-utils
 is_uuid <- function(x) {
   pattern <- "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
@@ -157,26 +160,31 @@ is_scalar_logical <- function(x) {
 #' @keywords internal
 NULL
 
+#' @export
 #' @rdname predicate-numeric
 is_odd <- function(x) { # impair
   check_type(x, "numeric")
   as.logical(x %% 2)
 }
+#' @export
 #' @rdname predicate-numeric
 is_even <- function(x) { # pair
   check_type(x, "numeric")
   !as.logical(x %% 2)
 }
+#' @export
 #' @rdname predicate-numeric
 is_positive <- function(x, strict = FALSE) {
   check_type(x, "numeric")
   if (strict) x > 0 else x >= 0
 }
+#' @export
 #' @rdname predicate-numeric
 is_whole <- function(x, tolerance = .Machine$double.eps^0.5) {
   check_type(x, "numeric")
   abs(x - round(x, digits = 0)) <= tolerance
 }
+#' @export
 #' @rdname predicate-numeric
 is_binary <- function(x) {
   check_type(x, "numeric")
@@ -205,6 +213,7 @@ is_binary <- function(x) {
 #' @keywords internal
 NULL
 
+#' @export
 #' @rdname predicate-trend
 is_equal <- function(x, tolerance = .Machine$double.eps^0.5, na.rm = TRUE) {
   check_type(x, "numeric")
@@ -213,6 +222,7 @@ is_equal <- function(x, tolerance = .Machine$double.eps^0.5, na.rm = TRUE) {
   if (is.na(k)) k <- FALSE
   k
 }
+#' @export
 #' @rdname predicate-trend
 is_increasing <- function(x, na.rm = TRUE) {
   check_type(x, "numeric")
@@ -221,6 +231,7 @@ is_increasing <- function(x, na.rm = TRUE) {
   if (is.na(k)) k <- FALSE
   k
 }
+#' @export
 #' @rdname predicate-trend
 is_decreasing <- function(x, na.rm = TRUE) {
   check_type(x, "numeric")
@@ -229,6 +240,7 @@ is_decreasing <- function(x, na.rm = TRUE) {
   if (is.na(k)) k <- FALSE
   k
 }
+#' @export
 #' @rdname predicate-trend
 is_overlapping <- function(x, y) {
   check_type(x, "numeric")
@@ -251,10 +263,12 @@ is_overlapping <- function(x, y) {
 #' @keywords internal
 NULL
 
+#' @export
 #' @rdname predicate-matrix
 is_square <- function(x) {
   if (is.matrix(x)) nrow(x) == ncol(x) else FALSE
 }
+#' @export
 #' @rdname predicate-matrix
 is_symmetric <- function(x) {
   if (is.matrix(x)) identical(x, t(x)) else FALSE
@@ -277,6 +291,7 @@ is_symmetric <- function(x) {
 #' @keywords internal
 NULL
 
+#' @export
 #' @rdname predicate-graph
 is_dag <- function(x) {
   # Get edges

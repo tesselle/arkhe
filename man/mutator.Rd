@@ -7,17 +7,22 @@
 \alias{set}
 \alias{get_id}
 \alias{get_id-method}
+\alias{get_method}
+\alias{get_method-method}
 \alias{get_totals}
 \alias{get_totals-method}
 \alias{set_totals<-}
 \alias{set_totals-method}
 \alias{get_id,ANY-method}
 \alias{get_totals,RelativeFrequencyMatrix-method}
+\alias{get_method,SimilarityMatrix-method}
 \alias{set_totals<-,RelativeFrequencyMatrix-method}
 \alias{set_totals,RelativeFrequencyMatrix-method}
 \title{Get or Set Parts of an Object}
 \usage{
 get_id(object)
+
+get_method(object)
 
 get_totals(object)
 
@@ -26,6 +31,8 @@ set_totals(object) <- value
 \S4method{get_id}{ANY}(object)
 
 \S4method{get_totals}{RelativeFrequencyMatrix}(object)
+
+\S4method{get_method}{SimilarityMatrix}(object)
 
 \S4method{set_totals}{RelativeFrequencyMatrix}(object) <- value
 }

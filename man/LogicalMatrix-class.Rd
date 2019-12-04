@@ -4,7 +4,7 @@
 \name{LogicalMatrix-class}
 \alias{LogicalMatrix-class}
 \alias{.LogicalMatrix}
-\title{Logical matrix}
+\title{Logical Matrix}
 \description{
 An S4 class to represent a logical matrix.
 }

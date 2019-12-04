@@ -4,7 +4,7 @@
 \name{OccurrenceMatrix-class}
 \alias{OccurrenceMatrix-class}
 \alias{.OccurrenceMatrix}
-\title{Co-occurrence matrix}
+\title{Co-Occurrence Matrix}
 \description{
 An S4 class to represent a co-occurrence matrix.
 }

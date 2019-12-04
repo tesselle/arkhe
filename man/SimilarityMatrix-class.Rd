@@ -4,7 +4,7 @@
 \name{SimilarityMatrix-class}
 \alias{SimilarityMatrix-class}
 \alias{.SimilarityMatrix}
-\title{Similarity matrix}
+\title{Similarity Matrix}
 \description{
 An S4 class to represent a (dis)similarity matrix.
 }

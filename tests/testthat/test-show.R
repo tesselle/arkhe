@@ -14,12 +14,12 @@ test_that("Numeric matrix", {
   B <- CountMatrix(matrix(1))
   expect_output(show(B), "absolute frequency matrix")
 
-  C <- RelativeFrequencyMatrix(matrix(1))
+  C <- FrequencyMatrix(matrix(1))
   expect_output(show(C), "relative frequency matrix")
 
-  D <- SimilarityMatrix(matrix(1))
+  D <- .SimilarityMatrix(matrix(1))
   expect_output(show(D), "similarity matrix")
 
-  E <- OccurrenceMatrix(matrix(1))
+  E <- .OccurrenceMatrix(matrix(1))
   expect_output(show(E), "co-occurrence matrix")
 })

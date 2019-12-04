@@ -28,6 +28,13 @@ setGeneric(
 )
 
 #' @rdname mutator
+#' @aliases get_method-method
+setGeneric(
+  name = "get_method",
+  def = function(object) standardGeneric("get_method")
+)
+
+#' @rdname mutator
 #' @aliases get_totals-method
 setGeneric(
   name = "get_totals",

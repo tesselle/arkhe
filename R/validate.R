@@ -48,10 +48,14 @@ setValidity(
     # Get data
     data <- S3Part(object, strictS3 = TRUE, "matrix")
 
-    errors <- list(
-      # Check data
-      catch_conditions(check_type(data, "numeric"))
-    )
+    if (nrow(data) > 0) {
+      errors <- list(
+        # Check data
+        catch_conditions(check_type(data, "numeric"))
+      )
+    } else {
+      errors <- list()
+    }
 
     # Return errors if any
     check_class(object, errors)
@@ -96,11 +100,19 @@ setValidity(
     errors <- list(
       # Check data
       catch_conditions(check_numbers(data, "positive", strict = FALSE)),
-      catch_conditions(check_constant(data)),
       # Check totals
-      catch_conditions(check_length(totals, expected = nrow(data)))
+      catch_conditions(check_length(totals, nrow(data)))
     )
-
+    if (nrow(data) > 0) {
+      errors <- append(
+        errors,
+        list(
+          # Check totals
+          catch_conditions(check_constant(rowSums(data)))
+        )
+      )
+    }
+    # print(totals)
     # Return errors, if any
     check_class(object, errors)
   }
@@ -151,10 +163,14 @@ setValidity(
     # Get data
     data <- S3Part(object, strictS3 = TRUE, "matrix")
 
-    errors <- list(
-      # Check data
-      catch_conditions(check_type(data, "logical"))
-    )
+    if (nrow(data) > 0) {
+      errors <- list(
+        # Check data
+        catch_conditions(check_type(data, "logical"))
+      )
+    } else {
+      errors <- list()
+    }
 
     # Return errors if any
     check_class(object, errors)
@@ -176,11 +192,15 @@ setValidity(
     # Get data
     data <- methods::S3Part(object, strictS3 = TRUE, "matrix")
 
-    errors <- list(
-      # Check data
-      catch_conditions(check_square(data)),
-      catch_conditions(check_dag(data))
-    )
+    if (nrow(data) > 0) {
+      errors <- list(
+        # Check data
+        catch_conditions(check_square(data)),
+        catch_conditions(check_dag(data))
+      )
+    } else {
+      errors <- list()
+    }
 
     # Return errors, if any
     check_class(object, errors)

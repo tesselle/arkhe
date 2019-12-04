@@ -53,6 +53,11 @@ setMethod("get_id", "ANY", function(object) object@id)
 #' @aliases get_totals,RelativeFrequencyMatrix-method
 setMethod("get_totals", "RelativeFrequencyMatrix", function(object) object@totals)
 
+#' @export
+#' @rdname mutator
+#' @aliases get_method,SimilarityMatrix-method
+setMethod("get_method", "SimilarityMatrix", function(object) object@method)
+
 # ====================================================================== Setters
 #' @export
 #' @rdname mutator
