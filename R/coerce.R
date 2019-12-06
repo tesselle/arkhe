@@ -9,18 +9,18 @@ setMethod(
   f = "as_count",
   signature = signature(from = "ANY"),
   definition = function(from) {
-    methods::as(from, "AbsoluteFrequencyMatrix")
+    methods::as(from, "CountMatrix")
   }
 )
 
 #' @export
 #' @rdname coerce
-#' @aliases as_frequency,ANY-method
+#' @aliases as_abundance,ANY-method
 setMethod(
-  f = "as_frequency",
+  f = "as_abundance",
   signature = signature(from = "ANY"),
   definition = function(from) {
-    methods::as(from, "RelativeFrequencyMatrix")
+    methods::as(from, "AbundanceMatrix")
   }
 )
 
@@ -80,7 +80,7 @@ setAs(
   }
 )
 
-## To AbsoluteFrequencyMatrix ==================================================
+## To CountMatrix ==================================================
 matrix2count <- function(from) {
   data <- data.matrix(from, rownames.force = NA)
   data <- make_dimnames(data) # Force dimnames
@@ -90,22 +90,22 @@ matrix2count <- function(from) {
     FUN = function(x) as.integer(round(x, digits = 0))
   )
   dimnames(whole_numbers) <- dimnames(data)
-  .AbsoluteFrequencyMatrix(whole_numbers, id = generate_uuid())
+  .CountMatrix(whole_numbers, id = generate_uuid())
 }
-setAs(from = "matrix", to = "AbsoluteFrequencyMatrix", def = matrix2count)
-setAs(from = "data.frame", to = "AbsoluteFrequencyMatrix", def = matrix2count)
+setAs(from = "matrix", to = "CountMatrix", def = matrix2count)
+setAs(from = "data.frame", to = "CountMatrix", def = matrix2count)
 
-## To RelativeFrequencyMatrix ==================================================
+## To AbundanceMatrix ==================================================
 matrix2frequency <- function(from) {
   data <- data.matrix(from)
   data <- make_dimnames(data) # Force dimnames
   totals <- rowSums(data)
   freq <- data / totals
   dimnames(freq) <- dimnames(data)
-  .RelativeFrequencyMatrix(freq, totals = totals, id = generate_uuid())
+  .AbundanceMatrix(freq, totals = totals, id = generate_uuid())
 }
-setAs(from = "matrix", to = "RelativeFrequencyMatrix", def = matrix2frequency)
-setAs(from = "data.frame", to = "RelativeFrequencyMatrix", def = matrix2frequency)
+setAs(from = "matrix", to = "AbundanceMatrix", def = matrix2frequency)
+setAs(from = "data.frame", to = "AbundanceMatrix", def = matrix2frequency)
 
 ## To SimilarityMatrix =========================================================
 matrix2similarity <- function(from) {
@@ -156,22 +156,22 @@ setAs(from = "matrix", to = "OccurrenceMatrix",
 setAs(from = "data.frame", to = "OccurrenceMatrix",
       def = matrix2occurrence)
 
-setAs(from = "AbsoluteFrequencyMatrix", to = "OccurrenceMatrix",
+setAs(from = "CountMatrix", to = "OccurrenceMatrix",
       def = matrix2occurrence)
-setAs(from = "RelativeFrequencyMatrix", to = "OccurrenceMatrix",
+setAs(from = "AbundanceMatrix", to = "OccurrenceMatrix",
       def = matrix2occurrence)
 setAs(from = "IncidenceMatrix", to = "OccurrenceMatrix",
       def = matrix2occurrence)
 
-## AbsoluteFrequencyMatrix <> RelativeFrequencyMatrix ==========================
+## CountMatrix <> AbundanceMatrix ==========================
 setAs(
-  from = "AbsoluteFrequencyMatrix",
-  to = "RelativeFrequencyMatrix",
+  from = "CountMatrix",
+  to = "AbundanceMatrix",
   def = function(from) {
     counts <- methods::S3Part(from, strictS3 = TRUE, "matrix")
     totals <- rowSums(counts)
     freq <- counts / totals
-    .RelativeFrequencyMatrix(
+    .AbundanceMatrix(
       freq,
       totals = totals,
       id = from@id,
@@ -180,8 +180,8 @@ setAs(
   }
 )
 setAs(
-  from = "RelativeFrequencyMatrix",
-  to = "AbsoluteFrequencyMatrix",
+  from = "AbundanceMatrix",
+  to = "CountMatrix",
   def = function(from) {
     freq <- methods::S3Part(from, strictS3 = TRUE, "matrix")
     totals <- from@totals
@@ -195,7 +195,7 @@ setAs(
       FUN = function(x) as.integer(round(x, digits = 0))
     )
     dimnames(integer) <- dimnames(freq)
-    .AbsoluteFrequencyMatrix(
+    .CountMatrix(
       integer,
       id = from@id,
       dates = from@dates
@@ -226,8 +226,8 @@ matrix2incidence <- function(from) {
 setAs(from = "matrix", to = "IncidenceMatrix", def = matrix2incidence)
 setAs(from = "data.frame", to = "IncidenceMatrix", def = matrix2incidence)
 
-setAs(from = "AbsoluteFrequencyMatrix", to = "IncidenceMatrix", def = matrix2incidence)
-setAs(from = "RelativeFrequencyMatrix", to = "IncidenceMatrix", def = matrix2incidence)
+setAs(from = "CountMatrix", to = "IncidenceMatrix", def = matrix2incidence)
+setAs(from = "AbundanceMatrix", to = "IncidenceMatrix", def = matrix2incidence)
 
 ## To StratigraphicMatrix ======================================================
 edges2matrix <- function(from) {

@@ -14,10 +14,10 @@
 \alias{set_totals<-}
 \alias{set_totals-method}
 \alias{get_id,ANY-method}
-\alias{get_totals,RelativeFrequencyMatrix-method}
+\alias{get_totals,AbundanceMatrix-method}
 \alias{get_method,SimilarityMatrix-method}
-\alias{set_totals<-,RelativeFrequencyMatrix-method}
-\alias{set_totals,RelativeFrequencyMatrix-method}
+\alias{set_totals<-,AbundanceMatrix-method}
+\alias{set_totals,AbundanceMatrix-method}
 \title{Get or Set Parts of an Object}
 \usage{
 get_id(object)
@@ -30,11 +30,11 @@ set_totals(object) <- value
 
 \S4method{get_id}{ANY}(object)
 
-\S4method{get_totals}{RelativeFrequencyMatrix}(object)
+\S4method{get_totals}{AbundanceMatrix}(object)
 
 \S4method{get_method}{SimilarityMatrix}(object)
 
-\S4method{set_totals}{RelativeFrequencyMatrix}(object) <- value
+\S4method{set_totals}{AbundanceMatrix}(object) <- value
 }
 \arguments{
 \item{object}{An object from which to get or set element(s).}
@@ -62,15 +62,15 @@ rownames(A1) # Get the rownames
 rownames(A1) <- LETTERS[1:10] # Set the row names
 
 ## Subset
-A1[[1]] # Get the matrix ID
+A1[[1]] # Get the first value
 A1[, ] # Get all values
 A1[1, ] # Get the first row
 A1[c("A", "B", "C"), ] # Get the first three rows
 A1[c("A", "B", "C"), 1] # Get the first three rows of the first column
 A1[, 1, drop = FALSE] # Get the first column
 
-## Coerce counts to frequencies
-B <- as_frequency(A1)
+## Coerce counts to relative frequencies
+B <- as_abundance(A1)
 ## Row sums are internally stored before coercing to a frequency matrix
 get_totals(B) # Get row sums
 ## This allows to restore the source data

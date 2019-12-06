@@ -57,8 +57,8 @@ test_that("Initialize a NumericMatrix instance", {
 
 ## Count matrix ----------------------------------------------------------------
 test_that("Initialize a CountMatrix instance", {
-  expect_s4_class(.AbsoluteFrequencyMatrix(), "AbsoluteFrequencyMatrix")
-  expect_s4_class(CountMatrix(1), "AbsoluteFrequencyMatrix")
+  expect_s4_class(.CountMatrix(), "CountMatrix")
+  expect_s4_class(CountMatrix(1), "CountMatrix")
 
   # Try relative frequencies
   cnd <- catch_conditions(CountMatrix(1.1))
@@ -109,41 +109,41 @@ test_that("CountMatrix constructor", {
 })
 
 ## Frequency matrix ------------------------------------------------------------
-test_that("Initialize a RelativeFrequencyMatrix instance", {
-  expect_s4_class(.RelativeFrequencyMatrix(), "RelativeFrequencyMatrix")
-  expect_s4_class(FrequencyMatrix(1), "RelativeFrequencyMatrix")
+test_that("Initialize a AbundanceMatrix instance", {
+  expect_s4_class(.AbundanceMatrix(), "AbundanceMatrix")
+  expect_s4_class(FrequencyMatrix(1), "AbundanceMatrix")
 
   # Try missing totals
-  cnd <- catch_conditions(.RelativeFrequencyMatrix(matrix(1), totals = c(1,2)))
+  cnd <- catch_conditions(.AbundanceMatrix(matrix(1), totals = c(1,2)))
   expect_s3_class(cnd[[1]], "codex_error_class")
   expect_true(grepl("must be of length 1; not 2", cnd[[1]]$message))
 
-  cnd <- catch_conditions(.RelativeFrequencyMatrix(matrix(c(1, 2), nrow = 2)))
+  cnd <- catch_conditions(.AbundanceMatrix(matrix(c(1, 2), nrow = 2)))
   expect_s3_class(cnd[[1]], "codex_error_class")
   expect_true(grepl("must be constant", cnd[[1]]$message))
 
   # Try negative values
-  cnd <- catch_conditions(.RelativeFrequencyMatrix(matrix(-2)))
+  cnd <- catch_conditions(.AbundanceMatrix(matrix(-2)))
   expect_s3_class(cnd[[1]], "codex_error_class")
   expect_true(grepl("must contain positive numbers", cnd[[1]]$message))
   # Try character
-  cnd <- catch_conditions(.RelativeFrequencyMatrix(matrix("X")))
+  cnd <- catch_conditions(.AbundanceMatrix(matrix("X")))
   expect_s3_class(cnd[[1]], "codex_error_class")
   expect_true(grepl("must be numeric; not character", cnd[[1]]$message))
   # Try NA
-  cnd <- catch_conditions(.RelativeFrequencyMatrix(matrix(NA)))
+  cnd <- catch_conditions(.AbundanceMatrix(matrix(NA)))
   expect_s3_class(cnd[[1]], "codex_error_class")
   expect_true(grepl("must not contain missing values", cnd[[1]]$message))
   # Try NaN
-  cnd <- catch_conditions(.RelativeFrequencyMatrix(matrix(NaN)))
+  cnd <- catch_conditions(.AbundanceMatrix(matrix(NaN)))
   expect_s3_class(cnd[[1]], "codex_error_class")
   expect_true(grepl("must not contain missing values", cnd[[1]]$message))
   # Try Inf
-  cnd <- catch_conditions(.RelativeFrequencyMatrix(matrix(Inf)))
+  cnd <- catch_conditions(.AbundanceMatrix(matrix(Inf)))
   expect_s3_class(cnd[[1]], "codex_error_class")
   expect_true(grepl("must not contain infinite values", cnd[[1]]$message))
 })
-test_that("RelativeFrequencyMatrix constructor", {
+test_that("AbundanceMatrix constructor", {
   freq_matrix1 <- FrequencyMatrix(
     data = sample(0:10, 100, TRUE),
     ncol = 20

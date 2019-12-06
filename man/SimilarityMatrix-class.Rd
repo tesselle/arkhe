@@ -72,13 +72,13 @@ method used.}
 \seealso{
 \linkS4class{NumericMatrix}
 
-Other matrix: \code{\link{AbsoluteFrequencyMatrix-class}},
+Other matrix: \code{\link{AbundanceMatrix-class}},
+  \code{\link{CountMatrix-class}},
   \code{\link{IncidenceMatrix-class}},
   \code{\link{LogicalMatrix-class}},
   \code{\link{Matrix-class}},
   \code{\link{NumericMatrix-class}},
   \code{\link{OccurrenceMatrix-class}},
-  \code{\link{RelativeFrequencyMatrix-class}},
   \code{\link{StratigraphicMatrix-class}},
   \code{\link{coerce}}
 }

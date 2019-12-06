@@ -3,10 +3,10 @@
 # ========================================================================== Get
 #' @export
 #' @rdname time
-#' @aliases get_dates,AbundanceMatrix-method
+#' @aliases get_dates,Matrix-method
 setMethod(
   f = "get_dates",
-  signature = "AbundanceMatrix",
+  signature = "Matrix",
   definition = function(object) {
     if (length(object@dates) != 0) {
       dates <- do.call(rbind, object@dates)

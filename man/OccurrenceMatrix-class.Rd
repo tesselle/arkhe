@@ -81,15 +81,15 @@ rownames(A1) # Get the rownames
 rownames(A1) <- LETTERS[1:10] # Set the row names
 
 ## Subset
-A1[[1]] # Get the matrix ID
+A1[[1]] # Get the first value
 A1[, ] # Get all values
 A1[1, ] # Get the first row
 A1[c("A", "B", "C"), ] # Get the first three rows
 A1[c("A", "B", "C"), 1] # Get the first three rows of the first column
 A1[, 1, drop = FALSE] # Get the first column
 
-## Coerce counts to frequencies
-B <- as_frequency(A1)
+## Coerce counts to relative frequencies
+B <- as_abundance(A1)
 ## Row sums are internally stored before coercing to a frequency matrix
 get_totals(B) # Get row sums
 ## This allows to restore the source data
@@ -99,12 +99,12 @@ all(A1 == A2)
 \seealso{
 \linkS4class{NumericMatrix}
 
-Other matrix: \code{\link{AbsoluteFrequencyMatrix-class}},
+Other matrix: \code{\link{AbundanceMatrix-class}},
+  \code{\link{CountMatrix-class}},
   \code{\link{IncidenceMatrix-class}},
   \code{\link{LogicalMatrix-class}},
   \code{\link{Matrix-class}},
   \code{\link{NumericMatrix-class}},
-  \code{\link{RelativeFrequencyMatrix-class}},
   \code{\link{SimilarityMatrix-class}},
   \code{\link{StratigraphicMatrix-class}},
   \code{\link{coerce}}

@@ -5,8 +5,8 @@
 \alias{coerce}
 \alias{as_count}
 \alias{as_count-method}
-\alias{as_frequency}
-\alias{as_frequency-method}
+\alias{as_abundance}
+\alias{as_abundance-method}
 \alias{as_incidence}
 \alias{as_incidence-method}
 \alias{as_occurrence}
@@ -18,7 +18,7 @@
 \alias{as_stratigraphy}
 \alias{as_stratigraphy-method}
 \alias{as_count,ANY-method}
-\alias{as_frequency,ANY-method}
+\alias{as_abundance,ANY-method}
 \alias{as_incidence,ANY-method}
 \alias{as_occurrence,ANY-method}
 \alias{as_similarity,ANY-method}
@@ -27,7 +27,7 @@
 \usage{
 as_count(from)
 
-as_frequency(from)
+as_abundance(from)
 
 as_incidence(from)
 
@@ -41,7 +41,7 @@ as_stratigraphy(from)
 
 \S4method{as_count}{ANY}(from)
 
-\S4method{as_frequency}{ANY}(from)
+\S4method{as_abundance}{ANY}(from)
 
 \S4method{as_incidence}{ANY}(from)
 
@@ -65,20 +65,19 @@ Coerce
 The following methods coerce a \code{matrix} or \code{data.frame} to a
  \code{*Matrix} object:
 
- \tabular{ll}{
-  \strong{Method} \tab \strong{Target} \cr
-  \code{as_count} \tab \linkS4class{AbsoluteFrequencyMatrix} \cr
-  \code{as_frequency} \tab \linkS4class{RelativeFrequencyMatrix} \cr
-  \code{as_incidence} \tab \linkS4class{IncidenceMatrix} \cr
-  \code{as_occurrence} \tab \linkS4class{OccurrenceMatrix} \cr
-  \code{as_similarity} \tab \linkS4class{SimilarityMatrix} \cr
-  \code{as_stratigraphy} \tab \linkS4class{StratigraphicMatrix}
+ \tabular{lll}{
+  \strong{Method} \tab \strong{Target} \tab \strong{Details} \cr
+  \code{as_count} \tab \linkS4class{CountMatrix} \tab absolute frequency data \cr
+  \code{as_abundance} \tab \linkS4class{AbundanceMatrix} \tab relative frequency data \cr
+  \code{as_incidence} \tab \linkS4class{IncidenceMatrix} \tab presence/absence data \cr
+  \code{as_occurrence} \tab \linkS4class{OccurrenceMatrix} \tab co-occurrence \cr
+  \code{as_similarity} \tab \linkS4class{SimilarityMatrix} \tab (dis)similarity \cr
+  \code{as_stratigraphy} \tab \linkS4class{StratigraphicMatrix} \tab stratigraphic relationships
  }
 
- \code{as_features} converts an \code{AbundanceMatrix} object to a
+ \code{as_features} converts an \linkS4class{Matrix} object to a
  collection of features (i.e. a\code{\link{data.frame}} with
- dates and coordinates columns) that can be used for spatial manipulation
- with \pkg{sf}.
+ dates and coordinates columns).
 
  \code{as_stratigraphy} converts a set of stratigraphic relationships (edges)
  to a stratigraphic (adjacency) matrix. \code{from} can be a
@@ -88,11 +87,13 @@ The following methods coerce a \code{matrix} or \code{data.frame} to a
 }
 \examples{
 ## Create a count matrix
-A1 <- CountMatrix(data = sample(0:10, 100, TRUE),
-                  nrow = 10, ncol = 10)
+A0 <- matrix(data = sample(0:10, 100, TRUE), nrow = 10, ncol = 10)
 
-## Coerce counts to frequencies
-B <- as_frequency(A1)
+## Coerce to absolute frequencies
+A1 <- as_count(A0)
+
+## Coerce to relative frequencies
+B <- as_abundance(A1)
 
 ## Row sums are internally stored before coercing to a frequency matrix
 ## (use totals() to get these values)
@@ -107,13 +108,13 @@ C <- as_incidence(A1)
 D <- as_occurrence(A1)
 }
 \seealso{
-Other matrix: \code{\link{AbsoluteFrequencyMatrix-class}},
+Other matrix: \code{\link{AbundanceMatrix-class}},
+  \code{\link{CountMatrix-class}},
   \code{\link{IncidenceMatrix-class}},
   \code{\link{LogicalMatrix-class}},
   \code{\link{Matrix-class}},
   \code{\link{NumericMatrix-class}},
   \code{\link{OccurrenceMatrix-class}},
-  \code{\link{RelativeFrequencyMatrix-class}},
   \code{\link{SimilarityMatrix-class}},
   \code{\link{StratigraphicMatrix-class}}
 }

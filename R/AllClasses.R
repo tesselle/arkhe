@@ -102,14 +102,14 @@
 #  and then coerced to \code{\link{integer}} as by
 #  \code{\link[base]{as.integer}}.
 #' @seealso \linkS4class{NumericMatrix}
-#' @example inst/examples/ex-abundance-class.R
+#' @example inst/examples/ex-numeric-class.R
 #' @author N. Frerebeau
 #' @family matrix
 #' @docType class
-#' @export .AbsoluteFrequencyMatrix
-#' @aliases AbsoluteFrequencyMatrix-class CountMatrix-class
-.AbsoluteFrequencyMatrix <- setClass(
-  Class = "AbsoluteFrequencyMatrix",
+#' @export .CountMatrix
+#' @aliases CountMatrix-class
+.CountMatrix <- setClass(
+  Class = "CountMatrix",
   contains = "NumericMatrix"
 )
 
@@ -127,7 +127,7 @@
 #' @slot totals A \code{\link{numeric}} vector.
 #' @inheritSection Matrix-class Matrix ID
 #' @section Get and set:
-#'  In the code snippets below, \code{x} is a \code{RelativeFrequencyMatrix}
+#'  In the code snippets below, \code{x} is a \code{AbundanceMatrix}
 #'  object.
 #'  \describe{
 #'   \item{\code{get_id(x)}}{Get the unique ID of \code{x}.}
@@ -139,14 +139,14 @@
 #' @inheritSection Matrix-class Access
 #' @inheritSection Matrix-class Subset
 #' @seealso \linkS4class{NumericMatrix}
-#' @example inst/examples/ex-abundance-class.R
+#' @example inst/examples/ex-numeric-class.R
 #' @author N. Frerebeau
 #' @family matrix
 #' @docType class
-#' @export .RelativeFrequencyMatrix
-#' @aliases RelativeFrequencyMatrix-class
-.RelativeFrequencyMatrix <- setClass(
-  Class = "RelativeFrequencyMatrix",
+#' @export .AbundanceMatrix
+#' @aliases AbundanceMatrix-class
+.AbundanceMatrix <- setClass(
+  Class = "AbundanceMatrix",
   slots = c(
     totals = "numeric"
   ),
@@ -165,7 +165,7 @@
 #' @inheritSection Matrix-class Access
 #' @inheritSection Matrix-class Subset
 #' @seealso \linkS4class{NumericMatrix}
-#' @example inst/examples/ex-abundance-class.R
+#' @example inst/examples/ex-numeric-class.R
 #' @author N. Frerebeau
 #' @family matrix
 #' @docType class
@@ -259,11 +259,4 @@
 .StratigraphicMatrix <- setClass(
   Class = "StratigraphicMatrix",
   contains = "LogicalMatrix"
-)
-
-# ------------------------------------------------------------- Abundance matrix
-setClassUnion(
-  name = "AbundanceMatrix",
-  members = c("AbsoluteFrequencyMatrix", "RelativeFrequencyMatrix",
-              "IncidenceMatrix")
 )

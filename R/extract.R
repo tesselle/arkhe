@@ -50,8 +50,8 @@ setMethod("get_id", "ANY", function(object) object@id)
 
 #' @export
 #' @rdname mutator
-#' @aliases get_totals,RelativeFrequencyMatrix-method
-setMethod("get_totals", "RelativeFrequencyMatrix", function(object) object@totals)
+#' @aliases get_totals,AbundanceMatrix-method
+setMethod("get_totals", "AbundanceMatrix", function(object) object@totals)
 
 #' @export
 #' @rdname mutator
@@ -61,10 +61,10 @@ setMethod("get_method", "SimilarityMatrix", function(object) object@method)
 # ====================================================================== Setters
 #' @export
 #' @rdname mutator
-#' @aliases set_totals,RelativeFrequencyMatrix-method
+#' @aliases set_totals,AbundanceMatrix-method
 setMethod(
   f = "set_totals<-",
-  signature = "RelativeFrequencyMatrix",
+  signature = "AbundanceMatrix",
   definition = function(object, value) {
     object@totals <- value
     methods::validObject(object)

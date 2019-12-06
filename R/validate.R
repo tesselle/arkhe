@@ -35,11 +35,6 @@ setValidity(
     check_class(object, errors)
   }
 )
-# setValidity(
-#   Class = "AbundanceMatrix",
-#   method = function(object) {
-#   }
-# )
 
 # NumericMatrix ================================================================
 setValidity(
@@ -62,9 +57,9 @@ setValidity(
   }
 )
 
-## AbsoluteFrequencyMatrix -----------------------------------------------------
+## CountMatrix -----------------------------------------------------
 setValidity(
-  Class = "AbsoluteFrequencyMatrix",
+  Class = "CountMatrix",
   method = function(object) {
     # Get data
     data <- methods::S3Part(object, strictS3 = TRUE, "matrix")
@@ -87,9 +82,9 @@ setValidity(
   }
 )
 
-## RelativeFrequencyMatrix -----------------------------------------------------
+## AbundanceMatrix -------------------------------------------------------------
 setValidity(
-  Class = "RelativeFrequencyMatrix",
+  Class = "AbundanceMatrix",
   method = function(object) {
     # Get data
     data <- methods::S3Part(object, strictS3 = TRUE, "matrix")

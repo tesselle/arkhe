@@ -6,18 +6,18 @@ mtx_freq <- mtx_count / rowSums(mtx_count)
 mtx_incid <- matrix(as.logical(sample(0:1, 50, TRUE)), ncol = 10)
 mtx_sim <- matrix(1, nrow = 5, ncol = 5)
 
-test_that("matrix objects can be coerced to AbsoluteFrequencyMatrix", {
+test_that("matrix objects can be coerced to CountMatrix", {
   A <- as_count(mtx_count)
-  expect_s4_class(A, "AbsoluteFrequencyMatrix")
+  expect_s4_class(A, "CountMatrix")
   expect_equivalent(as(A, "matrix"), mtx_count)
 })
-test_that("matrix objects can be coerced to RelativeFrequencyMatrix", {
+test_that("matrix objects can be coerced to AbundanceMatrix", {
   B <- as_frequency(mtx_freq)
-  expect_s4_class(B, "RelativeFrequencyMatrix")
+  expect_s4_class(B, "AbundanceMatrix")
   expect_equivalent(as(B, "matrix"), mtx_freq)
 
-  expect_s4_class(as_frequency(mtx_count), "RelativeFrequencyMatrix")
-  expect_s4_class(as_frequency(mtx_incid), "RelativeFrequencyMatrix")
+  expect_s4_class(as_frequency(mtx_count), "AbundanceMatrix")
+  expect_s4_class(as_frequency(mtx_incid), "AbundanceMatrix")
 })
 test_that("matrix objects can be coerced to IncidenceMatrix", {
   C <- as_incidence(mtx_incid)
@@ -47,18 +47,18 @@ df_freq <- as.data.frame(mtx_freq)
 df_incid <- as.data.frame(mtx_incid)
 df_sim <- as.data.frame(mtx_sim)
 
-test_that("data.frame <> AbsoluteFrequencyMatrix", {
+test_that("data.frame <> CountMatrix", {
   A <- as_count(df_count)
-  expect_s4_class(A, "AbsoluteFrequencyMatrix")
+  expect_s4_class(A, "CountMatrix")
   expect_equivalent(as(A, "data.frame"), df_count)
 })
-test_that("data.frame <> RelativeFrequencyMatrix", {
+test_that("data.frame <> AbundanceMatrix", {
   B <- as_frequency(df_freq)
-  expect_s4_class(B, "RelativeFrequencyMatrix")
+  expect_s4_class(B, "AbundanceMatrix")
   expect_equivalent(as(B, "data.frame"), df_freq)
 
-  expect_s4_class(as_frequency(df_count), "RelativeFrequencyMatrix")
-  expect_s4_class(as_frequency(df_incid), "RelativeFrequencyMatrix")
+  expect_s4_class(as_frequency(df_count), "AbundanceMatrix")
+  expect_s4_class(as_frequency(df_incid), "AbundanceMatrix")
 })
 test_that("data.frame <> IncidenceMatrix", {
   C <- as_incidence(df_incid)
@@ -83,12 +83,12 @@ test_that("data.frame <> SimilarityMatrix", {
 })
 
 # *Matrix ======================================================================
-count <- as(mtx_count, "AbsoluteFrequencyMatrix")
-freq <- as(mtx_freq, "RelativeFrequencyMatrix")
+count <- as(mtx_count, "CountMatrix")
+freq <- as(mtx_freq, "AbundanceMatrix")
 incid <- as(mtx_incid, "IncidenceMatrix")
 occ <- as(mtx_incid, "OccurrenceMatrix")
 
-test_that("AbsoluteFrequencyMatrix <> RelativeFrequencyMatrix", {
+test_that("CountMatrix <> AbundanceMatrix", {
   count1 <- as_count(mtx_count)
   freq1 <- as_frequency(count1)
   count2 <- as_count(freq1)
@@ -97,14 +97,14 @@ test_that("AbsoluteFrequencyMatrix <> RelativeFrequencyMatrix", {
   freq1@totals <- numeric(0)
   expect_error(as_count(freq1), "Cannot calculate absolute frequencies")
 })
-test_that("*Matrix > AbsoluteFrequencyMatrix", {
-  expect_s4_class(as_count(count), "AbsoluteFrequencyMatrix")
+test_that("*Matrix > CountMatrix", {
+  expect_s4_class(as_count(count), "CountMatrix")
   # expect_error(as_count(occ))
 })
-test_that("*Matrix > RelativeFrequencyMatrix", {
-  expect_s4_class(as_frequency(count), "RelativeFrequencyMatrix")
-  expect_s4_class(as_frequency(freq), "RelativeFrequencyMatrix")
-  expect_s4_class(as_frequency(incid), "RelativeFrequencyMatrix")
+test_that("*Matrix > AbundanceMatrix", {
+  expect_s4_class(as_frequency(count), "AbundanceMatrix")
+  expect_s4_class(as_frequency(freq), "AbundanceMatrix")
+  expect_s4_class(as_frequency(incid), "AbundanceMatrix")
   # expect_error(as_frequency(occ))
 })
 test_that("*Matrix > IncidenceMatrix", {

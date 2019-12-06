@@ -36,7 +36,7 @@ test_that("dates cannot be set with garbage", {
   expect_type(make_dates(NULL), "double")
   expect_error(make_dates(NA), "a list, a matrix or a data frame is expected")
 })
-test_that("dates can be set to an AbundanceMatrix", {
+test_that("dates can be set to a Matrix", {
   X <- CountMatrix(data = sample(1:10, 100, TRUE), nrow = 10)
   Y <- matrix(data = sample(1:10, 20, TRUE), nrow = 10)
 

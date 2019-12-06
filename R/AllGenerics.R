@@ -11,7 +11,7 @@ NULL
 #'  below).
 #' @return
 #'  An object of the same sort as \code{object} with the new values assigned.
-#' @example inst/examples/ex-abundance-class.R
+#' @example inst/examples/ex-numeric-class.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family mutator
@@ -67,7 +67,7 @@ setGeneric(
 #  not for the replacement.
 #' @return
 #'  A subsetted object.
-#' @example inst/examples/ex-abundance-class.R
+#' @example inst/examples/ex-numeric-class.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family mutator
@@ -84,20 +84,19 @@ NULL
 #'  The following methods coerce a \code{matrix} or \code{data.frame} to a
 #'  \code{*Matrix} object:
 #'
-#'  \tabular{ll}{
-#'   \strong{Method} \tab \strong{Target} \cr
-#'   \code{as_count} \tab \linkS4class{AbsoluteFrequencyMatrix} \cr
-#'   \code{as_frequency} \tab \linkS4class{RelativeFrequencyMatrix} \cr
-#'   \code{as_incidence} \tab \linkS4class{IncidenceMatrix} \cr
-#'   \code{as_occurrence} \tab \linkS4class{OccurrenceMatrix} \cr
-#'   \code{as_similarity} \tab \linkS4class{SimilarityMatrix} \cr
-#'   \code{as_stratigraphy} \tab \linkS4class{StratigraphicMatrix}
+#'  \tabular{lll}{
+#'   \strong{Method} \tab \strong{Target} \tab \strong{Details} \cr
+#'   \code{as_count} \tab \linkS4class{CountMatrix} \tab absolute frequency data \cr
+#'   \code{as_abundance} \tab \linkS4class{AbundanceMatrix} \tab relative frequency data \cr
+#'   \code{as_incidence} \tab \linkS4class{IncidenceMatrix} \tab presence/absence data \cr
+#'   \code{as_occurrence} \tab \linkS4class{OccurrenceMatrix} \tab co-occurrence \cr
+#'   \code{as_similarity} \tab \linkS4class{SimilarityMatrix} \tab (dis)similarity \cr
+#'   \code{as_stratigraphy} \tab \linkS4class{StratigraphicMatrix} \tab stratigraphic relationships
 #'  }
 #'
-#'  \code{as_features} converts an \code{AbundanceMatrix} object to a
+#'  \code{as_features} converts an \linkS4class{Matrix} object to a
 #'  collection of features (i.e. a\code{\link{data.frame}} with
-#'  dates and coordinates columns) that can be used for spatial manipulation
-#'  with \pkg{sf}.
+#'  dates and coordinates columns).
 #'
 #'  \code{as_stratigraphy} converts a set of stratigraphic relationships (edges)
 #'  to a stratigraphic (adjacency) matrix. \code{from} can be a
@@ -121,10 +120,10 @@ setGeneric(
 )
 
 #' @rdname coerce
-#' @aliases as_frequency-method
+#' @aliases as_abundance-method
 setGeneric(
-  name = "as_frequency",
-  def = function(from) standardGeneric("as_frequency")
+  name = "as_abundance",
+  def = function(from) standardGeneric("as_abundance")
 )
 
 #' @rdname coerce
@@ -209,4 +208,22 @@ setGeneric(
 setGeneric(
   name = "set_dates<-",
   def = function(object, value) standardGeneric("set_dates<-")
+)
+
+# =================================================================== Deprecated
+#' Deprecated Methods
+#'
+#' @param from A numeric \code{\link{matrix}} or \code{\link{data.frame}} to be
+#'  coerced.
+#' @docType methods
+#' @name codex-deprecated
+#' @rdname deprecated
+#' @keywords internal
+NULL
+
+#' @rdname deprecated
+#' @aliases as_frequency-method
+setGeneric(
+  name = "as_frequency",
+  def = function(from) standardGeneric("as_frequency")
 )

@@ -1,9 +1,11 @@
 ## Create a count matrix
-A1 <- CountMatrix(data = sample(0:10, 100, TRUE),
-                  nrow = 10, ncol = 10)
+A0 <- matrix(data = sample(0:10, 100, TRUE), nrow = 10, ncol = 10)
 
-## Coerce counts to frequencies
-B <- as_frequency(A1)
+## Coerce to absolute frequencies
+A1 <- as_count(A0)
+
+## Coerce to relative frequencies
+B <- as_abundance(A1)
 
 ## Row sums are internally stored before coercing to a frequency matrix
 ## (use totals() to get these values)

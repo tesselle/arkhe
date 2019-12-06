@@ -22,7 +22,6 @@ setMethod(
   }
 )
 
-# -------------------------------------------------------------- AbundanceMatrix
 #' Matrix constructor
 #'
 #' @inheritParams base::matrix
@@ -52,22 +51,22 @@ buildMatrix <- function(data, nrow, ncol, byrow, dimnames,
 }
 
 #' @export
-#' @rdname AbsoluteFrequencyMatrix-class
+#' @rdname CountMatrix-class
 CountMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
                         dimnames = NULL, ...) {
   M <- buildMatrix(data, nrow, ncol, byrow, dimnames,
                    missing(nrow), missing(ncol))
-  .AbsoluteFrequencyMatrix(M, ...)
+  .CountMatrix(M, ...)
 }
 
-# @rdname RelativeFrequencyMatrix-class
+# @rdname AbundanceMatrix-class
 FrequencyMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
                             dimnames = NULL, ...) {
   M <- buildMatrix(data, nrow, ncol, byrow, dimnames,
                    missing(nrow), missing(ncol))
   totals <- rowSums(M)
   M <- M / totals
-  .RelativeFrequencyMatrix(M, ..., totals = totals)
+  .AbundanceMatrix(M, ..., totals = totals)
 }
 
 #' @export

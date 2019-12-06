@@ -61,9 +61,69 @@ remotes::install_github("nfrerebeau/codex")
 ``` r
 # Load the package
 library(codex)
+```
 
+``` r
 # See the vignette
 utils::vignette("codex", package = "codex")
+```
+
+**codex** provides a set of S4 classes that extend the basic `matrix`
+data type. These new classes represent different special types of
+matrix.
+
+  - Numeric matrix:
+      - `CountMatrix` represents absolute frequency data,
+      - `AbundanceMatrix` represents relative frequency data,
+      - `OccurrenceMatrix` represents a co-occurrence matrix,
+      - `SimilarityMatrix` represents a (dis)similarity matrix,
+  - Logical matrix:
+      - `IncidenceMatrix` represents presence/absence data,
+      - `StratigraphicMatrix` represents stratigraphic relationships.
+
+*It assumes that you keep your data tidy*: each variable (type/taxa)
+must be saved in its own column and each observation (sample/case) must
+be saved in its own row.
+
+These new classes are of simple use, on the same way as the base
+`matrix`:
+
+``` r
+# Define a count data matrix
+quanti <- CountMatrix(data = sample(0:10, 100, TRUE),
+                      nrow = 10, ncol = 10)
+
+# Define a logical matrix
+# Data will be coerced with as.logical()
+quali <- IncidenceMatrix(data = sample(0:1, 100, TRUE),
+                         nrow = 10, ncol = 10)
+```
+
+**codex** uses coercing mechanisms (with validation methods) for data
+type conversions:
+
+``` r
+## Create a count matrix (absolute frequencies)
+A0 <- matrix(data = sample(0:10, 100, TRUE), nrow = 10, ncol = 10)
+
+## Coerce to absolute frequencies
+A1 <- as_count(A0)
+
+## Coerce counts to relative frequencies
+B <- as_abundance(A1)
+
+## Row sums are internally stored before coercing to a frequency matrix
+## (use totals() to get these values)
+## This allows to restore the source data
+A2 <- as_count(B)
+all(A1 == A2)
+#> [1] TRUE
+
+## Coerce to presence/absence
+C <- as_incidence(A1)
+
+## Coerce to a co-occurrence matrix
+D <- as_occurrence(A1)
 ```
 
 ## Contributing

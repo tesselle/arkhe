@@ -7,7 +7,7 @@
 \alias{get_dates-method}
 \alias{set_dates<-}
 \alias{set_dates-method}
-\alias{get_dates,AbundanceMatrix-method}
+\alias{get_dates,Matrix-method}
 \alias{set_dates<-,Matrix-method}
 \alias{set_dates,Matrix-method}
 \title{Chronological Information}
@@ -16,7 +16,7 @@ get_dates(object)
 
 set_dates(object) <- value
 
-\S4method{get_dates}{AbundanceMatrix}(object)
+\S4method{get_dates}{Matrix}(object)
 
 \S4method{set_dates}{Matrix}(object) <- value
 }
