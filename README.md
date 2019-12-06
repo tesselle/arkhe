@@ -90,26 +90,24 @@ These new classes are of simple use, on the same way as the base
 
 ``` r
 # Define a count data matrix
-quanti <- CountMatrix(data = sample(0:10, 100, TRUE),
-                      nrow = 10, ncol = 10)
+quanti <- CountMatrix(data = sample(0:10, 100, TRUE), nrow = 10, ncol = 10)
 
 # Define a logical matrix
 # Data will be coerced with as.logical()
-quali <- IncidenceMatrix(data = sample(0:1, 100, TRUE),
-                         nrow = 10, ncol = 10)
+quali <- IncidenceMatrix(data = sample(0:1, 100, TRUE), nrow = 10, ncol = 10)
 ```
 
 **codex** uses coercing mechanisms (with validation methods) for data
 type conversions:
 
 ``` r
-## Create a count matrix (absolute frequencies)
+## Create a count matrix
 A0 <- matrix(data = sample(0:10, 100, TRUE), nrow = 10, ncol = 10)
 
 ## Coerce to absolute frequencies
 A1 <- as_count(A0)
 
-## Coerce counts to relative frequencies
+## Coerce to relative frequencies
 B <- as_abundance(A1)
 
 ## Row sums are internally stored before coercing to a frequency matrix
@@ -124,6 +122,43 @@ C <- as_incidence(A1)
 
 ## Coerce to a co-occurrence matrix
 D <- as_occurrence(A1)
+```
+
+Represent stratigraphic relationships:
+
+``` r
+# Principles of Archaeological Stratigraphy, fig. 12
+harris <- read.table(
+  header = TRUE,
+  text = "lower upper
+          2     1
+          3     1
+          4     1
+          5     2
+          5     3
+          5     4
+          6     5
+          7     1
+          7     6
+          8     1
+          8     6
+          9     7
+          9     8"
+)
+
+as_stratigraphy(harris)
+#> 9 x 9 stratigraphic matrix:
+#> (3eff8c95-ed0e-48dd-9936-67ab9e767661)
+#>       1     2     3     4     5     6     7     8     9
+#> 1 FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+#> 2  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+#> 3  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+#> 4  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+#> 5 FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE
+#> 6 FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE
+#> 7  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE
+#> 8  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE
+#> 9 FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE
 ```
 
 ## Contributing

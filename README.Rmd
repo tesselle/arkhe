@@ -78,15 +78,13 @@ utils::vignette("codex", package = "codex")
 
 These new classes are of simple use, on the same way as the base `matrix`:
 
-```{r create, eval=FALSE}
+```{r create}
 # Define a count data matrix
-quanti <- CountMatrix(data = sample(0:10, 100, TRUE),
-                      nrow = 10, ncol = 10)
+quanti <- CountMatrix(data = sample(0:10, 100, TRUE), nrow = 10, ncol = 10)
 
 # Define a logical matrix
 # Data will be coerced with as.logical()
-quali <- IncidenceMatrix(data = sample(0:1, 100, TRUE),
-                         nrow = 10, ncol = 10)
+quali <- IncidenceMatrix(data = sample(0:1, 100, TRUE), nrow = 10, ncol = 10)
 ```
 
 **codex** uses coercing mechanisms (with validation methods) for data type conversions:
@@ -112,6 +110,31 @@ C <- as_incidence(A1)
 
 ## Coerce to a co-occurrence matrix
 D <- as_occurrence(A1)
+```
+
+Represent stratigraphic relationships:
+
+```{r stratigraphy}
+# Principles of Archaeological Stratigraphy, fig. 12
+harris <- read.table(
+  header = TRUE,
+  text = "lower upper
+          2     1
+          3     1
+          4     1
+          5     2
+          5     3
+          5     4
+          6     5
+          7     1
+          7     6
+          8     1
+          8     6
+          9     7
+          9     8"
+)
+
+as_stratigraphy(harris)
 ```
 
 ## Contributing
