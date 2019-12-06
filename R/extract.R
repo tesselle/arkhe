@@ -42,6 +42,19 @@ setMethod(
   }
 )
 
+#' @export
+#' @rdname subset
+#' @aliases [[,Matrix-method
+setMethod(
+  f = "[[<-",
+  signature = "Matrix",
+  definition = function(x, i, j, value) {
+    .Object <- methods::callNextMethod()
+    methods::validObject(.Object)
+    .Object
+  }
+)
+
 # ====================================================================== Getters
 #' @export
 #' @rdname mutator
