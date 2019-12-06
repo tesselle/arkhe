@@ -58,6 +58,7 @@ test_that("dates can be set to a Matrix", {
 })
 test_that("dates can be get from a Matrix", {
   X <- CountMatrix(data = sample(1:10, 100, TRUE), nrow = 10)
+  set_dates(X) <- NULL
   Y <- get_dates(X)
 
   expect_s3_class(Y, "data.frame")

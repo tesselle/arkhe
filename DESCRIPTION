@@ -48,5 +48,4 @@ Collate:
     'initialize.R'
     'show.R'
     'utilities.R'
-    'uuid.R'
     'validate.R'

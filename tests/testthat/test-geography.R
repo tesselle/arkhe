@@ -15,8 +15,16 @@ test_that("coordinates can be set with a list", {
   X <- list(X = seq_len(10), Y = rep(0, 10))
   expect_type(make_coordinates(X), "double")
 
+  X <- list(X = seq_len(10), Y = rep(0, 10), Z = rep(0, 10))
+  expect_type(make_coordinates(X), "double")
+
   X <- list(X = seq_len(10))
   expect_error(make_coordinates(X), "does not have components")
+})
+test_that("coordinates cannot be set with garbage", {
+  expect_type(make_coordinates(NULL), "double")
+  expect_error(make_coordinates(NA), "A list, a matrix or a data frame is expected.")
+  expect_error(make_coordinates("Y"), "A list, a matrix or a data frame is expected.")
 })
 test_that("coordinates can be set to a Matrix", {
   options("verbose" = TRUE)
@@ -35,11 +43,11 @@ test_that("coordinates can be set to a Matrix", {
   expect_message(suppressWarnings(set_coordinates(X) <- Z), "0 coordinates were set.")
   expect_warning(suppressMessages(set_coordinates(X) <- Z), "do not match")
 
-  expect_error(set_coordinates(X) <- "Y", "A list, a matrix or a data frame is expected.")
   expect_error(set_coordinates(X) <- matrix(c(1, 3, 3), ncol = 3), "Cannot interpret `value` in a suitable way.")
 })
 test_that("coordinates can be get from a Matrix", {
   X <- CountMatrix(data = sample(1:10, 100, TRUE), nrow = 10)
+  set_coordinates(X) <- NULL
   Y <- get_coordinates(X)
 
   expect_s3_class(Y, "data.frame")

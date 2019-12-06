@@ -107,7 +107,7 @@
     }
   ],
   "readme": "https://github.com/nfrerebeau/codex/blob/master/README.md",
-  "fileSize": "99.619KB",
+  "fileSize": "99.792KB",
   "contIntegration": [
     "https://ci.appveyor.com/project/nfrerebeau/codex",
     "https://travis-ci.org/nfrerebeau/codex",
