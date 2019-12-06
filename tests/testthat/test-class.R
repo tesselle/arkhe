@@ -58,7 +58,6 @@ test_that("Initialize a NumericMatrix instance", {
 ## Count matrix ----------------------------------------------------------------
 test_that("Initialize a CountMatrix instance", {
   expect_s4_class(.CountMatrix(), "CountMatrix")
-  expect_s4_class(CountMatrix(1), "CountMatrix")
 
   # Try relative frequencies
   cnd <- catch_conditions(CountMatrix(1.1))
@@ -90,6 +89,8 @@ test_that("Initialize a CountMatrix instance", {
   expect_true(grepl("must not contain infinite values", cnd[[1]]$message))
 })
 test_that("CountMatrix constructor", {
+  expect_s4_class(CountMatrix(1), "CountMatrix")
+
   count_matrix1 <- CountMatrix(
     data = sample(0:10, 100, TRUE),
     ncol = 20
@@ -111,7 +112,6 @@ test_that("CountMatrix constructor", {
 ## Frequency matrix ------------------------------------------------------------
 test_that("Initialize a AbundanceMatrix instance", {
   expect_s4_class(.AbundanceMatrix(), "AbundanceMatrix")
-  expect_s4_class(FrequencyMatrix(1), "AbundanceMatrix")
 
   # Try missing totals
   cnd <- catch_conditions(.AbundanceMatrix(matrix(1), totals = c(1,2)))
@@ -144,7 +144,9 @@ test_that("Initialize a AbundanceMatrix instance", {
   expect_true(grepl("must not contain infinite values", cnd[[1]]$message))
 })
 test_that("AbundanceMatrix constructor", {
-  freq_matrix1 <- FrequencyMatrix(
+  expect_s4_class(AbundanceMatrix(1), "AbundanceMatrix")
+
+  freq_matrix1 <- AbundanceMatrix(
     data = sample(0:10, 100, TRUE),
     ncol = 20
   )
@@ -153,7 +155,7 @@ test_that("AbundanceMatrix constructor", {
   expect_equal(dimnames(freq_matrix1),
                list(as.character(1:5), paste0("V", 1:20)))
 
-  freq_matrix2 <- FrequencyMatrix(
+  freq_matrix2 <- AbundanceMatrix(
     data = sample(0:10, 100, TRUE),
     nrow = 20,
     dimnames = list(NULL, LETTERS[1:5])

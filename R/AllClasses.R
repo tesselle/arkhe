@@ -24,6 +24,8 @@
 #'   \item{\code{get_id(x)}}{Get the ID of \code{x}.}
 #'   \item{\code{get_dates(x)} and \code{set_dates(x) <- value}}{Get or set
 #'   the dates of \code{x}.}
+#'   \item{\code{get_coordinates(x)} and \code{get_coordinates(x) <- value}}{Get
+#'   or set the geographical coordinates of \code{x}.}
 #'  }
 #' @section Access:
 #'  In the code snippets below, \code{x} is a \code{*Matrix} object.
@@ -207,6 +209,9 @@
 #' @inheritSection Matrix-class Get and set
 #' @inheritSection Matrix-class Access
 #' @inheritSection Matrix-class Subset
+#' @note
+#'  Numeric values are coerced to \code{\link{logical}} as by
+#'  \code{\link[base]{as.logical}}.
 #' @seealso \linkS4class{Matrix}
 #' @author N. Frerebeau
 #' @family matrix
@@ -222,9 +227,6 @@
 #'
 #' An S4 class to represent an incidence (presence/absence) matrix.
 #' @inheritParams base::matrix
-#' @details
-#'  Numeric values are coerced to \code{\link{logical}} as by
-#'  \code{\link[base]{as.logical}}.
 #' @inheritSection Matrix-class Matrix ID
 #' @inheritSection Matrix-class Get and set
 #' @inheritSection Matrix-class Access
@@ -249,6 +251,10 @@
 #'  stratigraphic units. A stratigraphic matrix is an adjacency matrix (a non
 #'  symetric square matrix with zeros on its main diagonal), suitable to build
 #'  a directed acyclic graph (DAG).
+#' @inheritSection Matrix-class Matrix ID
+#' @inheritSection Matrix-class Get and set
+#' @inheritSection Matrix-class Access
+#' @inheritSection Matrix-class Subset
 #' @seealso \linkS4class{LogicalMatrix}
 #' @example inst/examples/ex-stratigraphy.R
 #' @author N. Frerebeau

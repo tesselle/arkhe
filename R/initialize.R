@@ -33,7 +33,7 @@ setMethod(
 #' @author N. Frerebeau
 #' @keywords internal
 #' @noRd
-buildMatrix <- function(data, nrow, ncol, byrow, dimnames,
+build_matrix <- function(data, nrow, ncol, byrow, dimnames,
                         rows = FALSE, cols = FALSE) {
   k <- length(data)
   if (rows) nrow <- k / ncol
@@ -54,16 +54,16 @@ buildMatrix <- function(data, nrow, ncol, byrow, dimnames,
 #' @rdname CountMatrix-class
 CountMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
                         dimnames = NULL, ...) {
-  M <- buildMatrix(data, nrow, ncol, byrow, dimnames,
-                   missing(nrow), missing(ncol))
+  M <- build_matrix(data, nrow, ncol, byrow, dimnames,
+                    missing(nrow), missing(ncol))
   .CountMatrix(M, ...)
 }
 
 # @rdname AbundanceMatrix-class
-FrequencyMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
+AbundanceMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
                             dimnames = NULL, ...) {
-  M <- buildMatrix(data, nrow, ncol, byrow, dimnames,
-                   missing(nrow), missing(ncol))
+  M <- build_matrix(data, nrow, ncol, byrow, dimnames,
+                    missing(nrow), missing(ncol))
   totals <- rowSums(M)
   M <- M / totals
   .AbundanceMatrix(M, ..., totals = totals)
@@ -74,7 +74,7 @@ FrequencyMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
 IncidenceMatrix <- function(data = FALSE, nrow = 1, ncol = 1, byrow = FALSE,
                             dimnames = NULL, ...) {
   data <- as.logical(data)
-  M <- buildMatrix(data, nrow, ncol, byrow, dimnames,
-                   missing(nrow), missing(ncol))
+  M <- build_matrix(data, nrow, ncol, byrow, dimnames,
+                    missing(nrow), missing(ncol))
   .IncidenceMatrix(M, ...)
 }

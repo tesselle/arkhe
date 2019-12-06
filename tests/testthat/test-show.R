@@ -14,7 +14,7 @@ test_that("Numeric matrix", {
   B <- CountMatrix(matrix(1))
   expect_output(show(B), "absolute frequency matrix")
 
-  C <- FrequencyMatrix(matrix(1))
+  C <- AbundanceMatrix(matrix(1))
   expect_output(show(C), "relative frequency matrix")
 
   D <- .SimilarityMatrix(matrix(1))
