@@ -68,6 +68,39 @@ setMethod(
   }
 )
 
+#' @export
+#' @rdname coerce
+#' @aliases as_features,Matrix-method
+setMethod(
+  f = "as_features",
+  signature = "Matrix",
+  definition = function(from) {
+    # Spatial coordinates
+    coords <- get_coordinates(from)
+
+    if (nrow(coords) == 0) {
+      coords <- matrix(data = rep(NA_real_, 3 * nrow(from)), ncol = 3,
+                       dimnames = list(NULL, c("X", "Y", "Z")))
+      coords <- as.data.frame(coords)
+      message("No coordinates were set, NA generated.")
+    }
+
+    # Time coordinates
+    dates <- get_dates(from)
+    if (nrow(dates) == 0) {
+      dates <- matrix(data = rep(NA_real_, 2 * nrow(from)), ncol = 2)
+      dates <- as.data.frame(dates)
+      message("No dates were set, NA generated.")
+    }
+    names(dates) <- c("DATE_VALUE", "DATE_ERROR")
+
+    # XYZ_index <- !vapply(X = coords, FUN = anyNA, FUN.VALUE = logical(1))
+    feat <- cbind.data.frame(SITE = rownames(from), coords, dates, from)
+    # attr(feat, "epsg") <- epsg
+    return(feat)
+  }
+)
+
 # To data.frame ================================================================
 setAs(
   from = "Matrix",

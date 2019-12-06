@@ -18,3 +18,8 @@ C <- as_incidence(A1)
 
 ## Coerce to a co-occurrence matrix
 D <- as_occurrence(A1)
+
+## Collection of features
+set_dates(A1) <- matrix(sample(0:10, 20, TRUE), nrow = 10, ncol = 2)
+set_coordinates(A1) <- matrix(sample(0:10, 30, TRUE), nrow = 10, ncol = 3)
+as_features(A1)

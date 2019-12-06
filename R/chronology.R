@@ -2,7 +2,7 @@
 
 # ========================================================================== Get
 #' @export
-#' @rdname time
+#' @rdname chronology
 #' @aliases get_dates,Matrix-method
 setMethod(
   f = "get_dates",
@@ -57,7 +57,7 @@ make_dates <- function(value) {
     # Value is a numeric or integer vector
     x <- value
     y <- rep_len(NA, length.out = length(x))
-    warning("Errors are missing, NA generated.", call. = FALSE)
+    if (getOption("verbose")) message("Errors are missing, NA generated.")
   } else if (is.character(value)) {
     # Value is a character vector
     # Try to convert from roman numbers
@@ -80,7 +80,7 @@ make_dates <- function(value) {
 }
 
 #' @export
-#' @rdname time
+#' @rdname chronology
 #' @aliases set_dates,Matrix-method
 setMethod(
   f = "set_dates<-",

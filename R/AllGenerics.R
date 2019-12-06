@@ -192,22 +192,70 @@ setGeneric(
 #' @author N. Frerebeau
 #' @family chronology
 #' @docType methods
-#' @name time
-#' @rdname time
+#' @name chronology
+#' @rdname chronology
 NULL
 
-#' @rdname time
+#' @rdname chronology
 #' @aliases get_dates-method
 setGeneric(
   name = "get_dates",
   def = function(object) standardGeneric("get_dates")
 )
 
-#' @rdname time
+#' @rdname chronology
 #' @aliases set_dates-method
 setGeneric(
   name = "set_dates<-",
   def = function(object, value) standardGeneric("set_dates<-")
+)
+
+# ==================================================================== Geography
+#' Spatial Information
+#'
+#' Deal with spatial information.
+#' @param object An object from which to get or set element(s).
+#' @param value A possible value for the element(s) of \code{object} (see
+#'  below).
+#' @details
+#'  An attempt is made to interpret the argument \code{value} in a way suitable
+#'  for geographic coordinates.
+#'
+#'  If \code{value} is a:
+#'  \describe{
+#'   \item{\code{list}}{containing components "\code{x}", "\code{y}" and
+#'   "\code{z}", these are used to define coordinates (longitude, latitude and
+#'   elevation, respectively). If "\code{z}" is missing, the vertical
+#'   coordinates will be ignored (and \code{NA} will be generated).}
+#'   \item{\code{matrix} or \code{data.frame} with two or more columns}{the
+#'   first is assumed to contain the \code{x} values, the second the \code{y}
+#'   and the third the \code{z} values. \emph{Note} that if \code{value} has
+#'   columns named "\code{x}", "\code{y}" and "\code{z}", these columns will be
+#'   used. If \code{value} has only two columns or has columns named "\code{x}"
+#'   and "\code{y}" but not "\code{z}", the vertical coordinates will be ignored
+#'   (and \code{NA} will be generated).}
+#'  }
+#' @note EXPERIMENTAL: subject to major changes in a future release.
+#' @example inst/examples/ex-geography.R
+#' @author N. Frerebeau
+#' @family geography
+#' @docType methods
+#' @name geography
+#' @rdname geography
+NULL
+
+#' @rdname geography
+#' @aliases get_coordinates-method
+setGeneric(
+  name = "get_coordinates",
+  def = function(object) standardGeneric("get_coordinates")
+)
+
+#' @rdname geography
+#' @aliases set_coordinates-method
+setGeneric(
+  name = "set_coordinates<-",
+  def = function(object, value) standardGeneric("set_coordinates<-")
 )
 
 # =================================================================== Deprecated

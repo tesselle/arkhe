@@ -12,12 +12,12 @@ test_that("matrix objects can be coerced to CountMatrix", {
   expect_equivalent(as(A, "matrix"), mtx_count)
 })
 test_that("matrix objects can be coerced to AbundanceMatrix", {
-  B <- as_frequency(mtx_freq)
+  B <- as_abundance(mtx_freq)
   expect_s4_class(B, "AbundanceMatrix")
   expect_equivalent(as(B, "matrix"), mtx_freq)
 
-  expect_s4_class(as_frequency(mtx_count), "AbundanceMatrix")
-  expect_s4_class(as_frequency(mtx_incid), "AbundanceMatrix")
+  expect_s4_class(as_abundance(mtx_count), "AbundanceMatrix")
+  expect_s4_class(as_abundance(mtx_incid), "AbundanceMatrix")
 })
 test_that("matrix objects can be coerced to IncidenceMatrix", {
   C <- as_incidence(mtx_incid)
@@ -53,12 +53,12 @@ test_that("data.frame <> CountMatrix", {
   expect_equivalent(as(A, "data.frame"), df_count)
 })
 test_that("data.frame <> AbundanceMatrix", {
-  B <- as_frequency(df_freq)
+  B <- as_abundance(df_freq)
   expect_s4_class(B, "AbundanceMatrix")
   expect_equivalent(as(B, "data.frame"), df_freq)
 
-  expect_s4_class(as_frequency(df_count), "AbundanceMatrix")
-  expect_s4_class(as_frequency(df_incid), "AbundanceMatrix")
+  expect_s4_class(as_abundance(df_count), "AbundanceMatrix")
+  expect_s4_class(as_abundance(df_incid), "AbundanceMatrix")
 })
 test_that("data.frame <> IncidenceMatrix", {
   C <- as_incidence(df_incid)
@@ -90,7 +90,7 @@ occ <- as(mtx_incid, "OccurrenceMatrix")
 
 test_that("CountMatrix <> AbundanceMatrix", {
   count1 <- as_count(mtx_count)
-  freq1 <- as_frequency(count1)
+  freq1 <- as_abundance(count1)
   count2 <- as_count(freq1)
   expect_identical(count1, count2)
 
@@ -102,10 +102,10 @@ test_that("*Matrix > CountMatrix", {
   # expect_error(as_count(occ))
 })
 test_that("*Matrix > AbundanceMatrix", {
-  expect_s4_class(as_frequency(count), "AbundanceMatrix")
-  expect_s4_class(as_frequency(freq), "AbundanceMatrix")
-  expect_s4_class(as_frequency(incid), "AbundanceMatrix")
-  # expect_error(as_frequency(occ))
+  expect_s4_class(as_abundance(count), "AbundanceMatrix")
+  expect_s4_class(as_abundance(freq), "AbundanceMatrix")
+  expect_s4_class(as_abundance(incid), "AbundanceMatrix")
+  # expect_error(as_abundance(occ))
 })
 test_that("*Matrix > IncidenceMatrix", {
   expect_s4_class(as_incidence(count), "IncidenceMatrix")

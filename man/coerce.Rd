@@ -23,6 +23,7 @@
 \alias{as_occurrence,ANY-method}
 \alias{as_similarity,ANY-method}
 \alias{as_stratigraphy,ANY-method}
+\alias{as_features,Matrix-method}
 \title{Coerce}
 \usage{
 as_count(from)
@@ -50,6 +51,8 @@ as_stratigraphy(from)
 \S4method{as_similarity}{ANY}(from)
 
 \S4method{as_stratigraphy}{ANY}(from)
+
+\S4method{as_features}{Matrix}(from)
 }
 \arguments{
 \item{from}{A numeric \code{\link{matrix}} or \code{\link{data.frame}} to be
@@ -106,6 +109,11 @@ C <- as_incidence(A1)
 
 ## Coerce to a co-occurrence matrix
 D <- as_occurrence(A1)
+
+## Collection of features
+set_dates(A1) <- matrix(sample(0:10, 20, TRUE), nrow = 10, ncol = 2)
+set_coordinates(A1) <- matrix(sample(0:10, 30, TRUE), nrow = 10, ncol = 3)
+as_features(A1)
 }
 \seealso{
 Other matrix: \code{\link{AbundanceMatrix-class}},

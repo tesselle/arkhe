@@ -44,6 +44,7 @@ Collate:
     'conditions.R'
     'deprecate.R'
     'extract.R'
+    'geography.R'
     'initialize.R'
     'show.R'
     'utilities.R'
