@@ -7,8 +7,6 @@ NULL
 #' \code{throw_error} stops execution of the current expression and executes an
 #' error action.
 #'
-#' \code{throw_message} generates a diagnostic message from its arguments.
-#'
 #' \code{catch_conditions} handles unusual conditions.
 #' @param .subclass A \code{\link{character}} string specifying the class of
 #'  the message to be returned.
@@ -47,22 +45,6 @@ throw_warning <- function(.subclass, message, call = NULL, ...) {
     class = c(.subclass, "warning", "condition")
   )
   warning(wrn)
-}
-#' @rdname conditions
-throw_message <- function(.subclass, message,
-                          verbose = getOption("verbose"), ...) {
-  msg <- structure(
-    list(
-      message = message,
-      ...
-    ),
-    class = c(.subclass, "message", "condition")
-  )
-  if (verbose) {
-    message(msg)
-  } else {
-    NULL
-  }
 }
 #' @rdname conditions
 catch_conditions <- function(expr) {

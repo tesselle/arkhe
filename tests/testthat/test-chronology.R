@@ -37,10 +37,13 @@ test_that("dates cannot be set with garbage", {
   expect_error(make_dates(NA), "a list, a matrix or a data frame is expected")
 })
 test_that("dates can be set to a Matrix", {
-  X <- CountMatrix(data = sample(1:10, 100, TRUE), nrow = 10)
-  Y <- matrix(data = sample(1:10, 20, TRUE), nrow = 10)
-
   options("verbose" = TRUE)
+  X <- CountMatrix(data = sample(1:10, 100, TRUE), nrow = 10)
+
+  Y <- sample(1:10, 10, TRUE)
+  expect_message(set_dates(X) <- Y, "Errors are missing, NA generated.")
+
+  Y <- matrix(data = sample(1:10, 20, TRUE), nrow = 10)
   expect_message(set_dates(X) <- Y, "10 dates were set.")
   expect_type(get_dates(X), "list")
   expect_equivalent(as.matrix(get_dates(X)), Y)
@@ -51,4 +54,12 @@ test_that("dates can be set to a Matrix", {
   expect_warning(suppressMessages(set_dates(X) <- Z), "do not match")
 
   expect_error(set_dates(X) <- "Y", "Incorrect roman number.")
+  expect_error(set_dates(X) <- 1, "Cannot interpret `value` in a suitable way.")
+})
+test_that("dates can be get from a Matrix", {
+  X <- CountMatrix(data = sample(1:10, 100, TRUE), nrow = 10)
+  Y <- get_dates(X)
+
+  expect_s3_class(Y, "data.frame")
+  expect_equal(dim(Y), c(0, 2))
 })

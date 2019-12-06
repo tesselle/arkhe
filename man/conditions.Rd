@@ -4,15 +4,12 @@
 \alias{conditions}
 \alias{throw_error}
 \alias{throw_warning}
-\alias{throw_message}
 \alias{catch_conditions}
 \title{Conditions}
 \usage{
 throw_error(.subclass, message, call = NULL, ...)
 
 throw_warning(.subclass, message, call = NULL, ...)
-
-throw_message(.subclass, message, verbose = getOption("verbose"), ...)
 
 catch_conditions(expr)
 }
@@ -32,8 +29,6 @@ returned.}
 error action.
 }
 \details{
-\code{throw_message} generates a diagnostic message from its arguments.
-
 \code{catch_conditions} handles unusual conditions.
 }
 \author{

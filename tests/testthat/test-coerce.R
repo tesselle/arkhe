@@ -6,12 +6,12 @@ mtx_freq <- mtx_count / rowSums(mtx_count)
 mtx_incid <- matrix(as.logical(sample(0:1, 50, TRUE)), ncol = 10)
 mtx_sim <- matrix(1, nrow = 5, ncol = 5)
 
-test_that("matrix objects can be coerced to CountMatrix", {
+test_that("matrix > CountMatrix", {
   A <- as_count(mtx_count)
   expect_s4_class(A, "CountMatrix")
   expect_equivalent(as(A, "matrix"), mtx_count)
 })
-test_that("matrix objects can be coerced to AbundanceMatrix", {
+test_that("matrix > AbundanceMatrix", {
   B <- as_abundance(mtx_freq)
   expect_s4_class(B, "AbundanceMatrix")
   expect_equivalent(as(B, "matrix"), mtx_freq)
@@ -19,7 +19,7 @@ test_that("matrix objects can be coerced to AbundanceMatrix", {
   expect_s4_class(as_abundance(mtx_count), "AbundanceMatrix")
   expect_s4_class(as_abundance(mtx_incid), "AbundanceMatrix")
 })
-test_that("matrix objects can be coerced to IncidenceMatrix", {
+test_that("matrix > IncidenceMatrix", {
   C <- as_incidence(mtx_incid)
   expect_s4_class(C, "IncidenceMatrix")
   expect_equivalent(as(C, "matrix"), mtx_incid)
@@ -27,7 +27,7 @@ test_that("matrix objects can be coerced to IncidenceMatrix", {
   expect_s4_class(as_incidence(mtx_count), "IncidenceMatrix")
   expect_s4_class(as_incidence(mtx_freq), "IncidenceMatrix")
 })
-test_that("matrix objects can be coerced to OccurrenceMatrix", {
+test_that("matrix > OccurrenceMatrix", {
   D <- as_occurrence(mtx_incid)
   expect_s4_class(D, "OccurrenceMatrix")
   expect_is(as(D, "matrix"), "matrix")
@@ -35,7 +35,7 @@ test_that("matrix objects can be coerced to OccurrenceMatrix", {
   expect_s4_class(as_occurrence(mtx_count), "OccurrenceMatrix")
   expect_s4_class(as_occurrence(mtx_freq), "OccurrenceMatrix")
 })
-test_that("matrix objects can be coerced to SimilarityMatrix", {
+test_that("matrix > SimilarityMatrix", {
   E <- as_similarity(mtx_sim)
   expect_s4_class(E, "SimilarityMatrix")
   expect_is(as(E, "matrix"), "matrix")
@@ -117,4 +117,8 @@ test_that("*Matrix > OccurrenceMatrix", {
   expect_s4_class(as_occurrence(count), "OccurrenceMatrix")
   expect_s4_class(as_occurrence(freq), "OccurrenceMatrix")
   expect_s4_class(as_occurrence(incid), "OccurrenceMatrix")
+})
+test_that("*Matrix > features", {
+  expect_message(as_features(count), "No coordinates were set, NA generated.")
+  expect_message(as_features(count), "No dates were set, NA generated.")
 })

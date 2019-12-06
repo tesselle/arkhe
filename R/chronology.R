@@ -102,11 +102,12 @@ setMethod(
       index <- match(rows_value, rows_object)
       no_match <- detect(f = is.na, x = index)
       if (any(no_match)) {
-        warning(ngettext(sum(no_match),
-                         "The following date do not match and was skiped:\n",
-                         "The following dates do not match and were skiped:\n"),
-                paste0("* ", rows_value[no_match], collapse = "\n"),
-                call. = FALSE)
+        warning(ngettext(
+          sum(no_match),
+          "The following date do not match and was skiped:\n",
+          "The following dates do not match and were skiped:\n"),
+          paste0("* ", rows_value[no_match], collapse = "\n"),
+          call. = FALSE)
       }
       index_clean <- compact(f = is.na, x = index)
       dates <- matrix(NA_real_, nrow = i, ncol = 2,

@@ -145,7 +145,7 @@ check_uuid <- function(x) {
   }
   # if (x == "00000000-0000-4000-a000-000000000000") {
   #   msg <- sprintf("%s seems wrong.", sQuote(arg))
-  #   throw_warning("error_bad_uuid", msg)
+  #   warning("error_bad_uuid", msg)
   # }
 }
 

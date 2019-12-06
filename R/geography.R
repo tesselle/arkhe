@@ -120,7 +120,7 @@ setMethod(
     methods::validObject(object)
 
     if (getOption("verbose")) {
-      message(sprintf(ngettext(k, "%d date was set.", "%d coords were set."), k))
+      message(sprintf("%d coordinates were set.", k))
     }
     object
   }

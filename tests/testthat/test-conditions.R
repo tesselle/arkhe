@@ -10,6 +10,9 @@ test_that("Error", {
 })
 
 test_that("Warning", {
+  X <- catch_conditions(throw_warning("custom_warning", "W"))
+  expect_equal(class(X[[1]]), c("custom_warning", "warning", "condition"))
+
   X <- catch_conditions(warning("W"))
   expect_equivalent(X[[1]][1], c("W"))
   expect_equal(class(X[[1]]), c("simpleWarning", "warning", "condition"))

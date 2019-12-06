@@ -38,6 +38,9 @@ test_that("type predicates return a logical scalar", {
 
   expect_true(is_error(try(log("X"), silent = TRUE)))
   expect_false(is_error(try(log(1), silent = TRUE)))
+
+  is_message(catch_conditions(message("custom_message"))[[1]])
+  is_warning(catch_conditions(warning("custom_warning"))[[1]])
 })
 test_that("scalar type predicates return a logical scalar", {
   expect_true(is_scalar_list(list(1)))

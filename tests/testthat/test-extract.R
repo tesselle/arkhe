@@ -1,20 +1,33 @@
 context("Extract")
 
 test_that("Matrix", {
-  options("verbose" = TRUE)
-  A1 <- CountMatrix(data = sample(0:10, 100, TRUE),
-                    nrow = 10, ncol = 10, byrow = TRUE)
-  # ID
-  expect_type(get_id(A1), "character")
+  mtx <- .Matrix()
+  expect_type(get_id(mtx), "character")
+
+  mtx <- .Matrix(sample(1:100, 100, TRUE), ncol = 10)
+  mtx[[1]] <- 0
+  expect_equal(mtx[[1]], 0)
+
+  mtx[1] <- 1
+  expect_equal(mtx[1], 1)
+
+  mtx[1, ] <- 0
+  expect_equal(mtx[1, ], rep(0, 10))
+
+  mtx[, 1] <- 0
+  expect_equal(mtx[, 1], rep(0, 10))
 })
 test_that("NumericMatrix", {
-  mtx_count <- matrix(sample(1:100, 100, TRUE), ncol = 10,
-                      dimnames = list(LETTERS[1:10], LETTERS[26:17]))
-  freq <- .AbundanceMatrix(mtx_count / rowSums(mtx_count),
-                           id = generate_uuid(),
-                           totals = rowSums(mtx_count))
+  count <- matrix(sample(1:100, 100, TRUE), ncol = 10)
 
-  expect_equal(get_totals(freq), rowSums(mtx_count))
+  freq <- .AbundanceMatrix(count / rowSums(count), totals = rowSums(count))
+  expect_equal(get_totals(freq), rowSums(count))
+
   set_totals(freq) <- seq_len(10)
   expect_equal(get_totals(freq), seq_len(10))
+})
+
+test_that("SimilarityMatrix", {
+  sim <- .SimilarityMatrix()
+  expect_equal(get_method(sim), "unknown")
 })
