@@ -1,22 +1,24 @@
 context("Extract")
 
-test_that("Matrix", {
-  mtx <- .Matrix()
-  expect_type(get_id(mtx), "character")
+if (getRversion() >= 3.3) {
+  test_that("Matrix", {
+    mtx <- .Matrix()
+    expect_type(get_id(mtx), "character")
 
-  mtx <- .Matrix(sample(1:100, 100, TRUE), ncol = 10)
-  # mtx[[1]] <- 0
-  # expect_equal(mtx[[1]], 0)
+    mtx <- .Matrix(sample(1:100, 100, TRUE), ncol = 10)
+    mtx[[1]] <- 0
+    expect_equal(mtx[[1]], 0)
 
-  mtx[1] <- 0
-  expect_equal(mtx[1], 0)
+    mtx[1] <- 0
+    expect_equal(mtx[1], 0)
 
-  mtx[1, ] <- 0
-  expect_equal(mtx[1, ], rep(0, 10))
+    mtx[1, ] <- 0
+    expect_equal(mtx[1, ], rep(0, 10))
 
-  mtx[, 1] <- 0
-  expect_equal(mtx[, 1], rep(0, 10))
-})
+    mtx[, 1] <- 0
+    expect_equal(mtx[, 1], rep(0, 10))
+  })
+}
 test_that("NumericMatrix", {
   count <- matrix(sample(1:100, 100, TRUE), ncol = 10)
 
