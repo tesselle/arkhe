@@ -1,11 +1,12 @@
 {
-    "license": "GPL-3.0",
+    "license": "GPL-3.0+",
     "description": "<p>A collection of classes that represent archaeological data. This package provides a set of S4 classes that extend the basic matrix data type (abundance matrix and stratigraphic matrix) upon which package developers can build subclasses. It also provides a set of generic methods (mutators and coercion mechanisms) and functions (e.g. predicates). In addition, a few classes of general interest (e.g. that represent chronological data) are implemented.</p>",
     "language": "eng",
     "keywords": [
-        "data-representation",
+        "data representation",
         "archaeology",
-        "archaeological-science"
+        "archaeological science",
+        "r package"
     ],
     "version": "v0.1.0",
     "upload_type": "software",

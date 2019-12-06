@@ -5,7 +5,7 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "codex",
-  "description": "A collection of classes that represent archaeological data. This package provides a set of S4 classes that extend the basic matrix data type (abundance matrix and stratigraphic matrix) upon which package developers can build subclasses. It also provides a set of generic methods (mutators and coercion mechanisms) and functions (e.g. predicates). In addition, a few classes of general interest (e.g. that represent chronological data) are implemented.",
+  "description": "A collection of classes that represent\n    archaeological data. This package provides a set of S4 classes that\n    extend the basic matrix data type (abundance matrix and stratigraphic\n    matrix) upon which package developers can build subclasses. It also\n    provides a set of generic methods (mutators and coercion mechanisms)\n    and functions (e.g. predicates). In addition, a few classes of general\n    interest (e.g. that represent chronological data) are implemented.",
   "name": "codex: Representation of Archaeological Data",
   "codeRepository": "http://github.com/nfrerebeau/codex",
   "relatedLink": [
@@ -107,7 +107,7 @@
     }
   ],
   "readme": "https://github.com/nfrerebeau/codex/blob/master/README.md",
-  "fileSize": "116.77KB",
+  "fileSize": "99.619KB",
   "contIntegration": [
     "https://ci.appveyor.com/project/nfrerebeau/codex",
     "https://travis-ci.org/nfrerebeau/codex",
@@ -135,8 +135,8 @@
         }
       ],
       "name": "{codex}: Representation of Archaeological Data",
-      "url": "https://doi.org/xxx",
-      "description": "R package version 0.0.0.9000"
+      "url": "https://doi.org/10.5281/zenodo.3526659",
+      "description": "R package version 0.1.0"
     }
   ]
 }

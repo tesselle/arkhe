@@ -11,10 +11,10 @@ reference:
   - has_concept("mutator")
 - title: Chronology
   contents:
-  - has_concept("time")
+  - has_concept("chronology")
 - title: Geography
   contents:
-  - has_concept("space")
+  - has_concept("geography")
 - title: Predicates
   contents:
   - has_concept("predicates")
