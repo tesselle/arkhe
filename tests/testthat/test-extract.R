@@ -5,11 +5,10 @@ test_that("Matrix", {
   expect_type(get_id(mtx), "character")
 
   mtx <- .Matrix(sample(1:100, 100, TRUE), ncol = 10)
-  mtx[[1]] <- 0
-  expect_equal(mtx[[1]], 0)
-
-  mtx[[1, 1]] <- 1
-  expect_equal(mtx[[1, 1]], 1)
+  if (getRversion() > 3.2) {
+    mtx[[1]] <- 0
+    expect_equal(mtx[[1]], 0)
+  }
 
   mtx[1] <- 0
   expect_equal(mtx[1], 0)

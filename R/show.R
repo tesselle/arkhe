@@ -2,7 +2,7 @@
 #' @include AllClasses.R
 NULL
 
-# Logical matrix ===============================================================
+# =============================================================== Logical matrix
 setMethod(
   f = "show",
   signature = "IncidenceMatrix",
@@ -27,7 +27,7 @@ setMethod(
   }
 )
 
-# Numeric matrix ===============================================================
+# =============================================================== Numeric matrix
 setMethod(
   f = "show",
   signature = "CountMatrix",
@@ -60,6 +60,19 @@ setMethod(
     k <- ifelse(length(object@method) == 0, "unknown", object@method)
     cat(sprintf("%d x %d (dis)similarity matrix (%s):\n(%s)\n",
                 m, p, k, object@id))
+    print(data)
+  }
+)
+
+# ========================================================= Stratigraphic matrix
+setMethod(
+  f = "show",
+  signature = "StratigraphicMatrix",
+  definition = function(object) {
+    data <- methods::S3Part(object, strictS3 = TRUE, "matrix")
+    m <- nrow(data)
+    p <- ncol(data)
+    cat(sprintf("%d x %d stratigraphic matrix:\n(%s)\n", m, p, object@id))
     print(data)
   }
 )

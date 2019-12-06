@@ -9,13 +9,11 @@
 \alias{[[,Matrix-method}
 \title{Extract or Replace Parts of an Object}
 \usage{
-\S4method{[}{Matrix}(x, i, j) <- value
+\S4method{[}{Matrix}(x, i, j, ...) <- value
 
-\S4method{[}{Matrix}(x, i, j) <- value
+\S4method{[}{Matrix}(x, i, j, ...) <- value
 
-\S4method{[[}{Matrix}(x, i, j) <- value
-
-\S4method{[[}{Matrix}(x, i, j) <- value
+\S4method{[[}{Matrix}(x, i) <- value
 }
 \arguments{
 \item{x}{An object from which to extract element(s) or in which to replace
