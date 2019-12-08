@@ -37,7 +37,7 @@ The **codex** package provides a set of S4 classes for archaeological data matri
     * `IncidenceMatrix` represents presence/absence data,
     * `StratigraphicMatrix` represents stratigraphic relationships.
     
-*It assumes that you keep your data tidy*: each variable (taxon/type) must be saved in its own column and each observation (assemblage/sample/case) must be saved in its own row. Note that missing values are not allowed.
+*It assumes that you keep your data tidy*: each variable (taxon/type) must be saved in its own column and each observation (assemblage/sample) must be saved in its own row. Note that missing values are not allowed.
 
 The internal structure of S4 classes implemented in **codex** is depicted in the UML class diagram in the following figure.
 
@@ -138,7 +138,7 @@ A1 <- as_count(A0)
 B <- as_abundance(A1)
 
 ## Row sums are internally stored before coercing to a frequency matrix
-## (use totals() to get these values)
+## (use get_totals() to get these values)
 ## This allows to restore the source data
 A2 <- as_count(B)
 all(A1 == A2)

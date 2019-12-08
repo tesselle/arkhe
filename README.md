@@ -82,8 +82,8 @@ matrix.
       - `StratigraphicMatrix` represents stratigraphic relationships.
 
 *It assumes that you keep your data tidy*: each variable (type/taxa)
-must be saved in its own column and each observation (sample/case) must
-be saved in its own row.
+must be saved in its own column and each observation (assemblage/sample)
+must be saved in its own row.
 
 These new classes are of simple use, on the same way as the base
 `matrix`:
@@ -111,7 +111,7 @@ A1 <- as_count(A0)
 B <- as_abundance(A1)
 
 ## Row sums are internally stored before coercing to a frequency matrix
-## (use totals() to get these values)
+## (use get_totals() to get these values)
 ## This allows to restore the source data
 A2 <- as_count(B)
 all(A1 == A2)
@@ -148,17 +148,18 @@ harris <- read.table(
 
 as_stratigraphy(harris)
 #> 9 x 9 stratigraphic matrix:
-#> (3eff8c95-ed0e-48dd-9936-67ab9e767661)
-#>       1     2     3     4     5     6     7     8     9
-#> 1 FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-#> 2  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-#> 3  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-#> 4  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-#> 5 FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE
-#> 6 FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE
-#> 7  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE
-#> 8  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE
-#> 9 FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE
+#> (9d852205-bb24-4d05-a6bc-dd9522fb1044)
+#>      upper
+#> lower     1     2     3     4     5     6     7     8     9
+#>     1 FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+#>     2  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+#>     3  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+#>     4  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+#>     5 FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE
+#>     6 FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE
+#>     7  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE
+#>     8  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE
+#>     9 FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE
 ```
 
 ## Contributing
