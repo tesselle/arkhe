@@ -21,6 +21,16 @@ setMethod(
     .Object
   }
 )
+setMethod(
+  f = "initialize",
+  signature = "StratigraphicMatrix",
+  definition = function(.Object, ..., units) {
+    .Object@units <- if (missing(units)) character(0) else units
+    .Object <- methods::callNextMethod()
+    methods::validObject(.Object)
+    .Object
+  }
+)
 
 #' Matrix constructor
 #'

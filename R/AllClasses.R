@@ -264,5 +264,8 @@
 #' @aliases StratigraphicMatrix-class
 .StratigraphicMatrix <- setClass(
   Class = "StratigraphicMatrix",
+  slots = c(
+    units = "character"
+  ),
   contains = "LogicalMatrix"
 )

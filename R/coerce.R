@@ -196,7 +196,7 @@ setAs(from = "AbundanceMatrix", to = "OccurrenceMatrix",
 setAs(from = "IncidenceMatrix", to = "OccurrenceMatrix",
       def = matrix2occurrence)
 
-## CountMatrix <> AbundanceMatrix ==========================
+## CountMatrix <> AbundanceMatrix ==============================================
 setAs(
   from = "CountMatrix",
   to = "AbundanceMatrix",
@@ -273,9 +273,9 @@ edges2matrix <- function(from) {
   # Build adjacency matrix
   adj <- stats::xtabs(~ edges[[1]] + edges[[2]])
   adj <- matrix(data = as.logical(adj), nrow = length(layers),
-                dimnames = list(layers, layers))
+                dimnames = list(lower = layers, upper = layers))
 
-  .StratigraphicMatrix(adj, id = generate_uuid())
+  .StratigraphicMatrix(adj, units = as.character(layers))
 }
 matrix2edges <- function(from) {
   edges <- matrix(data = NA, nrow = 0, ncol = 2)

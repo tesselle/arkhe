@@ -186,12 +186,15 @@ setValidity(
   method = function(object) {
     # Get data
     data <- methods::S3Part(object, strictS3 = TRUE, "matrix")
+    units <- object@units
 
     if (nrow(data) > 0) {
       errors <- list(
         # Check data
         catch_conditions(check_square(data)),
-        catch_conditions(check_dag(data))
+        catch_conditions(check_dag(data)),
+        # Check unit names
+        catch_conditions(check_length(units, nrow(data)))
       )
     } else {
       errors <- list()
