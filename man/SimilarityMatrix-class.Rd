@@ -32,7 +32,7 @@ method used.}
   \item{\code{get_id(x)}}{Get the ID of \code{x}.}
   \item{\code{get_dates(x)} and \code{set_dates(x) <- value}}{Get or set
   the dates of \code{x}.}
-  \item{\code{get_coordinates(x)} and \code{get_coordinates(x) <- value}}{Get
+  \item{\code{get_coordinates(x)} and \code{set_coordinates(x) <- value}}{Get
   or set the geographical coordinates of \code{x}.}
  }
 }

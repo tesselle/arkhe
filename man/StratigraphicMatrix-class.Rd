@@ -14,6 +14,13 @@ A stratigraphic matrix represents directed relationships between
  symetric square matrix with zeros on its main diagonal), suitable to build
  a directed acyclic graph (DAG).
 }
+\section{Slots}{
+
+\describe{
+\item{\code{units}}{A \code{\link{character}} vector giving the stratigraphic unit
+names.}
+}}
+
 \section{Matrix ID}{
 
  When a matrix is first created, an identifier is generated (UUID v4).
@@ -31,7 +38,7 @@ A stratigraphic matrix represents directed relationships between
   \item{\code{get_id(x)}}{Get the ID of \code{x}.}
   \item{\code{get_dates(x)} and \code{set_dates(x) <- value}}{Get or set
   the dates of \code{x}.}
-  \item{\code{get_coordinates(x)} and \code{get_coordinates(x) <- value}}{Get
+  \item{\code{get_coordinates(x)} and \code{set_coordinates(x) <- value}}{Get
   or set the geographical coordinates of \code{x}.}
  }
 }

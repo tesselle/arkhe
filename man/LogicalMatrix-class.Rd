@@ -10,7 +10,7 @@ An S4 class to represent a logical matrix.
 }
 \note{
 Numeric values are coerced to \code{\link{logical}} as by
- \code{\link[base]{as.logical}}.
+ \code{\link{as.logical}}.
 }
 \section{Matrix ID}{
 
@@ -29,7 +29,7 @@ Numeric values are coerced to \code{\link{logical}} as by
   \item{\code{get_id(x)}}{Get the ID of \code{x}.}
   \item{\code{get_dates(x)} and \code{set_dates(x) <- value}}{Get or set
   the dates of \code{x}.}
-  \item{\code{get_coordinates(x)} and \code{get_coordinates(x) <- value}}{Get
+  \item{\code{get_coordinates(x)} and \code{set_coordinates(x) <- value}}{Get
   or set the geographical coordinates of \code{x}.}
  }
 }

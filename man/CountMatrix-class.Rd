@@ -51,7 +51,7 @@ times a given datum occurs in a dataset).
   \item{\code{get_id(x)}}{Get the ID of \code{x}.}
   \item{\code{get_dates(x)} and \code{set_dates(x) <- value}}{Get or set
   the dates of \code{x}.}
-  \item{\code{get_coordinates(x)} and \code{get_coordinates(x) <- value}}{Get
+  \item{\code{get_coordinates(x)} and \code{set_coordinates(x) <- value}}{Get
   or set the geographical coordinates of \code{x}.}
  }
 }
@@ -92,16 +92,15 @@ times a given datum occurs in a dataset).
 
 \examples{
 ## Create a count data matrix
-A1 <- CountMatrix(data = sample(0:10, 100, TRUE),
-                  nrow = 10, ncol = 10, byrow = TRUE)
+A1 <- CountMatrix(data = sample(0:10, 100, TRUE), nrow = 10, ncol = 10)
 
 ## Access
 get_id(A1)
 dim(A1) # Get the matrix dimensions
-colnames(A1) # Get the column names
 colnames(A1) <- letters[11:20] # Set the column names
-rownames(A1) # Get the rownames
+colnames(A1) # Get the column names
 rownames(A1) <- LETTERS[1:10] # Set the row names
+rownames(A1) # Get the rownames
 
 ## Subset
 A1[[1]] # Get the first value
@@ -118,6 +117,8 @@ get_totals(B) # Get row sums
 ## This allows to restore the source data
 A2 <- as_count(B)
 all(A1 == A2)
+## Coerce to a co-occurrence matrix
+B <- as_occurrence(A1)
 }
 \seealso{
 \linkS4class{NumericMatrix}

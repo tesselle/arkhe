@@ -24,7 +24,7 @@
 #'   \item{\code{get_id(x)}}{Get the ID of \code{x}.}
 #'   \item{\code{get_dates(x)} and \code{set_dates(x) <- value}}{Get or set
 #'   the dates of \code{x}.}
-#'   \item{\code{get_coordinates(x)} and \code{get_coordinates(x) <- value}}{Get
+#'   \item{\code{get_coordinates(x)} and \code{set_coordinates(x) <- value}}{Get
 #'   or set the geographical coordinates of \code{x}.}
 #'  }
 #' @section Access:
@@ -99,10 +99,6 @@
 #' @inheritSection Matrix-class Get and set
 #' @inheritSection Matrix-class Access
 #' @inheritSection Matrix-class Subset
-# @note
-#  Numeric values are \code{\link[base:round]{rounded}} to zero decimal places
-#  and then coerced to \code{\link{integer}} as by
-#  \code{\link[base]{as.integer}}.
 #' @seealso \linkS4class{NumericMatrix}
 #' @example inst/examples/ex-numeric-class.R
 #' @author N. Frerebeau
@@ -119,25 +115,9 @@
 #'
 #' An S4 class to represent a relative frequency matrix (i.e. the fraction of
 #' times a given datum occurs in a dataset).
-#' @inheritParams base::matrix
-#' @slot id A \code{\link{character}} string specifying the unique
-#'  identifier of the matrix (UUID v4).
-#' @slot dates A \code{\link{list}} giving the dates of each assemblage.
-#' @slot coordinates A \code{\link{list}} giving the geographical coordinates of
-#'  each assemblage (must considered as experimental and subject to major
-#'  changes in a future release).
 #' @slot totals A \code{\link{numeric}} vector.
 #' @inheritSection Matrix-class Matrix ID
-#' @section Get and set:
-#'  In the code snippets below, \code{x} is a \code{AbundanceMatrix}
-#'  object.
-#'  \describe{
-#'   \item{\code{get_id(x)}}{Get the unique ID of \code{x}.}
-#'   \item{\code{get_totals(x)} and \code{get_totals(x) <- value}}{Get and set
-#'   the row sums (counts) of \code{x}.}
-#'   \item{\code{get_dates(x)} and \code{set_dates(x) <- value}}{Get or set
-#'   the dates of \code{x}.}
-#'  }
+#' @inheritSection Matrix-class Get and set
 #' @inheritSection Matrix-class Access
 #' @inheritSection Matrix-class Subset
 #' @seealso \linkS4class{NumericMatrix}
@@ -159,9 +139,9 @@
 #'
 #' An S4 class to represent a co-occurrence matrix.
 #' @details
-#'  A co-occurrence matrix is a symmetric matrix with zeros on its main diagonal,
-#'  which works out how many times (expressed in percent) each pairs of
-#'  taxa/types occur together in at least one sample.
+#'  A co-occurrence matrix is a symmetric matrix with zeros on its main
+#'  diagonal, which works out how many times (expressed in percent) each pairs
+#'  of taxa/types occur together in at least one sample.
 #' @inheritSection Matrix-class Matrix ID
 #' @inheritSection Matrix-class Get and set
 #' @inheritSection Matrix-class Access
@@ -211,7 +191,7 @@
 #' @inheritSection Matrix-class Subset
 #' @note
 #'  Numeric values are coerced to \code{\link{logical}} as by
-#'  \code{\link[base]{as.logical}}.
+#'  \code{\link{as.logical}}.
 #' @seealso \linkS4class{Matrix}
 #' @author N. Frerebeau
 #' @family matrix
@@ -246,6 +226,8 @@
 #' Stratigraphic Matrix
 #'
 #' An S4 class to represent a stratigraphic matrix.
+#' @slot units A \code{\link{character}} vector giving the stratigraphic unit
+#'  names.
 #' @details
 #'  A stratigraphic matrix represents directed relationships between
 #'  stratigraphic units. A stratigraphic matrix is an adjacency matrix (a non

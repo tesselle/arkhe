@@ -50,7 +50,7 @@ An S4 class to represent an incidence (presence/absence) matrix.
   \item{\code{get_id(x)}}{Get the ID of \code{x}.}
   \item{\code{get_dates(x)} and \code{set_dates(x) <- value}}{Get or set
   the dates of \code{x}.}
-  \item{\code{get_coordinates(x)} and \code{get_coordinates(x) <- value}}{Get
+  \item{\code{get_coordinates(x)} and \code{set_coordinates(x) <- value}}{Get
   or set the geographical coordinates of \code{x}.}
  }
 }
@@ -92,15 +92,12 @@ An S4 class to represent an incidence (presence/absence) matrix.
 \examples{
 ## Create an incidence (presence/absence) matrix
 ## Data will be coerced with as.logical()
-A <- IncidenceMatrix(data = sample(0:1, 100, TRUE, c(1, 0.3)),
-                      nrow = 10, ncol = 10)
-## Coerce to a co-occurrence matrix
-B <- as_occurrence(A)
+A <- IncidenceMatrix(data = sample(0:1, 100, TRUE, c(1, 1/3)), nrow = 10)
+
 ## Create a count data matrix
-C <- CountMatrix(data = sample(0:10, 100, TRUE),
-                 nrow = 10, ncol = 10, byrow = TRUE)
+B <- CountMatrix(data = sample(0:10, 100, TRUE), nrow = 10)
 ## Coerce to presence/absence
-D <- as_incidence(C)
+C <- as_incidence(B)
 }
 \seealso{
 \linkS4class{LogicalMatrix}
