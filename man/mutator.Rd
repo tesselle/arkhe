@@ -9,6 +9,8 @@
 \alias{get_id-method}
 \alias{get_method}
 \alias{get_method-method}
+\alias{get_units}
+\alias{get_units-method}
 \alias{get_totals}
 \alias{get_totals-method}
 \alias{set_totals<-}
@@ -16,6 +18,7 @@
 \alias{get_id,ANY-method}
 \alias{get_totals,AbundanceMatrix-method}
 \alias{get_method,SimilarityMatrix-method}
+\alias{get_units,StratigraphicMatrix-method}
 \alias{set_totals<-,AbundanceMatrix-method}
 \alias{set_totals,AbundanceMatrix-method}
 \title{Get or Set Parts of an Object}
@@ -23,6 +26,8 @@
 get_id(object)
 
 get_method(object)
+
+get_units(object)
 
 get_totals(object)
 
@@ -33,6 +38,8 @@ set_totals(object) <- value
 \S4method{get_totals}{AbundanceMatrix}(object)
 
 \S4method{get_method}{SimilarityMatrix}(object)
+
+\S4method{get_units}{StratigraphicMatrix}(object)
 
 \S4method{set_totals}{AbundanceMatrix}(object) <- value
 }

@@ -47,6 +47,7 @@ test_that("coordinates can be set to a Matrix", {
 })
 test_that("coordinates can be get from a Matrix", {
   X <- CountMatrix(data = sample(1:10, 100, TRUE), nrow = 10)
+
   set_coordinates(X) <- NULL
   Y <- get_coordinates(X)
 

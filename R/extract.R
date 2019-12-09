@@ -58,6 +58,11 @@ setMethod("get_totals", "AbundanceMatrix", function(object) object@totals)
 #' @aliases get_method,SimilarityMatrix-method
 setMethod("get_method", "SimilarityMatrix", function(object) object@method)
 
+#' @export
+#' @rdname mutator
+#' @aliases get_units,StratigraphicMatrix-method
+setMethod("get_units", "StratigraphicMatrix", function(object) object@units)
+
 # ====================================================================== Setters
 #' @export
 #' @rdname mutator

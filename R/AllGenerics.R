@@ -35,6 +35,13 @@ setGeneric(
 )
 
 #' @rdname mutator
+#' @aliases get_units-method
+setGeneric(
+  name = "get_units",
+  def = function(object) standardGeneric("get_units")
+)
+
+#' @rdname mutator
 #' @aliases get_totals-method
 setGeneric(
   name = "get_totals",

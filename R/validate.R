@@ -10,6 +10,7 @@ setValidity(
     data <- S3Part(object, strictS3 = TRUE, "matrix")
     id <- object@id
     dates <- object@dates
+    coordinates <- object@coordinates
 
     # Check
     errors <- list(
@@ -27,6 +28,17 @@ setValidity(
           catch_conditions(check_length(dates, nrow(data))),
           catch_conditions(check_lengths(dates, 2)),
           catch_conditions(check_names(dates, margin = 1, rownames(data)))
+        )
+      )
+    }
+    if (nrow(data) > 0 && length(coordinates) != 0) {
+      errors <- append(
+        errors,
+        list(
+          # Check coordinates
+          catch_conditions(check_length(coordinates, nrow(data))),
+          catch_conditions(check_lengths(coordinates, 3)),
+          catch_conditions(check_names(coordinates, margin = 1, rownames(data)))
         )
       )
     }

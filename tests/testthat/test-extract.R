@@ -32,3 +32,7 @@ test_that("SimilarityMatrix", {
   sim <- .SimilarityMatrix()
   expect_equal(get_method(sim), "unknown")
 })
+test_that("StratigraphicMatrix", {
+  strati <- .StratigraphicMatrix(FALSE, units = "A")
+  expect_equal(get_units(strati), "A")
+})
