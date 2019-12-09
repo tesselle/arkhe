@@ -10,19 +10,24 @@ setMethod(
     data <- methods::S3Part(object, strictS3 = TRUE, "matrix")
     m <- nrow(data)
     p <- ncol(data)
-    cat(sprintf("%d x %d presence/absence data matrix:\n(%s)\n",
-                m, p, object@id))
+    cat(
+      sprintf("<IncidenceMatrix: %s>\n", object@id),
+      sprintf("%d x %d presence/absence data matrix:\n", m, p)
+    )
     print(data)
   }
 )
 setMethod(
   f = "show",
-  signature = "OccurrenceMatrix",
+  signature = "StratigraphicMatrix",
   definition = function(object) {
     data <- methods::S3Part(object, strictS3 = TRUE, "matrix")
     m <- nrow(data)
     p <- ncol(data)
-    cat(sprintf("%d x %d co-occurrence matrix:\n(%s)\n", m, p, object@id))
+    cat(
+      sprintf("<StratigraphicMatrix: %s>\n", object@id),
+      sprintf("%d x %d stratigraphic matrix:\n", m, p)
+    )
     print(data)
   }
 )
@@ -35,7 +40,10 @@ setMethod(
     data <- methods::S3Part(object, strictS3 = TRUE, "matrix")
     m <- nrow(data)
     p <- ncol(data)
-    cat(sprintf("%d x %d absolute frequency matrix:\n(%s)\n", m, p, object@id))
+    cat(
+      sprintf("<CountMatrix: %s>\n", object@id),
+      sprintf("%d x %d absolute frequency matrix:\n", m, p)
+    )
     print(data)
   }
 )
@@ -46,7 +54,24 @@ setMethod(
     data <- methods::S3Part(object, strictS3 = TRUE, "matrix")
     m <- nrow(data)
     p <- ncol(data)
-    cat(sprintf("%d x %d relative frequency matrix:\n(%s)\n", m, p, object@id))
+    cat(
+      sprintf("<AbundanceMatrix: %s>\n", object@id),
+      sprintf("%d x %d relative frequency matrix:\n", m, p)
+    )
+    print(data)
+  }
+)
+setMethod(
+  f = "show",
+  signature = "OccurrenceMatrix",
+  definition = function(object) {
+    data <- methods::S3Part(object, strictS3 = TRUE, "matrix")
+    m <- nrow(data)
+    p <- ncol(data)
+    cat(
+      sprintf("<OccurrenceMatrix: %s>\n", object@id),
+      sprintf("%d x %d co-occurrence matrix:\n", m, p)
+    )
     print(data)
   }
 )
@@ -58,21 +83,10 @@ setMethod(
     m <- nrow(data)
     p <- ncol(data)
     k <- ifelse(length(object@method) == 0, "unknown", object@method)
-    cat(sprintf("%d x %d (dis)similarity matrix (%s):\n(%s)\n",
-                m, p, k, object@id))
-    print(data)
-  }
-)
-
-# ========================================================= Stratigraphic matrix
-setMethod(
-  f = "show",
-  signature = "StratigraphicMatrix",
-  definition = function(object) {
-    data <- methods::S3Part(object, strictS3 = TRUE, "matrix")
-    m <- nrow(data)
-    p <- ncol(data)
-    cat(sprintf("%d x %d stratigraphic matrix:\n(%s)\n", m, p, object@id))
+    cat(
+      sprintf("<SimilarityMatrix: %s>\n", object@id),
+      sprintf("%d x %d (dis)similarity matrix (%s):\n", m, p, k)
+    )
     print(data)
   }
 )
