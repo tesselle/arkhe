@@ -14,7 +14,7 @@
   ],
   "issueTracker": "http://github.com/nfrerebeau/codex/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -107,7 +107,7 @@
     }
   ],
   "readme": "https://github.com/nfrerebeau/codex/blob/master/README.md",
-  "fileSize": "99.792KB",
+  "fileSize": "100.399KB",
   "contIntegration": [
     "https://ci.appveyor.com/project/nfrerebeau/codex",
     "https://travis-ci.org/nfrerebeau/codex",
@@ -136,7 +136,8 @@
       ],
       "name": "{codex}: Representation of Archaeological Data",
       "url": "https://doi.org/10.5281/zenodo.3526659",
-      "description": "R package version 0.1.0"
+      "description": "R package version 0.2.0"
     }
-  ]
+  ],
+  "releaseNotes": "https://github.com/nfrerebeau/codex/blob/master/NEWS.md"
 }
