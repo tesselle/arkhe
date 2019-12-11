@@ -28,11 +28,12 @@ maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www
 
 A collection of classes that represent archaeological data. This package
 provides a set of S4 classes that extend the basic matrix data type
-(abundance matrix and stratigraphic matrix) upon which package
-developers can build subclasses. It also provides a set of generic
-methods (mutators and coercion mechanisms) and functions
-(e.g. predicates). In addition, a few classes of general interest
-(e.g. that represent chronological data) are
+(absolute/relative frequency, presence/absence data, co-occurrence
+matrix, etc.) upon which package developers can build subclasses. It
+also provides a set of generic methods (mutators and coercion
+mechanisms) and functions (e.g. predicates). In addition, a few classes
+of general interest (e.g. that represent stratigraphic relationships)
+are
 implemented.
 
 ## Installation
@@ -144,7 +145,7 @@ harris <- read.table(
 )
 
 as_stratigraphy(harris)
-#> <StratigraphicMatrix: 61f63040-9581-4496-a47b-36981df90f57>
+#> <StratigraphicMatrix: 25af4daf-398f-4e33-9b60-76f9e8904699>
 #>  9 x 9 stratigraphic matrix:
 #>      upper
 #> lower     1     2     3     4     5     6     7     8     9

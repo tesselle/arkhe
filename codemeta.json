@@ -9,8 +9,8 @@
   "name": "arkhe: Representation of Archaeological Data",
   "codeRepository": "http://github.com/nfrerebeau/arkhe",
   "relatedLink": [
-    "http://codex.archaeo.science",
-    "https://cran.r-project.org/package=codex",
+    "http://arkhe.archaeo.science",
+    "https://cran.r-project.org/package=arkhe",
     "http://arkhe.archaeo.science"
   ],
   "issueTracker": "http://github.com/nfrerebeau/arkhe/issues",
@@ -107,12 +107,12 @@
       "name": "methods"
     }
   ],
-  "readme": "https://github.com/nfrerebeau/codex/blob/master/README.md",
-  "fileSize": "99.999KB",
+  "readme": "https://github.com/nfrerebeau/arkhe/blob/master/README.md",
+  "fileSize": "100.197KB",
   "contIntegration": [
-    "https://ci.appveyor.com/project/nfrerebeau/codex",
-    "https://travis-ci.org/nfrerebeau/codex",
-    "https://codecov.io/gh/nfrerebeau/codex"
+    "https://ci.appveyor.com/project/nfrerebeau/arkhe",
+    "https://travis-ci.org/nfrerebeau/arkhe",
+    "https://codecov.io/gh/nfrerebeau/arkhe"
   ],
   "developmentStatus": [
     "https://www.repostatus.org/#wip",
@@ -140,5 +140,5 @@
       "description": "R package version 0.2.0"
     }
   ],
-  "releaseNotes": "https://github.com/nfrerebeau/codex/blob/master/NEWS.md"
+  "releaseNotes": "https://github.com/nfrerebeau/arkhe/blob/master/NEWS.md"
 }
