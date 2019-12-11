@@ -4,15 +4,16 @@
     "http://schema.org"
   ],
   "@type": "SoftwareSourceCode",
-  "identifier": "codex",
-  "description": "A collection of classes that represent\n    archaeological data. This package provides a set of S4 classes that\n    extend the basic matrix data type (abundance matrix and stratigraphic\n    matrix) upon which package developers can build subclasses. It also\n    provides a set of generic methods (mutators and coercion mechanisms)\n    and functions (e.g. predicates). In addition, a few classes of general\n    interest (e.g. that represent chronological data) are implemented.",
-  "name": "codex: Representation of Archaeological Data",
-  "codeRepository": "http://github.com/nfrerebeau/codex",
+  "identifier": "arkhe",
+  "description": "A collection of classes that represent\n    archaeological data. This package provides a set of S4 classes that\n    extend the basic matrix data type (absolute/relative frequency,\n    presence/absence data, co-occurrence matrix, etc.) upon which package\n    developers can build subclasses. It also provides a set of generic\n    methods (mutators and coercion mechanisms) and functions (e.g.\n    predicates). In addition, a few classes of general interest (e.g. that\n    represent stratigraphic relationships) are implemented.",
+  "name": "arkhe: Representation of Archaeological Data",
+  "codeRepository": "http://github.com/nfrerebeau/arkhe",
   "relatedLink": [
     "http://codex.archaeo.science",
-    "https://cran.r-project.org/package=codex"
+    "https://cran.r-project.org/package=codex",
+    "http://arkhe.archaeo.science"
   ],
-  "issueTracker": "http://github.com/nfrerebeau/codex/issues",
+  "issueTracker": "http://github.com/nfrerebeau/arkhe/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
   "version": "0.2.0",
   "programmingLanguage": {
@@ -107,7 +108,7 @@
     }
   ],
   "readme": "https://github.com/nfrerebeau/codex/blob/master/README.md",
-  "fileSize": "100.399KB",
+  "fileSize": "99.999KB",
   "contIntegration": [
     "https://ci.appveyor.com/project/nfrerebeau/codex",
     "https://travis-ci.org/nfrerebeau/codex",
@@ -134,7 +135,7 @@
           "familyName": "Frerebeau"
         }
       ],
-      "name": "{codex}: Representation of Archaeological Data",
+      "name": "{arkhe}: Representation of Archaeological Data",
       "url": "https://doi.org/10.5281/zenodo.3526659",
       "description": "R package version 0.2.0"
     }

@@ -26,7 +26,7 @@ knitr::opts_chunk$set(
 ```
 
 # Definitions
-The **codex** package provides a set of S4 classes for archaeological data matrices that extend the basic `matrix` data type. These new classes represent different special types of matrix.
+The **arkhe** package provides a set of S4 classes for archaeological data matrices that extend the basic `matrix` data type. These new classes represent different special types of matrix.
 
 * Numeric matrix:
     * `CountMatrix` represents absolute frequency data,
@@ -39,7 +39,7 @@ The **codex** package provides a set of S4 classes for archaeological data matri
     
 *It assumes that you keep your data tidy*: each variable (taxon/type) must be saved in its own column and each observation (assemblage/sample) must be saved in its own row. Note that missing values are not allowed.
 
-The internal structure of S4 classes implemented in **codex** is depicted in the UML class diagram in the following figure.
+The internal structure of S4 classes implemented in **arkhe** is depicted in the UML class diagram in the following figure.
 
 ```{r uml, echo=FALSE, fig.cap="UML class diagram of the S4 classes structure.", fig.width=7}
 knitr::include_graphics("classes.png")
@@ -103,7 +103,7 @@ We denote the $m \times p$ incidence matrix by $C = \left[ c_{ij} \right] ~\fora
 
 ```{r packages}
 # Load packages
-library(codex)
+library(arkhe)
 ```
 
 ## Create
@@ -125,7 +125,7 @@ IncidenceMatrix(data = sample(0:1, 100, TRUE),
 Note that an `AbundanceMatrix` can only be created by coercion (see below).
 
 ## Coerce
-**codex** uses coercing mechanisms (with validation methods) for data type conversions:
+**arkhe** uses coercing mechanisms (with validation methods) for data type conversions:
 
 ```{r coerce}
 ## Create a count matrix

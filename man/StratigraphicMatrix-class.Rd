@@ -99,6 +99,7 @@ harris <- matrix(
 )
 
 strati <- as_stratigraphy(harris)
+get_units(strati)
 }
 \seealso{
 \linkS4class{LogicalMatrix}

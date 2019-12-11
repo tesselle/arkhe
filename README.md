@@ -1,28 +1,25 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# codex
+# arkhe
 
 <!-- badges: start -->
 
 [![Appveyor build
-status](https://ci.appveyor.com/api/projects/status/7xt157mqcny0pht1?svg=true)](https://ci.appveyor.com/project/nfrerebeau/codex)
+status](https://ci.appveyor.com/api/projects/status/7xt157mqcny0pht1?svg=true)](https://ci.appveyor.com/project/nfrerebeau/arkhe)
 [![Travis build
-Status](https://travis-ci.org/nfrerebeau/codex.svg?branch=master)](https://travis-ci.org/nfrerebeau/codex)
-[![codecov](https://codecov.io/gh/nfrerebeau/codex/branch/master/graph/badge.svg)](https://codecov.io/gh/nfrerebeau/codex)
+Status](https://travis-ci.org/nfrerebeau/arkhe.svg?branch=master)](https://travis-ci.org/nfrerebeau/arkhe)
+[![codecov](https://codecov.io/gh/nfrerebeau/arkhe/branch/master/graph/badge.svg)](https://codecov.io/gh/nfrerebeau/arkhe)
 
-[![CRAN
-Version](http://www.r-pkg.org/badges/version/codex)](https://cran.r-project.org/package=codex)
-[![CRAN
-checks](https://cranchecks.info/badges/worst/codex)](https://cran.r-project.org/web/checks/check_results_codex.html)
-[![CRAN
-Downloads](http://cranlogs.r-pkg.org/badges/codex)](https://cran.r-project.org/package=codex)
+<!--[![CRAN Version](http://www.r-pkg.org/badges/version/arkhe)](https://cran.r-project.org/package=arkhe)
+[![CRAN checks](https://cranchecks.info/badges/worst/arkhe)](https://cran.r-project.org/web/checks/check_results_arkhe.html)
+[![CRAN Downloads](http://cranlogs.r-pkg.org/badges/arkhe)](https://cran.r-project.org/package=arkhe)-->
 
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
-developed.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Lifecycle:
-maturing](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3526659.svg)](https://doi.org/10.5281/zenodo.3526659)
 <!-- badges: end -->
@@ -40,11 +37,11 @@ implemented.
 
 ## Installation
 
-<!--You can install the released version of **codex** from [CRAN](https://CRAN.R-project.org) with:
+<!--You can install the released version of **arkhe** from [CRAN](https://CRAN.R-project.org) with:
 
 
 ```r
-install.packages("codex")
+install.packages("arkhe")
 ```
 
 Or-->
@@ -53,22 +50,22 @@ You can install the development version from GitHub with:
 
 ``` r
 # install.packages("devtools")
-remotes::install_github("nfrerebeau/codex")
+remotes::install_github("nfrerebeau/arkhe")
 ```
 
 ## Usage
 
 ``` r
 # Load the package
-library(codex)
+library(arkhe)
 ```
 
 ``` r
 # See the vignette
-utils::vignette("codex", package = "codex")
+utils::vignette("arkhe", package = "arkhe")
 ```
 
-**codex** provides a set of S4 classes that extend the basic `matrix`
+**arkhe** provides a set of S4 classes that extend the basic `matrix`
 data type. These new classes represent different special types of
 matrix.
 
@@ -97,7 +94,7 @@ quanti <- CountMatrix(data = sample(0:10, 100, TRUE), nrow = 10, ncol = 10)
 quali <- IncidenceMatrix(data = sample(0:1, 100, TRUE), nrow = 10, ncol = 10)
 ```
 
-**codex** uses coercing mechanisms (with validation methods) for data
+**arkhe** uses coercing mechanisms (with validation methods) for data
 type conversions:
 
 ``` r
@@ -147,8 +144,8 @@ harris <- read.table(
 )
 
 as_stratigraphy(harris)
-#> 9 x 9 stratigraphic matrix:
-#> (9d852205-bb24-4d05-a6bc-dd9522fb1044)
+#> <StratigraphicMatrix: 61f63040-9581-4496-a47b-36981df90f57>
+#>  9 x 9 stratigraphic matrix:
 #>      upper
 #> lower     1     2     3     4     5     6     7     8     9
 #>     1 FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
@@ -164,7 +161,7 @@ as_stratigraphy(harris)
 
 ## Contributing
 
-Please note that the **codex** project is released with a [Contributor
+Please note that the **arkhe** project is released with a [Contributor
 Code of
-Conduct](https://github.com/nfrerebeau/codex/blob/master/.github/CODE_OF_CONDUCT.md).
+Conduct](https://github.com/nfrerebeau/arkhe/blob/master/.github/CODE_OF_CONDUCT.md).
 By contributing to this project, you agree to abide by its terms.

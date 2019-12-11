@@ -241,7 +241,7 @@ check_class <- function(object, conditions) {
                       FUN.VALUE = character(1), "message")
     wrn <- sprintf("<%s> instance initialization:\n%s", class(object),
                    paste0("* ", unlist(wrn_msg), collapse = "\n"))
-    throw_warning("codex_warning_class", wrn, call = NULL)
+    throw_warning("arkhe_warning_class", wrn, call = NULL)
   }
 
   # Check if any error
@@ -251,7 +251,7 @@ check_class <- function(object, conditions) {
                       FUN.VALUE = character(1), "message")
     err <- sprintf("<%s> instance initialization:\n%s", class(object),
                    paste0("* ", err_msg, collapse = "\n"))
-    throw_error("codex_error_class", err, call = NULL)
+    throw_error("arkhe_error_class", err, call = NULL)
   }
 
   return(TRUE)

@@ -271,7 +271,7 @@ setGeneric(
 #' @param from A numeric \code{\link{matrix}} or \code{\link{data.frame}} to be
 #'  coerced.
 #' @docType methods
-#' @name codex-deprecated
+#' @name arkhe-deprecated
 #' @rdname deprecated
 #' @keywords internal
 NULL

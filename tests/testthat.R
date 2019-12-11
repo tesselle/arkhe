@@ -1,4 +1,4 @@
 library(testthat)
-library(codex)
+library(arkhe)
 
-test_check("codex")
+test_check("arkhe")

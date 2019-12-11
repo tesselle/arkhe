@@ -1,6 +1,6 @@
 #' @details
 #' \tabular{ll}{
-#'  \strong{Package:} \tab codex \cr
+#'  \strong{Package:} \tab arkhe \cr
 #'  \strong{Type:} \tab Package \cr
 #'  \strong{Version:} \tab 0.2.0 \cr
 #'  \strong{License:} \tab GPL-3 \cr
@@ -23,8 +23,8 @@
 #' Université Bordeaux Montaigne\cr
 #' F-33607 Pessac cedex\cr
 #' France
-#' @name codex-package
-#' @aliases codex
+#' @name arkhe-package
+#' @aliases arkhe
 #' @docType package
 #' @keywords internal
 "_PACKAGE"

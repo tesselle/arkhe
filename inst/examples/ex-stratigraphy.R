@@ -19,3 +19,4 @@ harris <- matrix(
 )
 
 strati <- as_stratigraphy(harris)
+get_units(strati)
