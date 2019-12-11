@@ -11,7 +11,7 @@
 \usage{
 \S4method{[}{Matrix}(x, i, j) <- value
 
-\S4method{[[}{Matrix}(x, i) <- value
+\S4method{[[}{Matrix}(x, i, j) <- value
 }
 \arguments{
 \item{x}{An object from which to extract element(s) or in which to replace

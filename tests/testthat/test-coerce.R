@@ -1,7 +1,7 @@
 context("Coerce")
 
 # matrix =======================================================================
-mtx_count <- matrix(sample(0:10, 50, TRUE), ncol = 10)
+mtx_count <- matrix(sample(1:100, 50, TRUE), ncol = 10)
 mtx_freq <- mtx_count / rowSums(mtx_count)
 mtx_incid <- matrix(as.logical(sample(0:1, 50, TRUE)), ncol = 10)
 mtx_sim <- matrix(1, nrow = 5, ncol = 5)

@@ -10,7 +10,7 @@ setMethod(
   f = "[<-",
   signature = "Matrix",
   definition = function(x, i, j, value) {
-    x <- methods::callNextMethod()
+    x@.Data[i, j] <- value
     methods::validObject(x)
     x
   }
@@ -22,8 +22,12 @@ setMethod(
 setMethod(
   f = "[[<-",
   signature = "Matrix",
-  definition = function(x, i, value) {
-    x <- methods::callNextMethod()
+  definition = function(x, i, j, value) {
+    if (missing(j)) {
+      x@.Data[[i]] <- value
+    } else {
+      x@.Data[[i, j]] <- value
+    }
     methods::validObject(x)
     x
   }
