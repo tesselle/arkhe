@@ -91,10 +91,7 @@ test_that("Initialize a CountMatrix instance", {
 test_that("CountMatrix constructor", {
   expect_s4_class(CountMatrix(1), "CountMatrix")
 
-  count_matrix1 <- CountMatrix(
-    data = sample(0:10, 100, TRUE),
-    ncol = 20
-  )
+  count_matrix1 <- CountMatrix(data = sample(0:10, 100, TRUE), ncol = 20)
   expect_equal(dim(count_matrix1), c(5, 20))
   expect_equal(dimnames(count_matrix1),
                list(as.character(1:5), paste0("V", 1:20)))

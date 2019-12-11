@@ -9,23 +9,10 @@ NULL
 setMethod(
   f = "[<-",
   signature = "Matrix",
-  definition = function(x, i, value) {
-    .Object <- methods::callNextMethod()
-    methods::validObject(.Object)
-    .Object
-  }
-)
-
-#' @export
-#' @rdname subset
-#' @aliases [,Matrix-method
-setMethod(
-  f = "[<-",
-  signature = "Matrix",
-  definition = function(x, i, j, ..., value) {
-    .Object <- methods::callNextMethod()
-    methods::validObject(.Object)
-    .Object
+  definition = function(x, i, j, value) {
+    x <- methods::callNextMethod()
+    methods::validObject(x)
+    x
   }
 )
 
@@ -36,9 +23,9 @@ setMethod(
   f = "[[<-",
   signature = "Matrix",
   definition = function(x, i, value) {
-    .Object <- methods::callNextMethod()
-    methods::validObject(.Object)
-    .Object
+    x <- methods::callNextMethod()
+    methods::validObject(x)
+    x
   }
 )
 
