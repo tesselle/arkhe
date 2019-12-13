@@ -231,7 +231,7 @@
 #' @details
 #'  A stratigraphic matrix represents directed relationships between
 #'  stratigraphic units. A stratigraphic matrix is an adjacency matrix (a non
-#'  symetric square matrix with zeros on its main diagonal), suitable to build
+#'  symmetric square matrix with zeros on its main diagonal), suitable to build
 #'  a directed acyclic graph (DAG).
 #' @inheritSection Matrix-class Matrix ID
 #' @inheritSection Matrix-class Get and set

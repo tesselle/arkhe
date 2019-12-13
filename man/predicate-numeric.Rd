@@ -38,7 +38,7 @@ Check numeric objects:
 \code{is_odd} and \code{is_even} check if a number is odd or even,
 respectively.
 
-\code{is_positive} checks if an obejct contains only (strictly) positive
+\code{is_positive} checks if an object contains only (strictly) positive
 numbers.
 
 \code{is_binary} checks if an object contains only \eqn{0}s and \eqn{1}s.
