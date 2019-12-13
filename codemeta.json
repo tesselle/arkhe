@@ -10,8 +10,7 @@
   "codeRepository": "http://github.com/nfrerebeau/arkhe",
   "relatedLink": [
     "http://arkhe.archaeo.science",
-    "https://cran.r-project.org/package=arkhe",
-    "http://arkhe.archaeo.science"
+    "https://cran.r-project.org/package=arkhe"
   ],
   "issueTracker": "http://github.com/nfrerebeau/arkhe/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
@@ -108,7 +107,7 @@
     }
   ],
   "readme": "https://github.com/nfrerebeau/arkhe/blob/master/README.md",
-  "fileSize": "100.197KB",
+  "fileSize": "100.201KB",
   "contIntegration": [
     "https://ci.appveyor.com/project/nfrerebeau/arkhe",
     "https://travis-ci.org/nfrerebeau/arkhe",

@@ -7,6 +7,8 @@ Authors@R:
            role = c("aut", "cre"),
            email = "nicolas.frerebeau@u-bordeaux-montaigne.fr",
            comment = c(ORCID = "https://orcid.org/0000-0001-5759-4944"))
+Maintainer: Nicolas Frerebeau
+    <nicolas.frerebeau@u-bordeaux-montaigne.fr>
 Description: A collection of classes that represent
     archaeological data. This package provides a set of S4 classes that
     extend the basic matrix data type (absolute/relative frequency,
