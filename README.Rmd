@@ -22,9 +22,9 @@ knitr::opts_chunk$set(
 [![Travis build Status](https://travis-ci.org/nfrerebeau/arkhe.svg?branch=master)](https://travis-ci.org/nfrerebeau/arkhe)
 [![codecov](https://codecov.io/gh/nfrerebeau/arkhe/branch/master/graph/badge.svg)](https://codecov.io/gh/nfrerebeau/arkhe)
 
-<!--[![CRAN Version](http://www.r-pkg.org/badges/version/arkhe)](https://cran.r-project.org/package=arkhe)
+[![CRAN Version](http://www.r-pkg.org/badges/version/arkhe)](https://cran.r-project.org/package=arkhe)
 [![CRAN checks](https://cranchecks.info/badges/worst/arkhe)](https://cran.r-project.org/web/checks/check_results_arkhe.html)
-[![CRAN Downloads](http://cranlogs.r-pkg.org/badges/arkhe)](https://cran.r-project.org/package=arkhe)-->
+[![CRAN Downloads](http://cranlogs.r-pkg.org/badges/arkhe)](https://cran.r-project.org/package=arkhe)
 
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
@@ -38,13 +38,13 @@ A collection of classes that represent archaeological data. This package provide
 
 ## Installation
 
-<!--You can install the released version of **arkhe** from [CRAN](https://CRAN.R-project.org) with:
+You can install the released version of **arkhe** from [CRAN](https://CRAN.R-project.org) with:
 
 ```{r cran-installation, eval=FALSE}
 install.packages("arkhe")
 ```
 
-Or-->You can install the development version from GitHub with:
+Or install the development version from GitHub with:
 
 ```{r gh-installation, eval=FALSE}
 # install.packages("devtools")

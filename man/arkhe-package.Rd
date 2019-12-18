@@ -30,6 +30,7 @@ Useful links:
 \itemize{
   \item \url{http://arkhe.archaeo.science}
   \item \url{http://github.com/nfrerebeau/arkhe}
+  \item \url{https://cran.r-project.org/package=arkhe}
   \item Report bugs at \url{http://github.com/nfrerebeau/arkhe/issues}
 }
 

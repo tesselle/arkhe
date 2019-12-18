@@ -11,9 +11,12 @@ status](https://ci.appveyor.com/api/projects/status/7xt157mqcny0pht1?svg=true)](
 Status](https://travis-ci.org/nfrerebeau/arkhe.svg?branch=master)](https://travis-ci.org/nfrerebeau/arkhe)
 [![codecov](https://codecov.io/gh/nfrerebeau/arkhe/branch/master/graph/badge.svg)](https://codecov.io/gh/nfrerebeau/arkhe)
 
-<!--[![CRAN Version](http://www.r-pkg.org/badges/version/arkhe)](https://cran.r-project.org/package=arkhe)
-[![CRAN checks](https://cranchecks.info/badges/worst/arkhe)](https://cran.r-project.org/web/checks/check_results_arkhe.html)
-[![CRAN Downloads](http://cranlogs.r-pkg.org/badges/arkhe)](https://cran.r-project.org/package=arkhe)-->
+[![CRAN
+Version](http://www.r-pkg.org/badges/version/arkhe)](https://cran.r-project.org/package=arkhe)
+[![CRAN
+checks](https://cranchecks.info/badges/worst/arkhe)](https://cran.r-project.org/web/checks/check_results_arkhe.html)
+[![CRAN
+Downloads](http://cranlogs.r-pkg.org/badges/arkhe)](https://cran.r-project.org/package=arkhe)
 
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
@@ -33,21 +36,18 @@ matrix, etc.) upon which package developers can build subclasses. It
 also provides a set of generic methods (mutators and coercion
 mechanisms) and functions (e.g. predicates). In addition, a few classes
 of general interest (e.g. that represent stratigraphic relationships)
-are
-implemented.
+are implemented.
 
 ## Installation
 
-<!--You can install the released version of **arkhe** from [CRAN](https://CRAN.R-project.org) with:
+You can install the released version of **arkhe** from
+[CRAN](https://CRAN.R-project.org) with:
 
-
-```r
+``` r
 install.packages("arkhe")
 ```
 
-Or-->
-
-You can install the development version from GitHub with:
+Or install the development version from GitHub with:
 
 ``` r
 # install.packages("devtools")
@@ -145,7 +145,7 @@ harris <- read.table(
 )
 
 as_stratigraphy(harris)
-#> <StratigraphicMatrix: 25af4daf-398f-4e33-9b60-76f9e8904699>
+#> <StratigraphicMatrix: aca09a25-5637-4d61-a55b-13cfe70e0401>
 #>  9 x 9 stratigraphic matrix:
 #>      upper
 #> lower     1     2     3     4     5     6     7     8     9
