@@ -1,4 +1,5 @@
-## arkhe 0.2.0
+## arkhe 0.2.0 (CRAN release date: 2019-12-18)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3583089.svg)](https://doi.org/10.5281/zenodo.3583089)
 
 * Initial version on CRAN.
 

@@ -15,6 +15,3 @@ reference:
 - title: Geography
   contents:
   - has_concept("geography")
-- title: Predicates
-  contents:
-  - has_concept("predicates")

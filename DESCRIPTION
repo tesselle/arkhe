@@ -29,6 +29,7 @@ Imports:
 Suggests: 
     covr,
     knitr,
+    nomnoml,
     rmarkdown,
     testthat
 VignetteBuilder: 

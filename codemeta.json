@@ -10,7 +10,8 @@
   "codeRepository": "http://github.com/nfrerebeau/arkhe",
   "relatedLink": [
     "http://arkhe.archaeo.science",
-    "https://cran.r-project.org/package=arkhe"
+    "https://cran.r-project.org/package=arkhe",
+    "https://CRAN.R-project.org/package=arkhe"
   ],
   "issueTracker": "http://github.com/nfrerebeau/arkhe/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
@@ -70,6 +71,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "nomnoml",
+      "name": "nomnoml",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=nomnoml"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "rmarkdown",
       "name": "rmarkdown",
       "provider": {
@@ -107,7 +120,7 @@
     }
   ],
   "readme": "https://github.com/nfrerebeau/arkhe/blob/master/README.md",
-  "fileSize": "100.217KB",
+  "fileSize": "35.856KB",
   "contIntegration": [
     "https://ci.appveyor.com/project/nfrerebeau/arkhe",
     "https://travis-ci.org/nfrerebeau/arkhe",
@@ -139,5 +152,11 @@
       "description": "R package version 0.2.0"
     }
   ],
-  "releaseNotes": "https://github.com/nfrerebeau/arkhe/blob/master/NEWS.md"
+  "releaseNotes": "https://github.com/nfrerebeau/arkhe/blob/master/NEWS.md",
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  }
 }
