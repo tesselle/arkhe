@@ -12,4 +12,6 @@
 
 ## Reverse dependencies
 
-There are no reverse dependencies.
+There is 1 reverse dependency.
+
+The changes do not impact any of the dependencies.
