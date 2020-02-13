@@ -7,15 +7,15 @@
   "identifier": "arkhe",
   "description": "A collection of classes that represent\n    archaeological data. This package provides a set of S4 classes that\n    extend the basic matrix data type (absolute/relative frequency,\n    presence/absence data, co-occurrence matrix, etc.) upon which package\n    developers can build subclasses. It also provides a set of generic\n    methods (mutators and coercion mechanisms) and functions (e.g.\n    predicates). In addition, a few classes of general interest (e.g. that\n    represent stratigraphic relationships) are implemented.",
   "name": "arkhe: Representation of Archaeological Data",
-  "codeRepository": "http://github.com/nfrerebeau/arkhe",
+  "codeRepository": "https://github.com/nfrerebeau/arkhe",
   "relatedLink": [
     "http://arkhe.archaeo.science",
     "https://cran.r-project.org/package=arkhe",
     "https://CRAN.R-project.org/package=arkhe"
   ],
-  "issueTracker": "http://github.com/nfrerebeau/arkhe/issues",
+  "issueTracker": "https://github.com/nfrerebeau/arkhe/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -120,7 +120,7 @@
     }
   ],
   "readme": "https://github.com/nfrerebeau/arkhe/blob/master/README.md",
-  "fileSize": "35.856KB",
+  "fileSize": "35.922KB",
   "contIntegration": [
     "https://ci.appveyor.com/project/nfrerebeau/arkhe",
     "https://travis-ci.org/nfrerebeau/arkhe",
@@ -149,7 +149,7 @@
       ],
       "name": "{arkhe}: Representation of Archaeological Data",
       "url": "https://doi.org/10.5281/zenodo.3526659",
-      "description": "R package version 0.2.0"
+      "description": "R package version 0.2.1"
     }
   ],
   "releaseNotes": "https://github.com/nfrerebeau/arkhe/blob/master/NEWS.md",

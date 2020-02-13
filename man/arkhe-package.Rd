@@ -20,7 +20,7 @@ A collection of classes that represent
 \tabular{ll}{
  \strong{Package:} \tab arkhe \cr
  \strong{Type:} \tab Package \cr
- \strong{Version:} \tab 0.2.0 \cr
+ \strong{Version:} \tab 0.2.1 \cr
  \strong{License:} \tab GPL-3 \cr
  \strong{DOI:} \tab \href{https://doi.org/10.5281/zenodo.3526659}{10.5281/zenodo.3526659}
 }
@@ -29,9 +29,9 @@ A collection of classes that represent
 Useful links:
 \itemize{
   \item \url{http://arkhe.archaeo.science}
-  \item \url{http://github.com/nfrerebeau/arkhe}
+  \item \url{https://github.com/nfrerebeau/arkhe}
   \item \url{https://cran.r-project.org/package=arkhe}
-  \item Report bugs at \url{http://github.com/nfrerebeau/arkhe/issues}
+  \item Report bugs at \url{https://github.com/nfrerebeau/arkhe/issues}
 }
 
 }
