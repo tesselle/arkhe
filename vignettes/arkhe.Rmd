@@ -23,7 +23,6 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-library(nomnoml)
 ```
 
 # Definitions
@@ -42,7 +41,9 @@ The **arkhe** package provides a set of S4 classes for archaeological data matri
 
 The internal structure of S4 classes implemented in **arkhe** is depicted in the UML class diagram in the following figure.
 
-```{nomnoml uml, echo=FALSE, fig.cap="UML class diagram of the S4 classes structure.", fig.width=7, fig.height=7}
+```{r nomnoml, eval=FALSE, echo=FALSE}
+# Compile UML diagrams with the 'nomnoml' package
+nomnoml::nomnoml("
 [base::matrix||]
 [Matrix|-id: character;+dates: list;+coordinates: list|]
 
@@ -67,6 +68,11 @@ The internal structure of S4 classes implemented in **arkhe** is depicted in the
 [Matrix] <:- [LogicalMatrix]
 [LogicalMatrix] <:- [IncidenceMatrix]
 [LogicalMatrix] <:- [StratigraphicMatrix]
+", png = "vignettes/uml-1.png")
+```
+
+```{r uml, echo=FALSE, fig.cap="UML class diagram of the S4 classes structure.", fig.width=7, fig.height=7, out.width="100%"}
+knitr::include_graphics("uml-1.png", error = TRUE)
 ```
 
 ## Numeric matrix

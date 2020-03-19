@@ -72,19 +72,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "nomnoml",
-      "name": "nomnoml",
-      "version": ">= 0.1.0",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=nomnoml"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "rmarkdown",
       "name": "rmarkdown",
       "provider": {

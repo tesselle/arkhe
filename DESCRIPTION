@@ -29,7 +29,6 @@ Imports:
 Suggests: 
     covr (>= 3.5.0),
     knitr,
-    nomnoml (>= 0.1.0),
     rmarkdown,
     testthat (>= 2.3.2)
 VignetteBuilder: 
