@@ -3,7 +3,11 @@ context("Coerce")
 # matrix =======================================================================
 mtx_count <- matrix(sample(1:100, 50, TRUE), ncol = 10)
 mtx_freq <- mtx_count / rowSums(mtx_count)
-mtx_incid <- matrix(as.logical(sample(0:1, 50, TRUE)), ncol = 10)
+# Begin workaround: prevent row sums to zero
+mtx_incid <- matrix(sample(0:1, 50, TRUE), ncol = 10)
+mtx_incid[which(rowSums(mtx_incid) == 0), 1] <- 1
+mtx_incid <- matrix(as.logical(mtx_incid), ncol = 10)
+# End workaround
 mtx_sim <- matrix(1, nrow = 5, ncol = 5)
 
 test_that("matrix > CountMatrix", {
