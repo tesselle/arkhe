@@ -7,13 +7,19 @@
 \alias{IncidenceMatrix}
 \title{Incidence Matrix}
 \usage{
-IncidenceMatrix(data = FALSE, nrow = 1, ncol = 1, byrow = FALSE,
-  dimnames = NULL, ...)
+IncidenceMatrix(
+  data = FALSE,
+  nrow = 1,
+  ncol = 1,
+  byrow = FALSE,
+  dimnames = NULL,
+  ...
+)
 }
 \arguments{
 \item{data}{an optional data vector (including a list or
-    \code{\link{expression}} vector).  Non-atomic classed \R objects are
-    coerced by \code{\link{as.vector}} and all attributes discarded.}
+    \code{\link[base]{expression}} vector).  Non-atomic classed \R objects are
+    coerced by \code{\link[base]{as.vector}} and all attributes discarded.}
 
 \item{nrow}{the desired number of rows.}
 
@@ -22,7 +28,7 @@ IncidenceMatrix(data = FALSE, nrow = 1, ncol = 1, byrow = FALSE,
 \item{byrow}{logical. If \code{FALSE} (the default) the matrix is
     filled by columns, otherwise the matrix is filled by rows.}
 
-\item{dimnames}{A \code{\link{dimnames}} attribute for the matrix:
+\item{dimnames}{A \code{\link[base]{dimnames}} attribute for the matrix:
     \code{NULL} or a \code{list} of length 2 giving the row and column
     names respectively.  An empty list is treated as \code{NULL}, and a
     list of length one as row names.  The list can be named, and the
@@ -102,15 +108,16 @@ C <- as_incidence(B)
 \seealso{
 \linkS4class{LogicalMatrix}
 
-Other matrix: \code{\link{AbundanceMatrix-class}},
-  \code{\link{CountMatrix-class}},
-  \code{\link{LogicalMatrix-class}},
-  \code{\link{Matrix-class}},
-  \code{\link{NumericMatrix-class}},
-  \code{\link{OccurrenceMatrix-class}},
-  \code{\link{SimilarityMatrix-class}},
-  \code{\link{StratigraphicMatrix-class}},
-  \code{\link{coerce}}
+Other matrix: 
+\code{\link{AbundanceMatrix-class}},
+\code{\link{CountMatrix-class}},
+\code{\link{LogicalMatrix-class}},
+\code{\link{Matrix-class}},
+\code{\link{NumericMatrix-class}},
+\code{\link{OccurrenceMatrix-class}},
+\code{\link{SimilarityMatrix-class}},
+\code{\link{StratigraphicMatrix-class}},
+\code{\link{coerce}()}
 }
 \author{
 N. Frerebeau

@@ -116,15 +116,16 @@ set_coordinates(A1) <- matrix(sample(0:10, 30, TRUE), nrow = 10, ncol = 3)
 as_features(A1)
 }
 \seealso{
-Other matrix: \code{\link{AbundanceMatrix-class}},
-  \code{\link{CountMatrix-class}},
-  \code{\link{IncidenceMatrix-class}},
-  \code{\link{LogicalMatrix-class}},
-  \code{\link{Matrix-class}},
-  \code{\link{NumericMatrix-class}},
-  \code{\link{OccurrenceMatrix-class}},
-  \code{\link{SimilarityMatrix-class}},
-  \code{\link{StratigraphicMatrix-class}}
+Other matrix: 
+\code{\link{AbundanceMatrix-class}},
+\code{\link{CountMatrix-class}},
+\code{\link{IncidenceMatrix-class}},
+\code{\link{LogicalMatrix-class}},
+\code{\link{Matrix-class}},
+\code{\link{NumericMatrix-class}},
+\code{\link{OccurrenceMatrix-class}},
+\code{\link{SimilarityMatrix-class}},
+\code{\link{StratigraphicMatrix-class}}
 }
 \author{
 N. Frerebeau

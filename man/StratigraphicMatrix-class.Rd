@@ -104,15 +104,16 @@ get_units(strati)
 \seealso{
 \linkS4class{LogicalMatrix}
 
-Other matrix: \code{\link{AbundanceMatrix-class}},
-  \code{\link{CountMatrix-class}},
-  \code{\link{IncidenceMatrix-class}},
-  \code{\link{LogicalMatrix-class}},
-  \code{\link{Matrix-class}},
-  \code{\link{NumericMatrix-class}},
-  \code{\link{OccurrenceMatrix-class}},
-  \code{\link{SimilarityMatrix-class}},
-  \code{\link{coerce}}
+Other matrix: 
+\code{\link{AbundanceMatrix-class}},
+\code{\link{CountMatrix-class}},
+\code{\link{IncidenceMatrix-class}},
+\code{\link{LogicalMatrix-class}},
+\code{\link{Matrix-class}},
+\code{\link{NumericMatrix-class}},
+\code{\link{OccurrenceMatrix-class}},
+\code{\link{SimilarityMatrix-class}},
+\code{\link{coerce}()}
 }
 \author{
 N. Frerebeau

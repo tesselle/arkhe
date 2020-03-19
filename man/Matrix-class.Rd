@@ -81,15 +81,16 @@ changes in a future release).}
 \seealso{
 \link[base]{matrix}
 
-Other matrix: \code{\link{AbundanceMatrix-class}},
-  \code{\link{CountMatrix-class}},
-  \code{\link{IncidenceMatrix-class}},
-  \code{\link{LogicalMatrix-class}},
-  \code{\link{NumericMatrix-class}},
-  \code{\link{OccurrenceMatrix-class}},
-  \code{\link{SimilarityMatrix-class}},
-  \code{\link{StratigraphicMatrix-class}},
-  \code{\link{coerce}}
+Other matrix: 
+\code{\link{AbundanceMatrix-class}},
+\code{\link{CountMatrix-class}},
+\code{\link{IncidenceMatrix-class}},
+\code{\link{LogicalMatrix-class}},
+\code{\link{NumericMatrix-class}},
+\code{\link{OccurrenceMatrix-class}},
+\code{\link{SimilarityMatrix-class}},
+\code{\link{StratigraphicMatrix-class}},
+\code{\link{coerce}()}
 }
 \author{
 N. Frerebeau

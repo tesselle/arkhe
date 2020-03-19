@@ -38,12 +38,13 @@ A \code{\link{logical}} scalar.
 Scalar Type Predicates
 }
 \seealso{
-Other predicates: \code{\link{predicate-graph}},
-  \code{\link{predicate-matrix}},
-  \code{\link{predicate-numeric}},
-  \code{\link{predicate-trend}},
-  \code{\link{predicate-type}},
-  \code{\link{predicate-utils}}
+Other predicates: 
+\code{\link{predicate-graph}},
+\code{\link{predicate-matrix}},
+\code{\link{predicate-numeric}},
+\code{\link{predicate-trend}},
+\code{\link{predicate-type}},
+\code{\link{predicate-utils}}
 }
 \concept{predicates}
 \keyword{internal}

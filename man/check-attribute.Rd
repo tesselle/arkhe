@@ -31,9 +31,12 @@ Throw an error, if any.
 Check Object Attributes
 }
 \seealso{
-Other check: \code{\link{check-graph}},
-  \code{\link{check-matrix}}, \code{\link{check-missing}},
-  \code{\link{check-numeric}}, \code{\link{check-type}}
+Other check: 
+\code{\link{check-graph}},
+\code{\link{check-matrix}},
+\code{\link{check-missing}},
+\code{\link{check-numeric}},
+\code{\link{check-type}}
 }
 \author{
 N. Frerebeau

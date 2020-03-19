@@ -46,12 +46,13 @@ numbers.
 \code{is_whole} checks if an object only contains whole numbers.
 }
 \seealso{
-Other predicates: \code{\link{predicate-graph}},
-  \code{\link{predicate-matrix}},
-  \code{\link{predicate-scalar}},
-  \code{\link{predicate-trend}},
-  \code{\link{predicate-type}},
-  \code{\link{predicate-utils}}
+Other predicates: 
+\code{\link{predicate-graph}},
+\code{\link{predicate-matrix}},
+\code{\link{predicate-scalar}},
+\code{\link{predicate-trend}},
+\code{\link{predicate-type}},
+\code{\link{predicate-utils}}
 }
 \concept{predicates}
 \keyword{internal}

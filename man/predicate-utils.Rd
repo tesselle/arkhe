@@ -29,12 +29,13 @@ A \code{\link{logical}} scalar.
 Version 1 through 5 and is the appropriate Variant as per RFC4122.
 }
 \seealso{
-Other predicates: \code{\link{predicate-graph}},
-  \code{\link{predicate-matrix}},
-  \code{\link{predicate-numeric}},
-  \code{\link{predicate-scalar}},
-  \code{\link{predicate-trend}},
-  \code{\link{predicate-type}}
+Other predicates: 
+\code{\link{predicate-graph}},
+\code{\link{predicate-matrix}},
+\code{\link{predicate-numeric}},
+\code{\link{predicate-scalar}},
+\code{\link{predicate-trend}},
+\code{\link{predicate-type}}
 }
 \concept{predicates}
 \keyword{internal}

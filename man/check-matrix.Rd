@@ -22,9 +22,12 @@ Throw an error, if any.
 Check Matrix
 }
 \seealso{
-Other check: \code{\link{check-attribute}},
-  \code{\link{check-graph}}, \code{\link{check-missing}},
-  \code{\link{check-numeric}}, \code{\link{check-type}}
+Other check: 
+\code{\link{check-attribute}},
+\code{\link{check-graph}},
+\code{\link{check-missing}},
+\code{\link{check-numeric}},
+\code{\link{check-type}}
 }
 \author{
 N. Frerebeau

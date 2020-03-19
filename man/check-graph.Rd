@@ -19,9 +19,12 @@ Throw an error, if any.
 Check Graph
 }
 \seealso{
-Other check: \code{\link{check-attribute}},
-  \code{\link{check-matrix}}, \code{\link{check-missing}},
-  \code{\link{check-numeric}}, \code{\link{check-type}}
+Other check: 
+\code{\link{check-attribute}},
+\code{\link{check-matrix}},
+\code{\link{check-missing}},
+\code{\link{check-numeric}},
+\code{\link{check-type}}
 }
 \author{
 N. Frerebeau

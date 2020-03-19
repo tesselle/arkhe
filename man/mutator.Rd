@@ -86,7 +86,8 @@ all(A1 == A2)
 B <- as_occurrence(A1)
 }
 \seealso{
-Other mutator: \code{\link{subset}}
+Other mutator: 
+\code{\link{subset}()}
 }
 \author{
 N. Frerebeau

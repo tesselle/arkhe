@@ -15,14 +15,14 @@
   ],
   "issueTracker": "https://github.com/nfrerebeau/arkhe/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.2.1",
+  "version": "0.2.1.9000",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.6.2",
+    "version": "3.6.3",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.6.2 (2019-12-12)",
+  "runtimePlatform": "R version 3.6.3 (2020-02-29)",
   "author": [
     {
       "@type": "Person",
@@ -49,6 +49,7 @@
       "@type": "SoftwareApplication",
       "identifier": "covr",
       "name": "covr",
+      "version": ">= 3.5.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -73,6 +74,7 @@
       "@type": "SoftwareApplication",
       "identifier": "nomnoml",
       "name": "nomnoml",
+      "version": ">= 0.1.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -97,6 +99,7 @@
       "@type": "SoftwareApplication",
       "identifier": "testthat",
       "name": "testthat",
+      "version": ">= 2.3.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -120,7 +123,7 @@
     }
   ],
   "readme": "https://github.com/nfrerebeau/arkhe/blob/master/README.md",
-  "fileSize": "35.922KB",
+  "fileSize": "35.932KB",
   "contIntegration": [
     "https://ci.appveyor.com/project/nfrerebeau/arkhe",
     "https://travis-ci.org/nfrerebeau/arkhe",

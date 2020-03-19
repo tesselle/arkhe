@@ -23,12 +23,13 @@ Kahn, A. B. (1962). Topological sorting of large networks.
  DOI: \href{https://doi.org/10.1145/368996.369025}{10.1145/368996.369025}.
 }
 \seealso{
-Other predicates: \code{\link{predicate-matrix}},
-  \code{\link{predicate-numeric}},
-  \code{\link{predicate-scalar}},
-  \code{\link{predicate-trend}},
-  \code{\link{predicate-type}},
-  \code{\link{predicate-utils}}
+Other predicates: 
+\code{\link{predicate-matrix}},
+\code{\link{predicate-numeric}},
+\code{\link{predicate-scalar}},
+\code{\link{predicate-trend}},
+\code{\link{predicate-type}},
+\code{\link{predicate-utils}}
 }
 \concept{predicates}
 \keyword{internal}

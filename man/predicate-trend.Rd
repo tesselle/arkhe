@@ -40,12 +40,13 @@ is monotonically increasing or decreasing, respectively.
 \code{is_overlapping} checks if two data ranges overlap at all.
 }
 \seealso{
-Other predicates: \code{\link{predicate-graph}},
-  \code{\link{predicate-matrix}},
-  \code{\link{predicate-numeric}},
-  \code{\link{predicate-scalar}},
-  \code{\link{predicate-type}},
-  \code{\link{predicate-utils}}
+Other predicates: 
+\code{\link{predicate-graph}},
+\code{\link{predicate-matrix}},
+\code{\link{predicate-numeric}},
+\code{\link{predicate-scalar}},
+\code{\link{predicate-type}},
+\code{\link{predicate-utils}}
 }
 \concept{predicates}
 \keyword{internal}

@@ -71,15 +71,16 @@ Numeric values are coerced to \code{\link{logical}} as by
 \seealso{
 \linkS4class{Matrix}
 
-Other matrix: \code{\link{AbundanceMatrix-class}},
-  \code{\link{CountMatrix-class}},
-  \code{\link{IncidenceMatrix-class}},
-  \code{\link{Matrix-class}},
-  \code{\link{NumericMatrix-class}},
-  \code{\link{OccurrenceMatrix-class}},
-  \code{\link{SimilarityMatrix-class}},
-  \code{\link{StratigraphicMatrix-class}},
-  \code{\link{coerce}}
+Other matrix: 
+\code{\link{AbundanceMatrix-class}},
+\code{\link{CountMatrix-class}},
+\code{\link{IncidenceMatrix-class}},
+\code{\link{Matrix-class}},
+\code{\link{NumericMatrix-class}},
+\code{\link{OccurrenceMatrix-class}},
+\code{\link{SimilarityMatrix-class}},
+\code{\link{StratigraphicMatrix-class}},
+\code{\link{coerce}()}
 }
 \author{
 N. Frerebeau
