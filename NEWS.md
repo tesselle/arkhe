@@ -1,4 +1,6 @@
-## arkhe 0.2.2
+## arkhe 0.2.2 (CRAN release date: 2020-03-23)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3724463.svg)](https://doi.org/10.5281/zenodo.3724463)
+
 ### Bugfixes & changes
 * CRAN package check error has been fixed (random error with **testthat**).
 * CRAN package check warnings have been fixed (remove **nomnoml** from suggested packages).
