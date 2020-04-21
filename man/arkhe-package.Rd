@@ -9,7 +9,7 @@
 \description{
 A collection of classes that represent
     archaeological data. This package provides a set of S4 classes that
-    extend the basic matrix data type (absolute/relative frequency,
+    represent different special types of matrix (absolute/relative frequency,
     presence/absence data, co-occurrence matrix, etc.) upon which package
     developers can build subclasses. It also provides a set of generic
     methods (mutators and coercion mechanisms) and functions (e.g.

@@ -5,7 +5,7 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "arkhe",
-  "description": "A collection of classes that represent\n    archaeological data. This package provides a set of S4 classes that\n    extend the basic matrix data type (absolute/relative frequency,\n    presence/absence data, co-occurrence matrix, etc.) upon which package\n    developers can build subclasses. It also provides a set of generic\n    methods (mutators and coercion mechanisms) and functions (e.g.\n    predicates). In addition, a few classes of general interest (e.g. that\n    represent stratigraphic relationships) are implemented.",
+  "description": "A collection of classes that represent\n    archaeological data. This package provides a set of S4 classes that\n    represent different special types of matrix (absolute/relative frequency,\n    presence/absence data, co-occurrence matrix, etc.) upon which package\n    developers can build subclasses. It also provides a set of generic\n    methods (mutators and coercion mechanisms) and functions (e.g.\n    predicates). In addition, a few classes of general interest (e.g. that\n    represent stratigraphic relationships) are implemented.",
   "name": "arkhe: Representation of Archaeological Data",
   "codeRepository": "https://github.com/nfrerebeau/arkhe",
   "relatedLink": [
@@ -110,7 +110,7 @@
     }
   ],
   "readme": "https://github.com/nfrerebeau/arkhe/blob/master/README.md",
-  "fileSize": "687.954KB",
+  "fileSize": "687.345KB",
   "contIntegration": [
     "https://ci.appveyor.com/project/nfrerebeau/arkhe",
     "https://travis-ci.org/nfrerebeau/arkhe",
