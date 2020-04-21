@@ -66,9 +66,8 @@ library(arkhe)
 utils::vignette("arkhe", package = "arkhe")
 ```
 
-**arkhe** provides a set of S4 classes that extend the basic `matrix`
-data type. These new classes represent different special types of
-matrix.
+**arkhe** provides a set of S4 classes that represent different special
+types of matrix.
 
   - Numeric matrix:
       - `CountMatrix` represents absolute frequency data,
@@ -144,20 +143,7 @@ harris <- read.table(
           9     8"
 )
 
-as_stratigraphy(harris)
-#> <StratigraphicMatrix: aca09a25-5637-4d61-a55b-13cfe70e0401>
-#>  9 x 9 stratigraphic matrix:
-#>      upper
-#> lower     1     2     3     4     5     6     7     8     9
-#>     1 FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-#>     2  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-#>     3  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-#>     4  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-#>     5 FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE
-#>     6 FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE
-#>     7  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE
-#>     8  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE
-#>     9 FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE
+S <- as_stratigraphy(harris)
 ```
 
 ## Contributing

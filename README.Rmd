@@ -63,7 +63,7 @@ library(arkhe)
 utils::vignette("arkhe", package = "arkhe")
 ```
 
-**arkhe** provides a set of S4 classes that extend the basic `matrix` data type. These new classes represent different special types of matrix.
+**arkhe** provides a set of S4 classes that represent different special types of matrix.
 
 * Numeric matrix:
     * `CountMatrix` represents absolute frequency data,
@@ -134,7 +134,7 @@ harris <- read.table(
           9     8"
 )
 
-as_stratigraphy(harris)
+S <- as_stratigraphy(harris)
 ```
 
 ## Contributing
