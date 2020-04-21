@@ -29,6 +29,6 @@
 #' @keywords internal
 "_PACKAGE"
 
-#' @importFrom methods as callNextMethod new setClass setClassUnion setGeneric
-#' setMethod validObject
+#' @importFrom methods as callNextMethod is new setClass setClassUnion
+#' setGeneric setMethod validObject
 NULL

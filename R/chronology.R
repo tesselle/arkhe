@@ -3,10 +3,10 @@
 # ========================================================================== Get
 #' @export
 #' @rdname chronology
-#' @aliases get_dates,Matrix-method
+#' @aliases get_dates,GenericMatrix-method
 setMethod(
   f = "get_dates",
-  signature = "Matrix",
+  signature = "GenericMatrix",
   definition = function(object) {
     if (length(object@dates) != 0) {
       dates <- do.call(rbind, object@dates)
@@ -81,10 +81,10 @@ make_dates <- function(value) {
 
 #' @export
 #' @rdname chronology
-#' @aliases set_dates,Matrix-method
+#' @aliases set_dates,GenericMatrix-method
 setMethod(
   f = "set_dates<-",
-  signature = "Matrix",
+  signature = "GenericMatrix",
   definition = function(object, value) {
     value <- make_dates(value)
     rows_value <- rownames(value)

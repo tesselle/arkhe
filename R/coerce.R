@@ -2,6 +2,21 @@
 #' @include AllGenerics.R AllClasses.R
 NULL
 
+#' Integer Vectors
+#'
+#' @param x A \code{\link{numeric}} vector to be coerced.
+#' @details
+#'  Numeric values are rounded to zero decimal places and then coerced to
+#'  integer as by \code{\link{as.integer}}.
+#' @return An \code{\link{integer}} vector.
+#' @author N. Frerebeau
+#' @family utilities
+#' @keywords internal utilities
+#' @noRd
+as_integer <- function(x) {
+  as.integer(round(x, digits = 0))
+}
+
 #' @export
 #' @rdname coerce
 #' @aliases as_count,ANY-method
@@ -70,10 +85,48 @@ setMethod(
 
 #' @export
 #' @rdname coerce
-#' @aliases as_features,Matrix-method
+#' @aliases as_matrix,ANY-method
+setMethod(
+  f = "as_matrix",
+  signature = signature(from = "DataMatrix"),
+  definition = function(from) {
+    methods::as(from, "matrix")
+  }
+)
+
+#' @export
+#' @rdname coerce
+#' @aliases as_wide,ANY-method
+setMethod(
+  f = "as_wide",
+  signature = signature(from = "DataMatrix"),
+  definition = function(from) {
+    methods::as(from, "data.frame")
+  }
+)
+
+#' @export
+#' @rdname coerce
+#' @aliases as_long,ANY-method
+setMethod(
+  f = "as_long",
+  signature = signature(from = "DataMatrix"),
+  definition = function(from) {
+    data.frame(
+      case = as.character(row(from, as.factor = TRUE)),
+      type = as.character(col(from, as.factor = TRUE)),
+      data = from@data,
+      stringsAsFactors = FALSE
+    )
+  }
+)
+
+#' @export
+#' @rdname coerce
+#' @aliases as_features,DataMatrix-method
 setMethod(
   f = "as_features",
-  signature = "Matrix",
+  signature = "DataMatrix",
   definition = function(from) {
     # Spatial coordinates
     coords <- get_coordinates(from)
@@ -95,76 +148,95 @@ setMethod(
     names(dates) <- c("DATE_VALUE", "DATE_ERROR")
 
     # XYZ_index <- !vapply(X = coords, FUN = anyNA, FUN.VALUE = logical(1))
-    feat <- cbind.data.frame(SITE = rownames(from), coords, dates, from)
+    mtx <- methods::as(from, "matrix")
+    feat <- cbind.data.frame(SITE = from@row_names, coords, dates, mtx)
     # attr(feat, "epsg") <- epsg
     return(feat)
   }
 )
 
-# To data.frame ================================================================
+# To an S3 matrix or data.frame ================================================
 setAs(
-  from = "Matrix",
+  from = "DataMatrix",
+  to = "matrix",
+  def = function(from) {
+    x <- matrix(data = from@data, nrow = nrow(from), ncol = ncol(from),
+                byrow = FALSE, dimnames = dimnames(from))
+    attr(x, "id") <- from@id
+    x
+  }
+)
+setAs(
+  from = "DataMatrix",
   to = "data.frame",
   def = function(from) {
     x <- methods::as(from, "matrix")
-    x <- as.data.frame(x)
+    x <- as.data.frame(x, stringsAsFactors = FALSE)
     attr(x, "id") <- from@id
     x
   }
 )
 
-## To CountMatrix ==================================================
+# To CountMatrix ===============================================================
 matrix2count <- function(from) {
-  data <- data.matrix(from, rownames.force = NA)
-  data <- make_dimnames(data) # Force dimnames
-  whole_numbers <- apply(
-    X = data,
-    MARGIN = 2,
-    FUN = function(x) as.integer(round(x, digits = 0))
+  from <- data.matrix(from, rownames.force = NA)
+  dim_names <- make_dimnames(from)
+  .CountMatrix(
+    data = as_integer(from),
+    size = dim(from),
+    row_names = dim_names[[1L]],
+    column_names = dim_names[[2L]]
   )
-  dimnames(whole_numbers) <- dimnames(data)
-  .CountMatrix(whole_numbers, id = generate_uuid())
 }
 setAs(from = "matrix", to = "CountMatrix", def = matrix2count)
 setAs(from = "data.frame", to = "CountMatrix", def = matrix2count)
 
-## To AbundanceMatrix ==================================================
+# To AbundanceMatrix ===========================================================
 matrix2frequency <- function(from) {
-  data <- data.matrix(from)
-  data <- make_dimnames(data) # Force dimnames
-  totals <- rowSums(data)
-  freq <- data / totals
-  dimnames(freq) <- dimnames(data)
-  .AbundanceMatrix(freq, totals = totals, id = generate_uuid())
+  from <- data.matrix(from, rownames.force = NA)
+  dim_names <- make_dimnames(from)
+  totals <- rowSums(from)
+  freq <- from / totals
+  .AbundanceMatrix(
+    data = as.numeric(freq),
+    size = dim(freq),
+    row_names = dim_names[[1L]],
+    column_names = dim_names[[2L]],
+    totals = totals
+  )
 }
 setAs(from = "matrix", to = "AbundanceMatrix", def = matrix2frequency)
 setAs(from = "data.frame", to = "AbundanceMatrix", def = matrix2frequency)
 
-## To SimilarityMatrix =========================================================
+# To SimilarityMatrix ==========================================================
 matrix2similarity <- function(from) {
-  data <- data.matrix(from)
-  data <- make_colnames(data) # Force dimnames
-  rownames(data) <- colnames(data)
-  .SimilarityMatrix(data, method = "unknown", id = generate_uuid())
+  from <- data.matrix(from, rownames.force = NA)
+  size <- dim(from)
+  dim_names <- make_dimnames(from)
+  if (!all(Reduce("==", dim_names))) {
+    var_names <- paste0("var", seq_len(size[[1L]]))
+  } else {
+    var_names <- dim_names[[1L]]
+  }
+
+  .SimilarityMatrix(
+    data = as.integer(from),
+    size = size,
+    row_names = var_names,
+    column_names = var_names,
+    method = "unknown"
+  )
 }
 setAs(from = "matrix", to = "SimilarityMatrix", def = matrix2similarity)
 setAs(from = "data.frame", to = "SimilarityMatrix", def = matrix2similarity)
 
-## To OccurrenceMatrix =========================================================
+# To OccurrenceMatrix ==========================================================
 matrix2occurrence <- function(from) {
-  data <- if (isS4(from)) {
-    methods::S3Part(from, strictS3 = TRUE, "matrix")
-  } else {
-    data.matrix(from)
-  }
-  data <- data > 0
+  incid <- as_incidence(from)
+  data <- as_matrix(incid)
+  labels <- colnames(incid)
   p <- ncol(data)
   m <- nrow(data)
-  labels <- if (is.null(colnames(data))) {
-    paste0("V", seq_len(p))
-  } else {
-    colnames(data)
-  }
 
   # @param indices A length-two numeric vector
   # @param data A numeric or logical matrix
@@ -175,13 +247,19 @@ matrix2occurrence <- function(from) {
   combine <- utils::combn(seq_len(p), 2, simplify = TRUE)
   occurrence <- apply(X = combine, MARGIN = 2, FUN = fun, data = data) / m
 
-  C <- matrix(data = FALSE, nrow = p, ncol = p, dimnames = list(labels, labels))
+  C <- matrix(data = 0, nrow = p, ncol = p)
   C[lower.tri(C, diag = FALSE)] <- occurrence
   C <- t(C)
   C[lower.tri(C, diag = FALSE)] <- occurrence
 
-  id <- ifelse(isS4(from), from@id, generate_uuid())
-  .OccurrenceMatrix(C, id = id)
+  .OccurrenceMatrix(
+    id = incid@id,
+    data = as.numeric(C),
+    n = m,
+    size = dim(C),
+    row_names = labels,
+    column_names = labels
+  )
 }
 
 setAs(from = "matrix", to = "OccurrenceMatrix",
@@ -201,13 +279,16 @@ setAs(
   from = "CountMatrix",
   to = "AbundanceMatrix",
   def = function(from) {
-    counts <- methods::S3Part(from, strictS3 = TRUE, "matrix")
-    totals <- rowSums(counts)
+    counts <- from@data
+    totals <- rowSums(from)
     freq <- counts / totals
     .AbundanceMatrix(
-      freq,
-      totals = totals,
       id = from@id,
+      data = freq,
+      totals = totals,
+      size = from@size,
+      row_names = from@row_names,
+      column_names = from@column_names,
       dates = from@dates
     )
   }
@@ -216,21 +297,15 @@ setAs(
   from = "AbundanceMatrix",
   to = "CountMatrix",
   def = function(from) {
-    freq <- methods::S3Part(from, strictS3 = TRUE, "matrix")
+    freq <- from@data
     totals <- from@totals
-    if (is_empty(totals))
-      stop("Cannot calculate absolute frequencies (`totals` is empty).",
-           call. = FALSE)
-    count <- round(freq * totals, digits = 0)
-    integer <- apply(
-      X = count,
-      MARGIN = 2,
-      FUN = function(x) as.integer(round(x, digits = 0))
-    )
-    dimnames(integer) <- dimnames(freq)
+    count <- as_integer(freq * totals)
     .CountMatrix(
-      integer,
       id = from@id,
+      data = count,
+      size = from@size,
+      row_names = from@row_names,
+      column_names = from@column_names,
       dates = from@dates
     )
   }
@@ -238,36 +313,38 @@ setAs(
 
 ## To IncidenceMatrix ==========================================================
 matrix2incidence <- function(from) {
-  data <- if (isS4(from)) {
-    methods::S3Part(from, strictS3 = TRUE, "matrix")
-  } else {
-    data.matrix(from)
-  }
-  data <- make_dimnames(data) # Force dimnames
-  data <- data > 0
-  if (isS4(from)) {
-    id <- from@id
-    dates <- from@dates
-  } else {
-    id <- generate_uuid()
-  }
+  from <- data.matrix(from, rownames.force = NA)
+  from <- from > 0
+  dim_names <- make_dimnames(from)
   .IncidenceMatrix(
-    data,
-    id = id
+    data = as.logical(from),
+    size = dim(from),
+    row_names = dim_names[[1L]],
+    column_names = dim_names[[2L]]
   )
 }
 setAs(from = "matrix", to = "IncidenceMatrix", def = matrix2incidence)
 setAs(from = "data.frame", to = "IncidenceMatrix", def = matrix2incidence)
 
-setAs(from = "CountMatrix", to = "IncidenceMatrix", def = matrix2incidence)
-setAs(from = "AbundanceMatrix", to = "IncidenceMatrix", def = matrix2incidence)
+Matrix2incidence <- function(from) {
+  .IncidenceMatrix(
+    id = from@id,
+    data = from@data > 0,
+    size = from@size,
+    row_names = from@row_names,
+    column_names = from@column_names,
+    dates = from@dates
+  )
+}
+setAs(from = "CountMatrix", to = "IncidenceMatrix", def = Matrix2incidence)
+setAs(from = "AbundanceMatrix", to = "IncidenceMatrix", def = Matrix2incidence)
 
 ## To StratigraphicMatrix ======================================================
 edges2matrix <- function(from) {
   from <- as.data.frame(from)
   # Get all layers
   layers <- unique(unlist(from))
-  layers <- layers[order(layers)]
+  layers <- as.character(layers[order(layers)])
   # Coerce layers to factors
   edges <- lapply(X = from, FUN = factor, levels = layers)
   # Build adjacency matrix
@@ -275,7 +352,12 @@ edges2matrix <- function(from) {
   adj <- matrix(data = as.logical(adj), nrow = length(layers),
                 dimnames = list(lower = layers, upper = layers))
 
-  .StratigraphicMatrix(adj, units = as.character(layers))
+  .StratigraphicMatrix(
+    data = as.logical(adj),
+    size = c(length(layers), length(layers)),
+    row_names = layers,
+    column_names = layers
+  )
 }
 matrix2edges <- function(from) {
   edges <- matrix(data = NA, nrow = 0, ncol = 2)

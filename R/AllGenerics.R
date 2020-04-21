@@ -2,16 +2,32 @@
 #' @include AllClasses.R
 NULL
 
+# Add S4 dispatch to base S3 generic
+setGeneric("row")
+setGeneric("col")
+setGeneric("nrow")
+setGeneric("ncol")
+setGeneric("rownames")
+setGeneric("rownames<-")
+setGeneric("colnames")
+setGeneric("colnames<-")
+setGeneric("rowSums")
+setGeneric("colSums")
+setGeneric("rowMeans")
+setGeneric("colMeans")
+
 # ====================================================================== Extract
 #' Get or Set Parts of an Object
 #'
-#' Getters and setters to extract or replace parts of an object.
-#' @param object An object from which to get or set element(s).
+#' Getters and setters to retrieve or set parts of an object.
+#' @param x An object from which to get or set element(s).
+#' @param as.factor A \code{\link{logical}} scalar: should the value be
+#'  returned as a factor of row or column labels rather than as numbers?
 #' @param value A possible value for the element(s) of \code{object} (see
 #'  below).
 #' @return
-#'  An object of the same sort as \code{object} with the new values assigned.
-#' @example inst/examples/ex-numeric-class.R
+#'  An object of the same sort as \code{x} with the new values assigned.
+#' @example inst/examples/ex-matrix.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family mutator
@@ -24,38 +40,37 @@ NULL
 #' @aliases get_id-method
 setGeneric(
   name = "get_id",
-  def = function(object) standardGeneric("get_id")
+  def = function(x) standardGeneric("get_id")
 )
 
 #' @rdname mutator
 #' @aliases get_method-method
 setGeneric(
   name = "get_method",
-  def = function(object) standardGeneric("get_method")
+  def = function(x) standardGeneric("get_method")
 )
 
 #' @rdname mutator
 #' @aliases get_units-method
 setGeneric(
   name = "get_units",
-  def = function(object) standardGeneric("get_units")
+  def = function(x) standardGeneric("get_units")
 )
 
 #' @rdname mutator
 #' @aliases get_totals-method
 setGeneric(
   name = "get_totals",
-  def = function(object) standardGeneric("get_totals")
+  def = function(x) standardGeneric("get_totals")
 )
 
 #' @rdname mutator
 #' @aliases set_totals-method
 setGeneric(
   name = "set_totals<-",
-  def = function(object, value) standardGeneric("set_totals<-")
+  def = function(x, value) standardGeneric("set_totals<-")
 )
 
-# ------------------------------------------------------------------------------
 #' Extract or Replace Parts of an Object
 #'
 #' Operators acting on objects to extract or replace parts.
@@ -69,12 +84,12 @@ setGeneric(
 #'  elements. An empty index (a comma separated blank) indicates that all
 #'  entries in that dimension are selected.
 #' @param value A possible value for the element(s) of \code{x}.
-# @param drop A \code{\link{logical}} scalar: should the result be coerced to
-#  the lowest possible dimension? This only works for extracting elements,
-#  not for the replacement.
+#' @param drop A \code{\link{logical}} scalar: should the result be coerced to
+#'  the lowest possible dimension? This only works for extracting elements,
+#'  not for the replacement.
 #' @return
-#'  A subsetted object.
-#' @example inst/examples/ex-numeric-class.R
+#'  A subsetted object of the same sort as \code{x}.
+#' @example inst/examples/ex-matrix.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family mutator
@@ -82,14 +97,32 @@ setGeneric(
 #' @rdname subset
 NULL
 
-# ------------------------------------------------------------------------------
+#' Matrix Operations
+#'
+#' Performs operation on \code{Matrix} objects.
+#' @param x An object on which to perform operations.
+#' @param e1,e2 A \linkS4class{DataMatrix} object.
+#' @param na.rm A \code{\link{logical}} scalar: should missing values
+#'  (including \code{NaN}) be omitted from the calculations?
+#' @details
+#' \code{rowSums} and \code{colSums} form row and column sums.
+#'
+#' \code{rowMeans} and \code{colMeans} form row and column means.
+#' @return A coerced object.
+#' @example inst/examples/ex-operator.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family operator
+#' @name operator
+#' @rdname operator
+NULL
+
 #' Coerce
 #'
 #' @param from A numeric \code{\link{matrix}} or \code{\link{data.frame}} to be
 #'  coerced.
 #' @details
-#'  The following methods coerce a \code{matrix} or \code{data.frame} to a
-#'  \code{*Matrix} object:
+#'  The following methods coerce an object to a \code{Matrix} object:
 #'
 #'  \tabular{lll}{
 #'   \strong{Method} \tab \strong{Target} \tab \strong{Details} \cr
@@ -101,15 +134,25 @@ NULL
 #'   \code{as_stratigraphy} \tab \linkS4class{StratigraphicMatrix} \tab stratigraphic relationships
 #'  }
 #'
-#'  \code{as_features} converts an \linkS4class{Matrix} object to a
-#'  collection of features (i.e. a\code{\link{data.frame}} with
-#'  dates and coordinates columns).
+#'  **Note that \code{as_count} round numeric values to zero decimal places and
+#'  then coerce to integer as by \code{\link{as.integer}}.**
+#'
+#'  \tabular{lll}{
+#'   \strong{Method} \tab \strong{Target} \tab \strong{Details} \cr
+#'   \code{as_matrix} \tab \code{\link{matrix}} \tab S3 matrix \cr
+#'   \code{as_wide} \tab \code{\link{data.frame}} \tab wide S3 data frame \cr
+#'   \code{as_long} \tab \code{\link{data.frame}} \tab long S3 data frame \cr
+#'  }
 #'
 #'  \code{as_stratigraphy} converts a set of stratigraphic relationships (edges)
 #'  to a stratigraphic (adjacency) matrix. \code{from} can be a
 #'  \code{\link{matrix}}, \code{\link{list}}, or \code{\link{data.frame}}:
 #'  the first column/component is assumed to contain the bottom units and the
 #'  second the top units.
+#'
+#'  \code{as_features} converts an \linkS4class{Matrix} object to a
+#'  collection of features (i.e. a\code{\link{data.frame}} with
+#'  dates and coordinates columns).
 #' @return A coerced object.
 #' @example inst/examples/ex-coerce.R
 #' @author N. Frerebeau
@@ -118,6 +161,27 @@ NULL
 #' @name coerce
 #' @rdname coerce
 NULL
+
+#' @rdname coerce
+#' @aliases as_matrix-method
+setGeneric(
+  name = "as_matrix",
+  def = function(from) standardGeneric("as_matrix")
+)
+
+#' @rdname coerce
+#' @aliases as_wide-method
+setGeneric(
+  name = "as_wide",
+  def = function(from) standardGeneric("as_wide")
+)
+
+#' @rdname coerce
+#' @aliases as_long-method
+setGeneric(
+  name = "as_long",
+  def = function(from) standardGeneric("as_long")
+)
 
 #' @rdname coerce
 #' @aliases as_count-method
@@ -263,22 +327,4 @@ setGeneric(
 setGeneric(
   name = "set_coordinates<-",
   def = function(object, value) standardGeneric("set_coordinates<-")
-)
-
-# =================================================================== Deprecated
-#' Deprecated Methods
-#'
-#' @param from A numeric \code{\link{matrix}} or \code{\link{data.frame}} to be
-#'  coerced.
-#' @docType methods
-#' @name arkhe-deprecated
-#' @rdname deprecated
-#' @keywords internal
-NULL
-
-#' @rdname deprecated
-#' @aliases as_frequency-method
-setGeneric(
-  name = "as_frequency",
-  def = function(from) standardGeneric("as_frequency")
 )

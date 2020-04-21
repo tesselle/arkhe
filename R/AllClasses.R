@@ -3,10 +3,16 @@
 # ======================================================================= Matrix
 #' Matrix
 #'
-#' An S4 class to represent a matrix. This class extends the \code{base}
-#' \link[base]{matrix}.
+#' A virtual S4 class to represent a matrix. This is the mother class of all
+#' matrix objects.
 #' @slot id A \code{\link{character}} string specifying the unique
 #'  identifier of the matrix (UUID v4).
+#' @slot size A length-two \code{\link{numeric}} vector giving the dimension
+#'  of the matrix.
+#' @slot row_names A \code{\link{character}} vector specifying the row names of
+#'  the matrix.
+#' @slot column_names A \code{\link{character}} vector specifying the column
+#'  names of the matrix.
 #' @slot dates A \code{\link{list}} giving the dates of each assemblage.
 #' @slot coordinates A \code{\link{list}} giving the geographical coordinates of
 #'  each assemblage (must considered as experimental and subject to major
@@ -55,52 +61,107 @@
 #'   \item{\code{x[[i]]}}{Extracts a single element selected by subscript
 #'   \code{i}.}
 #'  }
-#' @seealso \link[base]{matrix}
 #' @author N. Frerebeau
 #' @family matrix
 #' @docType class
-#' @aliases Matrix-class
+#' @aliases GenericMatrix-class
 #' @keywords internal
-.Matrix <- setClass(
-  Class = "Matrix",
+setClass(
+  Class = "GenericMatrix",
   slots = c(
     id = "character",
+    size = "integer",
+    row_names = "character",
+    column_names = "character",
     dates = "list",
     coordinates = "list"
   ),
-  contains = "matrix"
+  contains = "VIRTUAL"
 )
 
-# --------------------------------------------------------------- Numeric matrix
-#' Numeric Matrix
+# --------------------------------------------------------------- Virtual matrix
+#' Data Matrix
 #'
-#' An S4 class to represent a numeric matrix.
-#' @inheritSection Matrix-class Matrix ID
-#' @inheritSection Matrix-class Get and set
-#' @inheritSection Matrix-class Access
-#' @inheritSection Matrix-class Subset
-#' @seealso \linkS4class{Matrix}
+#' A virtual S4 class to represent a data matrix.
+#' @slot data An \code{\link{integer}}, a \code{\link{numeric}} or a
+#'  \code{\link{logical}} vector (see details).
+#' @param data A data vector.
+#' @param nrow An \code{\link{integer}} value giving the desired number of rows.
+#' @param ncol An \code{\link{integer}} value giving the desired number of
+#'  columns.
+# @param byrow A \code{\link{logical scalar}}: should the matrix be filled by
+#  rows? If \code{FALSE} (the default) the matrix is filled by columns
+#' @param dimnames A list of length 2 giving the row and column names
+#'  respectively. If \code{NULL} (the default) dimension names will be created.
+#' @inheritSection GenericMatrix-class Matrix ID
+#' @inheritSection GenericMatrix-class Get and set
+#' @inheritSection GenericMatrix-class Access
+#' @inheritSection GenericMatrix-class Subset
+#' @details
+#'  \describe{
+#'   \item{\code{IntegerMatrix}}{Values are coerced to \code{\link{integer}}
+#'   as by \code{\link{as.integer}}.}
+#'   \item{\code{NumericMatrix}}{Values are coerced to \code{\link{numeric}}
+#'   as by \code{\link{as.numeric}}.}
+#'   \item{\code{LogicalMatrix}}{Values are coerced to \code{\link{logical}}
+#'   as by \code{\link{as.logical}}.}
+#'  }
+#' @seealso \linkS4class{GenericMatrix}
 #' @author N. Frerebeau
 #' @family matrix
 #' @docType class
-#' @aliases NumericMatrix-class
+#' @name DataMatrix-class
+#' @rdname DataMatrix-class
 #' @keywords internal
-.NumericMatrix <- setClass(
-  Class = "NumericMatrix",
-  contains = "Matrix"
+NULL
+
+#' @aliases NumericMatrix-class
+#' @rdname DataMatrix-class
+setClass(
+  Class = "IntegerMatrix",
+  slot = c(
+    data = "integer"
+  ),
+  contains = c("GenericMatrix", "VIRTUAL")
 )
 
+#' @aliases NumericMatrix-class
+#' @rdname DataMatrix-class
+setClass(
+  Class = "NumericMatrix",
+  slot = c(
+    data = "numeric"
+  ),
+  contains = c("GenericMatrix", "VIRTUAL")
+)
+
+#' @aliases LogicalMatrix-class
+#' @rdname DataMatrix-class
+setClass(
+  Class = "LogicalMatrix",
+  slots = c(
+    data = "logical"
+  ),
+  contains = c("GenericMatrix", "VIRTUAL")
+)
+
+setClassUnion(
+  name = "DataMatrix",
+  members = c("IntegerMatrix", "NumericMatrix", "LogicalMatrix")
+)
+
+# --------------------------------------------------------------- Integer matrix
 #' Absolute Frequency Matrix
 #'
 #' An S4 class to represent an absolute frequency matrix (i.e. the number of
 #' times a given datum occurs in a dataset).
-#' @inheritParams base::matrix
-#' @inheritSection Matrix-class Matrix ID
-#' @inheritSection Matrix-class Get and set
-#' @inheritSection Matrix-class Access
-#' @inheritSection Matrix-class Subset
+#' @inheritParams DataMatrix-class
+#' @inheritSection GenericMatrix-class Matrix ID
+#' @inheritSection GenericMatrix-class Get and set
+#' @inheritSection GenericMatrix-class Access
+#' @inheritSection GenericMatrix-class Subset
 #' @seealso \linkS4class{NumericMatrix}
-#' @example inst/examples/ex-numeric-class.R
+#' @example inst/examples/ex-matrix.R
 #' @author N. Frerebeau
 #' @family matrix
 #' @docType class
@@ -108,20 +169,21 @@
 #' @aliases CountMatrix-class
 .CountMatrix <- setClass(
   Class = "CountMatrix",
-  contains = "NumericMatrix"
+  contains = "IntegerMatrix"
 )
 
+# --------------------------------------------------------------- Numeric matrix
 #' Relative Frequency Matrix
 #'
 #' An S4 class to represent a relative frequency matrix (i.e. the fraction of
 #' times a given datum occurs in a dataset).
 #' @slot totals A \code{\link{numeric}} vector.
-#' @inheritSection Matrix-class Matrix ID
-#' @inheritSection Matrix-class Get and set
-#' @inheritSection Matrix-class Access
-#' @inheritSection Matrix-class Subset
+#' @inheritSection GenericMatrix-class Matrix ID
+#' @inheritSection GenericMatrix-class Get and set
+#' @inheritSection GenericMatrix-class Access
+#' @inheritSection GenericMatrix-class Subset
 #' @seealso \linkS4class{NumericMatrix}
-#' @example inst/examples/ex-numeric-class.R
+#' @example inst/examples/ex-matrix.R
 #' @author N. Frerebeau
 #' @family matrix
 #' @docType class
@@ -142,12 +204,12 @@
 #'  A co-occurrence matrix is a symmetric matrix with zeros on its main
 #'  diagonal, which works out how many times (expressed in percent) each pairs
 #'  of taxa/types occur together in at least one sample.
-#' @inheritSection Matrix-class Matrix ID
-#' @inheritSection Matrix-class Get and set
-#' @inheritSection Matrix-class Access
-#' @inheritSection Matrix-class Subset
+#' @inheritSection GenericMatrix-class Matrix ID
+#' @inheritSection GenericMatrix-class Get and set
+#' @inheritSection GenericMatrix-class Access
+#' @inheritSection GenericMatrix-class Subset
 #' @seealso \linkS4class{NumericMatrix}
-#' @example inst/examples/ex-numeric-class.R
+#' @example inst/examples/ex-matrix.R
 #' @author N. Frerebeau
 #' @family matrix
 #' @docType class
@@ -155,6 +217,9 @@
 #' @aliases OccurrenceMatrix-class
 .OccurrenceMatrix <- setClass(
   Class = "OccurrenceMatrix",
+  slots = c(
+    n = "integer"
+  ),
   contains = "NumericMatrix"
 )
 
@@ -163,10 +228,10 @@
 #' An S4 class to represent a (dis)similarity matrix.
 #' @slot method A \code{\link{character}} string specifying the distance
 #'  method used.
-#' @inheritSection Matrix-class Matrix ID
-#' @inheritSection Matrix-class Get and set
-#' @inheritSection Matrix-class Access
-#' @inheritSection Matrix-class Subset
+#' @inheritSection GenericMatrix-class Matrix ID
+#' @inheritSection GenericMatrix-class Get and set
+#' @inheritSection GenericMatrix-class Access
+#' @inheritSection GenericMatrix-class Subset
 #' @seealso \linkS4class{NumericMatrix}
 #' @family matrix
 #' @author N. Frerebeau
@@ -182,37 +247,16 @@
 )
 
 # --------------------------------------------------------------- Logical matrix
-#' Logical Matrix
-#'
-#' An S4 class to represent a logical matrix.
-#' @inheritSection Matrix-class Matrix ID
-#' @inheritSection Matrix-class Get and set
-#' @inheritSection Matrix-class Access
-#' @inheritSection Matrix-class Subset
-#' @note
-#'  Numeric values are coerced to \code{\link{logical}} as by
-#'  \code{\link{as.logical}}.
-#' @seealso \linkS4class{Matrix}
-#' @author N. Frerebeau
-#' @family matrix
-#' @docType class
-#' @aliases LogicalMatrix-class
-#' @keywords internal
-.LogicalMatrix <- setClass(
-  Class = "LogicalMatrix",
-  contains = "Matrix"
-)
-
 #' Incidence Matrix
 #'
 #' An S4 class to represent an incidence (presence/absence) matrix.
-#' @inheritParams base::matrix
-#' @inheritSection Matrix-class Matrix ID
-#' @inheritSection Matrix-class Get and set
-#' @inheritSection Matrix-class Access
-#' @inheritSection Matrix-class Subset
+#' @inheritParams DataMatrix-class
+#' @inheritSection GenericMatrix-class Matrix ID
+#' @inheritSection GenericMatrix-class Get and set
+#' @inheritSection GenericMatrix-class Access
+#' @inheritSection GenericMatrix-class Subset
 #' @seealso \linkS4class{LogicalMatrix}
-#' @example inst/examples/ex-logical-class.R
+#' @example inst/examples/ex-matrix.R
 #' @author N. Frerebeau
 #' @family matrix
 #' @docType class
@@ -226,17 +270,17 @@
 #' Stratigraphic Matrix
 #'
 #' An S4 class to represent a stratigraphic matrix.
-#' @slot units A \code{\link{character}} vector giving the stratigraphic unit
-#'  names.
+#' @slot units A \code{\link{character}} vector giving the names of the
+#'  stratigraphic unit.
 #' @details
 #'  A stratigraphic matrix represents directed relationships between
 #'  stratigraphic units. A stratigraphic matrix is an adjacency matrix (a non
 #'  symmetric square matrix with zeros on its main diagonal), suitable to build
 #'  a directed acyclic graph (DAG).
-#' @inheritSection Matrix-class Matrix ID
-#' @inheritSection Matrix-class Get and set
-#' @inheritSection Matrix-class Access
-#' @inheritSection Matrix-class Subset
+#' @inheritSection GenericMatrix-class Matrix ID
+#' @inheritSection GenericMatrix-class Get and set
+#' @inheritSection GenericMatrix-class Access
+#' @inheritSection GenericMatrix-class Subset
 #' @seealso \linkS4class{LogicalMatrix}
 #' @example inst/examples/ex-stratigraphy.R
 #' @author N. Frerebeau
@@ -246,8 +290,5 @@
 #' @aliases StratigraphicMatrix-class
 .StratigraphicMatrix <- setClass(
   Class = "StratigraphicMatrix",
-  slots = c(
-    units = "character"
-  ),
   contains = "LogicalMatrix"
 )

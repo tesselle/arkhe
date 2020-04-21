@@ -1,11 +1,51 @@
 # CLASSES INITIALIZATION
 
-# ====================================================================== *Matrix
+# =================================================================== initialize
 setMethod(
   f = "initialize",
-  signature = "Matrix",
-  definition = function(.Object, ..., id) {
+  signature = "GenericMatrix",
+  definition = function(.Object, ..., id, size, row_names, column_names,
+                        dates, coordinates) {
+
     .Object@id <- if (missing(id)) generate_uuid() else id
+    .Object@size <- if (missing(size)) c(0L, 0L) else as.integer(size)
+    .Object@row_names <- if (missing(row_names)) character(0) else as.character(row_names)
+    .Object@column_names <- if (missing(column_names)) character(0) else as.character(column_names)
+    .Object@dates <- if (missing(dates)) vector("list", 0L) else dates
+    .Object@coordinates <- if (missing(coordinates)) vector("list", 0L) else coordinates
+
+    .Object <- methods::callNextMethod()
+    methods::validObject(.Object)
+    .Object
+  }
+)
+setMethod(
+  f = "initialize",
+  signature = "AbundanceMatrix",
+  definition = function(.Object, ..., totals) {
+    .Object <- methods::callNextMethod()
+    if (missing(totals)) {
+      size <- .Object@size
+      nrows <- size[[1L]]
+      ncols <- size[[2L]]
+      index <- rep(seq_len(nrows), times = ncols)
+      .Object@totals <- vapply(
+        X = split(x = .Object@data, f = index),
+        FUN = sum,
+        FUN.VALUE = integer(1)
+      )
+    } else {
+      .Object@totals <- totals
+    }
+    methods::validObject(.Object)
+    .Object
+  }
+)
+setMethod(
+  f = "initialize",
+  signature = "OccurrenceMatrix",
+  definition = function(.Object, ..., n) {
+    .Object@n <- if (missing(n)) 0L else n
     .Object <- methods::callNextMethod()
     methods::validObject(.Object)
     .Object
@@ -21,70 +61,55 @@ setMethod(
     .Object
   }
 )
-setMethod(
-  f = "initialize",
-  signature = "StratigraphicMatrix",
-  definition = function(.Object, ..., units) {
-    .Object@units <- if (missing(units)) character(0) else units
-    .Object <- methods::callNextMethod()
-    methods::validObject(.Object)
-    .Object
-  }
-)
 
-#' Matrix constructor
-#'
-#' @inheritParams base::matrix
-#' @param rows A \code{\link{logical}} scalar: is the number of rows
-#'  unspecified?
-#' @param cols A \code{\link{logical}} scalar: is the number of columns
-#'  unspecified?
-#' @return A \link{\code{matrix}}.
-#' @author N. Frerebeau
-#' @keywords internal
-#' @noRd
-build_matrix <- function(data, nrow, ncol, byrow, dimnames,
-                        rows = FALSE, cols = FALSE) {
-  k <- length(data)
-  if (rows) nrow <- k / ncol
-  if (cols) ncol <- k / nrow
-
-  if (is.null(dimnames))
-    dimnames <- list(NULL, NULL)
-  if (is.null(dimnames[[1]]) && nrow > 0)
-    dimnames[[1]] <- seq_len(nrow)
-  if (is.null(dimnames[[2]]) && ncol > 0)
-    dimnames[[2]] <- paste0("V", seq_len(ncol))
-
-  M <- matrix(data, nrow, ncol, byrow, dimnames)
-  return(M)
-}
-
+# ================================================================== constructor
 #' @export
 #' @rdname CountMatrix-class
-CountMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
-                        dimnames = NULL, ...) {
-  M <- build_matrix(data, nrow, ncol, byrow, dimnames,
-                    missing(nrow), missing(ncol))
-  .CountMatrix(M, ...)
+CountMatrix <- function(data = 0, nrow = 1, ncol = 1,
+                        dimnames = NULL) {
+  n <- length(data)
+  if (missing(ncol)) ncol <- n / nrow
+  if (missing(nrow)) nrow <- n / ncol
+  size <- as.integer(c(nrow, ncol))
+
+  .CountMatrix(
+    data = as_integer(data),
+    size = as.integer(c(nrow, ncol)),
+    row_names = make_names(dimnames[[1L]], nrow, "row"),
+    column_names = make_names(dimnames[[2L]], ncol, "col")
+  )
 }
 
-# @rdname AbundanceMatrix-class
-AbundanceMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
-                            dimnames = NULL, ...) {
-  M <- build_matrix(data, nrow, ncol, byrow, dimnames,
-                    missing(nrow), missing(ncol))
-  totals <- rowSums(M)
-  M <- M / totals
-  .AbundanceMatrix(M, ..., totals = totals)
+AbundanceMatrix <- function(data = 0, nrow = 1, ncol = 1,
+                            dimnames = NULL, totals = NULL) {
+  n <- length(data)
+  if (missing(ncol)) ncol <- n / nrow
+  if (missing(nrow)) nrow <- n / ncol
+  size <- as.integer(c(nrow, ncol))
+  if (is.null(totals))
+    totals <- tapply(X = data, INDEX = index_by_row(size), FUN = sum)
+
+  .AbundanceMatrix(
+    data = as.numeric(data),
+    totals = as.numeric(totals),
+    size = size,
+    row_names = make_names(dimnames[[1L]], nrow, "row"),
+    column_names = make_names(dimnames[[2L]], ncol, "col")
+  )
 }
 
 #' @export
 #' @rdname IncidenceMatrix-class
-IncidenceMatrix <- function(data = FALSE, nrow = 1, ncol = 1, byrow = FALSE,
-                            dimnames = NULL, ...) {
-  data <- as.logical(data)
-  M <- build_matrix(data, nrow, ncol, byrow, dimnames,
-                    missing(nrow), missing(ncol))
-  .IncidenceMatrix(M, ...)
+IncidenceMatrix <- function(data = FALSE, nrow = 1, ncol = 1,
+                            dimnames = NULL) {
+  n <- length(data)
+  if (missing(ncol)) ncol <- n / nrow
+  if (missing(nrow)) nrow <- n / ncol
+
+  .IncidenceMatrix(
+    data = as.logical(data),
+    size = as.integer(c(nrow, ncol)),
+    row_names = make_names(dimnames[[1L]], nrow, "row"),
+    column_names = make_names(dimnames[[2L]], ncol, "col")
+  )
 }

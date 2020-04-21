@@ -198,8 +198,7 @@ check_infinite <- function(x) {
 NULL
 
 #' @rdname check-numeric
-check_numbers <- function(x, expected = c("positive", "whole", "odd", "even"),
-                          ...) {
+check_numbers <- function(x, expected, ...) {
   arg <- deparse(substitute(x))
   predicate <- switch(
     expected,

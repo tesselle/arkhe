@@ -96,33 +96,26 @@ test_that("CountMatrix <> AbundanceMatrix", {
   count1 <- as_count(mtx_count)
   freq1 <- as_abundance(count1)
   count2 <- as_count(freq1)
-  expect_identical(count1, count2)
-
-  freq1@totals <- numeric(0)
-  expect_error(as_count(freq1), "Cannot calculate absolute frequencies")
+  expect_equal(count1, count2)
 })
-test_that("*Matrix > CountMatrix", {
+test_that("DataMatrix > CountMatrix", {
   expect_s4_class(as_count(count), "CountMatrix")
-  # expect_error(as_count(occ))
 })
-test_that("*Matrix > AbundanceMatrix", {
+test_that("DataMatrix > AbundanceMatrix", {
   expect_s4_class(as_abundance(count), "AbundanceMatrix")
   expect_s4_class(as_abundance(freq), "AbundanceMatrix")
-  expect_s4_class(as_abundance(incid), "AbundanceMatrix")
-  # expect_error(as_abundance(occ))
 })
-test_that("*Matrix > IncidenceMatrix", {
+test_that("DataMatrix > IncidenceMatrix", {
   expect_s4_class(as_incidence(count), "IncidenceMatrix")
   expect_s4_class(as_incidence(freq), "IncidenceMatrix")
   expect_s4_class(as_incidence(incid), "IncidenceMatrix")
-  # expect_error(as_incidence(occ))
 })
-test_that("*Matrix > OccurrenceMatrix", {
+test_that("DataMatrix > OccurrenceMatrix", {
   expect_s4_class(as_occurrence(count), "OccurrenceMatrix")
   expect_s4_class(as_occurrence(freq), "OccurrenceMatrix")
   expect_s4_class(as_occurrence(incid), "OccurrenceMatrix")
 })
-test_that("*Matrix > features", {
+test_that("DataMatrix > features", {
   expect_message(as_features(count), "No coordinates were set, NA generated.")
   expect_message(as_features(count), "No dates were set, NA generated.")
 })

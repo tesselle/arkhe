@@ -2,43 +2,49 @@
 #' @include AllClasses.R
 NULL
 
-# Matrix =======================================================================
+# ======================================================================= Matrix
 setValidity(
-  Class = "Matrix",
+  Class = "GenericMatrix",
   method = function(object) {
     # Get data
-    data <- S3Part(object, strictS3 = TRUE, "matrix")
     id <- object@id
+    size <- object@size
+    row_names <- object@row_names
+    column_names <- object@column_names
     dates <- object@dates
     coordinates <- object@coordinates
 
     # Check
     errors <- list(
-      # Check data
-      catch_conditions(check_missing(data)),
-      catch_conditions(check_infinite(data)),
       # Check id
-      catch_conditions(check_uuid(id))
+      catch_conditions(check_uuid(id)),
+      catch_conditions(check_scalar(id, "character")),
+      # Check size
+      catch_conditions(check_length(size, 2)),
+      # Check row names
+      catch_conditions(check_length(row_names, size[[1L]])),
+      # Check column names
+      catch_conditions(check_length(column_names, size[[2L]]))
     )
-    if (nrow(data) > 0 && length(dates) != 0) {
+    if (length(dates) > 0) {
       errors <- append(
         errors,
         list(
           # Check dates
-          catch_conditions(check_length(dates, nrow(data))),
+          catch_conditions(check_length(dates, size[[1L]])),
           catch_conditions(check_lengths(dates, 2)),
-          catch_conditions(check_names(dates, margin = 1, rownames(data)))
+          catch_conditions(check_names(dates, margin = 1, row_names))
         )
       )
     }
-    if (nrow(data) > 0 && length(coordinates) != 0) {
+    if (length(coordinates) > 0) {
       errors <- append(
         errors,
         list(
           # Check coordinates
-          catch_conditions(check_length(coordinates, nrow(data))),
+          catch_conditions(check_length(coordinates, size[[1L]])),
           catch_conditions(check_lengths(coordinates, 3)),
-          catch_conditions(check_names(coordinates, margin = 1, rownames(data)))
+          catch_conditions(check_names(coordinates, margin = 1, row_names))
         )
       )
     }
@@ -48,106 +54,95 @@ setValidity(
   }
 )
 
-# NumericMatrix ================================================================
+# =================================================================== DataMatrix
 setValidity(
-  Class = "NumericMatrix",
+  Class = "DataMatrix",
   method = function(object) {
     # Get data
-    data <- S3Part(object, strictS3 = TRUE, "matrix")
+    data <- object@data
+    size <- object@size
 
-    if (nrow(data) > 0) {
-      errors <- list(
-        # Check data
-        catch_conditions(check_type(data, "numeric"))
-      )
-    } else {
-      errors <- list()
-    }
+    errors <- list(
+      # Check data
+      catch_conditions(check_length(data, Reduce(`*`, size))),
+      catch_conditions(check_missing(data))
+    )
 
-    # Return errors if any
+    # Return errors, if any
     check_class(object, errors)
   }
 )
 
-## CountMatrix -----------------------------------------------------
+# ================================================================ IntegerMatrix
+# ------------------------------------------------------------------ CountMatrix
 setValidity(
   Class = "CountMatrix",
   method = function(object) {
     # Get data
-    data <- methods::S3Part(object, strictS3 = TRUE, "matrix")
-    # dates <- object@dates
-    # coordinates <- object@coordinates
+    data <- object@data
 
     errors <- list(
       # Check data
-      catch_conditions(check_numbers(data, "positive", strict = FALSE)),
-      catch_conditions(check_numbers(data, "whole"))
+      catch_conditions(check_numbers(data, "positive",
+                                     strict = FALSE, na.rm = TRUE))
     )
-    # Messages
-    # TODO: warning instead of message?
-    # if (all(is_binary(data)))
-    #   message("Your matrix contains only 0s and 1s.\n",
-    #           "You should consider using an incidence matrix instead.")
+    # TODO: check if only 0s and 1s (?)
 
     # Return errors, if any
     check_class(object, errors)
   }
 )
 
-## AbundanceMatrix -------------------------------------------------------------
+# ================================================================ NumericMatrix
+# -------------------------------------------------------------- AbundanceMatrix
 setValidity(
   Class = "AbundanceMatrix",
   method = function(object) {
     # Get data
-    data <- methods::S3Part(object, strictS3 = TRUE, "matrix")
+    data <- object@data
+    size <- object@size
     totals <- object@totals
-    # dates <- object@dates
-    # coordinates <- object@coordinates
 
     errors <- list(
       # Check data
-      catch_conditions(check_numbers(data, "positive", strict = FALSE)),
+      catch_conditions(check_numbers(data, "positive",
+                                     strict = FALSE, na.rm = TRUE)),
       # Check totals
-      catch_conditions(check_length(totals, nrow(data)))
+      catch_conditions(check_length(totals, size[[1L]]))
     )
-    if (nrow(data) > 0) {
-      errors <- append(
-        errors,
-        list(
-          # Check totals
-          catch_conditions(check_constant(rowSums(data)))
-        )
-      )
-    }
-    # print(totals)
+    # TODO: check constant sum.
+
     # Return errors, if any
     check_class(object, errors)
   }
 )
-
-## OccurrenceMatrix ------------------------------------------------------------
+# ------------------------------------------------------------- OccurrenceMatrix
 setValidity(
   Class = "OccurrenceMatrix",
   method = function(object) {
     # Get data
-    data <- methods::S3Part(object, strictS3 = TRUE, "matrix")
+    data <- as_matrix(object)
+    n <- object@n
 
     errors <- list(
       # Check data
-      catch_conditions(check_symmetric(data))
+      catch_conditions(check_symmetric(data)),
+      catch_conditions(check_numbers(data, "positive",
+                                     strict = FALSE, na.rm = TRUE)),
+      # Check n
+      catch_conditions(check_scalar(n, "integer"))
     )
 
     # Return errors, if any
     check_class(object, errors)
   }
 )
-
-## SimilarityMatrix ------------------------------------------------------------
+# ------------------------------------------------------------- SimilarityMatrix
 setValidity(
   Class = "SimilarityMatrix",
   method = function(object) {
     # Get data
-    data <- methods::S3Part(object, strictS3 = TRUE, "matrix")
+    data <- as_matrix(object)
     method <- object@method
 
     errors <- list(
@@ -163,50 +158,19 @@ setValidity(
   }
 )
 
-# LogicalMatrix ================================================================
-setValidity(
-  Class = "LogicalMatrix",
-  method = function(object) {
-    # Get data
-    data <- S3Part(object, strictS3 = TRUE, "matrix")
-
-    if (nrow(data) > 0) {
-      errors <- list(
-        # Check data
-        catch_conditions(check_type(data, "logical"))
-      )
-    } else {
-      errors <- list()
-    }
-
-    # Return errors if any
-    check_class(object, errors)
-  }
-)
-
-# -------------------------------------------------------------- IncidenceMatrix
-# setValidity(
-#   Class = "IncidenceMatrix",
-#   method = function(object) {
-#
-#   }
-# )
-
+# ================================================================ LogicalMatrix
 # ---------------------------------------------------------- StratigraphicMatrix
 setValidity(
   Class = "StratigraphicMatrix",
   method = function(object) {
     # Get data
-    data <- methods::S3Part(object, strictS3 = TRUE, "matrix")
-    units <- object@units
+    data <- as_matrix(object)
 
     if (nrow(data) > 0) {
       errors <- list(
         # Check data
         catch_conditions(check_square(data)),
-        catch_conditions(check_dag(data)),
-        # Check unit names
-        catch_conditions(check_length(units, nrow(data)))
+        catch_conditions(check_dag(data))
       )
     } else {
       errors <- list()

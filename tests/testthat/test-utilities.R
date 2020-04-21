@@ -31,20 +31,9 @@ test_that("NULL OR operator", {
 test_that("Row and column names", {
   mtx <- matrix(sample(1:10, 100, TRUE), ncol = 10)
 
-  X <- make_rownames(mtx)
-  expect_equal(rownames(X), as.character(seq_len(10)))
-
-  Y <- make_colnames(mtx)
-  expect_equal(colnames(Y), paste0("V", seq_len(10)))
-
-  Z <- make_dimnames(mtx)
-  expect_equal(dimnames(Z), list(as.character(seq_len(10)),
-                                 paste0("V", seq_len(10))))
-
-  expect_error(make_rownames(LETTERS),
-               "A matrix or data.frame is expected.")
-  expect_error(make_colnames(LETTERS),
-               "A matrix or data.frame is expected.")
+  expect_equal(make_dimnames(mtx),
+               list(paste0("row", seq_len(10)),
+                    paste0("col", seq_len(10))))
 
   rownames(mtx) <- LETTERS[seq_len(10)]
   A <- rownames_to_column(mtx, factor = TRUE)

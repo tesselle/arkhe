@@ -7,27 +7,18 @@
 \alias{CountMatrix}
 \title{Absolute Frequency Matrix}
 \usage{
-CountMatrix(data = 0, nrow = 1, ncol = 1, byrow = FALSE, dimnames = NULL, ...)
+CountMatrix(data = 0, nrow = 1, ncol = 1, dimnames = NULL)
 }
 \arguments{
-\item{data}{an optional data vector (including a list or
-    \code{\link[base]{expression}} vector).  Non-atomic classed \R objects are
-    coerced by \code{\link[base]{as.vector}} and all attributes discarded.}
+\item{data}{A data vector.}
 
-\item{nrow}{the desired number of rows.}
+\item{nrow}{An \code{\link{integer}} value giving the desired number of rows.}
 
-\item{ncol}{the desired number of columns.}
+\item{ncol}{An \code{\link{integer}} value giving the desired number of
+columns.}
 
-\item{byrow}{logical. If \code{FALSE} (the default) the matrix is
-    filled by columns, otherwise the matrix is filled by rows.}
-
-\item{dimnames}{A \code{\link[base]{dimnames}} attribute for the matrix:
-    \code{NULL} or a \code{list} of length 2 giving the row and column
-    names respectively.  An empty list is treated as \code{NULL}, and a
-    list of length one as row names.  The list can be named, and the
-    list names will be used as names for the dimensions.}
-
-\item{...}{additional arguments to be passed to or from methods.}
+\item{dimnames}{A list of length 2 giving the row and column names
+respectively. If \code{NULL} (the default) dimension names will be created.}
 }
 \description{
 An S4 class to represent an absolute frequency matrix (i.e. the number of
@@ -90,44 +81,41 @@ times a given datum occurs in a dataset).
 }
 
 \examples{
+## Create an incidence (presence/absence) matrix
+## Data will be coerced with as.logical()
+A <- IncidenceMatrix(data = sample(0:1, 100, TRUE, c(1, 1/3)), nrow = 20)
 ## Create a count data matrix
-A1 <- CountMatrix(data = sample(0:10, 100, TRUE), nrow = 10, ncol = 10)
+B <- CountMatrix(data = sample(0:10, 100, TRUE), nrow = 20)
+get_id(B)
 
 ## Access
-get_id(A1)
-dim(A1) # Get the matrix dimensions
-colnames(A1) <- letters[11:20] # Set the column names
-colnames(A1) # Get the column names
-rownames(A1) <- LETTERS[1:10] # Set the row names
-rownames(A1) # Get the rownames
+dim(B) # Get the matrix dimensions
+row(B) # Get the row indexes
+col(B, as.factor = TRUE) # Get the column indexes
+nrow(B) # Get the number of rows
+ncol(B) # Get the number of columns
+dimnames(B) # Get the dimension names
+rownames(B) <- LETTERS[1:20] # Set the row names
+rownames(B) # Get the rownames
+colnames(B) <- letters[21:25] # Set the column names
+colnames(B) # Get the column names
 
 ## Subset
-A1[[1]] # Get the first value
-A1[, ] # Get all values
-A1[1, ] # Get the first row
-A1[c("A", "B", "C"), ] # Get the first three rows
-A1[c("A", "B", "C"), 1] # Get the first three rows of the first column
-A1[, 1, drop = FALSE] # Get the first column
-
-## Coerce counts to relative frequencies
-B <- as_abundance(A1)
-## Row sums are internally stored before coercing to a frequency matrix
-get_totals(B) # Get row sums
-## This allows to restore the source data
-A2 <- as_count(B)
-all(A1 == A2)
-## Coerce to a co-occurrence matrix
-B <- as_occurrence(A1)
+B[[1, 1]] # Get the first value
+B[, ] # Get all values
+B[1, ] # Get the first row
+B[, 1] # Get the first column
+B[c("A", "B", "C"), ] # Get the first three rows
+B[c("A", "B", "C"), 1, drop = FALSE] # Get the first 3 rows of the first column
 }
 \seealso{
 \linkS4class{NumericMatrix}
 
 Other matrix: 
 \code{\link{AbundanceMatrix-class}},
+\code{\link{DataMatrix-class}},
+\code{\link{GenericMatrix-class}},
 \code{\link{IncidenceMatrix-class}},
-\code{\link{LogicalMatrix-class}},
-\code{\link{Matrix-class}},
-\code{\link{NumericMatrix-class}},
 \code{\link{OccurrenceMatrix-class}},
 \code{\link{SimilarityMatrix-class}},
 \code{\link{StratigraphicMatrix-class}},

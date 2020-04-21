@@ -37,7 +37,7 @@ test_that("dates cannot be set with garbage", {
   expect_error(make_dates(NA), "a list, a matrix or a data frame is expected")
 })
 test_that("dates can be set to a Matrix", {
-  options("verbose" = TRUE)
+  options(verbose = TRUE)
   X <- CountMatrix(data = sample(1:10, 100, TRUE), nrow = 10)
 
   Y <- sample(1:10, 10, TRUE)

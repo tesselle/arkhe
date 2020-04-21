@@ -7,18 +7,18 @@
 \alias{get_coordinates-method}
 \alias{set_coordinates<-}
 \alias{set_coordinates-method}
-\alias{get_coordinates,Matrix-method}
-\alias{set_coordinates<-,Matrix-method}
-\alias{set_coordinates,Matrix-method}
+\alias{get_coordinates,GenericMatrix-method}
+\alias{set_coordinates<-,GenericMatrix-method}
+\alias{set_coordinates,GenericMatrix-method}
 \title{Spatial Information}
 \usage{
 get_coordinates(object)
 
 set_coordinates(object) <- value
 
-\S4method{get_coordinates}{Matrix}(object)
+\S4method{get_coordinates}{GenericMatrix}(object)
 
-\S4method{set_coordinates}{Matrix}(object) <- value
+\S4method{set_coordinates}{GenericMatrix}(object) <- value
 }
 \arguments{
 \item{object}{An object from which to get or set element(s).}

@@ -3,6 +3,12 @@
 \docType{methods}
 \name{coerce}
 \alias{coerce}
+\alias{as_matrix}
+\alias{as_matrix-method}
+\alias{as_wide}
+\alias{as_wide-method}
+\alias{as_long}
+\alias{as_long-method}
 \alias{as_count}
 \alias{as_count-method}
 \alias{as_abundance}
@@ -23,9 +29,21 @@
 \alias{as_occurrence,ANY-method}
 \alias{as_similarity,ANY-method}
 \alias{as_stratigraphy,ANY-method}
-\alias{as_features,Matrix-method}
+\alias{as_matrix,DataMatrix-method}
+\alias{as_matrix,ANY-method}
+\alias{as_wide,DataMatrix-method}
+\alias{as_wide,ANY-method}
+\alias{as_long,DataMatrix-method}
+\alias{as_long,ANY-method}
+\alias{as_features,DataMatrix-method}
 \title{Coerce}
 \usage{
+as_matrix(from)
+
+as_wide(from)
+
+as_long(from)
+
 as_count(from)
 
 as_abundance(from)
@@ -52,7 +70,13 @@ as_stratigraphy(from)
 
 \S4method{as_stratigraphy}{ANY}(from)
 
-\S4method{as_features}{Matrix}(from)
+\S4method{as_matrix}{DataMatrix}(from)
+
+\S4method{as_wide}{DataMatrix}(from)
+
+\S4method{as_long}{DataMatrix}(from)
+
+\S4method{as_features}{DataMatrix}(from)
 }
 \arguments{
 \item{from}{A numeric \code{\link{matrix}} or \code{\link{data.frame}} to be
@@ -65,8 +89,7 @@ A coerced object.
 Coerce
 }
 \details{
-The following methods coerce a \code{matrix} or \code{data.frame} to a
- \code{*Matrix} object:
+The following methods coerce an object to a \code{Matrix} object:
 
  \tabular{lll}{
   \strong{Method} \tab \strong{Target} \tab \strong{Details} \cr
@@ -78,19 +101,29 @@ The following methods coerce a \code{matrix} or \code{data.frame} to a
   \code{as_stratigraphy} \tab \linkS4class{StratigraphicMatrix} \tab stratigraphic relationships
  }
 
- \code{as_features} converts an \linkS4class{Matrix} object to a
- collection of features (i.e. a\code{\link{data.frame}} with
- dates and coordinates columns).
+ **Note that \code{as_count} round numeric values to zero decimal places and
+ then coerce to integer as by \code{\link{as.integer}}.**
+
+ \tabular{lll}{
+  \strong{Method} \tab \strong{Target} \tab \strong{Details} \cr
+  \code{as_matrix} \tab \code{\link{matrix}} \tab S3 matrix \cr
+  \code{as_wide} \tab \code{\link{data.frame}} \tab wide S3 data frame \cr
+  \code{as_long} \tab \code{\link{data.frame}} \tab long S3 data frame \cr
+ }
 
  \code{as_stratigraphy} converts a set of stratigraphic relationships (edges)
  to a stratigraphic (adjacency) matrix. \code{from} can be a
  \code{\link{matrix}}, \code{\link{list}}, or \code{\link{data.frame}}:
  the first column/component is assumed to contain the bottom units and the
  second the top units.
+
+ \code{as_features} converts an \linkS4class{Matrix} object to a
+ collection of features (i.e. a\code{\link{data.frame}} with
+ dates and coordinates columns).
 }
 \examples{
 ## Create a count matrix
-A0 <- matrix(data = sample(0:10, 100, TRUE), nrow = 10, ncol = 10)
+A0 <- matrix(data = sample(0:10, 100, TRUE), nrow = 10, ncol = 5)
 
 ## Coerce to absolute frequencies
 A1 <- as_count(A0)
@@ -98,8 +131,8 @@ A1 <- as_count(A0)
 ## Coerce to relative frequencies
 B <- as_abundance(A1)
 
-## Row sums are internally stored before coercing to a frequency matrix
-## (use totals() to get these values)
+## Row sums are internally stored before coercing to relative frequencies
+## (use get_totals() to retrieve these values)
 ## This allows to restore the source data
 A2 <- as_count(B)
 all(A1 == A2)
@@ -110,19 +143,26 @@ C <- as_incidence(A1)
 ## Coerce to a co-occurrence matrix
 D <- as_occurrence(A1)
 
+## Coerce to an S3 matrix or data.frame
+X <- as_matrix(A1)
+all(A0 == X)
+
+Y <- as_wide(A1)
+Z <- as_long(A1)
+head(Z)
+
 ## Collection of features
-set_dates(A1) <- matrix(sample(0:10, 20, TRUE), nrow = 10, ncol = 2)
-set_coordinates(A1) <- matrix(sample(0:10, 30, TRUE), nrow = 10, ncol = 3)
-as_features(A1)
+# set_dates(A1) <- matrix(sample(0:10, 20, TRUE), nrow = 10, ncol = 2)
+# set_coordinates(A1) <- matrix(sample(0:10, 30, TRUE), nrow = 10, ncol = 3)
+# as_features(A1)
 }
 \seealso{
 Other matrix: 
 \code{\link{AbundanceMatrix-class}},
 \code{\link{CountMatrix-class}},
+\code{\link{DataMatrix-class}},
+\code{\link{GenericMatrix-class}},
 \code{\link{IncidenceMatrix-class}},
-\code{\link{LogicalMatrix-class}},
-\code{\link{Matrix-class}},
-\code{\link{NumericMatrix-class}},
 \code{\link{OccurrenceMatrix-class}},
 \code{\link{SimilarityMatrix-class}},
 \code{\link{StratigraphicMatrix-class}}

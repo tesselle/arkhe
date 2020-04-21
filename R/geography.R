@@ -3,10 +3,10 @@
 # ========================================================================== Get
 #' @export
 #' @rdname geography
-#' @aliases get_coordinates,Matrix-method
+#' @aliases get_coordinates,GenericMatrix-method
 setMethod(
   f = "get_coordinates",
-  signature = "Matrix",
+  signature = "GenericMatrix",
   definition = function(object) {
     if (length(object@coordinates) != 0) {
       coords <- do.call(rbind, object@coordinates)
@@ -72,10 +72,10 @@ make_coordinates <- function(value) {
 
 #' @export
 #' @rdname geography
-#' @aliases set_coordinates,Matrix-method
+#' @aliases set_coordinates,GenericMatrix-method
 setMethod(
   f = "set_coordinates<-",
-  signature = "Matrix",
+  signature = "GenericMatrix",
   definition = function(object, value) {
     value <- make_coordinates(value)
     rows_value <- rownames(value)

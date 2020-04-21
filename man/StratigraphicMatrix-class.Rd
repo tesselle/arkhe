@@ -17,8 +17,8 @@ A stratigraphic matrix represents directed relationships between
 \section{Slots}{
 
 \describe{
-\item{\code{units}}{A \code{\link{character}} vector giving the stratigraphic unit
-names.}
+\item{\code{units}}{A \code{\link{character}} vector giving the names of the
+stratigraphic unit.}
 }}
 
 \section{Matrix ID}{
@@ -107,10 +107,9 @@ get_units(strati)
 Other matrix: 
 \code{\link{AbundanceMatrix-class}},
 \code{\link{CountMatrix-class}},
+\code{\link{DataMatrix-class}},
+\code{\link{GenericMatrix-class}},
 \code{\link{IncidenceMatrix-class}},
-\code{\link{LogicalMatrix-class}},
-\code{\link{Matrix-class}},
-\code{\link{NumericMatrix-class}},
 \code{\link{OccurrenceMatrix-class}},
 \code{\link{SimilarityMatrix-class}},
 \code{\link{coerce}()}

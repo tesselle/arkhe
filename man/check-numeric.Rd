@@ -6,7 +6,7 @@
 \alias{check_constant}
 \title{Check Numeric Values}
 \usage{
-check_numbers(x, expected = c("positive", "whole", "odd", "even"), ...)
+check_numbers(x, expected, ...)
 
 check_constant(x)
 }

@@ -9,15 +9,15 @@
 \alias{is_binary}
 \title{Numeric Predicates}
 \usage{
-is_odd(x)
+is_odd(x, na.rm = FALSE)
 
-is_even(x)
+is_even(x, na.rm = FALSE)
 
-is_positive(x, strict = FALSE)
+is_positive(x, strict = FALSE, na.rm = FALSE)
 
-is_whole(x, tolerance = .Machine$double.eps^0.5)
+is_whole(x, tolerance = .Machine$double.eps^0.5, na.rm = FALSE)
 
-is_binary(x)
+is_binary(x, na.rm = FALSE)
 }
 \arguments{
 \item{x}{A \code{\link{numeric}} object to be tested.}

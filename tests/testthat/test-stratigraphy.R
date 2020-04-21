@@ -22,6 +22,21 @@ harris <- matrix(
 test_that("Initialize a StratigraphicMatrix instance", {
   # Empty instence
   expect_s4_class(.StratigraphicMatrix(), "StratigraphicMatrix")
+
+  strati <- as_stratigraphy(harris)
+  layers <- c(FALSE, TRUE, TRUE, TRUE, FALSE, FALSE, TRUE, TRUE,
+              FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE,
+              FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE,
+              TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE,
+              FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE,
+              FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE,
+              FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE,
+              FALSE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE,
+              FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE,
+              FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE,
+              TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE,
+              FALSE, FALSE, FALSE)
+  expect_equal(strati@data, layers)
 })
 test_that("non DAG fails", {
   harris1 <- rbind(harris, c(1, 9))

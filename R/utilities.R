@@ -100,32 +100,9 @@ generate_uuid <- function(seed = NULL) {
 #' @family utilities
 #' @keywords internal utilities
 #' @noRd
-make_rownames <- function(x) {
-  if (!is.matrix(x) && !is.data.frame(x))
-    stop("A matrix or data.frame is expected.", call. = FALSE)
-  if (is.null(rownames(x))) {
-    rownames(x) <- seq_len(nrow(x))
-  }
-  x
-}
-make_colnames <- function(x) {
-  if (!is.matrix(x) && !is.data.frame(x))
-    stop("A matrix or data.frame is expected.", call. = FALSE)
-  if (is.null(colnames(x))) {
-    colnames(x) <- paste0("V", seq_len(ncol(x)))
-  }
-  x
-}
-make_dimnames <- function(x) {
-  x <- make_rownames(x)
-  x <- make_colnames(x)
-  x
-}
 rownames_to_column <- function(x, factor = TRUE, id = "id") {
   if (!is.matrix(x) && !is.data.frame(x))
     stop("A matrix or data.frame is expected.", call. = FALSE)
-
-  x <- make_dimnames(x)
 
   row_names <- rownames(x)
   if (factor) {
@@ -136,4 +113,57 @@ rownames_to_column <- function(x, factor = TRUE, id = "id") {
   id <- id[[1L]]
   colnames(y) <- c(id, colnames(x))
   y
+}
+
+#' Row and Column Indexes
+#'
+#' Returns a vector of integer their row or column number in a matrix-like
+#' object.
+#' @param x A length-two \code{\link{integer}} vector giving the dimension of a
+#'  matrix-like object.
+#' @return An \code{\link{integer}} vector.
+#' @examples
+#'  mtx <- matrix(data = c(1,2,3,4,5,6), nrow = 2)
+#'  all(index_by_row(c(2, 3)) == row(mtx))
+#'  all(index_by_column(c(2, 3)) == col(mtx))
+#' @author N. Frerebeau
+#' @family utilities
+#' @keywords internal utilities
+#' @noRd
+index_by_row <- function(x) {
+  if (length(x) != 2) stop("x must be a length-two numeric vector.")
+  rep(seq_len(x[[1L]]), times = x[[2L]])
+}
+index_by_column <- function(x) {
+  if (length(x) != 2) stop("x must be a length-two numeric vector.")
+  rep(seq_len(x[[2L]]), each = x[[1L]])
+}
+
+#' Make Unique Row or Column Names
+#'
+#' Returns a vector of names.
+#' @param x A \code{\link{character}} vector giving the dimension names of a
+#'  matrix-like object.
+#' @param n An \code{\link{integer}} scalar giving the dimension.
+#' @param prefix A \code{\link{character}} string specifying the prefix to be
+#'  used to make dimnames.
+#' @return An \code{\link{character}} vector.
+#' @author N. Frerebeau
+#' @family utilities
+#' @keywords internal utilities
+#' @noRd
+make_names <- function(x, n, prefix = "row") {
+  if (is.null(x)) {
+    if (n > 0) paste0(prefix, seq_len(n)) else character(0)
+  } else {
+    make.unique(as.character(x), sep = "_")
+  }
+}
+make_dimnames <- function(x) {
+  size <- dim(x)
+  dim_names <- dimnames(x)
+  list(
+    make_names(dim_names[[1L]], size[[1L]], "row"),
+    make_names(dim_names[[2L]], size[[2L]], "col")
+  )
 }

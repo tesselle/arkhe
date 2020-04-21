@@ -7,34 +7,18 @@
 \alias{IncidenceMatrix}
 \title{Incidence Matrix}
 \usage{
-IncidenceMatrix(
-  data = FALSE,
-  nrow = 1,
-  ncol = 1,
-  byrow = FALSE,
-  dimnames = NULL,
-  ...
-)
+IncidenceMatrix(data = FALSE, nrow = 1, ncol = 1, dimnames = NULL)
 }
 \arguments{
-\item{data}{an optional data vector (including a list or
-    \code{\link[base]{expression}} vector).  Non-atomic classed \R objects are
-    coerced by \code{\link[base]{as.vector}} and all attributes discarded.}
+\item{data}{A data vector.}
 
-\item{nrow}{the desired number of rows.}
+\item{nrow}{An \code{\link{integer}} value giving the desired number of rows.}
 
-\item{ncol}{the desired number of columns.}
+\item{ncol}{An \code{\link{integer}} value giving the desired number of
+columns.}
 
-\item{byrow}{logical. If \code{FALSE} (the default) the matrix is
-    filled by columns, otherwise the matrix is filled by rows.}
-
-\item{dimnames}{A \code{\link[base]{dimnames}} attribute for the matrix:
-    \code{NULL} or a \code{list} of length 2 giving the row and column
-    names respectively.  An empty list is treated as \code{NULL}, and a
-    list of length one as row names.  The list can be named, and the
-    list names will be used as names for the dimensions.}
-
-\item{...}{additional arguments to be passed to or from methods.}
+\item{dimnames}{A list of length 2 giving the row and column names
+respectively. If \code{NULL} (the default) dimension names will be created.}
 }
 \description{
 An S4 class to represent an incidence (presence/absence) matrix.
@@ -98,12 +82,30 @@ An S4 class to represent an incidence (presence/absence) matrix.
 \examples{
 ## Create an incidence (presence/absence) matrix
 ## Data will be coerced with as.logical()
-A <- IncidenceMatrix(data = sample(0:1, 100, TRUE, c(1, 1/3)), nrow = 10)
-
+A <- IncidenceMatrix(data = sample(0:1, 100, TRUE, c(1, 1/3)), nrow = 20)
 ## Create a count data matrix
-B <- CountMatrix(data = sample(0:10, 100, TRUE), nrow = 10)
-## Coerce to presence/absence
-C <- as_incidence(B)
+B <- CountMatrix(data = sample(0:10, 100, TRUE), nrow = 20)
+get_id(B)
+
+## Access
+dim(B) # Get the matrix dimensions
+row(B) # Get the row indexes
+col(B, as.factor = TRUE) # Get the column indexes
+nrow(B) # Get the number of rows
+ncol(B) # Get the number of columns
+dimnames(B) # Get the dimension names
+rownames(B) <- LETTERS[1:20] # Set the row names
+rownames(B) # Get the rownames
+colnames(B) <- letters[21:25] # Set the column names
+colnames(B) # Get the column names
+
+## Subset
+B[[1, 1]] # Get the first value
+B[, ] # Get all values
+B[1, ] # Get the first row
+B[, 1] # Get the first column
+B[c("A", "B", "C"), ] # Get the first three rows
+B[c("A", "B", "C"), 1, drop = FALSE] # Get the first 3 rows of the first column
 }
 \seealso{
 \linkS4class{LogicalMatrix}
@@ -111,9 +113,8 @@ C <- as_incidence(B)
 Other matrix: 
 \code{\link{AbundanceMatrix-class}},
 \code{\link{CountMatrix-class}},
-\code{\link{LogicalMatrix-class}},
-\code{\link{Matrix-class}},
-\code{\link{NumericMatrix-class}},
+\code{\link{DataMatrix-class}},
+\code{\link{GenericMatrix-class}},
 \code{\link{OccurrenceMatrix-class}},
 \code{\link{SimilarityMatrix-class}},
 \code{\link{StratigraphicMatrix-class}},

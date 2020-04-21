@@ -7,18 +7,18 @@
 \alias{get_dates-method}
 \alias{set_dates<-}
 \alias{set_dates-method}
-\alias{get_dates,Matrix-method}
-\alias{set_dates<-,Matrix-method}
-\alias{set_dates,Matrix-method}
+\alias{get_dates,GenericMatrix-method}
+\alias{set_dates<-,GenericMatrix-method}
+\alias{set_dates,GenericMatrix-method}
 \title{Chronological Information}
 \usage{
 get_dates(object)
 
 set_dates(object) <- value
 
-\S4method{get_dates}{Matrix}(object)
+\S4method{get_dates}{GenericMatrix}(object)
 
-\S4method{set_dates}{Matrix}(object) <- value
+\S4method{set_dates}{GenericMatrix}(object) <- value
 }
 \arguments{
 \item{object}{A \eqn{m \times p}{m x p} matrix of count data (typically of

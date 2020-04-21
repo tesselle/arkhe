@@ -24,7 +24,7 @@ is_empty <- function(x) {
 #' @export
 #' @rdname predicate-utils
 is_named <- function(x) {
-  length(names(x)) != 0
+  !is_empty(names(x))
 }
 #' @export
 #' @rdname predicate-utils
@@ -162,32 +162,37 @@ NULL
 
 #' @export
 #' @rdname predicate-numeric
-is_odd <- function(x) { # impair
+is_odd <- function(x, na.rm = FALSE) { # impair
   check_type(x, "numeric")
+  if (na.rm) x <- stats::na.omit(x)
   as.logical(x %% 2)
 }
 #' @export
 #' @rdname predicate-numeric
-is_even <- function(x) { # pair
+is_even <- function(x, na.rm = FALSE) { # pair
   check_type(x, "numeric")
+  if (na.rm) x <- stats::na.omit(x)
   !as.logical(x %% 2)
 }
 #' @export
 #' @rdname predicate-numeric
-is_positive <- function(x, strict = FALSE) {
+is_positive <- function(x, strict = FALSE, na.rm = FALSE) {
   check_type(x, "numeric")
+  if (na.rm) x <- stats::na.omit(x)
   if (strict) x > 0 else x >= 0
 }
 #' @export
 #' @rdname predicate-numeric
-is_whole <- function(x, tolerance = .Machine$double.eps^0.5) {
+is_whole <- function(x, tolerance = .Machine$double.eps^0.5, na.rm = FALSE) {
   check_type(x, "numeric")
+  if (na.rm) x <- stats::na.omit(x)
   abs(x - round(x, digits = 0)) <= tolerance
 }
 #' @export
 #' @rdname predicate-numeric
-is_binary <- function(x) {
+is_binary <- function(x, na.rm = FALSE) {
   check_type(x, "numeric")
+  if (na.rm) x <- stats::na.omit(x)
   x %in% c(0, 1)
 }
 
