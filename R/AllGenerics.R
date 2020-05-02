@@ -88,6 +88,9 @@ setGeneric(
 #' @param drop A \code{\link{logical}} scalar: should the result be coerced to
 #'  the lowest possible dimension? This only works for extracting elements,
 #'  not for the replacement.
+#' @param exact A \code{\link{logical}} scalar: should partial matching be used?
+#'  If \code{TRUE} (the default), no partial matching is allowed.
+#' @param ... Currently not used.
 #' @return
 #'  A subsetted object of the same sort as \code{x}.
 #' @example inst/examples/ex-matrix.R

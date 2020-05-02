@@ -3,19 +3,40 @@
 \docType{methods}
 \name{subset}
 \alias{subset}
-\alias{[,DataMatrix-method}
-\alias{[[,DataMatrix-method}
-\alias{[<-,DataMatrix-method}
-\alias{[[<-,DataMatrix-method}
+\alias{[,DataMatrix,missing,missing-method}
+\alias{[,DataMatrix,ANY,missing-method}
+\alias{[,DataMatrix,missing,ANY-method}
+\alias{[,DataMatrix,ANY,ANY-method}
+\alias{[[,DataMatrix,ANY,missing-method}
+\alias{[[,DataMatrix,ANY,ANY-method}
+\alias{[<-,DataMatrix,ANY,missing-method}
+\alias{[<-,DataMatrix,missing,ANY-method}
+\alias{[<-,DataMatrix,ANY,ANY-method}
+\alias{[[<-,DataMatrix,ANY,missing-method}
+\alias{[[<-,DataMatrix,ANY,ANY-method}
 \title{Extract or Replace Parts of an Object}
 \usage{
-\S4method{[}{DataMatrix}(x, i, j, drop = TRUE)
+\S4method{[}{DataMatrix,missing,missing}(x, i, j, ..., drop = TRUE)
 
-\S4method{[[}{DataMatrix}(x, i, j)
+\S4method{[}{DataMatrix,ANY,missing}(x, i, j, ..., drop = TRUE)
 
-\S4method{[}{DataMatrix}(x, i, j) <- value
+\S4method{[}{DataMatrix,missing,ANY}(x, i, j, ..., drop = TRUE)
 
-\S4method{[[}{DataMatrix}(x, i, j) <- value
+\S4method{[}{DataMatrix,ANY,ANY}(x, i, j, ..., drop = TRUE)
+
+\S4method{[[}{DataMatrix,ANY,missing}(x, i, exact = TRUE)
+
+\S4method{[[}{DataMatrix,ANY,ANY}(x, i, j, ..., exact = TRUE)
+
+\S4method{[}{DataMatrix,ANY,missing}(x, i, j, ...) <- value
+
+\S4method{[}{DataMatrix,missing,ANY}(x, i, j) <- value
+
+\S4method{[}{DataMatrix,ANY,ANY}(x, i, j) <- value
+
+\S4method{[[}{DataMatrix,ANY,missing}(x, i) <- value
+
+\S4method{[[}{DataMatrix,ANY,ANY}(x, i, j) <- value
 }
 \arguments{
 \item{x}{An object from which to extract element(s) or in which to replace
@@ -29,9 +50,14 @@ towards zero). Character vectors will be matched to the name of the
 elements. An empty index (a comma separated blank) indicates that all
 entries in that dimension are selected.}
 
+\item{...}{Currently not used.}
+
 \item{drop}{A \code{\link{logical}} scalar: should the result be coerced to
 the lowest possible dimension? This only works for extracting elements,
 not for the replacement.}
+
+\item{exact}{A \code{\link{logical}} scalar: should partial matching be used?
+If \code{TRUE} (the default), no partial matching is allowed.}
 
 \item{value}{A possible value for the element(s) of \code{x}.}
 }
