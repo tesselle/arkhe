@@ -3,6 +3,7 @@
 NULL
 
 # Add S4 dispatch to base S3 generic
+setGeneric("length")
 setGeneric("row")
 setGeneric("col")
 setGeneric("nrow")
@@ -104,6 +105,7 @@ NULL
 #' @param e1,e2 A \linkS4class{DataMatrix} object.
 #' @param na.rm A \code{\link{logical}} scalar: should missing values
 #'  (including \code{NaN}) be omitted from the calculations?
+#' @param ... Currently not used.
 #' @details
 #' \code{rowSums} and \code{colSums} form row and column sums.
 #'
@@ -116,6 +118,20 @@ NULL
 #' @name operator
 #' @rdname operator
 NULL
+
+#' @rdname operator
+#' @aliases rowRanges-method
+setGeneric(
+  name = "rowRanges",
+  def = function(x, ...) standardGeneric("rowRanges")
+)
+
+#' @rdname operator
+#' @aliases colRanges-method
+setGeneric(
+  name = "colRanges",
+  def = function(x, ...) standardGeneric("colRanges")
+)
 
 #' Coerce
 #'

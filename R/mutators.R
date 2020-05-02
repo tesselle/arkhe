@@ -3,6 +3,17 @@
 NULL
 
 #' @export
+#' @describeIn mutator Retrieve the length of an object.
+#' @aliases length,DataMatrix-method
+setMethod(
+  f = "length",
+  signature = c("DataMatrix"),
+  definition = function(x) {
+    prod(x@size)
+  }
+)
+
+#' @export
 #' @describeIn mutator Retrieve or set the dimension of an object.
 #' @aliases dim,DataMatrix-method
 setMethod(

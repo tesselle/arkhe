@@ -15,6 +15,7 @@
 \alias{get_totals-method}
 \alias{set_totals<-}
 \alias{set_totals-method}
+\alias{length,DataMatrix-method}
 \alias{dim,DataMatrix-method}
 \alias{row,DataMatrix-method}
 \alias{col,DataMatrix-method}
@@ -43,6 +44,8 @@ get_units(x)
 get_totals(x)
 
 set_totals(x) <- value
+
+\S4method{length}{DataMatrix}(x)
 
 \S4method{dim}{DataMatrix}(x)
 
@@ -93,6 +96,8 @@ Getters and setters to retrieve or set parts of an object.
 }
 \section{Functions}{
 \itemize{
+\item \code{length,DataMatrix-method}: Retrieve the length of an object.
+
 \item \code{dim,DataMatrix-method}: Retrieve or set the dimension of an object.
 
 \item \code{row,DataMatrix-method}: Returns a matrix of integers indicating their row number

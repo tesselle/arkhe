@@ -100,3 +100,29 @@ setMethod(
     colMeans(methods::as(x, "matrix"), na.rm = na.rm)
   }
 )
+
+#' @export
+#' @rdname operator
+#' @aliases rowRanges,DataMatrix-method
+setMethod(
+  f = "rowRanges",
+  signature = signature(x = "DataMatrix"),
+  definition = function(x, na.rm = FALSE) {
+    index <- row(x, as.factor = TRUE)
+    data <- split(x = x@data, f = index)
+    vapply(X = data, FUN = range, FUN.VALUE = numeric(2), na.rm = na.rm)
+  }
+)
+
+#' @export
+#' @rdname operator
+#' @aliases colRanges,DataMatrix-method
+setMethod(
+  f = "colRanges",
+  signature = signature(x = "DataMatrix"),
+  definition = function(x, na.rm = FALSE) {
+    index <- col(x, as.factor = TRUE)
+    data <- split(x = x@data, f = index)
+    vapply(X = data, FUN = range, FUN.VALUE = numeric(2), na.rm = na.rm)
+  }
+)

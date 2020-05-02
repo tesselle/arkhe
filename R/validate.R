@@ -64,7 +64,7 @@ setValidity(
 
     errors <- list(
       # Check data
-      catch_conditions(check_length(data, Reduce(`*`, size))),
+      catch_conditions(check_length(data, prod(size))),
       catch_conditions(check_missing(data))
     )
 

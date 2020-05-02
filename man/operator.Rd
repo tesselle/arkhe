@@ -3,6 +3,10 @@
 \docType{methods}
 \name{operator}
 \alias{operator}
+\alias{rowRanges}
+\alias{rowRanges-method}
+\alias{colRanges}
+\alias{colRanges-method}
 \alias{==,CountMatrix,CountMatrix-method}
 \alias{-,CountMatrix,CountMatrix-method}
 \alias{-,CountMatrix,numeric-method}
@@ -12,8 +16,14 @@
 \alias{colSums,DataMatrix-method}
 \alias{rowMeans,DataMatrix-method}
 \alias{colMeans,DataMatrix-method}
+\alias{rowRanges,DataMatrix-method}
+\alias{colRanges,DataMatrix-method}
 \title{Matrix Operations}
 \usage{
+rowRanges(x, ...)
+
+colRanges(x, ...)
+
 \S4method{==}{CountMatrix,CountMatrix}(e1, e2)
 
 \S4method{-}{CountMatrix,CountMatrix}(e1, e2)
@@ -31,11 +41,17 @@
 \S4method{rowMeans}{DataMatrix}(x, na.rm = FALSE)
 
 \S4method{colMeans}{DataMatrix}(x, na.rm = FALSE)
+
+\S4method{rowRanges}{DataMatrix}(x, na.rm = FALSE)
+
+\S4method{colRanges}{DataMatrix}(x, na.rm = FALSE)
 }
 \arguments{
-\item{e1, e2}{A \linkS4class{DataMatrix} object.}
-
 \item{x}{An object on which to perform operations.}
+
+\item{...}{Currently not used.}
+
+\item{e1, e2}{A \linkS4class{DataMatrix} object.}
 
 \item{na.rm}{A \code{\link{logical}} scalar: should missing values
 (including \code{NaN}) be omitted from the calculations?}
