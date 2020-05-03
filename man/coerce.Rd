@@ -5,6 +5,8 @@
 \alias{coerce}
 \alias{as_matrix}
 \alias{as_matrix-method}
+\alias{as_list}
+\alias{as_list-method}
 \alias{as_wide}
 \alias{as_wide-method}
 \alias{as_long}
@@ -30,15 +32,15 @@
 \alias{as_similarity,ANY-method}
 \alias{as_stratigraphy,ANY-method}
 \alias{as_matrix,DataMatrix-method}
-\alias{as_matrix,ANY-method}
 \alias{as_wide,DataMatrix-method}
-\alias{as_wide,ANY-method}
 \alias{as_long,DataMatrix-method}
-\alias{as_long,ANY-method}
+\alias{as_list,DataMatrix-method}
 \alias{as_features,DataMatrix-method}
 \title{Coerce}
 \usage{
 as_matrix(from)
+
+as_list(from, ...)
 
 as_wide(from)
 
@@ -76,11 +78,17 @@ as_stratigraphy(from)
 
 \S4method{as_long}{DataMatrix}(from)
 
+\S4method{as_list}{DataMatrix}(from, by_row = FALSE)
+
 \S4method{as_features}{DataMatrix}(from)
 }
 \arguments{
-\item{from}{A numeric \code{\link{matrix}} or \code{\link{data.frame}} to be
-coerced.}
+\item{from}{A \code{\link{numeric}} \code{\link{matrix}} or
+\code{\link{data.frame}} to be coerced.}
+
+\item{...}{Currently not used.}
+
+\item{by_row}{A \code{\link{logical}} scalar:}
 }
 \value{
 A coerced object.
@@ -101,12 +109,13 @@ The following methods coerce an object to a \code{Matrix} object:
   \code{as_stratigraphy} \tab \linkS4class{StratigraphicMatrix} \tab stratigraphic relationships
  }
 
- **Note that \code{as_count} round numeric values to zero decimal places and
- then coerce to integer as by \code{\link{as.integer}}.**
+ **Note that \code{as_count} rounds numeric values to zero decimal places and
+ then coerces to integer as by \code{\link{as.integer}}.**
 
  \tabular{lll}{
   \strong{Method} \tab \strong{Target} \tab \strong{Details} \cr
   \code{as_matrix} \tab \code{\link{matrix}} \tab S3 matrix \cr
+  \code{as_list} \tab \code{\link{list}} \tab S3 list \cr
   \code{as_wide} \tab \code{\link{data.frame}} \tab wide S3 data frame \cr
   \code{as_long} \tab \code{\link{data.frame}} \tab long S3 data frame \cr
  }

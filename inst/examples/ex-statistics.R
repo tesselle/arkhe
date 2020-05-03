@@ -1,0 +1,25 @@
+## Create count data matrix
+A <- CountMatrix(data = sample(0:10, 100, TRUE), nrow = 20, ncol = 5)
+
+rowAll(A, f = is_odd)
+rowAny(A, f = is_odd)
+
+## Row and column quantiles
+rowQuantiles(A, probs = c(0.25, 0.50, 0.75))
+colQuantiles(A, probs = c(0.25, 0.50, 0.75))
+
+## Row and column means
+rowMeans(A)
+colMeans(A)
+
+## Row and column ranges
+rowRanges(A)
+colRanges(A)
+
+## Row and column sums
+rowSums(A)
+colSums(A)
+
+## Row and column variances
+rowVars(A)
+colVars(A)

@@ -85,7 +85,7 @@ setMethod(
 
 #' @export
 #' @rdname coerce
-#' @aliases as_matrix,ANY-method
+#' @aliases as_matrix,DataMatrix-method
 setMethod(
   f = "as_matrix",
   signature = signature(from = "DataMatrix"),
@@ -96,7 +96,7 @@ setMethod(
 
 #' @export
 #' @rdname coerce
-#' @aliases as_wide,ANY-method
+#' @aliases as_wide,DataMatrix-method
 setMethod(
   f = "as_wide",
   signature = signature(from = "DataMatrix"),
@@ -107,7 +107,7 @@ setMethod(
 
 #' @export
 #' @rdname coerce
-#' @aliases as_long,ANY-method
+#' @aliases as_long,DataMatrix-method
 setMethod(
   f = "as_long",
   signature = signature(from = "DataMatrix"),
@@ -118,6 +118,20 @@ setMethod(
       data = from@data,
       stringsAsFactors = FALSE
     )
+  }
+)
+
+#' @export
+#' @rdname coerce
+#' @aliases as_list,DataMatrix-method
+setMethod(
+  f = "as_list",
+  signature = signature(from = "DataMatrix"),
+  definition = function(from, by_row = FALSE) {
+    fun <- if (by_row) row else col
+    index <- fun(from, as.factor = TRUE)
+    data <- split(x = from@data, f = index)
+    data
   }
 )
 

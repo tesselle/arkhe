@@ -9,8 +9,8 @@
 #' predicate.
 #' \code{extract} extracts a string form another string based on a pattern.
 #'
-#' %o% allows for function composition.
-#' %||% allows to define a default value.
+#' \code{\%o\%} allows for function composition.
+#' \code{\%||\%} allows to define a default value.
 #' @param x,y An object.
 #' @param f,g A \code{\link{function}}. In \code{compact}, \code{detect}
 #'  and \code{count} \code{f} must be a \code{\link{logical}} predicate.
@@ -131,11 +131,15 @@ rownames_to_column <- function(x, factor = TRUE, id = "id") {
 #' @keywords internal utilities
 #' @noRd
 index_by_row <- function(x) {
-  if (length(x) != 2) stop("x must be a length-two numeric vector.")
+  if (!is.numeric(x) || length(x) != 2)
+    stop(sprintf("% must be a length-two numeric vector.", sQuote("x")),
+         call. = FALSE)
   rep(seq_len(x[[1L]]), times = x[[2L]])
 }
 index_by_column <- function(x) {
-  if (length(x) != 2) stop("x must be a length-two numeric vector.")
+  if (!is.numeric(x) || length(x) != 2)
+    stop(sprintf("% must be a length-two numeric vector.", sQuote("x")),
+         call. = FALSE)
   rep(seq_len(x[[2L]]), each = x[[1L]])
 }
 

@@ -15,7 +15,7 @@
   ],
   "issueTracker": "https://github.com/nfrerebeau/arkhe/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -49,7 +49,6 @@
       "@type": "SoftwareApplication",
       "identifier": "covr",
       "name": "covr",
-      "version": ">= 3.5.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -86,7 +85,6 @@
       "@type": "SoftwareApplication",
       "identifier": "testthat",
       "name": "testthat",
-      "version": ">= 2.3.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -107,10 +105,15 @@
       "@type": "SoftwareApplication",
       "identifier": "methods",
       "name": "methods"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "stats",
+      "name": "stats"
     }
   ],
   "readme": "https://github.com/nfrerebeau/arkhe/blob/master/README.md",
-  "fileSize": "687.345KB",
+  "fileSize": "690.558KB",
   "contIntegration": [
     "https://ci.appveyor.com/project/nfrerebeau/arkhe",
     "https://travis-ci.org/nfrerebeau/arkhe",
@@ -139,7 +142,7 @@
       ],
       "name": "{arkhe}: Representation of Archaeological Data",
       "url": "https://doi.org/10.5281/zenodo.3526659",
-      "description": "R package version 0.2.2"
+      "description": "R package version 0.3.0"
     }
   ],
   "releaseNotes": "https://github.com/nfrerebeau/arkhe/blob/master/NEWS.md",

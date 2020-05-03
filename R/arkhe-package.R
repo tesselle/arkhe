@@ -29,6 +29,7 @@
 #' @keywords internal
 "_PACKAGE"
 
-#' @importFrom methods as callNextMethod is new setClass setClassUnion
-#' setGeneric setMethod validObject
+#' @importFrom methods Arith as callNextMethod Compare is Logic new setClass
+#' setClassUnion setGeneric setMethod Summary validObject
+#' @importFrom stats quantile var
 NULL

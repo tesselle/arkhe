@@ -25,12 +25,13 @@ BugReports: https://github.com/nfrerebeau/arkhe/issues
 Depends: 
     R (>= 3.2)
 Imports: 
-    methods
+    methods,
+    stats
 Suggests: 
-    covr (>= 3.5.0),
+    covr,
     knitr,
     rmarkdown,
-    testthat (>= 2.3.2)
+    testthat
 VignetteBuilder: 
     knitr
 Encoding: UTF-8
@@ -50,6 +51,7 @@ Collate:
     'mutators.R'
     'operators.R'
     'show.R'
+    'statistics.R'
     'subset.R'
     'utilities.R'
     'validate.R'

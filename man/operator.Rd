@@ -3,81 +3,84 @@
 \docType{methods}
 \name{operator}
 \alias{operator}
-\alias{rowRanges}
-\alias{rowRanges-method}
-\alias{colRanges}
-\alias{colRanges-method}
-\alias{==,CountMatrix,CountMatrix-method}
-\alias{-,CountMatrix,CountMatrix-method}
-\alias{-,CountMatrix,numeric-method}
-\alias{+,CountMatrix,CountMatrix-method}
-\alias{+,CountMatrix,numeric-method}
-\alias{rowSums,DataMatrix-method}
-\alias{colSums,DataMatrix-method}
-\alias{rowMeans,DataMatrix-method}
-\alias{colMeans,DataMatrix-method}
-\alias{rowRanges,DataMatrix-method}
-\alias{colRanges,DataMatrix-method}
-\title{Matrix Operations}
+\alias{Arith,DataMatrix,DataMatrix-method}
+\alias{Arith,DataMatrix,numeric-method}
+\alias{Compare,DataMatrix,DataMatrix-method}
+\alias{Compare,DataMatrix,numeric-method}
+\alias{Logic,DataMatrix,DataMatrix-method}
+\alias{Logic,DataMatrix,numeric-method}
+\alias{Summary,DataMatrix-method}
+\title{Common Operations on Matrix Objects}
 \usage{
-rowRanges(x, ...)
+\S4method{Arith}{DataMatrix,DataMatrix}(e1, e2)
 
-colRanges(x, ...)
+\S4method{Arith}{DataMatrix,numeric}(e1, e2)
 
-\S4method{==}{CountMatrix,CountMatrix}(e1, e2)
+\S4method{Compare}{DataMatrix,DataMatrix}(e1, e2)
 
-\S4method{-}{CountMatrix,CountMatrix}(e1, e2)
+\S4method{Compare}{DataMatrix,numeric}(e1, e2)
 
-\S4method{-}{CountMatrix,numeric}(e1, e2)
+\S4method{Logic}{DataMatrix,DataMatrix}(e1, e2)
 
-\S4method{+}{CountMatrix,CountMatrix}(e1, e2)
+\S4method{Logic}{DataMatrix,numeric}(e1, e2)
 
-\S4method{+}{CountMatrix,numeric}(e1, e2)
-
-\S4method{rowSums}{DataMatrix}(x, na.rm = FALSE)
-
-\S4method{colSums}{DataMatrix}(x, na.rm = FALSE)
-
-\S4method{rowMeans}{DataMatrix}(x, na.rm = FALSE)
-
-\S4method{colMeans}{DataMatrix}(x, na.rm = FALSE)
-
-\S4method{rowRanges}{DataMatrix}(x, na.rm = FALSE)
-
-\S4method{colRanges}{DataMatrix}(x, na.rm = FALSE)
+\S4method{Summary}{DataMatrix}(x, na.rm = FALSE)
 }
 \arguments{
-\item{x}{An object on which to perform operations.}
-
-\item{...}{Currently not used.}
-
-\item{e1, e2}{A \linkS4class{DataMatrix} object.}
+\item{x, e1, e2}{An object (typically a \linkS4class{DataMatrix} object).}
 
 \item{na.rm}{A \code{\link{logical}} scalar: should missing values
 (including \code{NaN}) be omitted from the calculations?}
 }
-\value{
-A coerced object.
-}
 \description{
-Performs operation on \code{Matrix} objects.
+Performs common operations on \code{DataMatrix} objects.
 }
-\details{
-\code{rowSums} and \code{colSums} form row and column sums.
+\section{Group Generics}{
 
-\code{rowMeans} and \code{colMeans} form row and column means.
+ \linkS4class{DataMatrix} objects have support for S4 group generic
+ functionality to operate within elements across objects:
+ \describe{
+  \item{\code{Arith}}{"\code{+}", "\code{-}", "\code{*}", "\code{^}",
+  "\code{\%\%}", "\code{\%/\%}", "\code{/}"}
+  \item{\code{Compare}}{"\code{==}", "\code{>}", "\code{<}", "\code{!=}",
+  "\code{<=}", "\code{>=}"}
+  \item{\code{Logic}}{"\code{&}", "\code{|}"}
+  \item{\code{Ops}}{"\code{Arith}", "\code{Compare}", "\code{Logic}"}
+  \item{\code{Summary}}{"\code{min}", "\code{max}", "\code{range}",
+  "\code{prod}", "\code{sum}", "\code{any}", "\code{all}"}
+ }
 }
+
 \examples{
-## Create a count data matrix
-A1 <- CountMatrix(data = sample(0:10, 100, TRUE), nrow = 20, ncol = 5)
+## Create count data matrix
+A <- matrix(data = sample(0:10, 100, TRUE), nrow = 20, ncol = 5)
+B <- matrix(data = sample(0:10, 100, TRUE), nrow = 20, ncol = 5)
 
-## Row and column sums
-rowSums(A1)
-colSums(A1)
+## Compare
+A == B
+A != B
+A > 5
+A < 5
+A <= 10
+A >= 10
 
-## Row and column means
-rowMeans(A1)
-colMeans(A1)
+## Arith
+A + B
+A * 2
+A ^ 2
+
+## Summary
+max(A)
+min(A)
+range(A)
+prod(A)
+sum(A)
+any(A)
+all(A)
+
+## Logic
+A & B
+A | B
 }
 \author{
 N. Frerebeau

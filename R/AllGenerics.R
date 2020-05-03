@@ -17,6 +17,132 @@ setGeneric("colSums")
 setGeneric("rowMeans")
 setGeneric("colMeans")
 
+# ======================================================================= Coerce
+#' Coerce
+#'
+#' @param from A \code{\link{numeric}} \code{\link{matrix}} or
+#'  \code{\link{data.frame}} to be coerced.
+#' @param by_row A \code{\link{logical}} scalar:
+#' @param ... Currently not used.
+#' @details
+#'  The following methods coerce an object to a \code{Matrix} object:
+#'
+#'  \tabular{lll}{
+#'   \strong{Method} \tab \strong{Target} \tab \strong{Details} \cr
+#'   \code{as_count} \tab \linkS4class{CountMatrix} \tab absolute frequency data \cr
+#'   \code{as_abundance} \tab \linkS4class{AbundanceMatrix} \tab relative frequency data \cr
+#'   \code{as_incidence} \tab \linkS4class{IncidenceMatrix} \tab presence/absence data \cr
+#'   \code{as_occurrence} \tab \linkS4class{OccurrenceMatrix} \tab co-occurrence \cr
+#'   \code{as_similarity} \tab \linkS4class{SimilarityMatrix} \tab (dis)similarity \cr
+#'   \code{as_stratigraphy} \tab \linkS4class{StratigraphicMatrix} \tab stratigraphic relationships
+#'  }
+#'
+#'  **Note that \code{as_count} rounds numeric values to zero decimal places and
+#'  then coerces to integer as by \code{\link{as.integer}}.**
+#'
+#'  \tabular{lll}{
+#'   \strong{Method} \tab \strong{Target} \tab \strong{Details} \cr
+#'   \code{as_matrix} \tab \code{\link{matrix}} \tab S3 matrix \cr
+#'   \code{as_list} \tab \code{\link{list}} \tab S3 list \cr
+#'   \code{as_wide} \tab \code{\link{data.frame}} \tab wide S3 data frame \cr
+#'   \code{as_long} \tab \code{\link{data.frame}} \tab long S3 data frame \cr
+#'  }
+#'
+#'  \code{as_stratigraphy} converts a set of stratigraphic relationships (edges)
+#'  to a stratigraphic (adjacency) matrix. \code{from} can be a
+#'  \code{\link{matrix}}, \code{\link{list}}, or \code{\link{data.frame}}:
+#'  the first column/component is assumed to contain the bottom units and the
+#'  second the top units.
+#'
+#'  \code{as_features} converts an \linkS4class{Matrix} object to a
+#'  collection of features (i.e. a\code{\link{data.frame}} with
+#'  dates and coordinates columns).
+#' @return A coerced object.
+#' @example inst/examples/ex-coerce.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family matrix
+#' @name coerce
+#' @rdname coerce
+NULL
+
+#' @rdname coerce
+#' @aliases as_matrix-method
+setGeneric(
+  name = "as_matrix",
+  def = function(from) standardGeneric("as_matrix")
+)
+
+#' @rdname coerce
+#' @aliases as_list-method
+setGeneric(
+  name = "as_list",
+  def = function(from, ...) standardGeneric("as_list")
+)
+
+#' @rdname coerce
+#' @aliases as_wide-method
+setGeneric(
+  name = "as_wide",
+  def = function(from) standardGeneric("as_wide")
+)
+
+#' @rdname coerce
+#' @aliases as_long-method
+setGeneric(
+  name = "as_long",
+  def = function(from) standardGeneric("as_long")
+)
+
+#' @rdname coerce
+#' @aliases as_count-method
+setGeneric(
+  name = "as_count",
+  def = function(from) standardGeneric("as_count")
+)
+
+#' @rdname coerce
+#' @aliases as_abundance-method
+setGeneric(
+  name = "as_abundance",
+  def = function(from) standardGeneric("as_abundance")
+)
+
+#' @rdname coerce
+#' @aliases as_incidence-method
+setGeneric(
+  name = "as_incidence",
+  def = function(from) standardGeneric("as_incidence")
+)
+
+#' @rdname coerce
+#' @aliases as_occurrence-method
+setGeneric(
+  name = "as_occurrence",
+  def = function(from) standardGeneric("as_occurrence")
+)
+
+#' @rdname coerce
+#' @aliases as_similarity-method
+setGeneric(
+  name = "as_similarity",
+  def = function(from) standardGeneric("as_similarity")
+)
+
+#' @rdname coerce
+#' @aliases as_features-method
+setGeneric(
+  name = "as_features",
+  def = function(from) standardGeneric("as_features")
+)
+
+#' @rdname coerce
+#' @aliases as_stratigraphy-method
+setGeneric(
+  name = "as_stratigraphy",
+  def = function(from) standardGeneric("as_stratigraphy")
+)
+
 # ====================================================================== Extract
 #' Get or Set Parts of an Object
 #'
@@ -101,20 +227,27 @@ setGeneric(
 #' @rdname subset
 NULL
 
-#' Matrix Operations
+# ==================================================================== Operators
+#' Common Operations on Matrix Objects
 #'
-#' Performs operation on \code{Matrix} objects.
-#' @param x An object on which to perform operations.
-#' @param e1,e2 A \linkS4class{DataMatrix} object.
+#' Performs common operations on \code{DataMatrix} objects.
+#' @param x,e1,e2 An object (typically a \linkS4class{DataMatrix} object).
 #' @param na.rm A \code{\link{logical}} scalar: should missing values
 #'  (including \code{NaN}) be omitted from the calculations?
-#' @param ... Currently not used.
-#' @details
-#' \code{rowSums} and \code{colSums} form row and column sums.
-#'
-#' \code{rowMeans} and \code{colMeans} form row and column means.
-#' @return A coerced object.
-#' @example inst/examples/ex-operator.R
+#' @section Group Generics:
+#'  \linkS4class{DataMatrix} objects have support for S4 group generic
+#'  functionality to operate within elements across objects:
+#'  \describe{
+#'   \item{\code{Arith}}{"\code{+}", "\code{-}", "\code{*}", "\code{^}",
+#'   "\code{\%\%}", "\code{\%/\%}", "\code{/}"}
+#'   \item{\code{Compare}}{"\code{==}", "\code{>}", "\code{<}", "\code{!=}",
+#'   "\code{<=}", "\code{>=}"}
+#'   \item{\code{Logic}}{"\code{&}", "\code{|}"}
+#'   \item{\code{Ops}}{"\code{Arith}", "\code{Compare}", "\code{Logic}"}
+#'   \item{\code{Summary}}{"\code{min}", "\code{max}", "\code{range}",
+#'   "\code{prod}", "\code{sum}", "\code{any}", "\code{all}"}
+#'  }
+#' @example inst/examples/ex-operators.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family operator
@@ -122,133 +255,118 @@ NULL
 #' @rdname operator
 NULL
 
-#' @rdname operator
+# =================================================================== Statistics
+#' Rowwise and Columnwise Statistics
+#'
+#' Computes statistics over \code{DataMatrix} margins.
+#' @param x A \linkS4class{DataMatrix} object.
+#' @param f A \code{\link{logical}} predicate.
+#' @param ... Further parameters to be passed to other methods.
+#' @param probs,names,type See \code{\link[stats]{quantile}}.
+#' @param na.rm A \code{\link{logical}} scalar: should missing values
+#'  (including \code{NaN}) be omitted from the calculations?
+#' @details
+#'  \describe{
+#'   \item{\code{rowAll} and \code{colAll}}{}
+#'   \item{\code{rowAny} and \code{colAny}}{}
+#'   \item{\code{rowQuantiles} and \code{colQuantiles}}{Form row and column
+#'   quantiles.}
+#'   \item{\code{rowMeans} and \code{colMeans}}{Form row and column means.}
+#'   \item{\code{rowRanges} and \code{colRanges}}{Form row and column ranges.}
+#'   \item{\code{rowRanks} and \code{colRanks}}{}
+#'   \item{\code{rowSums} and \code{colSums}}{Form row and column sums.}
+#'   \item{\code{rowVars} and \code{colVars}}{Form row and column variances.}
+#'  }
+#' @example inst/examples/ex-statistics.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family statistics
+#' @name statistics
+#' @rdname statistics
+NULL
+
+#' @rdname statistics
+#' @aliases rowAll-method
+setGeneric(
+  name = "rowAll",
+  def = function(x, ...) standardGeneric("rowAll")
+)
+
+#' @rdname statistics
+#' @aliases colAll-method
+setGeneric(
+  name = "colAll",
+  def = function(x, ...) standardGeneric("colAll")
+)
+
+#' @rdname statistics
+#' @aliases rowAny-method
+setGeneric(
+  name = "rowAny",
+  def = function(x, ...) standardGeneric("rowAny")
+)
+
+#' @rdname statistics
+#' @aliases colAny-method
+setGeneric(
+  name = "colAny",
+  def = function(x, ...) standardGeneric("colAny")
+)
+
+#' @rdname statistics
+#' @aliases rowQuantiles-method
+setGeneric(
+  name = "rowQuantiles",
+  def = function(x, ...) standardGeneric("rowQuantiles")
+)
+
+#' @rdname statistics
+#' @aliases colQuantiles-method
+setGeneric(
+  name = "colQuantiles",
+  def = function(x, ...) standardGeneric("colQuantiles")
+)
+
+#' @rdname statistics
 #' @aliases rowRanges-method
 setGeneric(
   name = "rowRanges",
   def = function(x, ...) standardGeneric("rowRanges")
 )
 
-#' @rdname operator
+#' @rdname statistics
 #' @aliases colRanges-method
 setGeneric(
   name = "colRanges",
   def = function(x, ...) standardGeneric("colRanges")
 )
 
-#' Coerce
-#'
-#' @param from A numeric \code{\link{matrix}} or \code{\link{data.frame}} to be
-#'  coerced.
-#' @details
-#'  The following methods coerce an object to a \code{Matrix} object:
-#'
-#'  \tabular{lll}{
-#'   \strong{Method} \tab \strong{Target} \tab \strong{Details} \cr
-#'   \code{as_count} \tab \linkS4class{CountMatrix} \tab absolute frequency data \cr
-#'   \code{as_abundance} \tab \linkS4class{AbundanceMatrix} \tab relative frequency data \cr
-#'   \code{as_incidence} \tab \linkS4class{IncidenceMatrix} \tab presence/absence data \cr
-#'   \code{as_occurrence} \tab \linkS4class{OccurrenceMatrix} \tab co-occurrence \cr
-#'   \code{as_similarity} \tab \linkS4class{SimilarityMatrix} \tab (dis)similarity \cr
-#'   \code{as_stratigraphy} \tab \linkS4class{StratigraphicMatrix} \tab stratigraphic relationships
-#'  }
-#'
-#'  **Note that \code{as_count} round numeric values to zero decimal places and
-#'  then coerce to integer as by \code{\link{as.integer}}.**
-#'
-#'  \tabular{lll}{
-#'   \strong{Method} \tab \strong{Target} \tab \strong{Details} \cr
-#'   \code{as_matrix} \tab \code{\link{matrix}} \tab S3 matrix \cr
-#'   \code{as_wide} \tab \code{\link{data.frame}} \tab wide S3 data frame \cr
-#'   \code{as_long} \tab \code{\link{data.frame}} \tab long S3 data frame \cr
-#'  }
-#'
-#'  \code{as_stratigraphy} converts a set of stratigraphic relationships (edges)
-#'  to a stratigraphic (adjacency) matrix. \code{from} can be a
-#'  \code{\link{matrix}}, \code{\link{list}}, or \code{\link{data.frame}}:
-#'  the first column/component is assumed to contain the bottom units and the
-#'  second the top units.
-#'
-#'  \code{as_features} converts an \linkS4class{Matrix} object to a
-#'  collection of features (i.e. a\code{\link{data.frame}} with
-#'  dates and coordinates columns).
-#' @return A coerced object.
-#' @example inst/examples/ex-coerce.R
-#' @author N. Frerebeau
-#' @docType methods
-#' @family matrix
-#' @name coerce
-#' @rdname coerce
-NULL
-
-#' @rdname coerce
-#' @aliases as_matrix-method
+#' @rdname statistics
+#' @aliases rowRanks-method
 setGeneric(
-  name = "as_matrix",
-  def = function(from) standardGeneric("as_matrix")
+  name = "rowRanks",
+  def = function(x, ...) standardGeneric("rowRanks")
 )
 
-#' @rdname coerce
-#' @aliases as_wide-method
+#' @rdname statistics
+#' @aliases colRanks-method
 setGeneric(
-  name = "as_wide",
-  def = function(from) standardGeneric("as_wide")
+  name = "colRanks",
+  def = function(x, ...) standardGeneric("colRanks")
 )
 
-#' @rdname coerce
-#' @aliases as_long-method
+#' @rdname statistics
+#' @aliases rowVars-method
 setGeneric(
-  name = "as_long",
-  def = function(from) standardGeneric("as_long")
+  name = "rowVars",
+  def = function(x, ...) standardGeneric("rowVars")
 )
 
-#' @rdname coerce
-#' @aliases as_count-method
+#' @rdname statistics
+#' @aliases colVars-method
 setGeneric(
-  name = "as_count",
-  def = function(from) standardGeneric("as_count")
-)
-
-#' @rdname coerce
-#' @aliases as_abundance-method
-setGeneric(
-  name = "as_abundance",
-  def = function(from) standardGeneric("as_abundance")
-)
-
-#' @rdname coerce
-#' @aliases as_incidence-method
-setGeneric(
-  name = "as_incidence",
-  def = function(from) standardGeneric("as_incidence")
-)
-
-#' @rdname coerce
-#' @aliases as_occurrence-method
-setGeneric(
-  name = "as_occurrence",
-  def = function(from) standardGeneric("as_occurrence")
-)
-
-#' @rdname coerce
-#' @aliases as_similarity-method
-setGeneric(
-  name = "as_similarity",
-  def = function(from) standardGeneric("as_similarity")
-)
-
-#' @rdname coerce
-#' @aliases as_features-method
-setGeneric(
-  name = "as_features",
-  def = function(from) standardGeneric("as_features")
-)
-
-#' @rdname coerce
-#' @aliases as_stratigraphy-method
-setGeneric(
-  name = "as_stratigraphy",
-  def = function(from) standardGeneric("as_stratigraphy")
+  name = "colVars",
+  def = function(x, ...) standardGeneric("colVars")
 )
 
 # =================================================================== Chronology
