@@ -10,6 +10,10 @@
 \alias{Logic,DataMatrix,DataMatrix-method}
 \alias{Logic,DataMatrix,numeric-method}
 \alias{Summary,DataMatrix-method}
+\alias{rowAll,DataMatrix-method}
+\alias{colAll,DataMatrix-method}
+\alias{rowAny,DataMatrix-method}
+\alias{colAny,DataMatrix-method}
 \title{Common Operations on Matrix Objects}
 \usage{
 \S4method{Arith}{DataMatrix,DataMatrix}(e1, e2)
@@ -25,12 +29,24 @@
 \S4method{Logic}{DataMatrix,numeric}(e1, e2)
 
 \S4method{Summary}{DataMatrix}(x, na.rm = FALSE)
+
+\S4method{rowAll}{DataMatrix}(x, f, ..., na.rm = FALSE)
+
+\S4method{colAll}{DataMatrix}(x, f, ..., na.rm = FALSE)
+
+\S4method{rowAny}{DataMatrix}(x, f, ..., na.rm = FALSE)
+
+\S4method{colAny}{DataMatrix}(x, f, ..., na.rm = FALSE)
 }
 \arguments{
 \item{x, e1, e2}{An object (typically a \linkS4class{DataMatrix} object).}
 
 \item{na.rm}{A \code{\link{logical}} scalar: should missing values
 (including \code{NaN}) be omitted from the calculations?}
+
+\item{f}{A \code{\link{logical}} predicate.}
+
+\item{...}{Further parameters to be passed to \code{f}.}
 }
 \description{
 Performs common operations on \code{DataMatrix} objects.
@@ -48,6 +64,18 @@ Performs common operations on \code{DataMatrix} objects.
   \item{\code{Ops}}{"\code{Arith}", "\code{Compare}", "\code{Logic}"}
   \item{\code{Summary}}{"\code{min}", "\code{max}", "\code{range}",
   "\code{prod}", "\code{sum}", "\code{any}", "\code{all}"}
+ }
+}
+
+\section{Other Methods}{
+
+ \describe{
+  \item{\code{rowAll} and \code{colAll}}{Check if all values are
+  \code{TRUE} according to a given predicate.}
+  \item{\code{rowAny} and \code{colAny}}{Check if some values are
+  \code{TRUE} according to a given predicate.}
+  \item{\code{rowCount} and \code{colCount}}{Count values in rows or columns
+  according to a given predicate.}
  }
 }
 

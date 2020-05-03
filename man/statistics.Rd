@@ -27,10 +27,6 @@
 \alias{rowVars-method}
 \alias{colVars}
 \alias{colVars-method}
-\alias{rowAll,DataMatrix-method}
-\alias{colAll,DataMatrix-method}
-\alias{rowAny,DataMatrix-method}
-\alias{colAny,DataMatrix-method}
 \alias{rowQuantiles,DataMatrix-method}
 \alias{colQuantiles,DataMatrix-method}
 \alias{rowMeans,DataMatrix-method}
@@ -66,14 +62,6 @@ colRanks(x, ...)
 rowVars(x, ...)
 
 colVars(x, ...)
-
-\S4method{rowAll}{DataMatrix}(x, f, ..., na.rm = FALSE)
-
-\S4method{colAll}{DataMatrix}(x, f, ..., na.rm = FALSE)
-
-\S4method{rowAny}{DataMatrix}(x, f, ..., na.rm = FALSE)
-
-\S4method{colAny}{DataMatrix}(x, f, ..., na.rm = FALSE)
 
 \S4method{rowQuantiles}{DataMatrix}(
   x,
@@ -114,20 +102,16 @@ colVars(x, ...)
 
 \item{...}{Further parameters to be passed to other methods.}
 
-\item{f}{A \code{\link{logical}} predicate.}
+\item{probs, names, type}{See \code{\link[stats]{quantile}}.}
 
 \item{na.rm}{A \code{\link{logical}} scalar: should missing values
 (including \code{NaN}) be omitted from the calculations?}
-
-\item{probs, names, type}{See \code{\link[stats]{quantile}}.}
 }
 \description{
 Computes statistics over \code{DataMatrix} margins.
 }
 \details{
 \describe{
-  \item{\code{rowAll} and \code{colAll}}{}
-  \item{\code{rowAny} and \code{colAny}}{}
   \item{\code{rowQuantiles} and \code{colQuantiles}}{Form row and column
   quantiles.}
   \item{\code{rowMeans} and \code{colMeans}}{Form row and column means.}

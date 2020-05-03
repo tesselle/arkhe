@@ -234,6 +234,8 @@ NULL
 #' @param x,e1,e2 An object (typically a \linkS4class{DataMatrix} object).
 #' @param na.rm A \code{\link{logical}} scalar: should missing values
 #'  (including \code{NaN}) be omitted from the calculations?
+#' @param f A \code{\link{logical}} predicate.
+#' @param ... Further parameters to be passed to \code{f}.
 #' @section Group Generics:
 #'  \linkS4class{DataMatrix} objects have support for S4 group generic
 #'  functionality to operate within elements across objects:
@@ -246,6 +248,15 @@ NULL
 #'   \item{\code{Ops}}{"\code{Arith}", "\code{Compare}", "\code{Logic}"}
 #'   \item{\code{Summary}}{"\code{min}", "\code{max}", "\code{range}",
 #'   "\code{prod}", "\code{sum}", "\code{any}", "\code{all}"}
+#'  }
+#' @section Other Methods:
+#'  \describe{
+#'   \item{\code{rowAll} and \code{colAll}}{Check if all values are
+#'   \code{TRUE} according to a given predicate.}
+#'   \item{\code{rowAny} and \code{colAny}}{Check if some values are
+#'   \code{TRUE} according to a given predicate.}
+#'   \item{\code{rowCount} and \code{colCount}}{Count values in rows or columns
+#'   according to a given predicate.}
 #'  }
 #' @example inst/examples/ex-operators.R
 #' @author N. Frerebeau
@@ -260,15 +271,12 @@ NULL
 #'
 #' Computes statistics over \code{DataMatrix} margins.
 #' @param x A \linkS4class{DataMatrix} object.
-#' @param f A \code{\link{logical}} predicate.
-#' @param ... Further parameters to be passed to other methods.
 #' @param probs,names,type See \code{\link[stats]{quantile}}.
 #' @param na.rm A \code{\link{logical}} scalar: should missing values
 #'  (including \code{NaN}) be omitted from the calculations?
+#' @param ... Further parameters to be passed to other methods.
 #' @details
 #'  \describe{
-#'   \item{\code{rowAll} and \code{colAll}}{}
-#'   \item{\code{rowAny} and \code{colAny}}{}
 #'   \item{\code{rowQuantiles} and \code{colQuantiles}}{Form row and column
 #'   quantiles.}
 #'   \item{\code{rowMeans} and \code{colMeans}}{Form row and column means.}
