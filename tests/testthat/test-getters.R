@@ -1,4 +1,4 @@
-context("Get")
+context("Getters and setters")
 
 test_that("Matrix - get_id", {
   id <- generate_uuid()
