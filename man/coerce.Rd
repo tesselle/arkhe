@@ -42,9 +42,9 @@ as_matrix(from)
 
 as_list(from, ...)
 
-as_wide(from)
+as_wide(from, ...)
 
-as_long(from)
+as_long(from, ...)
 
 as_count(from)
 
@@ -76,17 +76,20 @@ as_stratigraphy(from)
 
 \S4method{as_wide}{DataMatrix}(from)
 
-\S4method{as_long}{DataMatrix}(from)
+\S4method{as_long}{DataMatrix}(from, as_factor = FALSE)
 
 \S4method{as_list}{DataMatrix}(from, by_row = FALSE)
 
 \S4method{as_features}{DataMatrix}(from)
 }
 \arguments{
-\item{from}{A \code{\link{numeric}} \code{\link{matrix}} or
-\code{\link{data.frame}} to be coerced.}
+\item{from}{An object to be coerced.}
 
 \item{...}{Currently not used.}
+
+\item{as_factor}{A \code{\link{logical}} scalar: should character string be
+coerced to \code{\link{factor}}? Default to \code{FALSE}, if \code{TRUE}
+the original ordering is preserved.}
 
 \item{by_row}{A \code{\link{logical}} scalar:}
 }

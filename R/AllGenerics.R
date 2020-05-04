@@ -4,6 +4,7 @@ NULL
 
 # Add S4 dispatch to base S3 generic
 setGeneric("length")
+setGeneric("diag")
 setGeneric("row")
 setGeneric("col")
 setGeneric("nrow")
@@ -20,8 +21,10 @@ setGeneric("colMeans")
 # ======================================================================= Coerce
 #' Coerce
 #'
-#' @param from A \code{\link{numeric}} \code{\link{matrix}} or
-#'  \code{\link{data.frame}} to be coerced.
+#' @param from An object to be coerced.
+#' @param as_factor A \code{\link{logical}} scalar: should character string be
+#'  coerced to \code{\link{factor}}? Default to \code{FALSE}, if \code{TRUE}
+#'  the original ordering is preserved.
 #' @param by_row A \code{\link{logical}} scalar:
 #' @param ... Currently not used.
 #' @details
@@ -84,14 +87,14 @@ setGeneric(
 #' @aliases as_wide-method
 setGeneric(
   name = "as_wide",
-  def = function(from) standardGeneric("as_wide")
+  def = function(from, ...) standardGeneric("as_wide")
 )
 
 #' @rdname coerce
 #' @aliases as_long-method
 setGeneric(
   name = "as_long",
-  def = function(from) standardGeneric("as_long")
+  def = function(from, ...) standardGeneric("as_long")
 )
 
 #' @rdname coerce
@@ -150,6 +153,8 @@ setGeneric(
 #' @param x An object from which to get or set element(s).
 #' @param as.factor A \code{\link{logical}} scalar: should the value be
 #'  returned as a factor of row or column labels rather than as numbers?
+#' @param names A \code{\link{logical}} scalar: should the resulting vector
+#'  inherit names?
 #' @param value A possible value for the element(s) of \code{object} (see
 #'  below).
 #' @return
@@ -171,10 +176,31 @@ setGeneric(
 )
 
 #' @rdname mutator
+#' @aliases set_id-method
+setGeneric(
+  name = "set_id",
+  def = function(x) standardGeneric("set_id")
+)
+
+#' @rdname mutator
+#' @aliases set_id-method
+setGeneric(
+  name = "set_id<-",
+  def = function(x, value) standardGeneric("set_id<-")
+)
+
+#' @rdname mutator
 #' @aliases get_method-method
 setGeneric(
   name = "get_method",
   def = function(x) standardGeneric("get_method")
+)
+
+#' @rdname mutator
+#' @aliases set_method-method
+setGeneric(
+  name = "set_method<-",
+  def = function(x, value) standardGeneric("set_method<-")
 )
 
 #' @rdname mutator

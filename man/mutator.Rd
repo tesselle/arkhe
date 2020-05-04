@@ -7,8 +7,13 @@
 \alias{set}
 \alias{get_id}
 \alias{get_id-method}
+\alias{set_id}
+\alias{set_id-method}
+\alias{set_id<-}
 \alias{get_method}
 \alias{get_method-method}
+\alias{set_method<-}
+\alias{set_method-method}
 \alias{get_units}
 \alias{get_units-method}
 \alias{get_totals}
@@ -16,6 +21,7 @@
 \alias{set_totals<-}
 \alias{set_totals-method}
 \alias{length,DataMatrix-method}
+\alias{diag,DataMatrix-method}
 \alias{dim,DataMatrix-method}
 \alias{row,DataMatrix-method}
 \alias{col,DataMatrix-method}
@@ -31,13 +37,23 @@
 \alias{get_totals,AbundanceMatrix-method}
 \alias{get_method,SimilarityMatrix-method}
 \alias{get_units,StratigraphicMatrix-method}
+\alias{set_id,ANY-method}
+\alias{set_id<-,ANY-method}
 \alias{set_totals<-,AbundanceMatrix-method}
 \alias{set_totals,AbundanceMatrix-method}
+\alias{set_method<-,SimilarityMatrix-method}
+\alias{set_method,SimilarityMatrix-method}
 \title{Get or Set Parts of an Object}
 \usage{
 get_id(x)
 
+set_id(x)
+
+set_id(x) <- value
+
 get_method(x)
+
+set_method(x) <- value
 
 get_units(x)
 
@@ -46,6 +62,8 @@ get_totals(x)
 set_totals(x) <- value
 
 \S4method{length}{DataMatrix}(x)
+
+\S4method{diag}{DataMatrix}(x, names = TRUE)
 
 \S4method{dim}{DataMatrix}(x)
 
@@ -77,13 +95,22 @@ set_totals(x) <- value
 
 \S4method{get_units}{StratigraphicMatrix}(x)
 
+\S4method{set_id}{ANY}(x)
+
+\S4method{set_id}{ANY}(x) <- value
+
 \S4method{set_totals}{AbundanceMatrix}(x) <- value
+
+\S4method{set_method}{SimilarityMatrix}(x) <- value
 }
 \arguments{
 \item{x}{An object from which to get or set element(s).}
 
 \item{value}{A possible value for the element(s) of \code{object} (see
 below).}
+
+\item{names}{A \code{\link{logical}} scalar: should the resulting vector
+inherit names?}
 
 \item{as.factor}{A \code{\link{logical}} scalar: should the value be
 returned as a factor of row or column labels rather than as numbers?}
@@ -97,6 +124,8 @@ Getters and setters to retrieve or set parts of an object.
 \section{Functions}{
 \itemize{
 \item \code{length,DataMatrix-method}: Retrieve the length of an object.
+
+\item \code{diag,DataMatrix-method}: Extract the diagonal of a matrix.
 
 \item \code{dim,DataMatrix-method}: Retrieve or set the dimension of an object.
 

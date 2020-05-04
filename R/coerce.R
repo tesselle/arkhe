@@ -111,13 +111,18 @@ setMethod(
 setMethod(
   f = "as_long",
   signature = signature(from = "DataMatrix"),
-  definition = function(from) {
-    data.frame(
+  definition = function(from, as_factor = FALSE) {
+    x <- data.frame(
       case = as.character(row(from, as.factor = TRUE)),
       type = as.character(col(from, as.factor = TRUE)),
       data = from@data,
       stringsAsFactors = FALSE
     )
+    if (as_factor) {
+      x$case <- factor(x$case, levels = unique(x$case))
+      x$type <- factor(x$type, levels = unique(x$type))
+    }
+    x
   }
 )
 

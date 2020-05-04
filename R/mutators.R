@@ -14,6 +14,17 @@ setMethod(
 )
 
 #' @export
+#' @describeIn mutator Extract the diagonal of a matrix.
+#' @aliases diag,DataMatrix-method
+setMethod(
+  f = "diag",
+  signature = c("DataMatrix"),
+  definition = function(x, names = TRUE) {
+    diag(methods::as(x, "matrix"), names = names)
+  }
+)
+
+#' @export
 #' @describeIn mutator Retrieve or set the dimension of an object.
 #' @aliases dim,DataMatrix-method
 setMethod(
@@ -177,12 +188,51 @@ setMethod("get_units", "StratigraphicMatrix", function(x) x@row_names)
 # ====================================================================== Setters
 #' @export
 #' @rdname mutator
+#' @aliases set_id,ANY-method
+setMethod(
+  f = "set_id",
+  signature = "ANY",
+  definition = function(x) {
+    x@id <- generate_uuid()
+    methods::validObject(x)
+    x
+  }
+)
+
+#' @export
+#' @rdname mutator
+#' @aliases set_id,ANY-method
+setMethod(
+  f = "set_id<-",
+  signature = "ANY",
+  definition = function(x, value) {
+    x@id <- value
+    methods::validObject(x)
+    x
+  }
+)
+
+#' @export
+#' @rdname mutator
 #' @aliases set_totals,AbundanceMatrix-method
 setMethod(
   f = "set_totals<-",
   signature = "AbundanceMatrix",
   definition = function(x, value) {
     x@totals <- value
+    methods::validObject(x)
+    x
+  }
+)
+
+#' @export
+#' @rdname mutator
+#' @aliases set_method,SimilarityMatrix-method
+setMethod(
+  f = "set_method<-",
+  signature = "SimilarityMatrix",
+  definition = function(x, value) {
+    x@method <- value
     methods::validObject(x)
     x
   }
