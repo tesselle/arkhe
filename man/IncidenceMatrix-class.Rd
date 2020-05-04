@@ -7,7 +7,13 @@
 \alias{IncidenceMatrix}
 \title{Incidence Matrix}
 \usage{
-IncidenceMatrix(data = FALSE, nrow = 1, ncol = 1, dimnames = NULL)
+IncidenceMatrix(
+  data = FALSE,
+  nrow = 1,
+  ncol = 1,
+  byrow = FALSE,
+  dimnames = NULL
+)
 }
 \arguments{
 \item{data}{A data vector.}
@@ -16,6 +22,9 @@ IncidenceMatrix(data = FALSE, nrow = 1, ncol = 1, dimnames = NULL)
 
 \item{ncol}{An \code{\link{integer}} value giving the desired number of
 columns.}
+
+\item{byrow}{A \code{\link{logical}} scalar: should the matrix be filled by
+rows? If \code{FALSE} (the default) the matrix is filled by columns.}
 
 \item{dimnames}{A list of length 2 giving the row and column names
 respectively. If \code{NULL} (the default) dimension names will be created.}

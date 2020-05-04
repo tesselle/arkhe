@@ -65,51 +65,57 @@ setMethod(
 # ================================================================== constructor
 #' @export
 #' @rdname CountMatrix-class
-CountMatrix <- function(data = 0, nrow = 1, ncol = 1,
+CountMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
                         dimnames = NULL) {
   n <- length(data)
   if (missing(ncol)) ncol <- n / nrow
   if (missing(nrow)) nrow <- n / ncol
-  size <- as.integer(c(nrow, ncol))
+  mtx <- matrix(data = data, nrow = nrow, ncol = ncol, byrow = byrow,
+                dimnames = dimnames)
+  size <- dim(mtx)
 
   .CountMatrix(
-    data = as_integer(data),
-    size = as.integer(c(nrow, ncol)),
-    row_names = make_names(dimnames[[1L]], nrow, "row"),
-    column_names = make_names(dimnames[[2L]], ncol, "col")
+    data = as_integer(mtx),
+    size = size,
+    row_names = make_names(dimnames[[1L]], size[[1L]], "row"),
+    column_names = make_names(dimnames[[2L]], size[[2L]], "col")
   )
 }
 
-AbundanceMatrix <- function(data = 0, nrow = 1, ncol = 1,
+AbundanceMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
                             dimnames = NULL, totals = NULL) {
   n <- length(data)
   if (missing(ncol)) ncol <- n / nrow
   if (missing(nrow)) nrow <- n / ncol
-  size <- as.integer(c(nrow, ncol))
-  if (is.null(totals))
-    totals <- tapply(X = data, INDEX = index_by_row(size), FUN = sum)
+  mtx <- matrix(data = data, nrow = nrow, ncol = ncol, byrow = byrow,
+                dimnames = dimnames)
+  size <- dim(mtx)
+  totals <- if (is.null(totals)) rowSums(mtx) else totals
 
   .AbundanceMatrix(
-    data = as.numeric(data),
+    data = as.numeric(mtx),
     totals = as.numeric(totals),
     size = size,
-    row_names = make_names(dimnames[[1L]], nrow, "row"),
-    column_names = make_names(dimnames[[2L]], ncol, "col")
+    row_names = make_names(dimnames[[1L]], size[[1L]], "row"),
+    column_names = make_names(dimnames[[2L]], size[[2L]], "col")
   )
 }
 
 #' @export
 #' @rdname IncidenceMatrix-class
-IncidenceMatrix <- function(data = FALSE, nrow = 1, ncol = 1,
+IncidenceMatrix <- function(data = FALSE, nrow = 1, ncol = 1, byrow = FALSE,
                             dimnames = NULL) {
   n <- length(data)
   if (missing(ncol)) ncol <- n / nrow
   if (missing(nrow)) nrow <- n / ncol
+  mtx <- matrix(data = data, nrow = nrow, ncol = ncol, byrow = byrow,
+                dimnames = dimnames)
+  size <- dim(mtx)
 
   .IncidenceMatrix(
     data = as.logical(data),
-    size = as.integer(c(nrow, ncol)),
-    row_names = make_names(dimnames[[1L]], nrow, "row"),
-    column_names = make_names(dimnames[[2L]], ncol, "col")
+    size = size,
+    row_names = make_names(dimnames[[1L]], size[[1L]], "row"),
+    column_names = make_names(dimnames[[2L]], size[[2L]], "col")
   )
 }

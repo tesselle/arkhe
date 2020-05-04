@@ -89,8 +89,8 @@ setClass(
 #' @param nrow An \code{\link{integer}} value giving the desired number of rows.
 #' @param ncol An \code{\link{integer}} value giving the desired number of
 #'  columns.
-# @param byrow A \code{\link{logical scalar}}: should the matrix be filled by
-#  rows? If \code{FALSE} (the default) the matrix is filled by columns
+#' @param byrow A \code{\link{logical}} scalar: should the matrix be filled by
+#'  rows? If \code{FALSE} (the default) the matrix is filled by columns.
 #' @param dimnames A list of length 2 giving the row and column names
 #'  respectively. If \code{NULL} (the default) dimension names will be created.
 #' @inheritSection GenericMatrix-class Matrix ID
@@ -115,7 +115,7 @@ setClass(
 #' @keywords internal
 NULL
 
-#' @aliases NumericMatrix-class
+#' @aliases IntegerMatrix-class
 #' @rdname DataMatrix-class
 setClass(
   Class = "IntegerMatrix",
@@ -166,6 +166,7 @@ setClassUnion(
 #' @family matrix
 #' @docType class
 #' @export .CountMatrix
+#' @exportClass CountMatrix
 #' @aliases CountMatrix-class
 .CountMatrix <- setClass(
   Class = "CountMatrix",
@@ -188,6 +189,7 @@ setClassUnion(
 #' @family matrix
 #' @docType class
 #' @export .AbundanceMatrix
+#' @exportClass AbundanceMatrix
 #' @aliases AbundanceMatrix-class
 .AbundanceMatrix <- setClass(
   Class = "AbundanceMatrix",
@@ -214,6 +216,7 @@ setClassUnion(
 #' @family matrix
 #' @docType class
 #' @export .OccurrenceMatrix
+#' @exportClass OccurrenceMatrix
 #' @aliases OccurrenceMatrix-class
 .OccurrenceMatrix <- setClass(
   Class = "OccurrenceMatrix",
@@ -237,6 +240,7 @@ setClassUnion(
 #' @author N. Frerebeau
 #' @docType class
 #' @export .SimilarityMatrix
+#' @exportClass SimilarityMatrix
 #' @aliases SimilarityMatrix-class
 .SimilarityMatrix <- setClass(
   Class = "SimilarityMatrix",
@@ -261,6 +265,7 @@ setClassUnion(
 #' @family matrix
 #' @docType class
 #' @export .IncidenceMatrix
+#' @exportClass IncidenceMatrix
 #' @aliases IncidenceMatrix-class
 .IncidenceMatrix <- setClass(
   Class = "IncidenceMatrix",
@@ -270,8 +275,6 @@ setClassUnion(
 #' Stratigraphic Matrix
 #'
 #' An S4 class to represent a stratigraphic matrix.
-#' @slot units A \code{\link{character}} vector giving the names of the
-#'  stratigraphic unit.
 #' @details
 #'  A stratigraphic matrix represents directed relationships between
 #'  stratigraphic units. A stratigraphic matrix is an adjacency matrix (a non
@@ -287,6 +290,7 @@ setClassUnion(
 #' @family matrix
 #' @docType class
 #' @export .StratigraphicMatrix
+#' @exportClass StratigraphicMatrix
 #' @aliases StratigraphicMatrix-class
 .StratigraphicMatrix <- setClass(
   Class = "StratigraphicMatrix",
