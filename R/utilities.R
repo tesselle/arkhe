@@ -104,15 +104,21 @@ rownames_to_column <- function(x, factor = TRUE, id = "id") {
   if (!is.matrix(x) && !is.data.frame(x))
     stop("A matrix or data.frame is expected.", call. = FALSE)
 
+  if (is.null(colnames(x))) {
+    colnames(x) <- paste0("col", seq_len(ncol(x)))
+  }
   row_names <- rownames(x)
+  if (is.null(row_names)) {
+    row_names <- paste0("row", seq_len(nrow(x)))
+  }
   if (factor) {
     row_names <- factor(x = row_names, levels = row_names)
   }
-  y <- cbind.data.frame(row_names, x, stringsAsFactors = FALSE)
 
-  id <- id[[1L]]
-  colnames(y) <- c(id, colnames(x))
-  y
+  z <- cbind.data.frame(row_names, x, stringsAsFactors = FALSE)
+  colnames(z) <- c(id, colnames(x))
+  rownames(z) <- NULL
+  z
 }
 
 #' Row and Column Indexes

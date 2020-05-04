@@ -181,7 +181,6 @@ setAs(
   def = function(from) {
     x <- matrix(data = from@data, nrow = nrow(from), ncol = ncol(from),
                 byrow = FALSE, dimnames = dimnames(from))
-    attr(x, "id") <- from@id
     x
   }
 )
@@ -191,7 +190,6 @@ setAs(
   def = function(from) {
     x <- methods::as(from, "matrix")
     x <- as.data.frame(x, stringsAsFactors = FALSE)
-    attr(x, "id") <- from@id
     x
   }
 )

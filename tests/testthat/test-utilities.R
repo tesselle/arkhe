@@ -31,10 +31,6 @@ test_that("NULL OR operator", {
 test_that("Row and column names", {
   mtx <- matrix(sample(1:10, 100, TRUE), ncol = 10)
 
-  expect_equal(make_dimnames(mtx),
-               list(paste0("row", seq_len(10)),
-                    paste0("col", seq_len(10))))
-
   rownames(mtx) <- LETTERS[seq_len(10)]
   A <- rownames_to_column(mtx, factor = TRUE)
   expect_equal(ncol(A), 11)
