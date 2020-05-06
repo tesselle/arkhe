@@ -6,18 +6,18 @@
 \alias{check_lengths}
 \alias{check_dimension}
 \alias{check_names}
-\alias{check_uuid}
+\alias{check_dimnames}
 \title{Check Object Attributes}
 \usage{
 check_length(x, expected)
 
-check_lengths(x, expected = NULL)
+check_lengths(x, expected)
 
 check_dimension(x, expected)
 
-check_names(x, expected = NULL, margin = c(1, 2))
+check_names(x, expected)
 
-check_uuid(x)
+check_dimnames(x, expected, margin = c(1, 2))
 }
 \arguments{
 \item{x}{An object to be checked.}

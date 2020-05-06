@@ -8,6 +8,7 @@ NULL
 #' error action.
 #'
 #' \code{catch_conditions} handles unusual conditions.
+#' @param expr An expression to be evaluated.
 #' @param .subclass A \code{\link{character}} string specifying the class of
 #'  the message to be returned.
 #' @param message A \code{\link{character}} string specifying the message to be
@@ -34,6 +35,7 @@ throw_error <- function(.subclass, message, call = NULL, ...) {
   )
   stop(err)
 }
+
 #' @rdname conditions
 throw_warning <- function(.subclass, message, call = NULL, ...) {
   wrn <- structure(
@@ -46,6 +48,7 @@ throw_warning <- function(.subclass, message, call = NULL, ...) {
   )
   warning(wrn)
 }
+
 #' @rdname conditions
 catch_conditions <- function(expr) {
   cnd <- list()

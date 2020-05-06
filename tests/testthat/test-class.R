@@ -23,12 +23,13 @@ test_that("Initialize a CountMatrix instance", {
   cnd <- catch_conditions(CountMatrix(-1))
   expect_s3_class(cnd[[1]], "arkhe_error_class")
   expect_true(grepl("must contain positive numbers", cnd[[1]]$message))
+  # Try Inf
+  cnd <- catch_conditions(CountMatrix(Inf))
+  expect_s3_class(cnd[[1]], "simpleWarning")
+  expect_s3_class(cnd[[2]], "arkhe_error_class")
+  expect_true(grepl("must not contain missing values", cnd[[2]]$message))
   # Try NA
   cnd <- catch_conditions(CountMatrix(NA))
-  expect_s3_class(cnd[[1]], "arkhe_error_class")
-  expect_true(grepl("must not contain missing values", cnd[[1]]$message))
-  # Try NaN
-  cnd <- catch_conditions(CountMatrix(NaN))
   expect_s3_class(cnd[[1]], "arkhe_error_class")
   expect_true(grepl("must not contain missing values", cnd[[1]]$message))
 })
@@ -52,14 +53,6 @@ test_that("Initialize a AbundanceMatrix instance", {
   cnd <- catch_conditions(AbundanceMatrix(-2))
   expect_s3_class(cnd[[1]], "arkhe_error_class")
   expect_true(grepl("must contain positive numbers", cnd[[1]]$message))
-  # Try NA
-  cnd <- catch_conditions(AbundanceMatrix(NA))
-  expect_s3_class(cnd[[1]], "arkhe_error_class")
-  expect_true(grepl("must not contain missing values", cnd[[1]]$message))
-  # Try NaN
-  cnd <- catch_conditions(AbundanceMatrix(NaN))
-  expect_s3_class(cnd[[1]], "arkhe_error_class")
-  expect_true(grepl("must not contain missing values", cnd[[1]]$message))
 })
 test_that("AbundanceMatrix constructor", {
   expect_s4_class(AbundanceMatrix(), "AbundanceMatrix")
@@ -98,15 +91,6 @@ test_that("Initialize a SimilarityMatrix instance", {
 # Logical matrix ===============================================================
 test_that("Initialize a IncidenceMatrix instance", {
   expect_s4_class(.IncidenceMatrix(), "IncidenceMatrix")
-
-  # Try NA
-  cnd <- catch_conditions(IncidenceMatrix(NA))
-  expect_s3_class(cnd[[1]], "arkhe_error_class")
-  expect_true(grepl("must not contain missing values", cnd[[1]]$message))
-  # Try NaN
-  cnd <- catch_conditions(IncidenceMatrix(NaN))
-  expect_s3_class(cnd[[1]], "arkhe_error_class")
-  expect_true(grepl("must not contain missing values", cnd[[1]]$message))
 })
 test_that("IncidenceMatrix constructor", {
   incid_matrix1 <- IncidenceMatrix(

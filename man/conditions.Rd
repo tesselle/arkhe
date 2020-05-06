@@ -23,6 +23,8 @@ returned.}
 \item{call}{The call.}
 
 \item{...}{Extra arguments.}
+
+\item{expr}{An expression to be evaluated.}
 }
 \description{
 \code{throw_error} stops execution of the current expression and executes an

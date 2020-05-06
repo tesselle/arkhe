@@ -14,7 +14,9 @@ check_scalar(x, expected)
 \item{x}{An object to be checked.}
 
 \item{expected}{A \code{\link{character}} string specifying the expected
-type.}
+type. It must be one of "\code{list}", "\code{atomic}", "\code{vector}",
+"\code{numeric}", "\code{integer}", "\code{double}", "\code{character}"
+or "\code{logical}".}
 }
 \value{
 Throw an error, if any.

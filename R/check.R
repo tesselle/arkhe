@@ -7,7 +7,9 @@ NULL
 #'
 #' @param x An object to be checked.
 #' @param expected A \code{\link{character}} string specifying the expected
-#' type.
+#'  type. It must be one of "\code{list}", "\code{atomic}", "\code{vector}",
+#'  "\code{numeric}", "\code{integer}", "\code{double}", "\code{character}"
+#'  or "\code{logical}".
 #' @return Throw an error, if any.
 #' @author N. Frerebeau
 #' @family check
@@ -36,6 +38,7 @@ check_type <- function(x, expected) {
     throw_error("error_bad_type", msg)
   }
 }
+
 #' @rdname check-type
 check_scalar <- function(x, expected) {
   arg <- deparse(substitute(x))
@@ -79,74 +82,68 @@ check_length <- function(x, expected) {
     throw_error("error_bad_dimension", msg)
   }
 }
+
 #' @rdname check-attribute
-check_lengths <- function(x, expected = NULL) {
+check_lengths <- function(x, expected) {
   arg <- deparse(substitute(x))
   n <- lengths(x)
-  m <- paste0(n, collapse = ", ")
-  if (is.null(expected)) {
-    if (!is_equal(n)) {
-      msg <- sprintf("Elements of %s must have the same length; not %s.",
-                     sQuote(arg), m)
-      throw_error("error_bad_dimension", msg)
-    }
-  } else {
-    expected <- as.integer(expected)
-    if (is_empty(n) || any(n != expected)) {
-      msg <- sprintf("Elements of %s must have the following lengths %s; not %s.",
-                     sQuote(arg), paste0(expected, collapse = ", "), m)
-      throw_error("error_bad_dimension", msg)
-    }
+  if (any(n != expected)) {
+    msg <- sprintf("Elements of %s must be of lengths %s; not %s.", sQuote(arg),
+                   paste0(expected, collapse = ", "),
+                   paste0(n, collapse = ", "))
+    throw_error("error_bad_dimension", msg)
   }
 }
+
 #' @rdname check-attribute
 check_dimension <- function(x, expected) {
   arg <- deparse(substitute(x))
   n <- dim(x)
-  expected <- as.integer(expected)
-  if (!identical(n, expected)) {
+  if (any(n != expected)) {
     msg <- sprintf("%s must be of dimension %s; not %s.", sQuote(arg),
                    paste0(expected, collapse = " x "),
                    paste0(n, collapse = " x "))
     throw_error("error_bad_dimension", msg)
   }
 }
+
 #' @rdname check-attribute
-check_names <- function(x, expected = NULL, margin = c(1, 2)) {
+check_names <- function(x, expected) {
   arg <- deparse(substitute(x))
-  if (is.array(x) || is.data.frame(x)) {
-    n <- dimnames(x)[[margin]]
-    if (is_scalar_numeric(margin)) {
-      mar <- ifelse(margin == 1, "row ", "column ")
-    } else {
-      mar <- "dim"
-    }
-  } else {
-    n <- names(x)
-    mar <- ""
-  }
-  if (is.null(expected)) {
-    if (is_empty(n)) {
-      msg <- sprintf("%s must have %snames.", sQuote(arg), mar)
-      throw_error("error_bad_names", msg)
-    }
-  } else if (is_empty(n) || !identical(n, expected)) {
-    msg <- sprintf("%s must have the following %snames: %s.",
-                   sQuote(arg), mar, paste0(expected, collapse = ", "))
+  k <- names(x)
+  if ((is.null(k) & !is.null(expected)) || any(k != expected)) {
+    msg <- sprintf("%s must have the following names: %s.",
+                   sQuote(arg), paste0(expected, collapse = ", "))
     throw_error("error_bad_names", msg)
   }
 }
+
 #' @rdname check-attribute
+check_dimnames <- function(x, expected, margin = c(1, 2)) {
+  arg <- deparse(substitute(x))
+  k <- dimnames(x)
+  for (i in margin) {
+    x <- k[[i]]
+    y <- expected[[i]]
+    if ((is.null(x) & !is.null(y)) || any(x != y)) {
+      msg <- sprintf("%s must have the following %s names: %s.", sQuote(arg),
+                     ifelse(i == 1, "row", "column"),
+                     paste0(y, collapse = ", "))
+      throw_error("error_bad_names", msg)
+    }
+  }
+}
+
 check_uuid <- function(x) {
   arg <- deparse(substitute(x))
   if (length(x) == 0 || !is_uuid(x)) {
     msg <- sprintf("%s must be an UUID.", sQuote(arg))
     throw_error("error_bad_uuid", msg)
   }
-  # if (x == "00000000-0000-4000-a000-000000000000") {
-  #   msg <- sprintf("%s seems wrong.", sQuote(arg))
-  #   warning("error_bad_uuid", msg)
-  # }
+  if (x == "00000000-0000-4000-a000-000000000000") {
+    msg <- sprintf("%s seems wrong.", sQuote(arg))
+    throw_warning("warning_bad_uuid", msg)
+  }
 }
 
 # =================================================================== NA/NaN/Inf
@@ -173,6 +170,15 @@ check_missing <- function(x) {
     throw_error("error_data_missing", msg)
   }
 }
+# validate_missing <- function(x) {
+#   arg <- deparse(substitute(x))
+#   n <- sum(is.na(x))
+#   if (n > 0) {
+#     msg <- sprintf("%s contains %s missing values.", sQuote(arg), n)
+#     throw_warning("warning_data_missing", msg)
+#   }
+# }
+
 #' @rdname check-missing
 check_infinite <- function(x) {
   arg <- deparse(substitute(x))
@@ -184,11 +190,13 @@ check_infinite <- function(x) {
   }
 }
 
-# ===================================================================== Numerric
+# ====================================================================== Numeric
 #' Check Numeric Values
 #'
 #' @param x A \code{\link{numeric}} object to be checked.
-#' @param expected An appropriate expected value.
+#' @param expected A \code{\link{character}} string specifying the expected
+#'  value. It must be one of "\code{positive}", "\code{whole}", "\code{odd}"
+#'  or "\code{even}".
 #' @return Throw an error, if any.
 #' @author N. Frerebeau
 #' @family check
@@ -245,6 +253,7 @@ check_square <- function(x) {
     throw_error("error_bad_matrix", msg)
   }
 }
+
 #' @rdname check-matrix
 check_symmetric <- function(x) {
   arg <- deparse(substitute(x))
@@ -274,4 +283,42 @@ check_dag <- function(x) {
     msg <- sprintf("%s must not contain cycles.", sQuote(arg))
     throw_error("error_bad_graph", msg)
   }
+}
+
+# =================================================================== Diagnostic
+#' Class Diagnostic
+#'
+#' @param object An object to which error messages are related.
+#' @param conditions A \code{\link{list}} of condition messages.
+#' @return
+#'  Throw an error if \code{conditions} is of non-zero length,
+#'  returns \code{TRUE} if not.
+#' @author N. Frerebeau
+#' @keywords internal
+#' @noRd
+check_class <- function(object, conditions) {
+  cnd <- compact(is_empty, conditions)
+  cnd <- unlist(cnd, recursive = FALSE)
+
+  # Check if any warning
+  wrn_idx <- vapply(X = cnd, FUN = is_warning, FUN.VALUE = logical(1))
+  if (any(wrn_idx)) {
+    wrn_msg <- vapply(X = cnd[wrn_idx], FUN = `[[`,
+                      FUN.VALUE = character(1), "message")
+    wrn <- sprintf("<%s> instance initialization:\n%s", class(object),
+                   paste0("* ", unlist(wrn_msg), collapse = "\n"))
+    throw_warning("arkhe_warning_class", wrn, call = NULL)
+  }
+
+  # Check if any error
+  err_idx <- vapply(X = cnd, FUN = is_error, FUN.VALUE = logical(1))
+  if (any(err_idx)) {
+    err_msg <- vapply(X = cnd[err_idx], FUN = `[[`,
+                      FUN.VALUE = character(1), "message")
+    err <- sprintf("<%s> instance initialization:\n%s", class(object),
+                   paste0("* ", err_msg, collapse = "\n"))
+    throw_error("arkhe_error_class", err, call = NULL)
+  }
+
+  return(TRUE)
 }

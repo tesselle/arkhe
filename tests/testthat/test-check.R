@@ -7,7 +7,7 @@ test_that("type checks return an error", {
   cnd <- catch_conditions(check_type(list(), expected = "atomic"))
   expect_s3_class(cnd[[1]], "error_bad_type")
 
-  # cnd <- catch_conditions(check_type(array(), expected = "vector"))
+  # cnd <- catch_conditions(check_type(, expected = "vector"))
   # expect_s3_class(cnd[[1]], "error_bad_type")
 
   cnd <- catch_conditions(check_type(character(), expected = "numeric"))
@@ -55,8 +55,6 @@ test_that("object attribute checks return an error", {
   expect_s3_class(cnd[[1]], "error_bad_dimension")
 
   k <- list(1:10, 1:20)
-  cnd <- catch_conditions(check_lengths(k, expected = NULL))
-  expect_s3_class(cnd[[1]], "error_bad_dimension")
   cnd <- catch_conditions(check_lengths(k, expected = c(20, 10)))
   expect_s3_class(cnd[[1]], "error_bad_dimension")
 
@@ -65,23 +63,23 @@ test_that("object attribute checks return an error", {
   expect_s3_class(cnd[[1]], "error_bad_dimension")
 
   k <- vector(mode = "numeric", length = 10)
-  cnd <- catch_conditions(check_names(k, expected = NULL))
+  cnd <- catch_conditions(check_names(k, expected = LETTERS[11:20]))
   expect_s3_class(cnd[[1]], "error_bad_names")
+
   names(k) <- LETTERS[1:10]
   cnd <- catch_conditions(check_names(k, expected = LETTERS[11:20]))
   expect_s3_class(cnd[[1]], "error_bad_names")
 
-  k <- matrix(1, nrow = 10, ncol = 5)
-  cnd <- catch_conditions(check_names(k, expected = NULL, margin = c(1, 2)))
+  k <- matrix(1, nrow = 3, ncol = 3)
+  z <- list(LETTERS[1:3], LETTERS[4:6])
+  cnd <- catch_conditions(check_dimnames(k, expected = z, margin = c(1, 2)))
   expect_s3_class(cnd[[1]], "error_bad_names")
-  cnd <- catch_conditions(check_names(k, expected = NULL, margin = 1))
+
+  dimnames(k) <- list(letters[1:3], letters[4:6])
+  cnd <- catch_conditions(check_dimnames(k, expected = z, margin = 1))
   expect_s3_class(cnd[[1]], "error_bad_names")
-  cnd <- catch_conditions(check_names(k, expected = NULL, margin = 2))
-  expect_s3_class(cnd[[1]], "error_bad_names")
-  dimnames(k) <- list(letters[1:10], letters[1:5])
-  cnd <- catch_conditions(check_names(k, expected = LETTERS[1:10], margin = 1))
-  expect_s3_class(cnd[[1]], "error_bad_names")
-  cnd <- catch_conditions(check_names(k, expected = LETTERS[1:5], margin = 2))
+
+  cnd <- catch_conditions(check_dimnames(k, expected = z, margin = 2))
   expect_s3_class(cnd[[1]], "error_bad_names")
 })
 test_that("data checks return an error", {
