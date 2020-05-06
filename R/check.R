@@ -213,10 +213,11 @@ check_numbers <- function(x, expected, ...) {
     throw_error("error_bad_number", msg)
   }
 }
+
 #' @rdname check-numeric
 check_constant <- function(x) {
   arg <- deparse(substitute(x))
-  if (!is_equal(x)) {
+  if (!is_constant(x)) {
     msg <- sprintf("%s must be constant.", sQuote(arg))
     throw_error("error_bad_value", msg)
   }

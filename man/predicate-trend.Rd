@@ -2,13 +2,13 @@
 % Please edit documentation in R/predicates.R
 \name{predicate-trend}
 \alias{predicate-trend}
-\alias{is_equal}
+\alias{is_constant}
 \alias{is_increasing}
 \alias{is_decreasing}
 \alias{is_overlapping}
 \title{Numeric Trend Predicates}
 \usage{
-is_equal(x, tolerance = .Machine$double.eps^0.5, na.rm = TRUE)
+is_constant(x, tolerance = .Machine$double.eps^0.5, na.rm = TRUE)
 
 is_increasing(x, na.rm = TRUE)
 
@@ -32,7 +32,7 @@ A \code{\link{logical}} scalar.
 Check numeric objects:
 }
 \details{
-\code{is_equal} checks for equality among all elements of a vector.
+\code{is_constant} checks for equality among all elements of a vector.
 
 \code{is_increasing} and \code{is_decreasing} check if a sequence of numbers
 is monotonically increasing or decreasing, respectively.

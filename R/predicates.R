@@ -200,7 +200,7 @@ is_binary <- function(x, na.rm = FALSE) {
 #'
 #' Check numeric objects:
 #'
-#' \code{is_equal} checks for equality among all elements of a vector.
+#' \code{is_constant} checks for equality among all elements of a vector.
 #'
 #' \code{is_increasing} and \code{is_decreasing} check if a sequence of numbers
 #' is monotonically increasing or decreasing, respectively.
@@ -220,7 +220,7 @@ NULL
 
 #' @export
 #' @rdname predicate-trend
-is_equal <- function(x, tolerance = .Machine$double.eps^0.5, na.rm = TRUE) {
+is_constant <- function(x, tolerance = .Machine$double.eps^0.5, na.rm = TRUE) {
   check_type(x, "numeric")
 
   k <- abs(max(x, na.rm = na.rm) - min(x, na.rm = na.rm)) <= tolerance

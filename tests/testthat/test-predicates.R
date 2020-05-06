@@ -96,12 +96,12 @@ test_that("numeric predicates return a logical vector", {
   expect_false(is_binary(2))
   expect_error(is_binary(LETTERS))
 
-  expect_true(is_equal(c(1, 1, 1, 1, 1)))
-  expect_true(is_equal(c(1, 1.1, 1.2, 1.3, 1.4), tolerance = 0.5))
-  expect_true(is_equal(c(1, 1, 1, NA, 1), na.rm = TRUE))
-  expect_false(is_equal(c(1, 1, 1, NA, 1), na.rm = FALSE))
-  expect_false(is_equal(c(1, 2, 1, 1, 1)))
-  expect_error(is_equal(LETTERS))
+  expect_true(is_constant(c(1, 1, 1, 1, 1)))
+  expect_true(is_constant(c(1, 1.1, 1.2, 1.3, 1.4), tolerance = 0.5))
+  expect_true(is_constant(c(1, 1, 1, NA, 1), na.rm = TRUE))
+  expect_false(is_constant(c(1, 1, 1, NA, 1), na.rm = FALSE))
+  expect_false(is_constant(c(1, 2, 1, 1, 1)))
+  expect_error(is_constant(LETTERS))
 })
 test_that("trend predicates return a logical scalar", {
   expect_true(is_increasing(c(1, 2, 3, 4, 5)))
