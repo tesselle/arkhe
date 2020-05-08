@@ -111,9 +111,6 @@ below).}
 
 \item{as.factor}{A \code{\link{logical}} scalar: should the value be
 returned as a factor of row or column labels rather than as numbers?}
-
-\item{names}{A \code{\link{logical}} scalar: should the resulting vector
-inherit names?}
 }
 \value{
 An object of the same sort as \code{x} with the new values assigned.

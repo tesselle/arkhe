@@ -153,8 +153,8 @@ setGeneric(
 #' @param x An object from which to get or set element(s).
 #' @param as.factor A \code{\link{logical}} scalar: should the value be
 #'  returned as a factor of row or column labels rather than as numbers?
-#' @param names A \code{\link{logical}} scalar: should the resulting vector
-#'  inherit names?
+# @param names A \code{\link{logical}} scalar: should the resulting vector
+#  inherit names?
 #' @param value A possible value for the element(s) of \code{object} (see
 #'  below).
 #' @return
