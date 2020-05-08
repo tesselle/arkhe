@@ -18,7 +18,6 @@ knitr::opts_chunk$set(
 # arkhe
 
 <!-- badges: start -->
-[![Appveyor build status](https://ci.appveyor.com/api/projects/status/7xt157mqcny0pht1?svg=true)](https://ci.appveyor.com/project/nfrerebeau/arkhe)
 [![R build status](https://github.com/nfrerebeau/arkhe/workflows/R-CMD-check/badge.svg)](https://github.com/nfrerebeau/arkhe/actions)
 [![codecov](https://codecov.io/gh/nfrerebeau/arkhe/branch/master/graph/badge.svg)](https://codecov.io/gh/nfrerebeau/arkhe)
 
