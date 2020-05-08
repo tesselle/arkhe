@@ -63,7 +63,7 @@ set_totals(x) <- value
 
 \S4method{length}{DataMatrix}(x)
 
-\S4method{diag}{DataMatrix}(x, names = TRUE)
+\S4method{diag}{DataMatrix}(x)
 
 \S4method{dim}{DataMatrix}(x)
 
@@ -109,11 +109,11 @@ set_totals(x) <- value
 \item{value}{A possible value for the element(s) of \code{object} (see
 below).}
 
-\item{names}{A \code{\link{logical}} scalar: should the resulting vector
-inherit names?}
-
 \item{as.factor}{A \code{\link{logical}} scalar: should the value be
 returned as a factor of row or column labels rather than as numbers?}
+
+\item{names}{A \code{\link{logical}} scalar: should the resulting vector
+inherit names?}
 }
 \value{
 An object of the same sort as \code{x} with the new values assigned.

@@ -19,8 +19,8 @@ setMethod(
 setMethod(
   f = "diag",
   signature = c("DataMatrix"),
-  definition = function(x, names = TRUE) {
-    diag(methods::as(x, "matrix"), names = names)
+  definition = function(x) {
+    diag(methods::as(x, "matrix"), names = TRUE)
   }
 )
 
