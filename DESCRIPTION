@@ -23,7 +23,7 @@ URL: http://arkhe.archaeo.science,
     https://cran.r-project.org/package=arkhe
 BugReports: https://github.com/nfrerebeau/arkhe/issues
 Depends: 
-    R (>= 3.2)
+    R (>= 3.3)
 Imports: 
     methods,
     stats

@@ -99,7 +99,7 @@
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
-      "version": ">= 3.2"
+      "version": ">= 3.3"
     },
     {
       "@type": "SoftwareApplication",
@@ -113,7 +113,7 @@
     }
   ],
   "readme": "https://github.com/nfrerebeau/arkhe/blob/master/README.md",
-  "fileSize": "690.679KB",
+  "fileSize": "691.405KB",
   "contIntegration": [
     "https://ci.appveyor.com/project/nfrerebeau/arkhe",
     "https://travis-ci.org/nfrerebeau/arkhe",
