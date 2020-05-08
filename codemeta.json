@@ -15,7 +15,7 @@
   ],
   "issueTracker": "https://github.com/nfrerebeau/arkhe/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -113,7 +113,7 @@
     }
   ],
   "readme": "https://github.com/nfrerebeau/arkhe/blob/master/README.md",
-  "fileSize": "690.558KB",
+  "fileSize": "690.679KB",
   "contIntegration": [
     "https://ci.appveyor.com/project/nfrerebeau/arkhe",
     "https://travis-ci.org/nfrerebeau/arkhe",
@@ -142,7 +142,7 @@
       ],
       "name": "{arkhe}: Representation of Archaeological Data",
       "url": "https://doi.org/10.5281/zenodo.3526659",
-      "description": "R package version 0.3.0"
+      "description": "R package version 1.0.0"
     }
   ],
   "releaseNotes": "https://github.com/nfrerebeau/arkhe/blob/master/NEWS.md",

@@ -2,7 +2,7 @@
 #' \tabular{ll}{
 #'  \strong{Package:} \tab arkhe \cr
 #'  \strong{Type:} \tab Package \cr
-#'  \strong{Version:} \tab 0.2.2 \cr
+#'  \strong{Version:} \tab 1.0.0 \cr
 #'  \strong{License:} \tab GPL-3 \cr
 #'  \strong{DOI:} \tab \href{https://doi.org/10.5281/zenodo.3526659}{10.5281/zenodo.3526659}
 #' }
@@ -29,7 +29,7 @@
 #' @keywords internal
 "_PACKAGE"
 
-#' @importFrom methods Arith as callNextMethod Compare is Logic new setClass
-#' setClassUnion setGeneric setMethod Summary validObject
+#' @importFrom methods Arith as callGeneric callNextMethod Compare is Logic new
+#' setClass setClassUnion setGeneric setMethod Summary validObject
 #' @importFrom stats quantile var
 NULL

@@ -50,7 +50,7 @@ install.packages("arkhe")
 Or install the development version from GitHub with:
 
 ``` r
-# install.packages("devtools")
+# install.packages("remotes")
 remotes::install_github("nfrerebeau/arkhe")
 ```
 

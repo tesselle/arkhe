@@ -1,6 +1,6 @@
 Package: arkhe
 Title: Representation of Archaeological Data
-Version: 0.2.2
+Version: 1.0.0
 Authors@R: 
     person(given = "Nicolas",
            family = "Frerebeau",
