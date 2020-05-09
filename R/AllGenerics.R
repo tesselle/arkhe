@@ -3,8 +3,6 @@
 NULL
 
 # Add S4 dispatch to base S3 generic
-setGeneric("as.matrix")
-setGeneric("as.data.frame")
 setGeneric("length")
 setGeneric("diag")
 setGeneric("row")

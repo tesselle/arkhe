@@ -2,17 +2,14 @@
 #' @include AllGenerics.R AllClasses.R
 NULL
 
+#' @method as.matrix DataMatrix
 #' @export
-#' @rdname coerce
-#' @aliases as.matrix,DataMatrix-method
-as.matrix.DataMatrix <- function(x) {
+as.matrix.DataMatrix <- function(x, ...) {
   x <- methods::as(x, "matrix")
   x
 }
-
+#' @method as.data.frame DataMatrix
 #' @export
-#' @rdname coerce
-#' @aliases as.data.frame,DataMatrix-method
 as.data.frame.DataMatrix <- function(x, row.names = NULL, optional = FALSE,
                                      make.names = TRUE, ...,
                                      stringsAsFactors = default.stringsAsFactors()) {
