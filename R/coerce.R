@@ -2,19 +2,24 @@
 #' @include AllGenerics.R AllClasses.R
 NULL
 
-#' Integer Vectors
-#'
-#' @param x A \code{\link{numeric}} vector to be coerced.
-#' @details
-#'  Numeric values are rounded to zero decimal places and then coerced to
-#'  integer as by \code{\link{as.integer}}.
-#' @return An \code{\link{integer}} vector.
-#' @author N. Frerebeau
-#' @family utilities
-#' @keywords internal utilities
-#' @noRd
-as_integer <- function(x) {
-  as.integer(round(x, digits = 0))
+#' @export
+#' @rdname coerce
+#' @aliases as.matrix,DataMatrix-method
+as.matrix.DataMatrix <- function(x) {
+  x <- methods::as(x, "matrix")
+  x
+}
+
+#' @export
+#' @rdname coerce
+#' @aliases as.data.frame,DataMatrix-method
+as.data.frame.DataMatrix <- function(x, row.names = NULL, optional = FALSE,
+                                     make.names = TRUE, ...,
+                                     stringsAsFactors = default.stringsAsFactors()) {
+  x <- as.data.frame(x = as.matrix(x), row.names = row.names,
+                     optional = optional, make.names = make.names, ...,
+                     stringsAsFactors = stringsAsFactors)
+  x
 }
 
 #' @export
@@ -173,6 +178,21 @@ setMethod(
     return(feat)
   }
 )
+
+#' Integer Vectors
+#'
+#' @param x A \code{\link{numeric}} vector to be coerced.
+#' @details
+#'  Numeric values are rounded to zero decimal places and then coerced to
+#'  integer as by \code{\link{as.integer}}.
+#' @return An \code{\link{integer}} vector.
+#' @author N. Frerebeau
+#' @family utilities
+#' @keywords internal utilities
+#' @noRd
+as_integer <- function(x) {
+  as.integer(round(x, digits = 0))
+}
 
 # To an S3 matrix or data.frame ================================================
 setAs(

@@ -25,6 +25,10 @@
 \alias{as_features-method}
 \alias{as_stratigraphy}
 \alias{as_stratigraphy-method}
+\alias{as.matrix.DataMatrix}
+\alias{as.matrix,DataMatrix-method}
+\alias{as.data.frame.DataMatrix}
+\alias{as.data.frame,DataMatrix-method}
 \alias{as_count,ANY-method}
 \alias{as_abundance,ANY-method}
 \alias{as_incidence,ANY-method}
@@ -59,6 +63,17 @@ as_similarity(from)
 as_features(from)
 
 as_stratigraphy(from)
+
+as.matrix.DataMatrix(x)
+
+as.data.frame.DataMatrix(
+  x,
+  row.names = NULL,
+  optional = FALSE,
+  make.names = TRUE,
+  ...,
+  stringsAsFactors = default.stringsAsFactors()
+)
 
 \S4method{as_count}{ANY}(from)
 
