@@ -9,7 +9,7 @@ setMethod(
   f = "length",
   signature = c("DataMatrix"),
   definition = function(x) {
-    prod(x@size)
+    prod(dim(x))
   }
 )
 
@@ -20,7 +20,7 @@ setMethod(
   f = "diag",
   signature = c("DataMatrix"),
   definition = function(x) {
-    diag(methods::as(x, "matrix"), names = TRUE)
+    diag(methods::as(x, "matrix"))
   }
 )
 
