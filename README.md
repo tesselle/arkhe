@@ -85,10 +85,11 @@ These new classes are of simple use, on the same way as the base
 
 ``` r
 # Define a count data matrix
+# (data will be rounded to zero decimal places, then coerced with as.integer)
 quanti <- CountMatrix(data = sample(0:10, 100, TRUE), nrow = 10, ncol = 10)
 
 # Define a logical matrix
-# Data will be coerced with as.logical()
+# (data will be coerced with as.logical)
 quali <- IncidenceMatrix(data = sample(0:1, 100, TRUE), nrow = 10, ncol = 10)
 ```
 
@@ -142,6 +143,20 @@ harris <- read.table(
 )
 
 S <- as_stratigraphy(harris)
+```
+
+Many familiar methods and group generic functions are available for all
+`*Matrix` classes (such as `length`, `dim`, `rowSums`, `rowMeans`,
+`sum`, `any`, `all`…). In addition, all functions that call `as.matrix`
+first on their main argument should work (e. g. `apply`).
+
+``` r
+dim(A0)
+#> [1] 10 10
+rowSums(A0)
+#>  [1] 58 50 66 40 62 71 45 46 57 44
+apply(X = A0, MARGIN = 1, FUN = sum)
+#>  [1] 58 50 66 40 62 71 45 46 57 44
 ```
 
 ## Contributing
