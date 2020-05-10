@@ -20,12 +20,11 @@ C <- as_incidence(A1)
 D <- as_occurrence(A1)
 
 ## Coerce to an S3 matrix or data.frame
-X <- as_matrix(A1)
+X <- as.matrix(A1)
 all(A0 == X)
 
-Y <- as_wide(A1)
-Z <- as_long(A1)
-head(Z)
+Y <- data.frame(A1)
+head(Y)
 
 ## Collection of features
 # set_dates(A1) <- matrix(sample(0:10, 20, TRUE), nrow = 10, ncol = 2)

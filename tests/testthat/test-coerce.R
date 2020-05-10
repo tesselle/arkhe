@@ -55,12 +55,12 @@ df_sim <- as.data.frame(sim)
 test_that("data.frame <> CountMatrix", {
   A <- as_count(df_count)
   expect_s4_class(A, "CountMatrix")
-  expect_equivalent(as_wide(A), df_count)
+  expect_equivalent(as.data.frame(A), df_count)
 })
 test_that("data.frame <> AbundanceMatrix", {
   B <- as_abundance(df_freq)
   expect_s4_class(B, "AbundanceMatrix")
-  expect_equivalent(as_wide(B), df_freq)
+  expect_equivalent(as.data.frame(B), df_freq)
 
   expect_s4_class(as_abundance(df_count), "AbundanceMatrix")
   expect_s4_class(as_abundance(df_incid), "AbundanceMatrix")
@@ -68,7 +68,7 @@ test_that("data.frame <> AbundanceMatrix", {
 test_that("data.frame <> IncidenceMatrix", {
   C <- as_incidence(df_incid)
   expect_s4_class(C, "IncidenceMatrix")
-  expect_equivalent(as_wide(C), df_incid)
+  expect_equivalent(as.data.frame(C), df_incid)
 
   expect_s4_class(as_incidence(df_count), "IncidenceMatrix")
   expect_s4_class(as_incidence(df_freq), "IncidenceMatrix")
@@ -76,7 +76,7 @@ test_that("data.frame <> IncidenceMatrix", {
 test_that("data.frame <> OccurrenceMatrix", {
   D <- as_occurrence(df_incid)
   expect_s4_class(D, "OccurrenceMatrix")
-  expect_is(as_wide(D), "data.frame")
+  expect_is(as.data.frame(D), "data.frame")
 
   expect_s4_class(as_occurrence(df_count), "OccurrenceMatrix")
   expect_s4_class(as_occurrence(df_freq), "OccurrenceMatrix")

@@ -103,9 +103,8 @@ setMethod(
   f = "rowAll",
   signature = signature(x = "DataMatrix"),
   definition = function(x, f, ..., na.rm = FALSE) {
-    data <- as_list(x, by_row = TRUE)
     fun <- function(x, ..., na.rm) all(f(x, ...), na.rm = na.rm)
-    vapply(X = data, FUN = fun, FUN.VALUE = logical(1), ..., na.rm = na.rm)
+    apply(X = x, MARGIN = 1, FUN = fun, ..., na.rm = na.rm)
   }
 )
 
@@ -116,9 +115,8 @@ setMethod(
   f = "colAll",
   signature = signature(x = "DataMatrix"),
   definition = function(x, f, ..., na.rm = FALSE) {
-    data <- as_list(x, by_row = FALSE)
     fun <- function(x, ..., na.rm) all(f(x, ...), na.rm = na.rm)
-    vapply(X = data, FUN = fun, FUN.VALUE = logical(1), ..., na.rm = na.rm)
+    apply(X = x, MARGIN = 2, FUN = fun, ..., na.rm = na.rm)
   }
 )
 
@@ -130,9 +128,8 @@ setMethod(
   f = "rowAny",
   signature = signature(x = "DataMatrix"),
   definition = function(x, f, ..., na.rm = FALSE) {
-    data <- as_list(x, by_row = TRUE)
     fun <- function(x, ..., na.rm) any(f(x, ...), na.rm = na.rm)
-    vapply(X = data, FUN = fun, FUN.VALUE = logical(1), ..., na.rm = na.rm)
+    apply(X = x, MARGIN = 1, FUN = fun, ..., na.rm = na.rm)
   }
 )
 
@@ -143,8 +140,7 @@ setMethod(
   f = "colAny",
   signature = signature(x = "DataMatrix"),
   definition = function(x, f, ..., na.rm = FALSE) {
-    data <- as_list(x, by_row = FALSE)
     fun <- function(x, ..., na.rm) any(f(x, ...), na.rm = na.rm)
-    vapply(X = data, FUN = fun, FUN.VALUE = logical(1), ..., na.rm = na.rm)
+    apply(X = x, MARGIN = 2, FUN = fun, ..., na.rm = na.rm)
   }
 )

@@ -3,12 +3,6 @@
 \docType{methods}
 \name{coerce}
 \alias{coerce}
-\alias{as_matrix}
-\alias{as_matrix-method}
-\alias{as_list}
-\alias{as_list-method}
-\alias{as_wide}
-\alias{as_wide-method}
 \alias{as_long}
 \alias{as_long-method}
 \alias{as_count}
@@ -31,19 +25,10 @@
 \alias{as_occurrence,ANY-method}
 \alias{as_similarity,ANY-method}
 \alias{as_stratigraphy,ANY-method}
-\alias{as_matrix,DataMatrix-method}
-\alias{as_wide,DataMatrix-method}
 \alias{as_long,DataMatrix-method}
-\alias{as_list,DataMatrix-method}
 \alias{as_features,DataMatrix-method}
 \title{Coerce}
 \usage{
-as_matrix(from)
-
-as_list(from, ...)
-
-as_wide(from, ...)
-
 as_long(from, ...)
 
 as_count(from)
@@ -72,13 +57,7 @@ as_stratigraphy(from)
 
 \S4method{as_stratigraphy}{ANY}(from)
 
-\S4method{as_matrix}{DataMatrix}(from)
-
-\S4method{as_wide}{DataMatrix}(from)
-
 \S4method{as_long}{DataMatrix}(from, as_factor = FALSE)
-
-\S4method{as_list}{DataMatrix}(from, by_row = FALSE)
 
 \S4method{as_features}{DataMatrix}(from)
 }
@@ -90,8 +69,6 @@ as_stratigraphy(from)
 \item{as_factor}{A \code{\link{logical}} scalar: should character string be
 coerced to \code{\link{factor}}? Default to \code{FALSE}, if \code{TRUE}
 the original ordering is preserved.}
-
-\item{by_row}{A \code{\link{logical}} scalar:}
 }
 \value{
 A coerced object.
@@ -117,9 +94,9 @@ The following methods coerce an object to a \code{Matrix} object:
 
  \tabular{lll}{
   \strong{Method} \tab \strong{Target} \tab \strong{Details} \cr
-  \code{as_matrix} \tab \code{\link{matrix}} \tab S3 matrix \cr
-  \code{as_list} \tab \code{\link{list}} \tab S3 list \cr
-  \code{as_wide} \tab \code{\link{data.frame}} \tab wide S3 data frame \cr
+  \code{as.matrix} \tab \code{\link{matrix}} \tab S3 matrix \cr
+  \code{as.data.frame} \tab \code{\link{data.frame}} \tab S3 data frame \cr
+  \code{as.list} \tab \code{\link{list}} \tab S3 list \cr
   \code{as_long} \tab \code{\link{data.frame}} \tab long S3 data frame \cr
  }
 
@@ -156,12 +133,11 @@ C <- as_incidence(A1)
 D <- as_occurrence(A1)
 
 ## Coerce to an S3 matrix or data.frame
-X <- as_matrix(A1)
+X <- as.matrix(A1)
 all(A0 == X)
 
-Y <- as_wide(A1)
-Z <- as_long(A1)
-head(Z)
+Y <- data.frame(A1)
+head(Y)
 
 ## Collection of features
 # set_dates(A1) <- matrix(sample(0:10, 20, TRUE), nrow = 10, ncol = 2)

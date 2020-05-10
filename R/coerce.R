@@ -87,28 +87,6 @@ setMethod(
 
 #' @export
 #' @rdname coerce
-#' @aliases as_matrix,DataMatrix-method
-setMethod(
-  f = "as_matrix",
-  signature = signature(from = "DataMatrix"),
-  definition = function(from) {
-    methods::as(from, "matrix")
-  }
-)
-
-#' @export
-#' @rdname coerce
-#' @aliases as_wide,DataMatrix-method
-setMethod(
-  f = "as_wide",
-  signature = signature(from = "DataMatrix"),
-  definition = function(from) {
-    methods::as(from, "data.frame")
-  }
-)
-
-#' @export
-#' @rdname coerce
 #' @aliases as_long,DataMatrix-method
 setMethod(
   f = "as_long",
@@ -125,20 +103,6 @@ setMethod(
       x$type <- factor(x$type, levels = unique(x$type))
     }
     x
-  }
-)
-
-#' @export
-#' @rdname coerce
-#' @aliases as_list,DataMatrix-method
-setMethod(
-  f = "as_list",
-  signature = signature(from = "DataMatrix"),
-  definition = function(from, by_row = FALSE) {
-    fun <- if (by_row) row else col
-    index <- fun(from, as.factor = TRUE)
-    data <- split(x = from@data, f = index)
-    data
   }
 )
 
@@ -267,7 +231,7 @@ setAs(from = "data.frame", to = "SimilarityMatrix", def = matrix2similarity)
 # To OccurrenceMatrix ==========================================================
 matrix2occurrence <- function(from) {
   incid <- as_incidence(from)
-  data <- as_matrix(incid)
+  data <- as.matrix(incid)
   labels <- colnames(incid)
   p <- ncol(data)
   m <- nrow(data)

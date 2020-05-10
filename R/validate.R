@@ -124,7 +124,7 @@ setValidity(
   Class = "OccurrenceMatrix",
   method = function(object) {
     # Get data
-    data <- as_matrix(object)
+    data <- as.matrix(object)
     n <- object@n
 
     errors <- list(
@@ -145,7 +145,7 @@ setValidity(
   Class = "SimilarityMatrix",
   method = function(object) {
     # Get data
-    data <- as_matrix(object)
+    data <- as.matrix(object)
     method <- object@method
 
     errors <- list(
@@ -167,7 +167,7 @@ setValidity(
   Class = "StratigraphicMatrix",
   method = function(object) {
     # Get data
-    data <- as_matrix(object)
+    data <- as.matrix(object)
 
     if (nrow(data) > 0) {
       errors <- list(

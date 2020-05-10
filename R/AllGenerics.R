@@ -25,7 +25,6 @@ setGeneric("colMeans")
 #' @param as_factor A \code{\link{logical}} scalar: should character string be
 #'  coerced to \code{\link{factor}}? Default to \code{FALSE}, if \code{TRUE}
 #'  the original ordering is preserved.
-#' @param by_row A \code{\link{logical}} scalar:
 #' @param ... Currently not used.
 #' @details
 #'  The following methods coerce an object to a \code{Matrix} object:
@@ -45,9 +44,9 @@ setGeneric("colMeans")
 #'
 #'  \tabular{lll}{
 #'   \strong{Method} \tab \strong{Target} \tab \strong{Details} \cr
-#'   \code{as_matrix} \tab \code{\link{matrix}} \tab S3 matrix \cr
-#'   \code{as_list} \tab \code{\link{list}} \tab S3 list \cr
-#'   \code{as_wide} \tab \code{\link{data.frame}} \tab wide S3 data frame \cr
+#'   \code{as.matrix} \tab \code{\link{matrix}} \tab S3 matrix \cr
+#'   \code{as.data.frame} \tab \code{\link{data.frame}} \tab S3 data frame \cr
+#'   \code{as.list} \tab \code{\link{list}} \tab S3 list \cr
 #'   \code{as_long} \tab \code{\link{data.frame}} \tab long S3 data frame \cr
 #'  }
 #'
@@ -68,27 +67,6 @@ setGeneric("colMeans")
 #' @name coerce
 #' @rdname coerce
 NULL
-
-#' @rdname coerce
-#' @aliases as_matrix-method
-setGeneric(
-  name = "as_matrix",
-  def = function(from) standardGeneric("as_matrix")
-)
-
-#' @rdname coerce
-#' @aliases as_list-method
-setGeneric(
-  name = "as_list",
-  def = function(from, ...) standardGeneric("as_list")
-)
-
-#' @rdname coerce
-#' @aliases as_wide-method
-setGeneric(
-  name = "as_wide",
-  def = function(from, ...) standardGeneric("as_wide")
-)
 
 #' @rdname coerce
 #' @aliases as_long-method

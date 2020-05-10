@@ -8,6 +8,6 @@ setMethod(
   definition = function(object) {
     cat(sprintf("<%s: %s>\n", class(object),
                 paste0(object@size, collapse = " x ")))
-    print(as_matrix(object))
+    print(as.matrix(object))
   }
 )
