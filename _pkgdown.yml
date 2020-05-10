@@ -9,6 +9,12 @@ reference:
 - title: Getters and Setters
   contents:
   - has_concept("mutator")
+- title: Common Operations
+  contents:
+  - has_concept("operator")
+- title: Statistics
+  contents:
+  - has_concept("statistics")
 - title: Chronology
   contents:
   - has_concept("chronology")
