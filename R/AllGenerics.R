@@ -46,7 +46,6 @@ setGeneric("colMeans")
 #'   \strong{Method} \tab \strong{Target} \tab \strong{Details} \cr
 #'   \code{as.matrix} \tab \code{\link{matrix}} \tab S3 matrix \cr
 #'   \code{as.data.frame} \tab \code{\link{data.frame}} \tab S3 data frame \cr
-#'   \code{as.list} \tab \code{\link{list}} \tab S3 list \cr
 #'   \code{as_long} \tab \code{\link{data.frame}} \tab long S3 data frame \cr
 #'  }
 #'

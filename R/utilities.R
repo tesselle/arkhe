@@ -162,9 +162,9 @@ index_by_column <- function(x) {
 #' @family utilities
 #' @keywords internal utilities
 #' @noRd
-make_names <- function(x, n, prefix = "row") {
+make_names <- function(x, n = NULL, prefix = "row") {
   if (is.null(x)) {
-    if (n > 0) paste0(prefix, seq_len(n)) else character(0)
+    if (!is.null(n) && n > 0) paste0(prefix, seq_len(n)) else character(0)
   } else {
     make.unique(as.character(x), sep = "_")
   }
