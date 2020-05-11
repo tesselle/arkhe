@@ -3,106 +3,22 @@
 \docType{methods}
 \name{statistics}
 \alias{statistics}
-\alias{rowAll}
-\alias{rowAll-method}
-\alias{colAll}
-\alias{colAll-method}
-\alias{rowAny}
-\alias{rowAny-method}
-\alias{colAny}
-\alias{colAny-method}
-\alias{rowQuantiles}
-\alias{rowQuantiles-method}
-\alias{colQuantiles}
-\alias{colQuantiles-method}
-\alias{rowRanges}
-\alias{rowRanges-method}
-\alias{colRanges}
-\alias{colRanges-method}
-\alias{rowRanks}
-\alias{rowRanks-method}
-\alias{colRanks}
-\alias{colRanks-method}
-\alias{rowVars}
-\alias{rowVars-method}
-\alias{colVars}
-\alias{colVars-method}
-\alias{rowQuantiles,DataMatrix-method}
-\alias{colQuantiles,DataMatrix-method}
 \alias{rowMeans,DataMatrix-method}
 \alias{colMeans,DataMatrix-method}
-\alias{rowRanges,DataMatrix-method}
-\alias{colRanges,DataMatrix-method}
 \alias{rowSums,DataMatrix-method}
 \alias{colSums,DataMatrix-method}
-\alias{rowVars,DataMatrix-method}
-\alias{colVars,DataMatrix-method}
 \title{Rowwise and Columnwise Statistics}
 \usage{
-rowAll(x, ...)
-
-colAll(x, ...)
-
-rowAny(x, ...)
-
-colAny(x, ...)
-
-rowQuantiles(x, ...)
-
-colQuantiles(x, ...)
-
-rowRanges(x, ...)
-
-colRanges(x, ...)
-
-rowRanks(x, ...)
-
-colRanks(x, ...)
-
-rowVars(x, ...)
-
-colVars(x, ...)
-
-\S4method{rowQuantiles}{DataMatrix}(
-  x,
-  probs = seq(0, 1, 0.25),
-  na.rm = FALSE,
-  names = TRUE,
-  type = 7,
-  ...
-)
-
-\S4method{colQuantiles}{DataMatrix}(
-  x,
-  probs = seq(0, 1, 0.25),
-  na.rm = FALSE,
-  names = TRUE,
-  type = 7,
-  ...
-)
-
 \S4method{rowMeans}{DataMatrix}(x, na.rm = FALSE)
 
 \S4method{colMeans}{DataMatrix}(x, na.rm = FALSE)
 
-\S4method{rowRanges}{DataMatrix}(x, na.rm = FALSE)
-
-\S4method{colRanges}{DataMatrix}(x, na.rm = FALSE)
-
 \S4method{rowSums}{DataMatrix}(x, na.rm = FALSE)
 
 \S4method{colSums}{DataMatrix}(x, na.rm = FALSE)
-
-\S4method{rowVars}{DataMatrix}(x, na.rm = FALSE)
-
-\S4method{colVars}{DataMatrix}(x, na.rm = FALSE)
 }
 \arguments{
 \item{x}{A \linkS4class{DataMatrix} object.}
-
-\item{...}{Further parameters to be passed to other methods.}
-
-\item{probs, names, type}{See \code{\link[stats]{quantile}}.}
 
 \item{na.rm}{A \code{\link{logical}} scalar: should missing values
 (including \code{NaN}) be omitted from the calculations?}
@@ -125,28 +41,13 @@ Computes statistics over \code{DataMatrix} margins.
 ## Create count data matrix
 A <- CountMatrix(data = sample(0:10, 100, TRUE), nrow = 20, ncol = 5)
 
-rowAll(A, f = is_odd)
-rowAny(A, f = is_odd)
-
-## Row and column quantiles
-rowQuantiles(A, probs = c(0.25, 0.50, 0.75))
-colQuantiles(A, probs = c(0.25, 0.50, 0.75))
-
 ## Row and column means
 rowMeans(A)
 colMeans(A)
 
-## Row and column ranges
-rowRanges(A)
-colRanges(A)
-
 ## Row and column sums
 rowSums(A)
 colSums(A)
-
-## Row and column variances
-rowVars(A)
-colVars(A)
 }
 \author{
 N. Frerebeau

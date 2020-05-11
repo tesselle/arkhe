@@ -238,8 +238,6 @@ NULL
 #' @param x,e1,e2 An object (typically a \linkS4class{DataMatrix} object).
 #' @param na.rm A \code{\link{logical}} scalar: should missing values
 #'  (including \code{NaN}) be omitted from the calculations?
-#' @param f A \code{\link{logical}} predicate.
-#' @param ... Further parameters to be passed to \code{f}.
 #' @section Group Generics:
 #'  \linkS4class{DataMatrix} objects have support for S4 group generic
 #'  functionality to operate within elements across objects:
@@ -275,10 +273,8 @@ NULL
 #'
 #' Computes statistics over \code{DataMatrix} margins.
 #' @param x A \linkS4class{DataMatrix} object.
-#' @param probs,names,type See \code{\link[stats]{quantile}}.
 #' @param na.rm A \code{\link{logical}} scalar: should missing values
 #'  (including \code{NaN}) be omitted from the calculations?
-#' @param ... Further parameters to be passed to other methods.
 #' @details
 #'  \describe{
 #'   \item{\code{rowQuantiles} and \code{colQuantiles}}{Form row and column
@@ -296,90 +292,6 @@ NULL
 #' @name statistics
 #' @rdname statistics
 NULL
-
-#' @rdname statistics
-#' @aliases rowAll-method
-setGeneric(
-  name = "rowAll",
-  def = function(x, ...) standardGeneric("rowAll")
-)
-
-#' @rdname statistics
-#' @aliases colAll-method
-setGeneric(
-  name = "colAll",
-  def = function(x, ...) standardGeneric("colAll")
-)
-
-#' @rdname statistics
-#' @aliases rowAny-method
-setGeneric(
-  name = "rowAny",
-  def = function(x, ...) standardGeneric("rowAny")
-)
-
-#' @rdname statistics
-#' @aliases colAny-method
-setGeneric(
-  name = "colAny",
-  def = function(x, ...) standardGeneric("colAny")
-)
-
-#' @rdname statistics
-#' @aliases rowQuantiles-method
-setGeneric(
-  name = "rowQuantiles",
-  def = function(x, ...) standardGeneric("rowQuantiles")
-)
-
-#' @rdname statistics
-#' @aliases colQuantiles-method
-setGeneric(
-  name = "colQuantiles",
-  def = function(x, ...) standardGeneric("colQuantiles")
-)
-
-#' @rdname statistics
-#' @aliases rowRanges-method
-setGeneric(
-  name = "rowRanges",
-  def = function(x, ...) standardGeneric("rowRanges")
-)
-
-#' @rdname statistics
-#' @aliases colRanges-method
-setGeneric(
-  name = "colRanges",
-  def = function(x, ...) standardGeneric("colRanges")
-)
-
-#' @rdname statistics
-#' @aliases rowRanks-method
-setGeneric(
-  name = "rowRanks",
-  def = function(x, ...) standardGeneric("rowRanks")
-)
-
-#' @rdname statistics
-#' @aliases colRanks-method
-setGeneric(
-  name = "colRanks",
-  def = function(x, ...) standardGeneric("colRanks")
-)
-
-#' @rdname statistics
-#' @aliases rowVars-method
-setGeneric(
-  name = "rowVars",
-  def = function(x, ...) standardGeneric("rowVars")
-)
-
-#' @rdname statistics
-#' @aliases colVars-method
-setGeneric(
-  name = "colVars",
-  def = function(x, ...) standardGeneric("colVars")
-)
 
 # =================================================================== Chronology
 #' Chronological Information
