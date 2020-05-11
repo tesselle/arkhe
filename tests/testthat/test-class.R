@@ -1,16 +1,20 @@
 context("Matrix classes")
 
-test_that("Initialize a CountMatrix instance", {
+test_that("CountMatrix", {
+  # Empty instance
   expect_s4_class(.CountMatrix(), "CountMatrix")
 
   # Try missing row names
-  cnd <- catch_conditions(.CountMatrix(data = 1L, size = c(1L, 1L),
-                                       column_names = "X"))
+  cnd <- catch_conditions(
+    .CountMatrix(data = 1L, size = c(1L, 1L), column_names = "X")
+  )
   expect_s3_class(cnd[[1]], "arkhe_error_class")
   expect_true(grepl("must be of length 1; not 0", cnd[[1]]$message))
+
   # Try missing column names
-  cnd <- catch_conditions(.CountMatrix(data = 1L, size = c(1L, 1L),
-                                       row_names = "X"))
+  cnd <- catch_conditions(
+    .CountMatrix(data = 1L, size = c(1L, 1L), row_names = "X")
+  )
 
   expect_s3_class(cnd[[1]], "arkhe_error_class")
   expect_true(grepl("must be of length 1; not 0", cnd[[1]]$message))

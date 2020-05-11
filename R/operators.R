@@ -83,6 +83,19 @@ setMethod(
   }
 )
 
+#' @export
+#' @rdname operator
+#' @aliases Logic,DataMatrix,logical-method
+setMethod(
+  f = "Logic",
+  signature(e1 = "DataMatrix", e2 = "logical"),
+  definition = function(e1, e2) {
+    value <- methods::callGeneric(e1 = e1@data, e2 = e2)
+    dim(value) <- dim(e1)
+    return(value)
+  }
+)
+
 # ====================================================================== Summary
 #' @export
 #' @rdname operator

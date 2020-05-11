@@ -183,7 +183,7 @@ is_positive <- function(x, strict = FALSE, na.rm = FALSE) {
 }
 #' @export
 #' @rdname predicate-numeric
-is_whole <- function(x, tolerance = .Machine$double.eps^0.5, na.rm = FALSE) {
+is_whole <- function(x, na.rm = FALSE, tolerance = .Machine$double.eps^0.5) {
   check_type(x, "numeric")
   if (na.rm) x <- stats::na.omit(x)
   abs(x - round(x, digits = 0)) <= tolerance

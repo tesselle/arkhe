@@ -12,4 +12,8 @@ test_that("UUID", {
 
   expect_true(is_uuid(id1))
   expect_true(is_uuid(id2))
+
+  expect_error(check_uuid(character(0)))
+  expect_error(check_uuid("X"))
+  expect_warning(check_uuid("00000000-0000-4000-a000-000000000000"))
 })

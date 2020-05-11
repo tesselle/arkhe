@@ -156,13 +156,6 @@ setGeneric(
 #' @rdname mutator
 #' @aliases set_id-method
 setGeneric(
-  name = "set_id",
-  def = function(x) standardGeneric("set_id")
-)
-
-#' @rdname mutator
-#' @aliases set_id-method
-setGeneric(
   name = "set_id<-",
   def = function(x, value) standardGeneric("set_id<-")
 )

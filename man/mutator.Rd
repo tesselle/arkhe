@@ -7,9 +7,8 @@
 \alias{set}
 \alias{get_id}
 \alias{get_id-method}
-\alias{set_id}
-\alias{set_id-method}
 \alias{set_id<-}
+\alias{set_id-method}
 \alias{get_method}
 \alias{get_method-method}
 \alias{set_method<-}
@@ -37,8 +36,8 @@
 \alias{get_totals,AbundanceMatrix-method}
 \alias{get_method,SimilarityMatrix-method}
 \alias{get_units,StratigraphicMatrix-method}
-\alias{set_id,ANY-method}
 \alias{set_id<-,ANY-method}
+\alias{set_id,ANY-method}
 \alias{set_totals<-,AbundanceMatrix-method}
 \alias{set_totals,AbundanceMatrix-method}
 \alias{set_method<-,SimilarityMatrix-method}
@@ -46,8 +45,6 @@
 \title{Get or Set Parts of an Object}
 \usage{
 get_id(x)
-
-set_id(x)
 
 set_id(x) <- value
 
@@ -94,8 +91,6 @@ set_totals(x) <- value
 \S4method{get_method}{SimilarityMatrix}(x)
 
 \S4method{get_units}{StratigraphicMatrix}(x)
-
-\S4method{set_id}{ANY}(x)
 
 \S4method{set_id}{ANY}(x) <- value
 

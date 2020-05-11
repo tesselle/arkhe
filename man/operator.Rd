@@ -9,6 +9,7 @@
 \alias{Compare,DataMatrix,numeric-method}
 \alias{Logic,DataMatrix,DataMatrix-method}
 \alias{Logic,DataMatrix,numeric-method}
+\alias{Logic,DataMatrix,logical-method}
 \alias{Summary,DataMatrix-method}
 \title{Common Operations on Matrix Objects}
 \usage{
@@ -23,6 +24,8 @@
 \S4method{Logic}{DataMatrix,DataMatrix}(e1, e2)
 
 \S4method{Logic}{DataMatrix,numeric}(e1, e2)
+
+\S4method{Logic}{DataMatrix,logical}(e1, e2)
 
 \S4method{Summary}{DataMatrix}(x, na.rm = FALSE)
 }

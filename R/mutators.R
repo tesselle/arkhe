@@ -190,19 +190,6 @@ setMethod("get_units", "StratigraphicMatrix", function(x) x@row_names)
 #' @rdname mutator
 #' @aliases set_id,ANY-method
 setMethod(
-  f = "set_id",
-  signature = "ANY",
-  definition = function(x) {
-    x@id <- generate_uuid()
-    methods::validObject(x)
-    x
-  }
-)
-
-#' @export
-#' @rdname mutator
-#' @aliases set_id,ANY-method
-setMethod(
   f = "set_id<-",
   signature = "ANY",
   definition = function(x, value) {

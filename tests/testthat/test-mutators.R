@@ -27,3 +27,9 @@ test_that("Matrix dimension names", {
   expect_equal(rownames(cts), c("A", "A_1", "C", "D", "E"))
   expect_equal(colnames(cts), as.character(1:10))
 })
+test_that("Matrix diagonal", {
+  mtx <- matrix(sample(1:100, 50, TRUE), ncol = 10)
+  cts <- as_count(mtx)
+
+  expect_equal(diag(mtx), diag(cts))
+})
