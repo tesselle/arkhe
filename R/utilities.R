@@ -138,13 +138,13 @@ rownames_to_column <- function(x, factor = TRUE, id = "id") {
 #' @noRd
 index_by_row <- function(x) {
   if (!is.numeric(x) || length(x) != 2)
-    stop(sprintf("% must be a length-two numeric vector.", sQuote("x")),
+    stop(sprintf("%s must be a length-two numeric vector.", sQuote("x")),
          call. = FALSE)
   rep(seq_len(x[[1L]]), times = x[[2L]])
 }
 index_by_column <- function(x) {
   if (!is.numeric(x) || length(x) != 2)
-    stop(sprintf("% must be a length-two numeric vector.", sQuote("x")),
+    stop(sprintf("%s must be a length-two numeric vector.", sQuote("x")),
          call. = FALSE)
   rep(seq_len(x[[2L]]), each = x[[1L]])
 }
