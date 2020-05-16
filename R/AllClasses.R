@@ -104,7 +104,9 @@ NULL
 
 #' @aliases IntegerMatrix-class
 #' @rdname DataMatrix-class
-setClass(
+#' @export .IntegerMatrix
+#' @exportClass IntegerMatrix
+.IntegerMatrix <- setClass(
   Class = "IntegerMatrix",
   slot = c(
     values = "integer"
@@ -114,7 +116,9 @@ setClass(
 
 #' @aliases NumericMatrix-class
 #' @rdname DataMatrix-class
-setClass(
+#' @export .NumericMatrix
+#' @exportClass NumericMatrix
+.NumericMatrix <- setClass(
   Class = "NumericMatrix",
   slot = c(
     values = "numeric"
@@ -124,7 +128,9 @@ setClass(
 
 #' @aliases LogicalMatrix-class
 #' @rdname DataMatrix-class
-setClass(
+#' @export .LogicalMatrix
+#' @exportClass LogicalMatrix
+.LogicalMatrix <- setClass(
   Class = "LogicalMatrix",
   slots = c(
     values = "logical"
@@ -200,8 +206,6 @@ setClassUnion(
 #' @author N. Frerebeau
 #' @family matrix
 #' @docType class
-#' @export .OccurrenceMatrix
-#' @exportClass OccurrenceMatrix
 #' @aliases OccurrenceMatrix-class
 .OccurrenceMatrix <- setClass(
   Class = "OccurrenceMatrix",
@@ -223,8 +227,6 @@ setClassUnion(
 #' @family matrix
 #' @author N. Frerebeau
 #' @docType class
-#' @export .SimilarityMatrix
-#' @exportClass SimilarityMatrix
 #' @aliases SimilarityMatrix-class
 .SimilarityMatrix <- setClass(
   Class = "SimilarityMatrix",
@@ -269,8 +271,6 @@ setClassUnion(
 #' @author N. Frerebeau
 #' @family matrix
 #' @docType class
-#' @export .StratigraphicMatrix
-#' @exportClass StratigraphicMatrix
 #' @aliases StratigraphicMatrix-class
 .StratigraphicMatrix <- setClass(
   Class = "StratigraphicMatrix",

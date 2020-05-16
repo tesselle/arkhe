@@ -4,8 +4,11 @@
 \name{DataMatrix-class}
 \alias{DataMatrix-class}
 \alias{IntegerMatrix-class}
+\alias{.IntegerMatrix}
 \alias{NumericMatrix-class}
+\alias{.NumericMatrix}
 \alias{LogicalMatrix-class}
+\alias{.LogicalMatrix}
 \title{Data Matrix}
 \arguments{
 \item{data}{A data vector.}
