@@ -3,23 +3,19 @@
 \docType{methods}
 \name{subset}
 \alias{subset}
-\alias{[,DataMatrix,ANY,ANY-method}
 \alias{[,DataMatrix-method}
-\alias{[[,DataMatrix,ANY,ANY-method}
 \alias{[[,DataMatrix-method}
-\alias{[<-,DataMatrix,ANY,ANY-method}
 \alias{[<-,DataMatrix-method}
-\alias{[[<-,DataMatrix,ANY,ANY-method}
 \alias{[[<-,DataMatrix-method}
 \title{Extract or Replace Parts of an Object}
 \usage{
-\S4method{[}{DataMatrix,ANY,ANY}(x, i, j, ..., drop = TRUE)
+\S4method{[}{DataMatrix}(x, i, j, ..., drop = TRUE)
 
-\S4method{[[}{DataMatrix,ANY,ANY}(x, i, j, ..., exact = TRUE)
+\S4method{[[}{DataMatrix}(x, i, j, ..., exact = TRUE)
 
-\S4method{[}{DataMatrix,ANY,ANY}(x, i, j, ...) <- value
+\S4method{[}{DataMatrix}(x, i, j, ...) <- value
 
-\S4method{[[}{DataMatrix,ANY,ANY}(x, i, j) <- value
+\S4method{[[}{DataMatrix}(x, i, j) <- value
 }
 \arguments{
 \item{x}{An object from which to extract element(s) or in which to replace

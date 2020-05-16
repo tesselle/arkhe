@@ -14,22 +14,11 @@ A stratigraphic matrix represents directed relationships between
  symmetric square matrix with zeros on its main diagonal), suitable to build
  a directed acyclic graph (DAG).
 }
-\section{Get and set}{
-
- In the code snippets below, \code{x} is a \code{*Matrix} object.
- \describe{
-  \item{\code{get_id(x)}}{Get the ID of \code{x}.}
-  \item{\code{get_dates(x)} and \code{set_dates(x) <- value}}{Get or set
-  the dates of \code{x}.}
-  \item{\code{get_coordinates(x)} and \code{set_coordinates(x) <- value}}{Get
-  or set the geographical coordinates of \code{x}.}
- }
-}
-
 \section{Access}{
 
  In the code snippets below, \code{x} is a \code{*Matrix} object.
  \describe{
+  \item{\code{length(x)}}{Returns the length of \code{x}.}
   \item{\code{dim(x)}}{Returns the dimension of \code{x}.}
   \item{\code{nrow(x)}}{Returns the number of rows present in \code{x}.}
   \item{\code{ncol(x)}}{Returns the number of columns present in \code{x}.}
@@ -46,13 +35,13 @@ A stratigraphic matrix represents directed relationships between
 
  In the code snippets below, \code{x} is a \code{*Matrix} object.
  \describe{
-  \item{\code{x[i, j]}}{Extracts elements selected by subscripts \code{i}
-  and \code{j}. Indices are \code{\link{numeric}}, \code{\link{integer}} or
+  \item{\code{x[i, j, ..., drop]}}{Extracts elements selected by subscripts
+  \code{i} and \code{j}. Indices are \code{\link{numeric}} or
   \code{\link{character}} vectors or empty (missing) or \code{NULL}.
   Numeric values are coerced to \code{\link{integer}} as by
   \code{\link{as.integer}} (and hence truncated towards zero).
-  Character vectors will be matched to the name of the elements.
-  An empty index (a comma separated blank) indicates that all
+  Character vectors will be matched to the \code{\link{dimnames}} of the
+  object. An empty index (a comma separated blank) indicates that all
   entries in that dimension are selected.
   Returns an object of the same class as \code{x}.}
   \item{\code{x[[i]]}}{Extracts a single element selected by subscript
@@ -84,7 +73,7 @@ harris <- matrix(
 strati <- as_stratigraphy(harris)
 }
 \seealso{
-\linkS4class{LogicalMatrix}
+\link{as_stratigraphy}
 
 Other matrix: 
 \code{\link{AbundanceMatrix-class}},

@@ -3,7 +3,6 @@
 NULL
 
 # Add S4 dispatch to base S3 generic
-setGeneric("diag")
 setGeneric("rowSums")
 setGeneric("colSums")
 setGeneric("rowMeans")

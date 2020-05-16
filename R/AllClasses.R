@@ -4,7 +4,7 @@
 # ======================================================================= Matrix
 #' Matrix
 #'
-#' A virtual S4 class to represent a matrix. This is the mother class of all
+#' An S4 class to represent a matrix. This is the mother class of all
 #' matrix objects.
 #' @slot id A \code{\link{character}} string specifying the unique
 #'  identifier of the matrix (UUID v4).
@@ -37,6 +37,7 @@
 #' @section Access:
 #'  In the code snippets below, \code{x} is a \code{*Matrix} object.
 #'  \describe{
+#'   \item{\code{length(x)}}{Returns the length of \code{x}.}
 #'   \item{\code{dim(x)}}{Returns the dimension of \code{x}.}
 #'   \item{\code{nrow(x)}}{Returns the number of rows present in \code{x}.}
 #'   \item{\code{ncol(x)}}{Returns the number of columns present in \code{x}.}
@@ -50,13 +51,13 @@
 #' @section Subset:
 #'  In the code snippets below, \code{x} is a \code{*Matrix} object.
 #'  \describe{
-#'   \item{\code{x[i, j]}}{Extracts elements selected by subscripts \code{i}
-#'   and \code{j}. Indices are \code{\link{numeric}}, \code{\link{integer}} or
+#'   \item{\code{x[i, j, ..., drop]}}{Extracts elements selected by subscripts
+#'   \code{i} and \code{j}. Indices are \code{\link{numeric}} or
 #'   \code{\link{character}} vectors or empty (missing) or \code{NULL}.
 #'   Numeric values are coerced to \code{\link{integer}} as by
 #'   \code{\link{as.integer}} (and hence truncated towards zero).
-#'   Character vectors will be matched to the name of the elements.
-#'   An empty index (a comma separated blank) indicates that all
+#'   Character vectors will be matched to the \code{\link{dimnames}} of the
+#'   object. An empty index (a comma separated blank) indicates that all
 #'   entries in that dimension are selected.
 #'   Returns an object of the same class as \code{x}.}
 #'   \item{\code{x[[i]]}}{Extracts a single element selected by subscript
@@ -77,7 +78,7 @@
   contains = "matrix"
 )
 
-# --------------------------------------------------------------- Virtual matrix
+# =================================================================== DataMatrix
 #' Data Matrix
 #'
 #' A virtual S4 class to represent a data matrix.
@@ -91,20 +92,8 @@
 #'  rows? If \code{FALSE} (the default) the matrix is filled by columns.
 #' @param dimnames A list of length 2 giving the row and column names
 #'  respectively. If \code{NULL} (the default) dimension names will be created.
-#' @inheritSection GenericMatrix-class Matrix ID
-#' @inheritSection GenericMatrix-class Get and set
 #' @inheritSection GenericMatrix-class Access
 #' @inheritSection GenericMatrix-class Subset
-#' @details
-#'  \describe{
-#'   \item{\code{IntegerMatrix}}{Values are coerced to \code{\link{integer}}
-#'   as by \code{\link{as.integer}}.}
-#'   \item{\code{NumericMatrix}}{Values are coerced to \code{\link{numeric}}
-#'   as by \code{\link{as.numeric}}.}
-#'   \item{\code{LogicalMatrix}}{Values are coerced to \code{\link{logical}}
-#'   as by \code{\link{as.logical}}.}
-#'  }
-#' @seealso \linkS4class{GenericMatrix}
 #' @author N. Frerebeau
 #' @family matrix
 #' @docType class
@@ -148,16 +137,15 @@ setClassUnion(
   members = c("IntegerMatrix", "NumericMatrix", "LogicalMatrix")
 )
 
-# --------------------------------------------------------------- Integer matrix
+# ================================================================ IntegerMatrix
 #' Absolute Frequency Matrix
 #'
 #' An S4 class to represent an absolute frequency matrix (i.e. the number of
 #' times a given datum occurs in a dataset).
 #' @inheritParams DataMatrix-class
-#' @inheritSection GenericMatrix-class Get and set
 #' @inheritSection GenericMatrix-class Access
 #' @inheritSection GenericMatrix-class Subset
-#' @seealso \linkS4class{NumericMatrix}
+#' @seealso \link{as_count}
 #' @example inst/examples/ex-matrix.R
 #' @author N. Frerebeau
 #' @family matrix
@@ -170,17 +158,17 @@ setClassUnion(
   contains = "IntegerMatrix"
 )
 
-# --------------------------------------------------------------- Numeric matrix
+# ================================================================ NumericMatrix
+# -------------------------------------------------------------- AbundanceMatrix
 #' Relative Frequency Matrix
 #'
 #' An S4 class to represent a relative frequency matrix (i.e. the fraction of
 #' times a given datum occurs in a dataset).
-#' @slot totals A \code{\link{numeric}} vector.
+#' @slot totals A \code{\link{numeric}} vector giving the absolute row sums.
 #' @inheritParams DataMatrix-class
-#' @inheritSection GenericMatrix-class Get and set
 #' @inheritSection GenericMatrix-class Access
 #' @inheritSection GenericMatrix-class Subset
-#' @seealso \linkS4class{NumericMatrix}
+#' @seealso \link{as_abundance}
 #' @example inst/examples/ex-matrix.R
 #' @author N. Frerebeau
 #' @family matrix
@@ -196,6 +184,7 @@ setClassUnion(
   contains = "NumericMatrix"
 )
 
+# ------------------------------------------------------------- OccurrenceMatrix
 #' Co-Occurrence Matrix
 #'
 #' An S4 class to represent a co-occurrence matrix.
@@ -206,7 +195,7 @@ setClassUnion(
 #' @inheritSection GenericMatrix-class Get and set
 #' @inheritSection GenericMatrix-class Access
 #' @inheritSection GenericMatrix-class Subset
-#' @seealso \linkS4class{NumericMatrix}
+#' @seealso \link{as_occurrence}
 #' @example inst/examples/ex-matrix.R
 #' @author N. Frerebeau
 #' @family matrix
@@ -222,15 +211,15 @@ setClassUnion(
   contains = "NumericMatrix"
 )
 
+# ------------------------------------------------------------- SimilarityMatrix
 #' Similarity Matrix
 #'
 #' An S4 class to represent a (dis)similarity matrix.
-#' @slot method A \code{\link{character}} string specifying the distance
+#' @slot method A \code{\link{character}} string specifying the similarity
 #'  method used.
-#' @inheritSection GenericMatrix-class Get and set
 #' @inheritSection GenericMatrix-class Access
 #' @inheritSection GenericMatrix-class Subset
-#' @seealso \linkS4class{NumericMatrix}
+#' @seealso \link{as_similarity}
 #' @family matrix
 #' @author N. Frerebeau
 #' @docType class
@@ -245,15 +234,14 @@ setClassUnion(
   contains = "NumericMatrix"
 )
 
-# --------------------------------------------------------------- Logical matrix
+# ================================================================ LogicalMatrix
 #' Incidence Matrix
 #'
 #' An S4 class to represent an incidence (presence/absence) matrix.
 #' @inheritParams DataMatrix-class
-#' @inheritSection GenericMatrix-class Get and set
 #' @inheritSection GenericMatrix-class Access
 #' @inheritSection GenericMatrix-class Subset
-#' @seealso \linkS4class{LogicalMatrix}
+#' @seealso \link{as_incidence}
 #' @example inst/examples/ex-matrix.R
 #' @author N. Frerebeau
 #' @family matrix
@@ -274,10 +262,9 @@ setClassUnion(
 #'  stratigraphic units. A stratigraphic matrix is an adjacency matrix (a non
 #'  symmetric square matrix with zeros on its main diagonal), suitable to build
 #'  a directed acyclic graph (DAG).
-#' @inheritSection GenericMatrix-class Get and set
 #' @inheritSection GenericMatrix-class Access
 #' @inheritSection GenericMatrix-class Subset
-#' @seealso \linkS4class{LogicalMatrix}
+#' @seealso \link{as_stratigraphy}
 #' @example inst/examples/ex-stratigraphy.R
 #' @author N. Frerebeau
 #' @family matrix

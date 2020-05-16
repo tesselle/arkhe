@@ -21,9 +21,9 @@
 \alias{as_stratigraphy-method}
 \alias{as_count,ANY-method}
 \alias{as_abundance,ANY-method}
-\alias{as_incidence,ANY-method}
-\alias{as_occurrence,ANY-method}
 \alias{as_similarity,ANY-method}
+\alias{as_occurrence,ANY-method}
+\alias{as_incidence,ANY-method}
 \alias{as_stratigraphy,ANY-method}
 \alias{as_long,DataMatrix-method}
 \alias{as_features,DataMatrix-method}
@@ -49,11 +49,11 @@ as_stratigraphy(from)
 
 \S4method{as_abundance}{ANY}(from)
 
-\S4method{as_incidence}{ANY}(from)
+\S4method{as_similarity}{ANY}(from)
 
 \S4method{as_occurrence}{ANY}(from)
 
-\S4method{as_similarity}{ANY}(from)
+\S4method{as_incidence}{ANY}(from)
 
 \S4method{as_stratigraphy}{ANY}(from)
 
