@@ -29,7 +29,7 @@
 #' @keywords internal
 "_PACKAGE"
 
-#' @importFrom methods Arith as callGeneric callNextMethod Compare is Logic new
-#' setClass setClassUnion setGeneric setMethod Summary validObject
-#' @importFrom stats quantile var
+#' @importFrom methods Arith as as<- callGeneric callNextMethod Compare
+#' initialize is Logic new setClass setClassUnion setGeneric setMethod
+#' slot slot<- Summary validObject
 NULL

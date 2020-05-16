@@ -13,16 +13,6 @@ A co-occurrence matrix is a symmetric matrix with zeros on its main
  diagonal, which works out how many times (expressed in percent) each pairs
  of taxa/types occur together in at least one sample.
 }
-\section{Matrix ID}{
-
- When a matrix is first created, an identifier is generated (UUID v4).
- This ID is preserved when coercing to another class. Thus, the object ID is
- unique within the same class, but two objects of different classes can have
- the same ID. This makes it possible to identify objects representing the
- same initial data and associate them with the results of specific
- computations.
-}
-
 \section{Get and set}{
 
  In the code snippets below, \code{x} is a \code{*Matrix} object.

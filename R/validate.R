@@ -8,49 +8,41 @@ setValidity(
   method = function(object) {
     # Get data
     id <- object@id
-    size <- object@size
-    row_names <- object@row_names
-    column_names <- object@column_names
     dates <- object@dates
     coordinates <- object@coordinates
+    size <- dim(object)
 
     # Check
-    errors <- list(
+    cnd <- list(
       # Check id
-      catch_conditions(check_uuid(id)),
-      catch_conditions(check_scalar(id, "character")),
-      # Check size
-      catch_conditions(check_length(size, 2)),
-      # Check row names
-      catch_conditions(check_length(row_names, size[[1L]])),
-      # Check column names
-      catch_conditions(check_length(column_names, size[[2L]]))
+      # catch_conditions(check_uuid(id)),
+      # catch_conditions(check_scalar(id, "character"))
     )
     if (length(dates) > 0) {
-      errors <- append(
-        errors,
+      cnd <- append(
+        cnd,
         list(
           # Check dates
           catch_conditions(check_length(dates, size[[1L]])),
           catch_conditions(check_lengths(dates, 2)),
-          catch_conditions(check_names(dates, row_names))
+          catch_conditions(check_names(dates, rownames(object)))
         )
       )
     }
     if (length(coordinates) > 0) {
-      errors <- append(
-        errors,
+      cnd <- append(
+        cnd,
         list(
           # Check coordinates
           catch_conditions(check_length(coordinates, size[[1L]])),
           catch_conditions(check_lengths(coordinates, 3)),
-          catch_conditions(check_names(coordinates, row_names))
+          catch_conditions(check_names(coordinates, rownames(object)))
         )
       )
     }
 
-    # Return errors if any
-    check_class(object, errors)
+    # Return cnd if any
+    check_class(object, cnd)
   }
 )
 
@@ -59,18 +51,18 @@ setValidity(
   Class = "DataMatrix",
   method = function(object) {
     # Get data
-    data <- object@data
-    size <- object@size
+    data <- object@values
+    length <- length(object)
 
-    errors <- list(
+    cnd <- list(
       # Check data
-      catch_conditions(check_length(data, prod(size))),
-      catch_conditions(check_missing(data)),
-      catch_conditions(check_infinite(data))
+      catch_conditions(check_length(data, length)),
+      catch_conditions(check_infinite(data)),
+      catch_conditions(check_missing(data))
     )
 
-    # Return errors, if any
-    check_class(object, errors)
+    # Return cnd, if any
+    check_class(object, cnd)
   }
 )
 
@@ -80,17 +72,17 @@ setValidity(
   Class = "CountMatrix",
   method = function(object) {
     # Get data
-    data <- object@data
+    data <- object@values
 
-    errors <- list(
+    cnd <- list(
       # Check data
-      catch_conditions(check_numbers(data, "positive",
-                                     strict = FALSE, na.rm = TRUE))
+      catch_conditions(
+        check_numbers(data, "positive", strict = FALSE, na.rm = TRUE)
+      )
     )
-    # TODO: check if only 0s and 1s (?)
 
-    # Return errors, if any
-    check_class(object, errors)
+    # Return cnd, if any
+    check_class(object, cnd)
   }
 )
 
@@ -100,23 +92,24 @@ setValidity(
   Class = "AbundanceMatrix",
   method = function(object) {
     # Get data
-    data <- object@data
-    size <- object@size
+    data <- object@values
     totals <- object@totals
+    size <- nrow(object)
 
-    errors <- list(
+    cnd <- list(
       # Check data
-      catch_conditions(check_numbers(data, "positive",
-                                     strict = FALSE, na.rm = TRUE)),
+      catch_conditions(
+        check_numbers(data, "positive", strict = FALSE, na.rm = TRUE)
+      ),
       # Check totals
-      catch_conditions(check_length(totals, size[[1L]])),
+      catch_conditions(check_length(totals, size)),
       catch_conditions(check_missing(totals)),
       catch_conditions(check_infinite(totals))
     )
     # TODO: check constant sum.
 
-    # Return errors, if any
-    check_class(object, errors)
+    # Return cnd, if any
+    check_class(object, cnd)
   }
 )
 # ------------------------------------------------------------- OccurrenceMatrix
@@ -127,7 +120,7 @@ setValidity(
     data <- as.matrix(object)
     n <- object@n
 
-    errors <- list(
+    cnd <- list(
       # Check data
       catch_conditions(check_symmetric(data)),
       catch_conditions(check_numbers(data, "positive",
@@ -136,8 +129,8 @@ setValidity(
       catch_conditions(check_scalar(n, "integer"))
     )
 
-    # Return errors, if any
-    check_class(object, errors)
+    # Return cnd, if any
+    check_class(object, cnd)
   }
 )
 # ------------------------------------------------------------- SimilarityMatrix
@@ -148,7 +141,7 @@ setValidity(
     data <- as.matrix(object)
     method <- object@method
 
-    errors <- list(
+    cnd <- list(
       # Check data
       catch_conditions(check_symmetric(data)),
       # Check method
@@ -156,8 +149,8 @@ setValidity(
       catch_conditions(check_missing(method))
     )
 
-    # Return errors, if any
-    check_class(object, errors)
+    # Return cnd, if any
+    check_class(object, cnd)
   }
 )
 
@@ -170,16 +163,16 @@ setValidity(
     data <- as.matrix(object)
 
     if (nrow(data) > 0) {
-      errors <- list(
+      cnd <- list(
         # Check data
         catch_conditions(check_square(data)),
         catch_conditions(check_dag(data))
       )
     } else {
-      errors <- list()
+      cnd <- list()
     }
 
-    # Return errors, if any
-    check_class(object, errors)
+    # Return cnd, if any
+    check_class(object, cnd)
   }
 )

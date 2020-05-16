@@ -3,16 +3,7 @@
 NULL
 
 # Add S4 dispatch to base S3 generic
-setGeneric("length")
 setGeneric("diag")
-setGeneric("row")
-setGeneric("col")
-setGeneric("nrow")
-setGeneric("ncol")
-setGeneric("rownames")
-setGeneric("rownames<-")
-setGeneric("colnames")
-setGeneric("colnames<-")
 setGeneric("rowSums")
 setGeneric("colSums")
 setGeneric("rowMeans")
@@ -128,10 +119,6 @@ setGeneric(
 #'
 #' Getters and setters to retrieve or set parts of an object.
 #' @param x An object from which to get or set element(s).
-#' @param as.factor A \code{\link{logical}} scalar: should the value be
-#'  returned as a factor of row or column labels rather than as numbers?
-# @param names A \code{\link{logical}} scalar: should the resulting vector
-#  inherit names?
 #' @param value A possible value for the element(s) of \code{object} (see
 #'  below).
 #' @return

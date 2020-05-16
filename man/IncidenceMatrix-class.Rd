@@ -32,16 +32,6 @@ respectively. If \code{NULL} (the default) dimension names will be created.}
 \description{
 An S4 class to represent an incidence (presence/absence) matrix.
 }
-\section{Matrix ID}{
-
- When a matrix is first created, an identifier is generated (UUID v4).
- This ID is preserved when coercing to another class. Thus, the object ID is
- unique within the same class, but two objects of different classes can have
- the same ID. This makes it possible to identify objects representing the
- same initial data and associate them with the results of specific
- computations.
-}
-
 \section{Get and set}{
 
  In the code snippets below, \code{x} is a \code{*Matrix} object.

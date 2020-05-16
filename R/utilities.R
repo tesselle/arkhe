@@ -177,3 +177,12 @@ make_dimnames <- function(x) {
     make_names(dim_names[[2L]], size[[2L]], "col")
   )
 }
+make_matrix <- function(data, nrow, ncol, byrow, dimnames, row, col) {
+  n <- length(data)
+  if (col) ncol <- n / nrow
+  if (row) nrow <- n / ncol
+  mtx <- matrix(data = data, nrow = nrow, ncol = ncol,
+                byrow = byrow, dimnames = dimnames)
+  dimnames(mtx) <- make_dimnames(mtx)
+  mtx
+}

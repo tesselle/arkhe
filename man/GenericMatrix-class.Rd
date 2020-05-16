@@ -3,6 +3,7 @@
 \docType{class}
 \name{GenericMatrix-class}
 \alias{GenericMatrix-class}
+\alias{.GenericMatrix}
 \title{Matrix}
 \description{
 A virtual S4 class to represent a matrix. This is the mother class of all

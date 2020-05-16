@@ -1,41 +1,34 @@
 context("Coerce")
 
 # matrix =======================================================================
-cts <- matrix(sample(1:100, 50, TRUE), ncol = 10)
+cts <- matrix(sample(0:100, 50, TRUE), ncol = 10)
 freq <- prop.table(cts, 1)
 incid <- matrix(as.logical(sample(0:1, 50, TRUE)), ncol = 10)
-incid[which(rowSums(incid) == 0), 1] <- 1 # Prevent row sums to zero
-incid <- matrix(as.logical(incid), ncol = 10)
 sim <- matrix(1, nrow = 5, ncol = 5)
 
 test_that("matrix > CountMatrix", {
   A <- as_count(cts)
 
   expect_s4_class(A, "CountMatrix")
-  expect_equivalent(as(A, "matrix"), cts)
+  expect_equivalent(as.matrix(A), cts)
 })
 test_that("matrix > AbundanceMatrix", {
   B <- as_abundance(cts)
   expect_s4_class(B, "AbundanceMatrix")
-  expect_equivalent(as(B, "matrix"), freq)
-
-  # Begin workaround: prevent row sums to zero
-  incid <- matrix(sample(0:1, 50, TRUE), ncol = 10)
-  incid[which(rowSums(incid) == 0), 1] <- 1
-  incid <- matrix(as.logical(incid), ncol = 10)
+  expect_equivalent(as.matrix(B), freq)
 
   expect_s4_class(as_abundance(incid), "AbundanceMatrix")
 })
 test_that("matrix > IncidenceMatrix", {
   C <- as_incidence(incid)
   expect_s4_class(C, "IncidenceMatrix")
-  expect_equivalent(as(C, "matrix"), incid)
+  expect_equivalent(as.matrix(C), incid)
 
   expect_s4_class(as_incidence(cts), "IncidenceMatrix")
   expect_s4_class(as_incidence(freq), "IncidenceMatrix")
 })
 test_that("matrix > OccurrenceMatrix", {
-  D <- as_occurrence(incid)
+  D <- as_occurrence(cts)
   expect_s4_class(D, "OccurrenceMatrix")
 
   expect_s4_class(as_occurrence(cts), "OccurrenceMatrix")
@@ -84,7 +77,7 @@ test_that("data.frame <> OccurrenceMatrix", {
 test_that("data.frame <> SimilarityMatrix", {
   E <- as_similarity(df_sim)
   expect_s4_class(E, "SimilarityMatrix")
-  expect_is(as(E, "data.frame"), "data.frame")
+  expect_is(as.data.frame(E), "data.frame")
 })
 
 # *Matrix ======================================================================
@@ -135,4 +128,3 @@ test_that("DataMatrix > features", {
   expect_message(as_features(count), "No coordinates were set, NA generated.")
   expect_message(as_features(count), "No dates were set, NA generated.")
 })
-

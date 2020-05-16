@@ -1,43 +1,48 @@
 context("Subset")
 
 test_that("Extract/replace with a numeric index", {
-  mtx <- CountMatrix(data = sample(2:10, 100, TRUE), ncol = 10)
+  mtx <- matrix(data = sample(2:10, 100, TRUE), ncol = 10)
+  cts <- as_count(mtx)
 
-  expect_equivalent(mtx[], as(mtx, "matrix"))
-  expect_equivalent(mtx[, ], as(mtx, "matrix"))
+  expect_identical(cts[], cts)
+  expect_identical(cts[, ], cts)
 
-  mtx[1] <- 1
-  expect_equivalent(mtx[1], 1)
-  expect_s4_class(mtx, "CountMatrix")
+  expect_true(all(cts[1:2, ] == mtx[1:2, ]))
+  expect_true(all(cts[1:2, 3] == mtx[1:2, 3]))
+  expect_equivalent(cts[1, , drop = TRUE], mtx[1, , drop = TRUE])
 
-  mtx[1, 5] <- 0
-  expect_equivalent(mtx[1, 5], 0)
-  expect_s4_class(mtx, "CountMatrix")
+  cts[1] <- 1
+  expect_equivalent(cts[1], 1)
+  expect_s4_class(cts, "CountMatrix")
 
-  mtx[1, ] <- 0
-  expect_equivalent(mtx[1, ], rep(0, 10))
-  expect_s4_class(mtx, "CountMatrix")
+  cts[1, 5] <- 0
+  expect_equivalent(cts[1, 5], 0)
+  expect_s4_class(cts, "CountMatrix")
 
-  expect_null(dim(mtx[1, , drop = TRUE]))
-  expect_equal(dim(mtx[1, , drop = FALSE]), c(1, 10))
+  cts[1, ] <- 0
+  expect_equivalent(cts[1, ], rep(0, 10))
+  expect_s4_class(cts, "CountMatrix")
 
-  mtx[, 1] <- 1
-  expect_equivalent(mtx[, 1], rep(1, 10))
-  expect_s4_class(mtx, "CountMatrix")
+  expect_null(dim(cts[1, , drop = TRUE]))
+  expect_equal(dim(cts[1, , drop = FALSE]), c(1, 10))
 
-  expect_null(dim(mtx[, 1, drop = TRUE]))
-  expect_equal(dim(mtx[, 1, drop = FALSE]), c(10, 1))
+  cts[, 1] <- 1
+  expect_equivalent(cts[, 1], rep(1, 10))
+  expect_s4_class(cts, "CountMatrix")
 
-  mtx[[1]] <- 0
-  expect_equivalent(mtx[[1]], 0)
-  expect_s4_class(mtx, "CountMatrix")
+  expect_null(dim(cts[, 1, drop = TRUE]))
+  expect_equal(dim(cts[, 1, drop = FALSE]), c(10, 1))
 
-  mtx[[1, 5]] <- 999
-  expect_equivalent(mtx[[1, 5]], 999)
-  expect_s4_class(mtx, "CountMatrix")
+  cts[[1]] <- 0
+  expect_equivalent(cts[[1]], 0)
+  expect_s4_class(cts, "CountMatrix")
 
-  expect_error(mtx[[]])
-  expect_error(mtx[[, ]])
-  # expect_error(mtx[[1, ]]) # TODO: investigate
-  expect_error(mtx[[, 1]])
+  cts[[1, 5]] <- 999
+  expect_equivalent(cts[[1, 5]], 999)
+  expect_s4_class(cts, "CountMatrix")
+
+  expect_error(cts[[]])
+  expect_error(cts[[, ]])
+  expect_error(cts[[1, ]])
+  expect_error(cts[[, 1]])
 })

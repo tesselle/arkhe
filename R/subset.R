@@ -5,97 +5,41 @@ NULL
 # ====================================================================== Extract
 #' @export
 #' @rdname subset
-#' @aliases [,DataMatrix,missing,missing-method
+#' @aliases [,DataMatrix-method
 setMethod(
   f = "[",
-  signature = c(x = "DataMatrix", i = "missing", j = "missing"),
+  signature = "DataMatrix",
   definition = function(x, i, j, ..., drop = TRUE) {
-    methods::as(x, "matrix")
+    m <- callNextMethod()
+    if (!is.matrix(m)) return(x@values[m])
+    methods::initialize(x, m, values = x@values[m])
   }
 )
 
 #' @export
 #' @rdname subset
-#' @aliases [,DataMatrix,ANY,missing-method
-setMethod(
-  f = "[",
-  signature = c(x = "DataMatrix", i = "ANY", j = "missing"),
-  definition = function(x, i, j, ..., drop = TRUE) {
-    n <- nargs() + missing(drop)
-    mtx <- methods::as(x, "matrix")
-    if (n == 4) {
-      mtx[i, , drop = drop]
-    } else {
-      mtx[i]
-    }
-  }
-)
-
-#' @export
-#' @rdname subset
-#' @aliases [,DataMatrix,missing,ANY-method
-setMethod(
-  f = "[",
-  signature = c(x = "DataMatrix", i = "missing", j = "ANY"),
-  definition = function(x, i, j, ..., drop = TRUE) {
-    mtx <- methods::as(x, "matrix")
-    mtx[, j, drop = drop]
-  }
-)
-
-#' @export
-#' @rdname subset
-#' @aliases [,DataMatrix,ANY,ANY-method
-setMethod(
-  f = "[",
-  signature = c(x = "DataMatrix", i = "ANY", j = "ANY"),
-  definition = function(x, i, j, ..., drop = TRUE) {
-    mtx <- methods::as(x, "matrix")
-    mtx[i, j, drop = drop]
-  }
-)
-
-#' @export
-#' @rdname subset
-#' @aliases [[,DataMatrix,ANY,missing-method
+#' @aliases [[,DataMatrix-method
 setMethod(
   f = "[[",
-  signature = c(x = "DataMatrix", i = "ANY", j = "missing"),
-  definition = function(x, i, exact = TRUE) {
-    mtx <- methods::as(x, "matrix")
-    mtx[[i, exact = exact]]
-  }
-)
-
-#' @export
-#' @rdname subset
-#' @aliases [[,DataMatrix,ANY,ANY-method
-setMethod(
-  f = "[[",
-  signature = c(x = "DataMatrix", i = "ANY", j = "ANY"),
+  signature = "DataMatrix",
   definition = function(x, i, j, ..., exact = TRUE) {
-    mtx <- methods::as(x, "matrix")
-    mtx[[i, j, exact = exact]]
+    m <- callNextMethod()
+    x@values[[m]]
   }
 )
 
 # ====================================================================== Replace
 #' @export
 #' @rdname subset
-#' @aliases [<-,DataMatrix,ANY,missing-method
+#' @aliases [<-,DataMatrix-method
 setMethod(
   f = "[<-",
-  signature = c(x = "DataMatrix", i = "ANY", j = "missing"),
+  signature = "DataMatrix",
   definition = function(x, i, j, ..., value) {
-    n <- nargs()
-    mtx <- methods::as(x, "matrix")
-    if (n == 4) {
-      mtx[i, j] <- value
-    } else {
-      mtx[i] <- value
-    }
-    mtx <- methods::as(mtx, typeof(x@data))
-    x@data <- mtx
+    if (nargs() == 4) m <- x@.Data[i, j]
+    if (nargs() == 3) m <- x@.Data[i]
+    value <- methods::as(value, typeof(x@values))
+    x@values[m] <- value
     methods::validObject(x)
     x
   }
@@ -103,63 +47,14 @@ setMethod(
 
 #' @export
 #' @rdname subset
-#' @aliases [,DataMatrix,missing,ANY-method
-setMethod(
-  f = "[<-",
-  signature = c(x = "DataMatrix", i = "missing", j = "ANY"),
-  definition = function(x, i, j, value) {
-    mtx <- methods::as(x, "matrix")
-    mtx[, j] <- value
-    mtx <- methods::as(mtx, typeof(x@data))
-    x@data <- mtx
-    methods::validObject(x)
-    x
-  }
-)
-
-#' @export
-#' @rdname subset
-#' @aliases [<-,DataMatrix,ANY,ANY-method
-setMethod(
-  f = "[<-",
-  signature = c(x = "DataMatrix", i = "ANY", j = "ANY"),
-  definition = function(x, i, j, value) {
-    mtx <- methods::as(x, "matrix")
-    mtx[i, j] <- value
-    mtx <- methods::as(mtx, typeof(x@data))
-    x@data <- mtx
-    methods::validObject(x)
-    x
-  }
-)
-
-#' @export
-#' @rdname subset
-#' @aliases [[<-,DataMatrix,ANY,missing-method
+#' @aliases [[<-,DataMatrix-method
 setMethod(
   f = "[[<-",
-  signature = c(x = "DataMatrix", i = "ANY", j = "missing"),
-  definition = function(x, i, value) {
-    mtx <- methods::as(x, "matrix")
-    mtx[[i]] <- value
-    mtx <- methods::as(mtx, typeof(x@data))
-    x@data <- mtx
-    methods::validObject(x)
-    x
-  }
-)
-
-#' @export
-#' @rdname subset
-#' @aliases [[<-,DataMatrix,ANY,ANY-method
-setMethod(
-  f = "[[<-",
-  signature = c(x = "DataMatrix", i = "ANY", j = "ANY"),
+  signature = "DataMatrix",
   definition = function(x, i, j, value) {
-    mtx <- methods::as(x, "matrix")
-    mtx[[i, j]] <- value
-    mtx <- methods::as(mtx, typeof(x@data))
-    x@data <- mtx
+    m <- if (missing(j)) x@.Data[[i]] else x@.Data[[i, j]]
+    value <- methods::as(value, typeof(x@values))
+    x@values[[m]] <- value
     methods::validObject(x)
     x
   }

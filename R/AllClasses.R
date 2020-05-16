@@ -66,17 +66,14 @@
 #' @docType class
 #' @aliases GenericMatrix-class
 #' @keywords internal
-setClass(
+.GenericMatrix <- setClass(
   Class = "GenericMatrix",
   slots = c(
     id = "character",
-    size = "integer",
-    row_names = "character",
-    column_names = "character",
     dates = "list",
     coordinates = "list"
   ),
-  contains = "VIRTUAL"
+  contains = "matrix"
 )
 
 # --------------------------------------------------------------- Virtual matrix
@@ -120,9 +117,9 @@ NULL
 setClass(
   Class = "IntegerMatrix",
   slot = c(
-    data = "integer"
+    values = "integer"
   ),
-  contains = c("GenericMatrix", "VIRTUAL")
+  contains = c("GenericMatrix")
 )
 
 #' @aliases NumericMatrix-class
@@ -130,9 +127,9 @@ setClass(
 setClass(
   Class = "NumericMatrix",
   slot = c(
-    data = "numeric"
+    values = "numeric"
   ),
-  contains = c("GenericMatrix", "VIRTUAL")
+  contains = c("GenericMatrix")
 )
 
 #' @aliases LogicalMatrix-class
@@ -140,9 +137,9 @@ setClass(
 setClass(
   Class = "LogicalMatrix",
   slots = c(
-    data = "logical"
+    values = "logical"
   ),
-  contains = c("GenericMatrix", "VIRTUAL")
+  contains = c("GenericMatrix")
 )
 
 setClassUnion(
@@ -156,7 +153,6 @@ setClassUnion(
 #' An S4 class to represent an absolute frequency matrix (i.e. the number of
 #' times a given datum occurs in a dataset).
 #' @inheritParams DataMatrix-class
-#' @inheritSection GenericMatrix-class Matrix ID
 #' @inheritSection GenericMatrix-class Get and set
 #' @inheritSection GenericMatrix-class Access
 #' @inheritSection GenericMatrix-class Subset
@@ -179,7 +175,7 @@ setClassUnion(
 #' An S4 class to represent a relative frequency matrix (i.e. the fraction of
 #' times a given datum occurs in a dataset).
 #' @slot totals A \code{\link{numeric}} vector.
-#' @inheritSection GenericMatrix-class Matrix ID
+#' @inheritParams DataMatrix-class
 #' @inheritSection GenericMatrix-class Get and set
 #' @inheritSection GenericMatrix-class Access
 #' @inheritSection GenericMatrix-class Subset
@@ -206,7 +202,6 @@ setClassUnion(
 #'  A co-occurrence matrix is a symmetric matrix with zeros on its main
 #'  diagonal, which works out how many times (expressed in percent) each pairs
 #'  of taxa/types occur together in at least one sample.
-#' @inheritSection GenericMatrix-class Matrix ID
 #' @inheritSection GenericMatrix-class Get and set
 #' @inheritSection GenericMatrix-class Access
 #' @inheritSection GenericMatrix-class Subset
@@ -231,7 +226,6 @@ setClassUnion(
 #' An S4 class to represent a (dis)similarity matrix.
 #' @slot method A \code{\link{character}} string specifying the distance
 #'  method used.
-#' @inheritSection GenericMatrix-class Matrix ID
 #' @inheritSection GenericMatrix-class Get and set
 #' @inheritSection GenericMatrix-class Access
 #' @inheritSection GenericMatrix-class Subset
@@ -255,7 +249,6 @@ setClassUnion(
 #'
 #' An S4 class to represent an incidence (presence/absence) matrix.
 #' @inheritParams DataMatrix-class
-#' @inheritSection GenericMatrix-class Matrix ID
 #' @inheritSection GenericMatrix-class Get and set
 #' @inheritSection GenericMatrix-class Access
 #' @inheritSection GenericMatrix-class Subset
@@ -280,7 +273,6 @@ setClassUnion(
 #'  stratigraphic units. A stratigraphic matrix is an adjacency matrix (a non
 #'  symmetric square matrix with zeros on its main diagonal), suitable to build
 #'  a directed acyclic graph (DAG).
-#' @inheritSection GenericMatrix-class Matrix ID
 #' @inheritSection GenericMatrix-class Get and set
 #' @inheritSection GenericMatrix-class Access
 #' @inheritSection GenericMatrix-class Subset

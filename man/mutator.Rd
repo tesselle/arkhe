@@ -19,25 +19,11 @@
 \alias{get_totals-method}
 \alias{set_totals<-}
 \alias{set_totals-method}
-\alias{length,DataMatrix-method}
-\alias{diag,DataMatrix-method}
-\alias{dim,DataMatrix-method}
-\alias{row,DataMatrix-method}
-\alias{col,DataMatrix-method}
-\alias{nrow,DataMatrix-method}
-\alias{ncol,DataMatrix-method}
-\alias{dimnames,DataMatrix-method}
-\alias{dimnames<-,DataMatrix-method}
-\alias{rownames,DataMatrix-method}
-\alias{rownames<-,DataMatrix-method}
-\alias{colnames,DataMatrix-method}
-\alias{colnames<-,DataMatrix-method}
-\alias{get_id,ANY-method}
+\alias{get_id,GenericMatrix-method}
 \alias{get_totals,AbundanceMatrix-method}
 \alias{get_method,SimilarityMatrix-method}
-\alias{get_units,StratigraphicMatrix-method}
-\alias{set_id<-,ANY-method}
-\alias{set_id,ANY-method}
+\alias{set_id<-,GenericMatrix-method}
+\alias{set_id,GenericMatrix-method}
 \alias{set_totals<-,AbundanceMatrix-method}
 \alias{set_totals,AbundanceMatrix-method}
 \alias{set_method<-,SimilarityMatrix-method}
@@ -58,41 +44,13 @@ get_totals(x)
 
 set_totals(x) <- value
 
-\S4method{length}{DataMatrix}(x)
-
-\S4method{diag}{DataMatrix}(x)
-
-\S4method{dim}{DataMatrix}(x)
-
-\S4method{row}{DataMatrix}(x, as.factor = FALSE)
-
-\S4method{col}{DataMatrix}(x, as.factor = FALSE)
-
-\S4method{nrow}{DataMatrix}(x)
-
-\S4method{ncol}{DataMatrix}(x)
-
-\S4method{dimnames}{DataMatrix}(x)
-
-\S4method{dimnames}{DataMatrix}(x) <- value
-
-\S4method{rownames}{DataMatrix}(x)
-
-\S4method{rownames}{DataMatrix}(x) <- value
-
-\S4method{colnames}{DataMatrix}(x)
-
-\S4method{colnames}{DataMatrix}(x) <- value
-
-\S4method{get_id}{ANY}(x)
+\S4method{get_id}{GenericMatrix}(x)
 
 \S4method{get_totals}{AbundanceMatrix}(x)
 
 \S4method{get_method}{SimilarityMatrix}(x)
 
-\S4method{get_units}{StratigraphicMatrix}(x)
-
-\S4method{set_id}{ANY}(x) <- value
+\S4method{set_id}{GenericMatrix}(x) <- value
 
 \S4method{set_totals}{AbundanceMatrix}(x) <- value
 
@@ -103,9 +61,6 @@ set_totals(x) <- value
 
 \item{value}{A possible value for the element(s) of \code{object} (see
 below).}
-
-\item{as.factor}{A \code{\link{logical}} scalar: should the value be
-returned as a factor of row or column labels rather than as numbers?}
 }
 \value{
 An object of the same sort as \code{x} with the new values assigned.
@@ -113,37 +68,6 @@ An object of the same sort as \code{x} with the new values assigned.
 \description{
 Getters and setters to retrieve or set parts of an object.
 }
-\section{Functions}{
-\itemize{
-\item \code{length,DataMatrix-method}: Retrieve the length of an object.
-
-\item \code{diag,DataMatrix-method}: Extract the diagonal of a matrix.
-
-\item \code{dim,DataMatrix-method}: Retrieve or set the dimension of an object.
-
-\item \code{row,DataMatrix-method}: Returns a matrix of integers indicating their row number
-in a matrix-like object, or a factor indicating the row labels.
-
-\item \code{col,DataMatrix-method}: Returns a matrix of integers indicating their column
-number in a matrix-like object, or a factor of column labels.
-
-\item \code{nrow,DataMatrix-method}: Return the number of rows present in \code{x}.
-
-\item \code{ncol,DataMatrix-method}: Return the number of columns present in \code{x}.
-
-\item \code{dimnames,DataMatrix-method}: Retrieve the dimnames of \code{x}.
-
-\item \code{dimnames<-,DataMatrix-method}: Set the dimnames of \code{x}.
-
-\item \code{rownames,DataMatrix-method}: Retrieve the row names of \code{x}.
-
-\item \code{rownames<-,DataMatrix-method}: Set the row names of \code{x}.
-
-\item \code{colnames,DataMatrix-method}: Retrieve the column names of \code{x}.
-
-\item \code{colnames<-,DataMatrix-method}: Set the column names of \code{x}.
-}}
-
 \examples{
 ## Create an incidence (presence/absence) matrix
 ## Data will be coerced with as.logical()

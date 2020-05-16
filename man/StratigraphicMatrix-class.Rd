@@ -14,16 +14,6 @@ A stratigraphic matrix represents directed relationships between
  symmetric square matrix with zeros on its main diagonal), suitable to build
  a directed acyclic graph (DAG).
 }
-\section{Matrix ID}{
-
- When a matrix is first created, an identifier is generated (UUID v4).
- This ID is preserved when coercing to another class. Thus, the object ID is
- unique within the same class, but two objects of different classes can have
- the same ID. This makes it possible to identify objects representing the
- same initial data and associate them with the results of specific
- computations.
-}
-
 \section{Get and set}{
 
  In the code snippets below, \code{x} is a \code{*Matrix} object.
@@ -92,7 +82,6 @@ harris <- matrix(
 )
 
 strati <- as_stratigraphy(harris)
-get_units(strati)
 }
 \seealso{
 \linkS4class{LogicalMatrix}

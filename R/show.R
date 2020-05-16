@@ -7,7 +7,7 @@ setMethod(
   signature = "DataMatrix",
   definition = function(object) {
     cat(sprintf("<%s: %s>\n", class(object),
-                paste0(object@size, collapse = " x ")))
+                paste0(dim(object), collapse = " x ")))
     print(as.matrix(object))
   }
 )

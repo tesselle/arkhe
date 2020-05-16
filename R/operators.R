@@ -10,7 +10,7 @@ setMethod(
   f = "Arith",
   signature(e1 = "DataMatrix", e2 = "DataMatrix"),
   definition = function(e1, e2) {
-    value <- methods::callGeneric(e1 = e1@data, e2 = e2@data)
+    value <- methods::callGeneric(e1 = e1@values, e2 = e2@values)
     dim(value) <- dim(e1)
     return(value)
   }
@@ -23,7 +23,7 @@ setMethod(
   f = "Arith",
   signature(e1 = "DataMatrix", e2 = "numeric"),
   definition = function(e1, e2) {
-    value <- methods::callGeneric(e1 = e1@data, e2 = e2)
+    value <- methods::callGeneric(e1 = e1@values, e2 = e2)
     dim(value) <- dim(e1)
     return(value)
   }
@@ -37,7 +37,7 @@ setMethod(
   f = "Compare",
   signature(e1 = "DataMatrix", e2 = "DataMatrix"),
   definition = function(e1, e2) {
-    value <- methods::callGeneric(e1 = e1@data, e2 = e2@data)
+    value <- methods::callGeneric(e1 = e1@values, e2 = e2@values)
     dim(value) <- dim(e1)
     return(value)
   }
@@ -50,7 +50,7 @@ setMethod(
   f = "Compare",
   signature(e1 = "DataMatrix", e2 = "numeric"),
   definition = function(e1, e2) {
-    value <- methods::callGeneric(e1 = e1@data, e2 = e2)
+    value <- methods::callGeneric(e1 = e1@values, e2 = e2)
     dim(value) <- dim(e1)
     return(value)
   }
@@ -64,7 +64,7 @@ setMethod(
   f = "Logic",
   signature(e1 = "DataMatrix", e2 = "DataMatrix"),
   definition = function(e1, e2) {
-    value <- methods::callGeneric(e1 = e1@data, e2 = e2@data)
+    value <- methods::callGeneric(e1 = e1@values, e2 = e2@values)
     dim(value) <- dim(e1)
     return(value)
   }
@@ -77,7 +77,7 @@ setMethod(
   f = "Logic",
   signature(e1 = "DataMatrix", e2 = "numeric"),
   definition = function(e1, e2) {
-    value <- methods::callGeneric(e1 = e1@data, e2 = e2)
+    value <- methods::callGeneric(e1 = e1@values, e2 = e2)
     dim(value) <- dim(e1)
     return(value)
   }
@@ -90,7 +90,7 @@ setMethod(
   f = "Logic",
   signature(e1 = "DataMatrix", e2 = "logical"),
   definition = function(e1, e2) {
-    value <- methods::callGeneric(e1 = e1@data, e2 = e2)
+    value <- methods::callGeneric(e1 = e1@values, e2 = e2)
     dim(value) <- dim(e1)
     return(value)
   }
@@ -104,6 +104,6 @@ setMethod(
   f = "Summary",
   signature(x = "DataMatrix"),
   definition = function(x, na.rm = FALSE) {
-    methods::callGeneric(x = x@data, na.rm = na.rm)
+    methods::callGeneric(x = x@values, na.rm = na.rm)
   }
 )
