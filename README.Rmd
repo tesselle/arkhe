@@ -57,11 +57,6 @@ remotes::install_github("nfrerebeau/arkhe")
 library(arkhe)
 ```
 
-```{r vignette, eval=FALSE}
-# See the vignette
-utils::vignette("arkhe", package = "arkhe")
-```
-
 **arkhe** provides a set of S4 classes that represent different special types of matrix.
 
 * Numeric matrix:
@@ -137,10 +132,9 @@ harris <- read.table(
 S <- as_stratigraphy(harris)
 ```
 
-Many familiar methods and group generic functions are available for all `*Matrix` classes (such as `length`, `dim`, `rowSums`, `rowMeans`, `sum`, `any`, `all`...). In addition, all functions that call `as.matrix` first on their main argument should work (e. g. `apply`).
+Many familiar methods and group generic functions are available for all `*Matrix` classes (such as `length`, `dim`, `rowSums`, `rowMeans`, `sum`, `any`, `all`...). In addition, all functions that call `as.matrix` or `as.data.frame` first on their main argument should work (e. g. `apply`).
 
 ```{r functions}
-dim(A0)
 rowSums(A0)
 apply(X = A0, MARGIN = 1, FUN = sum)
 ```

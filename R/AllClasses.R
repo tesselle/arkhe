@@ -1,4 +1,5 @@
 # CLASSES DEFINITION
+# https://stackoverflow.com/questions/11857658/assignment-of-s4-r-objects-to-a-matrix-why-does-this-work
 
 # ======================================================================= Matrix
 #' Matrix
