@@ -103,11 +103,11 @@ The following methods coerce an object to a \code{Matrix} object:
  to a stratigraphic (adjacency) matrix. \code{from} can be a
  \code{\link{matrix}}, \code{\link{list}}, or \code{\link{data.frame}}:
  the first column/component is assumed to contain the bottom units and the
- second the top units.
+ second the top units (adjacency).
 
- \code{as_features} converts an \linkS4class{Matrix} object to a
- collection of features (i.e. a\code{\link{data.frame}} with
- dates and coordinates columns).
+ \code{as_features} converts an \linkS4class{DataMatrix} object to a
+ collection of features: a \code{\link{data.frame}} with all informations
+ as extra columns (result may differ according to the class of \code{from}).
 }
 \examples{
 ## Create a count matrix

@@ -43,11 +43,11 @@ setGeneric("colMeans")
 #'  to a stratigraphic (adjacency) matrix. \code{from} can be a
 #'  \code{\link{matrix}}, \code{\link{list}}, or \code{\link{data.frame}}:
 #'  the first column/component is assumed to contain the bottom units and the
-#'  second the top units.
+#'  second the top units (adjacency).
 #'
-#'  \code{as_features} converts an \linkS4class{Matrix} object to a
-#'  collection of features (i.e. a\code{\link{data.frame}} with
-#'  dates and coordinates columns).
+#'  \code{as_features} converts an \linkS4class{DataMatrix} object to a
+#'  collection of features: a \code{\link{data.frame}} with all informations
+#'  as extra columns (result may differ according to the class of \code{from}).
 #' @return A coerced object.
 #' @example inst/examples/ex-coerce.R
 #' @author N. Frerebeau
@@ -254,13 +254,8 @@ NULL
 #'  (including \code{NaN}) be omitted from the calculations?
 #' @details
 #'  \describe{
-#'   \item{\code{rowQuantiles} and \code{colQuantiles}}{Form row and column
-#'   quantiles.}
 #'   \item{\code{rowMeans} and \code{colMeans}}{Form row and column means.}
-#'   \item{\code{rowRanges} and \code{colRanges}}{Form row and column ranges.}
-#'   \item{\code{rowRanks} and \code{colRanks}}{}
 #'   \item{\code{rowSums} and \code{colSums}}{Form row and column sums.}
-#'   \item{\code{rowVars} and \code{colVars}}{Form row and column variances.}
 #'  }
 #' @example inst/examples/ex-statistics.R
 #' @author N. Frerebeau
@@ -317,52 +312,4 @@ setGeneric(
 setGeneric(
   name = "set_dates<-",
   def = function(object, value) standardGeneric("set_dates<-")
-)
-
-# ==================================================================== Geography
-#' Spatial Information
-#'
-#' Deal with spatial information.
-#' @param object An object from which to get or set element(s).
-#' @param value A possible value for the element(s) of \code{object} (see
-#'  below).
-#' @details
-#'  An attempt is made to interpret the argument \code{value} in a way suitable
-#'  for geographic coordinates.
-#'
-#'  If \code{value} is a:
-#'  \describe{
-#'   \item{\code{list}}{containing components "\code{x}", "\code{y}" and
-#'   "\code{z}", these are used to define coordinates (longitude, latitude and
-#'   elevation, respectively). If "\code{z}" is missing, the vertical
-#'   coordinates will be ignored (and \code{NA} will be generated).}
-#'   \item{\code{matrix} or \code{data.frame} with two or more columns}{the
-#'   first is assumed to contain the \code{x} values, the second the \code{y}
-#'   and the third the \code{z} values. \emph{Note} that if \code{value} has
-#'   columns named "\code{x}", "\code{y}" and "\code{z}", these columns will be
-#'   used. If \code{value} has only two columns or has columns named "\code{x}"
-#'   and "\code{y}" but not "\code{z}", the vertical coordinates will be ignored
-#'   (and \code{NA} will be generated).}
-#'  }
-#' @note EXPERIMENTAL: subject to major changes in a future release.
-#' @example inst/examples/ex-geography.R
-#' @author N. Frerebeau
-#' @family geography
-#' @docType methods
-#' @name geography
-#' @rdname geography
-NULL
-
-#' @rdname geography
-#' @aliases get_coordinates-method
-setGeneric(
-  name = "get_coordinates",
-  def = function(object) standardGeneric("get_coordinates")
-)
-
-#' @rdname geography
-#' @aliases set_coordinates-method
-setGeneric(
-  name = "set_coordinates<-",
-  def = function(object, value) standardGeneric("set_coordinates<-")
 )

@@ -9,7 +9,6 @@ setValidity(
     # Get data
     id <- object@id
     dates <- object@dates
-    coordinates <- object@coordinates
     size <- dim(object)
 
     # Check
@@ -26,17 +25,6 @@ setValidity(
           catch_conditions(check_length(dates, size[[1L]])),
           catch_conditions(check_lengths(dates, 2)),
           catch_conditions(check_names(dates, rownames(object)))
-        )
-      )
-    }
-    if (length(coordinates) > 0) {
-      cnd <- append(
-        cnd,
-        list(
-          # Check coordinates
-          catch_conditions(check_length(coordinates, size[[1L]])),
-          catch_conditions(check_lengths(coordinates, 3)),
-          catch_conditions(check_names(coordinates, rownames(object)))
         )
       )
     }

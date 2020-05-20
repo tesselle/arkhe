@@ -28,13 +28,8 @@ Computes statistics over \code{DataMatrix} margins.
 }
 \details{
 \describe{
-  \item{\code{rowQuantiles} and \code{colQuantiles}}{Form row and column
-  quantiles.}
   \item{\code{rowMeans} and \code{colMeans}}{Form row and column means.}
-  \item{\code{rowRanges} and \code{colRanges}}{Form row and column ranges.}
-  \item{\code{rowRanks} and \code{colRanks}}{}
   \item{\code{rowSums} and \code{colSums}}{Form row and column sums.}
-  \item{\code{rowVars} and \code{colVars}}{Form row and column variances.}
  }
 }
 \examples{

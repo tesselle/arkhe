@@ -138,7 +138,6 @@ setAs(
     )
     set_id(x) <- get_id(from)
     set_dates(x) <- get_dates(from)
-    set_coordinates(x) <- get_coordinates(from)
     x
   }
 )
@@ -157,7 +156,6 @@ setAs(
     )
     set_id(x) <- get_id(from)
     set_dates(x) <- get_dates(from)
-    set_coordinates(x) <- get_coordinates(from)
     x
   }
 )
@@ -258,7 +256,6 @@ Matrix2incidence <- function(from) {
   )
   set_id(x) <- get_id(from)
   set_dates(x) <- get_dates(from)
-  set_coordinates(x) <- get_coordinates(from)
   x
 }
 setAs(from = "CountMatrix", to = "IncidenceMatrix", def = Matrix2incidence)
@@ -336,29 +333,23 @@ setMethod(
   f = "as_features",
   signature = "DataMatrix",
   definition = function(from) {
-    # Spatial coordinates
-    coords <- get_coordinates(from)
-
-    if (nrow(coords) == 0) {
-      coords <- matrix(data = rep(NA_real_, 3 * nrow(from)), ncol = 3,
-                       dimnames = list(NULL, c("X", "Y", "Z")))
-      coords <- as.data.frame(coords)
-      message("No coordinates were set, NA generated.")
+    # Get data from extra slots
+    extra <- vector(mode = "list")
+    slots <- methods::slotNames(from)[-1] # Remove .Data
+    for (s in slots) {
+      x <- methods::slot(from, s)
+      n <- length(x)
+      if (n == nrow(from)) {
+        extra <- c(extra, list(x))
+        names(extra)[length(extra)] <- s
+      }
     }
-
+    extra <- do.call(cbind.data.frame, extra)
     # Time coordinates
     dates <- get_dates(from)
-    if (nrow(dates) == 0) {
-      dates <- matrix(data = rep(NA_real_, 2 * nrow(from)), ncol = 2)
-      dates <- as.data.frame(dates)
-      message("No dates were set, NA generated.")
-    }
-    names(dates) <- c("DATE_VALUE", "DATE_ERROR")
+    if (nrow(dates) == 0) dates <- NULL
 
-    # XYZ_index <- !vapply(X = coords, FUN = anyNA, FUN.VALUE = logical(1))
-    mtx <- methods::as(from, "matrix")
-    feat <- cbind.data.frame(SITE = rownames(from), coords, dates, mtx)
-    # attr(feat, "epsg") <- epsg
-    return(feat)
+    mtx <- as.data.frame(from)
+    cbind.data.frame(mtx, extra)
   }
 )

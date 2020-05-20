@@ -9,9 +9,6 @@
 #' @slot id A \code{\link{character}} string specifying the unique
 #'  identifier of the matrix (UUID v4).
 #' @slot dates A \code{\link{list}} giving the dates of each assemblage.
-#' @slot coordinates A \code{\link{list}} giving the geographical coordinates of
-#'  each assemblage (must considered as experimental and subject to major
-#'  changes in a future release).
 #' @section Matrix ID:
 #'  When a matrix is first created, an identifier is generated (UUID v4).
 #'  This ID is preserved when coercing to another class. Thus, the object ID is
@@ -25,8 +22,6 @@
 #'   \item{\code{get_id(x)}}{Get the ID of \code{x}.}
 #'   \item{\code{get_dates(x)} and \code{set_dates(x) <- value}}{Get or set
 #'   the dates of \code{x}.}
-#'   \item{\code{get_coordinates(x)} and \code{set_coordinates(x) <- value}}{Get
-#'   or set the geographical coordinates of \code{x}.}
 #'  }
 #' @section Access:
 #'  In the code snippets below, \code{x} is a \code{*Matrix} object.
@@ -69,8 +64,7 @@
   Class = "GenericMatrix",
   slots = c(
     id = "character",
-    dates = "list",
-    coordinates = "list"
+    dates = "list"
   ),
   contains = "matrix"
 )
