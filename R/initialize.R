@@ -3,16 +3,9 @@
 # =================================================================== initialize
 # setMethod(
 #   f = "initialize",
-#   signature = "GenericMatrix",
-#   definition = function(.Object, ..., id, dates, coordinates) {
+#   signature = "DataMatrix",
+#   definition = function(.Object, ..., values) {
 #
-#     .Object@id <- if (missing(id)) generate_uuid() else id
-#     .Object@dates <- if (missing(dates)) vector("list", 0L) else dates
-#     .Object@coordinates <- if (missing(coordinates)) vector("list", 0L) else coordinates
-#
-#     .Object <- methods::callNextMethod()
-#     methods::validObject(.Object)
-#     .Object
 #   }
 # )
 

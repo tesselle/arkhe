@@ -82,7 +82,7 @@
 #' Data Matrix
 #'
 #' A virtual S4 class to represent a data matrix.
-#' @slot data An \code{\link{integer}}, a \code{\link{numeric}} or a
+#' @slot values An \code{\link{integer}}, a \code{\link{numeric}} or a
 #'  \code{\link{logical}} vector (see details).
 #' @param data A data vector.
 #' @param nrow An \code{\link{integer}} value giving the desired number of rows.

@@ -3,7 +3,6 @@
 A <- IncidenceMatrix(data = sample(0:1, 100, TRUE, c(1, 1/3)), nrow = 20)
 ## Create a count data matrix
 B <- CountMatrix(data = sample(0:10, 100, TRUE), nrow = 20)
-get_id(B)
 
 ## Access
 dim(B) # Get the matrix dimensions
@@ -23,4 +22,4 @@ B[, ] # Get all values
 B[1, ] # Get the first row
 B[, 1] # Get the first column
 B[c("A", "B", "C"), ] # Get the first three rows
-B[c("A", "B", "C"), 1, drop = FALSE] # Get the first 3 rows of the first column
+B[c("D", "E", "F"), 1, drop = FALSE] # Get 3 rows of the first column

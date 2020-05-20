@@ -118,8 +118,7 @@ setGeneric(
 #'
 #' Getters and setters to retrieve or set parts of an object.
 #' @param x An object from which to get or set element(s).
-#' @param value A possible value for the element(s) of \code{object} (see
-#'  below).
+#' @param value A possible value for the element(s) of \code{object}.
 #' @return
 #'  An object of the same sort as \code{x} with the new values assigned.
 #' @example inst/examples/ex-matrix.R

@@ -30,7 +30,7 @@ A virtual S4 class to represent a data matrix.
 \section{Slots}{
 
 \describe{
-\item{\code{data}}{An \code{\link{integer}}, a \code{\link{numeric}} or a
+\item{\code{values}}{An \code{\link{integer}}, a \code{\link{numeric}} or a
 \code{\link{logical}} vector (see details).}
 }}
 
