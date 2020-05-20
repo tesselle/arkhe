@@ -8,12 +8,6 @@
 #' matrix objects.
 #' @slot id A \code{\link{character}} string specifying the unique
 #'  identifier of the matrix (UUID v4).
-#' @slot size A length-two \code{\link{numeric}} vector giving the dimension
-#'  of the matrix.
-#' @slot row_names A \code{\link{character}} vector specifying the row names of
-#'  the matrix.
-#' @slot column_names A \code{\link{character}} vector specifying the column
-#'  names of the matrix.
 #' @slot dates A \code{\link{list}} giving the dates of each assemblage.
 #' @slot coordinates A \code{\link{list}} giving the geographical coordinates of
 #'  each assemblage (must considered as experimental and subject to major
@@ -63,6 +57,9 @@
 #'   \item{\code{x[[i]]}}{Extracts a single element selected by subscript
 #'   \code{i}.}
 #'  }
+#' @note
+#'  Please note that all this class extends the R base \code{\link{matrix}},
+#'  but the S3 part of the object \emph{does not} store the data.
 #' @author N. Frerebeau
 #' @family matrix
 #' @docType class

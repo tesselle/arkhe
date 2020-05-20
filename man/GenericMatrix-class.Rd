@@ -15,15 +15,6 @@ matrix objects.
 \item{\code{id}}{A \code{\link{character}} string specifying the unique
 identifier of the matrix (UUID v4).}
 
-\item{\code{size}}{A length-two \code{\link{numeric}} vector giving the dimension
-of the matrix.}
-
-\item{\code{row_names}}{A \code{\link{character}} vector specifying the row names of
-the matrix.}
-
-\item{\code{column_names}}{A \code{\link{character}} vector specifying the column
-names of the matrix.}
-
 \item{\code{dates}}{A \code{\link{list}} giving the dates of each assemblage.}
 
 \item{\code{coordinates}}{A \code{\link{list}} giving the geographical coordinates of
@@ -31,6 +22,10 @@ each assemblage (must considered as experimental and subject to major
 changes in a future release).}
 }}
 
+\note{
+Please note that all this class extends the R base \code{\link{matrix}},
+ but the S3 part of the object \emph{does not} store the data.
+}
 \section{Matrix ID}{
 
  When a matrix is first created, an identifier is generated (UUID v4).
