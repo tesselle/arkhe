@@ -62,8 +62,9 @@ library(arkhe)
 **arkhe** provides a set of S4 classes that represent different special
 types of matrix.
 
-  - Numeric matrix:
+  - Integer matrix:
       - `CountMatrix` represents absolute frequency data,
+  - Numeric matrix:
       - `AbundanceMatrix` represents relative frequency data,
       - `OccurrenceMatrix` represents a co-occurrence matrix,
       - `SimilarityMatrix` represents a (dis)similarity matrix,
@@ -115,42 +116,45 @@ C <- as_incidence(A1)
 D <- as_occurrence(A1)
 ```
 
-Represent stratigraphic relationships:
-
-``` r
-# Principles of Archaeological Stratigraphy, fig. 12
-harris <- read.table(
-  header = TRUE,
-  text = "lower upper
-          2     1
-          3     1
-          4     1
-          5     2
-          5     3
-          5     4
-          6     5
-          7     1
-          7     6
-          8     1
-          8     6
-          9     7
-          9     8"
-)
-
-S <- as_stratigraphy(harris)
-```
-
 Many familiar methods and group generic functions are available for all
 `*Matrix` classes (such as `length`, `dim`, `rowSums`, `rowMeans`,
-`sum`, `any`, `all`…). In addition, all functions that call `as.matrix`
-or `as.data.frame` first on their main argument should work (e. g.
-`apply`).
+`Arith`, `Compare`, `Logic`…). In addition, all functions that call
+`as.matrix` or `as.data.frame` first on their main argument should work
+(e. g. `apply`).
 
 ``` r
-rowSums(A0)
-#>  [1] 26 59 59 59 28 33 40 48 58 41
-apply(X = A0, MARGIN = 1, FUN = sum)
-#>  [1] 26 59 59 59 28 33 40 48 58 41
+rowSums(A1)
+#>  row1  row2  row3  row4  row5  row6  row7  row8  row9 row10 
+#>    44    57    56    40    53    58    42    61    55    54
+apply(X = A1, MARGIN = 1, FUN = sum)
+#>  row1  row2  row3  row4  row5  row6  row7  row8  row9 row10 
+#>    44    57    56    40    53    58    42    61    55    54
+```
+
+Please note that all `*Matrix` classes extend the R base `matrix`, but
+the S3 part of the object **does not** store the data. Values are stored
+in a specific slot (allowing type checking).
+
+``` r
+X <- CountMatrix(data = sample(0:10, 25, TRUE), nrow = 5, ncol = 5)
+
+## Get the S3 object
+S3Part(X, strictS3 = TRUE)
+#>      col1 col2 col3 col4 col5
+#> row1    1    6   11   16   21
+#> row2    2    7   12   17   22
+#> row3    3    8   13   18   23
+#> row4    4    9   14   19   24
+#> row5    5   10   15   20   25
+
+## Coerce to an S3 matrix
+as.matrix(X)
+#>      col1 col2 col3 col4 col5
+#> row1    5    3    1    0    5
+#> row2    9    2    5    0    7
+#> row3    4    7    0    3   10
+#> row4    9   10    2    3    3
+#> row5    5    9    3    9    9
 ```
 
 ## Contributing
