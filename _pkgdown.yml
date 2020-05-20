@@ -24,6 +24,3 @@ reference:
 - title: Chronology
   contents:
   - has_concept("chronology")
-- title: Geography
-  contents:
-  - has_concept("geography")
