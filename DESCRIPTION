@@ -56,3 +56,4 @@ Collate:
     'subset.R'
     'utilities.R'
     'validate.R'
+    'zzz.R'

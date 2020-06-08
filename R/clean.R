@@ -11,8 +11,8 @@ setMethod(
   signature = signature(object = "matrix"),
   definition = function(object, margin = 1) {
     index <- detect_missing(object, margin = margin)
-    if (margin == 1) x <- object[!index, ]
-    if (margin == 2) x <- object[, !index]
+    if (margin == 1) x <- object[!index, , drop = FALSE]
+    if (margin == 2) x <- object[, !index, drop = FALSE]
     x
   }
 )
@@ -25,8 +25,8 @@ setMethod(
   signature = signature(object = "data.frame"),
   definition = function(object, margin = 1) {
     index <- detect_missing(object, margin = margin)
-    if (margin == 1) x <- object[!index, ]
-    if (margin == 2) x <- object[, !index]
+    if (margin == 1) x <- object[!index, , drop = FALSE]
+    if (margin == 2) x <- object[, !index, drop = FALSE]
     x
   }
 )
@@ -40,8 +40,8 @@ setMethod(
   signature = signature(object = "matrix"),
   definition = function(object, margin = 1) {
     index <- detect_zero(object, margin = margin)
-    if (margin == 1) x <- object[!index, ]
-    if (margin == 2) x <- object[, !index]
+    if (margin == 1) x <- object[!index, , drop = FALSE]
+    if (margin == 2) x <- object[, !index, drop = FALSE]
     x
   }
 )
@@ -54,8 +54,8 @@ setMethod(
   signature = signature(object = "data.frame"),
   definition = function(object, margin = 1) {
     index <- detect_zero(object, margin = margin)
-    if (margin == 1) x <- object[!index, ]
-    if (margin == 2) x <- object[, !index]
+    if (margin == 1) x <- object[!index, , drop = FALSE]
+    if (margin == 2) x <- object[, !index, drop = FALSE]
     x
   }
 )
@@ -101,7 +101,7 @@ detect_any <- function(x, f, margin = 1, type = "generic") {
   index <- count > 0
 
   n <- sum(index)
-  if (n > 0 & getOption("nexus.verbose")) {
+  if (n > 0 & getOption("arkhe.verbose")) {
     mar <- ifelse(
       margin == 1,
       ngettext(n, "row", "rows"),

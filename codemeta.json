@@ -113,7 +113,7 @@
     }
   ],
   "readme": "https://github.com/nfrerebeau/arkhe/blob/master/README.md",
-  "fileSize": "677.141KB",
+  "fileSize": "677.463KB",
   "contIntegration": [
     "https://ci.appveyor.com/project/nfrerebeau/arkhe",
     "https://travis-ci.org/nfrerebeau/arkhe",
