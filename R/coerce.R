@@ -30,46 +30,25 @@ as_dataframe <- function(from) {
   m
 }
 
-#' @method as.matrix IntegerMatrix
+#' @method as.matrix DataMatrix
 #' @export
-as.matrix.IntegerMatrix <- function(x, ...) as_matrix(x)
-
-#' @method as.matrix NumericMatrix
-#' @export
-as.matrix.NumericMatrix <- function(x, ...) as_matrix(x)
-
-#' @method as.matrix LogicalMatrix
-#' @export
-as.matrix.LogicalMatrix <- function(x, ...) as_matrix(x)
-
-#' @method as.data.frame IntegerMatrix
-#' @export
-as.data.frame.IntegerMatrix <- function(x, row.names = NULL, optional = FALSE,
-                                        make.names = TRUE, ...,
-                                        stringsAsFactors = default.stringsAsFactors()) {
-  x <- as.data.frame(x = as.matrix(x), row.names = row.names,
-                     optional = optional, make.names = make.names, ...,
-                     stringsAsFactors = stringsAsFactors)
-  x
+as.matrix.DataMatrix <- function(x, ...) {
+  as_matrix(x)
 }
-#' @method as.data.frame NumericMatrix
+
+#' @method as.data.frame DataMatrix
 #' @export
-as.data.frame.NumericMatrix <- function(x, row.names = NULL, optional = FALSE,
-                                        make.names = TRUE, ...,
-                                        stringsAsFactors = default.stringsAsFactors()) {
-  x <- as.data.frame(x = as.matrix(x), row.names = row.names,
-                     optional = optional, make.names = make.names, ...,
-                     stringsAsFactors = stringsAsFactors)
-  x
-}
-#' @method as.data.frame LogicalMatrix
-#' @export
-as.data.frame.LogicalMatrix <- function(x, row.names = NULL, optional = FALSE,
-                                        make.names = TRUE, ...,
-                                        stringsAsFactors = default.stringsAsFactors()) {
-  x <- as.data.frame(x = as.matrix(x), row.names = row.names,
-                     optional = optional, make.names = make.names, ...,
-                     stringsAsFactors = stringsAsFactors)
+as.data.frame.DataMatrix <- function(x, row.names = NULL, optional = FALSE,
+                                     make.names = TRUE, ...,
+                                     stringsAsFactors = default.stringsAsFactors()) {
+  x <- as.data.frame(
+    x = as.matrix(x),
+    row.names = row.names,
+    optional = optional,
+    make.names = make.names,
+    ...,
+    stringsAsFactors = stringsAsFactors
+  )
   x
 }
 
