@@ -40,4 +40,4 @@ Removes row/column with missing values or zeros.
 \author{
 N. Frerebeau
 }
-\concept{clean}
+\concept{utilities}

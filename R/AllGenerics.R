@@ -20,7 +20,7 @@ setGeneric("colMeans")
 # @example inst/examples/ex-clean.R
 #' @author N. Frerebeau
 #' @docType methods
-#' @family clean
+#' @family utilities
 #' @name clean
 #' @rdname clean
 NULL
