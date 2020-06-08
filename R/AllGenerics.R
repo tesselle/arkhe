@@ -8,6 +8,37 @@ setGeneric("colSums")
 setGeneric("rowMeans")
 setGeneric("colMeans")
 
+# ================================================================ Data Cleaning
+#' Data Cleaning
+#'
+#' Removes row/column with missing values or zeros.
+#' @param object A \code{\link{matrix}} or \code{\link{data.frame}}.
+#' @param margin An \code{\link{integer}} giving the subscripts which the
+#' cleaning will be applied over (\eqn{1} indicates rows, \eqn{2} indicates
+#' columns).
+#' @param ... Currently not used.
+# @example inst/examples/ex-clean.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family clean
+#' @name clean
+#' @rdname clean
+NULL
+
+#' @rdname clean
+#' @aliases remove_missing-method
+setGeneric(
+  name = "remove_missing",
+  def = function(object, ...) standardGeneric("remove_missing")
+)
+
+#' @rdname clean
+#' @aliases remove_zero-method
+setGeneric(
+  name = "remove_zero",
+  def = function(object, ...) standardGeneric("remove_zero")
+)
+
 # ======================================================================= Coerce
 #' Coerce
 #'
@@ -227,15 +258,6 @@ NULL
 #'   \item{\code{Ops}}{"\code{Arith}", "\code{Compare}", "\code{Logic}"}
 #'   \item{\code{Summary}}{"\code{min}", "\code{max}", "\code{range}",
 #'   "\code{prod}", "\code{sum}", "\code{any}", "\code{all}"}
-#'  }
-#' @section Other Methods:
-#'  \describe{
-#'   \item{\code{rowAll} and \code{colAll}}{Check if all values are
-#'   \code{TRUE} according to a given predicate.}
-#'   \item{\code{rowAny} and \code{colAny}}{Check if some values are
-#'   \code{TRUE} according to a given predicate.}
-#'   \item{\code{rowCount} and \code{colCount}}{Count values in rows or columns
-#'   according to a given predicate.}
 #'  }
 #' @example inst/examples/ex-operators.R
 #' @author N. Frerebeau
