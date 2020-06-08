@@ -2,7 +2,7 @@
 #' @include AllClasses.R
 NULL
 
-# ======================================================================= Matrix
+# GenericMatrix ================================================================
 setValidity(
   Class = "GenericMatrix",
   method = function(object) {
@@ -34,7 +34,7 @@ setValidity(
   }
 )
 
-# =================================================================== DataMatrix
+# DataMatrix ===================================================================
 setValidity(
   Class = "DataMatrix",
   method = function(object) {
@@ -54,8 +54,8 @@ setValidity(
   }
 )
 
-# ================================================================ IntegerMatrix
-# ------------------------------------------------------------------ CountMatrix
+# IntegerMatrix ================================================================
+# CountMatrix ------------------------------------------------------------------
 setValidity(
   Class = "CountMatrix",
   method = function(object) {
@@ -74,8 +74,8 @@ setValidity(
   }
 )
 
-# ================================================================ NumericMatrix
-# -------------------------------------------------------------- AbundanceMatrix
+# NumericMatrix ================================================================
+# AbundanceMatrix --------------------------------------------------------------
 setValidity(
   Class = "AbundanceMatrix",
   method = function(object) {
@@ -100,7 +100,7 @@ setValidity(
     check_class(object, cnd)
   }
 )
-# ------------------------------------------------------------- OccurrenceMatrix
+# OccurrenceMatrix -------------------------------------------------------------
 setValidity(
   Class = "OccurrenceMatrix",
   method = function(object) {
@@ -121,7 +121,7 @@ setValidity(
     check_class(object, cnd)
   }
 )
-# ------------------------------------------------------------- SimilarityMatrix
+# SimilarityMatrix -------------------------------------------------------------
 setValidity(
   Class = "SimilarityMatrix",
   method = function(object) {
@@ -142,8 +142,8 @@ setValidity(
   }
 )
 
-# ================================================================ LogicalMatrix
-# ---------------------------------------------------------- StratigraphicMatrix
+# LogicalMatrix ================================================================
+# StratigraphicMatrix ----------------------------------------------------------
 setValidity(
   Class = "StratigraphicMatrix",
   method = function(object) {

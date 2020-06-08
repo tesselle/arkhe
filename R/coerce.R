@@ -1,5 +1,5 @@
 # COERCION
-#' @include AllGenerics.R AllClasses.R
+#' @include AllClasses.R AllGenerics.R
 NULL
 
 #' Integer Vectors
@@ -17,7 +17,7 @@ as_integer <- function(x) {
   as.integer(round(x, digits = 0))
 }
 
-# ====================================================== S3 matrix or data.frame
+# To matrix or data.frame ======================================================
 as_matrix <- function(from) {
   m <- from@.Data
   m <- matrix(data = from@values, nrow = nrow(m), ncol = ncol(m),
@@ -81,7 +81,7 @@ setAs(from = "IntegerMatrix", to = "data.frame", def = as_dataframe)
 setAs(from = "NumericMatrix", to = "data.frame", def = as_dataframe)
 setAs(from = "LogicalMatrix", to = "data.frame", def = as_dataframe)
 
-# ================================================================== CountMatrix
+# To CountMatrix ===============================================================
 #' @export
 #' @rdname coerce
 #' @aliases as_count,ANY-method
@@ -103,7 +103,7 @@ matrix2count <- function(from) {
 setAs(from = "matrix", to = "CountMatrix", def = matrix2count)
 setAs(from = "data.frame", to = "CountMatrix", def = matrix2count)
 
-# ============================================================== AbundanceMatrix
+# To AbundanceMatrix ===========================================================
 #' @export
 #' @rdname coerce
 #' @aliases as_abundance,ANY-method
@@ -125,7 +125,7 @@ matrix2frequency <- function(from) {
 setAs(from = "matrix", to = "AbundanceMatrix", def = matrix2frequency)
 setAs(from = "data.frame", to = "AbundanceMatrix", def = matrix2frequency)
 
-# =============================================== CountMatrix <> AbundanceMatrix
+# CountMatrix <> AbundanceMatrix ===============================================
 setAs(
   from = "CountMatrix",
   to = "AbundanceMatrix",
@@ -160,7 +160,7 @@ setAs(
   }
 )
 
-# ============================================================= SimilarityMatrix
+# To SimilarityMatrix ==========================================================
 #' @export
 #' @rdname coerce
 #' @aliases as_similarity,ANY-method
@@ -182,7 +182,7 @@ matrix2similarity <- function(from) {
 setAs(from = "matrix", to = "SimilarityMatrix", def = matrix2similarity)
 setAs(from = "data.frame", to = "SimilarityMatrix", def = matrix2similarity)
 
-# ============================================================= OccurrenceMatrix
+# To OccurrenceMatrix ==========================================================
 #' @export
 #' @rdname coerce
 #' @aliases as_occurrence,ANY-method
@@ -225,7 +225,7 @@ setAs(from = "CountMatrix", to = "OccurrenceMatrix", def = matrix2occurrence)
 setAs(from = "AbundanceMatrix", to = "OccurrenceMatrix", def = matrix2occurrence)
 setAs(from = "IncidenceMatrix", to = "OccurrenceMatrix", def = matrix2occurrence)
 
-# ============================================================== IncidenceMatrix
+# To IncidenceMatrix ===========================================================
 #' @export
 #' @rdname coerce
 #' @aliases as_incidence,ANY-method
@@ -261,7 +261,7 @@ Matrix2incidence <- function(from) {
 setAs(from = "CountMatrix", to = "IncidenceMatrix", def = Matrix2incidence)
 setAs(from = "AbundanceMatrix", to = "IncidenceMatrix", def = Matrix2incidence)
 
-# ========================================================== StratigraphicMatrix
+# To StratigraphicMatrix =======================================================
 #' @export
 #' @rdname coerce
 #' @aliases as_stratigraphy,ANY-method
@@ -304,7 +304,7 @@ setAs(from = "matrix", to = "StratigraphicMatrix", def = edges2matrix)
 setAs(from = "data.frame", to = "StratigraphicMatrix", def = edges2matrix)
 setAs(from = "list", to = "StratigraphicMatrix", def = edges2matrix)
 
-# ======================================================================== Other
+# Other ========================================================================
 #' @export
 #' @rdname coerce
 #' @aliases as_long,DataMatrix-method

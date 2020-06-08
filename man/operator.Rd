@@ -54,18 +54,6 @@ Performs common operations on \code{DataMatrix} objects.
  }
 }
 
-\section{Other Methods}{
-
- \describe{
-  \item{\code{rowAll} and \code{colAll}}{Check if all values are
-  \code{TRUE} according to a given predicate.}
-  \item{\code{rowAny} and \code{colAny}}{Check if some values are
-  \code{TRUE} according to a given predicate.}
-  \item{\code{rowCount} and \code{colCount}}{Count values in rows or columns
-  according to a given predicate.}
- }
-}
-
 \examples{
 ## Create count data matrix
 A <- matrix(data = sample(0:10, 100, TRUE), nrow = 20, ncol = 5)

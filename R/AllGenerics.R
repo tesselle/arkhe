@@ -2,13 +2,13 @@
 #' @include AllClasses.R
 NULL
 
-# Add S4 dispatch to base S3 generic
+# S4 dispatch to base S3 generic ===============================================
 setGeneric("rowSums")
 setGeneric("colSums")
 setGeneric("rowMeans")
 setGeneric("colMeans")
 
-# ================================================================ Data Cleaning
+# Clean ========================================================================
 #' Data Cleaning
 #'
 #' Removes row/column with missing values or zeros.
@@ -39,7 +39,7 @@ setGeneric(
   def = function(object, ...) standardGeneric("remove_zero")
 )
 
-# ======================================================================= Coerce
+# Coerce =======================================================================
 #' Coerce
 #'
 #' @param from An object to be coerced.
@@ -144,7 +144,7 @@ setGeneric(
   def = function(from) standardGeneric("as_stratigraphy")
 )
 
-# ====================================================================== Extract
+# Extract ======================================================================
 #' Get or Set Parts of an Object
 #'
 #' Getters and setters to retrieve or set parts of an object.
@@ -239,7 +239,7 @@ setGeneric(
 #' @rdname subset
 NULL
 
-# ==================================================================== Operators
+# Operators ====================================================================
 #' Common Operations on Matrix Objects
 #'
 #' Performs common operations on \code{DataMatrix} objects.
@@ -267,7 +267,7 @@ NULL
 #' @rdname operator
 NULL
 
-# =================================================================== Statistics
+# Statistics ===================================================================
 #' Rowwise and Columnwise Statistics
 #'
 #' Computes statistics over \code{DataMatrix} margins.
@@ -287,7 +287,7 @@ NULL
 #' @rdname statistics
 NULL
 
-# =================================================================== Chronology
+# Chronology ===================================================================
 #' Chronological Information
 #'
 #' \code{set_dates} and \code{get_dates} allow to get or set the dates of an

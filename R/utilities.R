@@ -1,5 +1,6 @@
 # HELPERS
 
+# Helpers ======================================================================
 #' Helpers
 #'
 #' \code{compact} removes elements from a list or vector.
@@ -40,6 +41,7 @@ extract <- function(x, pattern) {
   regmatches(x, regexpr(pattern, x))
 }
 
+# UUID =========================================================================
 #' UUID
 #'
 #' \code{generate_uuid} generates a universally unique identifier (UUID Version
@@ -86,6 +88,7 @@ generate_uuid <- function(seed = NULL) {
   uuid
 }
 
+# Dimension names ==============================================================
 #' Row and Column Names
 #'
 #' \code{rownames_to_column} converts row names to an explicit column.

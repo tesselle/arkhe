@@ -2,7 +2,7 @@
 #' @include AllClasses.R
 NULL
 
-# ====================================================================== Getters
+# Getters ======================================================================
 #' @export
 #' @rdname mutator
 #' @aliases get_id,GenericMatrix-method
@@ -18,7 +18,7 @@ setMethod("get_totals", "AbundanceMatrix", function(x) x@totals)
 #' @aliases get_method,SimilarityMatrix-method
 setMethod("get_method", "SimilarityMatrix", function(x) x@method)
 
-# ====================================================================== Setters
+# Setters ======================================================================
 #' @export
 #' @rdname mutator
 #' @aliases set_id,GenericMatrix-method

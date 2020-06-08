@@ -1,15 +1,6 @@
 # CLASSES INITIALIZATION
 
-# =================================================================== initialize
-# setMethod(
-#   f = "initialize",
-#   signature = "DataMatrix",
-#   definition = function(.Object, ..., values) {
-#
-#   }
-# )
-
-# ================================================================== constructor
+# Constructors =================================================================
 #' @export
 #' @rdname CountMatrix-class
 CountMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,

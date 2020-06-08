@@ -1,5 +1,6 @@
 # PREDICATES
 
+# Helpers ======================================================================
 #' Utility Predicates
 #'
 #' \code{is_empty} checks if a vector or list is empty.
@@ -33,7 +34,7 @@ is_uuid <- function(x) {
   grepl(pattern, x)
 }
 
-# ==============================================================================
+# Type =========================================================================
 #' Type Predicates
 #'
 #' @param x An object to be tested.
@@ -90,7 +91,7 @@ is_message <- function(x) {
   inherits(x, "simpleMessage") || inherits(x, "message")
 }
 
-# ==============================================================================
+# Scalar =======================================================================
 #' Scalar Type Predicates
 #'
 #' @param x An object to be tested.
@@ -134,7 +135,7 @@ is_scalar_logical <- function(x) {
   is_logical(x) && length(x) == 1
 }
 
-# ==============================================================================
+# Numeric ======================================================================
 #' Numeric Predicates
 #'
 #' Check numeric objects:
@@ -254,7 +255,7 @@ is_overlapping <- function(x, y) {
   min(x) <= max(y) && max(x) >= min(y)
 }
 
-# ==============================================================================
+# Matrix =======================================================================
 #' Matrix Predicates
 #'
 #' \code{is_square} checks if a matrix is square.
@@ -279,7 +280,7 @@ is_symmetric <- function(x) {
   if (is.matrix(x)) identical(x, t(x)) else FALSE
 }
 
-# ==============================================================================
+# Graph ========================================================================
 #' Graph Predicates
 #'
 #' \code{is_dag} checks if a graph has a topological ordering (i.e. is a

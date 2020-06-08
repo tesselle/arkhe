@@ -2,6 +2,7 @@
 #' @include AllClasses.R AllGenerics.R
 NULL
 
+# Missing values ===============================================================
 #' @export
 #' @rdname clean
 #' @aliases remove_missing,matrix-method
@@ -30,6 +31,7 @@ setMethod(
   }
 )
 
+# Zeros ========================================================================
 #' @export
 #' @rdname clean
 #' @aliases remove_zero,matrix-method
@@ -58,6 +60,7 @@ setMethod(
   }
 )
 
+# Detect (internal) ============================================================
 #' Data Cleaning
 #'
 #' @param x An object. It will be coerced to a \code{matrix} as by

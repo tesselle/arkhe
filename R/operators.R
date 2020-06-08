@@ -2,7 +2,7 @@
 #' @include AllGenerics.R AllClasses.R
 NULL
 
-# ======================================================================== Arith
+# Arith ========================================================================
 #' @export
 #' @rdname operator
 #' @aliases Arith,DataMatrix,DataMatrix-method
@@ -29,7 +29,7 @@ setMethod(
   }
 )
 
-# ====================================================================== Compare
+# Compare ======================================================================
 #' @export
 #' @rdname operator
 #' @aliases Compare,DataMatrix,DataMatrix-method
@@ -56,7 +56,7 @@ setMethod(
   }
 )
 
-# ======================================================================== Logic
+# Logic ========================================================================
 #' @export
 #' @rdname operator
 #' @aliases Logic,DataMatrix,DataMatrix-method
@@ -96,7 +96,7 @@ setMethod(
   }
 )
 
-# ====================================================================== Summary
+# Summary ======================================================================
 #' @export
 #' @rdname operator
 #' @aliases Summary,DataMatrix-method

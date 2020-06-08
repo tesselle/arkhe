@@ -1,7 +1,7 @@
 # CLASSES DEFINITION
 # https://stackoverflow.com/questions/11857658/assignment-of-s4-r-objects-to-a-matrix-why-does-this-work
 
-# ======================================================================= Matrix
+# GenericMatrix ================================================================
 #' Matrix
 #'
 #' An S4 class to represent a matrix. This is the mother class of all
@@ -69,7 +69,7 @@
   contains = "matrix"
 )
 
-# =================================================================== DataMatrix
+# DataMatrix ===================================================================
 #' Data Matrix
 #'
 #' A virtual S4 class to represent a data matrix.
@@ -134,7 +134,8 @@ setClassUnion(
   members = c("IntegerMatrix", "NumericMatrix", "LogicalMatrix")
 )
 
-# ================================================================ IntegerMatrix
+# IntegerMatrix ================================================================
+# CountMatrix ------------------------------------------------------------------
 #' Absolute Frequency Matrix
 #'
 #' An S4 class to represent an absolute frequency matrix (i.e. the number of
@@ -155,8 +156,8 @@ setClassUnion(
   contains = "IntegerMatrix"
 )
 
-# ================================================================ NumericMatrix
-# -------------------------------------------------------------- AbundanceMatrix
+# NumericMatrix ================================================================
+# AbundanceMatrix --------------------------------------------------------------
 #' Relative Frequency Matrix
 #'
 #' An S4 class to represent a relative frequency matrix (i.e. the fraction of
@@ -181,7 +182,7 @@ setClassUnion(
   contains = "NumericMatrix"
 )
 
-# ------------------------------------------------------------- OccurrenceMatrix
+# OccurrenceMatrix -------------------------------------------------------------
 #' Co-Occurrence Matrix
 #'
 #' An S4 class to represent a co-occurrence matrix.
@@ -206,7 +207,7 @@ setClassUnion(
   contains = "NumericMatrix"
 )
 
-# ------------------------------------------------------------- SimilarityMatrix
+# SimilarityMatrix -------------------------------------------------------------
 #' Similarity Matrix
 #'
 #' An S4 class to represent a (dis)similarity matrix.
@@ -227,7 +228,8 @@ setClassUnion(
   contains = "NumericMatrix"
 )
 
-# ================================================================ LogicalMatrix
+# LogicalMatrix ================================================================
+# IncidenceMatrix --------------------------------------------------------------
 #' Incidence Matrix
 #'
 #' An S4 class to represent an incidence (presence/absence) matrix.
@@ -247,6 +249,7 @@ setClassUnion(
   contains = "LogicalMatrix"
 )
 
+# Stratigraphic ----------------------------------------------------------------
 #' Stratigraphic Matrix
 #'
 #' An S4 class to represent a stratigraphic matrix.

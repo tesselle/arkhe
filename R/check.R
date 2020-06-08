@@ -2,7 +2,7 @@
 #' @include predicates.R
 NULL
 
-# ======================================================================== Types
+# Types ========================================================================
 #' Check Data Types
 #'
 #' @param x An object to be checked.
@@ -60,7 +60,7 @@ check_scalar <- function(x, expected) {
   }
 }
 
-# =================================================================== Attributes
+# Attributes ===================================================================
 #' Check Object Attributes
 #'
 #' @param x An object to be checked.
@@ -146,7 +146,7 @@ check_uuid <- function(x) {
   }
 }
 
-# =================================================================== NA/NaN/Inf
+# NA/NaN/Inf ===================================================================
 #' Check Missing Values
 #'
 #' Checks if an object contains any missing (\code{NA}, \code{NaN}) or infinite
@@ -190,7 +190,7 @@ check_infinite <- function(x) {
   }
 }
 
-# ====================================================================== Numeric
+# Numeric ======================================================================
 #' Check Numeric Values
 #'
 #' @param x A \code{\link{numeric}} object to be checked.
@@ -231,7 +231,7 @@ check_constant <- function(x) {
   }
 }
 
-# ======================================================================= Matrix
+# Matrix =======================================================================
 #' Check Matrix
 #'
 #' @param x A \code{\link{matrix}} to be checked.
