@@ -15,7 +15,7 @@ setValidity(
     cnd <- list(
       # Check id
       # catch_conditions(check_uuid(id)),
-      # catch_conditions(check_scalar(id, "character"))
+      catch_conditions(check_scalar(id, "character", strict = FALSE))
     )
     if (length(dates) > 0) {
       cnd <- append(

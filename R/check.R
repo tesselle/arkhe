@@ -10,6 +10,8 @@ NULL
 #'  type. It must be one of "\code{list}", "\code{atomic}", "\code{vector}",
 #'  "\code{numeric}", "\code{integer}", "\code{double}", "\code{character}"
 #'  or "\code{logical}".
+#' @param strict A \code{\link{logical}} scalar: should length-zero object be
+#'  tested?
 #' @return Throw an error, if any.
 #' @author N. Frerebeau
 #' @family check
@@ -40,7 +42,7 @@ check_type <- function(x, expected) {
 }
 
 #' @rdname check-type
-check_scalar <- function(x, expected) {
+check_scalar <- function(x, expected, strict = TRUE) {
   arg <- deparse(substitute(x))
   predicate <- switch(
     expected,
@@ -54,7 +56,7 @@ check_scalar <- function(x, expected) {
     logical = is_scalar_logical,
     stop("Can't find a predicate for this scalar: ", expected, call. = FALSE)
   )
-  if (!predicate(x)) {
+  if (!(!strict && length(x) == 0) && !predicate(x)) {
     msg <- sprintf("%s must be a scalar (%s).", sQuote(arg), expected)
     throw_error("error_bad_scalar", msg)
   }
