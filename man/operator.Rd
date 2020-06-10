@@ -5,17 +5,22 @@
 \alias{operator}
 \alias{Arith,DataMatrix,DataMatrix-method}
 \alias{Arith,DataMatrix,numeric-method}
+\alias{Arith,DataMatrix,logical-method}
 \alias{Compare,DataMatrix,DataMatrix-method}
 \alias{Compare,DataMatrix,numeric-method}
 \alias{Logic,DataMatrix,DataMatrix-method}
 \alias{Logic,DataMatrix,numeric-method}
 \alias{Logic,DataMatrix,logical-method}
+\alias{Math,DataMatrix-method}
+\alias{Math2,DataMatrix-method}
 \alias{Summary,DataMatrix-method}
 \title{Common Operations on Matrix Objects}
 \usage{
 \S4method{Arith}{DataMatrix,DataMatrix}(e1, e2)
 
 \S4method{Arith}{DataMatrix,numeric}(e1, e2)
+
+\S4method{Arith}{DataMatrix,logical}(e1, e2)
 
 \S4method{Compare}{DataMatrix,DataMatrix}(e1, e2)
 
@@ -27,13 +32,22 @@
 
 \S4method{Logic}{DataMatrix,logical}(e1, e2)
 
-\S4method{Summary}{DataMatrix}(x, na.rm = FALSE)
+\S4method{Math}{DataMatrix}(x)
+
+\S4method{Math2}{DataMatrix}(x, digits)
+
+\S4method{Summary}{DataMatrix}(x, ..., na.rm = FALSE)
 }
 \arguments{
 \item{x, e1, e2}{An object (typically a \linkS4class{DataMatrix} object).}
 
+\item{digits}{A \code{\link{numeric}} value giving number of digits to be
+used in \code{round} or \code{signif}.}
+
+\item{...}{Further arguments passed to or from methods.}
+
 \item{na.rm}{A \code{\link{logical}} scalar: should missing values
-(including \code{NaN}) be omitted from the calculations?}
+be removed?}
 }
 \description{
 Performs common operations on \code{DataMatrix} objects.
@@ -49,6 +63,16 @@ Performs common operations on \code{DataMatrix} objects.
   "\code{<=}", "\code{>=}"}
   \item{\code{Logic}}{"\code{&}", "\code{|}"}
   \item{\code{Ops}}{"\code{Arith}", "\code{Compare}", "\code{Logic}"}
+  \item{\code{Math}}{"\code{abs}", "\code{sign}", "\code{sqrt}",
+  "\code{ceiling}", "\code{floor}", "\code{trunc}", "\code{cummax}",
+  "\code{cummin}", "\code{cumprod}", "\code{cumsum}", "\code{log}",
+  "\code{log10}", "\code{log2}", "\code{log1p}", "\code{acos}",
+  "\code{acosh}", "\code{asin}", "\code{asinh}", "\code{atan}",
+  "\code{atanh}", "\code{exp}", "\code{expm1}", "\code{cos}", "\code{cosh}",
+  "\code{cospi}", "\code{sin}", "\code{sinh}", "\code{sinpi}", "\code{tan}",
+  "\code{tanh}", "\code{tanpi}", "\code{gamma}", "\code{lgamma}",
+  "\code{digamma}", "\code{trigamma}"}
+  \item{\code{Math2}}{"\code{round}", "\code{signif}"}
   \item{\code{Summary}}{"\code{min}", "\code{max}", "\code{range}",
   "\code{prod}", "\code{sum}", "\code{any}", "\code{all}"}
  }
@@ -56,8 +80,13 @@ Performs common operations on \code{DataMatrix} objects.
 
 \examples{
 ## Create count data matrix
-A <- matrix(data = sample(0:10, 100, TRUE), nrow = 20, ncol = 5)
-B <- matrix(data = sample(0:10, 100, TRUE), nrow = 20, ncol = 5)
+A <- CountMatrix(data = sample(0:10, 100, TRUE), nrow = 20, ncol = 5)
+B <- CountMatrix(data = sample(0:10, 100, TRUE), nrow = 20, ncol = 5)
+
+## Arith
+A + B
+A * 2
+A ^ 2
 
 ## Compare
 A == B
@@ -67,10 +96,12 @@ A < 5
 A <= 10
 A >= 10
 
-## Arith
-A + B
-A * 2
-A ^ 2
+## Logic
+A & B
+A | B
+
+## Math
+sqrt(A)
 
 ## Summary
 max(A)
@@ -80,10 +111,6 @@ prod(A)
 sum(A)
 any(A)
 all(A)
-
-## Logic
-A & B
-A | B
 }
 \author{
 N. Frerebeau
