@@ -95,20 +95,24 @@ detect_missing <- function(x, margin = 1, finite = FALSE) {
 detect_zero <- function(x, margin = 1) {
   is_zero <- function(x) {
     if (is.numeric(x)) x == 0
-    else FALSE
+    else rep(FALSE, length(x))
   }
   detect_any(x, f = is_zero, margin = margin, type = "zeros")
 }
 detect_any <- function(x, f, margin = 1, type = "generic") {
-  parts <- dimnames(x)[[margin]]
-  if (is.null(parts)) parts <- seq_len(ncol(x))
-
-  fun <- function(x) sum(f(x))
-  count <- apply(X = x, MARGIN = margin, FUN = fun)
+  if (is.list(x)) {
+    count <- vapply(X = x, FUN = f, FUN.VALUE = logical(dim(x)[[-margin]]))
+    count <- apply(X = count, MARGIN = margin, FUN = sum)
+  } else {
+    count <- apply(X = x, MARGIN = margin,
+                   FUN = function(x, f) sum(f(x)), f = f)
+  }
   index <- count > 0
 
   n <- sum(index)
   if (n > 0 & getOption("arkhe.verbose")) {
+    parts <- dimnames(x)[[margin]]
+    if (is.null(parts)) parts <- seq_len(dim(x)[[margin]])
     mar <- ifelse(
       margin == 1,
       ngettext(n, "row", "rows"),
