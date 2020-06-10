@@ -1,6 +1,21 @@
 {
-    "license": "GPL-3.0+",
+    "title": "arkhe: An R Package for Representation of Archaeological Data",
     "description": "<p>A collection of classes that represent archaeological data. This package provides a set of S4 classes that extend the basic matrix data type (absolute/relative frequency, presence/absence data, co-occurrence matrix, etc.) upon which package developers can build subclasses. It also provides a set of generic methods (mutators and coercion mechanisms) and functions (e.g. predicates). In addition, a few classes of general interest (e.g. that represent stratigraphic relationships) are implemented.</p>",
+    "creators": [
+        {
+            "orcid": "0000-0001-5759-4944",
+            "affiliation": "Universit\u00e9 Bordeaux Montaigne",
+            "name": "Frerebeau, Nicolas"
+        }
+    ],
+    "contributors": [
+        {
+            "orcid": "0000-0001-7503-8685",
+            "affiliation": "Universit\u00e9 Bordeaux Montaigne",
+            "type": "Other",
+            "name": "Lebrun, Brice"
+        }
+    ],
     "language": "eng",
     "keywords": [
         "data representation",
@@ -9,17 +24,11 @@
         "r package"
     ],
     "upload_type": "software",
+    "license": "GPL-3.0+",
+    "access_right": "open",
     "communities": [
         {
             "identifier": "archaeo"
         }
-    ],
-    "creators": [
-        {
-            "orcid": "0000-0001-5759-4944",
-            "affiliation": "Universit\u00e9 Bordeaux Montaigne",
-            "name": "Frerebeau, Nicolas"
-        }
-    ],
-    "access_right": "open"
+    ]
 }

@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# arkhe
+# arkhe <img width=120px src="man/figures/logo.png" align="right" />
 
 <!-- badges: start -->
 [![R build status](https://github.com/nfrerebeau/arkhe/workflows/R-CMD-check/badge.svg)](https://github.com/nfrerebeau/arkhe/actions)
@@ -120,7 +120,7 @@ Please note that all `*Matrix` classes extend the R base `matrix`, but the S3 pa
 ```{r s3}
 X <- CountMatrix(data = sample(0:10, 25, TRUE), nrow = 5, ncol = 5)
 
-## Get the S3 object
+## Get the S3 part
 S3Part(X, strictS3 = TRUE)
 
 ## Coerce to an S3 matrix

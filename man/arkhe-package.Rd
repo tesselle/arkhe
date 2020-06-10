@@ -7,14 +7,16 @@
 \alias{arkhe}
 \title{arkhe: Representation of Archaeological Data}
 \description{
+\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
+
 A collection of classes that represent
     archaeological data. This package provides a set of S4 classes that
-    represent different special types of matrix (absolute/relative frequency,
-    presence/absence data, co-occurrence matrix, etc.) upon which package
-    developers can build subclasses. It also provides a set of generic
-    methods (mutators and coercion mechanisms) and functions (e.g.
-    predicates). In addition, a few classes of general interest (e.g. that
-    represent stratigraphic relationships) are implemented.
+    represent different special types of matrix (absolute/relative
+    frequency, presence/absence data, co-occurrence matrix, etc.) upon
+    which package developers can build subclasses. It also provides a set
+    of generic methods (mutators and coercion mechanisms) and functions
+    (e.g.  predicates). In addition, a few classes of general interest
+    (e.g. that represent stratigraphic relationships) are implemented.
 }
 \details{
 \tabular{ll}{
@@ -40,6 +42,7 @@ Useful links:
 
 \tabular{ll}{
  Nicolas Frerebeau \tab \emph{Université Bordeaux Montaigne, France} \cr
+ Brice Lebrun \tab \emph{Université Bordeaux Montaigne, France} \cr
 }
 
 \strong{Package maintainer}

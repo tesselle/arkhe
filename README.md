@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# arkhe
+# arkhe <img width=120px src="man/figures/logo.png" align="right" />
 
 <!-- badges: start -->
 
@@ -125,10 +125,10 @@ Many familiar methods and group generic functions are available for all
 ``` r
 rowSums(A1)
 #>  row1  row2  row3  row4  row5  row6  row7  row8  row9 row10 
-#>    44    57    56    40    53    58    42    61    55    54
+#>    40    50    39    49    49    49    42    58    61    52
 apply(X = A1, MARGIN = 1, FUN = sum)
 #>  row1  row2  row3  row4  row5  row6  row7  row8  row9 row10 
-#>    44    57    56    40    53    58    42    61    55    54
+#>    40    50    39    49    49    49    42    58    61    52
 ```
 
 Please note that all `*Matrix` classes extend the R base `matrix`, but
@@ -138,7 +138,7 @@ in a specific slot (allowing type checking).
 ``` r
 X <- CountMatrix(data = sample(0:10, 25, TRUE), nrow = 5, ncol = 5)
 
-## Get the S3 object
+## Get the S3 part
 S3Part(X, strictS3 = TRUE)
 #>      col1 col2 col3 col4 col5
 #> row1    1    6   11   16   21
@@ -150,11 +150,11 @@ S3Part(X, strictS3 = TRUE)
 ## Coerce to an S3 matrix
 as.matrix(X)
 #>      col1 col2 col3 col4 col5
-#> row1    5    3    1    0    5
-#> row2    9    2    5    0    7
-#> row3    4    7    0    3   10
-#> row4    9   10    2    3    3
-#> row5    5    9    3    9    9
+#> row1    7    2    9    8    9
+#> row2    1    8   10   10    3
+#> row3    7    3    9    2    6
+#> row4    9    0    0    6    5
+#> row5    5    9    7    2    3
 ```
 
 ## Contributing
