@@ -3,23 +3,23 @@
 \docType{methods}
 \name{clean}
 \alias{clean}
-\alias{remove_missing}
-\alias{remove_missing-method}
+\alias{remove_NA}
+\alias{remove_NA-method}
 \alias{remove_zero}
 \alias{remove_zero-method}
-\alias{remove_missing,matrix-method}
-\alias{remove_missing,data.frame-method}
+\alias{remove_NA,matrix-method}
+\alias{remove_NA,data.frame-method}
 \alias{remove_zero,matrix-method}
 \alias{remove_zero,data.frame-method}
 \title{Data Cleaning}
 \usage{
-remove_missing(object, ...)
+remove_NA(object, ...)
 
 remove_zero(object, ...)
 
-\S4method{remove_missing}{matrix}(object, margin = 1)
+\S4method{remove_NA}{matrix}(object, margin = 1, finite = TRUE)
 
-\S4method{remove_missing}{data.frame}(object, margin = 1)
+\S4method{remove_NA}{data.frame}(object, margin = 1, finite = TRUE)
 
 \S4method{remove_zero}{matrix}(object, margin = 1)
 
@@ -33,6 +33,9 @@ remove_zero(object, ...)
 \item{margin}{An \code{\link{integer}} giving the subscripts which the
 cleaning will be applied over (\eqn{1} indicates rows, \eqn{2} indicates
 columns).}
+
+\item{finite}{A \code{\link{logical}} scalar: should non-\code{\link{finite}}
+values also be removed?}
 }
 \description{
 Removes row/column with missing values or zeros.

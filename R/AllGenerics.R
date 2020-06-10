@@ -16,6 +16,8 @@ setGeneric("colMeans")
 #' @param margin An \code{\link{integer}} giving the subscripts which the
 #' cleaning will be applied over (\eqn{1} indicates rows, \eqn{2} indicates
 #' columns).
+#' @param finite A \code{\link{logical}} scalar: should non-\code{\link{finite}}
+#' values also be removed?
 #' @param ... Currently not used.
 # @example inst/examples/ex-clean.R
 #' @author N. Frerebeau
@@ -26,10 +28,10 @@ setGeneric("colMeans")
 NULL
 
 #' @rdname clean
-#' @aliases remove_missing-method
+#' @aliases remove_NA-method
 setGeneric(
-  name = "remove_missing",
-  def = function(object, ...) standardGeneric("remove_missing")
+  name = "remove_NA",
+  def = function(object, ...) standardGeneric("remove_NA")
 )
 
 #' @rdname clean

@@ -5,12 +5,12 @@ NULL
 # Missing values ===============================================================
 #' @export
 #' @rdname clean
-#' @aliases remove_missing,matrix-method
+#' @aliases remove_NA,matrix-method
 setMethod(
-  f = "remove_missing",
+  f = "remove_NA",
   signature = signature(object = "matrix"),
-  definition = function(object, margin = 1) {
-    index <- detect_missing(object, margin = margin)
+  definition = function(object, margin = 1, finite = TRUE) {
+    index <- detect_missing(object, margin = margin, finite = finite)
     if (margin == 1) x <- object[!index, , drop = FALSE]
     if (margin == 2) x <- object[, !index, drop = FALSE]
     x
@@ -19,12 +19,12 @@ setMethod(
 
 #' @export
 #' @rdname clean
-#' @aliases remove_missing,data.frame-method
+#' @aliases remove_NA,data.frame-method
 setMethod(
-  f = "remove_missing",
+  f = "remove_NA",
   signature = signature(object = "data.frame"),
-  definition = function(object, margin = 1) {
-    index <- detect_missing(object, margin = margin)
+  definition = function(object, margin = 1, finite = TRUE) {
+    index <- detect_missing(object, margin = margin, finite = finite)
     if (margin == 1) x <- object[!index, , drop = FALSE]
     if (margin == 2) x <- object[, !index, drop = FALSE]
     x
@@ -67,6 +67,8 @@ setMethod(
 #'  \code{\link{as.matrix}}.
 #' @param margin A vector giving the subscripts which the function will be
 #'  applied over (see \code{\link{apply}}).
+#' @param finite A \code{\link{logical}} scalar: should non-\code{\link{finite}}
+#' values also be removed?
 #' @param f A predicate \code{\link{function}}.
 #' @param type A \code{\link{character}} vector.
 #' @return
@@ -82,22 +84,27 @@ setMethod(
 #' @author N. Frerebeau
 #' @keywords internal
 #' @noRd
-detect_missing <- function(x, margin = 1) {
-  detect_any(x, f = is.na, margin = margin, type = "NAs")
+detect_missing <- function(x, margin = 1, finite = FALSE) {
+  if (finite) {
+    is_missing <- function(x) is.na(x) | !is.finite(x)
+  } else {
+    is_missing <- is.na
+  }
+  detect_any(x, f = is_missing, margin = margin, type = "NAs")
 }
 detect_zero <- function(x, margin = 1) {
-  is.zero <- function(x) {
-    num <- suppressWarnings(try(as.numeric(x), silent = TRUE))
-    if (!inherits(num, "try-error"))
-      stats::na.omit(num) == 0
+  is_zero <- function(x) {
+    if (is.numeric(x)) x == 0
     else FALSE
   }
-  detect_any(x, f = is.zero, margin = margin, type = "zeros")
+  detect_any(x, f = is_zero, margin = margin, type = "zeros")
 }
 detect_any <- function(x, f, margin = 1, type = "generic") {
   parts <- dimnames(x)[[margin]]
+  if (is.null(parts)) parts <- seq_len(ncol(x))
 
-  count <- apply(X = x, MARGIN = margin, FUN = function(x, f) sum(f(x)), f = f)
+  fun <- function(x) sum(f(x))
+  count <- apply(X = x, MARGIN = margin, FUN = fun)
   index <- count > 0
 
   n <- sum(index)
