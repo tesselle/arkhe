@@ -5,8 +5,8 @@
 
 <!-- badges: start -->
 
-[![R build
-status](https://github.com/nfrerebeau/arkhe/workflows/R-CMD-check/badge.svg)](https://github.com/nfrerebeau/arkhe/actions)
+[![Travis Build
+Status](https://travis-ci.org/nfrerebeau/arkhe.svg?branch=master)](https://travis-ci.org/nfrerebeau/arkhe)
 [![codecov](https://codecov.io/gh/nfrerebeau/arkhe/branch/master/graph/badge.svg)](https://codecov.io/gh/nfrerebeau/arkhe)
 
 [![CRAN
@@ -125,10 +125,10 @@ Many familiar methods and group generic functions are available for all
 ``` r
 rowSums(A1)
 #>  row1  row2  row3  row4  row5  row6  row7  row8  row9 row10 
-#>    40    50    39    49    49    49    42    58    61    52
+#>    48    51    54    46    47    44    61    49    60    50
 apply(X = A1, MARGIN = 1, FUN = sum)
 #>  row1  row2  row3  row4  row5  row6  row7  row8  row9 row10 
-#>    40    50    39    49    49    49    42    58    61    52
+#>    48    51    54    46    47    44    61    49    60    50
 ```
 
 Please note that all `*Matrix` classes extend the R base `matrix`, but
@@ -150,11 +150,11 @@ S3Part(X, strictS3 = TRUE)
 ## Coerce to an S3 matrix
 as.matrix(X)
 #>      col1 col2 col3 col4 col5
-#> row1    7    2    9    8    9
-#> row2    1    8   10   10    3
-#> row3    7    3    9    2    6
-#> row4    9    0    0    6    5
-#> row5    5    9    7    2    3
+#> row1    4    1    1    2    6
+#> row2   10    0    5    0    8
+#> row3    6   10    7    1   10
+#> row4    9    0    7    2    7
+#> row5    5    5    1    5    7
 ```
 
 ## Contributing
