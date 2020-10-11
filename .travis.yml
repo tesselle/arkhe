@@ -2,7 +2,7 @@
 
 language: r
 os: linux
-dist: xenial
+dist: focal
 cache: packages
 warnings_are_errors: true
 
@@ -13,6 +13,7 @@ jobs:
   - r: devel
   - r: release
     before_deploy:
+    - sudo apt-get -y install libharfbuzz-dev libfribidi-dev
     - Rscript -e 'remotes::install_cran("pkgdown")'
     deploy:
       provider: script
