@@ -311,14 +311,14 @@ setAs(from = "list", to = "StratigraphicMatrix", def = edges2matrix)
 setMethod(
   f = "as_long",
   signature = signature(from = "DataMatrix"),
-  definition = function(from, as_factor = FALSE) {
+  definition = function(from, factor = FALSE) {
     x <- data.frame(
       case = as.character(row(from, as.factor = TRUE)),
       type = as.character(col(from, as.factor = TRUE)),
       data = from@values,
       stringsAsFactors = FALSE
     )
-    if (as_factor) {
+    if (factor) {
       x$case <- factor(x$case, levels = unique(x$case))
       x$type <- factor(x$type, levels = unique(x$type))
     }
@@ -335,7 +335,7 @@ setMethod(
   definition = function(from) {
     # Get data from extra slots
     extra <- vector(mode = "list")
-    slots <- methods::slotNames(from)[-1] # Remove .Data
+    slots <- methods::slotNames(from)
     for (s in slots) {
       x <- methods::slot(from, s)
       n <- length(x)
@@ -344,12 +344,8 @@ setMethod(
         names(extra)[length(extra)] <- s
       }
     }
-    extra <- do.call(cbind.data.frame, extra)
-    # Time coordinates
-    dates <- get_dates(from)
-    if (nrow(dates) == 0) dates <- NULL
 
     mtx <- as.data.frame(from)
-    cbind.data.frame(mtx, extra)
+    cbind(mtx, extra)
   }
 )

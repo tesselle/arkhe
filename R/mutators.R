@@ -118,11 +118,6 @@ setMethod("get_samples", "GenericMatrix", function(x) x@sample_names)
 
 #' @export
 #' @rdname mutator
-#' @aliases get_sites,GenericMatrix-method
-setMethod("get_sites", "GenericMatrix", function(x) x@site_names)
-
-#' @export
-#' @rdname mutator
 #' @aliases get_totals,AbundanceMatrix-method
 setMethod("get_totals", "AbundanceMatrix", function(x) x@totals)
 
@@ -141,20 +136,6 @@ setMethod(
   definition = function(x, value) {
     if (!is.factor(value)) value <- factor(value, levels = unique(value))
     x@sample_names <- value
-    methods::validObject(x)
-    x
-  }
-)
-
-#' @export
-#' @rdname mutator
-#' @aliases set_sites,GenericMatrix-method
-setMethod(
-  f = "set_sites<-",
-  signature = "GenericMatrix",
-  definition = function(x, value) {
-    if (!is.factor(value)) value <- factor(value, levels = unique(value))
-    x@site_names <- value
     methods::validObject(x)
     x
   }

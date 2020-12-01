@@ -6,22 +6,19 @@
 #'
 #' An S4 class to represent a matrix. This is the mother class of all
 #' matrix objects.
-#' @slot id A \code{\link{character}} string specifying the unique
-#'  identifier of the matrix (UUID v4).
-#' @slot dates A \code{\link{list}} giving the dates of each assemblage.
-#' @section Matrix ID:
-#'  When a matrix is first created, an identifier is generated (UUID v4).
-#'  This ID is preserved when coercing to another class. Thus, the object ID is
-#'  unique within the same class, but two objects of different classes can have
-#'  the same ID. This makes it possible to identify objects representing the
-#'  same initial data and associate them with the results of specific
-#'  computations.
+#' @slot size An \code{\link{integer}} vector.
+#' @slot row_names A \code{\link{character}} vector.
+#' @slot column_names A \code{\link{character}} vector.
+#' @slot sample_names A \code{\link{factor}} vector.
+#' @slot date_values A \code{\link{numeric}} vector.
+#' @slot date_errors A \code{\link{numeric}} vector.
 #' @section Get and set:
 #'  In the code snippets below, \code{x} is a \code{*Matrix} object.
 #'  \describe{
-#'   \item{\code{get_id(x)}}{Get the ID of \code{x}.}
 #'   \item{\code{get_dates(x)} and \code{set_dates(x) <- value}}{Get or set
 #'   the dates of \code{x}.}
+#'   \item{\code{get_samples(x)} and \code{set_samples(x) <- value}}{Get or set
+#'   the sample names of \code{x}.}
 #'  }
 #' @section Access:
 #'  In the code snippets below, \code{x} is a \code{*Matrix} object.
@@ -64,7 +61,6 @@
     row_names = "character",
     column_names = "character",
     sample_names = "factor",
-    site_names = "factor",
     date_values = "numeric",
     date_errors = "numeric"
   ),
@@ -73,7 +69,6 @@
     row_names = character(0),
     column_names = character(0),
     sample_names = factor(),
-    site_names = factor(),
     date_values = numeric(0),
     date_errors = numeric(0)
   ),

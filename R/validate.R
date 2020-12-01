@@ -12,7 +12,6 @@ setValidity(
     row_names <- object@row_names
     column_names <- object@column_names
     sample_names <- object@sample_names
-    site_names <- object@site_names
 
     cnd <- list(
       # Check data

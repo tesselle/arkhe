@@ -51,7 +51,7 @@ setGeneric(
 #' Coerce
 #'
 #' @param from An object to be coerced.
-#' @param as_factor A \code{\link{logical}} scalar: should character string be
+#' @param factor A \code{\link{logical}} scalar: should character string be
 #'  coerced to \code{\link{factor}}? Default to \code{FALSE}, if \code{TRUE}
 #'  the original ordering is preserved.
 #' @param ... Currently not used.

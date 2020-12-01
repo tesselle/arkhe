@@ -57,7 +57,7 @@ as_stratigraphy(from)
 
 \S4method{as_stratigraphy}{ANY}(from)
 
-\S4method{as_long}{DataMatrix}(from, as_factor = FALSE)
+\S4method{as_long}{DataMatrix}(from, factor = FALSE)
 
 \S4method{as_features}{DataMatrix}(from)
 }
@@ -66,7 +66,7 @@ as_stratigraphy(from)
 
 \item{...}{Currently not used.}
 
-\item{as_factor}{A \code{\link{logical}} scalar: should character string be
+\item{factor}{A \code{\link{logical}} scalar: should character string be
 coerced to \code{\link{factor}}? Default to \code{FALSE}, if \code{TRUE}
 the original ordering is preserved.}
 }

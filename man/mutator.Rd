@@ -40,13 +40,10 @@
 \alias{diag,GenericMatrix-method}
 \alias{diag<-,GenericMatrix-method}
 \alias{get_samples,GenericMatrix-method}
-\alias{get_sites,GenericMatrix-method}
 \alias{get_totals,AbundanceMatrix-method}
 \alias{get_method,SimilarityMatrix-method}
 \alias{set_samples<-,GenericMatrix-method}
 \alias{set_samples,GenericMatrix-method}
-\alias{set_sites<-,GenericMatrix-method}
-\alias{set_sites,GenericMatrix-method}
 \alias{set_totals<-,AbundanceMatrix-method}
 \alias{set_totals,AbundanceMatrix-method}
 \alias{set_method<-,SimilarityMatrix-method}
@@ -97,15 +94,11 @@ set_totals(x) <- value
 
 \S4method{get_samples}{GenericMatrix}(x)
 
-\S4method{get_sites}{GenericMatrix}(x)
-
 \S4method{get_totals}{AbundanceMatrix}(x)
 
 \S4method{get_method}{SimilarityMatrix}(x)
 
 \S4method{set_samples}{GenericMatrix}(x) <- value
-
-\S4method{set_sites}{GenericMatrix}(x) <- value
 
 \S4method{set_totals}{AbundanceMatrix}(x) <- value
 

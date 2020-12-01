@@ -12,29 +12,27 @@ matrix objects.
 \section{Slots}{
 
 \describe{
-\item{\code{id}}{A \code{\link{character}} string specifying the unique
-identifier of the matrix (UUID v4).}
+\item{\code{size}}{An \code{\link{integer}} vector.}
 
-\item{\code{dates}}{A \code{\link{list}} giving the dates of each assemblage.}
+\item{\code{row_names}}{A \code{\link{character}} vector.}
+
+\item{\code{column_names}}{A \code{\link{character}} vector.}
+
+\item{\code{sample_names}}{A \code{\link{factor}} vector.}
+
+\item{\code{date_values}}{A \code{\link{numeric}} vector.}
+
+\item{\code{date_errors}}{A \code{\link{numeric}} vector.}
 }}
-
-\section{Matrix ID}{
-
- When a matrix is first created, an identifier is generated (UUID v4).
- This ID is preserved when coercing to another class. Thus, the object ID is
- unique within the same class, but two objects of different classes can have
- the same ID. This makes it possible to identify objects representing the
- same initial data and associate them with the results of specific
- computations.
-}
 
 \section{Get and set}{
 
  In the code snippets below, \code{x} is a \code{*Matrix} object.
  \describe{
-  \item{\code{get_id(x)}}{Get the ID of \code{x}.}
   \item{\code{get_dates(x)} and \code{set_dates(x) <- value}}{Get or set
   the dates of \code{x}.}
+  \item{\code{get_samples(x)} and \code{set_samples(x) <- value}}{Get or set
+  the sample names of \code{x}.}
  }
 }
 
