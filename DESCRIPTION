@@ -1,17 +1,17 @@
 Package: arkhe
 Title: Representation of Archaeological Data
-Version: 1.0.0
+Version: 0.2.2.9000
 Authors@R: 
     c(person(given = "Nicolas",
              family = "Frerebeau",
              role = c("aut", "cre"),
              email = "nicolas.frerebeau@u-bordeaux-montaigne.fr",
-             comment = c(ORCID = "https://orcid.org/0000-0001-5759-4944")),
+             comment = c(ORCID = "0000-0001-5759-4944")),
       person(given = "Brice",
              family = "Lebrun",
              role = "ctb",
              email = "brice.lebrun@u-bordeaux-montaigne.fr",
-             comment = c(ORCID = "https://orcid.org/0000-0001-7503-8685")))
+             comment = c(ORCID = "0000-0001-7503-8685")))
 Maintainer: Nicolas Frerebeau
     <nicolas.frerebeau@u-bordeaux-montaigne.fr>
 Description: A collection of classes that represent
@@ -20,7 +20,7 @@ Description: A collection of classes that represent
     frequency, presence/absence data, co-occurrence matrix, etc.) upon
     which package developers can build subclasses. It also provides a set
     of generic methods (mutators and coercion mechanisms) and functions
-    (e.g.  predicates). In addition, a few classes of general interest
+    (e.g. predicates). In addition, a few classes of general interest
     (e.g. that represent stratigraphic relationships) are implemented.
 License: GPL-3
 URL: http://arkhe.archaeo.science,
@@ -41,7 +41,7 @@ VignetteBuilder:
     knitr
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Collate: 
     'AllClasses.R'
     'AllGenerics.R'

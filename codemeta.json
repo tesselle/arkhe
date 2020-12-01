@@ -5,7 +5,7 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "arkhe",
-  "description": "A collection of classes that represent\n    archaeological data. This package provides a set of S4 classes that\n    represent different special types of matrix (absolute/relative\n    frequency, presence/absence data, co-occurrence matrix, etc.) upon\n    which package developers can build subclasses. It also provides a set\n    of generic methods (mutators and coercion mechanisms) and functions\n    (e.g.  predicates). In addition, a few classes of general interest\n    (e.g. that represent stratigraphic relationships) are implemented.",
+  "description": "A collection of classes that represent\n    archaeological data. This package provides a set of S4 classes that\n    represent different special types of matrix (absolute/relative\n    frequency, presence/absence data, co-occurrence matrix, etc.) upon\n    which package developers can build subclasses. It also provides a set\n    of generic methods (mutators and coercion mechanisms) and functions\n    (e.g. predicates). In addition, a few classes of general interest\n    (e.g. that represent stratigraphic relationships) are implemented.",
   "name": "arkhe: Representation of Archaeological Data",
   "codeRepository": "https://github.com/nfrerebeau/arkhe",
   "relatedLink": [
@@ -15,14 +15,13 @@
   ],
   "issueTracker": "https://github.com/nfrerebeau/arkhe/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "1.0.0",
+  "version": "0.2.2.9000",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.6.3",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.6.3 (2020-02-29)",
+  "runtimePlatform": "R version 4.0.3 (2020-10-10)",
   "author": [
     {
       "@type": "Person",
@@ -121,16 +120,9 @@
     }
   ],
   "readme": "https://github.com/nfrerebeau/arkhe/blob/master/README.md",
-  "fileSize": "677.563KB",
-  "contIntegration": [
-    "https://ci.appveyor.com/project/nfrerebeau/arkhe",
-    "https://travis-ci.org/nfrerebeau/arkhe",
-    "https://codecov.io/gh/nfrerebeau/arkhe"
-  ],
-  "developmentStatus": [
-    "https://www.repostatus.org/#wip",
-    "https://www.tidyverse.org/lifecycle/#experimental"
-  ],
+  "fileSize": "979.365KB",
+  "contIntegration": ["https://travis-ci.org/nfrerebeau/arkhe", "https://codecov.io/gh/nfrerebeau/arkhe"],
+  "developmentStatus": ["https://www.repostatus.org/#active", "https://www.tidyverse.org/lifecycle/#maturing"],
   "keywords": [
     "archaeology",
     "archaeological-science",
@@ -153,7 +145,6 @@
       "description": "R package version 1.0.0"
     }
   ],
-  "releaseNotes": "https://github.com/nfrerebeau/arkhe/blob/master/NEWS.md",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
