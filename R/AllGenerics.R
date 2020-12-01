@@ -3,10 +3,16 @@
 NULL
 
 # S4 dispatch to base S3 generic ===============================================
+setGeneric("rownames")
+setGeneric("colnames")
+setGeneric("rownames<-")
+setGeneric("colnames<-")
 setGeneric("rowSums")
 setGeneric("colSums")
 setGeneric("rowMeans")
 setGeneric("colMeans")
+setGeneric("diag")
+setGeneric("diag<-")
 
 # Clean ========================================================================
 #' Data Cleaning
@@ -196,6 +202,34 @@ setGeneric(
 setGeneric(
   name = "get_units",
   def = function(x) standardGeneric("get_units")
+)
+
+#' @rdname mutator
+#' @aliases get_samples-method
+setGeneric(
+  name = "get_samples",
+  def = function(x) standardGeneric("get_samples")
+)
+
+#' @rdname mutator
+#' @aliases set_samples-method
+setGeneric(
+  name = "set_samples<-",
+  def = function(x, value) standardGeneric("set_samples<-")
+)
+
+#' @rdname mutator
+#' @aliases get_sites-method
+setGeneric(
+  name = "get_sites",
+  def = function(x) standardGeneric("get_sites")
+)
+
+#' @rdname mutator
+#' @aliases set_sites-method
+setGeneric(
+  name = "set_sites<-",
+  def = function(x, value) standardGeneric("set_sites<-")
 )
 
 #' @rdname mutator

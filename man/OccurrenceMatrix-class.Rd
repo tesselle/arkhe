@@ -13,6 +13,12 @@ A co-occurrence matrix is a symmetric matrix with zeros on its main
  diagonal, which works out how many times (expressed in percent) each pairs
  of taxa/types occur together in at least one sample.
 }
+\section{Slots}{
+
+\describe{
+\item{\code{n}}{TODO.}
+}}
+
 \section{Get and set}{
 
  In the code snippets below, \code{x} is a \code{*Matrix} object.

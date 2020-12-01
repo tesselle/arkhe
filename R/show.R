@@ -6,8 +6,8 @@ setMethod(
   f = "show",
   signature = "DataMatrix",
   definition = function(object) {
-    cat(sprintf("<%s: %s>\n", class(object),
-                paste0(dim(object), collapse = " x ")))
+    mp <- paste0(dim(object), collapse = " x ")
+    cat(sprintf("<%s: %s>\n", class(object), mp))
     print(as.matrix(object))
   }
 )

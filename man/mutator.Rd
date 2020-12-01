@@ -15,15 +15,38 @@
 \alias{set_method-method}
 \alias{get_units}
 \alias{get_units-method}
+\alias{get_samples}
+\alias{get_samples-method}
+\alias{set_samples<-}
+\alias{set_samples-method}
+\alias{get_sites}
+\alias{get_sites-method}
+\alias{set_sites<-}
+\alias{set_sites-method}
 \alias{get_totals}
 \alias{get_totals-method}
 \alias{set_totals<-}
 \alias{set_totals-method}
-\alias{get_id,GenericMatrix-method}
+\alias{length,GenericMatrix-method}
+\alias{dim,GenericMatrix-method}
+\alias{rownames,GenericMatrix-method}
+\alias{rownames<-,GenericMatrix-method}
+\alias{rownames<-,GenericMatrix,ANY-method}
+\alias{colnames,GenericMatrix-method}
+\alias{colnames<-,GenericMatrix-method}
+\alias{colnames<-,GenericMatrix,ANY-method}
+\alias{dimnames,GenericMatrix-method}
+\alias{dimnames<-,GenericMatrix,list-method}
+\alias{diag,GenericMatrix-method}
+\alias{diag<-,GenericMatrix-method}
+\alias{get_samples,GenericMatrix-method}
+\alias{get_sites,GenericMatrix-method}
 \alias{get_totals,AbundanceMatrix-method}
 \alias{get_method,SimilarityMatrix-method}
-\alias{set_id<-,GenericMatrix-method}
-\alias{set_id,GenericMatrix-method}
+\alias{set_samples<-,GenericMatrix-method}
+\alias{set_samples,GenericMatrix-method}
+\alias{set_sites<-,GenericMatrix-method}
+\alias{set_sites,GenericMatrix-method}
 \alias{set_totals<-,AbundanceMatrix-method}
 \alias{set_totals,AbundanceMatrix-method}
 \alias{set_method<-,SimilarityMatrix-method}
@@ -40,17 +63,49 @@ set_method(x) <- value
 
 get_units(x)
 
+get_samples(x)
+
+set_samples(x) <- value
+
+get_sites(x)
+
+set_sites(x) <- value
+
 get_totals(x)
 
 set_totals(x) <- value
 
-\S4method{get_id}{GenericMatrix}(x)
+\S4method{length}{GenericMatrix}(x)
+
+\S4method{dim}{GenericMatrix}(x)
+
+\S4method{rownames}{GenericMatrix}(x)
+
+\S4method{rownames}{GenericMatrix}(x) <- value
+
+\S4method{colnames}{GenericMatrix}(x)
+
+\S4method{colnames}{GenericMatrix}(x) <- value
+
+\S4method{dimnames}{GenericMatrix}(x)
+
+\S4method{dimnames}{GenericMatrix,list}(x) <- value
+
+\S4method{diag}{GenericMatrix}(x, names = TRUE)
+
+\S4method{diag}{GenericMatrix}(x) <- value
+
+\S4method{get_samples}{GenericMatrix}(x)
+
+\S4method{get_sites}{GenericMatrix}(x)
 
 \S4method{get_totals}{AbundanceMatrix}(x)
 
 \S4method{get_method}{SimilarityMatrix}(x)
 
-\S4method{set_id}{GenericMatrix}(x) <- value
+\S4method{set_samples}{GenericMatrix}(x) <- value
+
+\S4method{set_sites}{GenericMatrix}(x) <- value
 
 \S4method{set_totals}{AbundanceMatrix}(x) <- value
 

@@ -4,11 +4,14 @@
 \name{operator}
 \alias{operator}
 \alias{Arith,DataMatrix,DataMatrix-method}
+\alias{Arith,DataMatrix,matrix-method}
 \alias{Arith,DataMatrix,numeric-method}
 \alias{Arith,DataMatrix,logical-method}
 \alias{Compare,DataMatrix,DataMatrix-method}
+\alias{Compare,DataMatrix,matrix-method}
 \alias{Compare,DataMatrix,numeric-method}
 \alias{Logic,DataMatrix,DataMatrix-method}
+\alias{Logic,DataMatrix,matrix-method}
 \alias{Logic,DataMatrix,numeric-method}
 \alias{Logic,DataMatrix,logical-method}
 \alias{Math,DataMatrix-method}
@@ -18,15 +21,21 @@
 \usage{
 \S4method{Arith}{DataMatrix,DataMatrix}(e1, e2)
 
+\S4method{Arith}{DataMatrix,matrix}(e1, e2)
+
 \S4method{Arith}{DataMatrix,numeric}(e1, e2)
 
 \S4method{Arith}{DataMatrix,logical}(e1, e2)
 
 \S4method{Compare}{DataMatrix,DataMatrix}(e1, e2)
 
+\S4method{Compare}{DataMatrix,matrix}(e1, e2)
+
 \S4method{Compare}{DataMatrix,numeric}(e1, e2)
 
 \S4method{Logic}{DataMatrix,DataMatrix}(e1, e2)
+
+\S4method{Logic}{DataMatrix,matrix}(e1, e2)
 
 \S4method{Logic}{DataMatrix,numeric}(e1, e2)
 

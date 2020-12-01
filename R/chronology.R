@@ -8,13 +8,7 @@ setMethod(
   f = "get_dates",
   signature = "GenericMatrix",
   definition = function(object) {
-    if (length(object@dates) != 0) {
-      dates <- do.call(rbind, object@dates)
-      colnames(dates) <- c("value", "error")
-      as.data.frame(dates, stringsAsFactors = FALSE)
-    } else {
-      data.frame(value = numeric(0), error = numeric(0))
-    }
+    data.frame(values = object@date_values, errors = object@date_errors)
   }
 )
 
@@ -118,14 +112,8 @@ setMethod(
       stop("Cannot interpret `value` in a suitable way.", call. = FALSE)
     }
 
-    if (nrow(value) != 0) {
-      # Keep original ordering
-      f <- factor(rows_object, levels = unique(rows_object))
-      dates <- split(dates, f = f, drop = FALSE)
-    } else {
-      dates <- list()
-    }
-    object@dates <- dates
+    object@date_values <- dates[, 1L]
+    object@date_errors <- dates[, 2L]
     methods::validObject(object)
 
     if (getOption("verbose")) {

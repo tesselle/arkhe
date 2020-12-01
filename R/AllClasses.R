@@ -52,9 +52,6 @@
 #'   \item{\code{x[[i]]}}{Extracts a single element selected by subscript
 #'   \code{i}.}
 #'  }
-#' @note
-#'  Please note that all this class extends the R base \code{\link{matrix}},
-#'  but the S3 part of the object \emph{does not} store the data.
 #' @author N. Frerebeau
 #' @family matrix
 #' @docType class
@@ -63,10 +60,24 @@
 .GenericMatrix <- setClass(
   Class = "GenericMatrix",
   slots = c(
-    id = "character",
-    dates = "list"
+    size = "integer",
+    row_names = "character",
+    column_names = "character",
+    sample_names = "factor",
+    site_names = "factor",
+    date_values = "numeric",
+    date_errors = "numeric"
   ),
-  contains = "matrix"
+  prototype = list(
+    size = c(0L, 0L),
+    row_names = character(0),
+    column_names = character(0),
+    sample_names = factor(),
+    site_names = factor(),
+    date_values = numeric(0),
+    date_errors = numeric(0)
+  ),
+  contains = "VIRTUAL"
 )
 
 # DataMatrix ===================================================================
@@ -99,10 +110,10 @@ NULL
 #' @exportClass IntegerMatrix
 .IntegerMatrix <- setClass(
   Class = "IntegerMatrix",
-  slot = c(
+  slots = c(
     values = "integer"
   ),
-  contains = c("GenericMatrix")
+  contains = c("GenericMatrix", "VIRTUAL")
 )
 
 #' @aliases NumericMatrix-class
@@ -111,10 +122,10 @@ NULL
 #' @exportClass NumericMatrix
 .NumericMatrix <- setClass(
   Class = "NumericMatrix",
-  slot = c(
+  slots = c(
     values = "numeric"
   ),
-  contains = c("GenericMatrix")
+  contains = c("GenericMatrix", "VIRTUAL")
 )
 
 #' @aliases LogicalMatrix-class
@@ -126,7 +137,7 @@ NULL
   slots = c(
     values = "logical"
   ),
-  contains = c("GenericMatrix")
+  contains = c("GenericMatrix", "VIRTUAL")
 )
 
 setClassUnion(
@@ -186,6 +197,7 @@ setClassUnion(
 #' Co-Occurrence Matrix
 #'
 #' An S4 class to represent a co-occurrence matrix.
+#' @slot n TODO.
 #' @details
 #'  A co-occurrence matrix is a symmetric matrix with zeros on its main
 #'  diagonal, which works out how many times (expressed in percent) each pairs

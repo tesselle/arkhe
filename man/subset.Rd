@@ -3,19 +3,37 @@
 \docType{methods}
 \name{subset}
 \alias{subset}
-\alias{[,DataMatrix-method}
-\alias{[[,DataMatrix-method}
+\alias{[,DataMatrix,numeric,numeric,ANY-method}
+\alias{[,DataMatrix,numeric,missing,ANY-method}
+\alias{[,DataMatrix,missing,numeric,ANY-method}
+\alias{[,DataMatrix,missing,missing,missing-method}
+\alias{[[,DataMatrix,numeric,numeric-method}
+\alias{[[,DataMatrix,numeric,missing-method}
 \alias{[<-,DataMatrix-method}
-\alias{[[<-,DataMatrix-method}
+\alias{[<-,DataMatrix,ANY,ANY,ANY-method}
+\alias{[[<-,DataMatrix,numeric,numeric-method}
+\alias{[[<-,DataMatrix,numeric,numeric,ANY-method}
+\alias{[[<-,DataMatrix,numeric,ANY-method}
+\alias{[[<-,DataMatrix,numeric,missing,ANY-method}
 \title{Extract or Replace Parts of an Object}
 \usage{
-\S4method{[}{DataMatrix}(x, i, j, ..., drop = TRUE)
+\S4method{[}{DataMatrix,numeric,numeric,ANY}(x, i, j, ..., drop = TRUE)
 
-\S4method{[[}{DataMatrix}(x, i, j, ..., exact = TRUE)
+\S4method{[}{DataMatrix,numeric,missing,ANY}(x, i, j, ..., drop = TRUE)
+
+\S4method{[}{DataMatrix,missing,numeric,ANY}(x, i, j, ..., drop = TRUE)
+
+\S4method{[}{DataMatrix,missing,missing,missing}(x, i, j, ..., drop = TRUE)
+
+\S4method{[[}{DataMatrix,numeric,numeric}(x, i, j, ..., exact = TRUE)
+
+\S4method{[[}{DataMatrix,numeric,missing}(x, i, exact = TRUE)
 
 \S4method{[}{DataMatrix}(x, i, j, ...) <- value
 
-\S4method{[[}{DataMatrix}(x, i, j) <- value
+\S4method{[[}{DataMatrix,numeric,numeric}(x, i, j) <- value
+
+\S4method{[[}{DataMatrix,numeric,ANY}(x, i) <- value
 }
 \arguments{
 \item{x}{An object from which to extract element(s) or in which to replace

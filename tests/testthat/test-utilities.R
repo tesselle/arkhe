@@ -28,31 +28,6 @@ test_that("NULL OR operator", {
   expect_equal(NULL %||% 1, 1)
   expect_equal(0 %||% 1, 0)
 })
-test_that("Row and column names", {
-  expect_identical(make_names(x = NULL, n = NULL), character(0))
-  expect_identical(make_names(x = NULL, n = 10, prefix = "R"),
-                   paste0("R", 1:10))
-  expect_identical(make_names(x = c("A", "A", "B")), c("A", "A_1", "B"))
-
-  mtx <- matrix(sample(1:10, 100, TRUE), ncol = 10)
-  expect_identical(make_dimnames(mtx), list(paste0("row", 1:10),
-                                            paste0("col", 1:10)))
-
-  A <- rownames_to_column(mtx, factor = FALSE)
-  expect_type(A[[1]], "character")
-  expect_equal(ncol(A), 11)
-  expect_equal(A[[1]], paste0("row", 1:10))
-  expect_error(rownames_to_column(LETTERS))
-
-  rownames(mtx) <- LETTERS[1:10]
-
-  expect_identical(make_dimnames(mtx), list(LETTERS[1:10], paste0("col", 1:10)))
-
-  B <- rownames_to_column(mtx, factor = TRUE)
-  expect_true(is.factor(B[[1]]))
-  expect_equal(ncol(B), 11)
-  expect_equal(B[[1]], as.factor(LETTERS[1:10]))
-})
 test_that("Row and column index", {
   mtx <- matrix(data = 1:6, nrow = 2)
 
@@ -63,4 +38,8 @@ test_that("Row and column index", {
   expect_true(all(index_by_column(c(2, 3)) == col(mtx)))
   expect_error(index_by_column(1))
   expect_error(index_by_column("X"))
+})
+test_that("UUID", {
+  id <- generate_uuid()
+  expect_true(is_uuid(id))
 })

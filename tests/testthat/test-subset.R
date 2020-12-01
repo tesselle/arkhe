@@ -7,9 +7,12 @@ test_that("Extract/replace with a numeric index", {
   expect_identical(cts[], cts)
   expect_identical(cts[, ], cts)
 
+  expect_true(all(cts[1:2] == mtx[1:2]))
   expect_true(all(cts[1:2, ] == mtx[1:2, ]))
+  expect_true(all(cts[, 3:4] == mtx[, 3:4]))
   expect_true(all(cts[1:2, 3] == mtx[1:2, 3]))
-  expect_equivalent(cts[1, , drop = TRUE], mtx[1, , drop = TRUE])
+  expect_true(all(cts[1, , drop = TRUE] == mtx[1, , drop = TRUE]))
+  expect_true(all(cts[, 1, drop = FALSE] == mtx[, 1, drop = FALSE]))
 
   cts[1] <- 1
   expect_equivalent(cts[1], 1)
@@ -42,7 +45,10 @@ test_that("Extract/replace with a numeric index", {
   expect_s4_class(cts, "CountMatrix")
 
   expect_error(cts[[]])
+  expect_error(cts[[1:2]])
   expect_error(cts[[, ]])
-  expect_error(cts[[1, ]])
+  # expect_error(cts[[1, ]])
+  expect_error(cts[[1:2, ]])
   expect_error(cts[[, 1]])
+  expect_error(cts[[, 1:2]])
 })

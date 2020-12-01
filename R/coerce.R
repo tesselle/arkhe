@@ -17,11 +17,26 @@ as_integer <- function(x) {
   as.integer(round(x, digits = 0))
 }
 
+#' Factors
+#'
+#' @param x A vector to be coerced.
+#' @details
+#'  Encodes a vector as a factor without sorting it into increasing order of
+#'  \code{x} (preserves original ordering).
+#' @return An \code{\link{factor}} object.
+#' @author N. Frerebeau
+#' @family utilities
+#' @keywords internal utilities
+#' @noRd
+as_factor <- function(x) {
+  factor(x, levels = unique(x))
+}
+
 # To matrix or data.frame ======================================================
 as_matrix <- function(from) {
-  m <- from@.Data
-  m <- matrix(data = from@values, nrow = nrow(m), ncol = ncol(m),
-              dimnames = dimnames(m))
+  m <- from@values
+  dim(m) <- from@size
+  dimnames(m) <- list(from@row_names, from@column_names)
   m
 }
 as_dataframe <- function(from) {
@@ -72,11 +87,12 @@ setMethod(
 
 matrix2count <- function(from) {
   from <- data.matrix(from, rownames.force = NA)
-  CountMatrix(
-    data = from,
-    nrow = nrow(from),
-    ncol = ncol(from),
-    dimnames = dimnames(from)
+  dimnames(from) <- make_dimnames(from)
+  .CountMatrix(
+    size = dim(from),
+    row_names = rownames(from),
+    column_names = colnames(from),
+    values = as_integer(from)
   )
 }
 setAs(from = "matrix", to = "CountMatrix", def = matrix2count)
@@ -94,6 +110,7 @@ setMethod(
 
 matrix2frequency <- function(from) {
   from <- data.matrix(from, rownames.force = NA)
+  dimnames(from) <- make_dimnames(from)
   AbundanceMatrix(
     data = from,
     nrow = nrow(from),
@@ -115,7 +132,6 @@ setAs(
       ncol = ncol(from),
       dimnames = dimnames(from)
     )
-    set_id(x) <- get_id(from)
     set_dates(x) <- get_dates(from)
     x
   }
@@ -133,7 +149,6 @@ setAs(
       ncol = ncol(from),
       dimnames = dimnames(from)
     )
-    set_id(x) <- get_id(from)
     set_dates(x) <- get_dates(from)
     x
   }
@@ -151,6 +166,7 @@ setMethod(
 
 matrix2similarity <- function(from) {
   from <- data.matrix(from, rownames.force = NA)
+  dimnames(from) <- make_dimnames(from)
   SimilarityMatrix(
     data = from,
     nrow = nrow(from),
@@ -187,14 +203,18 @@ matrix2occurrence <- function(from) {
   combine <- utils::combn(seq_len(p), 2, simplify = TRUE)
   occurrence <- apply(X = combine, MARGIN = 2, FUN = fun, data = data) / m
 
-  mtx <- matrix(data = 0, nrow = p, ncol = p, dimnames = list(labels, labels))
+  mtx <- matrix(data = 0, nrow = p, ncol = p)
   mtx[lower.tri(mtx, diag = FALSE)] <- occurrence
   mtx <- t(mtx)
   mtx[lower.tri(mtx, diag = FALSE)] <- occurrence
 
-  values <- as.numeric(mtx)
-  mtx[] <- seq_along(values)
-  .OccurrenceMatrix(mtx, id = incid@id, values = values, n = m)
+  .OccurrenceMatrix(
+    size = c(p, p),
+    row_names = labels,
+    column_names = labels,
+    values = as.numeric(mtx),
+    n = m
+  )
 }
 
 setAs(from = "matrix", to = "OccurrenceMatrix", def = matrix2occurrence)
@@ -233,7 +253,6 @@ Matrix2incidence <- function(from) {
     ncol = ncol(from),
     dimnames = dimnames(from)
   )
-  set_id(x) <- get_id(from)
   set_dates(x) <- get_dates(from)
   x
 }
@@ -259,12 +278,14 @@ edges2matrix <- function(from) {
   edges <- lapply(X = from, FUN = factor, levels = layers)
   # Build adjacency matrix
   adj <- stats::xtabs(~ edges[[1]] + edges[[2]])
-  adj <- matrix(data = as.logical(adj), nrow = length(layers),
-                dimnames = list(lower = layers, upper = layers))
+  adj <- matrix(data = as.logical(adj), nrow = length(layers))
 
-  values <- as.logical(adj)
-  adj[] <- seq_along(values)
-  .StratigraphicMatrix(adj, values = values)
+  .StratigraphicMatrix(
+    size = dim(adj),
+    row_names = layers,
+    column_names = layers,
+    values = as.logical(adj)
+  )
 }
 matrix2edges <- function(from) {
   edges <- matrix(data = NA, nrow = 0, ncol = 2)

@@ -16,6 +16,17 @@ setMethod(
 
 #' @export
 #' @rdname operator
+#' @aliases Arith,DataMatrix,matrix-method
+setMethod(
+  f = "Arith",
+  signature(e1 = "DataMatrix", e2 = "matrix"),
+  definition = function(e1, e2) {
+    methods::callGeneric(e1 = as.matrix(e1), e2 = e2)
+  }
+)
+
+#' @export
+#' @rdname operator
 #' @aliases Arith,DataMatrix,numeric-method
 setMethod(
   f = "Arith",
@@ -50,6 +61,17 @@ setMethod(
 
 #' @export
 #' @rdname operator
+#' @aliases Compare,DataMatrix,matrix-method
+setMethod(
+  f = "Compare",
+  signature(e1 = "DataMatrix", e2 = "matrix"),
+  definition = function(e1, e2) {
+    methods::callGeneric(e1 = as.matrix(e1), e2 = e2)
+  }
+)
+
+#' @export
+#' @rdname operator
 #' @aliases Compare,DataMatrix,numeric-method
 setMethod(
   f = "Compare",
@@ -68,6 +90,17 @@ setMethod(
   signature(e1 = "DataMatrix", e2 = "DataMatrix"),
   definition = function(e1, e2) {
     methods::callGeneric(e1 = as.matrix(e1), e2 = as.matrix(e2))
+  }
+)
+
+#' @export
+#' @rdname operator
+#' @aliases Logic,DataMatrix,matrix-method
+setMethod(
+  f = "Logic",
+  signature(e1 = "DataMatrix", e2 = "matrix"),
+  definition = function(e1, e2) {
+    methods::callGeneric(e1 = as.matrix(e1), e2 = e2)
   }
 )
 

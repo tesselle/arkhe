@@ -18,10 +18,6 @@ identifier of the matrix (UUID v4).}
 \item{\code{dates}}{A \code{\link{list}} giving the dates of each assemblage.}
 }}
 
-\note{
-Please note that all this class extends the R base \code{\link{matrix}},
- but the S3 part of the object \emph{does not} store the data.
-}
 \section{Matrix ID}{
 
  When a matrix is first created, an identifier is generated (UUID v4).

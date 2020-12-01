@@ -2,51 +2,28 @@
 #' @include AllClasses.R
 NULL
 
-# GenericMatrix ================================================================
-setValidity(
-  Class = "GenericMatrix",
-  method = function(object) {
-    # Get data
-    id <- object@id
-    dates <- object@dates
-    size <- dim(object)
-
-    # Check
-    cnd <- list(
-      # Check id
-      # catch_conditions(check_uuid(id)),
-      catch_conditions(check_scalar(id, "character", strict = FALSE))
-    )
-    if (length(dates) > 0) {
-      cnd <- append(
-        cnd,
-        list(
-          # Check dates
-          catch_conditions(check_length(dates, size[[1L]])),
-          catch_conditions(check_lengths(dates, 2)),
-          catch_conditions(check_names(dates, rownames(object)))
-        )
-      )
-    }
-
-    # Return cnd if any
-    check_class(object, cnd)
-  }
-)
-
 # DataMatrix ===================================================================
 setValidity(
   Class = "DataMatrix",
   method = function(object) {
     # Get data
-    data <- object@values
-    length <- length(object)
+    values <- object@values
+    size <- object@size
+    row_names <- object@row_names
+    column_names <- object@column_names
+    sample_names <- object@sample_names
+    site_names <- object@site_names
 
     cnd <- list(
       # Check data
-      catch_conditions(check_length(data, length)),
-      catch_conditions(check_infinite(data)),
-      catch_conditions(check_missing(data))
+      catch_conditions(check_length(values, prod(size))),
+      catch_conditions(check_infinite(values)),
+      catch_conditions(check_missing(values)),
+      # Check dimnames
+      catch_conditions(check_length(row_names, size[[1L]])),
+      catch_conditions(check_length(column_names, size[[2L]]))
+      # Check extra slots
+      # catch_conditions(check_length(sample_names, size[[1L]]))
     )
 
     # Return cnd, if any
@@ -80,17 +57,18 @@ setValidity(
   Class = "AbundanceMatrix",
   method = function(object) {
     # Get data
-    data <- object@values
+    values <- object@values
     totals <- object@totals
-    size <- nrow(object)
+    size <- object@size
 
     cnd <- list(
-      # Check data
-      catch_conditions(
-        check_numbers(data, "positive", strict = FALSE, na.rm = TRUE)
-      ),
+      # Check values
+      catch_conditions(check_numbers(values, "positive", strict = FALSE,
+                                     na.rm = TRUE)),
+      catch_conditions(check_missing(values)),
+      catch_conditions(check_infinite(values)),
       # Check totals
-      catch_conditions(check_length(totals, size)),
+      catch_conditions(check_length(totals, size[[1L]])),
       catch_conditions(check_missing(totals)),
       catch_conditions(check_infinite(totals))
     )
@@ -105,17 +83,19 @@ setValidity(
   Class = "OccurrenceMatrix",
   method = function(object) {
     # Get data
-    data <- as.matrix(object)
+    values <- as.matrix(object)
     n <- object@n
 
     cnd <- list(
-      # Check data
-      catch_conditions(check_symmetric(data)),
-      catch_conditions(check_numbers(data, "positive",
-                                     strict = FALSE, na.rm = TRUE)),
-      # Check n
-      catch_conditions(check_scalar(n, "integer"))
+      # Check values
+      catch_conditions(check_symmetric(values)),
+      catch_conditions(check_numbers(values, "positive", strict = FALSE,
+                                     na.rm = TRUE))
     )
+    # Check n
+    if (length(values) > 0) {
+      cnd <- append(cnd, catch_conditions(check_scalar(n, "integer")))
+    }
 
     # Return cnd, if any
     check_class(object, cnd)
@@ -126,16 +106,20 @@ setValidity(
   Class = "SimilarityMatrix",
   method = function(object) {
     # Get data
-    data <- as.matrix(object)
+    values <- as.matrix(object)
     method <- object@method
 
     cnd <- list(
-      # Check data
-      catch_conditions(check_symmetric(data)),
-      # Check method
-      catch_conditions(check_scalar(method, "character")),
-      catch_conditions(check_missing(method))
+      # Check values
+      catch_conditions(check_symmetric(values))
     )
+    # Check method
+    if (length(values) > 0) {
+      cnd <- append(
+        cnd,
+        catch_conditions(check_scalar(method, "character"))
+      )
+    }
 
     # Return cnd, if any
     check_class(object, cnd)

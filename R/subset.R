@@ -5,40 +5,99 @@ NULL
 # Extract ======================================================================
 #' @export
 #' @rdname subset
-#' @aliases [,DataMatrix-method
+#' @aliases [,DataMatrix,numeric,numeric,ANY-method
 setMethod(
   f = "[",
-  signature = "DataMatrix",
+  signature = c(x = "DataMatrix", i = "numeric", j = "numeric", drop = "ANY"),
   definition = function(x, i, j, ..., drop = TRUE) {
-    m <- methods::callNextMethod()
-    if (!is.matrix(m)) return(x@values[m])
-    # Deal with extra slots in child class
-    k <- which(rownames(x) %in% rownames(m))
-    slots <- methods::slotNames(x)[-1] # Remove .Data
-    for (s in slots) {
-      old <- methods::slot(x, s)
-      n <- length(old)
-      if (n == length(x)) value <- old[m]
-      else if (n == nrow(x)) value <- old[k]
-      else next()
-      if (is.factor(old)) value <- droplevels(value)
-      if (!is.null(dim(old))) dim(value) <- dim(m)
-      methods::slot(x, s, check = TRUE) <- value
+    m <- seq_along(x@values)
+    dim(m) <- x@size
+    k <- m[i, j, drop = drop]
+
+    if (is.null(dim(k))) return(x@values[k])
+    methods::initialize(
+      .Object = x,
+      size = dim(k),
+      row_names = x@row_names[i],
+      column_names = x@column_names[j],
+      values = x@values[k]
+    )
+  }
+)
+#' @export
+#' @rdname subset
+#' @aliases [,DataMatrix,numeric,missing,ANY-method
+setMethod(
+  f = "[",
+  signature = c(x = "DataMatrix", i = "numeric", j = "missing", drop = "ANY"),
+  definition = function(x, i, ..., drop = TRUE) {
+    if (nargs() == 2) {
+      x@values[i]
+    } else {
+      m <- seq_along(x@values)
+      dim(m) <- x@size
+      k <- m[i, , drop = drop]
+
+      if (is.null(dim(k))) return(x@values[k])
+      methods::initialize(
+        .Object = x,
+        size = dim(k),
+        row_names = x@row_names[i],
+        values = x@values[k]
+      )
     }
-    m[] <- seq_along(m)
-    methods::initialize(x, m)
+  }
+)
+#' @export
+#' @rdname subset
+#' @aliases [,DataMatrix,missing,numeric,ANY-method
+setMethod(
+  f = "[",
+  signature = c(x = "DataMatrix", i = "missing", j = "numeric", drop = "ANY"),
+  definition = function(x, j, ..., drop = TRUE) {
+    m <- seq_along(x@values)
+    dim(m) <- x@size
+    k <- m[, j, drop = drop]
+
+    if (is.null(dim(k))) return(x@values[k])
+    methods::initialize(
+      .Object = x,
+      size = dim(k),
+      column_names = x@column_names[j],
+      values = x@values[k]
+    )
+  }
+)
+#' @export
+#' @rdname subset
+#' @aliases [,DataMatrix,missing,missing,missing-method
+setMethod(
+  f = "[",
+  signature = c(x = "DataMatrix", i = "missing", j = "missing", drop = "missing"),
+  definition = function(x, ...) {
+    x
   }
 )
 
 #' @export
 #' @rdname subset
-#' @aliases [[,DataMatrix-method
+#' @aliases [[,DataMatrix,numeric,numeric-method
 setMethod(
   f = "[[",
-  signature = "DataMatrix",
+  signature = c(x = "DataMatrix", i = "numeric", j = "numeric"),
   definition = function(x, i, j, ..., exact = TRUE) {
-    m <- methods::callNextMethod()
-    x@values[[m]]
+    n <- x@size[[1L]]
+    x@values[[(j - 1) * n + i]]
+  }
+)
+#' @export
+#' @rdname subset
+#' @aliases [[,DataMatrix,numeric,missing-method
+setMethod(
+  f = "[[",
+  signature = c(x = "DataMatrix", i = "numeric", j = "missing"),
+  definition = function(x, i, exact = TRUE) {
+    x@values[[i]]
   }
 )
 
@@ -50,9 +109,15 @@ setMethod(
   f = "[<-",
   signature = "DataMatrix",
   definition = function(x, i, j, ..., value) {
-    m <- if (nargs() > 3) x@.Data[i, j] else x@.Data[i]
+    m <- seq_along(x@values)
+    dim(m) <- x@size
+
+    if (missing(i) && !missing(j)) k <- m[, j]
+    if (missing(j) && !missing(i)) k <- if (nargs() > 3) m[i, ] else m[i]
+    if (!missing(i) && !missing(j)) k <- m[i, j]
+
     value <- methods::as(value, typeof(x@values))
-    x@values[m] <- value
+    x@values[k] <- value
     methods::validObject(x)
     x
   }
@@ -65,9 +130,12 @@ setMethod(
   f = "[[<-",
   signature = "DataMatrix",
   definition = function(x, i, j, value) {
-    m <- if (missing(j)) x@.Data[[i]] else x@.Data[[i, j]]
     value <- methods::as(value, typeof(x@values))
-    x@values[[m]] <- value
+    n <- x@size[[1L]]
+
+    if (missing(j) && !missing(i)) x@values[[i]] <- value
+    if (!missing(i) && !missing(j)) x@values[[(j - 1) * n + i]] <- value
+
     methods::validObject(x)
     x
   }

@@ -1,12 +1,5 @@
 context("Getters and setters")
 
-test_that("Matrix id", {
-  id <- generate_uuid()
-  mtx <- .CountMatrix()
-
-  set_id(mtx) <- id
-  expect_identical(get_id(mtx), id)
-})
 test_that("AbundanceMatrix totals", {
   count <- matrix(sample(1:100, 100, TRUE), ncol = 10)
 
