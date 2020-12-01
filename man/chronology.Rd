@@ -8,8 +8,18 @@
 \alias{set_dates<-}
 \alias{set_dates-method}
 \alias{get_dates,GenericMatrix-method}
-\alias{set_dates<-,GenericMatrix-method}
-\alias{set_dates,GenericMatrix-method}
+\alias{set_dates<-,GenericMatrix,NULL-method}
+\alias{set_dates,GenericMatrix,NULL-method}
+\alias{set_dates<-,GenericMatrix,numeric-method}
+\alias{set_dates,GenericMatrix,numeric-method}
+\alias{set_dates<-,GenericMatrix,character-method}
+\alias{set_dates,GenericMatrix,character-method}
+\alias{set_dates<-,GenericMatrix,list-method}
+\alias{set_dates,GenericMatrix,list-method}
+\alias{set_dates<-,GenericMatrix,data.frame-method}
+\alias{set_dates,GenericMatrix,data.frame-method}
+\alias{set_dates<-,GenericMatrix,matrix-method}
+\alias{set_dates,GenericMatrix,matrix-method}
 \title{Chronological Information}
 \usage{
 get_dates(object)
@@ -18,7 +28,17 @@ set_dates(object) <- value
 
 \S4method{get_dates}{GenericMatrix}(object)
 
-\S4method{set_dates}{GenericMatrix}(object) <- value
+\S4method{set_dates}{GenericMatrix,`NULL`}(object) <- value
+
+\S4method{set_dates}{GenericMatrix,numeric}(object) <- value
+
+\S4method{set_dates}{GenericMatrix,character}(object) <- value
+
+\S4method{set_dates}{GenericMatrix,list}(object) <- value
+
+\S4method{set_dates}{GenericMatrix,data.frame}(object) <- value
+
+\S4method{set_dates}{GenericMatrix,matrix}(object) <- value
 }
 \arguments{
 \item{object}{A \eqn{m \times p}{m x p} matrix of count data (typically of
@@ -47,7 +67,7 @@ An attempt is made to interpret the argument \code{value} in a suitable way.
   these are used to define dates and corresponding errors.}
   \item{\code{matrix} or \code{data.frame} with two or more columns}{the
   first is assumed to contain the dates and the second the error values.
-  \emph{Note} that if \code{value} has columns named "\code{value}" and
+  Note that if \code{value} has columns named "\code{value}" and
   "\code{error}", these columns will be used.}
  }
 }

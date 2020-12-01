@@ -1,6 +1,6 @@
 # CHRONOLOGY
 
-# ========================================================================== Get
+# Get ==========================================================================
 #' @export
 #' @rdname chronology
 #' @aliases get_dates,GenericMatrix-method
@@ -12,20 +12,106 @@ setMethod(
   }
 )
 
-# ========================================================================== Set
-#' @param value A \code{\link{matrix}}, \code{\link{data.frame}},
-#'  \code{\link{list}} or a \code{\link{numeric}}, \code{\link{integer}} or
-#'  \code{\link{character}} vector.
-#' @details
-#'  Try to interpret \code{value} in a suitable way.
-#' @return A \code{\link{numeric}} matrix.
-#' @author N. Frerebeau
-#' @keywords internal
-#' @noRd
-make_dates <- function(value) {
-  if (is.matrix(value) || is.data.frame(value)) {
-    # Value is a matrix or data.frame
-    value <- data.matrix(value)
+# Set ==========================================================================
+#' @export
+#' @rdname chronology
+#' @aliases set_dates,GenericMatrix,NULL-method
+setMethod(
+  f = "set_dates<-",
+  signature = c("GenericMatrix", "NULL"),
+  definition = function(object, value) {
+    object@date_values <- numeric(0)
+    object@date_errors <- numeric(0)
+    object
+  }
+)
+
+#' @export
+#' @rdname chronology
+#' @aliases set_dates,GenericMatrix,numeric-method
+setMethod(
+  f = "set_dates<-",
+  signature = c("GenericMatrix", "numeric"),
+  definition = function(object, value) {
+    if (getOption("arkhe.verbose")) message("Errors are missing, NA generated.")
+
+    # Value is a numeric or integer vector
+    x <- c(value, rep(NA_real_, length.out = length(value)))
+    m <- matrix(data = x, ncol = 2)
+    rownames(m) <- names(value)
+
+    set_dates(object) <- m
+    object
+  }
+)
+
+#' @export
+#' @rdname chronology
+#' @aliases set_dates,GenericMatrix,character-method
+setMethod(
+  f = "set_dates<-",
+  signature = c("GenericMatrix", "character"),
+  definition = function(object, value) {
+    if (getOption("arkhe.verbose")) message("Errors are missing, NA generated.")
+
+    # Value is a character vector
+    # Try to convert from roman numbers
+    roman <- suppressWarnings(utils::as.roman(value))
+    if (anyNA(roman)) stop("Incorrect roman number.", call. = FALSE)
+    x <- c(as.numeric(roman), rep(NA_real_, length.out = length(roman)))
+    m <- matrix(data = x, ncol = 2)
+    rownames(m) <- names(value)
+    set_dates(object) <- m
+    object
+  }
+)
+
+#' @export
+#' @rdname chronology
+#' @aliases set_dates,GenericMatrix,list-method
+setMethod(
+  f = "set_dates<-",
+  signature = c("GenericMatrix", "list"),
+  definition = function(object, value) {
+
+    # Value is a list
+    if (all(c("value", "error") %in% names(value))) {
+      x <- value[c("value", "error")]
+    } else {
+      stop("'value' is a list, ",
+           "but does not have components 'value' and 'error'.",
+           call. = FALSE)
+    }
+
+    m <- matrix(data = unlist(x), ncol = 2)
+    set_dates(object) <- m
+    object
+  }
+)
+
+#' @export
+#' @rdname chronology
+#' @aliases set_dates,GenericMatrix,data.frame-method
+setMethod(
+  f = "set_dates<-",
+  signature = c("GenericMatrix", "data.frame"),
+  definition = function(object, value) {
+    # Value is a data.frame
+    m <- data.matrix(value)
+    set_dates(object) <- m
+    object
+  }
+)
+
+#' @export
+#' @rdname chronology
+#' @aliases set_dates,GenericMatrix,matrix-method
+setMethod(
+  f = "set_dates<-",
+  signature = c("GenericMatrix", "matrix"),
+  definition = function(object, value) {
+
+    # Value is a matrix
     if (ncol(value) >= 2) {
       if (all(c("value", "error") %in% colnames(value))) {
         x <- value[, "value"]
@@ -35,90 +121,49 @@ make_dates <- function(value) {
         y <- value[, 2]
       }
     } else {
-      stop("`value` must have at least 2 columns.", call. = FALSE)
+      stop("'value' must have at least 2 columns.", call. = FALSE)
     }
-  } else if (is.list(value)) {
-    # Value is a list
-    if (all(c("value", "error") %in% names(value))) {
-      x <- value[["value"]]
-      y <- value[["error"]]
-    } else {
-      stop("`value` is a list, ",
-           "but does not have components 'value' and 'error'.",
-           call. = FALSE)
-    }
-  } else if (is.numeric(value) || is.integer(value)) {
-    # Value is a numeric or integer vector
-    x <- value
-    y <- rep_len(NA, length.out = length(x))
-    if (getOption("verbose")) message("Errors are missing, NA generated.")
-  } else if (is.character(value)) {
-    # Value is a character vector
-    # Try to convert from roman numbers
-    roman <- suppressWarnings(utils::as.roman(value))
-    if (anyNA(roman)) {
-      stop("Incorrect roman number.", call. = FALSE)
-    } else {
-      x <- as.numeric(roman)
-      y <- rep_len(NA, length.out = length(x))
-    }
-  } else if (is.null(value)) {
-    # Value is NULL
-    x <- y <- numeric(0)
-  } else {
-    stop("A numeric, integer or character vector, ",
-         "a list, a matrix or a data frame is expected.", call. = FALSE)
-  }
-
-  cbind(value = x, error = y)
-}
-
-#' @export
-#' @rdname chronology
-#' @aliases set_dates,GenericMatrix-method
-setMethod(
-  f = "set_dates<-",
-  signature = "GenericMatrix",
-  definition = function(object, value) {
-    value <- make_dates(value)
-    rows_value <- rownames(value)
-    rows_object <- rownames(object)
 
     i <- nrow(object)
     j <- nrow(value)
 
-    if (j == i || j == 0) {
-      # If object and value have the same dimensions or value is unset
-      dates <- value
-      k <- nrow(dates)
-    } else if (!is.null(rows_value) && !is.null(rows_object)) {
-      # Match by names
+    # If rownames, match by names
+    rows_value <- rownames(value)
+    rows_object <- rownames(object)
+    if (!is.null(rows_value) && !is.null(rows_object)) {
       index <- match(rows_value, rows_object)
       no_match <- detect(f = is.na, x = index)
       if (any(no_match)) {
-        warning(ngettext(
-          sum(no_match),
-          "The following date do not match and was skiped:\n",
-          "The following dates do not match and were skiped:\n"),
+        warning(
+          ngettext(
+            sum(no_match),
+            "The following date do not match and was skiped:\n",
+            "The following dates do not match and were skiped:\n"
+          ),
           paste0("* ", rows_value[no_match], collapse = "\n"),
-          call. = FALSE)
+          call. = FALSE
+        )
       }
       index_clean <- compact(f = is.na, x = index)
-      dates <- matrix(NA_real_, nrow = i, ncol = 2,
-                      dimnames = list(rows_object, c("value", "error")))
+      dates <- matrix(NA_real_, nrow = i, ncol = 2)
       dates[index_clean, ] <- value[!no_match]
       k <- sum(!no_match)
+    } else if (j == i || j == 0) {
+      # If object and value have the same dimensions or value is unset
+      dates <- value
+      k <- nrow(dates)
     } else {
-      stop("Cannot interpret `value` in a suitable way.", call. = FALSE)
+      stop("Cannot interpret 'value' in a suitable way.", call. = FALSE)
     }
 
     object@date_values <- dates[, 1L]
     object@date_errors <- dates[, 2L]
     methods::validObject(object)
 
-    if (getOption("verbose")) {
+    if (getOption("arkhe.verbose")) {
       message(sprintf(ngettext(k, "%d date was set.", "%d dates were set."), k))
     }
+
     object
   }
 )

@@ -359,7 +359,7 @@ NULL
 #'   these are used to define dates and corresponding errors.}
 #'   \item{\code{matrix} or \code{data.frame} with two or more columns}{the
 #'   first is assumed to contain the dates and the second the error values.
-#'   \emph{Note} that if \code{value} has columns named "\code{value}" and
+#'   Note that if \code{value} has columns named "\code{value}" and
 #'   "\code{error}", these columns will be used.}
 #'  }
 #' @return
