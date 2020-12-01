@@ -158,6 +158,9 @@ setGeneric(
 #' Getters and setters to retrieve or set parts of an object.
 #' @param x An object from which to get or set element(s).
 #' @param value A possible value for the element(s) of \code{object}.
+#' @param names A \code{\link{logical}} scalar indicating if the resulting
+#'  vector, the diagonal of \code{x}, should inherit names from
+#'  \code{dimnames(x)} if available.
 #' @return
 #'  An object of the same sort as \code{x} with the new values assigned.
 #' @example inst/examples/ex-matrix.R
@@ -262,8 +265,6 @@ setGeneric(
 #' @param drop A \code{\link{logical}} scalar: should the result be coerced to
 #'  the lowest possible dimension? This only works for extracting elements,
 #'  not for the replacement.
-#' @param exact A \code{\link{logical}} scalar: should partial matching be used?
-#'  If \code{TRUE} (the default), no partial matching is allowed.
 #' @param ... Currently not used.
 #' @return
 #'  A subsetted object of the same sort as \code{x}.

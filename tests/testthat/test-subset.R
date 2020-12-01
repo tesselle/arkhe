@@ -47,7 +47,7 @@ test_that("Extract/replace with a numeric index", {
   expect_error(cts[[]])
   expect_error(cts[[1:2]])
   expect_error(cts[[, ]])
-  # expect_error(cts[[1, ]])
+  expect_error(cts[[1, ]])
   expect_error(cts[[1:2, ]])
   expect_error(cts[[, 1]])
   expect_error(cts[[, 1:2]])

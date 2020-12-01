@@ -3,37 +3,53 @@
 \docType{methods}
 \name{subset}
 \alias{subset}
-\alias{[,DataMatrix,numeric,numeric,ANY-method}
+\alias{[,DataMatrix,missing,missing-method}
+\alias{[,DataMatrix,missing,missing,ANY-method}
+\alias{[,DataMatrix,numeric,missing-method}
 \alias{[,DataMatrix,numeric,missing,ANY-method}
+\alias{[,DataMatrix,missing,numeric-method}
 \alias{[,DataMatrix,missing,numeric,ANY-method}
-\alias{[,DataMatrix,missing,missing,missing-method}
-\alias{[[,DataMatrix,numeric,numeric-method}
+\alias{[,DataMatrix,numeric,numeric-method}
+\alias{[,DataMatrix,numeric,numeric,ANY-method}
 \alias{[[,DataMatrix,numeric,missing-method}
-\alias{[<-,DataMatrix-method}
-\alias{[<-,DataMatrix,ANY,ANY,ANY-method}
+\alias{[[,DataMatrix,numeric,numeric-method}
+\alias{[<-,DataMatrix,missing,missing-method}
+\alias{[<-,DataMatrix,missing,missing,ANY-method}
+\alias{[<-,DataMatrix,numeric,missing-method}
+\alias{[<-,DataMatrix,numeric,missing,ANY-method}
+\alias{[<-,DataMatrix,missing,numeric-method}
+\alias{[<-,DataMatrix,missing,numeric,ANY-method}
+\alias{[<-,DataMatrix,numeric,numeric-method}
+\alias{[<-,DataMatrix,numeric,numeric,ANY-method}
+\alias{[[<-,DataMatrix,numeric,missing-method}
+\alias{[[<-,DataMatrix,numeric,missing,ANY-method}
 \alias{[[<-,DataMatrix,numeric,numeric-method}
 \alias{[[<-,DataMatrix,numeric,numeric,ANY-method}
-\alias{[[<-,DataMatrix,numeric,ANY-method}
-\alias{[[<-,DataMatrix,numeric,missing,ANY-method}
 \title{Extract or Replace Parts of an Object}
 \usage{
-\S4method{[}{DataMatrix,numeric,numeric,ANY}(x, i, j, ..., drop = TRUE)
+\S4method{[}{DataMatrix,missing,missing}(x, i, j, ..., drop = TRUE)
 
-\S4method{[}{DataMatrix,numeric,missing,ANY}(x, i, j, ..., drop = TRUE)
+\S4method{[}{DataMatrix,numeric,missing}(x, i, j, ..., drop = TRUE)
 
-\S4method{[}{DataMatrix,missing,numeric,ANY}(x, i, j, ..., drop = TRUE)
+\S4method{[}{DataMatrix,missing,numeric}(x, i, j, ..., drop = TRUE)
 
-\S4method{[}{DataMatrix,missing,missing,missing}(x, i, j, ..., drop = TRUE)
+\S4method{[}{DataMatrix,numeric,numeric}(x, i, j, ..., drop = TRUE)
 
-\S4method{[[}{DataMatrix,numeric,numeric}(x, i, j, ..., exact = TRUE)
+\S4method{[[}{DataMatrix,numeric,missing}(x, i, j, ...)
 
-\S4method{[[}{DataMatrix,numeric,missing}(x, i, exact = TRUE)
+\S4method{[[}{DataMatrix,numeric,numeric}(x, i, j, ...)
 
-\S4method{[}{DataMatrix}(x, i, j, ...) <- value
+\S4method{[}{DataMatrix,missing,missing}(x, i, j, ...) <- value
 
-\S4method{[[}{DataMatrix,numeric,numeric}(x, i, j) <- value
+\S4method{[}{DataMatrix,numeric,missing}(x, i, j, ...) <- value
 
-\S4method{[[}{DataMatrix,numeric,ANY}(x, i) <- value
+\S4method{[}{DataMatrix,missing,numeric}(x, i, j, ...) <- value
+
+\S4method{[}{DataMatrix,numeric,numeric}(x, i, j, ...) <- value
+
+\S4method{[[}{DataMatrix,numeric,missing}(x, i, j, ...) <- value
+
+\S4method{[[}{DataMatrix,numeric,numeric}(x, i, j, ...) <- value
 }
 \arguments{
 \item{x}{An object from which to extract element(s) or in which to replace
@@ -52,9 +68,6 @@ entries in that dimension are selected.}
 \item{drop}{A \code{\link{logical}} scalar: should the result be coerced to
 the lowest possible dimension? This only works for extracting elements,
 not for the replacement.}
-
-\item{exact}{A \code{\link{logical}} scalar: should partial matching be used?
-If \code{TRUE} (the default), no partial matching is allowed.}
 
 \item{value}{A possible value for the element(s) of \code{x}.}
 }
@@ -85,11 +98,10 @@ colnames(B) # Get the column names
 
 ## Subset
 B[[1, 1]] # Get the first value
+B[1] # Get the first value
 B[, ] # Get all values
-B[1, ] # Get the first row
-B[, 1] # Get the first column
-B[c("A", "B", "C"), ] # Get the first three rows
-B[c("D", "E", "F"), 1, drop = FALSE] # Get 3 rows of the first column
+B[1, , drop = FALSE] # Get the first row
+B[, 1:3] # Get the first three column
 }
 \seealso{
 Other mutator: 

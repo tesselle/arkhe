@@ -15,7 +15,7 @@ A collection of classes that represent
     frequency, presence/absence data, co-occurrence matrix, etc.) upon
     which package developers can build subclasses. It also provides a set
     of generic methods (mutators and coercion mechanisms) and functions
-    (e.g.  predicates). In addition, a few classes of general interest
+    (e.g. predicates). In addition, a few classes of general interest
     (e.g. that represent stratigraphic relationships) are implemented.
 }
 \details{
