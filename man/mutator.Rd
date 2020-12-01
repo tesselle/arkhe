@@ -88,7 +88,7 @@ set_totals(x) <- value
 
 \S4method{dimnames}{GenericMatrix,list}(x) <- value
 
-\S4method{diag}{GenericMatrix}(x, names = TRUE)
+\S4method{diag}{GenericMatrix}(x)
 
 \S4method{diag}{GenericMatrix}(x) <- value
 
@@ -108,10 +108,6 @@ set_totals(x) <- value
 \item{x}{An object from which to get or set element(s).}
 
 \item{value}{A possible value for the element(s) of \code{object}.}
-
-\item{names}{A \code{\link{logical}} scalar indicating if the resulting
-vector, the diagonal of \code{x}, should inherit names from
-\code{dimnames(x)} if available.}
 }
 \value{
 An object of the same sort as \code{x} with the new values assigned.

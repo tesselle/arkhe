@@ -89,9 +89,9 @@ setMethod(
 setMethod(
   f = "diag",
   signature = signature(x = "GenericMatrix"),
-  definition = function(x, names = TRUE) {
-    m <- as_matrix(x)
-    diag(m, names = names)
+  definition = function(x) {
+    m <- as.matrix(x)
+    diag(m)
   }
 )
 #' @export
@@ -101,7 +101,7 @@ setMethod(
   f = "diag<-",
   signature = signature(x = "GenericMatrix"),
   definition = function(x, value) {
-    m <- as_matrix(x)
+    m <- as.matrix(x)
     value <- methods::as(value, typeof(x@values))
     diag(m) <- value
     x@values <- m
