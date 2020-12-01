@@ -115,17 +115,5 @@ rowSums(A1)
 apply(X = A1, MARGIN = 1, FUN = sum)
 ```
 
-Please note that all `*Matrix` classes extend the R base `matrix`, but the S3 part of the object **does not** store the data. Values are stored in a specific slot (allowing type checking).
-
-```{r s3}
-X <- CountMatrix(data = sample(0:10, 25, TRUE), nrow = 5, ncol = 5)
-
-## Get the S3 part
-S3Part(X, strictS3 = TRUE)
-
-## Coerce to an S3 matrix
-as.matrix(X)
-```
-
 ## Contributing
 Please note that the **arkhe** project is released with a [Contributor Code of Conduct](https://github.com/nfrerebeau/arkhe/blob/master/.github/CODE_OF_CONDUCT.md). By contributing to this project, you agree to abide by its terms.

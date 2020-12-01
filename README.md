@@ -125,36 +125,10 @@ Many familiar methods and group generic functions are available for all
 ``` r
 rowSums(A1)
 #>  row1  row2  row3  row4  row5  row6  row7  row8  row9 row10 
-#>    48    51    54    46    47    44    61    49    60    50
+#>    49    43    57    47    50    53    60    40    51    55
 apply(X = A1, MARGIN = 1, FUN = sum)
 #>  row1  row2  row3  row4  row5  row6  row7  row8  row9 row10 
-#>    48    51    54    46    47    44    61    49    60    50
-```
-
-Please note that all `*Matrix` classes extend the R base `matrix`, but
-the S3 part of the object **does not** store the data. Values are stored
-in a specific slot (allowing type checking).
-
-``` r
-X <- CountMatrix(data = sample(0:10, 25, TRUE), nrow = 5, ncol = 5)
-
-## Get the S3 part
-S3Part(X, strictS3 = TRUE)
-#>      col1 col2 col3 col4 col5
-#> row1    1    6   11   16   21
-#> row2    2    7   12   17   22
-#> row3    3    8   13   18   23
-#> row4    4    9   14   19   24
-#> row5    5   10   15   20   25
-
-## Coerce to an S3 matrix
-as.matrix(X)
-#>      col1 col2 col3 col4 col5
-#> row1    4    1    1    2    6
-#> row2   10    0    5    0    8
-#> row3    6   10    7    1   10
-#> row4    9    0    7    2    7
-#> row5    5    5    1    5    7
+#>    49    43    57    47    50    53    60    40    51    55
 ```
 
 ## Contributing
