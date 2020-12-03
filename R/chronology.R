@@ -8,7 +8,9 @@ setMethod(
   f = "get_dates",
   signature = "GenericMatrix",
   definition = function(object) {
-    data.frame(values = object@date_values, errors = object@date_errors)
+    d <- data.frame(value = object@date_values, error = object@date_errors)
+    if (nrow(d) > 0) rownames(d) <- object@row_names
+    d
   }
 )
 
@@ -83,7 +85,7 @@ setMethod(
            call. = FALSE)
     }
 
-    m <- matrix(data = unlist(x), ncol = 2)
+    m <- as.matrix(cbind.data.frame(x))
     set_dates(object) <- m
     object
   }
