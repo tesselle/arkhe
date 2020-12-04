@@ -31,6 +31,9 @@ setMethod(
       .Object = x,
       size = dim(k),
       row_names = x@row_names[i],
+      sample_names = x@sample_names[i],
+      date_values = x@date_values[i],
+      date_errors = x@date_errors[i],
       values = x@values[k]
     )
   }
@@ -52,9 +55,6 @@ setMethod(
       .Object = x,
       size = dim(k),
       column_names = x@column_names[j],
-      sample_names = x@sample_names[j],
-      date_values = x@date_values[j],
-      date_errors = x@date_errors[j],
       values = x@values[k]
     )
   }
@@ -77,9 +77,9 @@ setMethod(
       size = dim(k),
       row_names = x@row_names[i],
       column_names = x@column_names[j],
-      sample_names = x@sample_names[j],
-      date_values = x@date_values[j],
-      date_errors = x@date_errors[j],
+      sample_names = x@sample_names[i],
+      date_values = x@date_values[i],
+      date_errors = x@date_errors[i],
       values = x@values[k]
     )
   }
