@@ -13,6 +13,7 @@ setGeneric("rowMeans")
 setGeneric("colMeans")
 setGeneric("diag")
 setGeneric("diag<-")
+setGeneric("mean")
 
 # Clean ========================================================================
 #' Data Cleaning
