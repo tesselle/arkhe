@@ -8,11 +8,11 @@ NULL
 #' @aliases remove_NA,matrix-method
 setMethod(
   f = "remove_NA",
-  signature = signature(object = "matrix"),
-  definition = function(object, margin = 1, finite = TRUE) {
-    index <- detect_missing(object, margin = margin, finite = finite)
-    if (margin == 1) x <- object[!index, , drop = FALSE]
-    if (margin == 2) x <- object[, !index, drop = FALSE]
+  signature = signature(x = "matrix"),
+  definition = function(x, margin = 1, finite = TRUE) {
+    index <- detect_missing(x, margin = margin, finite = finite)
+    if (margin == 1) x <- x[!index, , drop = FALSE]
+    if (margin == 2) x <- x[, !index, drop = FALSE]
     x
   }
 )
@@ -22,11 +22,11 @@ setMethod(
 #' @aliases remove_NA,data.frame-method
 setMethod(
   f = "remove_NA",
-  signature = signature(object = "data.frame"),
-  definition = function(object, margin = 1, finite = TRUE) {
-    index <- detect_missing(object, margin = margin, finite = finite)
-    if (margin == 1) x <- object[!index, , drop = FALSE]
-    if (margin == 2) x <- object[, !index, drop = FALSE]
+  signature = signature(x = "data.frame"),
+  definition = function(x, margin = 1, finite = TRUE) {
+    index <- detect_missing(x, margin = margin, finite = finite)
+    if (margin == 1) x <- x[!index, , drop = FALSE]
+    if (margin == 2) x <- x[, !index, drop = FALSE]
     x
   }
 )
@@ -37,11 +37,11 @@ setMethod(
 #' @aliases remove_zero,matrix-method
 setMethod(
   f = "remove_zero",
-  signature = signature(object = "matrix"),
-  definition = function(object, margin = 1) {
-    index <- detect_zero(object, margin = margin)
-    if (margin == 1) x <- object[!index, , drop = FALSE]
-    if (margin == 2) x <- object[, !index, drop = FALSE]
+  signature = signature(x = "matrix"),
+  definition = function(x, margin = 1) {
+    index <- detect_zero(x, margin = margin)
+    if (margin == 1) x <- x[!index, , drop = FALSE]
+    if (margin == 2) x <- x[, !index, drop = FALSE]
     x
   }
 )
@@ -51,11 +51,24 @@ setMethod(
 #' @aliases remove_zero,data.frame-method
 setMethod(
   f = "remove_zero",
-  signature = signature(object = "data.frame"),
-  definition = function(object, margin = 1) {
-    index <- detect_zero(object, margin = margin)
-    if (margin == 1) x <- object[!index, , drop = FALSE]
-    if (margin == 2) x <- object[, !index, drop = FALSE]
+  signature = signature(x = "data.frame"),
+  definition = function(x, margin = 1) {
+    index <- detect_zero(x, margin = margin)
+    if (margin == 1) x <- x[!index, , drop = FALSE]
+    if (margin == 2) x <- x[, !index, drop = FALSE]
+    x
+  }
+)
+
+#' @export
+#' @rdname clean
+#' @aliases remove_zero,DataMatrix-method
+setMethod(
+  f = "remove_zero",
+  signature = signature(x = "DataMatrix"),
+  definition = function(x, margin = 1) {
+    x <- as.matrix(x)
+    x <- remove_zero(x, margin = margin)
     x
   }
 )

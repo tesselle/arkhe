@@ -15,8 +15,9 @@ A collection of classes that represent
     frequency, presence/absence data, co-occurrence matrix, etc.) upon
     which package developers can build subclasses. It also provides a set
     of generic methods (mutators and coercion mechanisms) and functions
-    (e.g. predicates). In addition, a few classes of general interest
-    (e.g. that represent stratigraphic relationships) are implemented.
+    (e.g. summary statistics, predicates). In addition, a few classes of 
+    general interest (e.g. that represent stratigraphic relationships) 
+    are implemented.
 }
 \details{
 \tabular{ll}{
@@ -32,7 +33,6 @@ Useful links:
 \itemize{
   \item \url{http://arkhe.archaeo.science}
   \item \url{https://github.com/nfrerebeau/arkhe}
-  \item \url{https://cran.r-project.org/package=arkhe}
   \item Report bugs at \url{https://github.com/nfrerebeau/arkhe/issues}
 }
 

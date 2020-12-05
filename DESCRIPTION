@@ -20,12 +20,12 @@ Description: A collection of classes that represent
     frequency, presence/absence data, co-occurrence matrix, etc.) upon
     which package developers can build subclasses. It also provides a set
     of generic methods (mutators and coercion mechanisms) and functions
-    (e.g. predicates). In addition, a few classes of general interest
-    (e.g. that represent stratigraphic relationships) are implemented.
+    (e.g. summary statistics, predicates). In addition, a few classes of 
+    general interest (e.g. that represent stratigraphic relationships) 
+    are implemented.
 License: GPL-3
 URL: http://arkhe.archaeo.science,
-    https://github.com/nfrerebeau/arkhe,
-    https://cran.r-project.org/package=arkhe
+    https://github.com/nfrerebeau/arkhe
 BugReports: https://github.com/nfrerebeau/arkhe/issues
 Depends: 
     R (>= 3.3)
@@ -51,6 +51,7 @@ Collate:
     'chronology.R'
     'clean.R'
     'coerce.R'
+    'compositions.R'
     'conditions.R'
     'geography.R'
     'initialize.R'

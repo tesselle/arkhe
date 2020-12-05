@@ -11,22 +11,26 @@
 \alias{remove_NA,data.frame-method}
 \alias{remove_zero,matrix-method}
 \alias{remove_zero,data.frame-method}
+\alias{remove_zero,DataMatrix-method}
 \title{Data Cleaning}
 \usage{
-remove_NA(object, ...)
+remove_NA(x, ...)
 
-remove_zero(object, ...)
+remove_zero(x, ...)
 
-\S4method{remove_NA}{matrix}(object, margin = 1, finite = TRUE)
+\S4method{remove_NA}{matrix}(x, margin = 1, finite = TRUE)
 
-\S4method{remove_NA}{data.frame}(object, margin = 1, finite = TRUE)
+\S4method{remove_NA}{data.frame}(x, margin = 1, finite = TRUE)
 
-\S4method{remove_zero}{matrix}(object, margin = 1)
+\S4method{remove_zero}{matrix}(x, margin = 1)
 
-\S4method{remove_zero}{data.frame}(object, margin = 1)
+\S4method{remove_zero}{data.frame}(x, margin = 1)
+
+\S4method{remove_zero}{DataMatrix}(x, margin = 1)
 }
 \arguments{
-\item{object}{A \code{\link{matrix}} or \code{\link{data.frame}}.}
+\item{x}{A \code{\link{matrix}}, \code{\link{data.frame}} or
+\linkS4class{DataMatrix} object.}
 
 \item{...}{Currently not used.}
 

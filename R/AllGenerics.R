@@ -13,13 +13,16 @@ setGeneric("rowMeans")
 setGeneric("colMeans")
 setGeneric("diag")
 setGeneric("diag<-")
-setGeneric("mean")
+setGeneric("cov")
+setGeneric("cor")
+setGeneric("var")
 
 # Clean ========================================================================
 #' Data Cleaning
 #'
 #' Removes row/column with missing values or zeros.
-#' @param object A \code{\link{matrix}} or \code{\link{data.frame}}.
+#' @param x A \code{\link{matrix}}, \code{\link{data.frame}} or
+#'  \linkS4class{DataMatrix} object.
 #' @param margin An \code{\link{integer}} giving the subscripts which the
 #' cleaning will be applied over (\eqn{1} indicates rows, \eqn{2} indicates
 #' columns).
@@ -38,14 +41,14 @@ NULL
 #' @aliases remove_NA-method
 setGeneric(
   name = "remove_NA",
-  def = function(object, ...) standardGeneric("remove_NA")
+  def = function(x, ...) standardGeneric("remove_NA")
 )
 
 #' @rdname clean
 #' @aliases remove_zero-method
 setGeneric(
   name = "remove_zero",
-  def = function(object, ...) standardGeneric("remove_zero")
+  def = function(x, ...) standardGeneric("remove_zero")
 )
 
 # Coerce =======================================================================
@@ -333,6 +336,25 @@ NULL
 #' @family statistics
 #' @name statistics
 #' @rdname statistics
+NULL
+
+# Compositional Data ==========================================================
+#' Compositional Data Descriptive Statistics
+#'
+#' @param x An \linkS4class{AbundanceMatrix} object.
+#' @param na.rm A \code{\link{logical}} scalar: should missing values
+#'  (including \code{NaN}) be omitted from the calculations?
+#' @return A \code{\link{matrix}}.
+#' @references
+#'  Aitchison, J. (1986). \emph{The Statistical Analysis of Compositional Data}.
+#'  London: Chapman and Hall.
+#'  DOI: \href{https://dx.doi.org/10.1007/978-94-009-4109-0}{10.1007/978-94-009-4109-0}.
+#' @example inst/examples/ex-compositions.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family statistics
+#' @name compositions
+#' @rdname compositions
 NULL
 
 # Chronology ===================================================================

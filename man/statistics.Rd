@@ -3,15 +3,12 @@
 \docType{methods}
 \name{statistics}
 \alias{statistics}
-\alias{mean,AbundanceMatrix-method}
 \alias{rowMeans,DataMatrix-method}
 \alias{colMeans,DataMatrix-method}
 \alias{rowSums,DataMatrix-method}
 \alias{colSums,DataMatrix-method}
 \title{Rowwise and Columnwise Statistics}
 \usage{
-\S4method{mean}{AbundanceMatrix}(x, na.rm = FALSE)
-
 \S4method{rowMeans}{DataMatrix}(x, na.rm = FALSE)
 
 \S4method{colMeans}{DataMatrix}(x, na.rm = FALSE)
@@ -52,6 +49,10 @@ B <- as_abundance(A)
 
 ## Compositional mean (Aitchison 1986)
 mean(B)
+}
+\seealso{
+Other statistics: 
+\code{\link{compositions}}
 }
 \author{
 N. Frerebeau
