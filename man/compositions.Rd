@@ -3,28 +3,39 @@
 \docType{methods}
 \name{compositions}
 \alias{compositions}
+\alias{variation}
+\alias{variation-method}
 \alias{mean,AbundanceMatrix-method}
-\alias{cov,AbundanceMatrix,missing-method}
-\alias{cov,AbundanceMatrix-method}
-\alias{cor,AbundanceMatrix,missing-method}
-\alias{cor,AbundanceMatrix-method}
 \alias{var,AbundanceMatrix,missing-method}
 \alias{var,AbundanceMatrix-method}
+\alias{sd,AbundanceMatrix-method}
+\alias{variation,AbundanceMatrix-method}
+\alias{dist,AbundanceMatrix-method}
 \title{Compositional Data Descriptive Statistics}
 \usage{
+variation(x)
+
 \S4method{mean}{AbundanceMatrix}(x, na.rm = FALSE)
 
-\S4method{cov}{AbundanceMatrix,missing}(x)
-
-\S4method{cor}{AbundanceMatrix,missing}(x)
-
 \S4method{var}{AbundanceMatrix,missing}(x)
+
+\S4method{sd}{AbundanceMatrix}(x)
+
+\S4method{variation}{AbundanceMatrix}(x)
+
+\S4method{dist}{AbundanceMatrix}(x, diag = FALSE, upper = FALSE)
 }
 \arguments{
 \item{x}{An \linkS4class{AbundanceMatrix} object.}
 
 \item{na.rm}{A \code{\link{logical}} scalar: should missing values
 (including \code{NaN}) be omitted from the calculations?}
+
+\item{diag}{A \code{\link{logical}} scalar: should the diagonal of the
+distance matrix be printed by \code{print.dist}?.}
+
+\item{upper}{A \code{\link{logical}} scalar: should the upper triangle of the
+distance matrix be printed by \code{print.dist}?.}
 }
 \value{
 A \code{\link{matrix}}.
@@ -33,29 +44,34 @@ A \code{\link{matrix}}.
 Compositional Data Descriptive Statistics
 }
 \examples{
-## Create an incidence (presence/absence) matrix
-A <- matrix(data = sample(1:10, 100, TRUE), nrow = 20)
+## Create a relative frequencies matrix
+set.seed(123)
+A <- matrix(data = sample(1:10, 50, TRUE), nrow = 10)
 B <- as_abundance(A)
 
-## Mean
-mean(B)
+## Compositionnal mean
+mean(B) # 0.1807357 0.2381069 0.1920732 0.2102428 0.1788414
+
+## Metric variance (or total variance)
+var(B) # 1.270878
+
+## Metric standard deviation
+sd(B) # 0.5636662
 
 ## Variation matrix
-var(B)
-
-## Correlation matrix
-cor(B)
-
-## CLR covariance matrix
-cov(B)
+variation(B)
 }
 \references{
 Aitchison, J. (1986). \emph{The Statistical Analysis of Compositional Data}.
  London: Chapman and Hall.
  DOI: \href{https://dx.doi.org/10.1007/978-94-009-4109-0}{10.1007/978-94-009-4109-0}.
+
+ Pawlowsky-Glahn, V. & Buccianti, A. (ed.) (2011). \emph{Compositional Data
+ Analysis: Theory and Applications}. Chichester: John Wiley & Sons, Ltd.
 }
 \seealso{
 Other statistics: 
+\code{\link{correlation}},
 \code{\link{statistics}}
 }
 \author{

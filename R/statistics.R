@@ -9,7 +9,7 @@ setMethod(
   f = "rowMeans",
   signature = signature(x = "DataMatrix"),
   definition = function(x, na.rm = FALSE) {
-    rowMeans(as.matrix(x), na.rm = na.rm)
+    methods::callGeneric(x = as.matrix(x), na.rm = na.rm)
   }
 )
 
@@ -20,7 +20,7 @@ setMethod(
   f = "colMeans",
   signature = signature(x = "DataMatrix"),
   definition = function(x, na.rm = FALSE) {
-    colMeans(as.matrix(x), na.rm = na.rm)
+    methods::callGeneric(x = as.matrix(x), na.rm = na.rm)
   }
 )
 
@@ -31,7 +31,7 @@ setMethod(
   f = "rowSums",
   signature = signature(x = "DataMatrix"),
   definition = function(x, na.rm = FALSE) {
-    rowSums(as.matrix(x), na.rm = na.rm)
+    methods::callGeneric(x = as.matrix(x), na.rm = na.rm)
   }
 )
 
@@ -42,7 +42,41 @@ setMethod(
   f = "colSums",
   signature = signature(x = "DataMatrix"),
   definition = function(x, na.rm = FALSE) {
-    colSums(as.matrix(x), na.rm = na.rm)
+    methods::callGeneric(x = as.matrix(x), na.rm = na.rm)
   }
 )
 
+#' @export
+#' @rdname correlation
+#' @aliases var,DataMatrix-method
+setMethod(
+  f = "var",
+  signature = signature(x = "DataMatrix", y = "missing"),
+  definition = function(x, na.rm = FALSE) {
+    methods::callGeneric(x = as.matrix(x), na.rm = na.rm)
+  }
+)
+
+#' @export
+#' @rdname correlation
+#' @aliases cov,DataMatrix-method
+setMethod(
+  f = "cov",
+  signature = signature(x = "DataMatrix", y = "missing"),
+  definition = function(x, use = "everything",
+                        method = c("pearson", "kendall", "spearman")) {
+    methods::callGeneric(x = as.matrix(x), use = use, method = method)
+  }
+)
+
+#' @export
+#' @rdname correlation
+#' @aliases cor,DataMatrix-method
+setMethod(
+  f = "cor",
+  signature = signature(x = "DataMatrix", y = "missing"),
+  definition = function(x, use = "everything",
+                        method = c("pearson", "kendall", "spearman")) {
+    methods::callGeneric(x = as.matrix(x), use = use, method = method)
+  }
+)

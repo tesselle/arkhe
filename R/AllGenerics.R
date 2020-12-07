@@ -13,9 +13,11 @@ setGeneric("rowMeans")
 setGeneric("colMeans")
 setGeneric("diag")
 setGeneric("diag<-")
+setGeneric("dist")
 setGeneric("cov")
 setGeneric("cor")
 setGeneric("var")
+setGeneric("sd")
 
 # Clean ========================================================================
 #' Data Cleaning
@@ -338,17 +340,44 @@ NULL
 #' @rdname statistics
 NULL
 
-# Compositional Data ==========================================================
+#' Correlation, Variance and Covariance
+#'
+#' Computes the variance, covariance or correlation of a \code{DataMatrix}.
+#' @param x A \linkS4class{DataMatrix} object.
+#' @param na.rm A \code{\link{logical}} scalar: should missing values
+#'  (including \code{NaN}) be omitted from the calculations?
+#' @param use An optional \code{\link{character}} string giving a method for
+#'  computing covariances in the presence of missing values (see
+#'  \code{\link[stats]{cor}}).
+#' @param method A \code{\link{character}} string indicating which correlation
+#'  coefficient (or covariance) is to be computed (see
+#'  \code{\link[stats]{cor}}).
+#' @example inst/examples/ex-statistics.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family statistics
+#' @name correlation
+#' @rdname correlation
+NULL
+
+# Compositional Data ===========================================================
 #' Compositional Data Descriptive Statistics
 #'
 #' @param x An \linkS4class{AbundanceMatrix} object.
 #' @param na.rm A \code{\link{logical}} scalar: should missing values
 #'  (including \code{NaN}) be omitted from the calculations?
+#' @param diag A \code{\link{logical}} scalar: should the diagonal of the
+#'  distance matrix be printed by \code{print.dist}?.
+#' @param upper A \code{\link{logical}} scalar: should the upper triangle of the
+#'  distance matrix be printed by \code{print.dist}?.
 #' @return A \code{\link{matrix}}.
 #' @references
 #'  Aitchison, J. (1986). \emph{The Statistical Analysis of Compositional Data}.
 #'  London: Chapman and Hall.
 #'  DOI: \href{https://dx.doi.org/10.1007/978-94-009-4109-0}{10.1007/978-94-009-4109-0}.
+#'
+#'  Pawlowsky-Glahn, V. & Buccianti, A. (ed.) (2011). \emph{Compositional Data
+#'  Analysis: Theory and Applications}. Chichester: John Wiley & Sons, Ltd.
 #' @example inst/examples/ex-compositions.R
 #' @author N. Frerebeau
 #' @docType methods

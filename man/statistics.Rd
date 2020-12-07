@@ -44,15 +44,15 @@ colMeans(A)
 rowSums(A)
 colSums(A)
 
-## Create relative frequencies
-B <- as_abundance(A)
-
-## Compositional mean (Aitchison 1986)
-mean(B)
+## Variance, covariance and correlation matrix
+var(A)
+cov(A)
+cor(A)
 }
 \seealso{
 Other statistics: 
-\code{\link{compositions}}
+\code{\link{compositions}},
+\code{\link{correlation}}
 }
 \author{
 N. Frerebeau

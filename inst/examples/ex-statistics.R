@@ -9,8 +9,7 @@ colMeans(A)
 rowSums(A)
 colSums(A)
 
-## Create relative frequencies
-B <- as_abundance(A)
-
-## Compositional mean (Aitchison 1986)
-mean(B)
+## Variance, covariance and correlation matrix
+var(A)
+cov(A)
+cor(A)

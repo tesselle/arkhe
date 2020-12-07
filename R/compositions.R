@@ -5,12 +5,28 @@ NULL
 #' Geometric Mean
 #'
 #' @param x A \code{\link{numeric}} vector.
+#' @param na.rm A \code{\link{logical}} scalar: should missing values be
+#'  stripped before the computation proceeds?
 #' @return A \code{\link{numeric}} vector.
 #' @keywords internal
 #' @noRd
 gmean <- function(x, na.rm = FALSE) {
   index <- if (na.rm) is.finite(x) & x > 0 else x > 0
   exp(mean(log(unclass(x)[index])))
+}
+
+#' Centered Log-Ratio
+#'
+#' @param x A \code{\link{numeric}} vector.
+#' @param base A \code{\link{numeric}} value giving the base with respect to
+#'  which logarithms are computed.
+#' @param na.rm A \code{\link{logical}} scalar: should missing values be
+#'  stripped before the computation proceeds?
+#' @return A \code{\link{numeric}} vector.
+#' @keywords internal
+#' @noRd
+clr <- function(x, base = exp(1), na.rm = FALSE) {
+  log(x / gmean(x, na.rm = na.rm), base = base)
 }
 
 #' @export
@@ -27,37 +43,32 @@ setMethod(
 
 #' @export
 #' @rdname compositions
-#' @aliases cov,AbundanceMatrix-method
-setMethod(
-  f = "cov",
-  signature = signature(x = "AbundanceMatrix", y = "missing"),
-  definition = function(x) {
-    geo_mean <- apply(X = x, MARGIN = 1, FUN = gmean)
-    clr <- log(x / geo_mean, base = exp(1))
-    cov(clr)
-  }
-)
-
-
-#' @export
-#' @rdname compositions
-#' @aliases cor,AbundanceMatrix-method
-setMethod(
-  f = "cor",
-  signature = signature(x = "AbundanceMatrix", y = "missing"),
-  definition = function(x) {
-    tau <- var(x)
-    rho <- exp( -tau^2 / 2)
-    rho
-  }
-)
-
-#' @export
-#' @rdname compositions
 #' @aliases var,AbundanceMatrix-method
 setMethod(
   f = "var",
   signature = signature(x = "AbundanceMatrix", y = "missing"),
+  definition = function(x) {
+    (2 * ncol(x))^(-1) * sum(variation(x))
+  }
+)
+
+#' @export
+#' @rdname compositions
+#' @aliases sd,AbundanceMatrix-method
+setMethod(
+  f = "sd",
+  signature = signature(x = "AbundanceMatrix"),
+  definition = function(x) {
+    sqrt((ncol(x) - 1)^(-1) * var(x))
+  }
+)
+
+#' @export
+#' @rdname compositions
+#' @aliases variation,AbundanceMatrix-method
+setMethod(
+  f = "variation",
+  signature = signature(x = "AbundanceMatrix"),
   definition = function(x) {
 
     n <- ncol(x)
@@ -73,5 +84,29 @@ setMethod(
       tau[i, j] <- tau[j, i] <- z
     }
     tau
+  }
+)
+
+#' @export
+#' @rdname compositions
+#' @aliases dist,AbundanceMatrix-method
+setMethod(
+  f = "dist",
+  signature = signature(x = "AbundanceMatrix"),
+  definition = function(x, diag = FALSE, upper = FALSE) {
+    n <- nrow(x)
+    ij <- utils::combn(n, m = 2)
+    pair <- seq_len(ncol(ij))
+    d <- matrix(data = 0, nrow = n, ncol = n,
+                dimnames = list(rownames(x), rownames(x)))
+
+    for (k in pair) {
+      i <- ij[1, k]
+      j <- ij[2, k]
+      z <- sqrt(sum(clr(x[i, ]) - clr(x[j, ]))^2)
+      d[i, j] <- d[j, i] <- z
+    }
+
+    stats::as.dist(d, diag = diag, upper = upper)
   }
 )
