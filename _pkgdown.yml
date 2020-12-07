@@ -26,6 +26,3 @@ reference:
 - title: Utilities
   contents:
   - has_concept("utilities")
-- title: Chronology
-  contents:
-  - has_concept("chronology")

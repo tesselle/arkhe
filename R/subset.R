@@ -32,8 +32,6 @@ setMethod(
       size = dim(k),
       row_names = x@row_names[i],
       sample_names = x@sample_names[i],
-      date_values = x@date_values[i],
-      date_errors = x@date_errors[i],
       values = x@values[k]
     )
   }
@@ -78,8 +76,6 @@ setMethod(
       row_names = x@row_names[i],
       column_names = x@column_names[j],
       sample_names = x@sample_names[i],
-      date_values = x@date_values[i],
-      date_errors = x@date_errors[i],
       values = x@values[k]
     )
   }

@@ -120,7 +120,7 @@
     }
   ],
   "readme": "https://github.com/nfrerebeau/arkhe/blob/master/README.md",
-  "fileSize": "985.61KB",
+  "fileSize": "970.475KB",
   "contIntegration": ["https://travis-ci.org/nfrerebeau/arkhe", "https://codecov.io/gh/nfrerebeau/arkhe"],
   "developmentStatus": ["https://www.repostatus.org/#active", "https://www.tidyverse.org/lifecycle/#maturing"],
   "keywords": [

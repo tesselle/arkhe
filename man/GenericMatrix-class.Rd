@@ -19,18 +19,12 @@ matrix objects.
 \item{\code{column_names}}{A \code{\link{character}} vector.}
 
 \item{\code{sample_names}}{A \code{\link{factor}} vector.}
-
-\item{\code{date_values}}{A \code{\link{numeric}} vector.}
-
-\item{\code{date_errors}}{A \code{\link{numeric}} vector.}
 }}
 
 \section{Get and set}{
 
  In the code snippets below, \code{x} is a \code{*Matrix} object.
  \describe{
-  \item{\code{get_dates(x)} and \code{set_dates(x) <- value}}{Get or set
-  the dates of \code{x}.}
   \item{\code{get_samples(x)} and \code{set_samples(x) <- value}}{Get or set
   the sample names of \code{x}.}
  }

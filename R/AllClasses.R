@@ -10,13 +10,9 @@
 #' @slot row_names A \code{\link{character}} vector.
 #' @slot column_names A \code{\link{character}} vector.
 #' @slot sample_names A \code{\link{factor}} vector.
-#' @slot date_values A \code{\link{numeric}} vector.
-#' @slot date_errors A \code{\link{numeric}} vector.
 #' @section Get and set:
 #'  In the code snippets below, \code{x} is a \code{*Matrix} object.
 #'  \describe{
-#'   \item{\code{get_dates(x)} and \code{set_dates(x) <- value}}{Get or set
-#'   the dates of \code{x}.}
 #'   \item{\code{get_samples(x)} and \code{set_samples(x) <- value}}{Get or set
 #'   the sample names of \code{x}.}
 #'  }
@@ -60,17 +56,13 @@
     size = "integer",
     row_names = "character",
     column_names = "character",
-    sample_names = "factor",
-    date_values = "numeric",
-    date_errors = "numeric"
+    sample_names = "factor"
   ),
   prototype = list(
     size = c(0L, 0L),
     row_names = character(0),
     column_names = character(0),
-    sample_names = factor(),
-    date_values = numeric(0),
-    date_errors = numeric(0)
+    sample_names = factor()
   ),
   contains = "VIRTUAL"
 )

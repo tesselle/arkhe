@@ -132,7 +132,6 @@ setAs(
       ncol = ncol(from),
       dimnames = dimnames(from)
     )
-    set_dates(x) <- get_dates(from)
     x
   }
 )
@@ -149,7 +148,6 @@ setAs(
       ncol = ncol(from),
       dimnames = dimnames(from)
     )
-    set_dates(x) <- get_dates(from)
     x
   }
 )
@@ -253,7 +251,6 @@ Matrix2incidence <- function(from) {
     ncol = ncol(from),
     dimnames = dimnames(from)
   )
-  set_dates(x) <- get_dates(from)
   x
 }
 setAs(from = "CountMatrix", to = "IncidenceMatrix", def = Matrix2incidence)

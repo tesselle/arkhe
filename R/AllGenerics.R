@@ -357,51 +357,9 @@ NULL
 #' @rdname compositions
 NULL
 
-# Chronology ===================================================================
-#' Chronological Information
-#'
-#' \code{set_dates} and \code{get_dates} allow to get or set the dates of an
-#' object.
-#' @param object A \eqn{m \times p}{m x p} matrix of count data (typically of
-#'  class \linkS4class{Matrix}).
-#' @param value A possible value for the element(s) of \code{object} (see
-#'  below).
-#' @details
-#'  An attempt is made to interpret the argument \code{value} in a suitable way.
-#'  \emph{Note} that errors are assumed to be given at \code{1} sigma.
-#'
-#'  If \code{value} is a:
-#'  \describe{
-#'   \item{\code{character} vector}{it is assumed to contain Roman numerals.}
-#'   \item{\code{numeric} or \code{integer} \code{vector}}{these values are
-#'   assumed to represent dates without known errors.}
-#'   \item{\code{list}}{containing components "\code{value}" and "\code{error}",
-#'   these are used to define dates and corresponding errors.}
-#'   \item{\code{matrix} or \code{data.frame} with two or more columns}{the
-#'   first is assumed to contain the dates and the second the error values.
-#'   Note that if \code{value} has columns named "\code{value}" and
-#'   "\code{error}", these columns will be used.}
-#'  }
-#' @return
-#'  \code{get_dates} returns a two-columns \code{\link{data.frame}}.
-#' @example inst/examples/ex-chronology.R
-#' @author N. Frerebeau
-#' @family chronology
-#' @docType methods
-#' @name chronology
-#' @rdname chronology
-NULL
-
-#' @rdname chronology
-#' @aliases get_dates-method
+#' @rdname compositions
+#' @aliases variation-method
 setGeneric(
-  name = "get_dates",
-  def = function(object) standardGeneric("get_dates")
-)
-
-#' @rdname chronology
-#' @aliases set_dates-method
-setGeneric(
-  name = "set_dates<-",
-  def = function(object, value) standardGeneric("set_dates<-")
+  name = "variation",
+  def = function(x) standardGeneric("variation")
 )
