@@ -53,7 +53,6 @@ cor(A)
 }
 \seealso{
 Other statistics: 
-\code{\link{compositions}},
 \code{\link{statistics}}
 }
 \author{

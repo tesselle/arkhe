@@ -11,3 +11,19 @@ setMethod(
     print(as.matrix(object))
   }
 )
+
+setMethod(
+  f = "show",
+  signature = "MatrixSummary",
+  definition = function(object) {
+
+    for (x in object) {
+      group <- sprintf("%s (%d observations)", x$group, x$dim[[1L]])
+      ndashes <- getOption("width") - nchar(group) - 5
+      dashes <- paste0(rep("-", times = ndashes), collapse = "")
+      cat(sprintf("--- %s %s\n", group, dashes))
+      print(x$stats)
+    }
+
+  }
+)

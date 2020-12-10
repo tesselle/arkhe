@@ -6,26 +6,26 @@
 \alias{.GenericMatrix}
 \title{Matrix}
 \description{
-An S4 class to represent a matrix. This is the mother class of all
-matrix objects.
+An S4 class to represent a \eqn{m \times p}{m x p} matrix. This is the mother
+class of all matrix objects.
 }
 \section{Slots}{
 
 \describe{
-\item{\code{size}}{An \code{\link{integer}} vector.}
+\item{\code{size}}{A length-two \code{\link{integer}} vector.}
 
-\item{\code{row_names}}{A \code{\link{character}} vector.}
+\item{\code{row_names}}{A length-\eqn{m} \code{\link{character}} vector.}
 
-\item{\code{column_names}}{A \code{\link{character}} vector.}
+\item{\code{column_names}}{A length-\eqn{p} \code{\link{character}} vector.}
 
-\item{\code{sample_names}}{A \code{\link{factor}} vector.}
+\item{\code{group_names}}{A length-\eqn{m} \code{\link{character}} vector.}
 }}
 
 \section{Get and set}{
 
  In the code snippets below, \code{x} is a \code{*Matrix} object.
  \describe{
-  \item{\code{get_samples(x)} and \code{set_samples(x) <- value}}{Get or set
+  \item{\code{get_groups(x)} and \code{set_groups(x) <- value}}{Get or set
   the sample names of \code{x}.}
  }
 }
@@ -71,6 +71,7 @@ Other matrix:
 \code{\link{CountMatrix-class}},
 \code{\link{DataMatrix-class}},
 \code{\link{IncidenceMatrix-class}},
+\code{\link{MatrixSummary-class}},
 \code{\link{OccurrenceMatrix-class}},
 \code{\link{SimilarityMatrix-class}},
 \code{\link{StratigraphicMatrix-class}},

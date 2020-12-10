@@ -340,35 +340,16 @@ NULL
 #' @rdname correlation
 NULL
 
-# Compositional Data ===========================================================
-#' Compositional Data Descriptive Statistics
+# Summary ======================================================================
+#' Matrix Summaries
 #'
-#' @param x An \linkS4class{AbundanceMatrix} object.
-#' @param na.rm A \code{\link{logical}} scalar: should missing values
-#'  (including \code{NaN}) be omitted from the calculations?
-#' @param diag A \code{\link{logical}} scalar: should the diagonal of the
-#'  distance matrix be printed by \code{print.dist}?.
-#' @param upper A \code{\link{logical}} scalar: should the upper triangle of the
-#'  distance matrix be printed by \code{print.dist}?.
-#' @return A \code{\link{matrix}}.
-#' @references
-#'  Aitchison, J. (1986). \emph{The Statistical Analysis of Compositional Data}.
-#'  London: Chapman and Hall.
-#'  DOI: \href{https://dx.doi.org/10.1007/978-94-009-4109-0}{10.1007/978-94-009-4109-0}.
-#'
-#'  Pawlowsky-Glahn, V. & Buccianti, A. (ed.) (2011). \emph{Compositional Data
-#'  Analysis: Theory and Applications}. Chichester: John Wiley & Sons, Ltd.
-#' @example inst/examples/ex-compositions.R
+#' @param object A \linkS4class{DataMatrix} object.
+#' @param ... Further arguments to be passed to \code{\link[base]{summary}}.
+#' @return A \linkS4class{MatrixSummary} object.
+#' @example inst/examples/ex-summary.R
 #' @author N. Frerebeau
 #' @docType methods
-#' @family statistics
-#' @name compositions
-#' @rdname compositions
+#' @family summary
+#' @name summary
+#' @rdname summary
 NULL
-
-#' @rdname compositions
-#' @aliases variation-method
-setGeneric(
-  name = "variation",
-  def = function(x) standardGeneric("variation")
-)

@@ -23,7 +23,7 @@ A co-occurrence matrix is a symmetric matrix with zeros on its main
 
  In the code snippets below, \code{x} is a \code{*Matrix} object.
  \describe{
-  \item{\code{get_samples(x)} and \code{set_samples(x) <- value}}{Get or set
+  \item{\code{get_groups(x)} and \code{set_groups(x) <- value}}{Get or set
   the sample names of \code{x}.}
  }
 }
@@ -98,6 +98,7 @@ Other matrix:
 \code{\link{DataMatrix-class}},
 \code{\link{GenericMatrix-class}},
 \code{\link{IncidenceMatrix-class}},
+\code{\link{MatrixSummary-class}},
 \code{\link{SimilarityMatrix-class}},
 \code{\link{StratigraphicMatrix-class}},
 \code{\link{coerce}()}

@@ -81,6 +81,7 @@ Other matrix:
 \code{\link{DataMatrix-class}},
 \code{\link{GenericMatrix-class}},
 \code{\link{IncidenceMatrix-class}},
+\code{\link{MatrixSummary-class}},
 \code{\link{OccurrenceMatrix-class}},
 \code{\link{SimilarityMatrix-class}},
 \code{\link{coerce}()}
