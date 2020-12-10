@@ -10,8 +10,8 @@ An S4 class to represent a co-occurrence matrix.
 }
 \details{
 A co-occurrence matrix is a symmetric matrix with zeros on its main
- diagonal, which works out how many times (expressed in percent) each pairs
- of taxa/types occur together in at least one sample.
+ diagonal, which works out how many times each pairs of taxa/types occur
+ together in at least one sample.
 }
 \section{Slots}{
 

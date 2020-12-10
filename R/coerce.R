@@ -189,28 +189,25 @@ matrix2occurrence <- function(from) {
   incid <- as_incidence(from)
   data <- as.matrix(incid)
   labels <- colnames(incid)
-  p <- ncol(incid)
   m <- nrow(incid)
+  p <- ncol(incid)
 
-  # @param indices A length-two numeric vector
-  # @param data A numeric or logical matrix
-  fun <- function(indices, data) {
-    sum(data[, indices[1]] + data[, indices[2]] == 2)
-  }
-  # Get all combinations of variables, taken 2 at a time
-  combine <- utils::combn(seq_len(p), 2, simplify = TRUE)
-  occurrence <- apply(X = combine, MARGIN = 2, FUN = fun, data = data) / m
-
+  ij <- utils::combn(p, m = 2, simplify = TRUE)
+  pair <- seq_len(ncol(ij))
   mtx <- matrix(data = 0, nrow = p, ncol = p)
-  mtx[lower.tri(mtx, diag = FALSE)] <- occurrence
-  mtx <- t(mtx)
-  mtx[lower.tri(mtx, diag = FALSE)] <- occurrence
+
+  for (k in pair) {
+    i <- ij[1, k]
+    j <- ij[2, k]
+    z <- sum(incid[, i] + incid[, j] == 2)
+    mtx[i, j] <- mtx[j, i] <- z
+  }
 
   .OccurrenceMatrix(
     size = c(p, p),
     row_names = labels,
     column_names = labels,
-    values = as.numeric(mtx),
+    values = as.integer(mtx),
     n = m
   )
 }

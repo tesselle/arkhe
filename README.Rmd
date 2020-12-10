@@ -61,9 +61,9 @@ library(arkhe)
 
 * Integer matrix:
     * `CountMatrix` represents absolute frequency data,
+    * `OccurrenceMatrix` represents a co-occurrence matrix,
 * Numeric matrix:
     * `AbundanceMatrix` represents relative frequency data,
-    * `OccurrenceMatrix` represents a co-occurrence matrix,
     * `SimilarityMatrix` represents a (dis)similarity matrix,
 * Logical matrix:
     * `IncidenceMatrix` represents presence/absence data,

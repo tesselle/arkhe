@@ -64,9 +64,9 @@ types of matrix.
 
   - Integer matrix:
       - `CountMatrix` represents absolute frequency data,
+      - `OccurrenceMatrix` represents a co-occurrence matrix,
   - Numeric matrix:
       - `AbundanceMatrix` represents relative frequency data,
-      - `OccurrenceMatrix` represents a co-occurrence matrix,
       - `SimilarityMatrix` represents a (dis)similarity matrix,
   - Logical matrix:
       - `IncidenceMatrix` represents presence/absence data,
@@ -125,14 +125,14 @@ Many familiar methods and group generic functions are available for all
 ``` r
 rowSums(A1)
 #>  row1  row2  row3  row4  row5  row6  row7  row8  row9 row10 row11 row12 row13 
-#>    18    20    30    18    29    27    19    33    22    23    30    29    20 
+#>    28    28    28    27    20    14    29    12    20    37    24    32    13 
 #> row14 row15 
-#>    17    17
+#>    24    21
 apply(X = A1, MARGIN = 1, FUN = sum)
 #>  row1  row2  row3  row4  row5  row6  row7  row8  row9 row10 row11 row12 row13 
-#>    18    20    30    18    29    27    19    33    22    23    30    29    20 
+#>    28    28    28    27    20    14    29    12    20    37    24    32    13 
 #> row14 row15 
-#>    17    17
+#>    24    21
 ```
 
 Observations in `*Matrix` classes can be grouped, this can be useful for
@@ -143,29 +143,29 @@ replicated measurements/observations or to group data by site/area.
 set_groups(A1) <- rep(c("A", "B", "C"), each = 5)
 summary(A1)
 #> --- A (5 observations) ---------------------------------------------------------
-#>       col1           col2          col3          col4          col5    
-#>  Min.   : 1.0   Min.   :3.0   Min.   :1.0   Min.   :0.0   Min.   :1.0  
-#>  1st Qu.: 2.0   1st Qu.:4.0   1st Qu.:3.0   1st Qu.:3.0   1st Qu.:1.0  
-#>  Median : 8.0   Median :4.0   Median :5.0   Median :4.0   Median :3.0  
-#>  Mean   : 5.8   Mean   :4.2   Mean   :4.8   Mean   :4.6   Mean   :3.6  
-#>  3rd Qu.: 8.0   3rd Qu.:5.0   3rd Qu.:6.0   3rd Qu.:8.0   3rd Qu.:4.0  
-#>  Max.   :10.0   Max.   :5.0   Max.   :9.0   Max.   :8.0   Max.   :9.0  
+#>       col1          col2          col3         col4           col5     
+#>  Min.   :1.0   Min.   :1.0   Min.   : 2   Min.   : 4.0   Min.   : 1.0  
+#>  1st Qu.:2.0   1st Qu.:2.0   1st Qu.: 7   1st Qu.: 6.0   1st Qu.: 2.0  
+#>  Median :3.0   Median :2.0   Median : 7   Median : 8.0   Median : 7.0  
+#>  Mean   :3.2   Mean   :2.8   Mean   : 7   Mean   : 7.4   Mean   : 5.8  
+#>  3rd Qu.:5.0   3rd Qu.:3.0   3rd Qu.: 9   3rd Qu.: 9.0   3rd Qu.: 9.0  
+#>  Max.   :5.0   Max.   :6.0   Max.   :10   Max.   :10.0   Max.   :10.0  
 #> --- B (5 observations) ---------------------------------------------------------
-#>       col1          col2           col3           col4           col5     
-#>  Min.   :0.0   Min.   : 1.0   Min.   : 0.0   Min.   : 0.0   Min.   : 0.0  
-#>  1st Qu.:2.0   1st Qu.: 1.0   1st Qu.: 4.0   1st Qu.: 5.0   1st Qu.: 1.0  
-#>  Median :7.0   Median : 2.0   Median : 6.0   Median : 8.0   Median : 4.0  
-#>  Mean   :5.2   Mean   : 3.2   Mean   : 5.6   Mean   : 6.6   Mean   : 4.2  
-#>  3rd Qu.:8.0   3rd Qu.: 2.0   3rd Qu.: 8.0   3rd Qu.:10.0   3rd Qu.: 6.0  
-#>  Max.   :9.0   Max.   :10.0   Max.   :10.0   Max.   :10.0   Max.   :10.0  
+#>       col1           col2           col3          col4          col5    
+#>  Min.   : 1.0   Min.   : 2.0   Min.   :0.0   Min.   :1.0   Min.   :0.0  
+#>  1st Qu.: 3.0   1st Qu.: 2.0   1st Qu.:0.0   1st Qu.:2.0   1st Qu.:2.0  
+#>  Median : 5.0   Median : 6.0   Median :6.0   Median :3.0   Median :4.0  
+#>  Mean   : 5.6   Mean   : 5.8   Mean   :4.4   Mean   :3.2   Mean   :3.4  
+#>  3rd Qu.: 9.0   3rd Qu.: 9.0   3rd Qu.:8.0   3rd Qu.:3.0   3rd Qu.:5.0  
+#>  Max.   :10.0   Max.   :10.0   Max.   :8.0   Max.   :7.0   Max.   :6.0  
 #> --- C (5 observations) ---------------------------------------------------------
-#>       col1          col2          col3        col4          col5     
-#>  Min.   :0.0   Min.   :0.0   Min.   :1   Min.   :5.0   Min.   : 2.0  
-#>  1st Qu.:1.0   1st Qu.:2.0   1st Qu.:1   1st Qu.:6.0   1st Qu.: 5.0  
-#>  Median :5.0   Median :5.0   Median :1   Median :6.0   Median : 7.0  
-#>  Mean   :3.6   Mean   :4.4   Mean   :2   Mean   :6.2   Mean   : 6.4  
-#>  3rd Qu.:6.0   3rd Qu.:7.0   3rd Qu.:2   3rd Qu.:7.0   3rd Qu.: 8.0  
-#>  Max.   :6.0   Max.   :8.0   Max.   :5   Max.   :7.0   Max.   :10.0
+#>       col1          col2           col3           col4          col5    
+#>  Min.   :3.0   Min.   : 2.0   Min.   : 0.0   Min.   :0.0   Min.   :1.0  
+#>  1st Qu.:4.0   1st Qu.: 6.0   1st Qu.: 4.0   1st Qu.:0.0   1st Qu.:2.0  
+#>  Median :4.0   Median : 7.0   Median : 6.0   Median :3.0   Median :2.0  
+#>  Mean   :4.2   Mean   : 6.6   Mean   : 5.6   Mean   :2.6   Mean   :3.8  
+#>  3rd Qu.:5.0   3rd Qu.: 8.0   3rd Qu.: 8.0   3rd Qu.:4.0   3rd Qu.:6.0  
+#>  Max.   :5.0   Max.   :10.0   Max.   :10.0   Max.   :6.0   Max.   :8.0
 ```
 
 ## Contributing

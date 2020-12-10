@@ -28,10 +28,11 @@ knitr::opts_chunk$set(
 # Definitions
 The **arkhe** package provides a set of S4 classes for archaeological data matrices. These new classes represent different special types of matrix.
 
-* Numeric matrix:
+* Integer matrix:
     * `CountMatrix` represents absolute frequency data,
-    * `AbundanceMatrix` represents relative frequency data,
     * `OccurrenceMatrix` represents a co-occurrence matrix,
+* Numeric matrix:
+    * `AbundanceMatrix` represents relative frequency data,
     * `SimilarityMatrix` represents a (dis)similarity matrix,
 * Logical matrix:
     * `IncidenceMatrix` represents presence/absence data,
@@ -72,7 +73,7 @@ We denote the $m \times p$ frequency matrix by $B = \left[ b_{ij} \right] ~\fora
 
 ### Co-occurrence matrix (`OccurrenceMatrix`)
 
-A co-occurrence matrix is a symmetric matrix with zeros on its main diagonal, which works out how many times (expressed in percent) each pairs of taxa occur together in at least one sample.
+A co-occurrence matrix is a symmetric matrix with zeros on its main diagonal, which works out how many times each pairs of taxa occur together in at least one sample.
 
 The $p \times p$ co-occurrence matrix $D = \left[ d_{i,j} \right] ~\forall i,j \in \left[ 1,p \right]$ is defined over an $m \times p$ abundance matrix $A = \left[ a_{x,y} \right] ~\forall x \in \left[ 1,m \right], y \in \left[ 1,p \right]$ as:
 

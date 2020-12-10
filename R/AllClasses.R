@@ -153,6 +153,32 @@
   contains = "IntegerMatrix"
 )
 
+# OccurrenceMatrix -------------------------------------------------------------
+#' Co-Occurrence Matrix
+#'
+#' An S4 class to represent a co-occurrence matrix.
+#' @slot n An \code{\link{integer}} giving the number of observations.
+#' @details
+#'  A co-occurrence matrix is a symmetric matrix with zeros on its main
+#'  diagonal, which works out how many times each pairs of taxa/types occur
+#'  together in at least one sample.
+#' @inheritSection DataMatrix-class Get and set
+#' @inheritSection DataMatrix-class Access
+#' @inheritSection DataMatrix-class Subset
+#' @seealso \link{as_occurrence}
+#' @example inst/examples/ex-matrix.R
+#' @author N. Frerebeau
+#' @family matrix
+#' @docType class
+#' @aliases OccurrenceMatrix-class
+.OccurrenceMatrix <- setClass(
+  Class = "OccurrenceMatrix",
+  slots = c(
+    n = "integer"
+  ),
+  contains = "IntegerMatrix"
+)
+
 # NumericMatrix ================================================================
 # AbundanceMatrix --------------------------------------------------------------
 #' Relative Frequency Matrix
@@ -175,32 +201,6 @@
   Class = "AbundanceMatrix",
   slots = c(
     totals = "numeric"
-  ),
-  contains = "NumericMatrix"
-)
-
-# OccurrenceMatrix -------------------------------------------------------------
-#' Co-Occurrence Matrix
-#'
-#' An S4 class to represent a co-occurrence matrix.
-#' @slot n An \code{\link{integer}} giving the number of observations.
-#' @details
-#'  A co-occurrence matrix is a symmetric matrix with zeros on its main
-#'  diagonal, which works out how many times (expressed in percent) each pairs
-#'  of taxa/types occur together in at least one sample.
-#' @inheritSection DataMatrix-class Get and set
-#' @inheritSection DataMatrix-class Access
-#' @inheritSection DataMatrix-class Subset
-#' @seealso \link{as_occurrence}
-#' @example inst/examples/ex-matrix.R
-#' @author N. Frerebeau
-#' @family matrix
-#' @docType class
-#' @aliases OccurrenceMatrix-class
-.OccurrenceMatrix <- setClass(
-  Class = "OccurrenceMatrix",
-  slots = c(
-    n = "integer"
   ),
   contains = "NumericMatrix"
 )
