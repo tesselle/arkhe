@@ -4,36 +4,36 @@ NULL
 
 #' @export
 #' @rdname mutator
-#' @aliases length,GenericMatrix-method
+#' @aliases length,DataMatrix-method
 setMethod(
   f = "length",
-  signature = signature(x = "GenericMatrix"),
+  signature = signature(x = "DataMatrix"),
   definition = function(x) prod(x@size)
 )
 #' @export
 #' @rdname mutator
-#' @aliases dim,GenericMatrix-method
+#' @aliases dim,DataMatrix-method
 setMethod(
   f = "dim",
-  signature = signature(x = "GenericMatrix"),
+  signature = signature(x = "DataMatrix"),
   definition = function(x) x@size
 )
 #' @export
 #' @rdname mutator
-#' @aliases rownames,GenericMatrix-method
+#' @aliases rownames,DataMatrix-method
 setMethod(
   f = "rownames",
-  signature = signature(x = "GenericMatrix"),
+  signature = signature(x = "DataMatrix"),
   definition = function(x) {
     if (length(x@row_names) > 0) x@row_names else NULL
   }
 )
 #' @export
 #' @rdname mutator
-#' @aliases rownames<-,GenericMatrix,ANY-method
+#' @aliases rownames<-,DataMatrix,ANY-method
 setMethod(
   f = "rownames<-",
-  signature = signature(x = "GenericMatrix", value = "ANY"),
+  signature = signature(x = "DataMatrix", value = "ANY"),
   definition = function(x, value) {
     x@row_names <- as.character(value)
     methods::validObject(x)
@@ -42,20 +42,20 @@ setMethod(
 )
 #' @export
 #' @rdname mutator
-#' @aliases colnames,GenericMatrix-method
+#' @aliases colnames,DataMatrix-method
 setMethod(
   f = "colnames",
-  signature = signature(x = "GenericMatrix"),
+  signature = signature(x = "DataMatrix"),
   definition = function(x) {
     if (length(x@column_names) > 0) x@column_names else NULL
   }
 )
 #' @export
 #' @rdname mutator
-#' @aliases colnames<-,GenericMatrix,ANY-method
+#' @aliases colnames<-,DataMatrix,ANY-method
 setMethod(
   f = "colnames<-",
-  signature = signature(x = "GenericMatrix", value = "ANY"),
+  signature = signature(x = "DataMatrix", value = "ANY"),
   definition = function(x, value) {
     x@column_names <- as.character(value)
     methods::validObject(x)
@@ -64,18 +64,18 @@ setMethod(
 )
 #' @export
 #' @rdname mutator
-#' @aliases dimnames,GenericMatrix-method
+#' @aliases dimnames,DataMatrix-method
 setMethod(
   f = "dimnames",
-  signature = signature(x = "GenericMatrix"),
+  signature = signature(x = "DataMatrix"),
   definition = function(x) list(rownames(x), colnames(x))
 )
 #' @export
 #' @rdname mutator
-#' @aliases dimnames<-,GenericMatrix,list-method
+#' @aliases dimnames<-,DataMatrix,list-method
 setMethod(
   f = "dimnames<-",
-  signature = signature(x = "GenericMatrix", value = "list"),
+  signature = signature(x = "DataMatrix", value = "list"),
   definition = function(x, value) {
     x@row_names <- as.character(value[[1L]])
     x@column_names <- as.character(value[[2L]])
@@ -85,10 +85,10 @@ setMethod(
 )
 #' @export
 #' @rdname mutator
-#' @aliases diag,GenericMatrix-method
+#' @aliases diag,DataMatrix-method
 setMethod(
   f = "diag",
-  signature = signature(x = "GenericMatrix"),
+  signature = signature(x = "DataMatrix"),
   definition = function(x) {
     m <- as.matrix(x)
     diag(m)
@@ -96,10 +96,10 @@ setMethod(
 )
 #' @export
 #' @rdname mutator
-#' @aliases diag<-,GenericMatrix-method
+#' @aliases diag<-,DataMatrix-method
 setMethod(
   f = "diag<-",
-  signature = signature(x = "GenericMatrix"),
+  signature = signature(x = "DataMatrix"),
   definition = function(x, value) {
     m <- as.matrix(x)
     value <- methods::as(value, typeof(x@values))
@@ -113,13 +113,13 @@ setMethod(
 # Getters ======================================================================
 #' @export
 #' @rdname mutator
-#' @aliases has_groups,GenericMatrix-method
-setMethod("has_groups", "GenericMatrix", function(x) length(x@group_names) > 0)
+#' @aliases has_groups,DataMatrix-method
+setMethod("has_groups", "DataMatrix", function(x) length(x@group_names) > 0)
 
 #' @export
 #' @rdname mutator
-#' @aliases get_groups,GenericMatrix-method
-setMethod("get_groups", "GenericMatrix", function(x) x@group_names)
+#' @aliases get_groups,DataMatrix-method
+setMethod("get_groups", "DataMatrix", function(x) x@group_names)
 
 #' @export
 #' @rdname mutator
@@ -134,10 +134,10 @@ setMethod("get_method", "SimilarityMatrix", function(x) x@method)
 # Setters ======================================================================
 #' @export
 #' @rdname mutator
-#' @aliases set_groups,GenericMatrix-method
+#' @aliases set_groups,DataMatrix-method
 setMethod(
   f = "set_groups<-",
-  signature = "GenericMatrix",
+  signature = "DataMatrix",
   definition = function(x, value) {
     x@group_names <- if (is.null(value)) character(0) else as.character(value)
     methods::validObject(x)

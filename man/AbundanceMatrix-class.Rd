@@ -100,7 +100,6 @@ B[, 1:3] # Get the first three column
 Other matrix: 
 \code{\link{CountMatrix-class}},
 \code{\link{DataMatrix-class}},
-\code{\link{GenericMatrix-class}},
 \code{\link{IncidenceMatrix-class}},
 \code{\link{MatrixSummary-class}},
 \code{\link{OccurrenceMatrix-class}},

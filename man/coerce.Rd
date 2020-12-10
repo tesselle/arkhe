@@ -148,7 +148,6 @@ Other matrix:
 \code{\link{AbundanceMatrix-class}},
 \code{\link{CountMatrix-class}},
 \code{\link{DataMatrix-class}},
-\code{\link{GenericMatrix-class}},
 \code{\link{IncidenceMatrix-class}},
 \code{\link{MatrixSummary-class}},
 \code{\link{OccurrenceMatrix-class}},

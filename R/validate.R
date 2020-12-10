@@ -21,9 +21,11 @@ setValidity(
       # Check dimnames
       catch_conditions(check_length(row_names, size[[1L]])),
       catch_conditions(check_length(column_names, size[[2L]]))
-      # Check extra slots
-      # catch_conditions(check_length(group_names, size[[1L]]))
     )
+    # Check groups
+    if (length(group_names) > 0) {
+      cnd <- append(cnd, catch_conditions(check_length(group_names, size[[1L]])))
+    }
 
     # Return cnd, if any
     check_class(object, cnd)

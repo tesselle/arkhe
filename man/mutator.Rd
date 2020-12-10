@@ -21,24 +21,24 @@
 \alias{get_totals-method}
 \alias{set_totals<-}
 \alias{set_totals-method}
-\alias{length,GenericMatrix-method}
-\alias{dim,GenericMatrix-method}
-\alias{rownames,GenericMatrix-method}
-\alias{rownames<-,GenericMatrix-method}
-\alias{rownames<-,GenericMatrix,ANY-method}
-\alias{colnames,GenericMatrix-method}
-\alias{colnames<-,GenericMatrix-method}
-\alias{colnames<-,GenericMatrix,ANY-method}
-\alias{dimnames,GenericMatrix-method}
-\alias{dimnames<-,GenericMatrix,list-method}
-\alias{diag,GenericMatrix-method}
-\alias{diag<-,GenericMatrix-method}
-\alias{has_groups,GenericMatrix-method}
-\alias{get_groups,GenericMatrix-method}
+\alias{length,DataMatrix-method}
+\alias{dim,DataMatrix-method}
+\alias{rownames,DataMatrix-method}
+\alias{rownames<-,DataMatrix-method}
+\alias{rownames<-,DataMatrix,ANY-method}
+\alias{colnames,DataMatrix-method}
+\alias{colnames<-,DataMatrix-method}
+\alias{colnames<-,DataMatrix,ANY-method}
+\alias{dimnames,DataMatrix-method}
+\alias{dimnames<-,DataMatrix,list-method}
+\alias{diag,DataMatrix-method}
+\alias{diag<-,DataMatrix-method}
+\alias{has_groups,DataMatrix-method}
+\alias{get_groups,DataMatrix-method}
 \alias{get_totals,AbundanceMatrix-method}
 \alias{get_method,SimilarityMatrix-method}
-\alias{set_groups<-,GenericMatrix-method}
-\alias{set_groups,GenericMatrix-method}
+\alias{set_groups<-,DataMatrix-method}
+\alias{set_groups,DataMatrix-method}
 \alias{set_totals<-,AbundanceMatrix-method}
 \alias{set_totals,AbundanceMatrix-method}
 \alias{set_method<-,SimilarityMatrix-method}
@@ -61,35 +61,35 @@ get_totals(x)
 
 set_totals(x) <- value
 
-\S4method{length}{GenericMatrix}(x)
+\S4method{length}{DataMatrix}(x)
 
-\S4method{dim}{GenericMatrix}(x)
+\S4method{dim}{DataMatrix}(x)
 
-\S4method{rownames}{GenericMatrix}(x)
+\S4method{rownames}{DataMatrix}(x)
 
-\S4method{rownames}{GenericMatrix}(x) <- value
+\S4method{rownames}{DataMatrix}(x) <- value
 
-\S4method{colnames}{GenericMatrix}(x)
+\S4method{colnames}{DataMatrix}(x)
 
-\S4method{colnames}{GenericMatrix}(x) <- value
+\S4method{colnames}{DataMatrix}(x) <- value
 
-\S4method{dimnames}{GenericMatrix}(x)
+\S4method{dimnames}{DataMatrix}(x)
 
-\S4method{dimnames}{GenericMatrix,list}(x) <- value
+\S4method{dimnames}{DataMatrix,list}(x) <- value
 
-\S4method{diag}{GenericMatrix}(x)
+\S4method{diag}{DataMatrix}(x)
 
-\S4method{diag}{GenericMatrix}(x) <- value
+\S4method{diag}{DataMatrix}(x) <- value
 
-\S4method{has_groups}{GenericMatrix}(x)
+\S4method{has_groups}{DataMatrix}(x)
 
-\S4method{get_groups}{GenericMatrix}(x)
+\S4method{get_groups}{DataMatrix}(x)
 
 \S4method{get_totals}{AbundanceMatrix}(x)
 
 \S4method{get_method}{SimilarityMatrix}(x)
 
-\S4method{set_groups}{GenericMatrix}(x) <- value
+\S4method{set_groups}{DataMatrix}(x) <- value
 
 \S4method{set_totals}{AbundanceMatrix}(x) <- value
 

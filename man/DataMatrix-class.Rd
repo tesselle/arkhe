@@ -3,6 +3,7 @@
 \docType{class}
 \name{DataMatrix-class}
 \alias{DataMatrix-class}
+\alias{.DataMatrix}
 \alias{IntegerMatrix-class}
 \alias{.IntegerMatrix}
 \alias{NumericMatrix-class}
@@ -25,14 +26,37 @@ rows? If \code{FALSE} (the default) the matrix is filled by columns.}
 respectively. If \code{NULL} (the default) dimension names will be created.}
 }
 \description{
-A virtual S4 class to represent a data matrix.
+Virtual S4 classes that represent a \eqn{m \times p}{m x p} matrix.
+}
+\details{
+\code{DataMatrix} is the mother class of all matrix objects.
+
+ The \code{values} slot is defined in \code{IntegerMatrix},
+ \code{NumericMatrix} and \code{LogicalMatrix} classes.
 }
 \section{Slots}{
 
 \describe{
+\item{\code{size}}{A length-two \code{\link{integer}} vector.}
+
+\item{\code{row_names}}{A length-\eqn{m} \code{\link{character}} vector.}
+
+\item{\code{column_names}}{A length-\eqn{p} \code{\link{character}} vector.}
+
+\item{\code{group_names}}{A length-\eqn{m} \code{\link{character}} vector.}
+
 \item{\code{values}}{An \code{\link{integer}}, a \code{\link{numeric}} or a
 \code{\link{logical}} vector (see details).}
 }}
+
+\section{Get and set}{
+
+ In the code snippets below, \code{x} is a \code{*Matrix} object.
+ \describe{
+  \item{\code{get_groups(x)} and \code{set_groups(x) <- value}}{Get or set
+  the sample names of \code{x}.}
+ }
+}
 
 \section{Access}{
 
@@ -73,7 +97,6 @@ A virtual S4 class to represent a data matrix.
 Other matrix: 
 \code{\link{AbundanceMatrix-class}},
 \code{\link{CountMatrix-class}},
-\code{\link{GenericMatrix-class}},
 \code{\link{IncidenceMatrix-class}},
 \code{\link{MatrixSummary-class}},
 \code{\link{OccurrenceMatrix-class}},
