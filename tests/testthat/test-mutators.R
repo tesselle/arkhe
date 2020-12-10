@@ -15,6 +15,10 @@ test_that("Matrix dimensions", {
   expect_type(col(cts, as.factor = TRUE), "integer")
 })
 test_that("Matrix dimension names", {
+  cts <- CountMatrix(nrow = 0, ncol = 0)
+  expect_null(rownames(cts))
+  expect_null(colnames(cts))
+
   cts <- CountMatrix(sample(1:100, 50, TRUE), ncol = 10)
   row_names <- paste0("row", 1:5)
   col_names <- paste0("col", 1:10)
@@ -23,19 +27,23 @@ test_that("Matrix dimension names", {
   expect_equal(colnames(cts), col_names)
   expect_equal(dimnames(cts), list(row_names, col_names))
 
-  dimnames(cts) <- list(c("A", "B", "C", "D", "E"), 1:10)
-  expect_equal(rownames(cts), c("A", "B", "C", "D", "E"))
-  expect_equal(colnames(cts), as.character(1:10))
+  dim_names <- list(c("A", "B", "C", "D", "E"), as.character(1:10))
+  dimnames(cts) <- dim_names
+  expect_equal(rownames(cts), dim_names[[1L]])
+  expect_equal(colnames(cts), dim_names[[2L]])
 
-
-  cts <- CountMatrix(sample(1:100, 50, TRUE), ncol = 10,
-                     dimnames = list(c("A", "A", "C", "D", "E"), 1:10))
+  rownames(cts) <- c("A", "A", "C", "D", "E")
   expect_equal(rownames(cts), c("A", "A_1", "C", "D", "E"))
-  expect_equal(colnames(cts), as.character(1:10))
+
+  colnames(cts) <- c("A", "B", "C", "D", "E", "A", "B", "C", "D", "E")
+  expect_equal(colnames(cts), c("A", "B", "C", "D", "E", "A_1", "B_1", "C_1", "D_1", "E_1"))
 })
 test_that("Matrix diagonal", {
-  mtx <- matrix(sample(1:100, 50, TRUE), ncol = 10)
+  mtx <- matrix(sample(1:100, 100, TRUE), ncol = 10)
   cts <- as_count(mtx)
 
-  expect_equal(diag(mtx), diag(cts))
+  expect_equal(diag(cts), diag(mtx))
+
+  diag(cts) <- rep(0, times = 10)
+  expect_equal(diag(cts), rep(0, times = 10))
 })

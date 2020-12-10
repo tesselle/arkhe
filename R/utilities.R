@@ -89,37 +89,37 @@ generate_uuid <- function(seed = NULL) {
 }
 
 # Dimension names ==============================================================
-#' Row and Column Names
-#'
-#' \code{rownames_to_column} converts row names to an explicit column.
-#' @param x A \code{\link{matrix}} or \code{\link{data.frame}}.
-#' @param factor A \code{\link{logical}} scalar: should row names be coerced to
-#'  factors? The default (\code{TRUE}) preserves the original ordering of the
-#'  columns.
-#' @param id A \code{\link{character}} string giving the name of the newly
-#'  created column.
-#' @return A data.frame
-#' @author N. Frerebeau
-#' @family utilities
-#' @keywords internal utilities
-#' @noRd
-rownames_to_column <- function(x, factor = TRUE, id = "id") {
-  if (!is.matrix(x) && !is.data.frame(x))
-    stop("A matrix or data.frame is expected.", call. = FALSE)
-
-  if (is.null(colnames(x))) {
-    colnames(x) <- paste0("col", seq_len(ncol(x)))
-  }
-  row_names <- rownames(x)
-  if (is.null(row_names)) {
-    row_names <- paste0("row", seq_len(nrow(x)))
-  }
-  if (factor) {
-    row_names <- factor(x = row_names, levels = row_names)
-  }
-
-  z <- cbind.data.frame(row_names, x, stringsAsFactors = FALSE)
-  colnames(z) <- c(id, colnames(x))
-  rownames(z) <- NULL
-  z
-}
+# Row and Column Names
+#
+# \code{rownames_to_column} converts row names to an explicit column.
+# @param x A \code{\link{matrix}} or \code{\link{data.frame}}.
+# @param factor A \code{\link{logical}} scalar: should row names be coerced to
+#  factors? The default (\code{TRUE}) preserves the original ordering of the
+#  columns.
+# @param id A \code{\link{character}} string giving the name of the newly
+#  created column.
+# @return A data.frame
+# @author N. Frerebeau
+# @family utilities
+# @keywords internal utilities
+# @noRd
+# rownames_to_column <- function(x, factor = TRUE, id = "id") {
+#   if (!is.matrix(x) && !is.data.frame(x))
+#     stop("A matrix or data.frame is expected.", call. = FALSE)
+#
+#   if (is.null(colnames(x))) {
+#     colnames(x) <- paste0("col", seq_len(ncol(x)))
+#   }
+#   row_names <- rownames(x)
+#   if (is.null(row_names)) {
+#     row_names <- paste0("row", seq_len(nrow(x)))
+#   }
+#   if (factor) {
+#     row_names <- factor(x = row_names, levels = row_names)
+#   }
+#
+#   z <- cbind.data.frame(row_names, x, stringsAsFactors = FALSE)
+#   colnames(z) <- c(id, colnames(x))
+#   rownames(z) <- NULL
+#   z
+# }

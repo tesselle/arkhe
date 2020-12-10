@@ -9,7 +9,7 @@
 \alias{check_dimnames}
 \title{Check Object Attributes}
 \usage{
-check_length(x, expected)
+check_length(x, expected, strict = TRUE)
 
 check_lengths(x, expected)
 

@@ -10,8 +10,8 @@ CountMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
 
   .CountMatrix(
     size = dim(mtx),
-    row_names = rownames(mtx),
-    column_names = colnames(mtx),
+    row_names = if (is.null(rownames(mtx))) character(0) else rownames(mtx),
+    column_names = if (is.null(colnames(mtx))) character(0) else colnames(mtx),
     values = as_integer(mtx)
   )
 }
@@ -28,8 +28,8 @@ AbundanceMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
 
   .AbundanceMatrix(
     size = dim(mtx),
-    row_names = rownames(mtx),
-    column_names = colnames(mtx),
+    row_names = if (is.null(rownames(mtx))) character(0) else rownames(mtx),
+    column_names = if (is.null(colnames(mtx))) character(0) else colnames(mtx),
     values = values,
     totals = totals
   )
@@ -44,8 +44,8 @@ IncidenceMatrix <- function(data = FALSE, nrow = 1, ncol = 1, byrow = FALSE,
 
   .IncidenceMatrix(
     size = dim(mtx),
-    row_names = rownames(mtx),
-    column_names = colnames(mtx),
+    row_names = if (is.null(rownames(mtx))) character(0) else rownames(mtx),
+    column_names = if (is.null(colnames(mtx))) character(0) else colnames(mtx),
     values = as.logical(mtx)
   )
 }
@@ -93,6 +93,12 @@ make_dimnames <- function(x) {
   )
 }
 make_matrix <- function(data, nrow, ncol, byrow, dimnames, row, col) {
+
+  if (nrow == 0 && ncol == 0) {
+    mtx <- matrix(data = 0, nrow = 0, ncol = 0)
+    return(mtx)
+  }
+
   n <- length(data)
   if (col) ncol <- n / nrow
   if (row) nrow <- n / ncol

@@ -134,7 +134,8 @@ setMethod(
   signature = c(x = "DataMatrix", i = "missing", j = "missing", value = "ANY"),
   function(x, i, j, ..., value) {
     value <- methods::as(value, typeof(x@values))
-    x@values  <- value
+    # value <- if (length(value) == length(x)) value else rep(value, length.out = length(x))
+    x@values <- value
     methods::validObject(x)
     x
   }

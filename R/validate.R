@@ -19,13 +19,12 @@ setValidity(
       catch_conditions(check_infinite(values)),
       catch_conditions(check_missing(values)),
       # Check dimnames
+      # TODO: check unique
       catch_conditions(check_length(row_names, size[[1L]])),
-      catch_conditions(check_length(column_names, size[[2L]]))
+      catch_conditions(check_length(column_names, size[[2L]])),
+      # Check groups
+      catch_conditions(check_length(group_names, size[[1L]], strict = FALSE))
     )
-    # Check groups
-    if (length(group_names) > 0) {
-      cnd <- append(cnd, catch_conditions(check_length(group_names, size[[1L]])))
-    }
 
     # Return cnd, if any
     check_class(object, cnd)
@@ -64,16 +63,16 @@ setValidity(
 
     cnd <- list(
       # Check values
-      catch_conditions(check_numbers(values, "positive", strict = FALSE,
-                                     na.rm = TRUE)),
+      catch_conditions(check_numbers(values, "positive", strict = FALSE)),
       catch_conditions(check_missing(values)),
       catch_conditions(check_infinite(values)),
       # Check totals
+      # TODO: check constant sum (?)
+      catch_conditions(check_numbers(totals, "positive", strict = FALSE)),
       catch_conditions(check_length(totals, size[[1L]])),
       catch_conditions(check_missing(totals)),
       catch_conditions(check_infinite(totals))
     )
-    # TODO: check constant sum.
 
     # Return cnd, if any
     check_class(object, cnd)
@@ -90,13 +89,10 @@ setValidity(
     cnd <- list(
       # Check values
       catch_conditions(check_symmetric(values)),
-      catch_conditions(check_numbers(values, "positive", strict = FALSE,
-                                     na.rm = TRUE))
+      catch_conditions(check_numbers(values, "positive", strict = FALSE)),
+      # Check n
+      catch_conditions(check_scalar(n, "integer", strict = FALSE))
     )
-    # Check n
-    if (length(values) > 0) {
-      cnd <- append(cnd, catch_conditions(check_scalar(n, "integer")))
-    }
 
     # Return cnd, if any
     check_class(object, cnd)
@@ -112,15 +108,10 @@ setValidity(
 
     cnd <- list(
       # Check values
-      catch_conditions(check_symmetric(values))
+      catch_conditions(check_symmetric(values)),
+      # Check method
+      catch_conditions(check_scalar(method, "character", strict = FALSE))
     )
-    # Check method
-    if (length(values) > 0) {
-      cnd <- append(
-        cnd,
-        catch_conditions(check_scalar(method, "character"))
-      )
-    }
 
     # Return cnd, if any
     check_class(object, cnd)
@@ -133,13 +124,13 @@ setValidity(
   Class = "StratigraphicMatrix",
   method = function(object) {
     # Get data
-    data <- as.matrix(object)
+    values <- as.matrix(object)
 
-    if (nrow(data) > 0) {
+    if (nrow(values) > 0) {
       cnd <- list(
-        # Check data
-        catch_conditions(check_square(data)),
-        catch_conditions(check_dag(data))
+        # Check values
+        catch_conditions(check_square(values)),
+        catch_conditions(check_dag(values))
       )
     } else {
       cnd <- list()
@@ -149,3 +140,41 @@ setValidity(
     check_class(object, cnd)
   }
 )
+
+# Diagnostic ===================================================================
+#' Class Diagnostic
+#'
+#' @param object An object to which error messages are related.
+#' @param conditions A \code{\link{list}} of condition messages.
+#' @return
+#'  Throw an error if \code{conditions} is of non-zero length,
+#'  returns \code{TRUE} if not.
+#' @author N. Frerebeau
+#' @keywords internal
+#' @noRd
+check_class <- function(object, conditions) {
+  cnd <- compact(is_empty, conditions)
+  cnd <- unlist(cnd, recursive = FALSE)
+
+  # Check if any warning
+  wrn_idx <- vapply(X = cnd, FUN = is_warning, FUN.VALUE = logical(1))
+  if (any(wrn_idx)) {
+    wrn_msg <- vapply(X = cnd[wrn_idx], FUN = `[[`,
+                      FUN.VALUE = character(1), "message")
+    wrn <- sprintf("<%s> instance initialization:\n%s", class(object),
+                   paste0("* ", unlist(wrn_msg), collapse = "\n"))
+    throw_warning("arkhe_warning_class", wrn, call = NULL)
+  }
+
+  # Check if any error
+  err_idx <- vapply(X = cnd, FUN = is_error, FUN.VALUE = logical(1))
+  if (any(err_idx)) {
+    err_msg <- vapply(X = cnd[err_idx], FUN = `[[`,
+                      FUN.VALUE = character(1), "message")
+    err <- sprintf("<%s> instance initialization:\n%s", class(object),
+                   paste0("* ", err_msg, collapse = "\n"))
+    throw_error("arkhe_error_class", err, call = NULL)
+  }
+
+  return(TRUE)
+}

@@ -35,7 +35,7 @@ setMethod(
   f = "rownames<-",
   signature = signature(x = "DataMatrix", value = "ANY"),
   definition = function(x, value) {
-    x@row_names <- as.character(value)
+    x@row_names <- make.unique(as.character(value), sep = "_")
     methods::validObject(x)
     x
   }
@@ -57,7 +57,7 @@ setMethod(
   f = "colnames<-",
   signature = signature(x = "DataMatrix", value = "ANY"),
   definition = function(x, value) {
-    x@column_names <- as.character(value)
+    x@column_names <- make.unique(as.character(value), sep = "_")
     methods::validObject(x)
     x
   }
@@ -102,8 +102,8 @@ setMethod(
   signature = signature(x = "DataMatrix"),
   definition = function(x, value) {
     m <- as.matrix(x)
-    value <- methods::as(value, typeof(x@values))
     diag(m) <- value
+    m <- methods::as(m, typeof(x@values))
     x@values <- m
     methods::validObject(x)
     x
@@ -130,6 +130,11 @@ setMethod("get_totals", "AbundanceMatrix", function(x) x@totals)
 #' @rdname mutator
 #' @aliases get_method,SimilarityMatrix-method
 setMethod("get_method", "SimilarityMatrix", function(x) x@method)
+
+#' @export
+#' @rdname mutator
+#' @aliases get_n,OccurrenceMatrix-method
+setMethod("get_n", "OccurrenceMatrix", function(x) x@n)
 
 # Setters ======================================================================
 #' @export

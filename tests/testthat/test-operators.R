@@ -4,8 +4,10 @@ test_that("Arith", {
   mtx <- matrix(data = sample(2:10, 100, TRUE), ncol = 10)
   cts <- as_count(mtx)
 
+  expect_equivalent(mtx + mtx, cts + mtx)
   expect_equivalent(mtx + mtx, cts + cts)
   expect_equivalent(mtx * 2, cts * 2)
+  expect_equivalent(mtx * FALSE, cts * FALSE)
 })
 test_that("Compare", {
   mtx <- matrix(data = sample(2:10, 100, TRUE), ncol = 10)
@@ -18,6 +20,7 @@ test_that("Logic", {
   mtx <- matrix(data = sample(2:10, 100, TRUE), ncol = 10)
   cts <- as_count(mtx)
 
+  expect_equivalent(mtx & mtx, cts & mtx)
   expect_equivalent(mtx & mtx, cts & cts)
   expect_equivalent(mtx & 1, cts & 1)
   expect_equivalent(mtx | FALSE, cts | FALSE)

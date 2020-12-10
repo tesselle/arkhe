@@ -76,10 +76,10 @@ check_scalar <- function(x, expected, strict = TRUE) {
 NULL
 
 #' @rdname check-attribute
-check_length <- function(x, expected) {
+check_length <- function(x, expected, strict = TRUE) {
   arg <- deparse(substitute(x))
   n <- length(x)
-  if (n != expected) {
+  if (!(!strict && length(x) == 0) && n != expected) {
     msg <- sprintf("%s must be of length %d; not %s.", sQuote(arg), expected, n)
     throw_error("error_bad_dimension", msg)
   }
@@ -285,42 +285,4 @@ check_dag <- function(x) {
     msg <- sprintf("%s must not contain cycles.", sQuote(arg))
     throw_error("error_bad_graph", msg)
   }
-}
-
-# =================================================================== Diagnostic
-#' Class Diagnostic
-#'
-#' @param object An object to which error messages are related.
-#' @param conditions A \code{\link{list}} of condition messages.
-#' @return
-#'  Throw an error if \code{conditions} is of non-zero length,
-#'  returns \code{TRUE} if not.
-#' @author N. Frerebeau
-#' @keywords internal
-#' @noRd
-check_class <- function(object, conditions) {
-  cnd <- compact(is_empty, conditions)
-  cnd <- unlist(cnd, recursive = FALSE)
-
-  # Check if any warning
-  wrn_idx <- vapply(X = cnd, FUN = is_warning, FUN.VALUE = logical(1))
-  if (any(wrn_idx)) {
-    wrn_msg <- vapply(X = cnd[wrn_idx], FUN = `[[`,
-                      FUN.VALUE = character(1), "message")
-    wrn <- sprintf("<%s> instance initialization:\n%s", class(object),
-                   paste0("* ", unlist(wrn_msg), collapse = "\n"))
-    throw_warning("arkhe_warning_class", wrn, call = NULL)
-  }
-
-  # Check if any error
-  err_idx <- vapply(X = cnd, FUN = is_error, FUN.VALUE = logical(1))
-  if (any(err_idx)) {
-    err_msg <- vapply(X = cnd[err_idx], FUN = `[[`,
-                      FUN.VALUE = character(1), "message")
-    err <- sprintf("<%s> instance initialization:\n%s", class(object),
-                   paste0("* ", err_msg, collapse = "\n"))
-    throw_error("arkhe_error_class", err, call = NULL)
-  }
-
-  return(TRUE)
 }

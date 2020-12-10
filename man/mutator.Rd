@@ -5,12 +5,6 @@
 \alias{mutator}
 \alias{get}
 \alias{set}
-\alias{get_method}
-\alias{get_method-method}
-\alias{set_method<-}
-\alias{set_method-method}
-\alias{get_units}
-\alias{get_units-method}
 \alias{get_groups}
 \alias{get_groups-method}
 \alias{has_groups}
@@ -21,6 +15,12 @@
 \alias{get_totals-method}
 \alias{set_totals<-}
 \alias{set_totals-method}
+\alias{get_method}
+\alias{get_method-method}
+\alias{set_method<-}
+\alias{set_method-method}
+\alias{get_n}
+\alias{get_n-method}
 \alias{length,DataMatrix-method}
 \alias{dim,DataMatrix-method}
 \alias{rownames,DataMatrix-method}
@@ -37,6 +37,7 @@
 \alias{get_groups,DataMatrix-method}
 \alias{get_totals,AbundanceMatrix-method}
 \alias{get_method,SimilarityMatrix-method}
+\alias{get_n,OccurrenceMatrix-method}
 \alias{set_groups<-,DataMatrix-method}
 \alias{set_groups,DataMatrix-method}
 \alias{set_totals<-,AbundanceMatrix-method}
@@ -45,12 +46,6 @@
 \alias{set_method,SimilarityMatrix-method}
 \title{Get or Set Parts of an Object}
 \usage{
-get_method(x)
-
-set_method(x) <- value
-
-get_units(x)
-
 get_groups(x)
 
 has_groups(x)
@@ -60,6 +55,12 @@ set_groups(x) <- value
 get_totals(x)
 
 set_totals(x) <- value
+
+get_method(x)
+
+set_method(x) <- value
+
+get_n(x)
 
 \S4method{length}{DataMatrix}(x)
 
@@ -88,6 +89,8 @@ set_totals(x) <- value
 \S4method{get_totals}{AbundanceMatrix}(x)
 
 \S4method{get_method}{SimilarityMatrix}(x)
+
+\S4method{get_n}{OccurrenceMatrix}(x)
 
 \S4method{set_groups}{DataMatrix}(x) <- value
 

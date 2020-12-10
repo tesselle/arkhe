@@ -177,27 +177,6 @@ setGeneric(
 NULL
 
 #' @rdname mutator
-#' @aliases get_method-method
-setGeneric(
-  name = "get_method",
-  def = function(x) standardGeneric("get_method")
-)
-
-#' @rdname mutator
-#' @aliases set_method-method
-setGeneric(
-  name = "set_method<-",
-  def = function(x, value) standardGeneric("set_method<-")
-)
-
-#' @rdname mutator
-#' @aliases get_units-method
-setGeneric(
-  name = "get_units",
-  def = function(x) standardGeneric("get_units")
-)
-
-#' @rdname mutator
 #' @aliases get_groups-method
 setGeneric(
   name = "get_groups",
@@ -232,6 +211,28 @@ setGeneric(
   def = function(x, value) standardGeneric("set_totals<-")
 )
 
+#' @rdname mutator
+#' @aliases get_method-method
+setGeneric(
+  name = "get_method",
+  def = function(x) standardGeneric("get_method")
+)
+
+#' @rdname mutator
+#' @aliases set_method-method
+setGeneric(
+  name = "set_method<-",
+  def = function(x, value) standardGeneric("set_method<-")
+)
+
+#' @rdname mutator
+#' @aliases get_n-method
+setGeneric(
+  name = "get_n",
+  def = function(x) standardGeneric("get_n")
+)
+
+# Subset =======================================================================
 #' Extract or Replace Parts of an Object
 #'
 #' Operators acting on objects to extract or replace parts.

@@ -67,8 +67,9 @@ setMethod(
   f = "remove_zero",
   signature = signature(x = "DataMatrix"),
   definition = function(x, margin = 1) {
-    x <- as.matrix(x)
-    x <- remove_zero(x, margin = margin)
+    index <- which(!detect_zero(x, margin = margin))
+    if (margin == 1) x <- x[index, , drop = FALSE]
+    if (margin == 2) x <- x[, index, drop = FALSE]
     x
   }
 )
