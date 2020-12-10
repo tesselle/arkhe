@@ -31,8 +31,8 @@
 "_PACKAGE"
 
 #' @importFrom methods Arith as as<- callGeneric callNextMethod Compare
-#' initialize is Logic Math Math2 new Ops setClass setClassUnion setGeneric
-#' setMethod slot slot<- Summary validObject
+#' .hasSlot initialize is Logic Math Math2 new Ops setClass setClassUnion
+#' setGeneric setMethod slot slot<- Summary validObject
 #' @importFrom stats as.dist
 #' @importFrom utils combn
 NULL

@@ -310,14 +310,18 @@ setMethod(
   signature = signature(from = "DataMatrix"),
   definition = function(from, factor = FALSE) {
     x <- data.frame(
-      case = as.character(row(from, as.factor = TRUE)),
-      type = as.character(col(from, as.factor = TRUE)),
-      data = from@values,
+      case = as.character(row(from, as.factor = factor)),
+      type = as.character(col(from, as.factor = factor)),
+      value = from@values,
       stringsAsFactors = FALSE
     )
     if (factor) {
       x$case <- factor(x$case, levels = unique(x$case))
       x$type <- factor(x$type, levels = unique(x$type))
+    }
+    grp <- from@group_names
+    if (length(grp) > 0) {
+      x$group <- if (factor) factor(grp, levels = unique(grp)) else grp
     }
     x
   }

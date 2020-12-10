@@ -27,11 +27,17 @@ setMethod(
 
     k <- if (nargs() >= 3) m[i, , drop = drop] else m[i]
     if (is.null(dim(k))) return(x@values[k])
+
+    # FIXME: Deal with the 'totals' slot of the AbundanceMatrix class
+    if (methods::.hasSlot(x, "totals")) {
+      methods::slot(x, "totals", check = TRUE) <- x@totals[i]
+    }
+
     methods::initialize(
       .Object = x,
       size = dim(k),
       row_names = x@row_names[i],
-      sample_names = x@sample_names[i],
+      group_names = x@group_names[i],
       values = x@values[k]
     )
   }
@@ -70,12 +76,18 @@ setMethod(
 
     k <- m[i, j, drop = drop]
     if (is.null(dim(k))) return(x@values[k])
+
+    # FIXME: Deal with the 'totals' slot of the AbundanceMatrix class
+    if (methods::.hasSlot(x, "totals")) {
+      methods::slot(x, "totals", check = TRUE) <- x@totals[i]
+    }
+
     methods::initialize(
       .Object = x,
       size = dim(k),
       row_names = x@row_names[i],
       column_names = x@column_names[j],
-      sample_names = x@sample_names[i],
+      group_names = x@group_names[i],
       values = x@values[k]
     )
   }

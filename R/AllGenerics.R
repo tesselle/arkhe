@@ -162,7 +162,8 @@ setGeneric(
 #' Get or Set Parts of an Object
 #'
 #' Getters and setters to retrieve or set parts of an object.
-#' @param x An object from which to get or set element(s).
+#' @param x An object from which to get or set element(s) (typically a
+#'  \linkS4class{DataMatrix} object).
 #' @param value A possible value for the element(s) of \code{object}.
 #' @return
 #'  An object of the same sort as \code{x} with the new values assigned.
@@ -174,20 +175,6 @@ setGeneric(
 #' @rdname mutator
 #' @aliases get set
 NULL
-
-#' @rdname mutator
-#' @aliases get_id-method
-setGeneric(
-  name = "get_id",
-  def = function(x) standardGeneric("get_id")
-)
-
-#' @rdname mutator
-#' @aliases set_id-method
-setGeneric(
-  name = "set_id<-",
-  def = function(x, value) standardGeneric("set_id<-")
-)
 
 #' @rdname mutator
 #' @aliases get_method-method
@@ -211,31 +198,24 @@ setGeneric(
 )
 
 #' @rdname mutator
-#' @aliases get_samples-method
+#' @aliases get_groups-method
 setGeneric(
-  name = "get_samples",
-  def = function(x) standardGeneric("get_samples")
+  name = "get_groups",
+  def = function(x) standardGeneric("get_groups")
 )
 
 #' @rdname mutator
-#' @aliases set_samples-method
+#' @aliases has_groups-method
 setGeneric(
-  name = "set_samples<-",
-  def = function(x, value) standardGeneric("set_samples<-")
+  name = "has_groups",
+  def = function(x) standardGeneric("has_groups")
 )
 
 #' @rdname mutator
-#' @aliases get_sites-method
+#' @aliases set_groups-method
 setGeneric(
-  name = "get_sites",
-  def = function(x) standardGeneric("get_sites")
-)
-
-#' @rdname mutator
-#' @aliases set_sites-method
-setGeneric(
-  name = "set_sites<-",
-  def = function(x, value) standardGeneric("set_sites<-")
+  name = "set_groups<-",
+  def = function(x, value) standardGeneric("set_groups<-")
 )
 
 #' @rdname mutator

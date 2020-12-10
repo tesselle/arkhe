@@ -113,8 +113,13 @@ setMethod(
 # Getters ======================================================================
 #' @export
 #' @rdname mutator
-#' @aliases get_samples,GenericMatrix-method
-setMethod("get_samples", "GenericMatrix", function(x) x@sample_names)
+#' @aliases has_groups,GenericMatrix-method
+setMethod("has_groups", "GenericMatrix", function(x) length(x@group_names) > 0)
+
+#' @export
+#' @rdname mutator
+#' @aliases get_groups,GenericMatrix-method
+setMethod("get_groups", "GenericMatrix", function(x) x@group_names)
 
 #' @export
 #' @rdname mutator
@@ -129,13 +134,12 @@ setMethod("get_method", "SimilarityMatrix", function(x) x@method)
 # Setters ======================================================================
 #' @export
 #' @rdname mutator
-#' @aliases set_samples,GenericMatrix-method
+#' @aliases set_groups,GenericMatrix-method
 setMethod(
-  f = "set_samples<-",
+  f = "set_groups<-",
   signature = "GenericMatrix",
   definition = function(x, value) {
-    if (!is.factor(value)) value <- factor(value, levels = unique(value))
-    x@sample_names <- value
+    x@group_names <- if (is.null(value)) character(0) else as.character(value)
     methods::validObject(x)
     x
   }

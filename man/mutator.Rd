@@ -5,24 +5,18 @@
 \alias{mutator}
 \alias{get}
 \alias{set}
-\alias{get_id}
-\alias{get_id-method}
-\alias{set_id<-}
-\alias{set_id-method}
 \alias{get_method}
 \alias{get_method-method}
 \alias{set_method<-}
 \alias{set_method-method}
 \alias{get_units}
 \alias{get_units-method}
-\alias{get_samples}
-\alias{get_samples-method}
-\alias{set_samples<-}
-\alias{set_samples-method}
-\alias{get_sites}
-\alias{get_sites-method}
-\alias{set_sites<-}
-\alias{set_sites-method}
+\alias{get_groups}
+\alias{get_groups-method}
+\alias{has_groups}
+\alias{has_groups-method}
+\alias{set_groups<-}
+\alias{set_groups-method}
 \alias{get_totals}
 \alias{get_totals-method}
 \alias{set_totals<-}
@@ -39,34 +33,29 @@
 \alias{dimnames<-,GenericMatrix,list-method}
 \alias{diag,GenericMatrix-method}
 \alias{diag<-,GenericMatrix-method}
-\alias{get_samples,GenericMatrix-method}
+\alias{has_groups,GenericMatrix-method}
+\alias{get_groups,GenericMatrix-method}
 \alias{get_totals,AbundanceMatrix-method}
 \alias{get_method,SimilarityMatrix-method}
-\alias{set_samples<-,GenericMatrix-method}
-\alias{set_samples,GenericMatrix-method}
+\alias{set_groups<-,GenericMatrix-method}
+\alias{set_groups,GenericMatrix-method}
 \alias{set_totals<-,AbundanceMatrix-method}
 \alias{set_totals,AbundanceMatrix-method}
 \alias{set_method<-,SimilarityMatrix-method}
 \alias{set_method,SimilarityMatrix-method}
 \title{Get or Set Parts of an Object}
 \usage{
-get_id(x)
-
-set_id(x) <- value
-
 get_method(x)
 
 set_method(x) <- value
 
 get_units(x)
 
-get_samples(x)
+get_groups(x)
 
-set_samples(x) <- value
+has_groups(x)
 
-get_sites(x)
-
-set_sites(x) <- value
+set_groups(x) <- value
 
 get_totals(x)
 
@@ -92,20 +81,23 @@ set_totals(x) <- value
 
 \S4method{diag}{GenericMatrix}(x) <- value
 
-\S4method{get_samples}{GenericMatrix}(x)
+\S4method{has_groups}{GenericMatrix}(x)
+
+\S4method{get_groups}{GenericMatrix}(x)
 
 \S4method{get_totals}{AbundanceMatrix}(x)
 
 \S4method{get_method}{SimilarityMatrix}(x)
 
-\S4method{set_samples}{GenericMatrix}(x) <- value
+\S4method{set_groups}{GenericMatrix}(x) <- value
 
 \S4method{set_totals}{AbundanceMatrix}(x) <- value
 
 \S4method{set_method}{SimilarityMatrix}(x) <- value
 }
 \arguments{
-\item{x}{An object from which to get or set element(s).}
+\item{x}{An object from which to get or set element(s) (typically a
+\linkS4class{DataMatrix} object).}
 
 \item{value}{A possible value for the element(s) of \code{object}.}
 }

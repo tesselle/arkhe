@@ -11,7 +11,7 @@ setValidity(
     size <- object@size
     row_names <- object@row_names
     column_names <- object@column_names
-    sample_names <- object@sample_names
+    group_names <- object@group_names
 
     cnd <- list(
       # Check data
@@ -22,7 +22,7 @@ setValidity(
       catch_conditions(check_length(row_names, size[[1L]])),
       catch_conditions(check_length(column_names, size[[2L]]))
       # Check extra slots
-      # catch_conditions(check_length(sample_names, size[[1L]]))
+      # catch_conditions(check_length(group_names, size[[1L]]))
     )
 
     # Return cnd, if any

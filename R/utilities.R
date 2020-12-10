@@ -123,31 +123,3 @@ rownames_to_column <- function(x, factor = TRUE, id = "id") {
   rownames(z) <- NULL
   z
 }
-
-#' Row and Column Indexes
-#'
-#' Returns a vector of integer their row or column number in a matrix-like
-#' object.
-#' @param x A length-two \code{\link{integer}} vector giving the dimension of a
-#'  matrix-like object.
-#' @return An \code{\link{integer}} vector.
-#' @examples
-#'  mtx <- matrix(data = c(1,2,3,4,5,6), nrow = 2)
-#'  all(index_by_row(c(2, 3)) == row(mtx))
-#'  all(index_by_column(c(2, 3)) == col(mtx))
-#' @author N. Frerebeau
-#' @family utilities
-#' @keywords internal utilities
-#' @noRd
-index_by_row <- function(x) {
-  if (!is.numeric(x) || length(x) != 2)
-    stop(sprintf("%s must be a length-two numeric vector.", sQuote("x")),
-         call. = FALSE)
-  rep(seq_len(x[[1L]]), times = x[[2L]])
-}
-index_by_column <- function(x) {
-  if (!is.numeric(x) || length(x) != 2)
-    stop(sprintf("%s must be a length-two numeric vector.", sQuote("x")),
-         call. = FALSE)
-  rep(seq_len(x[[2L]]), each = x[[1L]])
-}

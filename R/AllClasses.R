@@ -1,19 +1,32 @@
 # CLASSES DEFINITION
 # https://stackoverflow.com/questions/11857658/assignment-of-s4-r-objects-to-a-matrix-why-does-this-work
 
+# MatrixSummary ================================================================
+#' Matrix Summary
+#'
+#' @author N. Frerebeau
+#' @family matrix
+#' @docType class
+#' @aliases MatrixSummary-class
+#' @keywords internal
+.MatrixSummary <- setClass(
+  Class = "MatrixSummary",
+  contains = "list"
+)
+
 # GenericMatrix ================================================================
 #' Matrix
 #'
-#' An S4 class to represent a matrix. This is the mother class of all
-#' matrix objects.
-#' @slot size An \code{\link{integer}} vector.
-#' @slot row_names A \code{\link{character}} vector.
-#' @slot column_names A \code{\link{character}} vector.
-#' @slot sample_names A \code{\link{factor}} vector.
+#' An S4 class to represent a \eqn{m \times p}{m x p} matrix. This is the mother
+#' class of all matrix objects.
+#' @slot size A length-two \code{\link{integer}} vector.
+#' @slot row_names A length-\eqn{m} \code{\link{character}} vector.
+#' @slot column_names A length-\eqn{p} \code{\link{character}} vector.
+#' @slot group_names A length-\eqn{m} \code{\link{character}} vector.
 #' @section Get and set:
 #'  In the code snippets below, \code{x} is a \code{*Matrix} object.
 #'  \describe{
-#'   \item{\code{get_samples(x)} and \code{set_samples(x) <- value}}{Get or set
+#'   \item{\code{get_groups(x)} and \code{set_groups(x) <- value}}{Get or set
 #'   the sample names of \code{x}.}
 #'  }
 #' @section Access:
@@ -56,13 +69,13 @@
     size = "integer",
     row_names = "character",
     column_names = "character",
-    sample_names = "factor"
+    group_names = "character"
   ),
   prototype = list(
     size = c(0L, 0L),
     row_names = character(0),
     column_names = character(0),
-    sample_names = factor()
+    group_names = character(0)
   ),
   contains = "VIRTUAL"
 )
