@@ -22,11 +22,11 @@ setMethod(
 #' @aliases remove_NA,data.frame-method
 setMethod(
   f = "remove_NA",
-  signature = signature(x = "data.frame"),
+  signature = signature(x = "DataMatrix"),
   definition = function(x, margin = 1, finite = TRUE) {
-    index <- detect_missing(x, margin = margin, finite = finite)
-    if (margin == 1) x <- x[!index, , drop = FALSE]
-    if (margin == 2) x <- x[, !index, drop = FALSE]
+    index <- which(!detect_missing(x, margin = margin, finite = finite))
+    if (margin == 1) x <- x[index, , drop = FALSE]
+    if (margin == 2) x <- x[, index, drop = FALSE]
     x
   }
 )
@@ -38,20 +38,6 @@ setMethod(
 setMethod(
   f = "remove_zero",
   signature = signature(x = "matrix"),
-  definition = function(x, margin = 1) {
-    index <- detect_zero(x, margin = margin)
-    if (margin == 1) x <- x[!index, , drop = FALSE]
-    if (margin == 2) x <- x[, !index, drop = FALSE]
-    x
-  }
-)
-
-#' @export
-#' @rdname clean
-#' @aliases remove_zero,data.frame-method
-setMethod(
-  f = "remove_zero",
-  signature = signature(x = "data.frame"),
   definition = function(x, margin = 1) {
     index <- detect_zero(x, margin = margin)
     if (margin == 1) x <- x[!index, , drop = FALSE]
@@ -88,19 +74,12 @@ setMethod(
 #' @return
 #'  \code{detect_missing}, \code{detect_zero} and \code{detect_any} return
 #'  an \code{\link{integer}} vector of indices.
-#'
-#'  \code{clean} returns a \code{\link{list}} with the following elements:
-#'  \describe{
-#'   \item{data}{A \code{\link{numeric}} matrix.}
-#'   \item{index}{An \code{\link{integer}} vector giving the indiced of the rows
-#'   that were removed, if any.}
-#'  }
 #' @author N. Frerebeau
 #' @keywords internal
 #' @noRd
 detect_missing <- function(x, margin = 1, finite = FALSE) {
   if (finite) {
-    is_missing <- function(x) is.na(x) | !is.finite(x)
+    is_missing <- function(x) !is.finite(x)
   } else {
     is_missing <- is.na
   }
@@ -114,13 +93,7 @@ detect_zero <- function(x, margin = 1) {
   detect_any(x, f = is_zero, margin = margin, type = "zeros")
 }
 detect_any <- function(x, f, margin = 1, type = "generic") {
-  if (is.list(x)) {
-    count <- vapply(X = x, FUN = f, FUN.VALUE = logical(dim(x)[[-margin]]))
-    count <- apply(X = count, MARGIN = margin, FUN = sum)
-  } else {
-    count <- apply(X = x, MARGIN = margin,
-                   FUN = function(x, f) sum(f(x)), f = f)
-  }
+  count <- apply(X = x, MARGIN = margin, FUN = function(x, f) sum(f(x)), f = f)
   index <- count > 0
 
   n <- sum(index)

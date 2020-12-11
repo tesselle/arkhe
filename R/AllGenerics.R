@@ -31,7 +31,7 @@ setGeneric("sd")
 #' @param finite A \code{\link{logical}} scalar: should non-\code{\link{finite}}
 #' values also be removed?
 #' @param ... Currently not used.
-# @example inst/examples/ex-clean.R
+#' @example inst/examples/ex-clean.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family utilities

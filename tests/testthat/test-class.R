@@ -21,10 +21,6 @@ test_that("CountMatrix", {
   cnd <- catch_conditions(CountMatrix(-1))
   expect_s3_class(cnd[[1]], "arkhe_error_class")
   expect_true(grepl("must contain positive numbers", cnd[[1]]$message))
-  # Try NA
-  cnd <- catch_conditions(CountMatrix(NA))
-  expect_s3_class(cnd[[1]], "arkhe_error_class")
-  expect_true(grepl("must not contain missing values", cnd[[1]]$message))
 })
 test_that("Initialize a AbundanceMatrix instance", {
   # Invalid values

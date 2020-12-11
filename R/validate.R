@@ -16,8 +16,6 @@ setValidity(
     cnd <- list(
       # Check data
       catch_conditions(check_length(values, prod(size))),
-      catch_conditions(check_infinite(values)),
-      catch_conditions(check_missing(values)),
       # Check dimnames
       # TODO: check unique
       catch_conditions(check_length(row_names, size[[1L]])),
@@ -37,13 +35,11 @@ setValidity(
   Class = "CountMatrix",
   method = function(object) {
     # Get data
-    data <- object@values
+    values <- object@values
 
     cnd <- list(
-      # Check data
-      catch_conditions(
-        check_numbers(data, "positive", strict = FALSE, na.rm = TRUE)
-      )
+      # Check values
+      catch_conditions(check_numbers(values, "positive", strict = FALSE, na.rm = TRUE))
     )
 
     # Return cnd, if any
@@ -63,9 +59,7 @@ setValidity(
 
     cnd <- list(
       # Check values
-      catch_conditions(check_numbers(values, "positive", strict = FALSE)),
-      catch_conditions(check_missing(values)),
-      catch_conditions(check_infinite(values)),
+      catch_conditions(check_numbers(values, "positive", strict = FALSE, na.rm = TRUE)),
       # Check totals
       # TODO: check constant sum (?)
       catch_conditions(check_numbers(totals, "positive", strict = FALSE)),
@@ -88,8 +82,8 @@ setValidity(
 
     cnd <- list(
       # Check values
+      catch_conditions(check_numbers(values, "positive", strict = FALSE, na.rm = TRUE)),
       catch_conditions(check_symmetric(values)),
-      catch_conditions(check_numbers(values, "positive", strict = FALSE)),
       # Check n
       catch_conditions(check_scalar(n, "integer", strict = FALSE))
     )

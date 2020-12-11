@@ -8,9 +8,9 @@
 \alias{remove_zero}
 \alias{remove_zero-method}
 \alias{remove_NA,matrix-method}
+\alias{remove_NA,DataMatrix-method}
 \alias{remove_NA,data.frame-method}
 \alias{remove_zero,matrix-method}
-\alias{remove_zero,data.frame-method}
 \alias{remove_zero,DataMatrix-method}
 \title{Data Cleaning}
 \usage{
@@ -20,11 +20,9 @@ remove_zero(x, ...)
 
 \S4method{remove_NA}{matrix}(x, margin = 1, finite = TRUE)
 
-\S4method{remove_NA}{data.frame}(x, margin = 1, finite = TRUE)
+\S4method{remove_NA}{DataMatrix}(x, margin = 1, finite = TRUE)
 
 \S4method{remove_zero}{matrix}(x, margin = 1)
-
-\S4method{remove_zero}{data.frame}(x, margin = 1)
 
 \S4method{remove_zero}{DataMatrix}(x, margin = 1)
 }
@@ -43,6 +41,18 @@ values also be removed?}
 }
 \description{
 Removes row/column with missing values or zeros.
+}
+\examples{
+## Create a count data matrix
+A <- CountMatrix(sample(1:10, 25, TRUE), nrow = 5, ncol = 5)
+A[sample(1:25, 3, FALSE)] <- 0 # Add zeros
+A
+
+## Remove row with zeros
+remove_zero(A, margin = 1)
+
+## Remove column with zeros
+remove_zero(A, margin = 2)
 }
 \author{
 N. Frerebeau

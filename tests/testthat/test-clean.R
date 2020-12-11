@@ -20,17 +20,17 @@ test_that("Missing values", {
   expect_lt(ncol(clean_row), ncol(mtx))
   expect_equal(nrow(clean_row), nrow(mtx))
 
-  df <- as.data.frame(mtx) # Create data.frame
+  ct <- as_count(mtx) # Create CountMatrix
 
   # Remove rows
-  df_clean_row <- remove_NA(df, margin = 1, finite = FALSE)
-  expect_lt(nrow(df_clean_row), nrow(df))
-  expect_equal(ncol(df_clean_row), ncol(df))
+  ct_clean_row <- remove_NA(ct, margin = 1, finite = FALSE)
+  expect_lt(nrow(ct_clean_row), nrow(ct))
+  expect_equal(ncol(ct_clean_row), ncol(ct))
 
   # Remove columns
-  df_clean_col <- remove_NA(df, margin = 2, finite = FALSE)
-  expect_lt(ncol(df_clean_col), ncol(df))
-  expect_equal(nrow(df_clean_col), nrow(df))
+  ct_clean_col <- remove_NA(ct, margin = 2, finite = FALSE)
+  expect_lt(ncol(ct_clean_col), ncol(ct))
+  expect_equal(nrow(ct_clean_col), nrow(ct))
 
   # Check message
   options(arkhe.verbose = TRUE)
@@ -60,18 +60,6 @@ test_that("Missing and non-finite values", {
   expect_lt(ncol(clean_row), ncol(mtx))
   expect_equal(nrow(clean_row), nrow(mtx))
 
-  df <- as.data.frame(mtx) # Create data.frame
-
-  # Remove rows
-  df_clean_row <- remove_NA(df, margin = 1, finite = TRUE)
-  expect_lt(nrow(df_clean_row), nrow(df))
-  expect_equal(ncol(df_clean_row), ncol(df))
-
-  # Remove columns
-  df_clean_col <- remove_NA(df, margin = 2, finite = TRUE)
-  expect_lt(ncol(df_clean_col), ncol(df))
-  expect_equal(nrow(df_clean_col), nrow(df))
-
   # Check message
   options(arkhe.verbose = TRUE)
   expect_message(remove_NA(mtx, margin = 1, finite = TRUE))
@@ -95,18 +83,6 @@ test_that("Zeros", {
   clean_row <- remove_zero(mtx, margin = 2)
   expect_lt(ncol(clean_row), ncol(mtx))
   expect_equal(nrow(clean_row), nrow(mtx))
-
-  df <- as.data.frame(mtx) # Create data.frame
-
-  # Remove rows
-  df_clean_row <- remove_zero(df, margin = 1)
-  expect_lt(nrow(df_clean_row), nrow(df))
-  expect_equal(ncol(df_clean_row), ncol(df))
-
-  # Remove columns
-  df_clean_col <- remove_zero(df, margin = 2)
-  expect_lt(ncol(df_clean_col), ncol(df))
-  expect_equal(nrow(df_clean_col), nrow(df))
 
   ct <- as_count(mtx) # Create CountMatrix
 
