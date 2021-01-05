@@ -25,8 +25,8 @@ setGeneric("sd")
 #' Removes row/column with missing values or zeros.
 #' @param x A \code{\link{matrix}}, \code{\link{data.frame}} or
 #'  \linkS4class{DataMatrix} object.
-#' @param margin An \code{\link{integer}} giving the subscripts which the
-#' cleaning will be applied over (\eqn{1} indicates rows, \eqn{2} indicates
+#' @param margin An \code{\link{integer}} giving the subscript which the
+#' cleaning will be applied over (\code{1} indicates rows, \code{2} indicates
 #' columns).
 #' @param finite A \code{\link{logical}} scalar: should non-\code{\link{finite}}
 #' values also be removed?
@@ -354,3 +354,95 @@ NULL
 #' @name summary
 #' @rdname summary
 NULL
+
+# Multivariate analysis ========================================================
+#' Correspondence Analysis
+#'
+#' Computes a simple correspondence analysis based on the singular value
+#' decomposition.
+#' @param object A \linkS4class{CountMatrix} or a \linkS4class{CA} object.
+#' @param n An \code{\link{integer}} value specifying the number of dimensions
+#'  to be kept in the results (default to \code{5}).
+#' @param sup_rows An \code{\link{numeric}} vector specifying the indices of the
+#'  supplementary rows.
+#' @param sup_columns An \code{\link{numeric}} vector specifying the indices of
+#'  the supplementary columns.
+#' @param data An object of supplementary points coercible to a
+#'  \code{\link{matrix}} for which to compute principal coordinates.
+#' @param margin A length-one \code{\link{numeric}} vector giving the subscript
+#'  which the data will be returned: \code{1} indicates rows (the default),
+#'  \code{2} indicates columns.
+#' @param standard A \code{\link{logical}} scalar: should standard coordinates
+#'  be returned instead of principal coordinates (the default)?
+#' @param sup A \code{\link{logical}} scalar: should supplementary points be
+#'  returned?
+#' @param sup_name A \code{\link{character}} string specifying the name of the
+#'  column to create for supplementary points attribution (see below).
+#' @param ... Currently not used.
+#' @return
+#'  \code{ca} returns a \linkS4class{CA} object.
+#'
+#'  \code{predict} returns a \code{data.frame} of principal coordinates.
+#'
+#'  \code{get_coordinates} returns a \code{data.frame} of coordinates. If
+#'  \code{sup} is \code{TRUE}, an extra column (named after \code{sup_name}) is
+#'  added specifying whether an observation is a supplementary point or not.
+#'
+#'  \code{get_inertia} returns a \code{data.frame}.
+#'
+#'  \code{get_distances} returns a \code{data.frame}.
+#'
+#'  \code{get_contributions} returns a \code{data.frame}.
+#'
+#'  \code{get_eigenvalues} returns a \code{data.frame} with the following
+#'  columns: \code{eigenvalues}, \code{percentage} (percentage of variance) and
+#'  \code{cumulative} (cumulative percentage of variance).
+#' @example inst/examples/ex-ca.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family multivariate analysis
+#' @name correspondence
+#' @rdname correspondence
+NULL
+
+#' @rdname correspondence
+#' @aliases ca-method
+setGeneric(
+  name = "ca",
+  def = function(object, ...) standardGeneric("ca")
+)
+
+#' @rdname correspondence
+#' @aliases get_coordinates-method
+setGeneric(
+  name = "get_coordinates",
+  def = function(object, ...) standardGeneric("get_coordinates")
+)
+
+#' @rdname correspondence
+#' @aliases get_contributions-method
+setGeneric(
+  name = "get_contributions",
+  def = function(object, ...) standardGeneric("get_contributions")
+)
+
+#' @rdname correspondence
+#' @aliases get_distances-method
+setGeneric(
+  name = "get_distances",
+  def = function(object, ...) standardGeneric("get_distances")
+)
+
+#' @rdname correspondence
+#' @aliases get_eigenvalues-method
+setGeneric(
+  name = "get_eigenvalues",
+  def = function(object) standardGeneric("get_eigenvalues")
+)
+
+#' @rdname correspondence
+#' @aliases get_inertia-method
+setGeneric(
+  name = "get_inertia",
+  def = function(object, ...) standardGeneric("get_inertia")
+)
