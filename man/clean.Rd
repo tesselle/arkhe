@@ -32,8 +32,8 @@ remove_zero(x, ...)
 
 \item{...}{Currently not used.}
 
-\item{margin}{An \code{\link{integer}} giving the subscripts which the
-cleaning will be applied over (\eqn{1} indicates rows, \eqn{2} indicates
+\item{margin}{An \code{\link{integer}} giving the subscript which the
+cleaning will be applied over (\code{1} indicates rows, \code{2} indicates
 columns).}
 
 \item{finite}{A \code{\link{logical}} scalar: should non-\code{\link{finite}}

@@ -64,11 +64,11 @@ get_inertia(object, ...)
 \item{n}{An \code{\link{integer}} value specifying the number of dimensions
 to be kept in the results (default to \code{5}).}
 
-\item{sup_rows}{An \code{\link{numeric}} vector specifying the indices of the
-supplementary rows.}
+\item{sup_rows}{A \code{\link{numeric}} or \code{\link{logical}} vector
+specifying the indices of the supplementary rows.}
 
-\item{sup_columns}{An \code{\link{numeric}} vector specifying the indices of
-the supplementary columns.}
+\item{sup_columns}{A \code{\link{numeric}} or \code{\link{logical}} vector
+specifying the indices of the supplementary columns.}
 
 \item{data}{An object of supplementary points coercible to a
 \code{\link{matrix}} for which to compute principal coordinates.}

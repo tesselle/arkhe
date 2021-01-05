@@ -363,10 +363,10 @@ NULL
 #' @param object A \linkS4class{CountMatrix} or a \linkS4class{CA} object.
 #' @param n An \code{\link{integer}} value specifying the number of dimensions
 #'  to be kept in the results (default to \code{5}).
-#' @param sup_rows An \code{\link{numeric}} vector specifying the indices of the
-#'  supplementary rows.
-#' @param sup_columns An \code{\link{numeric}} vector specifying the indices of
-#'  the supplementary columns.
+#' @param sup_rows A \code{\link{numeric}} or \code{\link{logical}} vector
+#'  specifying the indices of the supplementary rows.
+#' @param sup_columns A \code{\link{numeric}} or \code{\link{logical}} vector
+#'  specifying the indices of the supplementary columns.
 #' @param data An object of supplementary points coercible to a
 #'  \code{\link{matrix}} for which to compute principal coordinates.
 #' @param margin A length-one \code{\link{numeric}} vector giving the subscript

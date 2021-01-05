@@ -34,6 +34,10 @@ setMethod(
 
     # /!\ Important: we need to clean the data before processing
     # Empty rows/columns must be removed to avoid error in svd()
+    if (any(w_row == 0))
+      stop("Empty rows detected.", call. = FALSE)
+    if (any(w_col == 0))
+      stop("Empty columns detected.", call. = FALSE)
 
     # Calcul des écarts à l'indépendance
     M <- P - w_row %*% t(w_col)
@@ -114,7 +118,7 @@ setMethod(
 is_supplementary <- function(index, n) {
   x <- rep(FALSE, times = n)
 
-  if (!is.null(index) && !is.numeric(index)) {
+  if (!is.null(index) && (!is.numeric(index) & !is.logical(index))) {
     arg <- deparse(substitute(index))
     msg <- sprintf("%s must be a numeric vector of indices.", sQuote(arg))
     stop(msg, call. = FALSE)
