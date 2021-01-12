@@ -39,7 +39,6 @@
 \alias{get_totals,AbundanceMatrix-method}
 \alias{get_totals,OccurrenceMatrix-method}
 \alias{get_method,SimilarityMatrix-method}
-\alias{get_n,OccurrenceMatrix-method}
 \alias{set_groups<-,DataMatrix-method}
 \alias{set_groups,DataMatrix-method}
 \alias{set_totals<-,AbundanceMatrix-method}
@@ -95,8 +94,6 @@ get_n(x)
 \S4method{get_totals}{OccurrenceMatrix}(x)
 
 \S4method{get_method}{SimilarityMatrix}(x)
-
-\S4method{get_n}{OccurrenceMatrix}(x)
 
 \S4method{set_groups}{DataMatrix}(x) <- value
 

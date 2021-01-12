@@ -144,11 +144,6 @@ setMethod("get_totals", "OccurrenceMatrix", function(x) x@n)
 #' @aliases get_method,SimilarityMatrix-method
 setMethod("get_method", "SimilarityMatrix", function(x) x@method)
 
-#' @export
-#' @rdname mutator
-#' @aliases get_n,OccurrenceMatrix-method
-setMethod("get_n", "OccurrenceMatrix", function(x) x@n)
-
 # Setters ======================================================================
 #' @export
 #' @rdname mutator

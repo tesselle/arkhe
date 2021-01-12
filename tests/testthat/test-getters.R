@@ -60,5 +60,5 @@ test_that("OccurrenceMatrix number of observations", {
   cts <- matrix(sample(0:1, 100, TRUE), ncol = 10)
   occ <- as_occurrence(cts)
 
-  expect_equal(get_n(occ), nrow(cts))
+  expect_equal(get_totals(occ), nrow(cts))
 })

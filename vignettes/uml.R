@@ -49,12 +49,13 @@ nomnoml::nomnoml("
 
 [CountMatrix||
  CountMatrix();
- as_count()
+ as_count();
+ ca()
 ]
 [OccurrenceMatrix|
  +n: integer|
  as_occurrence();
- get_n()
+ get_totals()
 ]
 
 [AbundanceMatrix|
