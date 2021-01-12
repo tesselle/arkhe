@@ -30,7 +30,7 @@ test_that("Predict new principal coordinates", {
   expect_length(inertia_col, 5)
   # Eigenvalues
   eig <- get_eigenvalues(res)
-  expect_equal(dim(eig), c(5L, 3L))
+  expect_equal(dim(eig), c(4L, 3L))
 })
 test_that("Predict new principal coordinates", {
   cts <- CountMatrix(data = sample(1:10, 100, TRUE), ncol = 10)

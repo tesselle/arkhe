@@ -8,7 +8,8 @@ NULL
 setMethod(
   f = "ca",
   signature = signature(object = "CountMatrix"),
-  definition = function(object, n = 5, sup_rows = NULL, sup_columns = NULL) {
+  definition = function(object, n = min(dim(object) - 1),
+                        sup_rows = NULL, sup_columns = NULL) {
     # Coerce to matrix
     object <- as.matrix(object)
 
@@ -48,7 +49,7 @@ setMethod(
     D <- svd(S)
     U <- D$u[, keep_dim]
     V <- D$v[, keep_dim]
-    sv <- D$d # Singular values
+    sv <- D$d[keep_dim] # Singular values
 
     # Standard coordinates
     coord_row <- sqrt(W_row) %*% U
@@ -68,7 +69,7 @@ setMethod(
       extra_row <- object[is_row_sup, !is_col_sup, drop = FALSE]
       n_sup <- nrow(extra_row)
       row_sup <- extra_row / rowSums(extra_row)
-      sv_row_sup <- matrix(data = sv[keep_dim], nrow = n_sup, ncol = ndim, byrow = TRUE)
+      sv_row_sup <- matrix(data = sv, nrow = n_sup, ncol = ndim, byrow = TRUE)
       # Standard coordinates
       coord_row_sup <- crossprod(t(row_sup) - w_col, coord_col) / sv_row_sup
       # Distances
@@ -81,7 +82,7 @@ setMethod(
       extra_col <- object[!is_row_sup, is_col_sup, drop = FALSE]
       n_sup <- ncol(extra_col)
       col_sup <- t(t(extra_col) / colSums(extra_col))
-      sv_col_sup <- matrix(data = sv[keep_dim], nrow = n_sup, ncol = ndim, byrow = TRUE)
+      sv_col_sup <- matrix(data = sv, nrow = n_sup, ncol = ndim, byrow = TRUE)
       # Standard coordinates
       coord_col_sup <- crossprod(col_sup - w_row, coord_row) / sv_col_sup
       # Distances
@@ -92,6 +93,7 @@ setMethod(
     }
 
     .CA(
+      data = object,
       dimension = as.integer(ndim),
       row_names = rownames(object),
       row_coordinates = rbind(coord_row, coord_row_sup),

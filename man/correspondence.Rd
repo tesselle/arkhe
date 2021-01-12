@@ -36,7 +36,7 @@ get_eigenvalues(object)
 
 get_inertia(object, ...)
 
-\S4method{ca}{CountMatrix}(object, n = 5, sup_rows = NULL, sup_columns = NULL)
+\S4method{ca}{CountMatrix}(object, n = min(dim(object) - 1), sup_rows = NULL, sup_columns = NULL)
 
 \S4method{predict}{CA}(object, data, margin = 1)
 

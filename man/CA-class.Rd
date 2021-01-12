@@ -11,6 +11,8 @@ An S4 class to store the results of a simple correspondence analysis.
 \section{Slots}{
 
 \describe{
+\item{\code{data}}{A \code{\link{numeric}} \code{\link{matrix}}}
+
 \item{\code{dimension}}{An \code{\link{integer}} giving the dimension of the
 solution.}
 

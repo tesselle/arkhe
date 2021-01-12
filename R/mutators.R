@@ -20,6 +20,14 @@ setMethod(
 )
 #' @export
 #' @rdname mutator
+#' @aliases dim,CA-method
+setMethod(
+  f = "dim",
+  signature = signature(x = "CA"),
+  definition = function(x) x@dimension
+)
+#' @export
+#' @rdname mutator
 #' @aliases rownames,DataMatrix-method
 setMethod(
   f = "rownames",
@@ -125,6 +133,11 @@ setMethod("get_groups", "DataMatrix", function(x) x@group_names)
 #' @rdname mutator
 #' @aliases get_totals,AbundanceMatrix-method
 setMethod("get_totals", "AbundanceMatrix", function(x) x@totals)
+
+#' @export
+#' @rdname mutator
+#' @aliases get_totals,OccurrenceMatrix-method
+setMethod("get_totals", "OccurrenceMatrix", function(x) x@n)
 
 #' @export
 #' @rdname mutator

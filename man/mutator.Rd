@@ -23,6 +23,7 @@
 \alias{get_n-method}
 \alias{length,DataMatrix-method}
 \alias{dim,DataMatrix-method}
+\alias{dim,CA-method}
 \alias{rownames,DataMatrix-method}
 \alias{rownames<-,DataMatrix-method}
 \alias{rownames<-,DataMatrix,ANY-method}
@@ -36,6 +37,7 @@
 \alias{has_groups,DataMatrix-method}
 \alias{get_groups,DataMatrix-method}
 \alias{get_totals,AbundanceMatrix-method}
+\alias{get_totals,OccurrenceMatrix-method}
 \alias{get_method,SimilarityMatrix-method}
 \alias{get_n,OccurrenceMatrix-method}
 \alias{set_groups<-,DataMatrix-method}
@@ -66,6 +68,8 @@ get_n(x)
 
 \S4method{dim}{DataMatrix}(x)
 
+\S4method{dim}{CA}(x)
+
 \S4method{rownames}{DataMatrix}(x)
 
 \S4method{rownames}{DataMatrix}(x) <- value
@@ -87,6 +91,8 @@ get_n(x)
 \S4method{get_groups}{DataMatrix}(x)
 
 \S4method{get_totals}{AbundanceMatrix}(x)
+
+\S4method{get_totals}{OccurrenceMatrix}(x)
 
 \S4method{get_method}{SimilarityMatrix}(x)
 

@@ -5,6 +5,7 @@
 #' Correspondence Analysis Results
 #'
 #' An S4 class to store the results of a simple correspondence analysis.
+#' @slot data A \code{\link{numeric}} \code{\link{matrix}}
 #' @slot dimension An \code{\link{integer}} giving the dimension of the
 #'  solution.
 #' @slot row_names A \code{\link{character}} vector specifying the row names.
@@ -37,6 +38,7 @@
 .CA <- setClass(
   Class = "CA",
   slots = c(
+    data = "matrix",
     dimension = "integer",
     row_names = "character",
     row_coordinates = "matrix",
