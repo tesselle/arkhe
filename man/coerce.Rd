@@ -25,6 +25,7 @@
 \alias{as_occurrence,ANY-method}
 \alias{as_incidence,ANY-method}
 \alias{as_stratigraphy,ANY-method}
+\alias{as_long,matrix-method}
 \alias{as_long,DataMatrix-method}
 \alias{as_features,DataMatrix-method}
 \title{Coerce}
@@ -56,6 +57,8 @@ as_stratigraphy(from)
 \S4method{as_incidence}{ANY}(from)
 
 \S4method{as_stratigraphy}{ANY}(from)
+
+\S4method{as_long}{matrix}(from, factor = FALSE)
 
 \S4method{as_long}{DataMatrix}(from, factor = FALSE)
 

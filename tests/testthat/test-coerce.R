@@ -115,6 +115,12 @@ test_that("DataMatrix > matrix", {
   expect_is(as(incid, "matrix"), "matrix")
   expect_is(as(occ, "matrix"), "matrix")
 })
+test_that("matrix > long", {
+  expect_equal(dim(as_long(cts)), c(50, 3))
+
+  expect_s3_class(as_long(cts, factor = TRUE)$case, "factor")
+  expect_s3_class(as_long(cts, factor = TRUE)$type, "factor")
+})
 test_that("DataMatrix > long", {
   expect_equal(dim(as_long(count)), c(50, 3))
   expect_equal(dim(as_long(freq)), c(50, 3))

@@ -301,6 +301,27 @@ setAs(from = "list", to = "StratigraphicMatrix", def = edges2matrix)
 # Other ========================================================================
 #' @export
 #' @rdname coerce
+#' @aliases as_long,matrix-method
+setMethod(
+  f = "as_long",
+  signature = signature(from = "matrix"),
+  definition = function(from, factor = FALSE) {
+    x <- data.frame(
+      case = as.character(row(from, as.factor = factor)),
+      type = as.character(col(from, as.factor = factor)),
+      value = as.vector(from),
+      stringsAsFactors = FALSE
+    )
+    if (factor) {
+      x$case <- factor(x$case, levels = unique(x$case))
+      x$type <- factor(x$type, levels = unique(x$type))
+    }
+    x
+  }
+)
+
+#' @export
+#' @rdname coerce
 #' @aliases as_long,DataMatrix-method
 setMethod(
   f = "as_long",
