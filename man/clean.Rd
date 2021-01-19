@@ -3,20 +3,35 @@
 \docType{methods}
 \name{clean}
 \alias{clean}
+\alias{replace_NA}
+\alias{replace_NA-method}
 \alias{remove_NA}
 \alias{remove_NA-method}
+\alias{remove_empty}
+\alias{remove_empty-method}
 \alias{remove_zero}
 \alias{remove_zero-method}
+\alias{replace_NA,matrix-method}
+\alias{replace_NA,DataMatrix-method}
 \alias{remove_NA,matrix-method}
 \alias{remove_NA,DataMatrix-method}
-\alias{remove_NA,data.frame-method}
 \alias{remove_zero,matrix-method}
 \alias{remove_zero,DataMatrix-method}
+\alias{remove_empty,matrix-method}
+\alias{remove_empty,DataMatrix-method}
 \title{Data Cleaning}
 \usage{
+replace_NA(x, ...)
+
 remove_NA(x, ...)
 
+remove_empty(x, ...)
+
 remove_zero(x, ...)
+
+\S4method{replace_NA}{matrix}(x, value = 0)
+
+\S4method{replace_NA}{DataMatrix}(x, value = 0)
 
 \S4method{remove_NA}{matrix}(x, margin = 1, finite = TRUE)
 
@@ -25,12 +40,18 @@ remove_zero(x, ...)
 \S4method{remove_zero}{matrix}(x, margin = 1)
 
 \S4method{remove_zero}{DataMatrix}(x, margin = 1)
+
+\S4method{remove_empty}{matrix}(x, margin = 1)
+
+\S4method{remove_empty}{DataMatrix}(x, margin = 1)
 }
 \arguments{
 \item{x}{A \code{\link{matrix}}, \code{\link{data.frame}} or
 \linkS4class{DataMatrix} object.}
 
 \item{...}{Currently not used.}
+
+\item{value}{A possible value to replace missing values of \code{x}.}
 
 \item{margin}{An \code{\link{integer}} giving the subscript which the
 cleaning will be applied over (\code{1} indicates rows, \code{2} indicates
@@ -40,7 +61,7 @@ columns).}
 values also be removed?}
 }
 \description{
-Removes row/column with missing values or zeros.
+Removes empty row/column or row/column with missing values or zeros.
 }
 \examples{
 ## Create a count data matrix

@@ -36,10 +36,12 @@ setValidity(
   method = function(object) {
     # Get data
     values <- object@values
+    data <- as.matrix(object)
 
     cnd <- list(
       # Check values
       catch_conditions(check_numbers(values, "positive", strict = FALSE, na.rm = TRUE))
+      # catch_conditions(check_empty(data))
     )
 
     # Return cnd, if any
@@ -56,10 +58,12 @@ setValidity(
     values <- object@values
     totals <- object@totals
     size <- object@size
+    data <- as.matrix(object)
 
     cnd <- list(
       # Check values
       catch_conditions(check_numbers(values, "positive", strict = FALSE, na.rm = TRUE)),
+      # catch_conditions(check_empty(data)),
       # Check totals
       # TODO: check constant sum (?)
       catch_conditions(check_numbers(totals, "positive", strict = FALSE)),
@@ -151,14 +155,14 @@ check_class <- function(object, conditions) {
   cnd <- unlist(cnd, recursive = FALSE)
 
   # Check if any warning
-  wrn_idx <- vapply(X = cnd, FUN = is_warning, FUN.VALUE = logical(1))
-  if (any(wrn_idx)) {
-    wrn_msg <- vapply(X = cnd[wrn_idx], FUN = `[[`,
-                      FUN.VALUE = character(1), "message")
-    wrn <- sprintf("<%s> instance initialization:\n%s", class(object),
-                   paste0("* ", unlist(wrn_msg), collapse = "\n"))
-    throw_warning("arkhe_warning_class", wrn, call = NULL)
-  }
+  # wrn_idx <- vapply(X = cnd, FUN = is_warning, FUN.VALUE = logical(1))
+  # if (any(wrn_idx)) {
+  #   wrn_msg <- vapply(X = cnd[wrn_idx], FUN = `[[`,
+  #                     FUN.VALUE = character(1), "message")
+  #   wrn <- sprintf("<%s> instance initialization:\n%s", class(object),
+  #                  paste0("* ", unlist(wrn_msg), collapse = "\n"))
+  #   throw_warning("arkhe_warning_class", wrn, call = NULL)
+  # }
 
   # Check if any error
   err_idx <- vapply(X = cnd, FUN = is_error, FUN.VALUE = logical(1))

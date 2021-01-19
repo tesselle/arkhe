@@ -172,14 +172,6 @@ check_missing <- function(x) {
     throw_error("error_data_missing", msg)
   }
 }
-# validate_missing <- function(x) {
-#   arg <- deparse(substitute(x))
-#   n <- sum(is.na(x))
-#   if (n > 0) {
-#     msg <- sprintf("%s contains %s missing values.", sQuote(arg), n)
-#     throw_warning("warning_data_missing", msg)
-#   }
-# }
 
 #' @rdname check-missing
 check_infinite <- function(x) {
@@ -245,6 +237,18 @@ check_constant <- function(x) {
 #' @rdname check-matrix
 #' @keywords internal
 NULL
+
+# @rdname check-matrix
+# check_empty <- function(x) {
+#   arg <- sQuote(deparse(substitute(x)))
+#   is_empty <- function(x) sum(x, na.rm = TRUE) == 0
+#   row_empty <- apply(X = x, MARGIN = 1, FUN = is_empty)
+#   col_empty <- apply(X = x, MARGIN = 2, FUN = is_empty)
+#   if (any(row_empty) | any(col_empty)) {
+#     msg <- sprintf("%s contains empty rows or columns.", arg)
+#     throw_warning("warning_data_missing", msg)
+#   }
+# }
 
 #' @rdname check-matrix
 check_square <- function(x) {

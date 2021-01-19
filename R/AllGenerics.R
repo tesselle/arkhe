@@ -22,14 +22,15 @@ setGeneric("sd")
 # Clean ========================================================================
 #' Data Cleaning
 #'
-#' Removes row/column with missing values or zeros.
+#' Removes empty row/column or row/column with missing values or zeros.
 #' @param x A \code{\link{matrix}}, \code{\link{data.frame}} or
 #'  \linkS4class{DataMatrix} object.
 #' @param margin An \code{\link{integer}} giving the subscript which the
-#' cleaning will be applied over (\code{1} indicates rows, \code{2} indicates
-#' columns).
+#'  cleaning will be applied over (\code{1} indicates rows, \code{2} indicates
+#'  columns).
 #' @param finite A \code{\link{logical}} scalar: should non-\code{\link{finite}}
-#' values also be removed?
+#'  values also be removed?
+#' @param value A possible value to replace missing values of \code{x}.
 #' @param ... Currently not used.
 #' @example inst/examples/ex-clean.R
 #' @author N. Frerebeau
@@ -40,10 +41,24 @@ setGeneric("sd")
 NULL
 
 #' @rdname clean
+#' @aliases replace_NA-method
+setGeneric(
+  name = "replace_NA",
+  def = function(x, ...) standardGeneric("replace_NA")
+)
+
+#' @rdname clean
 #' @aliases remove_NA-method
 setGeneric(
   name = "remove_NA",
   def = function(x, ...) standardGeneric("remove_NA")
+)
+
+#' @rdname clean
+#' @aliases remove_empty-method
+setGeneric(
+  name = "remove_empty",
+  def = function(x, ...) standardGeneric("remove_empty")
 )
 
 #' @rdname clean

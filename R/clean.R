@@ -2,7 +2,35 @@
 #' @include AllClasses.R AllGenerics.R
 NULL
 
-# Missing values ===============================================================
+# Replace ======================================================================
+## Missing values --------------------------------------------------------------
+#' @export
+#' @rdname clean
+#' @aliases replace_NA,matrix-method
+setMethod(
+  f = "replace_NA",
+  signature = signature(x = "matrix"),
+  definition = function(x, value = 0) {
+    x[is.na(x)] <- value
+    x
+  }
+)
+
+#' @export
+#' @rdname clean
+#' @aliases replace_NA,DataMatrix-method
+setMethod(
+  f = "replace_NA",
+  signature = signature(x = "DataMatrix"),
+  definition = function(x, value = 0) {
+    index <- which(is.na(x@values))
+    x[index] <- value
+    x
+  }
+)
+
+# Remove =======================================================================
+## Missing values --------------------------------------------------------------
 #' @export
 #' @rdname clean
 #' @aliases remove_NA,matrix-method
@@ -10,16 +38,16 @@ setMethod(
   f = "remove_NA",
   signature = signature(x = "matrix"),
   definition = function(x, margin = 1, finite = TRUE) {
-    index <- detect_missing(x, margin = margin, finite = finite)
-    if (margin == 1) x <- x[!index, , drop = FALSE]
-    if (margin == 2) x <- x[, !index, drop = FALSE]
+    index <- !detect_missing(x, margin = margin, finite = finite)
+    if (margin == 1) x <- x[index, , drop = FALSE]
+    if (margin == 2) x <- x[, index, drop = FALSE]
     x
   }
 )
 
 #' @export
 #' @rdname clean
-#' @aliases remove_NA,data.frame-method
+#' @aliases remove_NA,DataMatrix-method
 setMethod(
   f = "remove_NA",
   signature = signature(x = "DataMatrix"),
@@ -31,7 +59,7 @@ setMethod(
   }
 )
 
-# Zeros ========================================================================
+## Zeros -----------------------------------------------------------------------
 #' @export
 #' @rdname clean
 #' @aliases remove_zero,matrix-method
@@ -39,9 +67,9 @@ setMethod(
   f = "remove_zero",
   signature = signature(x = "matrix"),
   definition = function(x, margin = 1) {
-    index <- detect_zero(x, margin = margin)
-    if (margin == 1) x <- x[!index, , drop = FALSE]
-    if (margin == 2) x <- x[, !index, drop = FALSE]
+    index <- !detect_zero(x, margin = margin)
+    if (margin == 1) x <- x[index, , drop = FALSE]
+    if (margin == 2) x <- x[, index, drop = FALSE]
     x
   }
 )
@@ -60,7 +88,36 @@ setMethod(
   }
 )
 
-# Detect (internal) ============================================================
+## Empty -----------------------------------------------------------------------
+#' @export
+#' @rdname clean
+#' @aliases remove_empty,matrix-method
+setMethod(
+  f = "remove_empty",
+  signature = signature(x = "matrix"),
+  definition = function(x, margin = 1) {
+    index <- !detect_empty(x, margin = margin)
+    if (margin == 1) x <- x[index, , drop = FALSE]
+    if (margin == 2) x <- x[, index, drop = FALSE]
+    x
+  }
+)
+
+#' @export
+#' @rdname clean
+#' @aliases remove_empty,DataMatrix-method
+setMethod(
+  f = "remove_empty",
+  signature = signature(x = "DataMatrix"),
+  definition = function(x, margin = 1) {
+    index <- which(!detect_empty(x, margin = margin))
+    if (margin == 1) x <- x[index, , drop = FALSE]
+    if (margin == 2) x <- x[, index, drop = FALSE]
+    x
+  }
+)
+
+# Detect =======================================================================
 #' Data Cleaning
 #'
 #' @param x An object. It will be coerced to a \code{matrix} as by
@@ -73,24 +130,21 @@ setMethod(
 #' @param type A \code{\link{character}} vector.
 #' @return
 #'  \code{detect_missing}, \code{detect_zero} and \code{detect_any} return
-#'  an \code{\link{integer}} vector of indices.
+#'  a \code{\link{logical}} vector.
 #' @author N. Frerebeau
 #' @keywords internal
 #' @noRd
 detect_missing <- function(x, margin = 1, finite = FALSE) {
-  if (finite) {
-    is_missing <- function(x) !is.finite(x)
-  } else {
-    is_missing <- is.na
-  }
+  is_missing <- if (finite) function(x) !is.finite(x) else is.na
   detect_any(x, f = is_missing, margin = margin, type = "NAs")
 }
 detect_zero <- function(x, margin = 1) {
-  is_zero <- function(x) {
-    if (is.numeric(x)) x == 0
-    else rep(FALSE, length(x))
-  }
+  is_zero <- function(x) if (is.numeric(x)) x == 0 else rep(FALSE, length(x))
   detect_any(x, f = is_zero, margin = margin, type = "zeros")
+}
+detect_empty <- function(x, margin = 1) {
+  is_empty <- function(x) if (is.numeric(x)) sum(x, na.rm = TRUE) == 0 else FALSE
+  detect_any(x, f = is_empty, margin = margin, type = "empty")
 }
 detect_any <- function(x, f, margin = 1, type = "generic") {
   count <- apply(X = x, MARGIN = margin, FUN = function(x, f) sum(f(x)), f = f)
@@ -105,8 +159,9 @@ detect_any <- function(x, f, margin = 1, type = "generic") {
       ngettext(n, "row", "rows"),
       ngettext(n, "column", "columns")
     )
-    k <- paste0(sprintf("%s (%d)", parts[index], count[index]), collapse = ", ")
-    message(sprintf("Removed %d %s (%s): %s", n, mar, type, k))
+    k <- paste0(sprintf("* %s (%d)", parts[index], count[index]),
+                collapse = "\n")
+    message(sprintf("Removed %d %s (%s):\n%s", n, mar, type, k))
   }
 
   index
