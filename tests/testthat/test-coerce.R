@@ -118,8 +118,8 @@ test_that("DataMatrix > matrix", {
 test_that("matrix > long", {
   expect_equal(dim(as_long(cts)), c(50, 3))
 
-  expect_s3_class(as_long(cts, factor = TRUE)$case, "factor")
-  expect_s3_class(as_long(cts, factor = TRUE)$type, "factor")
+  expect_s3_class(as_long(cts, factor = TRUE)$row, "factor")
+  expect_s3_class(as_long(cts, factor = TRUE)$column, "factor")
 })
 test_that("DataMatrix > long", {
   expect_equal(dim(as_long(count)), c(50, 3))
@@ -127,8 +127,8 @@ test_that("DataMatrix > long", {
   expect_equal(dim(as_long(incid)), c(50, 3))
   expect_equal(dim(as_long(occ)), c(100, 3))
 
-  expect_s3_class(as_long(occ, factor = TRUE)$case, "factor")
-  expect_s3_class(as_long(occ, factor = TRUE)$type, "factor")
+  expect_s3_class(as_long(occ, factor = TRUE)$row, "factor")
+  expect_s3_class(as_long(occ, factor = TRUE)$column, "factor")
 })
 test_that("DataMatrix > features", {
   expect_equal(dim(as_features(freq)), c(5, 12))

@@ -307,14 +307,14 @@ setMethod(
   signature = signature(from = "matrix"),
   definition = function(from, factor = FALSE) {
     x <- data.frame(
-      case = as.character(row(from, as.factor = factor)),
-      type = as.character(col(from, as.factor = factor)),
+      row = as.vector(row(from, as.factor = factor)),
+      column = as.vector(col(from, as.factor = factor)),
       value = as.vector(from),
       stringsAsFactors = FALSE
     )
     if (factor) {
-      x$case <- factor(x$case, levels = unique(x$case))
-      x$type <- factor(x$type, levels = unique(x$type))
+      x$row <- factor(x$row, levels = unique(x$row))
+      x$column <- factor(x$column, levels = unique(x$column))
     }
     x
   }
@@ -328,14 +328,14 @@ setMethod(
   signature = signature(from = "DataMatrix"),
   definition = function(from, factor = FALSE) {
     x <- data.frame(
-      case = as.character(row(from, as.factor = factor)),
-      type = as.character(col(from, as.factor = factor)),
+      row = as.character(row(from, as.factor = factor)),
+      column = as.character(col(from, as.factor = factor)),
       value = from@values,
       stringsAsFactors = FALSE
     )
     if (factor) {
-      x$case <- factor(x$case, levels = unique(x$case))
-      x$type <- factor(x$type, levels = unique(x$type))
+      x$row <- factor(x$row, levels = unique(x$row))
+      x$column <- factor(x$column, levels = unique(x$column))
     }
     grp <- from@group_names
     if (length(grp) > 0) {

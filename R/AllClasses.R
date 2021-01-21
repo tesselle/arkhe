@@ -34,6 +34,8 @@
 #' @author N. Frerebeau
 #' @family multivariate analysis
 #' @docType class
+#' @export .CA
+#' @exportClass CA
 #' @aliases CA-class
 .CA <- setClass(
   Class = "CA",
