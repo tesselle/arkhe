@@ -19,11 +19,8 @@
 \alias{get_method-method}
 \alias{set_method<-}
 \alias{set_method-method}
-\alias{get_n}
-\alias{get_n-method}
 \alias{length,DataMatrix-method}
 \alias{dim,DataMatrix-method}
-\alias{dim,CA-method}
 \alias{rownames,DataMatrix-method}
 \alias{rownames<-,DataMatrix-method}
 \alias{rownames<-,DataMatrix,ANY-method}
@@ -61,13 +58,9 @@ get_method(x)
 
 set_method(x) <- value
 
-get_n(x)
-
 \S4method{length}{DataMatrix}(x)
 
 \S4method{dim}{DataMatrix}(x)
-
-\S4method{dim}{CA}(x)
 
 \S4method{rownames}{DataMatrix}(x)
 
@@ -105,7 +98,7 @@ get_n(x)
 \item{x}{An object from which to get or set element(s) (typically a
 \linkS4class{DataMatrix} object).}
 
-\item{value}{A possible value for the element(s) of \code{object}.}
+\item{value}{A possible value for the element(s) of \code{x}.}
 }
 \value{
 An object of the same sort as \code{x} with the new values assigned.

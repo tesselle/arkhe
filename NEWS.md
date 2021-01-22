@@ -1,3 +1,14 @@
+## arkhe 0.3.0
+
+### New classes and methods
+* `ca` and `predic` allow to perform a correspondence analysis and predict projection for new points.
+
+### Bugfixes & changes
+* Change `OccurrenceMatrix` inheritance (from `NumericMatrix` to `IntegerMatrix`)
+
+### Internal
+* Remove `id` slot in `GenericMatrix`.
+
 ## arkhe 0.2.2 (CRAN release date: 2020-03-23)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3724463.svg)](https://doi.org/10.5281/zenodo.3724463)
 

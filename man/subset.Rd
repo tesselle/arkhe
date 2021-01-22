@@ -13,8 +13,6 @@
 \alias{[,DataMatrix,numeric,numeric,ANY-method}
 \alias{[[,DataMatrix,numeric,missing-method}
 \alias{[[,DataMatrix,numeric,numeric-method}
-\alias{[[,CA,ANY,ANY-method}
-\alias{[[,CA-method}
 \alias{[<-,DataMatrix,missing,missing-method}
 \alias{[<-,DataMatrix,missing,missing,ANY-method}
 \alias{[<-,DataMatrix,numeric,missing-method}
@@ -40,8 +38,6 @@
 \S4method{[[}{DataMatrix,numeric,missing}(x, i, j, ...)
 
 \S4method{[[}{DataMatrix,numeric,numeric}(x, i, j, ...)
-
-\S4method{[[}{CA,ANY,ANY}(x, i)
 
 \S4method{[}{DataMatrix,missing,missing}(x, i, j, ...) <- value
 

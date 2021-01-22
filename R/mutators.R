@@ -20,14 +20,6 @@ setMethod(
 )
 #' @export
 #' @rdname mutator
-#' @aliases dim,CA-method
-setMethod(
-  f = "dim",
-  signature = signature(x = "CA"),
-  definition = function(x) x@dimension
-)
-#' @export
-#' @rdname mutator
 #' @aliases rownames,DataMatrix-method
 setMethod(
   f = "rownames",

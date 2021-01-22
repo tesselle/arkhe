@@ -36,8 +36,7 @@ Suggests:
     covr,
     knitr,
     rmarkdown,
-    testthat,
-    ca
+    testthat
 VignetteBuilder: 
     knitr
 Encoding: UTF-8
@@ -47,7 +46,6 @@ Collate:
     'AllClasses.R'
     'AllGenerics.R'
     'arkhe-package.R'
-    'ca.R'
     'predicates.R'
     'check.R'
     'clean.R'
