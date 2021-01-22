@@ -43,7 +43,7 @@ You can install the released version of **arkhe** from [CRAN](https://CRAN.R-pro
 install.packages("arkhe")
 ```
 
-Or install the development version from GitHub with:
+And the development version from [GitHub](https://github.com/) with:
 
 ```{r gh-installation, eval=FALSE}
 # install.packages("remotes")

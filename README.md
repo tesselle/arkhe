@@ -45,7 +45,7 @@ You can install the released version of **arkhe** from
 install.packages("arkhe")
 ```
 
-Or install the development version from GitHub with:
+And the development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("remotes")
@@ -62,15 +62,15 @@ library(arkhe)
 **arkhe** provides a set of S4 classes that represent different special
 types of matrix.
 
-  - Integer matrix:
-      - `CountMatrix` represents absolute frequency data,
-      - `OccurrenceMatrix` represents a co-occurrence matrix,
-  - Numeric matrix:
-      - `AbundanceMatrix` represents relative frequency data,
-      - `SimilarityMatrix` represents a (dis)similarity matrix,
-  - Logical matrix:
-      - `IncidenceMatrix` represents presence/absence data,
-      - `StratigraphicMatrix` represents stratigraphic relationships.
+-   Integer matrix:
+    -   `CountMatrix` represents absolute frequency data,
+    -   `OccurrenceMatrix` represents a co-occurrence matrix,
+-   Numeric matrix:
+    -   `AbundanceMatrix` represents relative frequency data,
+    -   `SimilarityMatrix` represents a (dis)similarity matrix,
+-   Logical matrix:
+    -   `IncidenceMatrix` represents presence/absence data,
+    -   `StratigraphicMatrix` represents stratigraphic relationships.
 
 *It assumes that you keep your data tidy*: each variable (type/taxa)
 must be saved in its own column and each observation (assemblage/sample)
@@ -125,14 +125,14 @@ Many familiar methods and group generic functions are available for all
 ``` r
 rowSums(A1)
 #>  row1  row2  row3  row4  row5  row6  row7  row8  row9 row10 row11 row12 row13 
-#>    30    30    22    23    20    14    25    21    24    21    24    15    22 
+#>    31    24    20    32    12    16    23    21    21    28    32     9    26 
 #> row14 row15 
-#>    35    18
+#>    25    27
 apply(X = A1, MARGIN = 1, FUN = sum)
 #>  row1  row2  row3  row4  row5  row6  row7  row8  row9 row10 row11 row12 row13 
-#>    30    30    22    23    20    14    25    21    24    21    24    15    22 
+#>    31    24    20    32    12    16    23    21    21    28    32     9    26 
 #> row14 row15 
-#>    35    18
+#>    25    27
 ```
 
 Observations in `*Matrix` classes can be grouped, this can be useful for
@@ -143,29 +143,29 @@ replicated measurements/observations or to group data by site/area.
 set_groups(A1) <- rep(c("A", "B", "C"), each = 5)
 summary(A1)
 #> --- A (5 observations) ---------------------------------------------------------
-#>       col1          col2           col3          col4          col5    
-#>  Min.   :0.0   Min.   : 0.0   Min.   :2.0   Min.   :3.0   Min.   :0.0  
-#>  1st Qu.:1.0   1st Qu.: 3.0   1st Qu.:3.0   1st Qu.:4.0   1st Qu.:3.0  
-#>  Median :6.0   Median : 4.0   Median :4.0   Median :8.0   Median :6.0  
-#>  Mean   :3.8   Mean   : 4.4   Mean   :4.8   Mean   :6.6   Mean   :5.4  
-#>  3rd Qu.:6.0   3rd Qu.: 5.0   3rd Qu.:7.0   3rd Qu.:9.0   3rd Qu.:9.0  
-#>  Max.   :6.0   Max.   :10.0   Max.   :8.0   Max.   :9.0   Max.   :9.0  
+#>       col1          col2           col3        col4          col5   
+#>  Min.   :5.0   Min.   : 0.0   Min.   :0   Min.   :0.0   Min.   : 0  
+#>  1st Qu.:6.0   1st Qu.: 3.0   1st Qu.:1   1st Qu.:0.0   1st Qu.: 3  
+#>  Median :6.0   Median : 4.0   Median :7   Median :2.0   Median : 5  
+#>  Mean   :6.8   Mean   : 4.8   Mean   :5   Mean   :2.2   Mean   : 5  
+#>  3rd Qu.:8.0   3rd Qu.: 7.0   3rd Qu.:8   3rd Qu.:4.0   3rd Qu.: 7  
+#>  Max.   :9.0   Max.   :10.0   Max.   :9   Max.   :5.0   Max.   :10  
 #> --- B (5 observations) ---------------------------------------------------------
-#>       col1        col2          col3          col4          col5     
-#>  Min.   :0   Min.   :0.0   Min.   :1.0   Min.   :0.0   Min.   : 1.0  
-#>  1st Qu.:1   1st Qu.:1.0   1st Qu.:6.0   1st Qu.:3.0   1st Qu.: 4.0  
-#>  Median :1   Median :2.0   Median :7.0   Median :3.0   Median : 8.0  
-#>  Mean   :3   Mean   :1.8   Mean   :6.2   Mean   :3.6   Mean   : 6.4  
-#>  3rd Qu.:4   3rd Qu.:3.0   3rd Qu.:8.0   3rd Qu.:5.0   3rd Qu.: 9.0  
-#>  Max.   :9   Max.   :3.0   Max.   :9.0   Max.   :7.0   Max.   :10.0  
+#>       col1          col2          col3          col4         col5    
+#>  Min.   :0.0   Min.   :1.0   Min.   :2.0   Min.   : 0   Min.   :3.0  
+#>  1st Qu.:2.0   1st Qu.:2.0   1st Qu.:2.0   1st Qu.: 1   1st Qu.:5.0  
+#>  Median :4.0   Median :4.0   Median :2.0   Median : 5   Median :5.0  
+#>  Mean   :3.8   Mean   :4.2   Mean   :3.6   Mean   : 5   Mean   :5.2  
+#>  3rd Qu.:6.0   3rd Qu.:7.0   3rd Qu.:5.0   3rd Qu.: 9   3rd Qu.:6.0  
+#>  Max.   :7.0   Max.   :7.0   Max.   :7.0   Max.   :10   Max.   :7.0  
 #> --- C (5 observations) ---------------------------------------------------------
-#>       col1          col2           col3        col4          col5  
-#>  Min.   :1.0   Min.   : 0.0   Min.   :1   Min.   :0.0   Min.   :0  
-#>  1st Qu.:2.0   1st Qu.: 2.0   1st Qu.:2   1st Qu.:3.0   1st Qu.:2  
-#>  Median :2.0   Median : 3.0   Median :6   Median :6.0   Median :5  
-#>  Mean   :3.8   Mean   : 4.6   Mean   :5   Mean   :5.4   Mean   :4  
-#>  3rd Qu.:7.0   3rd Qu.: 8.0   3rd Qu.:7   3rd Qu.:9.0   3rd Qu.:6  
-#>  Max.   :7.0   Max.   :10.0   Max.   :9   Max.   :9.0   Max.   :7
+#>       col1          col2           col3           col4         col5    
+#>  Min.   :1.0   Min.   : 0.0   Min.   : 2.0   Min.   : 2   Min.   :1.0  
+#>  1st Qu.:1.0   1st Qu.: 0.0   1st Qu.: 6.0   1st Qu.: 2   1st Qu.:1.0  
+#>  Median :3.0   Median : 6.0   Median : 8.0   Median : 4   Median :5.0  
+#>  Mean   :3.4   Mean   : 4.8   Mean   : 6.8   Mean   : 5   Mean   :3.8  
+#>  3rd Qu.:4.0   3rd Qu.: 8.0   3rd Qu.: 8.0   3rd Qu.: 7   3rd Qu.:6.0  
+#>  Max.   :8.0   Max.   :10.0   Max.   :10.0   Max.   :10   Max.   :6.0
 ```
 
 ## Contributing
