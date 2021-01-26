@@ -31,9 +31,9 @@ A collection of classes that represent
 \seealso{
 Useful links:
 \itemize{
-  \item \url{http://arkhe.archaeo.science}
-  \item \url{https://github.com/nfrerebeau/arkhe}
-  \item Report bugs at \url{https://github.com/nfrerebeau/arkhe/issues}
+  \item \url{http://arkhe.tesselle.org}
+  \item \url{https://github.com/tesselle/arkhe}
+  \item Report bugs at \url{https://github.com/tesselle/arkhe/issues}
 }
 
 }

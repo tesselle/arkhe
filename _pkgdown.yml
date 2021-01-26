@@ -1,10 +1,8 @@
-url: http://arkhe.archaeo.science
+url: http://arkhe.tesselle.org
 development:
   mode: auto
 
 template:
-  params:
-    ganalytics: UA-172160955-3
   opengraph:
     twitter:
       creator: "@nfrerebeau"

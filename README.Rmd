@@ -18,8 +18,8 @@ knitr::opts_chunk$set(
 # arkhe <img width=120px src="man/figures/logo.png" align="right" />
 
 <!-- badges: start -->
-[![R build status](https://github.com/nfrerebeau/arkhe/workflows/R-CMD-check/badge.svg)](https://github.com/nfrerebeau/arkhe/actions)
-[![codecov](https://codecov.io/gh/nfrerebeau/arkhe/branch/master/graph/badge.svg)](https://codecov.io/gh/nfrerebeau/arkhe)
+[![R build status](https://github.com/tesselle/arkhe/workflows/R-CMD-check/badge.svg)](https://github.com/tesselle/arkhe/actions)
+[![codecov](https://codecov.io/gh/tesselle/arkhe/branch/master/graph/badge.svg)](https://codecov.io/gh/tesselle/arkhe)
 
 [![CRAN Version](http://www.r-pkg.org/badges/version/arkhe)](https://cran.r-project.org/package=arkhe)
 [![CRAN checks](https://cranchecks.info/badges/worst/arkhe)](https://cran.r-project.org/web/checks/check_results_arkhe.html)
@@ -47,7 +47,7 @@ And the development version from [GitHub](https://github.com/) with:
 
 ```{r gh-installation, eval=FALSE}
 # install.packages("remotes")
-remotes::install_github("nfrerebeau/arkhe")
+remotes::install_github("tesselle/arkhe")
 ```
 
 ## Usage
@@ -124,4 +124,4 @@ summary(A1)
 ```
 
 ## Contributing
-Please note that the **arkhe** project is released with a [Contributor Code of Conduct](https://github.com/nfrerebeau/arkhe/blob/master/.github/CODE_OF_CONDUCT.md). By contributing to this project, you agree to abide by its terms.
+Please note that the **arkhe** project is released with a [Contributor Code of Conduct](https://github.com/tesselle/arkhe/blob/master/.github/CODE_OF_CONDUCT.md). By contributing to this project, you agree to abide by its terms.

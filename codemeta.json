@@ -7,13 +7,14 @@
   "identifier": "arkhe",
   "description": "A collection of classes that represent\n    archaeological data. This package provides a set of S4 classes that\n    represent different special types of matrix (absolute/relative\n    frequency, presence/absence data, co-occurrence matrix, etc.) upon\n    which package developers can build subclasses. It also provides a set\n    of generic methods (mutators and coercion mechanisms) and functions\n    (e.g. summary statistics, predicates). In addition, a few classes of \n    general interest (e.g. that represent stratigraphic relationships) \n    are implemented.",
   "name": "arkhe: Representation of Archaeological Data",
-  "codeRepository": "https://github.com/nfrerebeau/arkhe",
+  "codeRepository": "https://github.com/tesselle/arkhe",
   "relatedLink": [
     "http://arkhe.archaeo.science",
     "https://cran.r-project.org/package=arkhe",
-    "https://CRAN.R-project.org/package=arkhe"
+    "https://CRAN.R-project.org/package=arkhe",
+    "http://arkhe.tesselle.org"
   ],
-  "issueTracker": "https://github.com/nfrerebeau/arkhe/issues",
+  "issueTracker": "https://github.com/tesselle/arkhe/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
   "version": "0.2.2.9000",
   "programmingLanguage": {
@@ -119,9 +120,8 @@
       "name": "stats"
     }
   ],
-  "readme": "https://github.com/nfrerebeau/arkhe/blob/master/README.md",
-  "fileSize": "1060.678KB",
-  "contIntegration": "https://codecov.io/gh/nfrerebeau/arkhe",
+  "fileSize": "1060.266KB",
+  "contIntegration": "https://codecov.io/gh/tesselle/arkhe",
   "developmentStatus": ["https://www.repostatus.org/#active", "https://www.tidyverse.org/lifecycle/#maturing"],
   "keywords": [
     "archaeology",
@@ -151,5 +151,5 @@
     "name": "Comprehensive R Archive Network (CRAN)",
     "url": "https://cran.r-project.org"
   },
-  "releaseNotes": "https://github.com/nfrerebeau/arkhe/blob/master/NEWS.md"
+  "releaseNotes": "https://github.com/tesselle/arkhe/blob/master/NEWS.md"
 }
