@@ -55,25 +55,6 @@ IncidenceMatrix <- function(data = FALSE, nrow = 1, ncol = 1, byrow = FALSE,
   .IncidenceMatrix(mtx)
 }
 
-SimilarityMatrix <- function(data = 1, nrow = 1, ncol = 1, byrow = FALSE,
-                             dimnames = NULL) {
-  mtx <- make_matrix(data, nrow, ncol, byrow, dimnames,
-                     missing(nrow), missing(ncol))
-  dm <- dimnames(mtx)
-  if (is.null(dm) || any(detect(is.null, dm)) || !all(Reduce("==", dm))) {
-    varnames <- paste0("var", seq_len(nrow(mtx)))
-    dimnames(mtx) <- list(varnames, varnames)
-  }
-
-  .SimilarityMatrix(
-    size = dim(mtx),
-    row_names = rownames(mtx),
-    column_names = colnames(mtx),
-    values = as.numeric(mtx),
-    method = "unknown"
-  )
-}
-
 # Helpers ======================================================================
 #' Build a Matrix
 #'

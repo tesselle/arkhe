@@ -62,6 +62,8 @@ setValidity(
 
     cnd <- list(
       catch_conditions(check_symmetric(object)),
+      catch_conditions(check_numbers(object, "positive",
+                                     strict = FALSE, na.rm = TRUE)),
       catch_conditions(check_scalar(total, "integer", strict = FALSE))
     )
 
@@ -85,25 +87,6 @@ setValidity(
       catch_conditions(check_length(totals, nrow(object), strict = TRUE)),
       catch_conditions(check_missing(totals)),
       catch_conditions(check_infinite(totals))
-    )
-
-    # Return cnd, if any
-    check_class(object, cnd)
-  }
-)
-# SimilarityMatrix -------------------------------------------------------------
-setValidity(
-  Class = "SimilarityMatrix",
-  method = function(object) {
-    # Get data
-    data <- object@.Data
-    method <- object@method
-
-    cnd <- list(
-      # Check data
-      catch_conditions(check_symmetric(data)),
-      # Check method
-      catch_conditions(check_scalar(method, "character", strict = FALSE))
     )
 
     # Return cnd, if any

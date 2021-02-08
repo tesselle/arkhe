@@ -40,12 +40,6 @@ nomnoml::nomnoml("
  get_totals();
  set_totals()
 ]
-[SimilarityMatrix|
- +method: character|
- as_similarity();
- get_method()
- set_method()
-]
 
 [IncidenceMatrix||
  IncidenceMatrix();
@@ -66,7 +60,6 @@ nomnoml::nomnoml("
 [IntegerMatrix] <:- [OccurrenceMatrix]
 
 [NumericMatrix] <:- [AbundanceMatrix]
-[NumericMatrix] <:- [SimilarityMatrix]
 
 [LogicalMatrix] <:- [IncidenceMatrix]
 [LogicalMatrix] <:- [StratigraphicMatrix]

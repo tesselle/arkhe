@@ -1,21 +1,18 @@
-test_that("Logical matrix", {
-  B <- .IncidenceMatrix()
-  expect_output(show(B), "IncidenceMatrix")
-
-  C <- .StratigraphicMatrix()
-  expect_output(show(C), "StratigraphicMatrix")
-})
 test_that("Integer matrix", {
-  B <- .CountMatrix()
-  expect_output(show(B), "CountMatrix")
+  A <- .CountMatrix()
+  expect_output(show(A), "CountMatrix")
+
+  B <- .OccurrenceMatrix()
+  expect_output(show(B), "OccurrenceMatrix")
 })
 test_that("Numeric matrix", {
-  C <- .AbundanceMatrix()
-  expect_output(show(C), "AbundanceMatrix")
+  A <- .AbundanceMatrix()
+  expect_output(show(A), "AbundanceMatrix")
+})
+test_that("Logical matrix", {
+  A <- .IncidenceMatrix()
+  expect_output(show(A), "IncidenceMatrix")
 
-  D <- .SimilarityMatrix()
-  expect_output(show(D), "SimilarityMatrix")
-
-  E <- .OccurrenceMatrix()
-  expect_output(show(E), "OccurrenceMatrix")
+  B <- .StratigraphicMatrix()
+  expect_output(show(B), "StratigraphicMatrix")
 })

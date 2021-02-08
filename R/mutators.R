@@ -23,11 +23,6 @@ setMethod("get_totals", "AbundanceMatrix", function(x) x@totals)
 #' @aliases get_totals,OccurrenceMatrix-method
 setMethod("get_totals", "OccurrenceMatrix", function(x) x@total)
 
-#' @export
-#' @rdname mutator
-#' @aliases get_method,SimilarityMatrix-method
-setMethod("get_method", "SimilarityMatrix", function(x) x@method)
-
 # Setters ======================================================================
 #' @export
 #' @rdname mutator
@@ -50,19 +45,6 @@ setMethod(
   signature = "AbundanceMatrix",
   definition = function(x, value) {
     x@totals <- value
-    methods::validObject(x)
-    x
-  }
-)
-
-#' @export
-#' @rdname mutator
-#' @aliases set_method,SimilarityMatrix-method
-setMethod(
-  f = "set_method<-",
-  signature = "SimilarityMatrix",
-  definition = function(x, value) {
-    x@method <- value
     methods::validObject(x)
     x
   }

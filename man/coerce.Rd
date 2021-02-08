@@ -21,7 +21,6 @@
 \alias{as_stratigraphy-method}
 \alias{as_count,ANY-method}
 \alias{as_abundance,ANY-method}
-\alias{as_similarity,ANY-method}
 \alias{as_occurrence,ANY-method}
 \alias{as_incidence,ANY-method}
 \alias{as_stratigraphy,ANY-method}
@@ -49,8 +48,6 @@ as_stratigraphy(from)
 \S4method{as_count}{ANY}(from)
 
 \S4method{as_abundance}{ANY}(from)
-
-\S4method{as_similarity}{ANY}(from)
 
 \S4method{as_occurrence}{ANY}(from)
 
@@ -88,7 +85,6 @@ The following methods coerce an object to a \code{Matrix} object:
   \code{as_abundance} \tab \linkS4class{AbundanceMatrix} \tab relative frequency data \cr
   \code{as_incidence} \tab \linkS4class{IncidenceMatrix} \tab presence/absence data \cr
   \code{as_occurrence} \tab \linkS4class{OccurrenceMatrix} \tab co-occurrence \cr
-  \code{as_similarity} \tab \linkS4class{SimilarityMatrix} \tab (dis)similarity \cr
   \code{as_stratigraphy} \tab \linkS4class{StratigraphicMatrix} \tab stratigraphic relationships
  }
 
@@ -97,8 +93,6 @@ The following methods coerce an object to a \code{Matrix} object:
 
  \tabular{lll}{
   \strong{Method} \tab \strong{Target} \tab \strong{Details} \cr
-  \code{as.matrix} \tab \code{\link{matrix}} \tab S3 matrix \cr
-  \code{as.data.frame} \tab \code{\link{data.frame}} \tab S3 data frame \cr
   \code{as_long} \tab \code{\link{data.frame}} \tab long S3 data frame \cr
  }
 
@@ -153,7 +147,6 @@ Other matrix:
 \code{\link{DataMatrix-class}},
 \code{\link{IncidenceMatrix-class}},
 \code{\link{OccurrenceMatrix-class}},
-\code{\link{SimilarityMatrix-class}},
 \code{\link{StratigraphicMatrix-class}}
 }
 \author{

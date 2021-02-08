@@ -67,7 +67,6 @@ types of matrix.
     -   `OccurrenceMatrix` represents a co-occurrence matrix,
 -   Numeric matrix:
     -   `AbundanceMatrix` represents relative frequency data,
-    -   `SimilarityMatrix` represents a (dis)similarity matrix,
 -   Logical matrix:
     -   `IncidenceMatrix` represents presence/absence data,
     -   `StratigraphicMatrix` represents stratigraphic relationships.

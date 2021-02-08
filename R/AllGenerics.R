@@ -68,7 +68,6 @@ setGeneric(
 #'   \code{as_abundance} \tab \linkS4class{AbundanceMatrix} \tab relative frequency data \cr
 #'   \code{as_incidence} \tab \linkS4class{IncidenceMatrix} \tab presence/absence data \cr
 #'   \code{as_occurrence} \tab \linkS4class{OccurrenceMatrix} \tab co-occurrence \cr
-#'   \code{as_similarity} \tab \linkS4class{SimilarityMatrix} \tab (dis)similarity \cr
 #'   \code{as_stratigraphy} \tab \linkS4class{StratigraphicMatrix} \tab stratigraphic relationships
 #'  }
 #'
@@ -77,8 +76,6 @@ setGeneric(
 #'
 #'  \tabular{lll}{
 #'   \strong{Method} \tab \strong{Target} \tab \strong{Details} \cr
-#'   \code{as.matrix} \tab \code{\link{matrix}} \tab S3 matrix \cr
-#'   \code{as.data.frame} \tab \code{\link{data.frame}} \tab S3 data frame \cr
 #'   \code{as_long} \tab \code{\link{data.frame}} \tab long S3 data frame \cr
 #'  }
 #'
@@ -207,20 +204,6 @@ setGeneric(
 setGeneric(
   name = "set_totals<-",
   def = function(x, value) standardGeneric("set_totals<-")
-)
-
-#' @rdname mutator
-#' @aliases get_method-method
-setGeneric(
-  name = "get_method",
-  def = function(x) standardGeneric("get_method")
-)
-
-#' @rdname mutator
-#' @aliases set_method-method
-setGeneric(
-  name = "set_method<-",
-  def = function(x, value) standardGeneric("set_method<-")
 )
 
 # Subset =======================================================================

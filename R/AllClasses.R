@@ -167,27 +167,6 @@
   contains = "NumericMatrix"
 )
 
-# SimilarityMatrix -------------------------------------------------------------
-#' Similarity Matrix
-#'
-#' An S4 class to represent a (dis)similarity matrix.
-#' @slot method A \code{\link{character}} string specifying the similarity
-#'  method used.
-#' @inheritSection DataMatrix-class Access
-#' @inheritSection DataMatrix-class Subset
-#' @seealso \link{as_similarity}
-#' @family matrix
-#' @author N. Frerebeau
-#' @docType class
-#' @aliases SimilarityMatrix-class
-.SimilarityMatrix <- setClass(
-  Class = "SimilarityMatrix",
-  slots = c(
-    method = "character"
-  ),
-  contains = "NumericMatrix"
-)
-
 # LogicalMatrix ================================================================
 # IncidenceMatrix --------------------------------------------------------------
 #' Incidence Matrix

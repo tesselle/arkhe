@@ -33,7 +33,6 @@ The **arkhe** package provides a set of S4 classes for archaeological data matri
     * `OccurrenceMatrix` represents a co-occurrence matrix,
 * Numeric matrix:
     * `AbundanceMatrix` represents relative frequency data,
-    * `SimilarityMatrix` represents a (dis)similarity matrix,
 * Logical matrix:
     * `IncidenceMatrix` represents presence/absence data,
     * `StratigraphicMatrix` represents stratigraphic relationships.

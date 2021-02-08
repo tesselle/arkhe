@@ -85,24 +85,6 @@ matrix2frequency <- function(from) {
 setAs(from = "matrix", to = "AbundanceMatrix", def = matrix2frequency)
 setAs(from = "data.frame", to = "AbundanceMatrix", def = matrix2frequency)
 
-# To SimilarityMatrix ==========================================================
-#' @export
-#' @rdname coerce
-#' @aliases as_similarity,ANY-method
-setMethod(
-  f = "as_similarity",
-  signature = signature(from = "ANY"),
-  definition = function(from) methods::as(from, "SimilarityMatrix")
-)
-
-matrix2similarity <- function(from) {
-  to <- data.matrix(from, rownames.force = NA)
-  dimnames(to) <- make_dimnames(from)
-  .SimilarityMatrix(to, method = "unknown")
-}
-setAs(from = "matrix", to = "SimilarityMatrix", def = matrix2similarity)
-setAs(from = "data.frame", to = "SimilarityMatrix", def = matrix2similarity)
-
 # To OccurrenceMatrix ==========================================================
 #' @export
 #' @rdname coerce
@@ -122,6 +104,7 @@ matrix2occurrence <- function(from) {
   ij <- utils::combn(p, m = 2, simplify = TRUE)
   pair <- seq_len(ncol(ij))
   mtx <- matrix(data = 0L, nrow = p, ncol = p)
+  dimnames(mtx) <- list(colnames(from), colnames(from))
 
   for (k in pair) {
     i <- ij[1, k]

@@ -2,7 +2,6 @@ test_that("Empty instance", {
   expect_s4_class(.CountMatrix(), "CountMatrix")
   expect_s4_class(.AbundanceMatrix(), "AbundanceMatrix")
   expect_s4_class(.OccurrenceMatrix(), "OccurrenceMatrix")
-  expect_s4_class(.SimilarityMatrix(), "SimilarityMatrix")
   expect_s4_class(.IncidenceMatrix(), "IncidenceMatrix")
   expect_s4_class(.StratigraphicMatrix(), "StratigraphicMatrix")
 })

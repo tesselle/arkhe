@@ -15,21 +15,14 @@
 \alias{get_totals-method}
 \alias{set_totals<-}
 \alias{set_totals-method}
-\alias{get_method}
-\alias{get_method-method}
-\alias{set_method<-}
-\alias{set_method-method}
 \alias{has_groups,DataMatrix-method}
 \alias{get_groups,DataMatrix-method}
 \alias{get_totals,AbundanceMatrix-method}
 \alias{get_totals,OccurrenceMatrix-method}
-\alias{get_method,SimilarityMatrix-method}
 \alias{set_groups<-,DataMatrix-method}
 \alias{set_groups,DataMatrix-method}
 \alias{set_totals<-,AbundanceMatrix-method}
 \alias{set_totals,AbundanceMatrix-method}
-\alias{set_method<-,SimilarityMatrix-method}
-\alias{set_method,SimilarityMatrix-method}
 \title{Get or Set Parts of an Object}
 \usage{
 get_groups(x)
@@ -42,10 +35,6 @@ get_totals(x)
 
 set_totals(x) <- value
 
-get_method(x)
-
-set_method(x) <- value
-
 \S4method{has_groups}{DataMatrix}(x)
 
 \S4method{get_groups}{DataMatrix}(x)
@@ -54,13 +43,9 @@ set_method(x) <- value
 
 \S4method{get_totals}{OccurrenceMatrix}(x)
 
-\S4method{get_method}{SimilarityMatrix}(x)
-
 \S4method{set_groups}{DataMatrix}(x) <- value
 
 \S4method{set_totals}{AbundanceMatrix}(x) <- value
-
-\S4method{set_method}{SimilarityMatrix}(x) <- value
 }
 \arguments{
 \item{x}{An object from which to get or set element(s) (typically a
