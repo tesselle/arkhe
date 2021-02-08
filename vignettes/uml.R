@@ -4,62 +4,37 @@ library(nomnoml)
 nomnoml::nomnoml("
 [<package>arkhe|
 
-[<abstract>DataMatrix|
- +size: integer;
- +row_names: character;
- +column_names: character;
- +group_names: character|
- length();
- dim();
- rownames();
- colnames();
- dimnames();
- diag();
+[base::matrix||]
+
+[DataMatrix|
+ +groups: character|
  has_groups();
  get_groups();
  set_groups();
- rowMeans();
- colMeans();
- rowSums();
- colSums();
- var();
- cov();
- cor();
- summary();
- Logic();
- Math();
- Math2();
- Summary();
- as.data.frame();
- as.matrix();
  as_long();
  as_features();
- remove_zero()
+ replace_NA();
+ remove_NA();
+ remove_zero();
+ remove_empty()
 ]
 
-[<abstract>IntegerMatrix|
- + values: integer|
-]
-[<abstract>NumericMatrix|
- + values: numeric|
-]
-[<abstract>LogicalMatrix|
- + values: logical|
-]
+[IntegerMatrix||]
+[NumericMatrix||]
+[LogicalMatrix||]
 
 [CountMatrix||
  CountMatrix();
- as_count();
- ca()
+ as_count()
 ]
 [OccurrenceMatrix|
- +n: integer|
+ +total: integer|
  as_occurrence();
  get_totals()
 ]
 
 [AbundanceMatrix|
- +totals: numeric|
+ +total: numeric|
  AbundanceMatrix();
  as_abundance();
  get_totals();
@@ -79,6 +54,9 @@ nomnoml::nomnoml("
 [StratigraphicMatrix||
  as_stratigraphy()
 ]
+
+
+[base::matrix] <:- [DataMatrix]
 
 [DataMatrix] <:- [IntegerMatrix]
 [DataMatrix] <:- [NumericMatrix]

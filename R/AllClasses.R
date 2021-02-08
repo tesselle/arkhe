@@ -1,23 +1,9 @@
 # CLASSES DEFINITION
 
-# MatrixSummary ================================================================
-#' Matrix Summary
-#'
-#' @example inst/examples/ex-summary.R
-#' @author N. Frerebeau
-#' @family matrix
-#' @docType class
-#' @aliases MatrixSummary-class
-#' @keywords internal
-.MatrixSummary <- setClass(
-  Class = "MatrixSummary",
-  contains = "list"
-)
-
 # DataMatrix ===================================================================
 #' Data Matrix
 #'
-#' Virtual S4 classes that represent a \eqn{m \times p}{m x p} matrix.
+#' An S4 classes that represent a \eqn{m \times p}{m x p} matrix.
 #' @param data A data vector.
 #' @param nrow An \code{\link{integer}} value giving the desired number of rows.
 #' @param ncol An \code{\link{integer}} value giving the desired number of
@@ -26,17 +12,9 @@
 #'  rows? If \code{FALSE} (the default) the matrix is filled by columns.
 #' @param dimnames A list of length 2 giving the row and column names
 #'  respectively. If \code{NULL} (the default) dimension names will be created.
-#' @slot size A length-two \code{\link{integer}} vector.
-#' @slot row_names A length-\eqn{m} \code{\link{character}} vector.
-#' @slot column_names A length-\eqn{p} \code{\link{character}} vector.
-#' @slot group_names A length-\eqn{m} \code{\link{character}} vector.
-#' @slot values An \code{\link{integer}}, a \code{\link{numeric}} or a
-#'  \code{\link{logical}} vector (see details).
+#' @slot groups A length-\eqn{m} \code{\link{character}} vector.
 #' @details
 #'  \code{DataMatrix} is the mother class of all matrix objects.
-#'
-#'  The \code{values} slot is defined in \code{IntegerMatrix},
-#'  \code{NumericMatrix} and \code{LogicalMatrix} classes.
 #' @section Get and set:
 #'  In the code snippets below, \code{x} is a \code{*Matrix} object.
 #'  \describe{
@@ -72,6 +50,8 @@
 #'   \item{\code{x[[i]]}}{Extracts a single element selected by subscript
 #'   \code{i}.}
 #'  }
+#' @note
+#'  This class inherits from \code{\link{matrix}}.
 #' @author N. Frerebeau
 #' @family matrix
 #' @docType class
@@ -81,18 +61,9 @@
 .DataMatrix <- setClass(
   Class = "DataMatrix",
   slots = c(
-    size = "integer",
-    row_names = "character",
-    column_names = "character",
-    group_names = "character"
+    groups = "character"
   ),
-  prototype = list(
-    size = c(0L, 0L),
-    row_names = character(0),
-    column_names = character(0),
-    group_names = character(0)
-  ),
-  contains = "VIRTUAL"
+  contains = "matrix"
 )
 
 #' @aliases IntegerMatrix-class
@@ -101,10 +72,7 @@
 #' @exportClass IntegerMatrix
 .IntegerMatrix <- setClass(
   Class = "IntegerMatrix",
-  slots = c(
-    values = "integer"
-  ),
-  contains = c("DataMatrix", "VIRTUAL")
+  contains = c("DataMatrix")
 )
 
 #' @aliases NumericMatrix-class
@@ -113,10 +81,7 @@
 #' @exportClass NumericMatrix
 .NumericMatrix <- setClass(
   Class = "NumericMatrix",
-  slots = c(
-    values = "numeric"
-  ),
-  contains = c("DataMatrix", "VIRTUAL")
+  contains = c("DataMatrix")
 )
 
 #' @aliases LogicalMatrix-class
@@ -125,10 +90,7 @@
 #' @exportClass LogicalMatrix
 .LogicalMatrix <- setClass(
   Class = "LogicalMatrix",
-  slots = c(
-    values = "logical"
-  ),
-  contains = c("DataMatrix", "VIRTUAL")
+  contains = c("DataMatrix")
 )
 
 # IntegerMatrix ================================================================
@@ -157,7 +119,7 @@
 #' Co-Occurrence Matrix
 #'
 #' An S4 class to represent a co-occurrence matrix.
-#' @slot n An \code{\link{integer}} giving the number of observations.
+#' @slot total An \code{\link{integer}} giving the total number of observations.
 #' @details
 #'  A co-occurrence matrix is a symmetric matrix with zeros on its main
 #'  diagonal, which works out how many times each pairs of taxa/types occur
@@ -174,7 +136,7 @@
 .OccurrenceMatrix <- setClass(
   Class = "OccurrenceMatrix",
   slots = c(
-    n = "integer"
+    total = "integer"
   ),
   contains = "IntegerMatrix"
 )

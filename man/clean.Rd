@@ -12,13 +12,9 @@
 \alias{remove_zero}
 \alias{remove_zero-method}
 \alias{replace_NA,matrix-method}
-\alias{replace_NA,DataMatrix-method}
 \alias{remove_NA,matrix-method}
-\alias{remove_NA,DataMatrix-method}
 \alias{remove_zero,matrix-method}
-\alias{remove_zero,DataMatrix-method}
 \alias{remove_empty,matrix-method}
-\alias{remove_empty,DataMatrix-method}
 \title{Data Cleaning}
 \usage{
 replace_NA(x, ...)
@@ -31,19 +27,11 @@ remove_zero(x, ...)
 
 \S4method{replace_NA}{matrix}(x, value = 0)
 
-\S4method{replace_NA}{DataMatrix}(x, value = 0)
-
 \S4method{remove_NA}{matrix}(x, margin = 1, finite = TRUE)
-
-\S4method{remove_NA}{DataMatrix}(x, margin = 1, finite = TRUE)
 
 \S4method{remove_zero}{matrix}(x, margin = 1)
 
-\S4method{remove_zero}{DataMatrix}(x, margin = 1)
-
 \S4method{remove_empty}{matrix}(x, margin = 1)
-
-\S4method{remove_empty}{DataMatrix}(x, margin = 1)
 }
 \arguments{
 \item{x}{A \code{\link{matrix}}, \code{\link{data.frame}} or
@@ -66,7 +54,7 @@ Removes empty row/column or row/column with missing values or zeros.
 \examples{
 ## Create a count data matrix
 A <- CountMatrix(sample(1:10, 25, TRUE), nrow = 5, ncol = 5)
-A[sample(1:25, 3, FALSE)] <- 0 # Add zeros
+A[sample(1:25, 3, FALSE)] <- 0L # Add zeros
 A
 
 ## Remove row with zeros

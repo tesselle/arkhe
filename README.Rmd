@@ -71,7 +71,7 @@ library(arkhe)
 
 *It assumes that you keep your data tidy*: each variable (type/taxa) must be saved in its own column and each observation (assemblage/sample) must be saved in its own row.
 
-These new classes are of simple use, on the same way as the base `matrix`:
+These new classes are of simple use as they inherit from the base `matrix`:
 
 ```{r create}
 ## Define a count data matrix
@@ -108,19 +108,11 @@ C <- as_incidence(A1)
 D <- as_occurrence(A1)
 ```
 
-Many familiar methods and group generic functions are available for all `*Matrix` classes (such as `length`, `dim`, `rowSums`, `rowMeans`, `Arith`, `Compare`, `Logic`...). In addition, all functions that call `as.matrix` or `as.data.frame` first on their main argument should work (e. g. `apply`).
-
-```{r functions}
-rowSums(A1)
-apply(X = A1, MARGIN = 1, FUN = sum)
-```
-
 Observations in `*Matrix` classes can be grouped, this can be useful for replicated measurements/observations or to group data by site/area.
 
 ```{r group}
 ## Summary by groups
 set_groups(A1) <- rep(c("A", "B", "C"), each = 5)
-summary(A1)
 ```
 
 ## Contributing

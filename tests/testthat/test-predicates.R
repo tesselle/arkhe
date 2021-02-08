@@ -1,5 +1,3 @@
-context("Predicates")
-
 test_that("utility predicates return a logical scalar", {
   expect_true(is_empty(numeric(0)))
   expect_false(is_empty(numeric(1)))

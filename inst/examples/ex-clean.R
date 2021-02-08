@@ -1,6 +1,6 @@
 ## Create a count data matrix
 A <- CountMatrix(sample(1:10, 25, TRUE), nrow = 5, ncol = 5)
-A[sample(1:25, 3, FALSE)] <- 0 # Add zeros
+A[sample(1:25, 3, FALSE)] <- 0L # Add zeros
 A
 
 ## Remove row with zeros

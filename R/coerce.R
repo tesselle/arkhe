@@ -32,49 +32,6 @@ as_factor <- function(x) {
   factor(x, levels = unique(x))
 }
 
-# To matrix or data.frame ======================================================
-as_matrix <- function(from) {
-  m <- from@values
-  dim(m) <- from@size
-  dimnames(m) <- list(from@row_names, from@column_names)
-  m
-}
-as_dataframe <- function(from) {
-  m <- as_matrix(from)
-  m <- as.data.frame(m, stringsAsFactors = FALSE)
-  m
-}
-
-#' @method as.matrix DataMatrix
-#' @export
-as.matrix.DataMatrix <- function(x, ...) {
-  as_matrix(x)
-}
-
-#' @method as.data.frame DataMatrix
-#' @export
-as.data.frame.DataMatrix <- function(x, row.names = NULL, optional = FALSE,
-                                     make.names = TRUE, ...,
-                                     stringsAsFactors = default.stringsAsFactors()) {
-  x <- as.data.frame(
-    x = as.matrix(x),
-    row.names = row.names,
-    optional = optional,
-    make.names = make.names,
-    ...,
-    stringsAsFactors = stringsAsFactors
-  )
-  x
-}
-
-setAs(from = "IntegerMatrix", to = "matrix", def = as_matrix)
-setAs(from = "NumericMatrix", to = "matrix", def = as_matrix)
-setAs(from = "LogicalMatrix", to = "matrix", def = as_matrix)
-
-setAs(from = "IntegerMatrix", to = "data.frame", def = as_dataframe)
-setAs(from = "NumericMatrix", to = "data.frame", def = as_dataframe)
-setAs(from = "LogicalMatrix", to = "data.frame", def = as_dataframe)
-
 # To CountMatrix ===============================================================
 #' @export
 #' @rdname coerce
@@ -86,17 +43,26 @@ setMethod(
 )
 
 matrix2count <- function(from) {
-  from <- data.matrix(from, rownames.force = NA)
-  dimnames(from) <- make_dimnames(from)
-  .CountMatrix(
-    size = dim(from),
-    row_names = rownames(from),
-    column_names = colnames(from),
-    values = as_integer(from)
-  )
+  to <- data.matrix(from, rownames.force = NA)
+  to <- as_integer(to)
+  dim(to) <- dim(from)
+  dimnames(to) <- make_dimnames(from)
+  .CountMatrix(to)
 }
 setAs(from = "matrix", to = "CountMatrix", def = matrix2count)
 setAs(from = "data.frame", to = "CountMatrix", def = matrix2count)
+setAs(
+  from = "AbundanceMatrix",
+  to = "CountMatrix",
+  def = function(from) {
+    freq <- from@.Data
+    totals <- from@totals
+    counts <- as_integer(freq * totals)
+    dim(counts) <- dim(freq)
+    dimnames(counts) <- dimnames(freq)
+    .CountMatrix(counts)
+  }
+)
 
 # To AbundanceMatrix ===========================================================
 #' @export
@@ -109,48 +75,15 @@ setMethod(
 )
 
 matrix2frequency <- function(from) {
-  from <- data.matrix(from, rownames.force = NA)
-  dimnames(from) <- make_dimnames(from)
-  AbundanceMatrix(
-    data = from,
-    nrow = nrow(from),
-    ncol = ncol(from),
-    dimnames = dimnames(from)
-  )
+  to <- data.matrix(from, rownames.force = NA)
+  totals <- rowSums(to, na.rm = FALSE)
+  to <- to / totals
+  dim(to) <- dim(from)
+  dimnames(to) <- make_dimnames(from)
+  .AbundanceMatrix(to, totals = totals)
 }
 setAs(from = "matrix", to = "AbundanceMatrix", def = matrix2frequency)
 setAs(from = "data.frame", to = "AbundanceMatrix", def = matrix2frequency)
-
-# CountMatrix <> AbundanceMatrix ===============================================
-setAs(
-  from = "CountMatrix",
-  to = "AbundanceMatrix",
-  def = function(from) {
-    x <- AbundanceMatrix(
-      data = from@values,
-      nrow = nrow(from),
-      ncol = ncol(from),
-      dimnames = dimnames(from)
-    )
-    x
-  }
-)
-setAs(
-  from = "AbundanceMatrix",
-  to = "CountMatrix",
-  def = function(from) {
-    freq <- from@values
-    totals <- from@totals
-    count <- as_integer(freq * totals)
-    x <- CountMatrix(
-      data = count,
-      nrow = nrow(from),
-      ncol = ncol(from),
-      dimnames = dimnames(from)
-    )
-    x
-  }
-)
 
 # To SimilarityMatrix ==========================================================
 #' @export
@@ -163,14 +96,9 @@ setMethod(
 )
 
 matrix2similarity <- function(from) {
-  from <- data.matrix(from, rownames.force = NA)
-  dimnames(from) <- make_dimnames(from)
-  SimilarityMatrix(
-    data = from,
-    nrow = nrow(from),
-    ncol = ncol(from),
-    dimnames = dimnames(from)
-  )
+  to <- data.matrix(from, rownames.force = NA)
+  dimnames(to) <- make_dimnames(from)
+  .SimilarityMatrix(to, method = "unknown")
 }
 setAs(from = "matrix", to = "SimilarityMatrix", def = matrix2similarity)
 setAs(from = "data.frame", to = "SimilarityMatrix", def = matrix2similarity)
@@ -186,38 +114,27 @@ setMethod(
 )
 
 matrix2occurrence <- function(from) {
-  incid <- as_incidence(from)
-  data <- as.matrix(incid)
+  incid <- from > 0
   labels <- colnames(incid)
   m <- nrow(incid)
   p <- ncol(incid)
 
   ij <- utils::combn(p, m = 2, simplify = TRUE)
   pair <- seq_len(ncol(ij))
-  mtx <- matrix(data = 0, nrow = p, ncol = p)
+  mtx <- matrix(data = 0L, nrow = p, ncol = p)
 
   for (k in pair) {
     i <- ij[1, k]
     j <- ij[2, k]
-    z <- sum(incid[, i] + incid[, j] == 2)
+    z <- as.integer(sum(incid[, i] + incid[, j] == 2))
     mtx[i, j] <- mtx[j, i] <- z
   }
 
-  .OccurrenceMatrix(
-    size = c(p, p),
-    row_names = labels,
-    column_names = labels,
-    values = as.integer(mtx),
-    n = m
-  )
+  .OccurrenceMatrix(mtx, total = m)
 }
 
 setAs(from = "matrix", to = "OccurrenceMatrix", def = matrix2occurrence)
 setAs(from = "data.frame", to = "OccurrenceMatrix", def = matrix2occurrence)
-
-setAs(from = "CountMatrix", to = "OccurrenceMatrix", def = matrix2occurrence)
-setAs(from = "AbundanceMatrix", to = "OccurrenceMatrix", def = matrix2occurrence)
-setAs(from = "IncidenceMatrix", to = "OccurrenceMatrix", def = matrix2occurrence)
 
 # To IncidenceMatrix ===========================================================
 #' @export
@@ -230,28 +147,14 @@ setMethod(
 )
 
 matrix2incidence <- function(from) {
-  from <- data.matrix(from, rownames.force = NA)
-  IncidenceMatrix(
-    data = from > 0,
-    nrow = nrow(from),
-    ncol = ncol(from),
-    dimnames = dimnames(from)
-  )
+  to <- data.matrix(from, rownames.force = NA)
+  to <- to > 0
+  dim(to) <- dim(from)
+  dimnames(to) <- make_dimnames(from)
+  .IncidenceMatrix(to)
 }
 setAs(from = "matrix", to = "IncidenceMatrix", def = matrix2incidence)
 setAs(from = "data.frame", to = "IncidenceMatrix", def = matrix2incidence)
-
-Matrix2incidence <- function(from) {
-  x <- IncidenceMatrix(
-    data = from@values > 0,
-    nrow = nrow(from),
-    ncol = ncol(from),
-    dimnames = dimnames(from)
-  )
-  x
-}
-setAs(from = "CountMatrix", to = "IncidenceMatrix", def = Matrix2incidence)
-setAs(from = "AbundanceMatrix", to = "IncidenceMatrix", def = Matrix2incidence)
 
 # To StratigraphicMatrix =======================================================
 #' @export
@@ -274,12 +177,7 @@ edges2matrix <- function(from) {
   adj <- stats::xtabs(~ edges[[1]] + edges[[2]])
   adj <- matrix(data = as.logical(adj), nrow = length(layers))
 
-  .StratigraphicMatrix(
-    size = dim(adj),
-    row_names = layers,
-    column_names = layers,
-    values = as.logical(adj)
-  )
+  .StratigraphicMatrix(adj)
 }
 matrix2edges <- function(from) {
   edges <- matrix(data = NA, nrow = 0, ncol = 2)
@@ -313,8 +211,8 @@ setMethod(
       stringsAsFactors = FALSE
     )
     if (factor) {
-      x$row <- factor(x$row, levels = unique(x$row))
-      x$column <- factor(x$column, levels = unique(x$column))
+      x$row <- as_factor(x$row)
+      x$column <- as_factor(x$column)
     }
     x
   }
@@ -327,19 +225,10 @@ setMethod(
   f = "as_long",
   signature = signature(from = "DataMatrix"),
   definition = function(from, factor = FALSE) {
-    x <- data.frame(
-      row = as.character(row(from, as.factor = factor)),
-      column = as.character(col(from, as.factor = factor)),
-      value = from@values,
-      stringsAsFactors = FALSE
-    )
-    if (factor) {
-      x$row <- factor(x$row, levels = unique(x$row))
-      x$column <- factor(x$column, levels = unique(x$column))
-    }
-    grp <- from@group_names
+    x <- methods::callNextMethod()
+    grp <- from@groups
     if (length(grp) > 0) {
-      x$group <- if (factor) factor(grp, levels = unique(grp)) else grp
+      x$group <- if (factor) as_factor(grp) else grp
     }
     x
   }

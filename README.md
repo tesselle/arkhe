@@ -76,7 +76,7 @@ types of matrix.
 must be saved in its own column and each observation (assemblage/sample)
 must be saved in its own row.
 
-These new classes are of simple use, on the same way as the base
+These new classes are of simple use as they inherit from the base
 `matrix`:
 
 ``` r
@@ -116,56 +116,12 @@ C <- as_incidence(A1)
 D <- as_occurrence(A1)
 ```
 
-Many familiar methods and group generic functions are available for all
-`*Matrix` classes (such as `length`, `dim`, `rowSums`, `rowMeans`,
-`Arith`, `Compare`, `Logic`…). In addition, all functions that call
-`as.matrix` or `as.data.frame` first on their main argument should work
-(e. g. `apply`).
-
-``` r
-rowSums(A1)
-#>  row1  row2  row3  row4  row5  row6  row7  row8  row9 row10 row11 row12 row13 
-#>    21    22    33    21    17    19    28    21    22    23    11    31    29 
-#> row14 row15 
-#>    33    37
-apply(X = A1, MARGIN = 1, FUN = sum)
-#>  row1  row2  row3  row4  row5  row6  row7  row8  row9 row10 row11 row12 row13 
-#>    21    22    33    21    17    19    28    21    22    23    11    31    29 
-#> row14 row15 
-#>    33    37
-```
-
 Observations in `*Matrix` classes can be grouped, this can be useful for
 replicated measurements/observations or to group data by site/area.
 
 ``` r
 ## Summary by groups
 set_groups(A1) <- rep(c("A", "B", "C"), each = 5)
-summary(A1)
-#> --- A (5 observations) ---------------------------------------------------------
-#>       col1          col2          col3          col4           col5  
-#>  Min.   :1.0   Min.   :0.0   Min.   :0.0   Min.   : 2.0   Min.   :0  
-#>  1st Qu.:5.0   1st Qu.:0.0   1st Qu.:1.0   1st Qu.: 6.0   1st Qu.:1  
-#>  Median :5.0   Median :7.0   Median :3.0   Median : 7.0   Median :1  
-#>  Mean   :5.2   Mean   :4.6   Mean   :4.4   Mean   : 6.6   Mean   :2  
-#>  3rd Qu.:7.0   3rd Qu.:7.0   3rd Qu.:9.0   3rd Qu.: 8.0   3rd Qu.:1  
-#>  Max.   :8.0   Max.   :9.0   Max.   :9.0   Max.   :10.0   Max.   :7  
-#> --- B (5 observations) ---------------------------------------------------------
-#>       col1        col2          col3           col4          col5    
-#>  Min.   :0   Min.   :4.0   Min.   : 2.0   Min.   :1.0   Min.   :0.0  
-#>  1st Qu.:0   1st Qu.:4.0   1st Qu.: 5.0   1st Qu.:2.0   1st Qu.:2.0  
-#>  Median :2   Median :7.0   Median : 8.0   Median :4.0   Median :4.0  
-#>  Mean   :2   Mean   :6.2   Mean   : 6.8   Mean   :4.4   Mean   :3.2  
-#>  3rd Qu.:4   3rd Qu.:8.0   3rd Qu.: 9.0   3rd Qu.:7.0   3rd Qu.:5.0  
-#>  Max.   :4   Max.   :8.0   Max.   :10.0   Max.   :8.0   Max.   :5.0  
-#> --- C (5 observations) ---------------------------------------------------------
-#>       col1         col2           col3          col4         col5    
-#>  Min.   : 3   Min.   : 0.0   Min.   :1.0   Min.   : 1   Min.   :0.0  
-#>  1st Qu.: 4   1st Qu.: 5.0   1st Qu.:3.0   1st Qu.: 6   1st Qu.:3.0  
-#>  Median : 6   Median : 7.0   Median :3.0   Median : 9   Median :6.0  
-#>  Mean   : 6   Mean   : 5.8   Mean   :4.6   Mean   : 7   Mean   :4.8  
-#>  3rd Qu.: 7   3rd Qu.: 7.0   3rd Qu.:7.0   3rd Qu.: 9   3rd Qu.:7.0  
-#>  Max.   :10   Max.   :10.0   Max.   :9.0   Max.   :10   Max.   :8.0
 ```
 
 ## Contributing

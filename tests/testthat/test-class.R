@@ -1,5 +1,3 @@
-context("Matrix Classes")
-
 test_that("Empty instance", {
   expect_s4_class(.CountMatrix(), "CountMatrix")
   expect_s4_class(.AbundanceMatrix(), "AbundanceMatrix")
@@ -7,7 +5,6 @@ test_that("Empty instance", {
   expect_s4_class(.SimilarityMatrix(), "SimilarityMatrix")
   expect_s4_class(.IncidenceMatrix(), "IncidenceMatrix")
   expect_s4_class(.StratigraphicMatrix(), "StratigraphicMatrix")
-  expect_s4_class(.MatrixSummary(), "MatrixSummary")
 })
 test_that("CountMatrix", {
   # Coerce values to integer
@@ -28,4 +25,17 @@ test_that("Initialize a AbundanceMatrix instance", {
   cnd <- catch_conditions(AbundanceMatrix(data = c(-2, 3), nrow = 1))
   expect_s3_class(cnd[[1]], "arkhe_error_class")
   expect_true(grepl("must contain positive numbers", cnd[[1]]$message))
+})
+test_that("Matrix dimension names", {
+  cts <- CountMatrix(nrow = 0, ncol = 0)
+  expect_null(rownames(cts))
+  expect_null(colnames(cts))
+
+  cts <- CountMatrix(sample(1:100, 50, TRUE), ncol = 10)
+  row_names <- paste0("row", 1:5)
+  col_names <- paste0("col", 1:10)
+
+  expect_equal(rownames(cts), row_names)
+  expect_equal(colnames(cts), col_names)
+  expect_equal(dimnames(cts), list(row_names, col_names))
 })

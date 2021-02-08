@@ -5,49 +5,54 @@
 #' @rdname CountMatrix-class
 CountMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
                         dimnames = NULL) {
-  mtx <- make_matrix(data, nrow, ncol, byrow, dimnames,
-                     missing(nrow), missing(ncol))
-
-  .CountMatrix(
-    size = dim(mtx),
-    row_names = if (is.null(rownames(mtx))) character(0) else rownames(mtx),
-    column_names = if (is.null(colnames(mtx))) character(0) else colnames(mtx),
-    values = as_integer(mtx)
+  mtx <- make_matrix(
+    data = as_integer(data),
+    nrow = nrow,
+    ncol = ncol,
+    byrow = byrow,
+    dimnames = dimnames,
+    missing(nrow),
+    missing(ncol)
   )
+
+  .CountMatrix(mtx)
 }
 
 #' @export
 #' @rdname AbundanceMatrix-class
 AbundanceMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
                             dimnames = NULL) {
-  mtx <- make_matrix(data, nrow, ncol, byrow, dimnames,
-                     missing(nrow), missing(ncol))
-  totals <- rowSums(mtx)
-  values <- as.numeric(mtx / totals)
-  values[is.nan(values)] <- 0 # Prevent division by zero
-
-  .AbundanceMatrix(
-    size = dim(mtx),
-    row_names = if (is.null(rownames(mtx))) character(0) else rownames(mtx),
-    column_names = if (is.null(colnames(mtx))) character(0) else colnames(mtx),
-    values = values,
-    totals = totals
+  mtx <- make_matrix(
+    data = as.numeric(data),
+    nrow = nrow,
+    ncol = ncol,
+    byrow = byrow,
+    dimnames = dimnames,
+    missing(nrow),
+    missing(ncol)
   )
+  totals <- rowSums(mtx)
+  mtx <- mtx / totals
+  mtx[is.nan(mtx)] <- 0 # Prevent division by zero
+
+  .AbundanceMatrix(mtx, totals = totals)
 }
 
 #' @export
 #' @rdname IncidenceMatrix-class
 IncidenceMatrix <- function(data = FALSE, nrow = 1, ncol = 1, byrow = FALSE,
                             dimnames = NULL) {
-  mtx <- make_matrix(data, nrow, ncol, byrow, dimnames,
-                     missing(nrow), missing(ncol))
-
-  .IncidenceMatrix(
-    size = dim(mtx),
-    row_names = if (is.null(rownames(mtx))) character(0) else rownames(mtx),
-    column_names = if (is.null(colnames(mtx))) character(0) else colnames(mtx),
-    values = as.logical(mtx)
+  mtx <- make_matrix(
+    data = as.logical(data),
+    nrow = nrow,
+    ncol = ncol,
+    byrow = byrow,
+    dimnames = dimnames,
+    missing(nrow),
+    missing(ncol)
   )
+
+  .IncidenceMatrix(mtx)
 }
 
 SimilarityMatrix <- function(data = 1, nrow = 1, ncol = 1, byrow = FALSE,
@@ -94,8 +99,8 @@ make_dimnames <- function(x) {
 }
 make_matrix <- function(data, nrow, ncol, byrow, dimnames, row, col) {
 
-  if (nrow == 0 && ncol == 0) {
-    mtx <- matrix(data = 0, nrow = 0, ncol = 0)
+  if (nrow == 0 & ncol == 0) {
+    mtx <- matrix(data = data, nrow = 0, ncol = 0)
     return(mtx)
   }
 

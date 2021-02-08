@@ -16,19 +16,6 @@ setMethod(
   }
 )
 
-#' @export
-#' @rdname clean
-#' @aliases replace_NA,DataMatrix-method
-setMethod(
-  f = "replace_NA",
-  signature = signature(x = "DataMatrix"),
-  definition = function(x, value = 0) {
-    index <- which(is.na(x@values))
-    x[index] <- value
-    x
-  }
-)
-
 # Remove =======================================================================
 ## Missing values --------------------------------------------------------------
 #' @export
@@ -39,20 +26,6 @@ setMethod(
   signature = signature(x = "matrix"),
   definition = function(x, margin = 1, finite = TRUE) {
     index <- !detect_missing(x, margin = margin, finite = finite)
-    if (margin == 1) x <- x[index, , drop = FALSE]
-    if (margin == 2) x <- x[, index, drop = FALSE]
-    x
-  }
-)
-
-#' @export
-#' @rdname clean
-#' @aliases remove_NA,DataMatrix-method
-setMethod(
-  f = "remove_NA",
-  signature = signature(x = "DataMatrix"),
-  definition = function(x, margin = 1, finite = TRUE) {
-    index <- which(!detect_missing(x, margin = margin, finite = finite))
     if (margin == 1) x <- x[index, , drop = FALSE]
     if (margin == 2) x <- x[, index, drop = FALSE]
     x
@@ -74,20 +47,6 @@ setMethod(
   }
 )
 
-#' @export
-#' @rdname clean
-#' @aliases remove_zero,DataMatrix-method
-setMethod(
-  f = "remove_zero",
-  signature = signature(x = "DataMatrix"),
-  definition = function(x, margin = 1) {
-    index <- which(!detect_zero(x, margin = margin))
-    if (margin == 1) x <- x[index, , drop = FALSE]
-    if (margin == 2) x <- x[, index, drop = FALSE]
-    x
-  }
-)
-
 ## Empty -----------------------------------------------------------------------
 #' @export
 #' @rdname clean
@@ -97,20 +56,6 @@ setMethod(
   signature = signature(x = "matrix"),
   definition = function(x, margin = 1) {
     index <- !detect_empty(x, margin = margin)
-    if (margin == 1) x <- x[index, , drop = FALSE]
-    if (margin == 2) x <- x[, index, drop = FALSE]
-    x
-  }
-)
-
-#' @export
-#' @rdname clean
-#' @aliases remove_empty,DataMatrix-method
-setMethod(
-  f = "remove_empty",
-  signature = signature(x = "DataMatrix"),
-  definition = function(x, margin = 1) {
-    index <- which(!detect_empty(x, margin = margin))
     if (margin == 1) x <- x[index, , drop = FALSE]
     if (margin == 2) x <- x[, index, drop = FALSE]
     x

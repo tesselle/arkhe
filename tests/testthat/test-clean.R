@@ -1,6 +1,5 @@
-context("Data Cleaning")
-
 test_that("Replace missing values", {
+  options(arkhe.verbose = FALSE)
   num <- sample(1:10, 25, TRUE) # Create matrix
   mtx <- matrix(data = num, nrow = 5, ncol = 5)
 
@@ -13,10 +12,11 @@ test_that("Replace missing values", {
   ct <- as_count(mtx) # Create CountMatrix
 
   # Replace NAs
-  ct_clean <- replace_NA(ct, value = 999)
+  ct_clean <- replace_NA(ct, value = 999L)
   expect_equal(sum(ct_clean == 999), 3)
 })
 test_that("Remove missing values", {
+  options(arkhe.verbose = FALSE)
   num <- sample(1:10, 25, TRUE) # Create matrix
   mtx <- matrix(data = num, nrow = 5, ncol = 5)
 
@@ -53,6 +53,7 @@ test_that("Remove missing values", {
   expect_message(remove_NA(mtx, margin = 1, finite = FALSE))
 })
 test_that("Remove missing and non-finite values", {
+  options(arkhe.verbose = FALSE)
   num <- sample(1:10, 25, TRUE) # Create matrix
   mtx <- matrix(data = num, nrow = 5, ncol = 5)
 
@@ -81,6 +82,7 @@ test_that("Remove missing and non-finite values", {
   expect_message(remove_NA(mtx, margin = 1, finite = TRUE))
 })
 test_that("Remove zeros", {
+  options(arkhe.verbose = FALSE)
   num <- sample(1:10, 25, TRUE) # Create matrix
   mtx <- matrix(data = num, nrow = 5, ncol = 5)
 
@@ -117,6 +119,7 @@ test_that("Remove zeros", {
   expect_message(remove_zero(mtx, margin = 1))
 })
 test_that("Remove empty row/column", {
+  options(arkhe.verbose = FALSE)
   num <- sample(1:10, 25, TRUE) # Create matrix
   mtx <- matrix(data = num, nrow = 5, ncol = 5)
 

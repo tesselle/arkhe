@@ -120,7 +120,7 @@
       "name": "stats"
     }
   ],
-  "fileSize": "1060.266KB",
+  "fileSize": "1018.264KB",
   "contIntegration": "https://codecov.io/gh/tesselle/arkhe",
   "developmentStatus": ["https://www.repostatus.org/#active", "https://www.tidyverse.org/lifecycle/#maturing"],
   "keywords": [
@@ -132,7 +132,7 @@
   "citation": [
     {
       "@type": "SoftwareSourceCode",
-      "datePublished": "2020",
+      "datePublished": "2021",
       "author": [
         {
           "@type": "Person",
@@ -140,7 +140,7 @@
           "familyName": "Frerebeau"
         }
       ],
-      "name": "{arkhe}: Representation of Archaeological Data",
+      "name": "arkhe: Representation of Archaeological Data",
       "url": "https://doi.org/10.5281/zenodo.3526659",
       "description": "R package version 1.0.0"
     }
@@ -151,5 +151,6 @@
     "name": "Comprehensive R Archive Network (CRAN)",
     "url": "https://cran.r-project.org"
   },
-  "releaseNotes": "https://github.com/tesselle/arkhe/blob/master/NEWS.md"
+  "releaseNotes": "https://github.com/tesselle/arkhe/blob/master/NEWS.md",
+  "readme": "https://github.com/tesselle/arkhe/blob/master/README.md"
 }

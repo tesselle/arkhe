@@ -26,29 +26,20 @@ rows? If \code{FALSE} (the default) the matrix is filled by columns.}
 respectively. If \code{NULL} (the default) dimension names will be created.}
 }
 \description{
-Virtual S4 classes that represent a \eqn{m \times p}{m x p} matrix.
+An S4 classes that represent a \eqn{m \times p}{m x p} matrix.
 }
 \details{
 \code{DataMatrix} is the mother class of all matrix objects.
-
- The \code{values} slot is defined in \code{IntegerMatrix},
- \code{NumericMatrix} and \code{LogicalMatrix} classes.
 }
 \section{Slots}{
 
 \describe{
-\item{\code{size}}{A length-two \code{\link{integer}} vector.}
-
-\item{\code{row_names}}{A length-\eqn{m} \code{\link{character}} vector.}
-
-\item{\code{column_names}}{A length-\eqn{p} \code{\link{character}} vector.}
-
-\item{\code{group_names}}{A length-\eqn{m} \code{\link{character}} vector.}
-
-\item{\code{values}}{An \code{\link{integer}}, a \code{\link{numeric}} or a
-\code{\link{logical}} vector (see details).}
+\item{\code{groups}}{A length-\eqn{m} \code{\link{character}} vector.}
 }}
 
+\note{
+This class inherits from \code{\link{matrix}}.
+}
 \section{Get and set}{
 
  In the code snippets below, \code{x} is a \code{*Matrix} object.
@@ -98,7 +89,6 @@ Other matrix:
 \code{\link{AbundanceMatrix-class}},
 \code{\link{CountMatrix-class}},
 \code{\link{IncidenceMatrix-class}},
-\code{\link{MatrixSummary-class}},
 \code{\link{OccurrenceMatrix-class}},
 \code{\link{SimilarityMatrix-class}},
 \code{\link{StratigraphicMatrix-class}},

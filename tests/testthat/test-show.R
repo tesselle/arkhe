@@ -1,5 +1,3 @@
-context("Show")
-
 test_that("Logical matrix", {
   B <- .IncidenceMatrix()
   expect_output(show(B), "IncidenceMatrix")

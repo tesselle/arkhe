@@ -16,7 +16,7 @@ A co-occurrence matrix is a symmetric matrix with zeros on its main
 \section{Slots}{
 
 \describe{
-\item{\code{n}}{An \code{\link{integer}} giving the number of observations.}
+\item{\code{total}}{An \code{\link{integer}} giving the total number of observations.}
 }}
 
 \section{Get and set}{
@@ -97,7 +97,6 @@ Other matrix:
 \code{\link{CountMatrix-class}},
 \code{\link{DataMatrix-class}},
 \code{\link{IncidenceMatrix-class}},
-\code{\link{MatrixSummary-class}},
 \code{\link{SimilarityMatrix-class}},
 \code{\link{StratigraphicMatrix-class}},
 \code{\link{coerce}()}

@@ -1,5 +1,3 @@
-context("Getters and Setters")
-
 test_that("Matrix groups", {
   cts <- CountMatrix(sample(1:100, 75, TRUE), ncol = 5)
 
@@ -23,10 +21,10 @@ test_that("AbundanceMatrix totals", {
   cts <- matrix(sample(1:100, 100, TRUE), ncol = 10)
   freq <- as_abundance(cts)
 
-  expect_equivalent(get_totals(freq), rowSums(cts))
+  expect_equal(get_totals(freq), rowSums(cts))
 
   set_totals(freq) <- seq_len(10)
-  expect_equivalent(get_totals(freq), seq_len(10))
+  expect_equal(get_totals(freq), seq_len(10))
 
   # Invalid values
   # Try negative values
@@ -41,20 +39,6 @@ test_that("AbundanceMatrix totals", {
   cnd <- catch_conditions(set_totals(freq) <- NA_integer_)
   expect_s3_class(cnd[[1]], "arkhe_error_class")
   expect_true(grepl("must not contain missing values", cnd[[1]]$message))
-})
-test_that("SimilarityMatrix method", {
-  sim <- SimilarityMatrix()
-
-  expect_equal(get_method(sim), "unknown")
-
-  set_method(sim) <- "xxx"
-  expect_equal(get_method(sim), "xxx")
-
-  # Invalid values
-  # Try more than one value
-  cnd <- catch_conditions(set_method(sim) <- c("A", "B"))
-  expect_s3_class(cnd[[1]], "arkhe_error_class")
-  expect_true(grepl("must be a scalar", cnd[[1]]$message))
 })
 test_that("OccurrenceMatrix number of observations", {
   cts <- matrix(sample(0:1, 100, TRUE), ncol = 10)

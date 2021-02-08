@@ -19,18 +19,6 @@
 \alias{get_method-method}
 \alias{set_method<-}
 \alias{set_method-method}
-\alias{length,DataMatrix-method}
-\alias{dim,DataMatrix-method}
-\alias{rownames,DataMatrix-method}
-\alias{rownames<-,DataMatrix-method}
-\alias{rownames<-,DataMatrix,ANY-method}
-\alias{colnames,DataMatrix-method}
-\alias{colnames<-,DataMatrix-method}
-\alias{colnames<-,DataMatrix,ANY-method}
-\alias{dimnames,DataMatrix-method}
-\alias{dimnames<-,DataMatrix,list-method}
-\alias{diag,DataMatrix-method}
-\alias{diag<-,DataMatrix-method}
 \alias{has_groups,DataMatrix-method}
 \alias{get_groups,DataMatrix-method}
 \alias{get_totals,AbundanceMatrix-method}
@@ -57,26 +45,6 @@ set_totals(x) <- value
 get_method(x)
 
 set_method(x) <- value
-
-\S4method{length}{DataMatrix}(x)
-
-\S4method{dim}{DataMatrix}(x)
-
-\S4method{rownames}{DataMatrix}(x)
-
-\S4method{rownames}{DataMatrix}(x) <- value
-
-\S4method{colnames}{DataMatrix}(x)
-
-\S4method{colnames}{DataMatrix}(x) <- value
-
-\S4method{dimnames}{DataMatrix}(x)
-
-\S4method{dimnames}{DataMatrix,list}(x) <- value
-
-\S4method{diag}{DataMatrix}(x)
-
-\S4method{diag}{DataMatrix}(x) <- value
 
 \S4method{has_groups}{DataMatrix}(x)
 

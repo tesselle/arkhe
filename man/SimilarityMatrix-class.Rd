@@ -58,7 +58,6 @@ Other matrix:
 \code{\link{CountMatrix-class}},
 \code{\link{DataMatrix-class}},
 \code{\link{IncidenceMatrix-class}},
-\code{\link{MatrixSummary-class}},
 \code{\link{OccurrenceMatrix-class}},
 \code{\link{StratigraphicMatrix-class}},
 \code{\link{coerce}()}

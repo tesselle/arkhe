@@ -1,5 +1,3 @@
-context("Check")
-
 test_that("type checks return an error", {
   cnd <- catch_conditions(check_type(numeric(), expected = "list"))
   expect_s3_class(cnd[[1]], "error_bad_type")

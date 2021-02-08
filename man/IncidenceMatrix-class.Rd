@@ -100,7 +100,6 @@ Other matrix:
 \code{\link{AbundanceMatrix-class}},
 \code{\link{CountMatrix-class}},
 \code{\link{DataMatrix-class}},
-\code{\link{MatrixSummary-class}},
 \code{\link{OccurrenceMatrix-class}},
 \code{\link{SimilarityMatrix-class}},
 \code{\link{StratigraphicMatrix-class}},
