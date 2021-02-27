@@ -1,96 +1,63 @@
 # CLASSES DEFINITION
 
-# DataMatrix ===================================================================
-#' Data Matrix
+# ArchaeoData ==================================================================
+#' Archaeological Data
 #'
-#' An S4 classes that represent a \eqn{m \times p}{m x p} matrix.
-#' @param data A data vector.
-#' @param nrow An \code{\link{integer}} value giving the desired number of rows.
-#' @param ncol An \code{\link{integer}} value giving the desired number of
-#'  columns.
-#' @param byrow A \code{\link{logical}} scalar: should the matrix be filled by
-#'  rows? If \code{FALSE} (the default) the matrix is filled by columns.
-#' @param dimnames A list of length 2 giving the row and column names
-#'  respectively. If \code{NULL} (the default) dimension names will be created.
-#' @slot groups A length-\eqn{m} \code{\link{character}} vector.
-#' @details
-#'  \code{DataMatrix} is the mother class of all matrix objects.
+#' A virtual S4 class to represent archaeological data.
+#' @slot sites A \code{\link{character}} vector.
+#' @slot groups A \code{\link{character}} vector.
 #' @section Get and set:
-#'  In the code snippets below, \code{x} is a \code{*Matrix} object.
+#'  In the code snippets below, \code{x} is an \code{ArchaeoData} object.
 #'  \describe{
 #'   \item{\code{get_groups(x)} and \code{set_groups(x) <- value}}{Get or set
 #'   the sample names of \code{x}.}
 #'  }
-#' @section Access:
-#'  In the code snippets below, \code{x} is a \code{*Matrix} object.
-#'  \describe{
-#'   \item{\code{length(x)}}{Returns the length of \code{x}.}
-#'   \item{\code{dim(x)}}{Returns the dimension of \code{x}.}
-#'   \item{\code{nrow(x)}}{Returns the number of rows present in \code{x}.}
-#'   \item{\code{ncol(x)}}{Returns the number of columns present in \code{x}.}
-#'   \item{\code{dimnames(x)}, \code{dimnames(x) <- value}}{Retrieves or sets
-#'   the row dimnames of \code{x} according to \code{value}.}
-#'   \item{\code{rownames(x)}, \code{rownames(x) <- value}}{Retrieves or sets
-#'   the row names of \code{x} according to \code{value}.}
-#'   \item{\code{colnames(x)}, \code{colnames(x) <- value}}{Retrieves or sets
-#'   the column names of \code{x} according to \code{value}.}
-#'  }
-#' @section Subset:
-#'  In the code snippets below, \code{x} is a \code{*Matrix} object.
-#'  \describe{
-#'   \item{\code{x[i, j, ..., drop]}}{Extracts elements selected by subscripts
-#'   \code{i} and \code{j}. Indices are \code{\link{numeric}} or
-#'   \code{\link{character}} vectors or empty (missing) or \code{NULL}.
-#'   Numeric values are coerced to \code{\link{integer}} as by
-#'   \code{\link{as.integer}} (and hence truncated towards zero).
-#'   Character vectors will be matched to the \code{\link{dimnames}} of the
-#'   object. An empty index (a comma separated blank) indicates that all
-#'   entries in that dimension are selected.
-#'   Returns an object of the same class as \code{x}.}
-#'   \item{\code{x[[i]]}}{Extracts a single element selected by subscript
-#'   \code{i}.}
-#'  }
+#' @author N. Frerebeau
+#' @docType class
+#' @aliases ArchaeoData-class
+#' @keywords internal
+.ArchaeoData <- setClass(
+  Class = "ArchaeoData",
+  slots = c(
+    sites = "character",
+    groups = "character"
+  ),
+  contains = "VIRTUAL"
+)
+
+# DataMatrix ===================================================================
+#' Data Matrix
+#'
+#' S4 classes that represent a \eqn{m \times p}{m x p} matrix.
 #' @note
-#'  This class inherits from \code{\link{matrix}}.
+#'  These classes inherit from \code{\link{matrix}}.
 #' @author N. Frerebeau
 #' @family matrix
 #' @docType class
-#' @name DataMatrix-class
-#' @rdname DataMatrix-class
+#' @name DataMatrix
+#' @rdname DataMatrix
 #' @keywords internal
-.DataMatrix <- setClass(
-  Class = "DataMatrix",
-  slots = c(
-    groups = "character"
-  ),
+NULL
+
+#' @aliases IntegerMatrix-class
+#' @rdname DataMatrix
+.IntegerMatrix <- setClass(
+  Class = "IntegerMatrix",
   contains = "matrix"
 )
 
-#' @aliases IntegerMatrix-class
-#' @rdname DataMatrix-class
-#' @export .IntegerMatrix
-#' @exportClass IntegerMatrix
-.IntegerMatrix <- setClass(
-  Class = "IntegerMatrix",
-  contains = c("DataMatrix")
-)
-
 #' @aliases NumericMatrix-class
-#' @rdname DataMatrix-class
-#' @export .NumericMatrix
-#' @exportClass NumericMatrix
+#' @rdname DataMatrix
 .NumericMatrix <- setClass(
   Class = "NumericMatrix",
-  contains = c("DataMatrix")
+  contains = "matrix"
 )
 
 #' @aliases LogicalMatrix-class
-#' @rdname DataMatrix-class
-#' @export .LogicalMatrix
-#' @exportClass LogicalMatrix
+#' @rdname DataMatrix
 .LogicalMatrix <- setClass(
   Class = "LogicalMatrix",
-  contains = c("DataMatrix")
+  contains = "matrix"
 )
 
 # IntegerMatrix ================================================================
@@ -99,21 +66,35 @@
 #'
 #' An S4 class to represent an absolute frequency matrix (i.e. the number of
 #' times a given datum occurs in a dataset).
-#' @inheritParams DataMatrix-class
-#' @inheritSection DataMatrix-class Access
-#' @inheritSection DataMatrix-class Subset
+#' @inheritParams base::matrix
 #' @seealso \link{as_count}
 #' @example inst/examples/ex-matrix.R
 #' @author N. Frerebeau
 #' @family matrix
 #' @docType class
-#' @export .CountMatrix
 #' @exportClass CountMatrix
 #' @aliases CountMatrix-class
 .CountMatrix <- setClass(
   Class = "CountMatrix",
-  contains = "IntegerMatrix"
+  contains = c("IntegerMatrix", "ArchaeoData")
 )
+
+#' @export
+#' @rdname CountMatrix-class
+CountMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
+                        dimnames = NULL) {
+  mtx <- make_matrix(
+    data = as_integer(data),
+    nrow = nrow,
+    ncol = ncol,
+    byrow = byrow,
+    dimnames = dimnames,
+    missing(nrow),
+    missing(ncol)
+  )
+
+  .CountMatrix(mtx)
+}
 
 # OccurrenceMatrix -------------------------------------------------------------
 #' Co-Occurrence Matrix
@@ -124,9 +105,6 @@
 #'  A co-occurrence matrix is a symmetric matrix with zeros on its main
 #'  diagonal, which works out how many times each pairs of taxa/types occur
 #'  together in at least one sample.
-#' @inheritSection DataMatrix-class Get and set
-#' @inheritSection DataMatrix-class Access
-#' @inheritSection DataMatrix-class Subset
 #' @seealso \link{as_occurrence}
 #' @example inst/examples/ex-matrix.R
 #' @author N. Frerebeau
@@ -147,10 +125,7 @@
 #'
 #' An S4 class to represent a relative frequency matrix (i.e. the fraction of
 #' times a given datum occurs in a dataset).
-#' @slot totals A \code{\link{numeric}} vector giving the absolute row sums.
-#' @inheritParams DataMatrix-class
-#' @inheritSection DataMatrix-class Access
-#' @inheritSection DataMatrix-class Subset
+#' @inheritParams base::matrix
 #' @seealso \link{as_abundance}
 #' @example inst/examples/ex-matrix.R
 #' @author N. Frerebeau
@@ -164,17 +139,35 @@
   slots = c(
     totals = "numeric"
   ),
-  contains = "NumericMatrix"
+  contains = c("NumericMatrix", "ArchaeoData")
 )
+
+#' @export
+#' @rdname AbundanceMatrix-class
+AbundanceMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
+                            dimnames = NULL) {
+  mtx <- make_matrix(
+    data = as.numeric(data),
+    nrow = nrow,
+    ncol = ncol,
+    byrow = byrow,
+    dimnames = dimnames,
+    missing(nrow),
+    missing(ncol)
+  )
+  totals <- rowSums(mtx)
+  mtx <- mtx / totals
+  mtx[is.nan(mtx)] <- 0 # Prevent division by zero
+
+  .AbundanceMatrix(mtx, totals = totals)
+}
 
 # LogicalMatrix ================================================================
 # IncidenceMatrix --------------------------------------------------------------
 #' Incidence Matrix
 #'
 #' An S4 class to represent an incidence (presence/absence) matrix.
-#' @inheritParams DataMatrix-class
-#' @inheritSection DataMatrix-class Access
-#' @inheritSection DataMatrix-class Subset
+#' @inheritParams base::matrix
 #' @seealso \link{as_incidence}
 #' @example inst/examples/ex-matrix.R
 #' @author N. Frerebeau
@@ -185,8 +178,25 @@
 #' @aliases IncidenceMatrix-class
 .IncidenceMatrix <- setClass(
   Class = "IncidenceMatrix",
-  contains = "LogicalMatrix"
+  contains = c("LogicalMatrix", "ArchaeoData")
 )
+
+#' @export
+#' @rdname IncidenceMatrix-class
+IncidenceMatrix <- function(data = FALSE, nrow = 1, ncol = 1, byrow = FALSE,
+                            dimnames = NULL) {
+  mtx <- make_matrix(
+    data = as.logical(data),
+    nrow = nrow,
+    ncol = ncol,
+    byrow = byrow,
+    dimnames = dimnames,
+    missing(nrow),
+    missing(ncol)
+  )
+
+  .IncidenceMatrix(mtx)
+}
 
 # Stratigraphic ----------------------------------------------------------------
 #' Stratigraphic Matrix
@@ -197,8 +207,6 @@
 #'  stratigraphic units. A stratigraphic matrix is an adjacency matrix (a non
 #'  symmetric square matrix with zeros on its main diagonal), suitable to build
 #'  a directed acyclic graph (DAG).
-#' @inheritSection DataMatrix-class Access
-#' @inheritSection DataMatrix-class Subset
 #' @seealso \link{as_stratigraphy}
 #' @example inst/examples/ex-stratigraphy.R
 #' @author N. Frerebeau
@@ -208,4 +216,10 @@
 .StratigraphicMatrix <- setClass(
   Class = "StratigraphicMatrix",
   contains = "LogicalMatrix"
+)
+
+# ArchaeoMatrix ================================================================
+setClassUnion(
+  name = "ArchaeoMatrix",
+  members = c("CountMatrix", "AbundanceMatrix", "IncidenceMatrix")
 )

@@ -34,8 +34,8 @@ remove_zero(x, ...)
 \S4method{remove_empty}{matrix}(x, margin = 1)
 }
 \arguments{
-\item{x}{A \code{\link{matrix}}, \code{\link{data.frame}} or
-\linkS4class{DataMatrix} object.}
+\item{x}{A \code{\link{matrix}}, a \code{\link{data.frame}} or a
+\code{*Matrix} object.}
 
 \item{...}{Currently not used.}
 

@@ -6,8 +6,8 @@ NULL
 #' Data Cleaning
 #'
 #' Removes empty row/column or row/column with missing values or zeros.
-#' @param x A \code{\link{matrix}}, \code{\link{data.frame}} or
-#'  \linkS4class{DataMatrix} object.
+#' @param x A \code{\link{matrix}}, a \code{\link{data.frame}} or a
+#'  \code{*Matrix} object.
 #' @param margin An \code{\link{integer}} giving the subscript which the
 #'  cleaning will be applied over (\code{1} indicates rows, \code{2} indicates
 #'  columns).
@@ -85,7 +85,7 @@ setGeneric(
 #'  the first column/component is assumed to contain the bottom units and the
 #'  second the top units (adjacency).
 #'
-#'  \code{as_features} converts an \linkS4class{DataMatrix} object to a
+#'  \code{as_features} converts an \code{*Matrix} object to a
 #'  collection of features: a \code{\link{data.frame}} with all informations
 #'  as extra columns (result may differ according to the class of \code{from}).
 #' @return A coerced object.
@@ -158,7 +158,7 @@ setGeneric(
 #'
 #' Getters and setters to retrieve or set parts of an object.
 #' @param x An object from which to get or set element(s) (typically a
-#'  \linkS4class{DataMatrix} object).
+#'  \code{*Matrix} object).
 #' @param value A possible value for the element(s) of \code{x}.
 #' @return
 #'  An object of the same sort as \code{x} with the new values assigned.

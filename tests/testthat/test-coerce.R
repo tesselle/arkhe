@@ -74,13 +74,14 @@ test_that("DataMatrix > long", {
   counts <- as(cts, "CountMatrix")
 
   A <- as_long(counts, factor = TRUE)
-  expect_equal(dim(A), c(50, 3))
+  expect_equal(dim(A), c(50, 5))
   expect_s3_class(A$row, "factor")
   expect_s3_class(A$column, "factor")
 })
 test_that("DataMatrix > features", {
   cts <- matrix(sample(0:100, 50, TRUE), ncol = 10)
   freq <- as_abundance(cts)
+  feat <- as_features(freq)
 
-  expect_equal(dim(as_features(freq)), c(5, 11))
+  expect_equal(dim(feat), c(5, 12))
 })

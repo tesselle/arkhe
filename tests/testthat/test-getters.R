@@ -31,14 +31,10 @@ test_that("AbundanceMatrix totals", {
   cnd <- catch_conditions(set_totals(freq) <- -seq_len(10))
   expect_s3_class(cnd[[1]], "arkhe_error_class")
   expect_true(grepl("must contain positive numbers", cnd[[1]]$message))
-  # Try Inf
-  cnd <- catch_conditions(set_totals(freq) <- Inf)
+  # Try wrong length
+  cnd <- catch_conditions(set_totals(freq) <- 1)
   expect_s3_class(cnd[[1]], "arkhe_error_class")
-  expect_true(grepl("must not contain infinite values", cnd[[1]]$message))
-  # Try NA
-  cnd <- catch_conditions(set_totals(freq) <- NA_integer_)
-  expect_s3_class(cnd[[1]], "arkhe_error_class")
-  expect_true(grepl("must not contain missing values", cnd[[1]]$message))
+  expect_true(grepl("must be of length 10; not 1", cnd[[1]]$message))
 })
 test_that("OccurrenceMatrix number of observations", {
   cts <- matrix(sample(0:1, 100, TRUE), ncol = 10)

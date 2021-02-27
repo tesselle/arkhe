@@ -4,12 +4,13 @@ NULL
 
 setMethod(
   f = "show",
-  signature = "DataMatrix",
+  signature = "ArchaeoMatrix",
   definition = function(object) {
+    mtx <- methods::as(object, "matrix")
     mp <- paste0(dim(object), collapse = " x ")
     cat(
       sprintf("<%s: %s>", class(object), mp),
-      utils::capture.output(object@.Data),
+      utils::capture.output(mtx),
       sep = "\n"
     )
     invisible(object)

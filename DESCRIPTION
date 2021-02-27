@@ -52,7 +52,7 @@ Collate:
     'clean.R'
     'coerce.R'
     'conditions.R'
-    'initialize.R'
+    'helpers.R'
     'mutators.R'
     'show.R'
     'subset.R'

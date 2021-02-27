@@ -6,27 +6,50 @@ NULL
 ## [ ---------------------------------------------------------------------------
 #' @export
 #' @rdname subset
-#' @aliases [,DataMatrix-method
+#' @aliases [,ArchaeoMatrix-method
 setMethod(
   f = "[",
-  signature = c(x = "DataMatrix"),
+  signature = c(x = "ArchaeoMatrix"),
   function(x, i, j, ..., drop = TRUE) {
     z <- methods::callNextMethod()
+
     if (is.null(dim(z))) {
       return(z)
     }
 
     if (!missing(i)) {
-      slots <- methods::slotNames(x)
-      for (s in slots) {
-        old <- methods::slot(x, s)
-        if (length(old) == nrow(x)) {
-          methods::slot(x, s, check = FALSE) <- old[i]
-        }
-      }
+      sites <- x@sites
+      groups <- x@groups
+      if (length(sites) > 0) sites <- sites[i]
+      if (length(groups) > 0) groups <- groups[i]
+      methods::initialize(x, z, sites = sites, groups = groups)
+    } else{
+      methods::initialize(x, z)
+    }
+  }
+)
+
+#' @export
+#' @rdname subset
+#' @aliases [,AbundanceMatrix-method
+setMethod(
+  f = "[",
+  signature = c(x = "AbundanceMatrix"),
+  function(x, i, j, ..., drop = TRUE) {
+    totals <- x@totals
+    x@totals <- numeric(0)
+
+    z <- methods::callNextMethod()
+
+    if (is.null(dim(z))) {
+      return(z)
     }
 
-    methods::initialize(x, z)
+    if (!missing(i) & length(totals) > 0) {
+      methods::initialize(x, z, totals = totals[i])
+    } else{
+      methods::initialize(x, z)
+    }
   }
 )
 
@@ -34,10 +57,10 @@ setMethod(
 ## [<- -------------------------------------------------------------------------
 #' @export
 #' @rdname subset
-#' @aliases [<-,DataMatrix-method
+#' @aliases [<-,ArchaeoMatrix-method
 setMethod(
   f = "[<-",
-  signature = c(x = "DataMatrix"),
+  signature = c(x = "ArchaeoMatrix"),
   function(x, i, j, ..., value) {
     z <- methods::callNextMethod()
     methods::validObject(z)
@@ -48,10 +71,10 @@ setMethod(
 ## [[<- ------------------------------------------------------------------------
 #' @export
 #' @rdname subset
-#' @aliases [[<-,DataMatrix-method
+#' @aliases [[<-,ArchaeoMatrix-method
 setMethod(
   f = "[[<-",
-  signature = c(x = "DataMatrix"),
+  signature = c(x = "ArchaeoMatrix"),
   function(x, i, j, ..., value) {
     z <- methods::callNextMethod()
     methods::validObject(z)

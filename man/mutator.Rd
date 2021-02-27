@@ -15,12 +15,12 @@
 \alias{get_totals-method}
 \alias{set_totals<-}
 \alias{set_totals-method}
-\alias{has_groups,DataMatrix-method}
-\alias{get_groups,DataMatrix-method}
+\alias{has_groups,ArchaeoData-method}
+\alias{get_groups,ArchaeoData-method}
 \alias{get_totals,AbundanceMatrix-method}
 \alias{get_totals,OccurrenceMatrix-method}
-\alias{set_groups<-,DataMatrix-method}
-\alias{set_groups,DataMatrix-method}
+\alias{set_groups<-,ArchaeoData-method}
+\alias{set_groups,ArchaeoData-method}
 \alias{set_totals<-,AbundanceMatrix-method}
 \alias{set_totals,AbundanceMatrix-method}
 \title{Get or Set Parts of an Object}
@@ -35,21 +35,21 @@ get_totals(x)
 
 set_totals(x) <- value
 
-\S4method{has_groups}{DataMatrix}(x)
+\S4method{has_groups}{ArchaeoData}(x)
 
-\S4method{get_groups}{DataMatrix}(x)
+\S4method{get_groups}{ArchaeoData}(x)
 
 \S4method{get_totals}{AbundanceMatrix}(x)
 
 \S4method{get_totals}{OccurrenceMatrix}(x)
 
-\S4method{set_groups}{DataMatrix}(x) <- value
+\S4method{set_groups}{ArchaeoData}(x) <- value
 
 \S4method{set_totals}{AbundanceMatrix}(x) <- value
 }
 \arguments{
 \item{x}{An object from which to get or set element(s) (typically a
-\linkS4class{DataMatrix} object).}
+\code{*Matrix} object).}
 
 \item{value}{A possible value for the element(s) of \code{x}.}
 }

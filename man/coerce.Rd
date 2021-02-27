@@ -25,8 +25,8 @@
 \alias{as_incidence,ANY-method}
 \alias{as_stratigraphy,ANY-method}
 \alias{as_long,matrix-method}
-\alias{as_long,DataMatrix-method}
-\alias{as_features,DataMatrix-method}
+\alias{as_long,ArchaeoMatrix-method}
+\alias{as_features,ArchaeoMatrix-method}
 \title{Coerce}
 \usage{
 as_long(from, ...)
@@ -57,9 +57,9 @@ as_stratigraphy(from)
 
 \S4method{as_long}{matrix}(from, factor = FALSE)
 
-\S4method{as_long}{DataMatrix}(from, factor = FALSE)
+\S4method{as_long}{ArchaeoMatrix}(from, factor = FALSE)
 
-\S4method{as_features}{DataMatrix}(from)
+\S4method{as_features}{ArchaeoMatrix}(from)
 }
 \arguments{
 \item{from}{An object to be coerced.}
@@ -102,7 +102,7 @@ The following methods coerce an object to a \code{Matrix} object:
  the first column/component is assumed to contain the bottom units and the
  second the top units (adjacency).
 
- \code{as_features} converts an \linkS4class{DataMatrix} object to a
+ \code{as_features} converts an \code{*Matrix} object to a
  collection of features: a \code{\link{data.frame}} with all informations
  as extra columns (result may differ according to the class of \code{from}).
 }
@@ -144,7 +144,7 @@ head(Y)
 Other matrix: 
 \code{\link{AbundanceMatrix-class}},
 \code{\link{CountMatrix-class}},
-\code{\link{DataMatrix-class}},
+\code{\link{DataMatrix}},
 \code{\link{IncidenceMatrix-class}},
 \code{\link{OccurrenceMatrix-class}},
 \code{\link{StratigraphicMatrix-class}}

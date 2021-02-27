@@ -55,7 +55,7 @@ setAs(
   from = "AbundanceMatrix",
   to = "CountMatrix",
   def = function(from) {
-    freq <- from@.Data
+    freq <- methods::as(from, "matrix")
     totals <- from@totals
     counts <- as_integer(freq * totals)
     dim(counts) <- dim(freq)
@@ -203,40 +203,43 @@ setMethod(
 
 #' @export
 #' @rdname coerce
-#' @aliases as_long,DataMatrix-method
+#' @aliases as_long,ArchaeoMatrix-method
 setMethod(
   f = "as_long",
-  signature = signature(from = "DataMatrix"),
+  signature = signature(from = "ArchaeoMatrix"),
   definition = function(from, factor = FALSE) {
-    x <- methods::callNextMethod()
-    grp <- from@groups
-    if (length(grp) > 0) {
-      x$group <- if (factor) as_factor(grp) else grp
-    }
+    x <- methods::callGeneric(from = methods::as(from, "matrix"),
+                              factor = factor)
+
+    sites <- from@sites
+    if (length(sites) == 0) sites <- NA_character_
+    x$site <- if (factor) as_factor(sites) else sites
+
+    groups <- from@groups
+    if (length(groups) == 0) groups <- NA_character_
+    x$group <- if (factor) as_factor(groups) else groups
+
     x
   }
 )
 
 #' @export
 #' @rdname coerce
-#' @aliases as_features,DataMatrix-method
+#' @aliases as_features,ArchaeoMatrix-method
 setMethod(
   f = "as_features",
-  signature = "DataMatrix",
+  signature = "ArchaeoMatrix",
   definition = function(from) {
-    # Get data from extra slots
-    extra <- vector(mode = "list")
-    slots <- methods::slotNames(from)
-    for (s in slots) {
-      x <- methods::slot(from, s)
-      n <- length(x)
-      if (n == nrow(from)) {
-        extra <- c(extra, list(x))
-        names(extra)[length(extra)] <- s
-      }
-    }
+    df <- as.data.frame(from)
 
-    mtx <- as.data.frame(from)
-    cbind(mtx, extra)
+    sites <- from@sites
+    if (length(sites) == 0) sites <- NA_character_
+    df$site <- sites
+
+    groups <- from@groups
+    if (length(groups) == 0) groups <- NA_character_
+    df$group <- groups
+
+    df
   }
 )

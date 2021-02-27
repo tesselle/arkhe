@@ -19,50 +19,6 @@ A co-occurrence matrix is a symmetric matrix with zeros on its main
 \item{\code{total}}{An \code{\link{integer}} giving the total number of observations.}
 }}
 
-\section{Get and set}{
-
- In the code snippets below, \code{x} is a \code{*Matrix} object.
- \describe{
-  \item{\code{get_groups(x)} and \code{set_groups(x) <- value}}{Get or set
-  the sample names of \code{x}.}
- }
-}
-
-\section{Access}{
-
- In the code snippets below, \code{x} is a \code{*Matrix} object.
- \describe{
-  \item{\code{length(x)}}{Returns the length of \code{x}.}
-  \item{\code{dim(x)}}{Returns the dimension of \code{x}.}
-  \item{\code{nrow(x)}}{Returns the number of rows present in \code{x}.}
-  \item{\code{ncol(x)}}{Returns the number of columns present in \code{x}.}
-  \item{\code{dimnames(x)}, \code{dimnames(x) <- value}}{Retrieves or sets
-  the row dimnames of \code{x} according to \code{value}.}
-  \item{\code{rownames(x)}, \code{rownames(x) <- value}}{Retrieves or sets
-  the row names of \code{x} according to \code{value}.}
-  \item{\code{colnames(x)}, \code{colnames(x) <- value}}{Retrieves or sets
-  the column names of \code{x} according to \code{value}.}
- }
-}
-
-\section{Subset}{
-
- In the code snippets below, \code{x} is a \code{*Matrix} object.
- \describe{
-  \item{\code{x[i, j, ..., drop]}}{Extracts elements selected by subscripts
-  \code{i} and \code{j}. Indices are \code{\link{numeric}} or
-  \code{\link{character}} vectors or empty (missing) or \code{NULL}.
-  Numeric values are coerced to \code{\link{integer}} as by
-  \code{\link{as.integer}} (and hence truncated towards zero).
-  Character vectors will be matched to the \code{\link{dimnames}} of the
-  object. An empty index (a comma separated blank) indicates that all
-  entries in that dimension are selected.
-  Returns an object of the same class as \code{x}.}
-  \item{\code{x[[i]]}}{Extracts a single element selected by subscript
-  \code{i}.}
- }
-}
-
 \examples{
 ## Create an incidence (presence/absence) matrix
 ## Data will be coerced with as.logical()
@@ -95,7 +51,7 @@ B[, 1:3] # Get the first three column
 Other matrix: 
 \code{\link{AbundanceMatrix-class}},
 \code{\link{CountMatrix-class}},
-\code{\link{DataMatrix-class}},
+\code{\link{DataMatrix}},
 \code{\link{IncidenceMatrix-class}},
 \code{\link{StratigraphicMatrix-class}},
 \code{\link{coerce}()}

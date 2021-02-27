@@ -120,9 +120,9 @@
       "name": "stats"
     }
   ],
-  "fileSize": "1018.264KB",
+  "fileSize": "734.748KB",
   "contIntegration": "https://codecov.io/gh/tesselle/arkhe",
-  "developmentStatus": ["https://www.repostatus.org/#active", "https://www.tidyverse.org/lifecycle/#maturing"],
+  "developmentStatus": "https://www.repostatus.org/#active",
   "keywords": [
     "archaeology",
     "archaeological-science",
