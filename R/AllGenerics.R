@@ -7,12 +7,12 @@ NULL
 #'
 #' Removes empty row/column or row/column with missing values or zeros.
 #' @param x A \code{\link{matrix}}, a \code{\link{data.frame}} or a
-#'  \code{*Matrix} object.
+#' \code{*Matrix} object.
 #' @param margin An \code{\link{integer}} giving the subscript which the
-#'  cleaning will be applied over (\code{1} indicates rows, \code{2} indicates
-#'  columns).
+#' cleaning will be applied over (\code{1} indicates rows, \code{2} indicates
+#' columns).
 #' @param finite A \code{\link{logical}} scalar: should non-\code{\link{finite}}
-#'  values also be removed?
+#' values also be removed?
 #' @param value A possible value to replace missing values of \code{x}.
 #' @param ... Currently not used.
 #' @example inst/examples/ex-clean.R
@@ -56,8 +56,11 @@ setGeneric(
 #'
 #' @param from An object to be coerced.
 #' @param factor A \code{\link{logical}} scalar: should character string be
-#'  coerced to \code{\link{factor}}? Default to \code{FALSE}, if \code{TRUE}
-#'  the original ordering is preserved.
+#' coerced to \code{\link{factor}}? Default to \code{FALSE}, if \code{TRUE}
+#' the original ordering is preserved.
+#' @param reverse A \code{\link{logical}} scalar: should the order of factor
+#' levels be reversed? Only used if \code{factor} is \code{TRUE}.
+#' Useful for plotting.
 #' @param ... Currently not used.
 #' @details
 #'  The following methods coerce an object to a \code{Matrix} object:
@@ -158,7 +161,7 @@ setGeneric(
 #'
 #' Getters and setters to retrieve or set parts of an object.
 #' @param x An object from which to get or set element(s) (typically a
-#'  \code{*Matrix} object).
+#' \code{*Matrix} object).
 #' @param value A possible value for the element(s) of \code{x}.
 #' @return
 #'  An object of the same sort as \code{x} with the new values assigned.

@@ -20,16 +20,23 @@ as_integer <- function(x) {
 #' Factors
 #'
 #' @param x A vector to be coerced.
+#' @param reverse A \code{\link{logical}} scalar: should the order of factor
+#' levels be reversed? Usefull for plotting.
 #' @details
-#'  Encodes a vector as a factor without sorting it into increasing order of
-#'  \code{x} (preserves original ordering).
+#'  Encodes a vector as a factor without sorting it into increasing (or
+#'  decreasing if \code{reverse} is \code{TRUE}) order of \code{x}
+#'  (preserves original ordering).
 #' @return An \code{\link{factor}} object.
 #' @author N. Frerebeau
 #' @family utilities
 #' @keywords internal utilities
 #' @noRd
-as_factor <- function(x) {
-  factor(x, levels = unique(x))
+as_factor <- function(x, reverse = FALSE) {
+  lvl <- unique(x)
+  if (reverse) {
+    lvl <- rev(lvl)
+  }
+  factor(x, levels = lvl)
 }
 
 # To CountMatrix ===============================================================
@@ -186,7 +193,7 @@ setAs(from = "list", to = "StratigraphicMatrix", def = edges2matrix)
 setMethod(
   f = "as_long",
   signature = signature(from = "matrix"),
-  definition = function(from, factor = FALSE) {
+  definition = function(from, factor = FALSE, reverse = FALSE) {
     x <- data.frame(
       row = as.vector(row(from, as.factor = factor)),
       column = as.vector(col(from, as.factor = factor)),
@@ -194,8 +201,8 @@ setMethod(
       stringsAsFactors = FALSE
     )
     if (factor) {
-      x$row <- as_factor(x$row)
-      x$column <- as_factor(x$column)
+      x$row <- as_factor(x$row, reverse = reverse)
+      x$column <- as_factor(x$column, reverse = reverse)
     }
     x
   }
@@ -207,9 +214,9 @@ setMethod(
 setMethod(
   f = "as_long",
   signature = signature(from = "ArchaeoMatrix"),
-  definition = function(from, factor = FALSE) {
+  definition = function(from, factor = FALSE, reverse = FALSE) {
     x <- methods::callGeneric(from = methods::as(from, "matrix"),
-                              factor = factor)
+                              factor = factor, reverse = reverse)
 
     sites <- from@sites
     if (length(sites) == 0) sites <- NA_character_

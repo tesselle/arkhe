@@ -73,10 +73,13 @@ test_that("DataMatrix > long", {
   cts <- matrix(sample(0:100, 50, TRUE), ncol = 10)
   counts <- as(cts, "CountMatrix")
 
-  A <- as_long(counts, factor = TRUE)
+  A <- as_long(counts, factor = TRUE, reverse = FALSE)
   expect_equal(dim(A), c(50, 5))
   expect_s3_class(A$row, "factor")
   expect_s3_class(A$column, "factor")
+
+  B <- as_long(counts, factor = TRUE, reverse = TRUE)
+  expect_equal(rev(levels(A$row)), levels(B$row))
 })
 test_that("DataMatrix > features", {
   cts <- matrix(sample(0:100, 50, TRUE), ncol = 10)

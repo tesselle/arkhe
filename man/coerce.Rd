@@ -55,9 +55,9 @@ as_stratigraphy(from)
 
 \S4method{as_stratigraphy}{ANY}(from)
 
-\S4method{as_long}{matrix}(from, factor = FALSE)
+\S4method{as_long}{matrix}(from, factor = FALSE, reverse = FALSE)
 
-\S4method{as_long}{ArchaeoMatrix}(from, factor = FALSE)
+\S4method{as_long}{ArchaeoMatrix}(from, factor = FALSE, reverse = FALSE)
 
 \S4method{as_features}{ArchaeoMatrix}(from)
 }
@@ -69,6 +69,10 @@ as_stratigraphy(from)
 \item{factor}{A \code{\link{logical}} scalar: should character string be
 coerced to \code{\link{factor}}? Default to \code{FALSE}, if \code{TRUE}
 the original ordering is preserved.}
+
+\item{reverse}{A \code{\link{logical}} scalar: should the order of factor
+levels be reversed? Only used if \code{factor} is \code{TRUE}.
+Useful for plotting.}
 }
 \value{
 A coerced object.
