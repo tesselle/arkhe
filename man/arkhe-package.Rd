@@ -23,10 +23,10 @@ A collection of classes that represent
 \tabular{ll}{
  \strong{Package:} \tab arkhe \cr
  \strong{Type:} \tab Package \cr
- \strong{Version:} \tab 1.0.0 \cr
+ \strong{Version:} \tab 0.3.0 \cr
  \strong{License:} \tab GPL-3 \cr
- \strong{DOI:} \tab \href{https://doi.org/10.5281/zenodo.3526659}{10.5281/zenodo.3526659}
 }
+\doi{10.5281/zenodo.3526659}
 }
 \seealso{
 Useful links:

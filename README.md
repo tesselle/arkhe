@@ -19,8 +19,6 @@ Downloads](http://cranlogs.r-pkg.org/badges/arkhe)](https://cran.r-project.org/p
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![Lifecycle:
-maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3526659.svg)](https://doi.org/10.5281/zenodo.3526659)
 <!-- badges: end -->
@@ -66,7 +64,8 @@ types of matrix.
     -   `CountMatrix` represents absolute frequency data,
     -   `OccurrenceMatrix` represents a co-occurrence matrix,
 -   Numeric matrix:
-    -   `AbundanceMatrix` represents relative frequency data,
+    -   `CompositionMatrix` represents relative frequency
+        (compositional) data,
 -   Logical matrix:
     -   `IncidenceMatrix` represents presence/absence data,
     -   `StratigraphicMatrix` represents stratigraphic relationships.
@@ -99,7 +98,7 @@ A0 <- matrix(data = sample(0:10, 75, TRUE), nrow = 15, ncol = 5)
 A1 <- as_count(A0)
 
 ## Coerce to relative frequencies
-B <- as_abundance(A1)
+B <- as_composition(A1)
 
 ## Row sums are internally stored before coercing to a frequency matrix
 ## (use get_totals() to get these values)
@@ -119,7 +118,7 @@ Observations in `*Matrix` classes can be grouped, this can be useful for
 replicated measurements/observations or to group data by site/area.
 
 ``` r
-## Summary by groups
+## Set groups
 set_groups(A1) <- rep(c("A", "B", "C"), each = 5)
 ```
 

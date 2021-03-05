@@ -1,11 +1,15 @@
 # arkhe 0.3.0
 
+## New classes and methods
+* Add `replace_NA()` to replace missing values.
+* Add `remove_NA()`, `remove_zero()` and `remove_empty()` to remove missing values, zeros and empty rows/columns in a `matrix`.
+
 ## Bugfixes & changes
 * Change `OccurrenceMatrix` inheritance (from `NumericMatrix` to `IntegerMatrix`).
+* Rename `AbundanceMatrix` (ambiguous) to `CompositionMatrix`.
+* Deprecate `as_abundance()`.
 * Remove `SimilarityMatrix` class.
-
-## Internal
-* Remove `id` slot in `GenericMatrix`.
+* `as_long()` gained a new `reverse` argument.
 
 # arkhe 0.2.2
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3724463.svg)](https://doi.org/10.5281/zenodo.3724463)

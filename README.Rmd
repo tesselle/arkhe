@@ -62,7 +62,7 @@ library(arkhe)
     * `CountMatrix` represents absolute frequency data,
     * `OccurrenceMatrix` represents a co-occurrence matrix,
 * Numeric matrix:
-    * `AbundanceMatrix` represents relative frequency data,
+    * `CompositionMatrix` represents relative frequency (compositional) data,
 * Logical matrix:
     * `IncidenceMatrix` represents presence/absence data,
     * `StratigraphicMatrix` represents stratigraphic relationships.
@@ -91,7 +91,7 @@ A0 <- matrix(data = sample(0:10, 75, TRUE), nrow = 15, ncol = 5)
 A1 <- as_count(A0)
 
 ## Coerce to relative frequencies
-B <- as_abundance(A1)
+B <- as_composition(A1)
 
 ## Row sums are internally stored before coercing to a frequency matrix
 ## (use get_totals() to get these values)
@@ -109,7 +109,7 @@ D <- as_occurrence(A1)
 Observations in `*Matrix` classes can be grouped, this can be useful for replicated measurements/observations or to group data by site/area.
 
 ```{r group}
-## Summary by groups
+## Set groups
 set_groups(A1) <- rep(c("A", "B", "C"), each = 5)
 ```
 

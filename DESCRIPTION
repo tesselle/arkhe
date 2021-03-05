@@ -1,6 +1,6 @@
 Package: arkhe
 Title: Representation of Archaeological Data
-Version: 0.2.2.9000
+Version: 0.3.0
 Authors@R: 
     c(person(given = "Nicolas",
              family = "Frerebeau",
@@ -52,7 +52,6 @@ Collate:
     'clean.R'
     'coerce.R'
     'conditions.R'
-    'helpers.R'
     'mutators.R'
     'show.R'
     'subset.R'
