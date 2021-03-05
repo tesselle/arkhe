@@ -68,7 +68,8 @@ setGeneric(
 #'  \tabular{lll}{
 #'   \strong{Method} \tab \strong{Target} \tab \strong{Details} \cr
 #'   \code{as_count} \tab \linkS4class{CountMatrix} \tab absolute frequency data \cr
-#'   \code{as_abundance} \tab \linkS4class{AbundanceMatrix} \tab relative frequency data \cr
+#'   \code{as_composition} \tab \linkS4class{CompositionMatrix} \tab relative frequency data \cr
+#'   \code{as_abundance} \tab \linkS4class{CompositionMatrix} \tab relative frequency data \cr
 #'   \code{as_incidence} \tab \linkS4class{IncidenceMatrix} \tab presence/absence data \cr
 #'   \code{as_occurrence} \tab \linkS4class{OccurrenceMatrix} \tab co-occurrence \cr
 #'   \code{as_stratigraphy} \tab \linkS4class{StratigraphicMatrix} \tab stratigraphic relationships
@@ -104,56 +105,64 @@ NULL
 #' @aliases as_long-method
 setGeneric(
   name = "as_long",
-  def = function(from, ...) standardGeneric("as_long")
+  def = function(from, ...) standardGeneric("as_long"),
+  valueClass = "data.frame"
 )
 
 #' @rdname coerce
 #' @aliases as_count-method
 setGeneric(
   name = "as_count",
-  def = function(from) standardGeneric("as_count")
+  def = function(from) standardGeneric("as_count"),
+  valueClass = "CountMatrix"
+)
+
+#' @rdname coerce
+#' @aliases as_composition-method
+setGeneric(
+  name = "as_composition",
+  def = function(from) standardGeneric("as_composition"),
+  valueClass = "CompositionMatrix"
 )
 
 #' @rdname coerce
 #' @aliases as_abundance-method
 setGeneric(
   name = "as_abundance",
-  def = function(from) standardGeneric("as_abundance")
+  def = function(from) standardGeneric("as_abundance"),
+  valueClass = "CompositionMatrix"
 )
 
 #' @rdname coerce
 #' @aliases as_incidence-method
 setGeneric(
   name = "as_incidence",
-  def = function(from) standardGeneric("as_incidence")
+  def = function(from) standardGeneric("as_incidence"),
+  valueClass = "IncidenceMatrix"
 )
 
 #' @rdname coerce
 #' @aliases as_occurrence-method
 setGeneric(
   name = "as_occurrence",
-  def = function(from) standardGeneric("as_occurrence")
-)
-
-#' @rdname coerce
-#' @aliases as_similarity-method
-setGeneric(
-  name = "as_similarity",
-  def = function(from) standardGeneric("as_similarity")
+  def = function(from) standardGeneric("as_occurrence"),
+  valueClass = "OccurrenceMatrix"
 )
 
 #' @rdname coerce
 #' @aliases as_features-method
 setGeneric(
   name = "as_features",
-  def = function(from) standardGeneric("as_features")
+  def = function(from) standardGeneric("as_features"),
+  valueClass = "data.frame"
 )
 
 #' @rdname coerce
 #' @aliases as_stratigraphy-method
 setGeneric(
   name = "as_stratigraphy",
-  def = function(from) standardGeneric("as_stratigraphy")
+  def = function(from) standardGeneric("as_stratigraphy"),
+  valueClass = "StratigraphicMatrix"
 )
 
 # Extract ======================================================================

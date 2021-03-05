@@ -61,7 +61,7 @@ B[, 1:3] # Get the first three column
 \link{as_count}
 
 Other matrix: 
-\code{\link{AbundanceMatrix-class}},
+\code{\link{CompositionMatrix-class}},
 \code{\link{DataMatrix}},
 \code{\link{IncidenceMatrix-class}},
 \code{\link{OccurrenceMatrix-class}},

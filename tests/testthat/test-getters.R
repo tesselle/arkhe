@@ -17,9 +17,9 @@ test_that("Matrix groups", {
   expect_s3_class(cnd[[1]], "arkhe_error_class")
   expect_true(grepl("must be of length 15; not 26", cnd[[1]]$message))
 })
-test_that("AbundanceMatrix totals", {
+test_that("CompositionMatrix totals", {
   cts <- matrix(sample(1:100, 100, TRUE), ncol = 10)
-  freq <- as_abundance(cts)
+  freq <- as_composition(cts)
 
   expect_equal(get_totals(freq), rowSums(cts))
 

@@ -9,15 +9,15 @@ test_that("matrix > *Matrix", {
   expect_s4_class(A, "CountMatrix")
   expect_equal(A@.Data, cts, ignore_attr = TRUE)
 
-  # AbundanceMatrix
-  B <- as_abundance(cts)
-  expect_s4_class(B, "AbundanceMatrix")
+  # CompositionMatrix
+  B <- as_composition(cts)
+  expect_s4_class(B, "CompositionMatrix")
   expect_equal(B@.Data, freq, ignore_attr = TRUE)
 
   # IncidenceMatrix
-  C <- as_incidence(incid)
-  expect_s4_class(C, "IncidenceMatrix")
-  expect_equal(C@.Data, incid, ignore_attr = TRUE)
+  D <- as_incidence(incid)
+  expect_s4_class(D, "IncidenceMatrix")
+  expect_equal(D@.Data, incid, ignore_attr = TRUE)
 
   expect_s4_class(as_incidence(cts), "IncidenceMatrix")
   expect_s4_class(as_incidence(freq), "IncidenceMatrix")
@@ -42,9 +42,9 @@ test_that("data.frame <> *Matrix", {
   expect_s4_class(A, "CountMatrix")
   expect_equal(as.data.frame(A), df_count, ignore_attr = TRUE)
 
-  # AbundanceMatrix
-  B <- as_abundance(df_count)
-  expect_s4_class(B, "AbundanceMatrix")
+  # CompositionMatrix
+  B <- as_composition(df_count)
+  expect_s4_class(B, "CompositionMatrix")
   expect_equal(as.data.frame(B), df_freq, ignore_attr = TRUE)
 
   # IncidenceMatrix
@@ -61,11 +61,11 @@ test_that("data.frame <> *Matrix", {
 })
 
 # *Matrix ======================================================================
-test_that("CountMatrix <> AbundanceMatrix", {
+test_that("CountMatrix <> CompositionMatrix", {
   cts <- matrix(sample(0:100, 50, TRUE), ncol = 10)
 
   counts1 <- as_count(cts)
-  freq1 <- as_abundance(counts1)
+  freq1 <- as_composition(counts1)
   counts2 <- as_count(freq1)
   expect_equal(counts1, counts2)
 })
@@ -83,7 +83,7 @@ test_that("DataMatrix > long", {
 })
 test_that("DataMatrix > features", {
   cts <- matrix(sample(0:100, 50, TRUE), ncol = 10)
-  freq <- as_abundance(cts)
+  freq <- as_composition(cts)
   feat <- as_features(freq)
 
   expect_equal(dim(feat), c(5, 12))

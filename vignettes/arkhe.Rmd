@@ -32,7 +32,7 @@ The **arkhe** package provides a set of S4 classes for archaeological data matri
     * `CountMatrix` represents absolute frequency data,
     * `OccurrenceMatrix` represents a co-occurrence matrix,
 * Numeric matrix:
-    * `AbundanceMatrix` represents relative frequency data,
+    * `CompositionMatrix` represents relative frequency data,
 * Logical matrix:
     * `IncidenceMatrix` represents presence/absence data,
     * `StratigraphicMatrix` represents stratigraphic relationships.
@@ -57,7 +57,7 @@ We denote the $m \times p$ count matrix by $A = \left[ a_{ij} \right] ~\forall i
  \forall a_{ij} \in \mathbb{N}
 \end{align}
 
-### Relative frequency matrix (`AbundanceMatrix`)
+### Relative frequency matrix (`CompositionMatrix`)
 
 A frequency matrix represents relative abundances.
 
@@ -125,7 +125,7 @@ IncidenceMatrix(data = sample(0:1, 100, TRUE),
                 nrow = 10, ncol = 10)
 ```
 
-Note that an `AbundanceMatrix` can only be created by coercion (see below).
+Note that an `CompositionMatrix` can only be created by coercion (see below).
 
 ## Coerce
 **arkhe** uses coercing mechanisms (with validation methods) for data type conversions:
@@ -138,7 +138,7 @@ A0 <- matrix(data = sample(0:10, 100, TRUE), nrow = 10, ncol = 10)
 A1 <- as_count(A0)
 
 ## Coerce to relative frequencies
-B <- as_abundance(A1)
+B <- as_composition(A1)
 
 ## Row sums are internally stored before coercing to a frequency matrix
 ## (use get_totals() to get these values)

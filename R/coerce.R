@@ -59,7 +59,7 @@ matrix2count <- function(from) {
 setAs(from = "matrix", to = "CountMatrix", def = matrix2count)
 setAs(from = "data.frame", to = "CountMatrix", def = matrix2count)
 setAs(
-  from = "AbundanceMatrix",
+  from = "CompositionMatrix",
   to = "CountMatrix",
   def = function(from) {
     freq <- methods::as(from, "matrix")
@@ -71,14 +71,25 @@ setAs(
   }
 )
 
-# To AbundanceMatrix ===========================================================
+# To CompositionMatrix =========================================================
+#' @export
+#' @rdname coerce
+#' @aliases as_composition,ANY-method
+setMethod(
+  f = "as_composition",
+  signature = signature(from = "ANY"),
+  definition = function(from) methods::as(from, "CompositionMatrix")
+)
 #' @export
 #' @rdname coerce
 #' @aliases as_abundance,ANY-method
 setMethod(
   f = "as_abundance",
   signature = signature(from = "ANY"),
-  definition = function(from) methods::as(from, "AbundanceMatrix")
+  definition = function(from) {
+    .Deprecated(new = "as_composition", old = "as_abundance")
+    methods::as(from, "CompositionMatrix")
+  }
 )
 
 matrix2frequency <- function(from) {
@@ -87,10 +98,10 @@ matrix2frequency <- function(from) {
   to <- to / totals
   dim(to) <- dim(from)
   dimnames(to) <- make_dimnames(from)
-  .AbundanceMatrix(to, totals = totals)
+  .CompositionMatrix(to, totals = totals)
 }
-setAs(from = "matrix", to = "AbundanceMatrix", def = matrix2frequency)
-setAs(from = "data.frame", to = "AbundanceMatrix", def = matrix2frequency)
+setAs(from = "matrix", to = "CompositionMatrix", def = matrix2frequency)
+setAs(from = "data.frame", to = "CompositionMatrix", def = matrix2frequency)
 
 # To OccurrenceMatrix ==========================================================
 #' @export
@@ -104,14 +115,15 @@ setMethod(
 
 matrix2occurrence <- function(from) {
   incid <- from > 0
-  labels <- colnames(incid)
   m <- nrow(incid)
   p <- ncol(incid)
 
   ij <- utils::combn(p, m = 2, simplify = TRUE)
   pair <- seq_len(ncol(ij))
+
   mtx <- matrix(data = 0L, nrow = p, ncol = p)
-  dimnames(mtx) <- list(colnames(from), colnames(from))
+  labels <- colnames(incid)
+  dimnames(mtx) <- list(labels, labels)
 
   for (k in pair) {
     i <- ij[1, k]
@@ -210,10 +222,10 @@ setMethod(
 
 #' @export
 #' @rdname coerce
-#' @aliases as_long,ArchaeoMatrix-method
+#' @aliases as_long,AbundanceMatrix-method
 setMethod(
   f = "as_long",
-  signature = signature(from = "ArchaeoMatrix"),
+  signature = signature(from = "AbundanceMatrix"),
   definition = function(from, factor = FALSE, reverse = FALSE) {
     x <- methods::callGeneric(from = methods::as(from, "matrix"),
                               factor = factor, reverse = reverse)
@@ -232,10 +244,10 @@ setMethod(
 
 #' @export
 #' @rdname coerce
-#' @aliases as_features,ArchaeoMatrix-method
+#' @aliases as_features,AbundanceMatrix-method
 setMethod(
   f = "as_features",
-  signature = "ArchaeoMatrix",
+  signature = "AbundanceMatrix",
   definition = function(from) {
     df <- as.data.frame(from)
 

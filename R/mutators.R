@@ -15,8 +15,8 @@ setMethod("get_groups", "ArchaeoData", function(x) x@groups)
 
 #' @export
 #' @rdname mutator
-#' @aliases get_totals,AbundanceMatrix-method
-setMethod("get_totals", "AbundanceMatrix", function(x) x@totals)
+#' @aliases get_totals,CompositionMatrix-method
+setMethod("get_totals", "CompositionMatrix", function(x) x@totals)
 
 #' @export
 #' @rdname mutator
@@ -39,10 +39,10 @@ setMethod(
 
 #' @export
 #' @rdname mutator
-#' @aliases set_totals,AbundanceMatrix-method
+#' @aliases set_totals,CompositionMatrix-method
 setMethod(
   f = "set_totals<-",
-  signature = "AbundanceMatrix",
+  signature = "CompositionMatrix",
   definition = function(x, value) {
     x@totals <- value
     methods::validObject(x)

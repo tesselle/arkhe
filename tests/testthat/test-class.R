@@ -1,6 +1,6 @@
 test_that("Empty instance", {
   expect_s4_class(.CountMatrix(), "CountMatrix")
-  expect_s4_class(.AbundanceMatrix(), "AbundanceMatrix")
+  expect_s4_class(.CompositionMatrix(), "CompositionMatrix")
   expect_s4_class(.OccurrenceMatrix(), "OccurrenceMatrix")
   expect_s4_class(.IncidenceMatrix(), "IncidenceMatrix")
   expect_s4_class(.StratigraphicMatrix(), "StratigraphicMatrix")
@@ -18,10 +18,10 @@ test_that("CountMatrix", {
   expect_s3_class(cnd[[1]], "arkhe_error_class")
   expect_true(grepl("must contain positive numbers", cnd[[1]]$message))
 })
-test_that("Initialize a AbundanceMatrix instance", {
+test_that("Initialize a CompositionMatrix instance", {
   # Invalid values
   # Try negative values
-  cnd <- catch_conditions(AbundanceMatrix(data = c(-2, 3), nrow = 1))
+  cnd <- catch_conditions(CompositionMatrix(data = c(-2, 3), nrow = 1))
   expect_s3_class(cnd[[1]], "arkhe_error_class")
   expect_true(grepl("must contain positive numbers", cnd[[1]]$message))
 })

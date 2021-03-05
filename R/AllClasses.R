@@ -120,22 +120,22 @@ CountMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
 )
 
 # NumericMatrix ================================================================
-# AbundanceMatrix --------------------------------------------------------------
+# CompositionMatrix ------------------------------------------------------------
 #' Relative Frequency Matrix
 #'
 #' An S4 class to represent a relative frequency matrix (i.e. the fraction of
 #' times a given datum occurs in a dataset).
 #' @inheritParams base::matrix
-#' @seealso \link{as_abundance}
+#' @seealso \link{as_composition}
 #' @example inst/examples/ex-matrix.R
 #' @author N. Frerebeau
 #' @family matrix
 #' @docType class
-#' @export .AbundanceMatrix
-#' @exportClass AbundanceMatrix
-#' @aliases AbundanceMatrix-class
-.AbundanceMatrix <- setClass(
-  Class = "AbundanceMatrix",
+#' @export .CompositionMatrix
+#' @exportClass CompositionMatrix
+#' @aliases CompositionMatrix-class
+.CompositionMatrix <- setClass(
+  Class = "CompositionMatrix",
   slots = c(
     totals = "numeric"
   ),
@@ -143,8 +143,8 @@ CountMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
 )
 
 #' @export
-#' @rdname AbundanceMatrix-class
-AbundanceMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
+#' @rdname CompositionMatrix-class
+CompositionMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
                             dimnames = NULL) {
   mtx <- make_matrix(
     data = as.numeric(data),
@@ -159,7 +159,7 @@ AbundanceMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
   mtx <- mtx / totals
   mtx[is.nan(mtx)] <- 0 # Prevent division by zero
 
-  .AbundanceMatrix(mtx, totals = totals)
+  .CompositionMatrix(mtx, totals = totals)
 }
 
 # LogicalMatrix ================================================================
@@ -218,8 +218,8 @@ IncidenceMatrix <- function(data = FALSE, nrow = 1, ncol = 1, byrow = FALSE,
   contains = "LogicalMatrix"
 )
 
-# ArchaeoMatrix ================================================================
+# AbundanceMatrix ==============================================================
 setClassUnion(
-  name = "ArchaeoMatrix",
-  members = c("CountMatrix", "AbundanceMatrix", "IncidenceMatrix")
+  name = "AbundanceMatrix",
+  members = c("CountMatrix", "CompositionMatrix", "IncidenceMatrix")
 )

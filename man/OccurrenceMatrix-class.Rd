@@ -49,7 +49,7 @@ B[, 1:3] # Get the first three column
 \link{as_occurrence}
 
 Other matrix: 
-\code{\link{AbundanceMatrix-class}},
+\code{\link{CompositionMatrix-class}},
 \code{\link{CountMatrix-class}},
 \code{\link{DataMatrix}},
 \code{\link{IncidenceMatrix-class}},

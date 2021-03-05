@@ -39,6 +39,7 @@ check_type <- function(x, expected) {
     msg <- sprintf("%s must be %s; not %s.", sQuote(arg), expected, typeof(x))
     throw_error("error_bad_type", msg)
   }
+  invisible(x)
 }
 
 #' @rdname check-type
@@ -60,6 +61,7 @@ check_scalar <- function(x, expected, strict = TRUE) {
     msg <- sprintf("%s must be a scalar (%s).", sQuote(arg), expected)
     throw_error("error_bad_scalar", msg)
   }
+  invisible(x)
 }
 
 # Attributes ===================================================================
@@ -83,6 +85,7 @@ check_length <- function(x, expected, strict = TRUE) {
     msg <- sprintf("%s must be of length %d; not %s.", sQuote(arg), expected, n)
     throw_error("error_bad_dimension", msg)
   }
+  invisible(x)
 }
 
 #' @rdname check-attribute
@@ -95,6 +98,7 @@ check_lengths <- function(x, expected) {
                    paste0(n, collapse = ", "))
     throw_error("error_bad_dimension", msg)
   }
+  invisible(x)
 }
 
 #' @rdname check-attribute
@@ -107,6 +111,7 @@ check_dimension <- function(x, expected) {
                    paste0(n, collapse = " x "))
     throw_error("error_bad_dimension", msg)
   }
+  invisible(x)
 }
 
 #' @rdname check-attribute
@@ -118,6 +123,7 @@ check_names <- function(x, expected) {
                    sQuote(arg), paste0(expected, collapse = ", "))
     throw_error("error_bad_names", msg)
   }
+  invisible(x)
 }
 
 #' @rdname check-attribute
@@ -134,6 +140,7 @@ check_dimnames <- function(x, expected, margin = c(1, 2)) {
       throw_error("error_bad_names", msg)
     }
   }
+  invisible(x)
 }
 
 check_uuid <- function(x) {
@@ -146,6 +153,7 @@ check_uuid <- function(x) {
     msg <- sprintf("%s seems wrong.", sQuote(arg))
     throw_warning("warning_bad_uuid", msg)
   }
+  invisible(x)
 }
 
 # NA/NaN/Inf ===================================================================
@@ -171,6 +179,7 @@ check_missing <- function(x) {
                    sQuote(arg), n)
     throw_error("error_data_missing", msg)
   }
+  invisible(x)
 }
 
 #' @rdname check-missing
@@ -182,6 +191,7 @@ check_infinite <- function(x) {
                    sQuote(arg), n)
     throw_error("error_data_infinite", msg)
   }
+  invisible(x)
 }
 
 # Numeric ======================================================================
@@ -214,6 +224,7 @@ check_numbers <- function(x, expected, ...) {
     msg <- sprintf("%s must contain %s numbers.", sQuote(arg), expected)
     throw_error("error_bad_number", msg)
   }
+  invisible(x)
 }
 
 #' @rdname check-numeric
@@ -223,6 +234,7 @@ check_constant <- function(x) {
     msg <- sprintf("%s must be constant.", sQuote(arg))
     throw_error("error_bad_value", msg)
   }
+  invisible(x)
 }
 
 # Matrix =======================================================================
@@ -248,6 +260,7 @@ NULL
 #     msg <- sprintf("%s contains empty rows or columns.", arg)
 #     throw_warning("warning_data_missing", msg)
 #   }
+#   invisible(x)
 # }
 
 #' @rdname check-matrix
@@ -258,6 +271,7 @@ check_square <- function(x) {
     msg <- sprintf("%s must be a square matrix, not %s.", sQuote(arg), k)
     throw_error("error_bad_matrix", msg)
   }
+  invisible(x)
 }
 
 #' @rdname check-matrix
@@ -267,6 +281,7 @@ check_symmetric <- function(x) {
     msg <- sprintf("%s must be a symmetric matrix.", sQuote(arg))
     throw_error("error_bad_matrix", msg)
   }
+  invisible(x)
 }
 
 # ======================================================================== Graph
@@ -289,4 +304,5 @@ check_dag <- function(x) {
     msg <- sprintf("%s must not contain cycles.", sQuote(arg))
     throw_error("error_bad_graph", msg)
   }
+  invisible(x)
 }

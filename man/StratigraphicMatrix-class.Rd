@@ -41,7 +41,7 @@ strati <- as_stratigraphy(harris)
 \link{as_stratigraphy}
 
 Other matrix: 
-\code{\link{AbundanceMatrix-class}},
+\code{\link{CompositionMatrix-class}},
 \code{\link{CountMatrix-class}},
 \code{\link{DataMatrix}},
 \code{\link{IncidenceMatrix-class}},

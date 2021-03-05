@@ -5,7 +5,7 @@ A0 <- matrix(data = sample(0:10, 100, TRUE), nrow = 10, ncol = 5)
 A1 <- as_count(A0)
 
 ## Coerce to relative frequencies
-B <- as_abundance(A1)
+B <- as_composition(A1)
 
 ## Row sums are internally stored before coercing to relative frequencies
 ## (use get_totals() to retrieve these values)

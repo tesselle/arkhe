@@ -6,8 +6,8 @@ test_that("Integer matrix", {
   expect_output(show(B), "OccurrenceMatrix")
 })
 test_that("Numeric matrix", {
-  A <- .AbundanceMatrix()
-  expect_output(show(A), "AbundanceMatrix")
+  A <- .CompositionMatrix()
+  expect_output(show(A), "CompositionMatrix")
 })
 test_that("Logical matrix", {
   A <- .IncidenceMatrix()

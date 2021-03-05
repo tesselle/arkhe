@@ -4,7 +4,7 @@ NULL
 
 setMethod(
   f = "show",
-  signature = "ArchaeoMatrix",
+  signature = "AbundanceMatrix",
   definition = function(object) {
     mtx <- methods::as(object, "matrix")
     mp <- paste0(dim(object), collapse = " x ")

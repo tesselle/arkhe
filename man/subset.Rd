@@ -3,21 +3,19 @@
 \docType{methods}
 \name{subset}
 \alias{subset}
-\alias{[,ArchaeoMatrix,ANY,ANY,ANY-method}
-\alias{[,ArchaeoMatrix-method}
-\alias{[,AbundanceMatrix,ANY,ANY,ANY-method}
 \alias{[,AbundanceMatrix-method}
-\alias{[<-,ArchaeoMatrix-method}
-\alias{[[<-,ArchaeoMatrix-method}
+\alias{[,CompositionMatrix-method}
+\alias{[<-,AbundanceMatrix-method}
+\alias{[[<-,AbundanceMatrix-method}
 \title{Extract or Replace Parts of an Object}
 \usage{
-\S4method{[}{ArchaeoMatrix,ANY,ANY,ANY}(x, i, j, ..., drop = TRUE)
+\S4method{[}{AbundanceMatrix}(x, i, j, ..., drop = TRUE)
 
-\S4method{[}{AbundanceMatrix,ANY,ANY,ANY}(x, i, j, ..., drop = TRUE)
+\S4method{[}{CompositionMatrix}(x, i, j, ..., drop = TRUE)
 
-\S4method{[}{ArchaeoMatrix}(x, i, j, ...) <- value
+\S4method{[}{AbundanceMatrix}(x, i, j, ...) <- value
 
-\S4method{[[}{ArchaeoMatrix}(x, i, j, ...) <- value
+\S4method{[[}{AbundanceMatrix}(x, i, j, ...) <- value
 }
 \arguments{
 \item{x}{An object from which to extract element(s) or in which to replace

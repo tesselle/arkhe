@@ -18,7 +18,7 @@ These classes inherit from \code{\link{matrix}}.
 }
 \seealso{
 Other matrix: 
-\code{\link{AbundanceMatrix-class}},
+\code{\link{CompositionMatrix-class}},
 \code{\link{CountMatrix-class}},
 \code{\link{IncidenceMatrix-class}},
 \code{\link{OccurrenceMatrix-class}},

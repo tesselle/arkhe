@@ -50,7 +50,7 @@ test_that("Extract/replace with a numeric index", {
   expect_error(cts[[, 1]])
   expect_error(cts[[, 1:2]])
 
-  freq <- as_abundance(cts)
+  freq <- as_composition(cts)
   expect_equal(get_totals(freq[1:5, ]), get_totals(freq)[1:5])
   expect_equal(get_totals(freq[5:10, 5:10]), get_totals(freq)[5:10])
 

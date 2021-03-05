@@ -7,31 +7,34 @@
 \alias{as_long-method}
 \alias{as_count}
 \alias{as_count-method}
+\alias{as_composition}
+\alias{as_composition-method}
 \alias{as_abundance}
 \alias{as_abundance-method}
 \alias{as_incidence}
 \alias{as_incidence-method}
 \alias{as_occurrence}
 \alias{as_occurrence-method}
-\alias{as_similarity}
-\alias{as_similarity-method}
 \alias{as_features}
 \alias{as_features-method}
 \alias{as_stratigraphy}
 \alias{as_stratigraphy-method}
 \alias{as_count,ANY-method}
+\alias{as_composition,ANY-method}
 \alias{as_abundance,ANY-method}
 \alias{as_occurrence,ANY-method}
 \alias{as_incidence,ANY-method}
 \alias{as_stratigraphy,ANY-method}
 \alias{as_long,matrix-method}
-\alias{as_long,ArchaeoMatrix-method}
-\alias{as_features,ArchaeoMatrix-method}
+\alias{as_long,AbundanceMatrix-method}
+\alias{as_features,AbundanceMatrix-method}
 \title{Coerce}
 \usage{
 as_long(from, ...)
 
 as_count(from)
+
+as_composition(from)
 
 as_abundance(from)
 
@@ -39,13 +42,13 @@ as_incidence(from)
 
 as_occurrence(from)
 
-as_similarity(from)
-
 as_features(from)
 
 as_stratigraphy(from)
 
 \S4method{as_count}{ANY}(from)
+
+\S4method{as_composition}{ANY}(from)
 
 \S4method{as_abundance}{ANY}(from)
 
@@ -57,9 +60,9 @@ as_stratigraphy(from)
 
 \S4method{as_long}{matrix}(from, factor = FALSE, reverse = FALSE)
 
-\S4method{as_long}{ArchaeoMatrix}(from, factor = FALSE, reverse = FALSE)
+\S4method{as_long}{AbundanceMatrix}(from, factor = FALSE, reverse = FALSE)
 
-\S4method{as_features}{ArchaeoMatrix}(from)
+\S4method{as_features}{AbundanceMatrix}(from)
 }
 \arguments{
 \item{from}{An object to be coerced.}
@@ -86,7 +89,8 @@ The following methods coerce an object to a \code{Matrix} object:
  \tabular{lll}{
   \strong{Method} \tab \strong{Target} \tab \strong{Details} \cr
   \code{as_count} \tab \linkS4class{CountMatrix} \tab absolute frequency data \cr
-  \code{as_abundance} \tab \linkS4class{AbundanceMatrix} \tab relative frequency data \cr
+  \code{as_composition} \tab \linkS4class{CompositionMatrix} \tab relative frequency data \cr
+  \code{as_abundance} \tab \linkS4class{CompositionMatrix} \tab relative frequency data \cr
   \code{as_incidence} \tab \linkS4class{IncidenceMatrix} \tab presence/absence data \cr
   \code{as_occurrence} \tab \linkS4class{OccurrenceMatrix} \tab co-occurrence \cr
   \code{as_stratigraphy} \tab \linkS4class{StratigraphicMatrix} \tab stratigraphic relationships
@@ -118,7 +122,7 @@ A0 <- matrix(data = sample(0:10, 100, TRUE), nrow = 10, ncol = 5)
 A1 <- as_count(A0)
 
 ## Coerce to relative frequencies
-B <- as_abundance(A1)
+B <- as_composition(A1)
 
 ## Row sums are internally stored before coercing to relative frequencies
 ## (use get_totals() to retrieve these values)
@@ -146,7 +150,7 @@ head(Y)
 }
 \seealso{
 Other matrix: 
-\code{\link{AbundanceMatrix-class}},
+\code{\link{CompositionMatrix-class}},
 \code{\link{CountMatrix-class}},
 \code{\link{DataMatrix}},
 \code{\link{IncidenceMatrix-class}},

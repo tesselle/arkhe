@@ -76,9 +76,9 @@ setValidity(
 )
 
 # NumericMatrix ================================================================
-## AbundanceMatrix -------------------------------------------------------------
+## CompositionMatrix -----------------------------------------------------------
 setValidity(
-  Class = "AbundanceMatrix",
+  Class = "CompositionMatrix",
   method = function(object) {
     # Get data
     totals <- object@totals

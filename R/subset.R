@@ -6,10 +6,10 @@ NULL
 ## [ ---------------------------------------------------------------------------
 #' @export
 #' @rdname subset
-#' @aliases [,ArchaeoMatrix-method
+#' @aliases [,AbundanceMatrix-method
 setMethod(
   f = "[",
-  signature = c(x = "ArchaeoMatrix"),
+  signature = c(x = "AbundanceMatrix"),
   function(x, i, j, ..., drop = TRUE) {
     z <- methods::callNextMethod()
 
@@ -31,10 +31,10 @@ setMethod(
 
 #' @export
 #' @rdname subset
-#' @aliases [,AbundanceMatrix-method
+#' @aliases [,CompositionMatrix-method
 setMethod(
   f = "[",
-  signature = c(x = "AbundanceMatrix"),
+  signature = c(x = "CompositionMatrix"),
   function(x, i, j, ..., drop = TRUE) {
     totals <- x@totals
     x@totals <- numeric(0)
@@ -57,10 +57,10 @@ setMethod(
 ## [<- -------------------------------------------------------------------------
 #' @export
 #' @rdname subset
-#' @aliases [<-,ArchaeoMatrix-method
+#' @aliases [<-,AbundanceMatrix-method
 setMethod(
   f = "[<-",
-  signature = c(x = "ArchaeoMatrix"),
+  signature = c(x = "AbundanceMatrix"),
   function(x, i, j, ..., value) {
     z <- methods::callNextMethod()
     methods::validObject(z)
@@ -71,10 +71,10 @@ setMethod(
 ## [[<- ------------------------------------------------------------------------
 #' @export
 #' @rdname subset
-#' @aliases [[<-,ArchaeoMatrix-method
+#' @aliases [[<-,AbundanceMatrix-method
 setMethod(
   f = "[[<-",
-  signature = c(x = "ArchaeoMatrix"),
+  signature = c(x = "AbundanceMatrix"),
   function(x, i, j, ..., value) {
     z <- methods::callNextMethod()
     methods::validObject(z)
