@@ -24,7 +24,7 @@ Description: A collection of classes that represent
     general interest (e.g. that represent stratigraphic relationships) 
     are implemented.
 License: GPL (>= 3)
-URL: http://arkhe.tesselle.org,
+URL: https://arkhe.tesselle.org,
     https://github.com/tesselle/arkhe
 BugReports: https://github.com/tesselle/arkhe/issues
 Depends: 

@@ -12,7 +12,8 @@
     "http://arkhe.archaeo.science",
     "https://cran.r-project.org/package=arkhe",
     "https://CRAN.R-project.org/package=arkhe",
-    "http://arkhe.tesselle.org"
+    "http://arkhe.tesselle.org",
+    "https://arkhe.tesselle.org"
   ],
   "issueTracker": "https://github.com/tesselle/arkhe/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
@@ -121,7 +122,7 @@
       "name": "stats"
     }
   ],
-  "fileSize": "768.382KB",
+  "fileSize": "768.676KB",
   "contIntegration": "https://codecov.io/gh/tesselle/arkhe",
   "developmentStatus": "https://www.repostatus.org/#active",
   "keywords": [

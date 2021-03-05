@@ -25,11 +25,11 @@ test_that("Initialize a CompositionMatrix instance", {
   expect_s3_class(cnd[[1]], "arkhe_error_class")
   expect_true(grepl("must contain positive numbers", cnd[[1]]$message))
 })
+test_that("Initialize an IncidenceMatrix instance", {
+  # Coerce values to integer
+  expect_s4_class(IncidenceMatrix(1.1), "IncidenceMatrix")
+})
 test_that("Matrix dimension names", {
-  cts <- CountMatrix(nrow = 0, ncol = 0)
-  expect_null(rownames(cts))
-  expect_null(colnames(cts))
-
   cts <- CountMatrix(sample(1:100, 50, TRUE), ncol = 10)
   row_names <- paste0("row", 1:5)
   col_names <- paste0("col", 1:10)
@@ -37,4 +37,10 @@ test_that("Matrix dimension names", {
   expect_equal(rownames(cts), row_names)
   expect_equal(colnames(cts), col_names)
   expect_equal(dimnames(cts), list(row_names, col_names))
+
+  # Prior to R 3.4 matrix(nrow = 0, ncol = 0) is logical (?)
+  skip_if(getRversion() < "3.6")
+  cts <- CountMatrix(data = 0, nrow = 0, ncol = 0)
+  expect_null(rownames(cts))
+  expect_null(colnames(cts))
 })

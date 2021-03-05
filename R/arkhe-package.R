@@ -4,8 +4,8 @@
 #'  \strong{Type:} \tab Package \cr
 #'  \strong{Version:} \tab 0.3.0 \cr
 #'  \strong{License:} \tab GPL-3 \cr
+#'  \strong{DOI:} \tab \doi{10.5281/zenodo.3526659} \cr
 #' }
-#' \doi{10.5281/zenodo.3526659}
 #' @author
 #' \strong{Full list of authors and contributors} (alphabetic order)
 #'

@@ -25,13 +25,13 @@ A collection of classes that represent
  \strong{Type:} \tab Package \cr
  \strong{Version:} \tab 0.3.0 \cr
  \strong{License:} \tab GPL-3 \cr
+ \strong{DOI:} \tab \doi{10.5281/zenodo.3526659} \cr
 }
-\doi{10.5281/zenodo.3526659}
 }
 \seealso{
 Useful links:
 \itemize{
-  \item \url{http://arkhe.tesselle.org}
+  \item \url{https://arkhe.tesselle.org}
   \item \url{https://github.com/tesselle/arkhe}
   \item Report bugs at \url{https://github.com/tesselle/arkhe/issues}
 }
