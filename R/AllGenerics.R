@@ -6,14 +6,13 @@ NULL
 #' Data Cleaning
 #'
 #' Removes empty row/column or row/column with missing values or zeros.
-#' @param x A \code{\link{matrix}}, a \code{\link{data.frame}} or a
-#' \code{*Matrix} object.
-#' @param margin An \code{\link{integer}} giving the subscript which the
-#' cleaning will be applied over (\code{1} indicates rows, \code{2} indicates
-#' columns).
-#' @param finite A \code{\link{logical}} scalar: should non-\code{\link{finite}}
-#' values also be removed?
-#' @param value A possible value to replace missing values of \code{x}.
+#' @param x A [`matrix`], a [`data.frame`] or a `*Matrix` object.
+#' @param margin An [`integer`] giving the subscript which the
+#'  cleaning will be applied over (`1` indicates rows, `2` indicates
+#'  columns).
+#' @param finite A [`logical`] scalar: should non-[`finite`] values also be
+#'  removed?
+#' @param value A possible value to replace missing values of `x`.
 #' @param ... Currently not used.
 #' @example inst/examples/ex-clean.R
 #' @author N. Frerebeau
@@ -55,43 +54,41 @@ setGeneric(
 #' Coerce
 #'
 #' @param from An object to be coerced.
-#' @param factor A \code{\link{logical}} scalar: should character string be
-#' coerced to \code{\link{factor}}? Default to \code{FALSE}, if \code{TRUE}
-#' the original ordering is preserved.
-#' @param reverse A \code{\link{logical}} scalar: should the order of factor
-#' levels be reversed? Only used if \code{factor} is \code{TRUE}.
-#' Useful for plotting.
+#' @param factor A [`logical`] scalar: should character string be
+#'  coerced to [`factor`]? Default to `FALSE`, if `TRUE` the original ordering is
+#'  preserved.
+#' @param reverse A [`logical`] scalar: should the order of factor levels be
+#'  reversed? Only used if `factor` is `TRUE`. Useful for plotting.
 #' @param ... Currently not used.
 #' @details
-#'  The following methods coerce an object to a \code{Matrix} object:
+#'  The following methods coerce an object to a `*Matrix` object:
 #'
 #'  \tabular{lll}{
-#'   \strong{Method} \tab \strong{Target} \tab \strong{Details} \cr
-#'   \code{as_count} \tab \linkS4class{CountMatrix} \tab absolute frequency data \cr
-#'   \code{as_composition} \tab \linkS4class{CompositionMatrix} \tab relative frequency data \cr
-#'   \code{as_abundance} \tab \linkS4class{CompositionMatrix} \tab relative frequency data \cr
-#'   \code{as_incidence} \tab \linkS4class{IncidenceMatrix} \tab presence/absence data \cr
-#'   \code{as_occurrence} \tab \linkS4class{OccurrenceMatrix} \tab co-occurrence \cr
-#'   \code{as_stratigraphy} \tab \linkS4class{StratigraphicMatrix} \tab stratigraphic relationships
+#'   **Method** \tab **Target** \tab **Details** \cr
+#'   `as_count()` \tab [CountMatrix-class] \tab absolute frequency data \cr
+#'   `as_composition()` \tab [CompositionMatrix-class] \tab relative frequency data \cr
+#'   `as_incidence()` \tab [IncidenceMatrix-class] \tab presence/absence data \cr
+#'   `as_occurrence()` \tab [OccurrenceMatrix-class] \tab co-occurrence \cr
+#'   `as_stratigraphy()` \tab [StratigraphicMatrix-class] \tab stratigraphic relationships
 #'  }
 #'
-#'  **Note that \code{as_count} rounds numeric values to zero decimal places and
-#'  then coerces to integer as by \code{\link{as.integer}}.**
+#'  **Note that `as_count` rounds numeric values to zero decimal places and
+#'  then coerces to integer as by `as.integer()`.**
+#'
+#'  `as_stratigraphy()` converts a set of stratigraphic relationships (edges)
+#'  to a stratigraphic (adjacency) matrix. `from` can be a [`matrix`], [`list`],
+#'  or [`data.frame`]: the first column/component is assumed to contain the
+#'  bottom units and the second the top units (adjacency).
 #'
 #'  \tabular{lll}{
-#'   \strong{Method} \tab \strong{Target} \tab \strong{Details} \cr
-#'   \code{as_long} \tab \code{\link{data.frame}} \tab long S3 data frame \cr
+#'   **Method** \tab **Target** \tab **Details** \cr
+#'   `as_long()` \tab [`data.frame`] \tab long S3 data frame \cr
+#'   `as_features()` \tab [`data.frame`] \tab wide S3 data frame \cr
 #'  }
 #'
-#'  \code{as_stratigraphy} converts a set of stratigraphic relationships (edges)
-#'  to a stratigraphic (adjacency) matrix. \code{from} can be a
-#'  \code{\link{matrix}}, \code{\link{list}}, or \code{\link{data.frame}}:
-#'  the first column/component is assumed to contain the bottom units and the
-#'  second the top units (adjacency).
-#'
-#'  \code{as_features} converts an \code{*Matrix} object to a
-#'  collection of features: a \code{\link{data.frame}} with all informations
-#'  as extra columns (result may differ according to the class of \code{from}).
+#'  `as_features()` converts a `*Matrix` object to a collection of features:
+#'  a [`data.frame`] with all informations as extra columns (result may differ
+#'  according to the class of `from`).
 #' @return A coerced object.
 #' @example inst/examples/ex-coerce.R
 #' @author N. Frerebeau
@@ -170,10 +167,10 @@ setGeneric(
 #'
 #' Getters and setters to retrieve or set parts of an object.
 #' @param x An object from which to get or set element(s) (typically a
-#' \code{*Matrix} object).
-#' @param value A possible value for the element(s) of \code{x}.
+#'  `*Matrix` object).
+#' @param value A possible value for the element(s) of `x`.
 #' @return
-#'  An object of the same sort as \code{x} with the new values assigned.
+#'  An object of the same sort as `x` with the new values assigned.
 #' @example inst/examples/ex-matrix.R
 #' @author N. Frerebeau
 #' @docType methods
@@ -223,21 +220,20 @@ setGeneric(
 #'
 #' Operators acting on objects to extract or replace parts.
 #' @param x An object from which to extract element(s) or in which to replace
-#'  element(s).
+#'  element(s) (typically a `*Matrix` object).
 #' @param i,j Indices specifying elements to extract or replace. Indices are
-#'  \code{\link{numeric}}, \code{\link{integer}} or \code{\link{character}}
-#'  vectors or empty (missing) or \code{NULL}. Numeric values are coerced to
-#'  \code{\link{integer}} as by \code{\link{as.integer}} (and hence truncated
-#'  towards zero). Character vectors will be matched to the name of the
-#'  elements. An empty index (a comma separated blank) indicates that all
-#'  entries in that dimension are selected.
-#' @param value A possible value for the element(s) of \code{x}.
-#' @param drop A \code{\link{logical}} scalar: should the result be coerced to
+#'  [`numeric`], [`integer`] or [`character`] vectors or empty (missing) or
+#'  `NULL`. Numeric values are coerced to [`integer`] as by [as.integer()]
+#'  (and hence truncated towards zero). Character vectors will be matched to
+#'  the name of the elements. An empty index (a comma separated blank) indicates
+#'  that all entries in that dimension are selected.
+#' @param value A possible value for the element(s) of `x`.
+#' @param drop A [`logical`] scalar: should the result be coerced to
 #'  the lowest possible dimension? This only works for extracting elements,
 #'  not for the replacement.
 #' @param ... Currently not used.
 #' @return
-#'  A subsetted object of the same sort as \code{x}.
+#'  A subsetted object of the same sort as `x`.
 #' @example inst/examples/ex-matrix.R
 #' @author N. Frerebeau
 #' @docType methods

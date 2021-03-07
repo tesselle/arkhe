@@ -3,22 +3,18 @@
 # Helpers ======================================================================
 #' Helpers
 #'
-#' \code{compact} removes elements from a list or vector.
-#' \code{detect} finds values in a list or vector according to a given
-#' predicate.
-#' \code{count} counts values in a list or vector according to a given
-#' predicate.
-#' \code{extract} extracts a string form another string based on a pattern.
-#'
-#' \code{\%o\%} allows for function composition.
-#' \code{\%||\%} allows to define a default value.
+#' * `compact()` removes elements from a list or vector.
+#' * `detect()` finds values in a list or vector according to a given predicate.
+#' * `count()` counts values in a list or vector according to a given predicate.
+#' * `extract()` extracts a string form another string based on a pattern.
+#' * `\%o\%` allows for function composition.
+#' * `\%||\%` allows to define a default value.
 #' @param x,y An object.
-#' @param f,g A \code{\link{function}}. In \code{compact}, \code{detect}
-#'  and \code{count} \code{f} must be a \code{\link{logical}} predicate.
-#' @param pattern A \code{\link{character}} string containing a regular
-#'  expression.
+#' @param f,g A [`function`]. In `compact()`, `detect()` and `count()` `f` must
+#'  be a [`logical`] predicate.
+#' @param pattern A [`character`] string containing a regular expression.
 #' @references
-#'  Wickham, H. (2014). \emph{Advanced R}. London: Chapman & Hall. The R Series.
+#'  Wickham, H. (2014). *Advanced R*. London: Chapman & Hall. The R Series.
 #' @family utilities
 #' @keywords internal utilities
 #' @noRd
@@ -44,7 +40,7 @@ extract <- function(x, pattern) {
 #' Build a Matrix
 #'
 #' Creates a matrix from the given set of values.
-#' @return A \code{\link{matrix}}.
+#' @return A [`matrix`].
 #' @author N. Frerebeau
 #' @family utilities
 #' @keywords internal utilities
@@ -93,19 +89,19 @@ make_matrix <- function(data, nrow, ncol, byrow, dimnames, row, col) {
 # UUID =========================================================================
 #' UUID
 #'
-#' \code{generate_uuid} generates a universally unique identifier (UUID Version
+#' `generate_uuid()` generates a universally unique identifier (UUID Version
 #' 4 and Variant 1).
-#' @param x A \code{\link{character}} string (UUID).
-#' @param seed A single \code{\link{integer}} specifying the seeds.
-#'  If \code{NULL} (the default) the seed will be re-initialized.
+#' @param x A [`character`] string (UUID).
+#' @param seed A single [`integer`] specifying the seeds.
+#'  If `NULL` (the default) the seed will be re-initialized.
 #' @details
 #'  As it relies on R's internal random number generators and so will suffer
-#'  from the use of \code{\link{set.seed}} in a session, the seed is
-#'  re-initialized during execution (unless \code{seed} is not \code{NULL}).
-#'  To prevent any side effects, the random number generator (RNG) state is
-#'  saved and restored when the function exits.
-#' @return A 36 characters long \code{\link{character}} string.
-#' @seealso \link{set.seed}
+#'  from the use of [set.seed()] in a session, the seed is re-initialized during
+#'  execution (unless `seed` is not `NULL`). To prevent any side effects, the
+#'  random number generator (RNG) state is saved and restored when the function
+#'  exits.
+#' @return A 36 characters long [`character`] string.
+#' @seealso [set.seed()]
 #' @author N. Frerebeau
 #' @keywords internal
 generate_uuid <- function(seed = NULL) {

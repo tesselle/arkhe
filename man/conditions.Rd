@@ -27,11 +27,11 @@ returned.}
 \item{expr}{An expression to be evaluated.}
 }
 \description{
-\code{throw_error} stops execution of the current expression and executes an
+\itemize{
+\item \code{throw_error()} stops execution of the current expression and executes an
 error action.
+\item \code{catch_conditions()} handles unusual conditions.
 }
-\details{
-\code{catch_conditions} handles unusual conditions.
 }
 \author{
 N. Frerebeau

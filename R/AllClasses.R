@@ -4,13 +4,13 @@
 #' Archaeological Data
 #'
 #' A virtual S4 class to represent archaeological data.
-#' @slot sites A \code{\link{character}} vector.
-#' @slot groups A \code{\link{character}} vector.
+#' @slot sites A [`character`] vector.
+#' @slot groups A [`character`] vector.
 #' @section Get and set:
-#'  In the code snippets below, \code{x} is an \code{ArchaeoData} object.
+#'  In the code snippets below, `x` is an `ArchaeoData` object.
 #'  \describe{
-#'   \item{\code{get_groups(x)} and \code{set_groups(x) <- value}}{Get or set
-#'   the sample names of \code{x}.}
+#'   \item{`get_groups(x)` and `set_groups(x) <- value`}{Get or set
+#'   the sample names of `x`.}
 #'  }
 #' @author N. Frerebeau
 #' @docType class
@@ -30,7 +30,7 @@
 #'
 #' S4 classes that represent a \eqn{m \times p}{m x p} matrix.
 #' @note
-#'  These classes inherit from \code{\link{matrix}}.
+#'  These classes inherit from [`matrix`].
 #' @author N. Frerebeau
 #' @family matrix
 #' @docType class
@@ -39,6 +39,7 @@
 #' @keywords internal
 NULL
 
+#' @exportClass IntegerMatrix
 #' @aliases IntegerMatrix-class
 #' @rdname DataMatrix
 .IntegerMatrix <- setClass(
@@ -46,6 +47,7 @@ NULL
   contains = "matrix"
 )
 
+#' @exportClass NumericMatrix
 #' @aliases NumericMatrix-class
 #' @rdname DataMatrix
 .NumericMatrix <- setClass(
@@ -53,6 +55,7 @@ NULL
   contains = "matrix"
 )
 
+#' @exportClass LogicalMatrix
 #' @aliases LogicalMatrix-class
 #' @rdname DataMatrix
 .LogicalMatrix <- setClass(
@@ -67,7 +70,7 @@ NULL
 #' An S4 class to represent an absolute frequency matrix (i.e. the number of
 #' times a given datum occurs in a dataset).
 #' @inheritParams base::matrix
-#' @seealso \link{as_count}
+#' @seealso [as_count()]
 #' @example inst/examples/ex-matrix.R
 #' @author N. Frerebeau
 #' @family matrix
@@ -100,12 +103,12 @@ CountMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
 #' Co-Occurrence Matrix
 #'
 #' An S4 class to represent a co-occurrence matrix.
-#' @slot total An \code{\link{integer}} giving the total number of observations.
+#' @slot total An [`integer`] giving the total number of observations.
 #' @details
 #'  A co-occurrence matrix is a symmetric matrix with zeros on its main
 #'  diagonal, which works out how many times each pairs of taxa/types occur
 #'  together in at least one sample.
-#' @seealso \link{as_occurrence}
+#' @seealso [as_occurrence()]
 #' @example inst/examples/ex-matrix.R
 #' @author N. Frerebeau
 #' @family matrix
@@ -125,8 +128,9 @@ CountMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
 #'
 #' An S4 class to represent a relative frequency matrix (i.e. the fraction of
 #' times a given datum occurs in a dataset).
+#' @slot totals A [`numeric`] vector giving the absolute row sums.
 #' @inheritParams base::matrix
-#' @seealso \link{as_composition}
+#' @seealso [as_composition()]
 #' @example inst/examples/ex-matrix.R
 #' @author N. Frerebeau
 #' @family matrix
@@ -168,7 +172,7 @@ CompositionMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
 #'
 #' An S4 class to represent an incidence (presence/absence) matrix.
 #' @inheritParams base::matrix
-#' @seealso \link{as_incidence}
+#' @seealso [as_incidence()]
 #' @example inst/examples/ex-matrix.R
 #' @author N. Frerebeau
 #' @family matrix
@@ -207,7 +211,7 @@ IncidenceMatrix <- function(data = FALSE, nrow = 1, ncol = 1, byrow = FALSE,
 #'  stratigraphic units. A stratigraphic matrix is an adjacency matrix (a non
 #'  symmetric square matrix with zeros on its main diagonal), suitable to build
 #'  a directed acyclic graph (DAG).
-#' @seealso \link{as_stratigraphy}
+#' @seealso [as_stratigraphy()]
 #' @example inst/examples/ex-stratigraphy.R
 #' @author N. Frerebeau
 #' @family matrix

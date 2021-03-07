@@ -49,7 +49,7 @@ set_totals(x) <- value
 }
 \arguments{
 \item{x}{An object from which to get or set element(s) (typically a
-\code{*Matrix} object).}
+\verb{*Matrix} object).}
 
 \item{value}{A possible value for the element(s) of \code{x}.}
 }

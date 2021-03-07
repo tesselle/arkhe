@@ -58,7 +58,7 @@ B[1, , drop = FALSE] # Get the first row
 B[, 1:3] # Get the first three column
 }
 \seealso{
-\link{as_count}
+\code{\link[=as_count]{as_count()}}
 
 Other matrix: 
 \code{\link{CompositionMatrix-class}},

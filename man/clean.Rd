@@ -34,8 +34,7 @@ remove_zero(x, ...)
 \S4method{remove_empty}{matrix}(x, margin = 1)
 }
 \arguments{
-\item{x}{A \code{\link{matrix}}, a \code{\link{data.frame}} or a
-\code{*Matrix} object.}
+\item{x}{A \code{\link{matrix}}, a \code{\link{data.frame}} or a \verb{*Matrix} object.}
 
 \item{...}{Currently not used.}
 
@@ -45,8 +44,8 @@ remove_zero(x, ...)
 cleaning will be applied over (\code{1} indicates rows, \code{2} indicates
 columns).}
 
-\item{finite}{A \code{\link{logical}} scalar: should non-\code{\link{finite}}
-values also be removed?}
+\item{finite}{A \code{\link{logical}} scalar: should non-\code{\link{finite}} values also be
+removed?}
 }
 \description{
 Removes empty row/column or row/column with missing values or zeros.

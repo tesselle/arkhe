@@ -31,6 +31,12 @@ CompositionMatrix(data = 0, nrow = 1, ncol = 1, byrow = FALSE, dimnames = NULL)
 An S4 class to represent a relative frequency matrix (i.e. the fraction of
 times a given datum occurs in a dataset).
 }
+\section{Slots}{
+
+\describe{
+\item{\code{totals}}{A \code{\link{numeric}} vector giving the absolute row sums.}
+}}
+
 \examples{
 ## Create an incidence (presence/absence) matrix
 ## Data will be coerced with as.logical()
@@ -58,7 +64,7 @@ B[1, , drop = FALSE] # Get the first row
 B[, 1:3] # Get the first three column
 }
 \seealso{
-\link{as_composition}
+\code{\link[=as_composition]{as_composition()}}
 
 Other matrix: 
 \code{\link{CountMatrix-class}},

@@ -14,8 +14,7 @@ check_constant(x)
 \item{x}{A \code{\link{numeric}} object to be checked.}
 
 \item{expected}{A \code{\link{character}} string specifying the expected
-value. It must be one of "\code{positive}", "\code{whole}", "\code{odd}"
-or "\code{even}".}
+value. It must be one of "\code{positive}", "\code{whole}", "\code{odd}" or "\code{even}".}
 }
 \value{
 Throw an error, if any.

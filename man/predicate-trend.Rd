@@ -19,25 +19,22 @@ is_overlapping(x, y)
 \arguments{
 \item{x, y}{A \code{\link{numeric}} object to be tested.}
 
-\item{tolerance}{A \code{\link{numeric}} scalar giving the
-tolerance to check within.}
+\item{tolerance}{A \code{\link{numeric}} scalar giving the tolerance to check within.}
 
-\item{na.rm}{A \code{\link{logical}} scalar: should missing values
-(including \code{NaN}) be omitted?}
+\item{na.rm}{A \code{\link{logical}} scalar: should missing values (including \code{NaN})
+be omitted?}
 }
 \value{
 A \code{\link{logical}} scalar.
 }
 \description{
 Check numeric objects:
-}
-\details{
-\code{is_constant} checks for equality among all elements of a vector.
-
-\code{is_increasing} and \code{is_decreasing} check if a sequence of numbers
+\itemize{
+\item \code{is_constant()} checks for equality among all elements of a vector.
+\item \code{is_increasing()} and \code{is_decreasing()} check if a sequence of numbers
 is monotonically increasing or decreasing, respectively.
-
-\code{is_overlapping} checks if two data ranges overlap at all.
+\item \code{is_overlapping()} checks if two data ranges overlap at all.
+}
 }
 \seealso{
 Other predicates: 

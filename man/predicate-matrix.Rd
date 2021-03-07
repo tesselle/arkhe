@@ -17,10 +17,10 @@ is_symmetric(x)
 A \code{\link{logical}} scalar.
 }
 \description{
-\code{is_square} checks if a matrix is square.
+\itemize{
+\item \code{is_square()} checks if a matrix is square.
+\item \code{is_symmetric()} checks if a matrix is symmetric.
 }
-\details{
-\code{is_symmetric} checks if a matrix is symmetric.
 }
 \seealso{
 Other predicates: 

@@ -10,8 +10,8 @@ An S4 class to represent a co-occurrence matrix.
 }
 \details{
 A co-occurrence matrix is a symmetric matrix with zeros on its main
- diagonal, which works out how many times each pairs of taxa/types occur
- together in at least one sample.
+diagonal, which works out how many times each pairs of taxa/types occur
+together in at least one sample.
 }
 \section{Slots}{
 
@@ -46,7 +46,7 @@ B[1, , drop = FALSE] # Get the first row
 B[, 1:3] # Get the first three column
 }
 \seealso{
-\link{as_occurrence}
+\code{\link[=as_occurrence]{as_occurrence()}}
 
 Other matrix: 
 \code{\link{CompositionMatrix-class}},

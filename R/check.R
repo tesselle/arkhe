@@ -6,11 +6,10 @@ NULL
 #' Check Data Types
 #'
 #' @param x An object to be checked.
-#' @param expected A \code{\link{character}} string specifying the expected
-#'  type. It must be one of "\code{list}", "\code{atomic}", "\code{vector}",
-#'  "\code{numeric}", "\code{integer}", "\code{double}", "\code{character}"
-#'  or "\code{logical}".
-#' @param strict A \code{\link{logical}} scalar: should length-zero object be
+#' @param expected A [`character`] string specifying the expected
+#'  type. It must be one of "`list`", "`atomic`", "`vector`", "`numeric`",
+#'  "`integer`", "`double`", "`character`" or "`logical`".
+#' @param strict A [`logical`] scalar: should length-zero object be
 #'  tested?
 #' @return Throw an error, if any.
 #' @author N. Frerebeau
@@ -159,8 +158,8 @@ check_uuid <- function(x) {
 # NA/NaN/Inf ===================================================================
 #' Check Missing Values
 #'
-#' Checks if an object contains any missing (\code{NA}, \code{NaN}) or infinite
-#' (\code{Inf}) value.
+#' Checks if an object contains any missing (`NA`, `NaN`) or infinite (`Inf`)
+#' value.
 #' @param x An object to be checked.
 #' @return Throw an error, if any.
 #' @author N. Frerebeau
@@ -197,10 +196,9 @@ check_infinite <- function(x) {
 # Numeric ======================================================================
 #' Check Numeric Values
 #'
-#' @param x A \code{\link{numeric}} object to be checked.
-#' @param expected A \code{\link{character}} string specifying the expected
-#'  value. It must be one of "\code{positive}", "\code{whole}", "\code{odd}"
-#'  or "\code{even}".
+#' @param x A [`numeric`] object to be checked.
+#' @param expected A [`character`] string specifying the expected
+#'  value. It must be one of "`positive`", "`whole`", "`odd`" or "`even`".
 #' @return Throw an error, if any.
 #' @author N. Frerebeau
 #' @family check
@@ -240,7 +238,7 @@ check_constant <- function(x) {
 # Matrix =======================================================================
 #' Check Matrix
 #'
-#' @param x A \code{\link{matrix}} to be checked.
+#' @param x A [`matrix`] to be checked.
 #' @param expected An appropriate expected value.
 #' @return Throw an error, if any.
 #' @author N. Frerebeau
@@ -287,7 +285,7 @@ check_symmetric <- function(x) {
 # ======================================================================== Graph
 #' Check Graph
 #'
-#' @param x A \code{\link{matrix}} to be checked.
+#' @param x A [`matrix`] to be checked.
 #' @param expected An appropriate expected value.
 #' @return Throw an error, if any.
 #' @author N. Frerebeau

@@ -16,18 +16,18 @@ If \code{NULL} (the default) the seed will be re-initialized.}
 A 36 characters long \code{\link{character}} string.
 }
 \description{
-\code{generate_uuid} generates a universally unique identifier (UUID Version
+\code{generate_uuid()} generates a universally unique identifier (UUID Version
 4 and Variant 1).
 }
 \details{
 As it relies on R's internal random number generators and so will suffer
- from the use of \code{\link{set.seed}} in a session, the seed is
- re-initialized during execution (unless \code{seed} is not \code{NULL}).
- To prevent any side effects, the random number generator (RNG) state is
- saved and restored when the function exits.
+from the use of \code{\link[=set.seed]{set.seed()}} in a session, the seed is re-initialized during
+execution (unless \code{seed} is not \code{NULL}). To prevent any side effects, the
+random number generator (RNG) state is saved and restored when the function
+exits.
 }
 \seealso{
-\link{set.seed}
+\code{\link[=set.seed]{set.seed()}}
 }
 \author{
 N. Frerebeau

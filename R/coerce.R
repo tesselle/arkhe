@@ -4,11 +4,11 @@ NULL
 
 #' Integer Vectors
 #'
-#' @param x A \code{\link{numeric}} vector to be coerced.
+#' @param x A [`numeric`] vector to be coerced.
 #' @details
 #'  Numeric values are rounded to zero decimal places and then coerced to
-#'  integer as by \code{\link{as.integer}}.
-#' @return An \code{\link{integer}} vector.
+#'  integer as by [as.integer()].
+#' @return An [`integer`] vector.
 #' @author N. Frerebeau
 #' @family utilities
 #' @keywords internal utilities
@@ -20,13 +20,13 @@ as_integer <- function(x) {
 #' Factors
 #'
 #' @param x A vector to be coerced.
-#' @param reverse A \code{\link{logical}} scalar: should the order of factor
-#' levels be reversed? Usefull for plotting.
+#' @param reverse A [`logical`] scalar: should the order of factor
+#'  levels be reversed? Useful for plotting.
 #' @details
 #'  Encodes a vector as a factor without sorting it into increasing (or
-#'  decreasing if \code{reverse} is \code{TRUE}) order of \code{x}
-#'  (preserves original ordering).
-#' @return An \code{\link{factor}} object.
+#'  decreasing if `reverse` is `TRUE`) order of `x` (preserves original
+#'  ordering).
+#' @return An [`factor`] object.
 #' @author N. Frerebeau
 #' @family utilities
 #' @keywords internal utilities
@@ -94,7 +94,7 @@ setMethod(
 
 matrix2frequency <- function(from) {
   to <- data.matrix(from, rownames.force = NA)
-  totals <- rowSums(to, na.rm = FALSE)
+  totals <- rowSums(to, na.rm = TRUE)
   to <- to / totals
   dim(to) <- dim(from)
   dimnames(to) <- make_dimnames(from)

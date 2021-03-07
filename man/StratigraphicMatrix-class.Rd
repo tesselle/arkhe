@@ -10,9 +10,9 @@ An S4 class to represent a stratigraphic matrix.
 }
 \details{
 A stratigraphic matrix represents directed relationships between
- stratigraphic units. A stratigraphic matrix is an adjacency matrix (a non
- symmetric square matrix with zeros on its main diagonal), suitable to build
- a directed acyclic graph (DAG).
+stratigraphic units. A stratigraphic matrix is an adjacency matrix (a non
+symmetric square matrix with zeros on its main diagonal), suitable to build
+a directed acyclic graph (DAG).
 }
 \examples{
 # Principles of Archaeological Stratigraphy, fig. 12
@@ -38,7 +38,7 @@ harris <- matrix(
 strati <- as_stratigraphy(harris)
 }
 \seealso{
-\link{as_stratigraphy}
+\code{\link[=as_stratigraphy]{as_stratigraphy()}}
 
 Other matrix: 
 \code{\link{CompositionMatrix-class}},

@@ -19,15 +19,14 @@
 }
 \arguments{
 \item{x}{An object from which to extract element(s) or in which to replace
-element(s).}
+element(s) (typically a \verb{*Matrix} object).}
 
 \item{i, j}{Indices specifying elements to extract or replace. Indices are
-\code{\link{numeric}}, \code{\link{integer}} or \code{\link{character}}
-vectors or empty (missing) or \code{NULL}. Numeric values are coerced to
-\code{\link{integer}} as by \code{\link{as.integer}} (and hence truncated
-towards zero). Character vectors will be matched to the name of the
-elements. An empty index (a comma separated blank) indicates that all
-entries in that dimension are selected.}
+\code{\link{numeric}}, \code{\link{integer}} or \code{\link{character}} vectors or empty (missing) or
+\code{NULL}. Numeric values are coerced to \code{\link{integer}} as by \code{\link[=as.integer]{as.integer()}}
+(and hence truncated towards zero). Character vectors will be matched to
+the name of the elements. An empty index (a comma separated blank) indicates
+that all entries in that dimension are selected.}
 
 \item{...}{Currently not used.}
 

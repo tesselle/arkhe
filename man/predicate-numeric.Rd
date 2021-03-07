@@ -22,28 +22,23 @@ is_binary(x, na.rm = FALSE)
 \arguments{
 \item{x}{A \code{\link{numeric}} object to be tested.}
 
-\item{strict}{A \code{\link{logical}} scalar: should missing values
-(including \code{NaN}) be omitted?}
+\item{strict}{A \code{\link{logical}} scalar: should missing values (including \code{NaN})
+be omitted?}
 
-\item{tolerance}{A \code{\link{numeric}} scalar giving the
-tolerance to check within.}
+\item{tolerance}{A \code{\link{numeric}} scalar giving the tolerance to check within.}
 }
 \value{
 A \code{\link{logical}} vector.
 }
 \description{
 Check numeric objects:
-}
-\details{
-\code{is_odd} and \code{is_even} check if a number is odd or even,
-respectively.
-
-\code{is_positive} checks if an object contains only (strictly) positive
+\itemize{
+\item \code{is_odd()} and \code{is_even()} check if a number is odd or even, respectively.
+\item \code{is_positive()} checks if an object contains only (strictly) positive
 numbers.
-
-\code{is_binary} checks if an object contains only \eqn{0}s and \eqn{1}s.
-
-\code{is_whole} checks if an object only contains whole numbers.
+\item \code{is_binary()} checks if an object contains only \eqn{0}s and \eqn{1}s.
+\item \code{is_whole()} checks if an object only contains whole numbers.
+}
 }
 \seealso{
 Other predicates: 

@@ -70,12 +70,11 @@ as_stratigraphy(from)
 \item{...}{Currently not used.}
 
 \item{factor}{A \code{\link{logical}} scalar: should character string be
-coerced to \code{\link{factor}}? Default to \code{FALSE}, if \code{TRUE}
-the original ordering is preserved.}
+coerced to \code{\link{factor}}? Default to \code{FALSE}, if \code{TRUE} the original ordering is
+preserved.}
 
-\item{reverse}{A \code{\link{logical}} scalar: should the order of factor
-levels be reversed? Only used if \code{factor} is \code{TRUE}.
-Useful for plotting.}
+\item{reverse}{A \code{\link{logical}} scalar: should the order of factor levels be
+reversed? Only used if \code{factor} is \code{TRUE}. Useful for plotting.}
 }
 \value{
 A coerced object.
@@ -84,35 +83,34 @@ A coerced object.
 Coerce
 }
 \details{
-The following methods coerce an object to a \code{Matrix} object:
+The following methods coerce an object to a \verb{*Matrix} object:
 
- \tabular{lll}{
-  \strong{Method} \tab \strong{Target} \tab \strong{Details} \cr
-  \code{as_count} \tab \linkS4class{CountMatrix} \tab absolute frequency data \cr
-  \code{as_composition} \tab \linkS4class{CompositionMatrix} \tab relative frequency data \cr
-  \code{as_abundance} \tab \linkS4class{CompositionMatrix} \tab relative frequency data \cr
-  \code{as_incidence} \tab \linkS4class{IncidenceMatrix} \tab presence/absence data \cr
-  \code{as_occurrence} \tab \linkS4class{OccurrenceMatrix} \tab co-occurrence \cr
-  \code{as_stratigraphy} \tab \linkS4class{StratigraphicMatrix} \tab stratigraphic relationships
- }
+\tabular{lll}{
+\strong{Method} \tab \strong{Target} \tab \strong{Details} \cr
+\code{as_count()} \tab \linkS4class{CountMatrix} \tab absolute frequency data \cr
+\code{as_composition()} \tab \linkS4class{CompositionMatrix} \tab relative frequency data \cr
+\code{as_incidence()} \tab \linkS4class{IncidenceMatrix} \tab presence/absence data \cr
+\code{as_occurrence()} \tab \linkS4class{OccurrenceMatrix} \tab co-occurrence \cr
+\code{as_stratigraphy()} \tab \linkS4class{StratigraphicMatrix} \tab stratigraphic relationships
+}
 
- **Note that \code{as_count} rounds numeric values to zero decimal places and
- then coerces to integer as by \code{\link{as.integer}}.**
+\strong{Note that \code{as_count} rounds numeric values to zero decimal places and
+then coerces to integer as by \code{as.integer()}.}
 
- \tabular{lll}{
-  \strong{Method} \tab \strong{Target} \tab \strong{Details} \cr
-  \code{as_long} \tab \code{\link{data.frame}} \tab long S3 data frame \cr
- }
+\code{as_stratigraphy()} converts a set of stratigraphic relationships (edges)
+to a stratigraphic (adjacency) matrix. \code{from} can be a \code{\link{matrix}}, \code{\link{list}},
+or \code{\link{data.frame}}: the first column/component is assumed to contain the
+bottom units and the second the top units (adjacency).
 
- \code{as_stratigraphy} converts a set of stratigraphic relationships (edges)
- to a stratigraphic (adjacency) matrix. \code{from} can be a
- \code{\link{matrix}}, \code{\link{list}}, or \code{\link{data.frame}}:
- the first column/component is assumed to contain the bottom units and the
- second the top units (adjacency).
+\tabular{lll}{
+\strong{Method} \tab \strong{Target} \tab \strong{Details} \cr
+\code{as_long()} \tab \code{\link{data.frame}} \tab long S3 data frame \cr
+\code{as_features()} \tab \code{\link{data.frame}} \tab wide S3 data frame \cr
+}
 
- \code{as_features} converts an \code{*Matrix} object to a
- collection of features: a \code{\link{data.frame}} with all informations
- as extra columns (result may differ according to the class of \code{from}).
+\code{as_features()} converts a \verb{*Matrix} object to a collection of features:
+a \code{\link{data.frame}} with all informations as extra columns (result may differ
+according to the class of \code{from}).
 }
 \examples{
 ## Create a count matrix

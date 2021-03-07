@@ -65,17 +65,17 @@ setMethod(
 # Detect =======================================================================
 #' Data Cleaning
 #'
-#' @param x An object. It will be coerced to a \code{matrix} as by
-#'  \code{\link{as.matrix}}.
+#' @param x An object. It will be coerced to a [`matrix`] as by
+#'  [as.matrix()].
 #' @param margin A vector giving the subscripts which the function will be
-#'  applied over (see \code{\link{apply}}).
-#' @param finite A \code{\link{logical}} scalar: should non-\code{\link{finite}}
-#' values also be removed?
-#' @param f A predicate \code{\link{function}}.
-#' @param type A \code{\link{character}} vector.
+#'  applied over (see [apply()]).
+#' @param finite A [`logical`] scalar: should non-[`finite`] values also be
+#'  removed?
+#' @param f A predicate [`function`].
+#' @param type A [`character`] vector.
 #' @return
-#'  \code{detect_missing}, \code{detect_zero} and \code{detect_any} return
-#'  a \code{\link{logical}} vector.
+#'  `detect_missing()`, `detect_zero()` and `detect_any()` return a [`logical`]
+#'  vector.
 #' @author N. Frerebeau
 #' @keywords internal
 #' @noRd

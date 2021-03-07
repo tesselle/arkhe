@@ -14,13 +14,12 @@ is_dag(x)
 A \code{\link{logical}} scalar.
 }
 \description{
-\code{is_dag} checks if a graph has a topological ordering (i.e. is a
-directed acyclic graph) using Kahn's algorithm.
+\code{is_dag()} checks if a graph has a topological ordering (i.e. is a directed
+acyclic graph) using Kahn's algorithm.
 }
 \references{
-Kahn, A. B. (1962). Topological sorting of large networks.
- \emph{Communications of the ACM}, 5(11), p. 558-562.
- DOI: \href{https://doi.org/10.1145/368996.369025}{10.1145/368996.369025}.
+Kahn, A. B. (1962). Topological sorting of large networks. \emph{Communications
+of the ACM}, 5(11), p. 558-562. \doi{10.1145/368996.369025}.
 }
 \seealso{
 Other predicates: 

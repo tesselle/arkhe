@@ -17,8 +17,8 @@ check_infinite(x)
 Throw an error, if any.
 }
 \description{
-Checks if an object contains any missing (\code{NA}, \code{NaN}) or infinite
-(\code{Inf}) value.
+Checks if an object contains any missing (\code{NA}, \code{NaN}) or infinite (\code{Inf})
+value.
 }
 \seealso{
 Other check: 

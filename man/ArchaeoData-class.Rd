@@ -18,11 +18,11 @@ A virtual S4 class to represent archaeological data.
 
 \section{Get and set}{
 
- In the code snippets below, \code{x} is an \code{ArchaeoData} object.
- \describe{
-  \item{\code{get_groups(x)} and \code{set_groups(x) <- value}}{Get or set
-  the sample names of \code{x}.}
- }
+In the code snippets below, \code{x} is an \code{ArchaeoData} object.
+\describe{
+\item{\code{get_groups(x)} and \code{set_groups(x) <- value}}{Get or set
+the sample names of \code{x}.}
+}
 }
 
 \author{

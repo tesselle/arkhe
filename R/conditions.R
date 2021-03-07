@@ -4,14 +4,13 @@ NULL
 
 #' Conditions
 #'
-#' \code{throw_error} stops execution of the current expression and executes an
+#' * `throw_error()` stops execution of the current expression and executes an
 #' error action.
-#'
-#' \code{catch_conditions} handles unusual conditions.
+#' * `catch_conditions()` handles unusual conditions.
 #' @param expr An expression to be evaluated.
-#' @param .subclass A \code{\link{character}} string specifying the class of
+#' @param .subclass A [`character`] string specifying the class of
 #'  the message to be returned.
-#' @param message A \code{\link{character}} string specifying the message to be
+#' @param message A [`character`] string specifying the message to be
 #'  returned.
 #' @param call The call.
 #' @param ... Extra arguments.
@@ -78,10 +77,10 @@ catch_conditions <- function(expr) {
 #' Class Diagnostic
 #'
 #' @param object An object to which error messages are related.
-#' @param conditions A \code{\link{list}} of condition messages.
+#' @param conditions A [`list`] of condition messages.
 #' @return
-#'  Throw an error if \code{conditions} is of non-zero length,
-#'  returns \code{TRUE} if not.
+#'  Throw an error if `conditions` is of non-zero length, invisibly returns
+#'  `TRUE` if not.
 #' @author N. Frerebeau
 #' @keywords internal
 #' @noRd
@@ -109,5 +108,5 @@ check_class <- function(object, conditions) {
     throw_error("arkhe_error_class", err, call = NULL)
   }
 
-  return(TRUE)
+  invisible(TRUE)
 }
