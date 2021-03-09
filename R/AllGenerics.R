@@ -3,6 +3,27 @@
 NULL
 
 # Clean ========================================================================
+#' Data Replacement
+#'
+#' Removes empty row/column or row/column with missing values or zeros.
+#' @param x A [`matrix`], a [`data.frame`] or a `*Matrix` object.
+#' @param value A possible value to replace missing values of `x`.
+#' @param ... Currently not used.
+#' @example inst/examples/ex-clean.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family utilities
+#' @name replace
+#' @rdname replace
+NULL
+
+#' @rdname replace
+#' @aliases replace_NA-method
+setGeneric(
+  name = "replace_NA",
+  def = function(x, ...) standardGeneric("replace_NA")
+)
+
 #' Data Cleaning
 #'
 #' Removes empty row/column or row/column with missing values or zeros.
@@ -12,38 +33,30 @@ NULL
 #'  columns).
 #' @param finite A [`logical`] scalar: should non-[`finite`] values also be
 #'  removed?
-#' @param value A possible value to replace missing values of `x`.
 #' @param ... Currently not used.
 #' @example inst/examples/ex-clean.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family utilities
-#' @name clean
-#' @rdname clean
+#' @name remove
+#' @rdname remove
 NULL
 
-#' @rdname clean
-#' @aliases replace_NA-method
-setGeneric(
-  name = "replace_NA",
-  def = function(x, ...) standardGeneric("replace_NA")
-)
-
-#' @rdname clean
+#' @rdname remove
 #' @aliases remove_NA-method
 setGeneric(
   name = "remove_NA",
   def = function(x, ...) standardGeneric("remove_NA")
 )
 
-#' @rdname clean
+#' @rdname remove
 #' @aliases remove_empty-method
 setGeneric(
   name = "remove_empty",
   def = function(x, ...) standardGeneric("remove_empty")
 )
 
-#' @rdname clean
+#' @rdname remove
 #' @aliases remove_zero-method
 setGeneric(
   name = "remove_zero",
@@ -181,13 +194,6 @@ setGeneric(
 NULL
 
 #' @rdname mutator
-#' @aliases get_groups-method
-setGeneric(
-  name = "get_groups",
-  def = function(x) standardGeneric("get_groups")
-)
-
-#' @rdname mutator
 #' @aliases has_groups-method
 setGeneric(
   name = "has_groups",
@@ -195,10 +201,31 @@ setGeneric(
 )
 
 #' @rdname mutator
+#' @aliases get_groups-method
+setGeneric(
+  name = "get_groups",
+  def = function(x) standardGeneric("get_groups")
+)
+
+#' @rdname mutator
 #' @aliases set_groups-method
 setGeneric(
   name = "set_groups<-",
   def = function(x, value) standardGeneric("set_groups<-")
+)
+
+#' @rdname mutator
+#' @aliases get_samples-method
+setGeneric(
+  name = "get_samples",
+  def = function(x) standardGeneric("get_samples")
+)
+
+#' @rdname mutator
+#' @aliases set_samples-method
+setGeneric(
+  name = "set_samples<-",
+  def = function(x, value) standardGeneric("set_samples<-")
 )
 
 #' @rdname mutator

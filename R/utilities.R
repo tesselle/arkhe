@@ -19,7 +19,7 @@
 #' @keywords internal utilities
 #' @noRd
 `%||%` <- function(x, y) {
-  if (!is.null(x) || length(x) != 0) x else y
+  if (!is.null(x) && length(x) != 0) x else y
 }
 `%o%` <- function(f, g) {
   function(...) f(g(...))

@@ -5,7 +5,7 @@ NULL
 # Replace ======================================================================
 ## Missing values --------------------------------------------------------------
 #' @export
-#' @rdname clean
+#' @rdname replace
 #' @aliases replace_NA,matrix-method
 setMethod(
   f = "replace_NA",
@@ -19,7 +19,7 @@ setMethod(
 # Remove =======================================================================
 ## Missing values --------------------------------------------------------------
 #' @export
-#' @rdname clean
+#' @rdname remove
 #' @aliases remove_NA,matrix-method
 setMethod(
   f = "remove_NA",
@@ -34,7 +34,7 @@ setMethod(
 
 ## Zeros -----------------------------------------------------------------------
 #' @export
-#' @rdname clean
+#' @rdname remove
 #' @aliases remove_zero,matrix-method
 setMethod(
   f = "remove_zero",
@@ -49,7 +49,7 @@ setMethod(
 
 ## Empty -----------------------------------------------------------------------
 #' @export
-#' @rdname clean
+#' @rdname remove
 #' @aliases remove_empty,matrix-method
 setMethod(
   f = "remove_empty",
@@ -65,8 +65,7 @@ setMethod(
 # Detect =======================================================================
 #' Data Cleaning
 #'
-#' @param x An object. It will be coerced to a [`matrix`] as by
-#'  [as.matrix()].
+#' @param x An object. It will be coerced to a [`matrix`] as by [as.matrix()].
 #' @param margin A vector giving the subscripts which the function will be
 #'  applied over (see [apply()]).
 #' @param finite A [`logical`] scalar: should non-[`finite`] values also be
@@ -74,25 +73,30 @@ setMethod(
 #' @param f A predicate [`function`].
 #' @param type A [`character`] vector.
 #' @return
-#'  `detect_missing()`, `detect_zero()` and `detect_any()` return a [`logical`]
-#'  vector.
+#'  A [`logical`] vector.
 #' @author N. Frerebeau
 #' @keywords internal
 #' @noRd
 detect_missing <- function(x, margin = 1, finite = FALSE) {
-  is_missing <- if (finite) function(x) !is.finite(x) else is.na
-  detect_any(x, f = is_missing, margin = margin, type = "NAs")
+  detect_any(x, f = is_missing, margin = margin, finite = finite)
 }
 detect_zero <- function(x, margin = 1) {
-  is_zero <- function(x) if (is.numeric(x)) x == 0 else rep(FALSE, length(x))
-  detect_any(x, f = is_zero, margin = margin, type = "zeros")
+  detect_any(x, f = is_zero, margin = margin)
 }
-detect_empty <- function(x, margin = 1) {
-  is_empty <- function(x) if (is.numeric(x)) sum(x, na.rm = TRUE) == 0 else FALSE
-  detect_any(x, f = is_empty, margin = margin, type = "empty")
+detect_empty <- function(x, margin = 1, na.rm = TRUE) {
+  all_zero <- function(x) {
+    if (is_numeric(x)) all(x == 0, na.rm = na.rm)
+    else if (is_character(x)) all(x == "", na.rm = na.rm)
+    else stop("Don't know what to do...", call. = FALSE)
+  }
+  detect_any(x, f = all_zero, margin = margin)
 }
-detect_any <- function(x, f, margin = 1, type = "generic") {
-  count <- apply(X = x, MARGIN = margin, FUN = function(x, f) sum(f(x)), f = f)
+detect_any <- function(x, f, margin = 1, ...) {
+  count <- apply(
+    X = x, MARGIN = margin,
+    FUN = function(x, f, ...) sum(f(x, ...)),
+    f = f, ...
+  )
   index <- count > 0
 
   n <- sum(index)
@@ -101,12 +105,12 @@ detect_any <- function(x, f, margin = 1, type = "generic") {
     if (is.null(parts)) parts <- seq_len(dim(x)[[margin]])
     mar <- ifelse(
       margin == 1,
-      ngettext(n, "row", "rows"),
-      ngettext(n, "column", "columns")
+      ngettext(n, "row was", "rows were"),
+      ngettext(n, "column was", "columns were")
     )
-    k <- paste0(sprintf("* %s (%d)", parts[index], count[index]),
+    k <- paste0(sprintf("* %s (n=%d)", parts[index], count[index]),
                 collapse = "\n")
-    message(sprintf("Removed %d %s (%s):\n%s", n, mar, type, k))
+    message(sprintf("%d %s removed:\n%s", n, mar, k))
   }
 
   index

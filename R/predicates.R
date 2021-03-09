@@ -4,6 +4,7 @@
 #' Utility Predicates
 #'
 #' * `is_empty()` checks if a vector or list is empty.
+#' * `is_missing()` checks if a vector or list contains missing values.
 #' * `is_named()` checks if an object is named.
 #' * `is_uuid()` checks if a string is a canonically formatted UUID that is
 #'   version 1 through 5 and is the appropriate Variant as per RFC4122.
@@ -12,7 +13,6 @@
 #' @family predicates
 #' @name predicate-utils
 #' @rdname predicate-utils
-#' @keywords internal
 NULL
 
 #' @export
@@ -25,8 +25,7 @@ is_empty <- function(x) {
 is_named <- function(x) {
   !is_empty(names(x))
 }
-#' @export
-#' @rdname predicate-utils
+
 is_uuid <- function(x) {
   pattern <- "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
   grepl(pattern, x)
@@ -40,7 +39,6 @@ is_uuid <- function(x) {
 #' @family predicates
 #' @name predicate-type
 #' @rdname predicate-type
-#' @keywords internal
 NULL
 
 #' @rdname predicate-type
@@ -97,7 +95,6 @@ is_message <- function(x) {
 #' @family predicates
 #' @name predicate-scalar
 #' @rdname predicate-scalar
-#' @keywords internal
 NULL
 
 #' @rdname predicate-scalar
@@ -137,22 +134,35 @@ is_scalar_logical <- function(x) {
 #' Numeric Predicates
 #'
 #' Check numeric objects:
+#' * `is_zero()` checks if an object contains only zeros.
 #' * `is_odd()` and `is_even()` check if a number is odd or even, respectively.
-#' * `is_positive()` checks if an object contains only (strictly) positive
-#'   numbers.
-#' * `is_binary()` checks if an object contains only \eqn{0}s and \eqn{1}s.
+#' * `is_positive()` and `is_negative` check if an object contains only
+#'   (strictly) positive or negative numbers.
 #' * `is_whole()` checks if an object only contains whole numbers.
 #' @param x A [`numeric`] object to be tested.
 #' @param tolerance A [`numeric`] scalar giving the tolerance to check within.
-#' @param strict A [`logical`] scalar: should missing values (including `NaN`)
+#' @param strict A [`logical`] scalar: should strict inequality be used?
+#' @param finite A [`logical`] scalar: should non-[`finite`] values also be
+#'  removed?
+#' @param na.rm A [`logical`] scalar: should missing values (including `NaN`)
 #'  be omitted?
 #' @return A [`logical`] vector.
 #' @family predicates
 #' @name predicate-numeric
 #' @rdname predicate-numeric
-#' @keywords internal
 NULL
 
+#' @rdname predicate-numeric
+is_missing <- function(x, finite = FALSE) {
+  if (finite) !is.finite(x) else is.na(x)
+}
+#' @export
+#' @rdname predicate-numeric
+is_zero <- function(x, na.rm = FALSE) {
+  check_type(x, "numeric")
+  if (na.rm) x <- stats::na.omit(x)
+  x == 0
+}
 #' @export
 #' @rdname predicate-numeric
 is_odd <- function(x, na.rm = FALSE) { # impair
@@ -176,17 +186,17 @@ is_positive <- function(x, strict = FALSE, na.rm = FALSE) {
 }
 #' @export
 #' @rdname predicate-numeric
+is_negative <- function(x, strict = FALSE, na.rm = FALSE) {
+  check_type(x, "numeric")
+  if (na.rm) x <- stats::na.omit(x)
+  if (strict) x < 0 else x <= 0
+}
+#' @export
+#' @rdname predicate-numeric
 is_whole <- function(x, na.rm = FALSE, tolerance = .Machine$double.eps^0.5) {
   check_type(x, "numeric")
   if (na.rm) x <- stats::na.omit(x)
   abs(x - round(x, digits = 0)) <= tolerance
-}
-#' @export
-#' @rdname predicate-numeric
-is_binary <- function(x, na.rm = FALSE) {
-  check_type(x, "numeric")
-  if (na.rm) x <- stats::na.omit(x)
-  x %in% c(0, 1)
 }
 
 #' Numeric Trend Predicates
@@ -196,7 +206,7 @@ is_binary <- function(x, na.rm = FALSE) {
 #' * `is_increasing()` and `is_decreasing()` check if a sequence of numbers
 #'   is monotonically increasing or decreasing, respectively.
 #' * `is_overlapping()` checks if two data ranges overlap at all.
-#' @param x,y A [`numeric`] object to be tested.
+#' @param x A [`numeric`] object to be tested.
 #' @param tolerance A [`numeric`] scalar giving the tolerance to check within.
 #' @param na.rm A [`logical`] scalar: should missing values (including `NaN`)
 #'  be omitted?
@@ -204,7 +214,6 @@ is_binary <- function(x, na.rm = FALSE) {
 #' @family predicates
 #' @name predicate-trend
 #' @rdname predicate-trend
-#' @keywords internal
 NULL
 
 #' @export
@@ -234,14 +243,6 @@ is_decreasing <- function(x, na.rm = TRUE) {
   if (is.na(k)) k <- FALSE
   k
 }
-#' @export
-#' @rdname predicate-trend
-is_overlapping <- function(x, y) {
-  check_type(x, "numeric")
-  check_type(y, "numeric")
-
-  min(x) <= max(y) && max(x) >= min(y)
-}
 
 # Matrix =======================================================================
 #' Matrix Predicates
@@ -253,7 +254,6 @@ is_overlapping <- function(x, y) {
 #' @family predicates
 #' @name predicate-matrix
 #' @rdname predicate-matrix
-#' @keywords internal
 NULL
 
 #' @export

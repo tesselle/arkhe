@@ -2,16 +2,16 @@
 #' @include AllClasses.R
 NULL
 
-# DataMatrix ===================================================================
+# AbundanceMatrix ==============================================================
 setValidity(
-  Class = "ArchaeoData",
+  Class = "AbundanceMatrix",
   method = function(object) {
     # Get data
-    sites <- object@sites
+    samples <- object@samples
     groups <- object@groups
 
     cnd <- list(
-      catch_conditions(check_length(sites, nrow(object), strict = FALSE)),
+      catch_conditions(check_length(samples, nrow(object), strict = FALSE)),
       catch_conditions(check_length(groups, nrow(object), strict = FALSE))
     )
 
@@ -20,6 +20,7 @@ setValidity(
   }
 )
 
+# DataMatrix ===================================================================
 setValidity(
   Class = "IntegerMatrix",
   method = function(object) {

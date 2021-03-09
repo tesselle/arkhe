@@ -26,7 +26,6 @@ test_that("matrix > *Matrix", {
   expect_s4_class(as_occurrence(cts), "OccurrenceMatrix")
   expect_s4_class(as_occurrence(freq), "OccurrenceMatrix")
 })
-
 # data.frame ===================================================================
 test_that("data.frame <> *Matrix", {
   cts <- matrix(sample(0:100, 50, TRUE), ncol = 10)
@@ -49,7 +48,6 @@ test_that("data.frame <> *Matrix", {
 
   # IncidenceMatrix
   C <- as_incidence(df_incid)
-  expect_s4_class(C, "IncidenceMatrix")
   expect_equal(as.data.frame(C), df_incid, ignore_attr = TRUE)
   expect_s4_class(as_incidence(df_count), "IncidenceMatrix")
   expect_s4_class(as_incidence(df_freq), "IncidenceMatrix")
@@ -59,7 +57,6 @@ test_that("data.frame <> *Matrix", {
   expect_s4_class(as_occurrence(df_freq), "OccurrenceMatrix")
   expect_s4_class(as_occurrence(df_incid), "OccurrenceMatrix")
 })
-
 # *Matrix ======================================================================
 test_that("CountMatrix <> CompositionMatrix", {
   cts <- matrix(sample(0:100, 50, TRUE), ncol = 10)
@@ -87,4 +84,32 @@ test_that("DataMatrix > features", {
   feat <- as_features(freq)
 
   expect_equal(dim(feat), c(5, 12))
+})
+# Autodetect ===================================================================
+test_that("Autodetect", {
+  spl <- LETTERS[1:5]
+  grp <- c("a", "a", "b", "b", "c")
+
+  cts <- matrix(sample(0:100, 50, TRUE), ncol = 10)
+  cts <- as.data.frame(cts)
+  cts$sample <- spl
+  cts$group <- grp
+
+  options(arkhe.autodetect = TRUE)
+  counts <- as_count(cts)
+  expect_equal(get_samples(counts), spl)
+  expect_equal(get_groups(counts), grp)
+
+  freq <- as_composition(cts)
+  expect_equal(get_samples(freq), spl)
+  expect_equal(get_groups(freq), grp)
+
+  incid <- as_incidence(cts)
+  expect_equal(get_samples(incid), spl)
+  expect_equal(get_groups(incid), grp)
+
+  options(arkhe.autodetect = FALSE)
+  counts <- as_count(cts)
+  expect_equal(get_samples(counts), rownames(counts))
+  expect_equal(get_groups(counts), character(0))
 })

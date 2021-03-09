@@ -48,26 +48,56 @@ setMethod(
   signature = signature(from = "ANY"),
   definition = function(from) methods::as(from, "CountMatrix")
 )
-
-matrix2count <- function(from) {
-  to <- data.matrix(from, rownames.force = NA)
-  to <- as_integer(to)
-  dim(to) <- dim(from)
-  dimnames(to) <- make_dimnames(from)
-  .CountMatrix(to)
-}
-setAs(from = "matrix", to = "CountMatrix", def = matrix2count)
-setAs(from = "data.frame", to = "CountMatrix", def = matrix2count)
+setAs(
+  from = "matrix",
+  to = "CountMatrix",
+  def = function(from) {
+    to <- data.matrix(from, rownames.force = NA)
+    to <- as_integer(to)
+    dim(to) <- dim(from)
+    dimnames(to) <- make_dimnames(from)
+    .CountMatrix(to, samples = rownames(to))
+  }
+)
+setAs(
+  from = "data.frame",
+  to = "CountMatrix",
+  def = function(from) {
+    ## Remove non-numeric columns
+    ok <- detect(is_numeric, from)
+    extra <- from[, !ok, drop = FALSE]
+    ## Build matrix
+    clean <- from[, ok, drop = FALSE]
+    to <- data.matrix(clean, rownames.force = NA)
+    to <- as_integer(to)
+    dim(to) <- dim(clean)
+    dimnames(to) <- make_dimnames(clean)
+    ## Add extra info
+    spl <- rownames(to)
+    grp <- character(0)
+    if (getOption("arkhe.autodetect")) {
+      extra_names <- colnames(extra)
+      if (ncol(extra) > 0 & !is.null(extra_names)) {
+        ## Samples
+        spl_i <- grepl("sample", extra_names)
+        if (sum(spl_i) == 1) spl <- extra[, spl_i, drop = TRUE]
+        ## Groups
+        grp_i <- grepl("group", extra_names)
+        if (sum(grp_i) == 1) grp <- extra[, grp_i, drop = TRUE]
+      }
+    }
+    .CountMatrix(to, samples = spl, groups = grp)
+  }
+)
 setAs(
   from = "CompositionMatrix",
   to = "CountMatrix",
   def = function(from) {
-    freq <- methods::as(from, "matrix")
     totals <- from@totals
-    counts <- as_integer(freq * totals)
-    dim(counts) <- dim(freq)
-    dimnames(counts) <- dimnames(freq)
-    .CountMatrix(counts)
+    counts <- as_integer(from * totals)
+    dim(counts) <- dim(from)
+    dimnames(counts) <- dimnames(from)
+    .CountMatrix(counts, samples = from@samples, groups = from@groups)
   }
 )
 
@@ -92,16 +122,122 @@ setMethod(
   }
 )
 
-matrix2frequency <- function(from) {
-  to <- data.matrix(from, rownames.force = NA)
-  totals <- rowSums(to, na.rm = TRUE)
-  to <- to / totals
-  dim(to) <- dim(from)
-  dimnames(to) <- make_dimnames(from)
-  .CompositionMatrix(to, totals = totals)
-}
-setAs(from = "matrix", to = "CompositionMatrix", def = matrix2frequency)
-setAs(from = "data.frame", to = "CompositionMatrix", def = matrix2frequency)
+setAs(
+  from = "matrix",
+  to = "CompositionMatrix",
+  def = function(from) {
+    to <- data.matrix(from, rownames.force = NA)
+    totals <- rowSums(to, na.rm = TRUE)
+    to <- to / totals
+    dim(to) <- dim(from)
+    dimnames(to) <- make_dimnames(from)
+    .CompositionMatrix(to, samples = rownames(to), totals = totals)
+  }
+)
+setAs(
+  from = "data.frame",
+  to = "CompositionMatrix",
+  def = function(from) {
+    ## Remove non-numeric columns
+    ok <- detect(is_numeric, from)
+    extra <- from[, !ok, drop = FALSE]
+    ## Build matrix
+    clean <- from[, ok, drop = FALSE]
+    to <- data.matrix(clean, rownames.force = NA)
+    totals <- rowSums(to, na.rm = TRUE)
+    to <- to / totals
+    dim(to) <- dim(clean)
+    dimnames(to) <- make_dimnames(clean)
+    ## Add extra info
+    spl <- rownames(to)
+    grp <- character(0)
+    if (getOption("arkhe.autodetect")) {
+      extra_names <- colnames(extra)
+      if (ncol(extra) > 0 & !is.null(extra_names)) {
+        ## Samples
+        spl_i <- grepl("sample", extra_names)
+        if (sum(spl_i) == 1) spl <- extra[, spl_i, drop = TRUE]
+        ## Groups
+        grp_i <- grepl("group", extra_names)
+        if (sum(grp_i) == 1) grp <- extra[, grp_i, drop = TRUE]
+      }
+    }
+    .CompositionMatrix(to, samples = spl, groups = grp, totals = totals)
+  }
+)
+setAs(
+  from = "CountMatrix",
+  to = "CompositionMatrix",
+  def = function(from) {
+    totals <- rowSums(from, na.rm = TRUE)
+    to <- from / totals
+    dim(to) <- dim(from)
+    dimnames(to) <- make_dimnames(from)
+    .CompositionMatrix(to, samples = from@samples, groups = from@groups,
+                       totals = totals)
+  }
+)
+
+# To IncidenceMatrix ===========================================================
+#' @export
+#' @rdname coerce
+#' @aliases as_incidence,ANY-method
+setMethod(
+  f = "as_incidence",
+  signature = signature(from = "ANY"),
+  definition = function(from) methods::as(from, "IncidenceMatrix")
+)
+setAs(
+  from = "matrix",
+  to = "IncidenceMatrix",
+  def = function(from) {
+    to <- data.matrix(from, rownames.force = NA)
+    to <- to > 0
+    dim(to) <- dim(from)
+    dimnames(to) <- make_dimnames(from)
+    .IncidenceMatrix(to, samples = rownames(to))
+  }
+)
+setAs(
+  from = "data.frame",
+  to = "IncidenceMatrix",
+  def = function(from) {
+    ## Remove non-numeric columns
+    ok <- detect(is_numeric, from) | detect(is_logical, from)
+    extra <- from[, !ok, drop = FALSE]
+    ## Build matrix
+    clean <- from[, ok, drop = FALSE]
+    to <- data.matrix(clean, rownames.force = NA)
+    to <- to > 0
+    dim(to) <- dim(clean)
+    dimnames(to) <- make_dimnames(clean)
+    ## Add extra info
+    spl <- rownames(to)
+    grp <- character(0)
+    if (getOption("arkhe.autodetect")) {
+      extra_names <- colnames(extra)
+      if (ncol(extra) > 0 & !is.null(extra_names)) {
+        ## Samples
+        spl_i <- grepl("sample", extra_names)
+        if (sum(spl_i) == 1) spl <- extra[, spl_i, drop = TRUE]
+        ## Groups
+        grp_i <- grepl("group", extra_names)
+        if (sum(grp_i) == 1) grp <- extra[, grp_i, drop = TRUE]
+      }
+    }
+    .IncidenceMatrix(to, samples = spl, groups = grp)
+  }
+)
+setAs(
+  from = "AbundanceMatrix",
+  to = "IncidenceMatrix",
+  def = function(from) {
+    incid <- from > 0
+    dim(incid) <- dim(from)
+    dimnames(incid) <- dimnames(from)
+    .IncidenceMatrix(incid, samples = from@samples, groups = from@groups)
+  }
+)
 
 # To OccurrenceMatrix ==========================================================
 #' @export
@@ -137,26 +273,6 @@ matrix2occurrence <- function(from) {
 
 setAs(from = "matrix", to = "OccurrenceMatrix", def = matrix2occurrence)
 setAs(from = "data.frame", to = "OccurrenceMatrix", def = matrix2occurrence)
-
-# To IncidenceMatrix ===========================================================
-#' @export
-#' @rdname coerce
-#' @aliases as_incidence,ANY-method
-setMethod(
-  f = "as_incidence",
-  signature = signature(from = "ANY"),
-  definition = function(from) methods::as(from, "IncidenceMatrix")
-)
-
-matrix2incidence <- function(from) {
-  to <- data.matrix(from, rownames.force = NA)
-  to <- to > 0
-  dim(to) <- dim(from)
-  dimnames(to) <- make_dimnames(from)
-  .IncidenceMatrix(to)
-}
-setAs(from = "matrix", to = "IncidenceMatrix", def = matrix2incidence)
-setAs(from = "data.frame", to = "IncidenceMatrix", def = matrix2incidence)
 
 # To StratigraphicMatrix =======================================================
 #' @export
@@ -230,13 +346,11 @@ setMethod(
     x <- methods::callGeneric(from = methods::as(from, "matrix"),
                               factor = factor, reverse = reverse)
 
-    sites <- from@sites
-    if (length(sites) == 0) sites <- NA_character_
-    x$site <- if (factor) as_factor(sites) else sites
+    samples <- from@samples %||% NA_character_
+    x$samples <- if (factor) as_factor(samples, reverse = reverse) else samples
 
-    groups <- from@groups
-    if (length(groups) == 0) groups <- NA_character_
-    x$group <- if (factor) as_factor(groups) else groups
+    groups <- from@groups %||% NA_character_
+    x$group <- if (factor) as_factor(groups, reverse = reverse) else groups
 
     x
   }
@@ -249,16 +363,9 @@ setMethod(
   f = "as_features",
   signature = "AbundanceMatrix",
   definition = function(from) {
-    df <- as.data.frame(from)
-
-    sites <- from@sites
-    if (length(sites) == 0) sites <- NA_character_
-    df$site <- sites
-
-    groups <- from@groups
-    if (length(groups) == 0) groups <- NA_character_
-    df$group <- groups
-
-    df
+    x <- as.data.frame(from)
+    x$samples <- from@samples %||% NA_character_
+    x$group <- from@groups %||% NA_character_
+    x
   }
 )

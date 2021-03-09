@@ -1,4 +1,4 @@
-test_that("utility predicates return a logical scalar", {
+test_that("Utility predicates", {
   expect_true(is_empty(numeric(0)))
   expect_false(is_empty(numeric(1)))
 
@@ -7,7 +7,7 @@ test_that("utility predicates return a logical scalar", {
   names(a) <- letters[a]
   expect_true(is_named(a))
 })
-test_that("type predicates return a logical scalar", {
+test_that("Type predicates", {
   expect_true(is_list(list()))
   expect_false(is_list(numeric(1)))
 
@@ -40,7 +40,7 @@ test_that("type predicates return a logical scalar", {
   is_message(catch_conditions(message("custom_message"))[[1]])
   is_warning(catch_conditions(warning("custom_warning"))[[1]])
 })
-test_that("scalar type predicates return a logical scalar", {
+test_that("Scalar type predicates", {
   expect_true(is_scalar_list(list(1)))
   expect_false(is_scalar_list(list()))
   expect_false(is_scalar_list(list(1, 2)))
@@ -73,7 +73,14 @@ test_that("scalar type predicates return a logical scalar", {
   expect_false(is_scalar_logical(logical(0)))
   expect_false(is_scalar_logical(logical(2)))
 })
-test_that("numeric predicates return a logical vector", {
+test_that("Numeric predicates", {
+  expect_true(is_missing(NA, finite = FALSE))
+  expect_true(is_missing(Inf, finite = TRUE))
+  expect_false(is_missing(1))
+
+  expect_true(is_zero(0))
+  expect_false(is_zero(1))
+
   expect_type(is_odd(c(1, 3, 5, 7, 9)), "logical")
   expect_false(is_odd(2))
   expect_false(is_even(1))
@@ -83,25 +90,25 @@ test_that("numeric predicates return a logical vector", {
   expect_false(all(is_positive(c(0, 1, 2, 3, 4), strict = TRUE)))
   expect_error(is_positive(LETTERS))
 
+  expect_type(is_negative(c(0, -1, -2, -3, -4)), "logical")
+  expect_true(all(is_negative(c(0, -1, -2, -3, -4), strict = FALSE)))
+  expect_false(all(is_negative(c(0, -1, -2, -3, -4), strict = TRUE)))
+  expect_error(is_negative(LETTERS))
+
   expect_type(is_whole(c(0, 1, 2, 3, 4)), "logical")
   expect_true(all(is_whole(c(0, 1, 2, 3, 4))))
   expect_true(is_whole(0.1, tolerance = 0.1))
   expect_false(is_whole(0.1))
   expect_error(is_whole(LETTERS))
-
-  expect_type(is_binary(c(1, 0, 1, 0, 1)), "logical")
-  expect_true(all(is_binary(c(1, 0, 1, 0, 1))))
-  expect_false(is_binary(2))
-  expect_error(is_binary(LETTERS))
-
+})
+test_that("Trend predicates", {
   expect_true(is_constant(c(1, 1, 1, 1, 1)))
   expect_true(is_constant(c(1, 1.1, 1.2, 1.3, 1.4), tolerance = 0.5))
   expect_true(is_constant(c(1, 1, 1, NA, 1), na.rm = TRUE))
   expect_false(is_constant(c(1, 1, 1, NA, 1), na.rm = FALSE))
   expect_false(is_constant(c(1, 2, 1, 1, 1)))
   expect_error(is_constant(LETTERS))
-})
-test_that("trend predicates return a logical scalar", {
+
   expect_true(is_increasing(c(1, 2, 3, 4, 5)))
   expect_true(is_increasing(c(1, 1, 1, 1, 1)))
   expect_true(is_increasing(c(1, 2, 3, NA, 5), na.rm = TRUE))
@@ -115,14 +122,8 @@ test_that("trend predicates return a logical scalar", {
   expect_false(is_decreasing(c(5, 4, 3, NA, 1), na.rm = FALSE))
   expect_false(is_decreasing(c(1, 2, 3, 4, 5)))
   expect_error(is_decreasing(LETTERS))
-
-  expect_true(is_overlapping(c(1, 2, 3, 4, 5), c(1, 2, 3, 4, 5, 6, 7)))
-  expect_true(is_overlapping(c(1, 2, 3, 4, 5, 6, 7), c(1, 2, 3, 4, 5)))
-  expect_false(is_overlapping(c(1, 2, 3, 4, 5), c(6, 7, 8, 9, 10)))
-  expect_false(is_overlapping(c(1, 2, 3, 4, 5), c(7, 8, 9, 10, 11)))
-  expect_error(is_overlapping(1:5, LETTERS))
 })
-test_that("matrix predicates return a logical scalar", {
+test_that("Matrix predicates", {
   expect_true(is_square(matrix(nrow = 3, ncol = 3)))
   expect_false(is_square(matrix(nrow = 1, ncol = 3)))
   expect_false(is_square(c(1, 2, 3)))

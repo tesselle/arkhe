@@ -18,11 +18,11 @@ setMethod(
     }
 
     if (!missing(i)) {
-      sites <- x@sites
+      samples <- x@samples
       groups <- x@groups
-      if (length(sites) > 0) sites <- sites[i]
+      if (length(samples) > 0) samples <- samples[i]
       if (length(groups) > 0) groups <- groups[i]
-      methods::initialize(x, z, sites = sites, groups = groups)
+      methods::initialize(x, z, samples = samples, groups = groups)
     } else{
       methods::initialize(x, z)
     }

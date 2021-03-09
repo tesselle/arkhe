@@ -5,45 +5,60 @@
 \alias{mutator}
 \alias{get}
 \alias{set}
-\alias{get_groups}
-\alias{get_groups-method}
 \alias{has_groups}
 \alias{has_groups-method}
+\alias{get_groups}
+\alias{get_groups-method}
 \alias{set_groups<-}
 \alias{set_groups-method}
+\alias{get_samples}
+\alias{get_samples-method}
+\alias{set_samples<-}
+\alias{set_samples-method}
 \alias{get_totals}
 \alias{get_totals-method}
 \alias{set_totals<-}
 \alias{set_totals-method}
-\alias{has_groups,ArchaeoData-method}
-\alias{get_groups,ArchaeoData-method}
+\alias{has_groups,AbundanceMatrix-method}
+\alias{get_groups,AbundanceMatrix-method}
+\alias{get_samples,AbundanceMatrix-method}
 \alias{get_totals,CompositionMatrix-method}
 \alias{get_totals,OccurrenceMatrix-method}
-\alias{set_groups<-,ArchaeoData-method}
-\alias{set_groups,ArchaeoData-method}
+\alias{set_groups<-,AbundanceMatrix-method}
+\alias{set_groups,AbundanceMatrix-method}
+\alias{set_samples<-,AbundanceMatrix-method}
+\alias{set_samples,AbundanceMatrix-method}
 \alias{set_totals<-,CompositionMatrix-method}
 \alias{set_totals,CompositionMatrix-method}
 \title{Get or Set Parts of an Object}
 \usage{
-get_groups(x)
-
 has_groups(x)
 
+get_groups(x)
+
 set_groups(x) <- value
+
+get_samples(x)
+
+set_samples(x) <- value
 
 get_totals(x)
 
 set_totals(x) <- value
 
-\S4method{has_groups}{ArchaeoData}(x)
+\S4method{has_groups}{AbundanceMatrix}(x)
 
-\S4method{get_groups}{ArchaeoData}(x)
+\S4method{get_groups}{AbundanceMatrix}(x)
+
+\S4method{get_samples}{AbundanceMatrix}(x)
 
 \S4method{get_totals}{CompositionMatrix}(x)
 
 \S4method{get_totals}{OccurrenceMatrix}(x)
 
-\S4method{set_groups}{ArchaeoData}(x) <- value
+\S4method{set_groups}{AbundanceMatrix}(x) <- value
+
+\S4method{set_samples}{AbundanceMatrix}(x) <- value
 
 \S4method{set_totals}{CompositionMatrix}(x) <- value
 }

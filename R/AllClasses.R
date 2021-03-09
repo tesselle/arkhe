@@ -1,25 +1,27 @@
 # CLASSES DEFINITION
 
-# ArchaeoData ==================================================================
+# AbundanceMatrix ==============================================================
 #' Archaeological Data
 #'
 #' A virtual S4 class to represent archaeological data.
-#' @slot sites A [`character`] vector.
+#' @slot samples A [`character`] vector.
 #' @slot groups A [`character`] vector.
 #' @section Get and set:
-#'  In the code snippets below, `x` is an `ArchaeoData` object.
+#'  In the code snippets below, `x` is an `AbundanceMatrix` object.
 #'  \describe{
-#'   \item{`get_groups(x)` and `set_groups(x) <- value`}{Get or set
+#'   \item{`get_samples(x)` and `get_samples(x) <- value`}{Get or set
 #'   the sample names of `x`.}
+#'   \item{`get_groups(x)` and `set_groups(x) <- value`}{Get or set
+#'   the groups of `x`.}
 #'  }
 #' @author N. Frerebeau
 #' @docType class
-#' @aliases ArchaeoData-class
+#' @aliases AbundanceMatrix-class
 #' @keywords internal
-.ArchaeoData <- setClass(
-  Class = "ArchaeoData",
+.AbundanceMatrix <- setClass(
+  Class = "AbundanceMatrix",
   slots = c(
-    sites = "character",
+    samples = "character",
     groups = "character"
   ),
   contains = "VIRTUAL"
@@ -64,7 +66,7 @@ NULL
 )
 
 # IntegerMatrix ================================================================
-# CountMatrix ------------------------------------------------------------------
+## CountMatrix -----------------------------------------------------------------
 #' Absolute Frequency Matrix
 #'
 #' An S4 class to represent an absolute frequency matrix (i.e. the number of
@@ -79,7 +81,7 @@ NULL
 #' @aliases CountMatrix-class
 .CountMatrix <- setClass(
   Class = "CountMatrix",
-  contains = c("IntegerMatrix", "ArchaeoData")
+  contains = c("IntegerMatrix", "AbundanceMatrix")
 )
 
 #' @export
@@ -95,11 +97,12 @@ CountMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
     missing(nrow),
     missing(ncol)
   )
+  spl <- rownames(mtx) %||% character(0)
 
-  .CountMatrix(mtx)
+  .CountMatrix(mtx, samples = spl)
 }
 
-# OccurrenceMatrix -------------------------------------------------------------
+## OccurrenceMatrix ------------------------------------------------------------
 #' Co-Occurrence Matrix
 #'
 #' An S4 class to represent a co-occurrence matrix.
@@ -123,7 +126,7 @@ CountMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
 )
 
 # NumericMatrix ================================================================
-# CompositionMatrix ------------------------------------------------------------
+## CompositionMatrix -----------------------------------------------------------
 #' Relative Frequency Matrix
 #'
 #' An S4 class to represent a relative frequency matrix (i.e. the fraction of
@@ -143,7 +146,7 @@ CountMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
   slots = c(
     totals = "numeric"
   ),
-  contains = c("NumericMatrix", "ArchaeoData")
+  contains = c("NumericMatrix", "AbundanceMatrix")
 )
 
 #' @export
@@ -159,15 +162,16 @@ CompositionMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
     missing(nrow),
     missing(ncol)
   )
-  totals <- rowSums(mtx)
+  spl <- rownames(mtx) %||% character(0)
+  totals <- rowSums(mtx, na.rm = TRUE)
   mtx <- mtx / totals
-  mtx[is.nan(mtx)] <- 0 # Prevent division by zero
+  # mtx[is.nan(mtx)] <- 0 # Prevent division by zero
 
-  .CompositionMatrix(mtx, totals = totals)
+  .CompositionMatrix(mtx, samples = spl, totals = totals)
 }
 
 # LogicalMatrix ================================================================
-# IncidenceMatrix --------------------------------------------------------------
+## IncidenceMatrix -------------------------------------------------------------
 #' Incidence Matrix
 #'
 #' An S4 class to represent an incidence (presence/absence) matrix.
@@ -182,7 +186,7 @@ CompositionMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
 #' @aliases IncidenceMatrix-class
 .IncidenceMatrix <- setClass(
   Class = "IncidenceMatrix",
-  contains = c("LogicalMatrix", "ArchaeoData")
+  contains = c("LogicalMatrix", "AbundanceMatrix")
 )
 
 #' @export
@@ -198,11 +202,12 @@ IncidenceMatrix <- function(data = FALSE, nrow = 1, ncol = 1, byrow = FALSE,
     missing(nrow),
     missing(ncol)
   )
+  spl <- rownames(mtx) %||% character(0)
 
-  .IncidenceMatrix(mtx)
+  .IncidenceMatrix(mtx, samples = spl)
 }
 
-# Stratigraphic ----------------------------------------------------------------
+## Stratigraphic ---------------------------------------------------------------
 #' Stratigraphic Matrix
 #'
 #' An S4 class to represent a stratigraphic matrix.
@@ -220,10 +225,4 @@ IncidenceMatrix <- function(data = FALSE, nrow = 1, ncol = 1, byrow = FALSE,
 .StratigraphicMatrix <- setClass(
   Class = "StratigraphicMatrix",
   contains = "LogicalMatrix"
-)
-
-# AbundanceMatrix ==============================================================
-setClassUnion(
-  name = "AbundanceMatrix",
-  members = c("CountMatrix", "CompositionMatrix", "IncidenceMatrix")
 )

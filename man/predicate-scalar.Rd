@@ -47,4 +47,3 @@ Other predicates:
 \code{\link{predicate-utils}}
 }
 \concept{predicates}
-\keyword{internal}

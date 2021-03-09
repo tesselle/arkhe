@@ -12,6 +12,10 @@ nomnoml::nomnoml("
 ]
 
 [<abstract>AbundanceMatrix|
+ +samples: character;
+ +groups: character|
+ get_samples();
+ set_samples();
  has_groups();
  get_groups();
  set_groups();

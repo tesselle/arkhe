@@ -17,6 +17,23 @@ test_that("Matrix groups", {
   expect_s3_class(cnd[[1]], "arkhe_error_class")
   expect_true(grepl("must be of length 15; not 26", cnd[[1]]$message))
 })
+test_that("Matrix samples", {
+  cts <- CountMatrix(sample(1:100, 75, TRUE), ncol = 5)
+
+  expect_equal(get_samples(cts), paste0("row", 1:15))
+
+  set_samples(cts) <- rep(c("A", "B", "C"), each = 5)
+  expect_equal(get_samples(cts), rep(c("A", "B", "C"), each = 5))
+
+  set_samples(cts) <- NULL
+  expect_equal(get_samples(cts), paste0("row", 1:15))
+
+  # Invalid values
+  # Try wrong length
+  cnd <- catch_conditions(set_samples(cts) <- LETTERS)
+  expect_s3_class(cnd[[1]], "arkhe_error_class")
+  expect_true(grepl("must be of length 15; not 26", cnd[[1]]$message))
+})
 test_that("CompositionMatrix totals", {
   cts <- matrix(sample(1:100, 100, TRUE), ncol = 10)
   freq <- as_composition(cts)

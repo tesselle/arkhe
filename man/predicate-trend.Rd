@@ -5,7 +5,6 @@
 \alias{is_constant}
 \alias{is_increasing}
 \alias{is_decreasing}
-\alias{is_overlapping}
 \title{Numeric Trend Predicates}
 \usage{
 is_constant(x, tolerance = .Machine$double.eps^0.5, na.rm = TRUE)
@@ -13,11 +12,9 @@ is_constant(x, tolerance = .Machine$double.eps^0.5, na.rm = TRUE)
 is_increasing(x, na.rm = TRUE)
 
 is_decreasing(x, na.rm = TRUE)
-
-is_overlapping(x, y)
 }
 \arguments{
-\item{x, y}{A \code{\link{numeric}} object to be tested.}
+\item{x}{A \code{\link{numeric}} object to be tested.}
 
 \item{tolerance}{A \code{\link{numeric}} scalar giving the tolerance to check within.}
 
@@ -46,4 +43,3 @@ Other predicates:
 \code{\link{predicate-utils}}
 }
 \concept{predicates}
-\keyword{internal}

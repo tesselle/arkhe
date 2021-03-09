@@ -92,10 +92,10 @@ type conversions:
 
 ``` r
 ## Create a count matrix
-A0 <- matrix(data = sample(0:10, 75, TRUE), nrow = 15, ncol = 5)
+X <- matrix(data = sample(0:10, 75, TRUE), nrow = 15, ncol = 5)
 
 ## Coerce to absolute frequencies
-A1 <- as_count(A0)
+A1 <- as_count(X)
 
 ## Coerce to relative frequencies
 B <- as_composition(A1)
@@ -108,18 +108,37 @@ all(A1 == A2)
 #> [1] TRUE
 
 ## Coerce to presence/absence
-C <- as_incidence(A1)
+D <- as_incidence(A1)
 
 ## Coerce to a co-occurrence matrix
-D <- as_occurrence(A1)
+E <- as_occurrence(A1)
 ```
 
-Observations in `*Matrix` classes can be grouped, this can be useful for
-replicated measurements/observations or to group data by site/area.
+The `CountMatrix`, `*CompositionMatrix` and `IncidenceMatrix` classes
+have two special slots:
+
+-   `samples` for replicated measurements/observation,
+-   `groups` to group data by site/area.
+
+When coercing a `data.frame` to a `*Matrix` object, an attempt is made
+to automatically assign the corresponding values. This behavior can be
+disabled by setting `options(arkhe.autodetect = FALSE)`.
 
 ``` r
-## Set groups
-set_groups(A1) <- rep(c("A", "B", "C"), each = 5)
+Y <- as.data.frame(X)
+Y$samples <- rep(c("a", "b", "c", "d", "e"), each = 3)
+Y$groups <- rep(c("A", "B", "C"), each = 5)
+
+## Coerce to a count matrix
+Z <- as_count(Y)
+
+## Get groups
+get_samples(Z)
+#>  [1] "a" "a" "a" "b" "b" "b" "c" "c" "c" "d" "d" "d" "e" "e" "e"
+
+## Get groups
+get_groups(Z)
+#>  [1] "A" "A" "A" "A" "A" "B" "B" "B" "B" "B" "C" "C" "C" "C" "C"
 ```
 
 ## Contributing

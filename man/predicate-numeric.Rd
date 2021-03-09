@@ -2,28 +2,39 @@
 % Please edit documentation in R/predicates.R
 \name{predicate-numeric}
 \alias{predicate-numeric}
+\alias{is_missing}
+\alias{is_zero}
 \alias{is_odd}
 \alias{is_even}
 \alias{is_positive}
+\alias{is_negative}
 \alias{is_whole}
-\alias{is_binary}
 \title{Numeric Predicates}
 \usage{
+is_missing(x, finite = FALSE)
+
+is_zero(x, na.rm = FALSE)
+
 is_odd(x, na.rm = FALSE)
 
 is_even(x, na.rm = FALSE)
 
 is_positive(x, strict = FALSE, na.rm = FALSE)
 
-is_whole(x, na.rm = FALSE, tolerance = .Machine$double.eps^0.5)
+is_negative(x, strict = FALSE, na.rm = FALSE)
 
-is_binary(x, na.rm = FALSE)
+is_whole(x, na.rm = FALSE, tolerance = .Machine$double.eps^0.5)
 }
 \arguments{
 \item{x}{A \code{\link{numeric}} object to be tested.}
 
-\item{strict}{A \code{\link{logical}} scalar: should missing values (including \code{NaN})
+\item{finite}{A \code{\link{logical}} scalar: should non-\code{\link{finite}} values also be
+removed?}
+
+\item{na.rm}{A \code{\link{logical}} scalar: should missing values (including \code{NaN})
 be omitted?}
+
+\item{strict}{A \code{\link{logical}} scalar: should strict inequality be used?}
 
 \item{tolerance}{A \code{\link{numeric}} scalar giving the tolerance to check within.}
 }
@@ -33,10 +44,10 @@ A \code{\link{logical}} vector.
 \description{
 Check numeric objects:
 \itemize{
+\item \code{is_zero()} checks if an object contains only zeros.
 \item \code{is_odd()} and \code{is_even()} check if a number is odd or even, respectively.
-\item \code{is_positive()} checks if an object contains only (strictly) positive
-numbers.
-\item \code{is_binary()} checks if an object contains only \eqn{0}s and \eqn{1}s.
+\item \code{is_positive()} and \code{is_negative} check if an object contains only
+(strictly) positive or negative numbers.
 \item \code{is_whole()} checks if an object only contains whole numbers.
 }
 }
@@ -50,4 +61,3 @@ Other predicates:
 \code{\link{predicate-utils}}
 }
 \concept{predicates}
-\keyword{internal}
