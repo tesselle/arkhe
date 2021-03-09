@@ -3,6 +3,7 @@
 ## New classes and methods
 * Add `replace_NA()` to replace missing values.
 * Add `remove_NA()`, `remove_zero()` and `remove_empty()` to remove missing values, zeros and empty rows/columns in a `matrix`.
+* Add `get_samples()`, `set_samples()`, `get_groups()` and `set_groups()` to extract/replace `samples` and `groups` slots.
 
 ## Bugfixes & changes
 * Change `OccurrenceMatrix` inheritance (from `NumericMatrix` to `IntegerMatrix`).

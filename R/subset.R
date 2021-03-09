@@ -36,8 +36,8 @@ setMethod(
   f = "[",
   signature = c(x = "CompositionMatrix"),
   function(x, i, j, ..., drop = TRUE) {
-    totals <- x@totals
-    x@totals <- numeric(0)
+    totals <- x@total
+    x@total <- numeric(0)
 
     z <- methods::callNextMethod()
 
@@ -46,7 +46,7 @@ setMethod(
     }
 
     if (!missing(i) & length(totals) > 0) {
-      methods::initialize(x, z, totals = totals[i])
+      methods::initialize(x, z, total = totals[i])
     } else{
       methods::initialize(x, z)
     }

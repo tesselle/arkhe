@@ -114,7 +114,7 @@ D <- as_incidence(A1)
 E <- as_occurrence(A1)
 ```
 
-The `CountMatrix`, `*CompositionMatrix` and `IncidenceMatrix` classes
+The `CountMatrix`, `CompositionMatrix` and `IncidenceMatrix` classes
 have two special slots:
 
 -   `samples` for replicated measurements/observation,

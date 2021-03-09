@@ -21,7 +21,7 @@ setMethod("get_samples", "AbundanceMatrix", function(x) x@samples)
 #' @export
 #' @rdname mutator
 #' @aliases get_totals,CompositionMatrix-method
-setMethod("get_totals", "CompositionMatrix", function(x) x@totals)
+setMethod("get_totals", "CompositionMatrix", function(x) x@total)
 
 #' @export
 #' @rdname mutator
@@ -62,7 +62,7 @@ setMethod(
   f = "set_totals<-",
   signature = "CompositionMatrix",
   definition = function(x, value) {
-    x@totals <- value
+    x@total <- value
     methods::validObject(x)
     x
   }

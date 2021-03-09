@@ -34,7 +34,7 @@ times a given datum occurs in a dataset).
 \section{Slots}{
 
 \describe{
-\item{\code{totals}}{A \code{\link{numeric}} vector giving the absolute row sums.}
+\item{\code{total}}{A \code{\link{numeric}} vector giving the absolute row sums.}
 }}
 
 \examples{

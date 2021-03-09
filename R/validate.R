@@ -82,14 +82,14 @@ setValidity(
   Class = "CompositionMatrix",
   method = function(object) {
     # Get data
-    totals <- object@totals
+    total <- object@total
 
     cnd <- list(
       catch_conditions(
         check_numbers(object, "positive", strict = FALSE, na.rm = TRUE)
       ),
-      catch_conditions(check_numbers(totals, "positive", strict = FALSE)),
-      catch_conditions(check_length(totals, nrow(object), strict = FALSE))
+      catch_conditions(check_numbers(total, "positive", strict = FALSE)),
+      catch_conditions(check_length(total, nrow(object), strict = FALSE))
     )
 
     # Return cnd, if any
@@ -111,6 +111,8 @@ setValidity(
     } else {
       cnd <- list()
     }
-    check_class(object, cnd) # Return cnd, if any
+
+    # Return cnd, if any
+    check_class(object, cnd)
   }
 )

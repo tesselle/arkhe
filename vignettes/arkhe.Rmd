@@ -101,8 +101,6 @@ We denote the $m \times p$ incidence matrix by $C = \left[ c_{ij} \right] ~\fora
 
 # Usage
 
-Many familiar methods and group generic functions are available for all `*Matrix` classes (such as `length`, `dim`, `rowSums`, `rowMeans`, `sum`, `any`, `all`...). In addition, all functions that call `as.matrix` first on their main argument should work (e. g. `apply`).
-
 ```{r packages}
 # Load packages
 library(arkhe)
@@ -124,8 +122,6 @@ CountMatrix(data = sample(0:10, 100, TRUE),
 IncidenceMatrix(data = sample(0:1, 100, TRUE),
                 nrow = 10, ncol = 10)
 ```
-
-Note that an `CompositionMatrix` can only be created by coercion (see below).
 
 ## Coerce
 **arkhe** uses coercing mechanisms (with validation methods) for data type conversions:

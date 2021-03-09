@@ -93,7 +93,7 @@ setAs(
   from = "CompositionMatrix",
   to = "CountMatrix",
   def = function(from) {
-    totals <- from@totals
+    totals <- from@total
     counts <- as_integer(from * totals)
     dim(counts) <- dim(from)
     dimnames(counts) <- dimnames(from)
@@ -131,7 +131,7 @@ setAs(
     to <- to / totals
     dim(to) <- dim(from)
     dimnames(to) <- make_dimnames(from)
-    .CompositionMatrix(to, samples = rownames(to), totals = totals)
+    .CompositionMatrix(to, samples = rownames(to), total = totals)
   }
 )
 setAs(
@@ -162,7 +162,7 @@ setAs(
         if (sum(grp_i) == 1) grp <- extra[, grp_i, drop = TRUE]
       }
     }
-    .CompositionMatrix(to, samples = spl, groups = grp, totals = totals)
+    .CompositionMatrix(to, samples = spl, groups = grp, total = totals)
   }
 )
 setAs(
@@ -174,7 +174,7 @@ setAs(
     dim(to) <- dim(from)
     dimnames(to) <- make_dimnames(from)
     .CompositionMatrix(to, samples = from@samples, groups = from@groups,
-                       totals = totals)
+                       total = totals)
   }
 )
 
@@ -350,7 +350,7 @@ setMethod(
     x$samples <- if (factor) as_factor(samples, reverse = reverse) else samples
 
     groups <- from@groups %||% NA_character_
-    x$group <- if (factor) as_factor(groups, reverse = reverse) else groups
+    x$groups <- if (factor) as_factor(groups, reverse = reverse) else groups
 
     x
   }

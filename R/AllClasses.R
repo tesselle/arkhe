@@ -131,7 +131,7 @@ CountMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
 #'
 #' An S4 class to represent a relative frequency matrix (i.e. the fraction of
 #' times a given datum occurs in a dataset).
-#' @slot totals A [`numeric`] vector giving the absolute row sums.
+#' @slot total A [`numeric`] vector giving the absolute row sums.
 #' @inheritParams base::matrix
 #' @seealso [as_composition()]
 #' @example inst/examples/ex-matrix.R
@@ -144,7 +144,7 @@ CountMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
 .CompositionMatrix <- setClass(
   Class = "CompositionMatrix",
   slots = c(
-    totals = "numeric"
+    total = "numeric"
   ),
   contains = c("NumericMatrix", "AbundanceMatrix")
 )
@@ -167,7 +167,7 @@ CompositionMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
   mtx <- mtx / totals
   # mtx[is.nan(mtx)] <- 0 # Prevent division by zero
 
-  .CompositionMatrix(mtx, samples = spl, totals = totals)
+  .CompositionMatrix(mtx, samples = spl, total = totals)
 }
 
 # LogicalMatrix ================================================================
