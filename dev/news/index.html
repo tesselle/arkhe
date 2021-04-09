@@ -47,7 +47,7 @@
 
 
 <meta property="og:title" content="Changelog" />
-<meta property="og:image" content="http://arkhe.tesselle.org/logo.png" />
+<meta property="og:image" content="https://arkhe.tesselle.org/logo.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content="@nfrerebeau" />
 <meta name="twitter:site" content="@nfrerebeau" />
@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">arkhe</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.2.2.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.3.0.9000</span>
       </span>
     </div>
 
@@ -128,68 +128,78 @@
       <small>Source: <a href='https://github.com/tesselle/arkhe/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="arkhe-030" class="section level2">
+    <div id="arkhe-0309000" class="section level1">
+<h1 class="page-header" data-toc-text="0.3.0.9000">
+<a href="#arkhe-0309000" class="anchor"></a>arkhe 0.3.0.9000<small> Unreleased </small>
+</h1>
+</div>
+    <div id="arkhe-030" class="section level1">
+<h1 class="page-header" data-toc-text="0.3.0">
+<a href="#arkhe-030" class="anchor"></a>arkhe 0.3.0<small> Unreleased </small>
+</h1>
+<p><a href="https://doi.org/10.5281/zenodo.4675724"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.4675724.svg" alt="DOI"></a></p>
+<div id="new-classes-and-methods" class="section level2">
 <h2 class="hasAnchor">
-<a href="#arkhe-030" class="anchor"></a>arkhe 0.3.0</h2>
-<div id="new-classes-and-methods" class="section level3">
-<h3 class="hasAnchor">
-<a href="#new-classes-and-methods" class="anchor"></a>New classes and methods</h3>
+<a href="#new-classes-and-methods" class="anchor"></a>New classes and methods</h2>
 <ul>
+<li>Add <code><a href="../reference/replace.html">replace_NA()</a></code> to replace missing values.</li>
+<li>Add <code><a href="../reference/remove.html">remove_NA()</a></code>, <code><a href="../reference/remove.html">remove_zero()</a></code> and <code><a href="../reference/remove.html">remove_empty()</a></code> to remove missing values, zeros and empty rows/columns in a <code>matrix</code>.</li>
+<li>Add <code><a href="../reference/mutator.html">get_samples()</a></code>, <code>set_samples()</code>, <code><a href="../reference/mutator.html">get_groups()</a></code> and <code>set_groups()</code> to extract/replace <code>samples</code> and <code>groups</code> slots.</li>
+</ul>
+</div>
+<div id="bugfixes--changes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bugfixes--changes" class="anchor"></a>Bugfixes &amp; changes</h2>
+<ul>
+<li>Change <code>OccurrenceMatrix</code> inheritance (from <code>NumericMatrix</code> to <code>IntegerMatrix</code>).</li>
+<li>Rename <code>AbundanceMatrix</code> (ambiguous) to <code>CompositionMatrix</code>.</li>
+<li>Deprecate <code><a href="../reference/coerce.html">as_abundance()</a></code>.</li>
+<li>Remove <code>SimilarityMatrix</code> class.</li>
 <li>
-<code>ca</code> and <code>predic</code> allow to perform a correspondence analysis and predict projection for new points.</li>
-</ul>
-</div>
-<div id="bugfixes--changes" class="section level3">
-<h3 class="hasAnchor">
-<a href="#bugfixes--changes" class="anchor"></a>Bugfixes &amp; changes</h3>
-<ul>
-<li>Change <code>OccurrenceMatrix</code> inheritance (from <code>NumericMatrix</code> to <code>IntegerMatrix</code>)</li>
-</ul>
-</div>
-<div id="internal" class="section level3">
-<h3 class="hasAnchor">
-<a href="#internal" class="anchor"></a>Internal</h3>
-<ul>
-<li>Remove <code>id</code> slot in <code>GenericMatrix</code>.</li>
+<code><a href="../reference/coerce.html">as_long()</a></code> gained a new <code>reverse</code> argument.</li>
 </ul>
 </div>
 </div>
-    <div id="arkhe-022-cran-release-date-2020-03-23" class="section level2">
-<h2 class="hasAnchor">
-<a href="#arkhe-022-cran-release-date-2020-03-23" class="anchor"></a>arkhe 0.2.2 (CRAN release date: 2020-03-23)</h2>
+    <div id="arkhe-022" class="section level1">
+<h1 class="page-header" data-toc-text="0.2.2">
+<a href="#arkhe-022" class="anchor"></a>arkhe 0.2.2<small> 2020-03-23 </small>
+</h1>
 <p><a href="https://doi.org/10.5281/zenodo.3724463"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3724463.svg" alt="DOI"></a></p>
-<div id="bugfixes--changes-1" class="section level3">
-<h3 class="hasAnchor">
-<a href="#bugfixes--changes-1" class="anchor"></a>Bugfixes &amp; changes</h3>
+<div id="bugfixes--changes-1" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bugfixes--changes-1" class="anchor"></a>Bugfixes &amp; changes</h2>
 <ul>
 <li>CRAN package check error has been fixed (random error with <strong>testthat</strong>).</li>
 <li>CRAN package check warnings have been fixed (remove <strong>nomnoml</strong> from suggested packages).</li>
 </ul>
 </div>
 </div>
-    <div id="arkhe-021-cran-release-date-2020-02-15" class="section level2">
-<h2 class="hasAnchor">
-<a href="#arkhe-021-cran-release-date-2020-02-15" class="anchor"></a>arkhe 0.2.1 (CRAN release date: 2020-02-15)</h2>
+    <div id="arkhe-021" class="section level1">
+<h1 class="page-header" data-toc-text="0.2.1">
+<a href="#arkhe-021" class="anchor"></a>arkhe 0.2.1<small> 2020-02-15 </small>
+</h1>
 <p><a href="https://doi.org/10.5281/zenodo.3668868"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3668868.svg" alt="DOI"></a></p>
-<div id="bugfixes--changes-2" class="section level3">
-<h3 class="hasAnchor">
-<a href="#bugfixes--changes-2" class="anchor"></a>Bugfixes &amp; changes</h3>
+<div id="bugfixes--changes-2" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bugfixes--changes-2" class="anchor"></a>Bugfixes &amp; changes</h2>
 <ul>
 <li>CRAN package check warnings have been fixed (documented arguments not in \usage’ in the r-devel checks).</li>
 </ul>
 </div>
 </div>
-    <div id="arkhe-020-cran-release-date-2019-12-18" class="section level2">
-<h2 class="hasAnchor">
-<a href="#arkhe-020-cran-release-date-2019-12-18" class="anchor"></a>arkhe 0.2.0 (CRAN release date: 2019-12-18)</h2>
+    <div id="arkhe-020" class="section level1">
+<h1 class="page-header" data-toc-text="0.2.0">
+<a href="#arkhe-020" class="anchor"></a>arkhe 0.2.0<small> 2019-12-18 </small>
+</h1>
 <p><a href="https://doi.org/10.5281/zenodo.3583089"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3583089.svg" alt="DOI"></a></p>
 <ul>
 <li>Initial version on CRAN.</li>
 </ul>
 </div>
-    <div id="arkhe-010-release-date-2019-11-03" class="section level2">
-<h2 class="hasAnchor">
-<a href="#arkhe-010-release-date-2019-11-03" class="anchor"></a>arkhe 0.1.0 (release date: 2019-11-03)</h2>
+    <div id="arkhe-010" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.0">
+<a href="#arkhe-010" class="anchor"></a>arkhe 0.1.0<small> Unreleased </small>
+</h1>
 <p><a href="https://doi.org/10.5281/zenodo.3526660"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3526660.svg" alt="DOI"></a></p>
 <ul>
 <li>Beta release.</li>

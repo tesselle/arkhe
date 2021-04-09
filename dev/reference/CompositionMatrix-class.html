@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get or Set Parts of an Object — mutator • arkhe</title>
+<title>Relative Frequency Matrix — CompositionMatrix-class • arkhe</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,9 @@
 
 
 
-<meta property="og:title" content="Get or Set Parts of an Object — mutator" />
-<meta property="og:description" content="Getters and setters to retrieve or set parts of an object." />
+<meta property="og:title" content="Relative Frequency Matrix — CompositionMatrix-class" />
+<meta property="og:description" content="An S4 class to represent a relative frequency matrix (i.e. the fraction of
+times a given datum occurs in a dataset)." />
 <meta property="og:image" content="https://arkhe.tesselle.org/logo.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content="@nfrerebeau" />
@@ -125,74 +126,68 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get or Set Parts of an Object</h1>
-    <small class="dont-index">Source: <a href='https://github.com/tesselle/arkhe/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/tesselle/arkhe/blob/master/R/mutators.R'><code>R/mutators.R</code></a></small>
-    <div class="hidden name"><code>mutator.Rd</code></div>
+    <h1>Relative Frequency Matrix</h1>
+    <small class="dont-index">Source: <a href='https://github.com/tesselle/arkhe/blob/master/R/AllClasses.R'><code>R/AllClasses.R</code></a></small>
+    <div class="hidden name"><code>CompositionMatrix-class.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Getters and setters to retrieve or set parts of an object.</p>
+    <p>An S4 class to represent a relative frequency matrix (i.e. the fraction of
+times a given datum occurs in a dataset).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>has_groups</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
-
-<span class='fu'>get_groups</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
-
-<span class='fu'>set_groups</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>value</span>
-
-<span class='fu'>get_samples</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
-
-<span class='fu'>set_samples</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>value</span>
-
-<span class='fu'>get_totals</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
-
-<span class='fu'>set_totals</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>value</span>
-
-<span class='co'># S4 method for AbundanceMatrix</span>
-<span class='fu'>has_groups</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
-
-<span class='co'># S4 method for AbundanceMatrix</span>
-<span class='fu'>get_groups</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
-
-<span class='co'># S4 method for AbundanceMatrix</span>
-<span class='fu'>get_samples</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
-
-<span class='co'># S4 method for CompositionMatrix</span>
-<span class='fu'>get_totals</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
-
-<span class='co'># S4 method for OccurrenceMatrix</span>
-<span class='fu'>get_totals</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
-
-<span class='co'># S4 method for AbundanceMatrix</span>
-<span class='fu'>set_groups</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>value</span>
-
-<span class='co'># S4 method for AbundanceMatrix</span>
-<span class='fu'>set_samples</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>value</span>
-
-<span class='co'># S4 method for CompositionMatrix</span>
-<span class='fu'>set_totals</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>value</span></pre>
+    <pre class="usage"><span class='fu'>CompositionMatrix</span><span class='op'>(</span>data <span class='op'>=</span> <span class='fl'>0</span>, nrow <span class='op'>=</span> <span class='fl'>1</span>, ncol <span class='op'>=</span> <span class='fl'>1</span>, byrow <span class='op'>=</span> <span class='cn'>FALSE</span>, dimnames <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>An object from which to get or set element(s) (typically a
-<code>*Matrix</code> object).</p></td>
+      <th>data</th>
+      <td><p>an optional data vector (including a list or
+    <code><a href='https://rdrr.io/r/base/expression.html'>expression</a></code> vector).  Non-atomic classed <span style="R">R</span> objects are
+    coerced by <code><a href='https://rdrr.io/r/base/vector.html'>as.vector</a></code> and all attributes discarded.</p></td>
     </tr>
     <tr>
-      <th>value</th>
-      <td><p>A possible value for the element(s) of <code>x</code>.</p></td>
+      <th>nrow</th>
+      <td><p>the desired number of rows.</p></td>
+    </tr>
+    <tr>
+      <th>ncol</th>
+      <td><p>the desired number of columns.</p></td>
+    </tr>
+    <tr>
+      <th>byrow</th>
+      <td><p>logical. If <code>FALSE</code> (the default) the matrix is
+    filled by columns, otherwise the matrix is filled by rows.</p></td>
+    </tr>
+    <tr>
+      <th>dimnames</th>
+      <td><p>A <code><a href='https://rdrr.io/r/base/dimnames.html'>dimnames</a></code> attribute for the matrix:
+    <code>NULL</code> or a <code>list</code> of length 2 giving the row and column
+    names respectively.  An empty list is treated as <code>NULL</code>, and a
+    list of length one as row names.  The list can be named, and the
+    list names will be used as names for the dimensions.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="slots"><a class="anchor" href="#slots"></a>Slots</h2>
 
-    <p>An object of the same sort as <code>x</code> with the new values assigned.</p>
+    
+
+<dl>
+<dt><code>total</code></dt><dd><p>A <code><a href='https://rdrr.io/r/base/numeric.html'>numeric</a></code> vector giving the absolute row sums.</p></dd>
+
+</dl>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other mutator: 
-<code><a href='subset.html'>subset</a>()</code></p></div>
+    <div class='dont-index'><p><code><a href='coerce.html'>as_composition()</a></code></p>
+<p>Other matrix: 
+<code><a href='CountMatrix-class.html'>CountMatrix-class</a></code>,
+<code><a href='DataMatrix.html'>DataMatrix</a></code>,
+<code><a href='IncidenceMatrix-class.html'>IncidenceMatrix-class</a></code>,
+<code><a href='OccurrenceMatrix-class.html'>OccurrenceMatrix-class</a></code>,
+<code><a href='StratigraphicMatrix-class.html'>StratigraphicMatrix-class</a></code>,
+<code><a href='coerce.html'>coerce</a>()</code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>N. Frerebeau</p>
@@ -267,55 +262,55 @@
 </div><div class='output co'>#&gt; [1] "u" "v" "w" "x" "y"</div><div class='input'>
 <span class='co'>## Subset</span>
 <span class='va'>B</span><span class='op'>[[</span><span class='fl'>1</span>, <span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span> <span class='co'># Get the first value</span>
-</div><div class='output co'>#&gt; [1] 10</div><div class='input'><span class='va'>B</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span> <span class='co'># Get the first value</span>
-</div><div class='output co'>#&gt; [1] 10</div><div class='input'><span class='va'>B</span><span class='op'>[</span>, <span class='op'>]</span> <span class='co'># Get all values</span>
+</div><div class='output co'>#&gt; [1] 1</div><div class='input'><span class='va'>B</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span> <span class='co'># Get the first value</span>
+</div><div class='output co'>#&gt; [1] 1</div><div class='input'><span class='va'>B</span><span class='op'>[</span>, <span class='op'>]</span> <span class='co'># Get all values</span>
 </div><div class='output co'>#&gt; &lt;CountMatrix: 20 x 5&gt;
-#&gt;    u  v  w  x  y
-#&gt; A 10  9 10  3  9
-#&gt; B 10  8  1 10  9
-#&gt; C  8  2  3  0  6
-#&gt; D  8  6  8  3  5
-#&gt; E  7  6 10  8  7
-#&gt; F 10  4  8  8  9
-#&gt; G  3  5  3  2  6
-#&gt; H  7  7  3  3  2
-#&gt; I  1  6  7  8  3
-#&gt; J  6  5  2  5  6
-#&gt; K  4  9  4  5  7
-#&gt; L  3  7  6  8 10
-#&gt; M  6  1  4  8  4
-#&gt; N  3  1  9  3  8
-#&gt; O  6  4  5  7  1
-#&gt; P  0  4  6  5 10
-#&gt; Q  0  9 10 10  1
-#&gt; R  7  2  9  7  4
-#&gt; S 10  4  9  2  4
-#&gt; T  2 10  2  6  7</div><div class='input'><span class='va'>B</span><span class='op'>[</span><span class='fl'>1</span>, , drop <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>]</span> <span class='co'># Get the first row</span>
+#&gt;    u  v  w x y
+#&gt; A  1  6  1 3 8
+#&gt; B  5  6  2 1 0
+#&gt; C  6  7  2 5 6
+#&gt; D  9  1  0 4 3
+#&gt; E  5  7  9 9 7
+#&gt; F  4  8  6 9 9
+#&gt; G  6  2  4 2 7
+#&gt; H  2  8  3 3 6
+#&gt; I  0 10  0 5 8
+#&gt; J  4  5  2 1 8
+#&gt; K  0  8  6 8 9
+#&gt; L  5  4  0 4 8
+#&gt; M  0  2  5 2 2
+#&gt; N  0  1 10 1 8
+#&gt; O  1  6  6 4 2
+#&gt; P  4  3 10 9 0
+#&gt; Q  6 10  9 3 6
+#&gt; R 10  3  7 2 4
+#&gt; S  0  1  5 7 8
+#&gt; T  3  8  0 3 3</div><div class='input'><span class='va'>B</span><span class='op'>[</span><span class='fl'>1</span>, , drop <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>]</span> <span class='co'># Get the first row</span>
 </div><div class='output co'>#&gt; &lt;CountMatrix: 1 x 5&gt;
-#&gt;    u v  w x y
-#&gt; A 10 9 10 3 9</div><div class='input'><span class='va'>B</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span> <span class='co'># Get the first three column</span>
+#&gt;   u v w x y
+#&gt; A 1 6 1 3 8</div><div class='input'><span class='va'>B</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span> <span class='co'># Get the first three column</span>
 </div><div class='output co'>#&gt; &lt;CountMatrix: 20 x 3&gt;
 #&gt;    u  v  w
-#&gt; A 10  9 10
-#&gt; B 10  8  1
-#&gt; C  8  2  3
-#&gt; D  8  6  8
-#&gt; E  7  6 10
-#&gt; F 10  4  8
-#&gt; G  3  5  3
-#&gt; H  7  7  3
-#&gt; I  1  6  7
-#&gt; J  6  5  2
-#&gt; K  4  9  4
-#&gt; L  3  7  6
-#&gt; M  6  1  4
-#&gt; N  3  1  9
-#&gt; O  6  4  5
-#&gt; P  0  4  6
-#&gt; Q  0  9 10
-#&gt; R  7  2  9
-#&gt; S 10  4  9
-#&gt; T  2 10  2</div></pre>
+#&gt; A  1  6  1
+#&gt; B  5  6  2
+#&gt; C  6  7  2
+#&gt; D  9  1  0
+#&gt; E  5  7  9
+#&gt; F  4  8  6
+#&gt; G  6  2  4
+#&gt; H  2  8  3
+#&gt; I  0 10  0
+#&gt; J  4  5  2
+#&gt; K  0  8  6
+#&gt; L  5  4  0
+#&gt; M  0  2  5
+#&gt; N  0  1 10
+#&gt; O  1  6  6
+#&gt; P  4  3 10
+#&gt; Q  6 10  9
+#&gt; R 10  3  7
+#&gt; S  0  1  5
+#&gt; T  3  8  0</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

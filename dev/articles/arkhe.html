@@ -19,7 +19,7 @@
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Manual">
 <meta property="og:description" content="arkhe">
-<meta property="og:image" content="http://arkhe.tesselle.org/logo.png">
+<meta property="og:image" content="https://arkhe.tesselle.org/logo.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@nfrerebeau">
 <meta name="twitter:site" content="@nfrerebeau">
@@ -42,7 +42,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">arkhe</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.2.2.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.3.0.9000</span>
       </span>
     </div>
 
@@ -87,7 +87,7 @@
       <h1 data-toc-skip>Manual</h1>
                         <h4 class="author">N. Frerebeau</h4>
             
-            <h4 class="date">2021-01-26</h4>
+            <h4 class="date">2021-04-09</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/tesselle/arkhe/blob/master/vignettes/arkhe.Rmd"><code>vignettes/arkhe.Rmd</code></a></small>
       <div class="hidden name"><code>arkhe.Rmd</code></div>
@@ -112,9 +112,7 @@
 <li>Numeric matrix:
 <ul>
 <li>
-<code>AbundanceMatrix</code> represents relative frequency data,</li>
-<li>
-<code>SimilarityMatrix</code> represents a (dis)similarity matrix,</li>
+<code>CompositionMatrix</code> represents relative frequency data,</li>
 </ul>
 </li>
 <li>Logical matrix:
@@ -147,9 +145,9 @@ UML class diagram of the S4 classes structure.
  \forall a_{ij} \in \mathbb{N}
 \end{align}\]</span></p>
 </div>
-<div id="relative-frequency-matrix-abundancematrix" class="section level3">
+<div id="relative-frequency-matrix-compositionmatrix" class="section level3">
 <h3 class="hasAnchor">
-<a href="#relative-frequency-matrix-abundancematrix" class="anchor"></a>Relative frequency matrix (<code>AbundanceMatrix</code>)</h3>
+<a href="#relative-frequency-matrix-compositionmatrix" class="anchor"></a>Relative frequency matrix (<code>CompositionMatrix</code>)</h3>
 <p>A frequency matrix represents relative abundances.</p>
 <p>We denote the <span class="math inline">\(m \times p\)</span> frequency matrix by <span class="math inline">\(B = \left[ b_{ij} \right] ~\forall i \in \left[ 1,m \right], j \in \left[ 1,p \right]\)</span> with row and column sums:</p>
 <p><span class="math display">\[\begin{align}
@@ -193,10 +191,9 @@ UML class diagram of the S4 classes structure.
 <div id="usage" class="section level1">
 <h1 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h1>
-<p>Many familiar methods and group generic functions are available for all <code>*Matrix</code> classes (such as <code>length</code>, <code>dim</code>, <code>rowSums</code>, <code>rowMeans</code>, <code>sum</code>, <code>any</code>, <code>all</code>…). In addition, all functions that call <code>as.matrix</code> first on their main argument should work (e. g. <code>apply</code>).</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Load packages</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://arkhe.tesselle.org">arkhe</a></span><span class="op">)</span></code></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://arkhe.tesselle.org">arkhe</a></span><span class="op">)</span></code></pre></div>
 <div id="create" class="section level2">
 <h2 class="hasAnchor">
 <a href="#create" class="anchor"></a>Create</h2>
@@ -236,7 +233,6 @@ UML class diagram of the S4 classes structure.
 <span class="co">#&gt; row8  FALSE FALSE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE FALSE FALSE</span>
 <span class="co">#&gt; row9  FALSE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE FALSE FALSE</span>
 <span class="co">#&gt; row10  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE</span></code></pre></div>
-<p>Note that an <code>AbundanceMatrix</code> can only be created by coercion (see below).</p>
 </div>
 <div id="coerce" class="section level2">
 <h2 class="hasAnchor">
@@ -250,7 +246,7 @@ UML class diagram of the S4 classes structure.
 <span class="va">A1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/coerce.html">as_count</a></span><span class="op">(</span><span class="va">A0</span><span class="op">)</span>
 
 <span class="co">## Coerce to relative frequencies</span>
-<span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/coerce.html">as_abundance</a></span><span class="op">(</span><span class="va">A1</span><span class="op">)</span>
+<span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/coerce.html">as_composition</a></span><span class="op">(</span><span class="va">A1</span><span class="op">)</span>
 
 <span class="co">## Row sums are internally stored before coercing to a frequency matrix</span>
 <span class="co">## (use get_totals() to get these values)</span>

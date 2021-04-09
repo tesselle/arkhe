@@ -47,8 +47,13 @@
 
 
 <meta property="og:title" content="Matrix Predicates — predicate-matrix" />
-<meta property="og:description" content="is_square checks if a matrix is square." />
-<meta property="og:image" content="http://arkhe.tesselle.org/logo.png" />
+<meta property="og:description" content="
+
+is_square() checks if a matrix is square.
+is_symmetric() checks if a matrix is symmetric.
+
+" />
+<meta property="og:image" content="https://arkhe.tesselle.org/logo.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content="@nfrerebeau" />
 <meta name="twitter:site" content="@nfrerebeau" />
@@ -83,7 +88,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">arkhe</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.2.2.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.3.0.9000</span>
       </span>
     </div>
 
@@ -131,7 +136,12 @@
     </div>
 
     <div class="ref-description">
-    <p><code>is_square</code> checks if a matrix is square.</p>
+    
+<ul>
+<li><p><code>is_square()</code> checks if a matrix is square.</p></li>
+<li><p><code>is_symmetric()</code> checks if a matrix is symmetric.</p></li>
+</ul>
+
     </div>
 
     <pre class="usage"><span class='fu'>is_square</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
@@ -150,9 +160,6 @@
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A <code><a href='https://rdrr.io/r/base/logical.html'>logical</a></code> scalar.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p><code>is_symmetric</code> checks if a matrix is symmetric.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other predicates: 

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Numeric Trend Predicates — predicate-trend • arkhe</title>
+<title>Data Matrix — DataMatrix • arkhe</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,14 +46,8 @@
 
 
 
-<meta property="og:title" content="Numeric Trend Predicates — predicate-trend" />
-<meta property="og:description" content="Check numeric objects:
-is_constant() checks for equality among all elements of a vector.
-is_increasing() and is_decreasing() check if a sequence of numbers
-is monotonically increasing or decreasing, respectively.
-is_overlapping() checks if two data ranges overlap at all.
-
-" />
+<meta property="og:title" content="Data Matrix — DataMatrix" />
+<meta property="og:description" content="S4 classes that represent a \(m \times p\) matrix." />
 <meta property="og:image" content="https://arkhe.tesselle.org/logo.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content="@nfrerebeau" />
@@ -131,57 +125,32 @@ is_overlapping() checks if two data ranges overlap at all.
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Numeric Trend Predicates</h1>
-    <small class="dont-index">Source: <a href='https://github.com/tesselle/arkhe/blob/master/R/predicates.R'><code>R/predicates.R</code></a></small>
-    <div class="hidden name"><code>predicate-trend.Rd</code></div>
+    <h1>Data Matrix</h1>
+    <small class="dont-index">Source: <a href='https://github.com/tesselle/arkhe/blob/master/R/AllClasses.R'><code>R/AllClasses.R</code></a></small>
+    <div class="hidden name"><code>DataMatrix.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Check numeric objects:</p><ul>
-<li><p><code>is_constant()</code> checks for equality among all elements of a vector.</p></li>
-<li><p><code>is_increasing()</code> and <code>is_decreasing()</code> check if a sequence of numbers
-is monotonically increasing or decreasing, respectively.</p></li>
-<li><p><code>is_overlapping()</code> checks if two data ranges overlap at all.</p></li>
-</ul>
-
+    <p>S4 classes that represent a \(m \times p\) matrix.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>is_constant</span><span class='op'>(</span><span class='va'>x</span>, tolerance <span class='op'>=</span> <span class='va'>.Machine</span><span class='op'>$</span><span class='va'>double.eps</span><span class='op'>^</span><span class='fl'>0.5</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
-<span class='fu'>is_increasing</span><span class='op'>(</span><span class='va'>x</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
-<span class='fu'>is_decreasing</span><span class='op'>(</span><span class='va'>x</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>x</th>
-      <td><p>A <code><a href='https://rdrr.io/r/base/numeric.html'>numeric</a></code> object to be tested.</p></td>
-    </tr>
-    <tr>
-      <th>tolerance</th>
-      <td><p>A <code><a href='https://rdrr.io/r/base/numeric.html'>numeric</a></code> scalar giving the tolerance to check within.</p></td>
-    </tr>
-    <tr>
-      <th>na.rm</th>
-      <td><p>A <code><a href='https://rdrr.io/r/base/logical.html'>logical</a></code> scalar: should missing values (including <code>NaN</code>)
-be omitted?</p></td>
-    </tr>
-    </table>
-
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>A <code><a href='https://rdrr.io/r/base/logical.html'>logical</a></code> scalar.</p>
+    <p>These classes inherit from <code><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other predicates: 
-<code><a href='predicate-graph.html'>predicate-graph</a></code>,
-<code><a href='predicate-matrix.html'>predicate-matrix</a></code>,
-<code><a href='predicate-numeric.html'>predicate-numeric</a></code>,
-<code><a href='predicate-scalar.html'>predicate-scalar</a></code>,
-<code><a href='predicate-type.html'>predicate-type</a></code>,
-<code><a href='predicate-utils.html'>predicate-utils</a></code></p></div>
+    <div class='dont-index'><p>Other matrix: 
+<code><a href='CompositionMatrix-class.html'>CompositionMatrix-class</a></code>,
+<code><a href='CountMatrix-class.html'>CountMatrix-class</a></code>,
+<code><a href='IncidenceMatrix-class.html'>IncidenceMatrix-class</a></code>,
+<code><a href='OccurrenceMatrix-class.html'>OccurrenceMatrix-class</a></code>,
+<code><a href='StratigraphicMatrix-class.html'>StratigraphicMatrix-class</a></code>,
+<code><a href='coerce.html'>coerce</a>()</code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>N. Frerebeau</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

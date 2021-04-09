@@ -47,9 +47,9 @@
 
 
 <meta property="og:title" content="UUID — generate_uuid" />
-<meta property="og:description" content="generate_uuid generates a universally unique identifier (UUID Version
+<meta property="og:description" content="generate_uuid() generates a universally unique identifier (UUID Version
 4 and Variant 1)." />
-<meta property="og:image" content="http://arkhe.tesselle.org/logo.png" />
+<meta property="og:image" content="https://arkhe.tesselle.org/logo.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content="@nfrerebeau" />
 <meta name="twitter:site" content="@nfrerebeau" />
@@ -84,7 +84,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">arkhe</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.2.2.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.3.0.9000</span>
       </span>
     </div>
 
@@ -132,7 +132,7 @@
     </div>
 
     <div class="ref-description">
-    <p><code>generate_uuid</code> generates a universally unique identifier (UUID Version
+    <p><code>generate_uuid()</code> generates a universally unique identifier (UUID Version
 4 and Variant 1).</p>
     </div>
 
@@ -158,13 +158,13 @@ If <code>NULL</code> (the default) the seed will be re-initialized.</p></td>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>As it relies on R's internal random number generators and so will suffer
- from the use of <code><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></code> in a session, the seed is
- re-initialized during execution (unless <code>seed</code> is not <code>NULL</code>).
- To prevent any side effects, the random number generator (RNG) state is
- saved and restored when the function exits.</p>
+from the use of <code><a href='https://rdrr.io/r/base/Random.html'>set.seed()</a></code> in a session, the seed is re-initialized during
+execution (unless <code>seed</code> is not <code>NULL</code>). To prevent any side effects, the
+random number generator (RNG) state is saved and restored when the function
+exits.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></p></div>
+    <div class='dont-index'><p><code><a href='https://rdrr.io/r/base/Random.html'>set.seed()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>N. Frerebeau</p>

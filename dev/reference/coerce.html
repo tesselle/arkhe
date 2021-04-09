@@ -48,7 +48,7 @@
 
 <meta property="og:title" content="Coerce — coerce" />
 <meta property="og:description" content="Coerce" />
-<meta property="og:image" content="http://arkhe.tesselle.org/logo.png" />
+<meta property="og:image" content="https://arkhe.tesselle.org/logo.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content="@nfrerebeau" />
 <meta name="twitter:site" content="@nfrerebeau" />
@@ -83,7 +83,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">arkhe</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.2.2.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.3.0.9000</span>
       </span>
     </div>
 
@@ -138,13 +138,13 @@
 
 <span class='fu'>as_count</span><span class='op'>(</span><span class='va'>from</span><span class='op'>)</span>
 
+<span class='fu'>as_composition</span><span class='op'>(</span><span class='va'>from</span><span class='op'>)</span>
+
 <span class='fu'>as_abundance</span><span class='op'>(</span><span class='va'>from</span><span class='op'>)</span>
 
 <span class='fu'>as_incidence</span><span class='op'>(</span><span class='va'>from</span><span class='op'>)</span>
 
 <span class='fu'>as_occurrence</span><span class='op'>(</span><span class='va'>from</span><span class='op'>)</span>
-
-<span class='fu'>as_similarity</span><span class='op'>(</span><span class='va'>from</span><span class='op'>)</span>
 
 <span class='fu'>as_features</span><span class='op'>(</span><span class='va'>from</span><span class='op'>)</span>
 
@@ -154,27 +154,27 @@
 <span class='fu'>as_count</span><span class='op'>(</span><span class='va'>from</span><span class='op'>)</span>
 
 <span class='co'># S4 method for ANY</span>
+<span class='fu'>as_composition</span><span class='op'>(</span><span class='va'>from</span><span class='op'>)</span>
+
+<span class='co'># S4 method for ANY</span>
 <span class='fu'>as_abundance</span><span class='op'>(</span><span class='va'>from</span><span class='op'>)</span>
-
-<span class='co'># S4 method for ANY</span>
-<span class='fu'>as_similarity</span><span class='op'>(</span><span class='va'>from</span><span class='op'>)</span>
-
-<span class='co'># S4 method for ANY</span>
-<span class='fu'>as_occurrence</span><span class='op'>(</span><span class='va'>from</span><span class='op'>)</span>
 
 <span class='co'># S4 method for ANY</span>
 <span class='fu'>as_incidence</span><span class='op'>(</span><span class='va'>from</span><span class='op'>)</span>
 
 <span class='co'># S4 method for ANY</span>
+<span class='fu'>as_occurrence</span><span class='op'>(</span><span class='va'>from</span><span class='op'>)</span>
+
+<span class='co'># S4 method for ANY</span>
 <span class='fu'>as_stratigraphy</span><span class='op'>(</span><span class='va'>from</span><span class='op'>)</span>
 
 <span class='co'># S4 method for matrix</span>
-<span class='fu'>as_long</span><span class='op'>(</span><span class='va'>from</span>, factor <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='fu'>as_long</span><span class='op'>(</span><span class='va'>from</span>, factor <span class='op'>=</span> <span class='cn'>FALSE</span>, reverse <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 
-<span class='co'># S4 method for DataMatrix</span>
-<span class='fu'>as_long</span><span class='op'>(</span><span class='va'>from</span>, factor <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='co'># S4 method for AbundanceMatrix</span>
+<span class='fu'>as_long</span><span class='op'>(</span><span class='va'>from</span>, factor <span class='op'>=</span> <span class='cn'>FALSE</span>, reverse <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 
-<span class='co'># S4 method for DataMatrix</span>
+<span class='co'># S4 method for AbundanceMatrix</span>
 <span class='fu'>as_features</span><span class='op'>(</span><span class='va'>from</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -191,8 +191,13 @@
     <tr>
       <th>factor</th>
       <td><p>A <code><a href='https://rdrr.io/r/base/logical.html'>logical</a></code> scalar: should character string be
-coerced to <code><a href='https://rdrr.io/r/base/factor.html'>factor</a></code>? Default to <code>FALSE</code>, if <code>TRUE</code>
-the original ordering is preserved.</p></td>
+coerced to <code><a href='https://rdrr.io/r/base/factor.html'>factor</a></code>? Default to <code>FALSE</code>, if <code>TRUE</code> the original ordering is
+preserved.</p></td>
+    </tr>
+    <tr>
+      <th>reverse</th>
+      <td><p>A <code><a href='https://rdrr.io/r/base/logical.html'>logical</a></code> scalar: should the order of factor levels be
+reversed? Only used if <code>factor</code> is <code>TRUE</code>. Useful for plotting.</p></td>
     </tr>
     </table>
 
@@ -201,46 +206,41 @@ the original ordering is preserved.</p></td>
     <p>A coerced object.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The following methods coerce an object to a <code>Matrix</code> object:</p>
-<p></p><table class='table'>
+    <p>The following methods coerce an object to a <code>*Matrix</code> object:</p>
+<table class='table'>
 <tr><td><strong>Method</strong></td><td><strong>Target</strong></td><td><strong>Details</strong></td></tr>
-<tr><td><code>as_count</code></td><td><a href='CountMatrix-class.html'>CountMatrix</a></td><td>absolute frequency data</td></tr>
-<tr><td><code>as_abundance</code></td><td><a href='AbundanceMatrix-class.html'>AbundanceMatrix</a></td><td>relative frequency data</td></tr>
-<tr><td><code>as_incidence</code></td><td><a href='IncidenceMatrix-class.html'>IncidenceMatrix</a></td><td>presence/absence data</td></tr>
-<tr><td><code>as_occurrence</code></td><td><a href='OccurrenceMatrix-class.html'>OccurrenceMatrix</a></td><td>co-occurrence</td></tr>
-<tr><td><code>as_similarity</code></td><td><a href='SimilarityMatrix-class.html'>SimilarityMatrix</a></td><td>(dis)similarity</td></tr>
-<tr><td><code>as_stratigraphy</code></td><td><a href='StratigraphicMatrix-class.html'>StratigraphicMatrix</a></td><td>stratigraphic relationships</td></tr>
+<tr><td><code>as_count()</code></td><td><a href='CountMatrix-class.html'>CountMatrix</a></td><td>absolute frequency data</td></tr>
+<tr><td><code>as_composition()</code></td><td><a href='CompositionMatrix-class.html'>CompositionMatrix</a></td><td>relative frequency data</td></tr>
+<tr><td><code>as_incidence()</code></td><td><a href='IncidenceMatrix-class.html'>IncidenceMatrix</a></td><td>presence/absence data</td></tr>
+<tr><td><code>as_occurrence()</code></td><td><a href='OccurrenceMatrix-class.html'>OccurrenceMatrix</a></td><td>co-occurrence</td></tr>
+<tr><td><code>as_stratigraphy()</code></td><td><a href='StratigraphicMatrix-class.html'>StratigraphicMatrix</a></td><td>stratigraphic relationships</td></tr>
 </table>
 
 
-<p>**Note that <code>as_count</code> rounds numeric values to zero decimal places and
- then coerces to integer as by <code><a href='https://rdrr.io/r/base/integer.html'>as.integer</a></code>.**</p>
-<p></p><table class='table'>
+<p><strong>Note that <code>as_count</code> rounds numeric values to zero decimal places and
+then coerces to integer as by <code><a href='https://rdrr.io/r/base/integer.html'>as.integer()</a></code>.</strong></p>
+<p><code>as_stratigraphy()</code> converts a set of stratigraphic relationships (edges)
+to a stratigraphic (adjacency) matrix. <code>from</code> can be a <code><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></code>, <code><a href='https://rdrr.io/r/base/list.html'>list</a></code>,
+or <code><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></code>: the first column/component is assumed to contain the
+bottom units and the second the top units (adjacency).</p>
+<table class='table'>
 <tr><td><strong>Method</strong></td><td><strong>Target</strong></td><td><strong>Details</strong></td></tr>
-<tr><td><code>as.matrix</code></td><td><code><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></code></td><td>S3 matrix</td></tr>
-<tr><td><code>as.data.frame</code></td><td><code><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></code></td><td>S3 data frame</td></tr>
-<tr><td><code>as_long</code></td><td><code><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></code></td><td>long S3 data frame</td></tr>
+<tr><td><code>as_long()</code></td><td><code><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></code></td><td>long S3 data frame</td></tr>
+<tr><td><code>as_features()</code></td><td><code><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></code></td><td>wide S3 data frame</td></tr>
 </table>
 
 
-<p><code>as_stratigraphy</code> converts a set of stratigraphic relationships (edges)
- to a stratigraphic (adjacency) matrix. <code>from</code> can be a
- <code><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></code>, <code><a href='https://rdrr.io/r/base/list.html'>list</a></code>, or <code><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></code>:
- the first column/component is assumed to contain the bottom units and the
- second the top units (adjacency).</p>
-<p><code>as_features</code> converts an <a href='DataMatrix-class.html'>DataMatrix</a> object to a
- collection of features: a <code><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></code> with all informations
- as extra columns (result may differ according to the class of <code>from</code>).</p>
+<p><code>as_features()</code> converts a <code>*Matrix</code> object to a collection of features:
+a <code><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></code> with all informations as extra columns (result may differ
+according to the class of <code>from</code>).</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other matrix: 
-<code><a href='AbundanceMatrix-class.html'>AbundanceMatrix-class</a></code>,
+<code><a href='CompositionMatrix-class.html'>CompositionMatrix-class</a></code>,
 <code><a href='CountMatrix-class.html'>CountMatrix-class</a></code>,
-<code><a href='DataMatrix-class.html'>DataMatrix-class</a></code>,
+<code><a href='DataMatrix.html'>DataMatrix</a></code>,
 <code><a href='IncidenceMatrix-class.html'>IncidenceMatrix-class</a></code>,
-<code><a href='MatrixSummary-class.html'>MatrixSummary-class</a></code>,
 <code><a href='OccurrenceMatrix-class.html'>OccurrenceMatrix-class</a></code>,
-<code><a href='SimilarityMatrix-class.html'>SimilarityMatrix-class</a></code>,
 <code><a href='StratigraphicMatrix-class.html'>StratigraphicMatrix-class</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
@@ -254,7 +254,7 @@ the original ordering is preserved.</p></td>
 <span class='va'>A1</span> <span class='op'>&lt;-</span> <span class='fu'>as_count</span><span class='op'>(</span><span class='va'>A0</span><span class='op'>)</span>
 
 <span class='co'>## Coerce to relative frequencies</span>
-<span class='va'>B</span> <span class='op'>&lt;-</span> <span class='fu'>as_abundance</span><span class='op'>(</span><span class='va'>A1</span><span class='op'>)</span>
+<span class='va'>B</span> <span class='op'>&lt;-</span> <span class='fu'>as_composition</span><span class='op'>(</span><span class='va'>A1</span><span class='op'>)</span>
 
 <span class='co'>## Row sums are internally stored before coercing to relative frequencies</span>
 <span class='co'>## (use get_totals() to retrieve these values)</span>
@@ -275,12 +275,12 @@ the original ordering is preserved.</p></td>
 <span class='va'>Y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='va'>A1</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>Y</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;      col1 col2 col3 col4 col5
-#&gt; row1    0    5    4    5    7
-#&gt; row2    7    0    6    7    3
-#&gt; row3    7    3    0    2    8
-#&gt; row4    1    1    0    4    5
-#&gt; row5    0    4    4    3    1
-#&gt; row6    8    0    6    7    5</div><div class='input'>
+#&gt; row1   10   10    1    9    1
+#&gt; row2    9    0    3    7    5
+#&gt; row3    3    4    9    0   10
+#&gt; row4    7    1    7    1    0
+#&gt; row5    6    8    6    3    2
+#&gt; row6    6    0    3    0    1</div><div class='input'>
 <span class='co'>## Collection of features</span>
 <span class='co'># set_dates(A1) &lt;- matrix(sample(0:10, 20, TRUE), nrow = 10, ncol = 2)</span>
 <span class='co'># set_coordinates(A1) &lt;- matrix(sample(0:10, 30, TRUE), nrow = 10, ncol = 3)</span>

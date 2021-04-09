@@ -1,105 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://arkhe.tesselle.org/index.html</loc>
+    <loc>https://arkhe.tesselle.org/index.html</loc>
   </url>
   <url>
-    <loc>http://arkhe.tesselle.org/reference/AbundanceMatrix-class.html</loc>
+    <loc>https://arkhe.tesselle.org/reference/AbundanceMatrix-class.html</loc>
   </url>
   <url>
-    <loc>http://arkhe.tesselle.org/reference/CountMatrix-class.html</loc>
+    <loc>https://arkhe.tesselle.org/reference/CompositionMatrix-class.html</loc>
   </url>
   <url>
-    <loc>http://arkhe.tesselle.org/reference/DataMatrix-class.html</loc>
+    <loc>https://arkhe.tesselle.org/reference/CountMatrix-class.html</loc>
   </url>
   <url>
-    <loc>http://arkhe.tesselle.org/reference/IncidenceMatrix-class.html</loc>
+    <loc>https://arkhe.tesselle.org/reference/DataMatrix.html</loc>
   </url>
   <url>
-    <loc>http://arkhe.tesselle.org/reference/MatrixSummary-class.html</loc>
+    <loc>https://arkhe.tesselle.org/reference/IncidenceMatrix-class.html</loc>
   </url>
   <url>
-    <loc>http://arkhe.tesselle.org/reference/OccurrenceMatrix-class.html</loc>
+    <loc>https://arkhe.tesselle.org/reference/OccurrenceMatrix-class.html</loc>
   </url>
   <url>
-    <loc>http://arkhe.tesselle.org/reference/SimilarityMatrix-class.html</loc>
+    <loc>https://arkhe.tesselle.org/reference/StratigraphicMatrix-class.html</loc>
   </url>
   <url>
-    <loc>http://arkhe.tesselle.org/reference/StratigraphicMatrix-class.html</loc>
+    <loc>https://arkhe.tesselle.org/reference/arkhe-package.html</loc>
   </url>
   <url>
-    <loc>http://arkhe.tesselle.org/reference/arkhe-package.html</loc>
+    <loc>https://arkhe.tesselle.org/reference/check-attribute.html</loc>
   </url>
   <url>
-    <loc>http://arkhe.tesselle.org/reference/check-attribute.html</loc>
+    <loc>https://arkhe.tesselle.org/reference/check-graph.html</loc>
   </url>
   <url>
-    <loc>http://arkhe.tesselle.org/reference/check-graph.html</loc>
+    <loc>https://arkhe.tesselle.org/reference/check-matrix.html</loc>
   </url>
   <url>
-    <loc>http://arkhe.tesselle.org/reference/check-matrix.html</loc>
+    <loc>https://arkhe.tesselle.org/reference/check-missing.html</loc>
   </url>
   <url>
-    <loc>http://arkhe.tesselle.org/reference/check-missing.html</loc>
+    <loc>https://arkhe.tesselle.org/reference/check-numeric.html</loc>
   </url>
   <url>
-    <loc>http://arkhe.tesselle.org/reference/check-numeric.html</loc>
+    <loc>https://arkhe.tesselle.org/reference/check-type.html</loc>
   </url>
   <url>
-    <loc>http://arkhe.tesselle.org/reference/check-type.html</loc>
+    <loc>https://arkhe.tesselle.org/reference/coerce.html</loc>
   </url>
   <url>
-    <loc>http://arkhe.tesselle.org/reference/clean.html</loc>
+    <loc>https://arkhe.tesselle.org/reference/conditions.html</loc>
   </url>
   <url>
-    <loc>http://arkhe.tesselle.org/reference/coerce.html</loc>
+    <loc>https://arkhe.tesselle.org/reference/generate_uuid.html</loc>
   </url>
   <url>
-    <loc>http://arkhe.tesselle.org/reference/conditions.html</loc>
+    <loc>https://arkhe.tesselle.org/reference/mutator.html</loc>
   </url>
   <url>
-    <loc>http://arkhe.tesselle.org/reference/correlation.html</loc>
+    <loc>https://arkhe.tesselle.org/reference/predicate-graph.html</loc>
   </url>
   <url>
-    <loc>http://arkhe.tesselle.org/reference/generate_uuid.html</loc>
+    <loc>https://arkhe.tesselle.org/reference/predicate-matrix.html</loc>
   </url>
   <url>
-    <loc>http://arkhe.tesselle.org/reference/mutator.html</loc>
+    <loc>https://arkhe.tesselle.org/reference/predicate-numeric.html</loc>
   </url>
   <url>
-    <loc>http://arkhe.tesselle.org/reference/operator.html</loc>
+    <loc>https://arkhe.tesselle.org/reference/predicate-scalar.html</loc>
   </url>
   <url>
-    <loc>http://arkhe.tesselle.org/reference/predicate-graph.html</loc>
+    <loc>https://arkhe.tesselle.org/reference/predicate-trend.html</loc>
   </url>
   <url>
-    <loc>http://arkhe.tesselle.org/reference/predicate-matrix.html</loc>
+    <loc>https://arkhe.tesselle.org/reference/predicate-type.html</loc>
   </url>
   <url>
-    <loc>http://arkhe.tesselle.org/reference/predicate-numeric.html</loc>
+    <loc>https://arkhe.tesselle.org/reference/predicate-utils.html</loc>
   </url>
   <url>
-    <loc>http://arkhe.tesselle.org/reference/predicate-scalar.html</loc>
+    <loc>https://arkhe.tesselle.org/reference/remove.html</loc>
   </url>
   <url>
-    <loc>http://arkhe.tesselle.org/reference/predicate-trend.html</loc>
+    <loc>https://arkhe.tesselle.org/reference/replace.html</loc>
   </url>
   <url>
-    <loc>http://arkhe.tesselle.org/reference/predicate-type.html</loc>
+    <loc>https://arkhe.tesselle.org/reference/subset.html</loc>
   </url>
   <url>
-    <loc>http://arkhe.tesselle.org/reference/predicate-utils.html</loc>
-  </url>
-  <url>
-    <loc>http://arkhe.tesselle.org/reference/statistics.html</loc>
-  </url>
-  <url>
-    <loc>http://arkhe.tesselle.org/reference/subset.html</loc>
-  </url>
-  <url>
-    <loc>http://arkhe.tesselle.org/reference/summary.html</loc>
-  </url>
-  <url>
-    <loc>http://arkhe.tesselle.org/articles/arkhe.html</loc>
+    <loc>https://arkhe.tesselle.org/articles/arkhe.html</loc>
   </url>
 </urlset>

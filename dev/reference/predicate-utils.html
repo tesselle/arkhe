@@ -47,8 +47,16 @@
 
 
 <meta property="og:title" content="Utility Predicates — predicate-utils" />
-<meta property="og:description" content="is_empty checks if a vector or list is empty." />
-<meta property="og:image" content="http://arkhe.tesselle.org/logo.png" />
+<meta property="og:description" content="
+
+is_empty() checks if a vector or list is empty.
+is_missing() checks if a vector or list contains missing values.
+is_named() checks if an object is named.
+is_uuid() checks if a string is a canonically formatted UUID that is
+version 1 through 5 and is the appropriate Variant as per RFC4122.
+
+" />
+<meta property="og:image" content="https://arkhe.tesselle.org/logo.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content="@nfrerebeau" />
 <meta name="twitter:site" content="@nfrerebeau" />
@@ -83,7 +91,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">arkhe</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.2.2.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.3.0.9000</span>
       </span>
     </div>
 
@@ -131,14 +139,20 @@
     </div>
 
     <div class="ref-description">
-    <p><code>is_empty</code> checks if a vector or list is empty.</p>
+    
+<ul>
+<li><p><code>is_empty()</code> checks if a vector or list is empty.</p></li>
+<li><p><code><a href='predicate-numeric.html'>is_missing()</a></code> checks if a vector or list contains missing values.</p></li>
+<li><p><code>is_named()</code> checks if an object is named.</p></li>
+<li><p><code>is_uuid()</code> checks if a string is a canonically formatted UUID that is
+version 1 through 5 and is the appropriate Variant as per RFC4122.</p></li>
+</ul>
+
     </div>
 
     <pre class="usage"><span class='fu'>is_empty</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
 
-<span class='fu'>is_named</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
-
-<span class='fu'>is_uuid</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></pre>
+<span class='fu'>is_named</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -152,11 +166,6 @@
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A <code><a href='https://rdrr.io/r/base/logical.html'>logical</a></code> scalar.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p><code>is_named</code> checks if an object is named.</p>
-<p><code>is_uuid</code> checks if a string is a canonically formatted UUID that is
-Version 1 through 5 and is the appropriate Variant as per RFC4122.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other predicates: 

@@ -27,7 +27,7 @@
     (e.g. summary statistics, predicates). In addition, a few classes of 
     general interest (e.g. that represent stratigraphic relationships) 
     are implemented.">
-<meta property="og:image" content="http://arkhe.tesselle.org/logo.png">
+<meta property="og:image" content="https://arkhe.tesselle.org/logo.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@nfrerebeau">
 <meta name="twitter:site" content="@nfrerebeau">
@@ -50,7 +50,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">arkhe</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.2.2.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.3.0.9000</span>
       </span>
     </div>
 
@@ -98,7 +98,7 @@
 <!-- badges: start -->
 
 <p><a href="https://cran.r-project.org/package=arkhe"><img src="http://www.r-pkg.org/badges/version/arkhe" alt="CRAN Version"></a> <a href="https://cran.r-project.org/web/checks/check_results_arkhe.html"><img src="https://cranchecks.info/badges/worst/arkhe" alt="CRAN checks"></a> <a href="https://cran.r-project.org/package=arkhe"><img src="http://cranlogs.r-pkg.org/badges/arkhe" alt="CRAN Downloads"></a></p>
-<p><a href="https://www.repostatus.org/#active"><img src="https://www.repostatus.org/badges/latest/active.svg" alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed."></a> <a href="https://www.tidyverse.org/lifecycle/#maturing"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="Lifecycle: maturing"></a></p>
+<p><a href="https://www.repostatus.org/#active"><img src="https://www.repostatus.org/badges/latest/active.svg" alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed."></a></p>
 <p><a href="https://doi.org/10.5281/zenodo.3526659"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3526659.svg" alt="DOI"></a> <!-- badges: end --></p>
 <div id="overview" class="section level2">
 <h2 class="hasAnchor">
@@ -121,7 +121,7 @@
 <a href="#usage" class="anchor"></a>Usage</h2>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Load the package</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://arkhe.tesselle.org">arkhe</a></span><span class="op">)</span></code></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://arkhe.tesselle.org">arkhe</a></span><span class="op">)</span></code></pre></div>
 <p><strong>arkhe</strong> provides a set of S4 classes that represent different special types of matrix.</p>
 <ul>
 <li>Integer matrix:
@@ -135,9 +135,7 @@
 <li>Numeric matrix:
 <ul>
 <li>
-<code>AbundanceMatrix</code> represents relative frequency data,</li>
-<li>
-<code>SimilarityMatrix</code> represents a (dis)similarity matrix,</li>
+<code>CompositionMatrix</code> represents relative frequency (compositional) data,</li>
 </ul>
 </li>
 <li>Logical matrix:
@@ -150,7 +148,7 @@
 </li>
 </ul>
 <p><em>It assumes that you keep your data tidy</em>: each variable (type/taxa) must be saved in its own column and each observation (assemblage/sample) must be saved in its own row.</p>
-<p>These new classes are of simple use, on the same way as the base <code>matrix</code>:</p>
+<p>These new classes are of simple use as they inherit from the base <code>matrix</code>:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Define a count data matrix</span>
 <span class="co">## (data will be rounded to zero decimal places, then coerced with as.integer)</span>
@@ -162,13 +160,13 @@
 <p><strong>arkhe</strong> uses coercing mechanisms (with validation methods) for data type conversions:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Create a count matrix</span>
-<span class="va">A0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">75</span>, <span class="cn">TRUE</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">15</span>, ncol <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
+<span class="va">X</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">75</span>, <span class="cn">TRUE</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">15</span>, ncol <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
 
 <span class="co">## Coerce to absolute frequencies</span>
-<span class="va">A1</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/coerce.html">as_count</a></span><span class="op">(</span><span class="va">A0</span><span class="op">)</span>
+<span class="va">A1</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/coerce.html">as_count</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span>
 
 <span class="co">## Coerce to relative frequencies</span>
-<span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/coerce.html">as_abundance</a></span><span class="op">(</span><span class="va">A1</span><span class="op">)</span>
+<span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/coerce.html">as_composition</a></span><span class="op">(</span><span class="va">A1</span><span class="op">)</span>
 
 <span class="co">## Row sums are internally stored before coercing to a frequency matrix</span>
 <span class="co">## (use get_totals() to get these values)</span>
@@ -178,51 +176,33 @@
 <span class="co">#&gt; [1] TRUE</span>
 
 <span class="co">## Coerce to presence/absence</span>
-<span class="va">C</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/coerce.html">as_incidence</a></span><span class="op">(</span><span class="va">A1</span><span class="op">)</span>
+<span class="va">D</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/coerce.html">as_incidence</a></span><span class="op">(</span><span class="va">A1</span><span class="op">)</span>
 
 <span class="co">## Coerce to a co-occurrence matrix</span>
-<span class="va">D</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/coerce.html">as_occurrence</a></span><span class="op">(</span><span class="va">A1</span><span class="op">)</span></code></pre></div>
-<p>Many familiar methods and group generic functions are available for all <code>*Matrix</code> classes (such as <code>length</code>, <code>dim</code>, <code>rowSums</code>, <code>rowMeans</code>, <code>Arith</code>, <code>Compare</code>, <code>Logic</code>…). In addition, all functions that call <code>as.matrix</code> or <code>as.data.frame</code> first on their main argument should work (e. g. <code>apply</code>).</p>
+<span class="va">E</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/coerce.html">as_occurrence</a></span><span class="op">(</span><span class="va">A1</span><span class="op">)</span></code></pre></div>
+<p>The <code>CountMatrix</code>, <code>CompositionMatrix</code> and <code>IncidenceMatrix</code> classes have two special slots:</p>
+<ul>
+<li>
+<code>samples</code> for replicated measurements/observation,</li>
+<li>
+<code>groups</code> to group data by site/area.</li>
+</ul>
+<p>When coercing a <code>data.frame</code> to a <code>*Matrix</code> object, an attempt is made to automatically assign the corresponding values. This behavior can be disabled by setting <code><a href="https://rdrr.io/r/base/options.html">options(arkhe.autodetect = FALSE)</a></code>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/colSums.html">rowSums</a></span><span class="op">(</span><span class="va">A1</span><span class="op">)</span>
-<span class="co">#&gt;  row1  row2  row3  row4  row5  row6  row7  row8  row9 row10 row11 row12 row13 </span>
-<span class="co">#&gt;    21    22    33    21    17    19    28    21    22    23    11    31    29 </span>
-<span class="co">#&gt; row14 row15 </span>
-<span class="co">#&gt;    33    37</span>
-<span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">A1</span>, MARGIN <span class="op">=</span> <span class="fl">1</span>, FUN <span class="op">=</span> <span class="va">sum</span><span class="op">)</span>
-<span class="co">#&gt;  row1  row2  row3  row4  row5  row6  row7  row8  row9 row10 row11 row12 row13 </span>
-<span class="co">#&gt;    21    22    33    21    17    19    28    21    22    23    11    31    29 </span>
-<span class="co">#&gt; row14 row15 </span>
-<span class="co">#&gt;    33    37</span></code></pre></div>
-<p>Observations in <code>*Matrix</code> classes can be grouped, this can be useful for replicated measurements/observations or to group data by site/area.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## Summary by groups</span>
-<span class="fu">set_groups</span><span class="op">(</span><span class="va">A1</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span><span class="op">)</span>, each <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
-<span class="fu"><a href="reference/summary.html">summary</a></span><span class="op">(</span><span class="va">A1</span><span class="op">)</span>
-<span class="co">#&gt; --- A (5 observations) ---------------------------------------------------------</span>
-<span class="co">#&gt;       col1          col2          col3          col4           col5  </span>
-<span class="co">#&gt;  Min.   :1.0   Min.   :0.0   Min.   :0.0   Min.   : 2.0   Min.   :0  </span>
-<span class="co">#&gt;  1st Qu.:5.0   1st Qu.:0.0   1st Qu.:1.0   1st Qu.: 6.0   1st Qu.:1  </span>
-<span class="co">#&gt;  Median :5.0   Median :7.0   Median :3.0   Median : 7.0   Median :1  </span>
-<span class="co">#&gt;  Mean   :5.2   Mean   :4.6   Mean   :4.4   Mean   : 6.6   Mean   :2  </span>
-<span class="co">#&gt;  3rd Qu.:7.0   3rd Qu.:7.0   3rd Qu.:9.0   3rd Qu.: 8.0   3rd Qu.:1  </span>
-<span class="co">#&gt;  Max.   :8.0   Max.   :9.0   Max.   :9.0   Max.   :10.0   Max.   :7  </span>
-<span class="co">#&gt; --- B (5 observations) ---------------------------------------------------------</span>
-<span class="co">#&gt;       col1        col2          col3           col4          col5    </span>
-<span class="co">#&gt;  Min.   :0   Min.   :4.0   Min.   : 2.0   Min.   :1.0   Min.   :0.0  </span>
-<span class="co">#&gt;  1st Qu.:0   1st Qu.:4.0   1st Qu.: 5.0   1st Qu.:2.0   1st Qu.:2.0  </span>
-<span class="co">#&gt;  Median :2   Median :7.0   Median : 8.0   Median :4.0   Median :4.0  </span>
-<span class="co">#&gt;  Mean   :2   Mean   :6.2   Mean   : 6.8   Mean   :4.4   Mean   :3.2  </span>
-<span class="co">#&gt;  3rd Qu.:4   3rd Qu.:8.0   3rd Qu.: 9.0   3rd Qu.:7.0   3rd Qu.:5.0  </span>
-<span class="co">#&gt;  Max.   :4   Max.   :8.0   Max.   :10.0   Max.   :8.0   Max.   :5.0  </span>
-<span class="co">#&gt; --- C (5 observations) ---------------------------------------------------------</span>
-<span class="co">#&gt;       col1         col2           col3          col4         col5    </span>
-<span class="co">#&gt;  Min.   : 3   Min.   : 0.0   Min.   :1.0   Min.   : 1   Min.   :0.0  </span>
-<span class="co">#&gt;  1st Qu.: 4   1st Qu.: 5.0   1st Qu.:3.0   1st Qu.: 6   1st Qu.:3.0  </span>
-<span class="co">#&gt;  Median : 6   Median : 7.0   Median :3.0   Median : 9   Median :6.0  </span>
-<span class="co">#&gt;  Mean   : 6   Mean   : 5.8   Mean   :4.6   Mean   : 7   Mean   :4.8  </span>
-<span class="co">#&gt;  3rd Qu.: 7   3rd Qu.: 7.0   3rd Qu.:7.0   3rd Qu.: 9   3rd Qu.:7.0  </span>
-<span class="co">#&gt;  Max.   :10   Max.   :10.0   Max.   :9.0   Max.   :10   Max.   :8.0</span></code></pre></div>
+<code class="sourceCode R"><span class="va">Y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span>
+<span class="va">Y</span><span class="op">$</span><span class="va">samples</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span><span class="op">)</span>, each <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
+<span class="va">Y</span><span class="op">$</span><span class="va">groups</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span><span class="op">)</span>, each <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
+
+<span class="co">## Coerce to a count matrix</span>
+<span class="va">Z</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/coerce.html">as_count</a></span><span class="op">(</span><span class="va">Y</span><span class="op">)</span>
+
+<span class="co">## Get groups</span>
+<span class="fu"><a href="reference/mutator.html">get_samples</a></span><span class="op">(</span><span class="va">Z</span><span class="op">)</span>
+<span class="co">#&gt;  [1] "a" "a" "a" "b" "b" "b" "c" "c" "c" "d" "d" "d" "e" "e" "e"</span>
+
+<span class="co">## Get groups</span>
+<span class="fu"><a href="reference/mutator.html">get_groups</a></span><span class="op">(</span><span class="va">Z</span><span class="op">)</span>
+<span class="co">#&gt;  [1] "A" "A" "A" "A" "A" "B" "B" "B" "B" "B" "C" "C" "C" "C" "C"</span></code></pre></div>
 </div>
 <div id="contributing" class="section level2">
 <h2 class="hasAnchor">
