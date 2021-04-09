@@ -17,7 +17,7 @@
   ],
   "issueTracker": "https://github.com/tesselle/arkhe/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.3.0",
+  "version": "0.3.0.9000",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -122,7 +122,7 @@
       "name": "stats"
     }
   ],
-  "fileSize": "815.102KB",
+  "fileSize": "815.233KB",
   "contIntegration": "https://codecov.io/gh/tesselle/arkhe",
   "developmentStatus": "https://www.repostatus.org/#active",
   "keywords": [
