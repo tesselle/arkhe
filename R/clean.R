@@ -93,7 +93,8 @@ detect_empty <- function(x, margin = 1, na.rm = TRUE) {
 }
 detect_any <- function(x, f, margin = 1, ...) {
   count <- apply(
-    X = x, MARGIN = margin,
+    X = x,
+    MARGIN = margin,
     FUN = function(x, f, ...) sum(f(x, ...)),
     f = f, ...
   )
