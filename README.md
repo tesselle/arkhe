@@ -5,8 +5,7 @@
 
 <!-- badges: start -->
 
-[![R build
-status](https://github.com/tesselle/arkhe/workflows/R-CMD-check/badge.svg)](https://github.com/tesselle/arkhe/actions)
+[![R-CMD-check](https://github.com/tesselle/arkhe/workflows/R-CMD-check/badge.svg)](https://github.com/tesselle/arkhe/actions)
 [![codecov](https://codecov.io/gh/tesselle/arkhe/branch/master/graph/badge.svg)](https://codecov.io/gh/tesselle/arkhe)
 
 [![CRAN
@@ -144,6 +143,5 @@ get_groups(Z)
 ## Contributing
 
 Please note that the **arkhe** project is released with a [Contributor
-Code of
-Conduct](https://github.com/tesselle/arkhe/blob/master/.github/CODE_OF_CONDUCT.md).
-By contributing to this project, you agree to abide by its terms.
+Code of Conduct](https://www.tesselle.org/conduct.html). By contributing
+to this project, you agree to abide by its terms.
