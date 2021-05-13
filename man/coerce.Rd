@@ -114,7 +114,7 @@ according to the class of \code{from}).
 }
 \examples{
 ## Create a count matrix
-A0 <- matrix(data = sample(0:10, 100, TRUE), nrow = 10, ncol = 5)
+A0 <- matrix(data = sample(0:10, 100, TRUE), nrow = 20, ncol = 5)
 
 ## Coerce to absolute frequencies
 A1 <- as_count(A0)
