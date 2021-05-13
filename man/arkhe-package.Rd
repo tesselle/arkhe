@@ -23,7 +23,7 @@ A collection of classes that represent
 \tabular{ll}{
 \strong{Package:} \tab arkhe \cr
 \strong{Type:} \tab Package \cr
-\strong{Version:} \tab 0.3.0 \cr
+\strong{Version:} \tab 0.3.1 \cr
 \strong{License:} \tab GPL-3 \cr
 }
 
@@ -31,7 +31,7 @@ A collection of classes that represent
 }
 \section{Package options}{
 
-\code{arkhe} uses the following \code{\link[=options]{options()}} to configure behaviour:
+\code{arkhe} uses the following \code{\link[=options]{options()}} to configure behavior:
 \itemize{
 \item \code{arkhe.autodetect}: a \code{\link{logical}} scalar.
 \item \code{arkhe.verbose}: a \code{\link{logical}} scalar. Should \R report extra information

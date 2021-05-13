@@ -1,4 +1,7 @@
-# arkhe 0.3.0.9000
+# arkhe 0.3.1
+
+## Bugfixes & changes
+* Fix warning "data length differs from size of matrix" in examples (R-devel).
 
 # arkhe 0.3.0
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4675724.svg)](https://doi.org/10.5281/zenodo.4675724)

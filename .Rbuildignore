@@ -10,11 +10,12 @@
 ^NEWS\.Rmd$
 ^README\.Rmd$
 ^data-raw$
-^doc$
 ^docs$
 ^Meta$
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^\.github$
+^\.httr-oauth$
+^revdep$
 ^paper\.md$
 ^paper\.bib$
