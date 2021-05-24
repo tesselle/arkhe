@@ -42,7 +42,7 @@ on progress?
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://arkhe.tesselle.org}
+  \item \url{https://packages.tesselle.org/arkhe}
   \item \url{https://github.com/tesselle/arkhe}
   \item Report bugs at \url{https://github.com/tesselle/arkhe/issues}
 }

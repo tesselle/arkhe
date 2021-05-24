@@ -9,11 +9,8 @@
   "name": "arkhe: Representation of Archaeological Data",
   "codeRepository": "https://github.com/tesselle/arkhe",
   "relatedLink": [
-    "http://arkhe.archaeo.science",
-    "https://cran.r-project.org/package=arkhe",
     "https://CRAN.R-project.org/package=arkhe",
-    "http://arkhe.tesselle.org",
-    "https://arkhe.tesselle.org"
+    "https://packages.tesselle.org/arkhe"
   ],
   "issueTracker": "https://github.com/tesselle/arkhe/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
@@ -23,7 +20,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.0.3 (2020-10-10)",
+  "runtimePlatform": "R version 4.1.0 (2021-05-18)",
   "author": [
     {
       "@type": "Person",
@@ -122,7 +119,7 @@
       "name": "stats"
     }
   ],
-  "fileSize": "2540.099KB",
+  "fileSize": "769.436KB",
   "contIntegration": "https://codecov.io/gh/tesselle/arkhe",
   "developmentStatus": "https://www.repostatus.org/#active",
   "keywords": [
