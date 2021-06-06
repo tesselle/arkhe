@@ -2,27 +2,42 @@
 % Please edit documentation in R/predicates.R
 \name{predicate-utils}
 \alias{predicate-utils}
+\alias{has_length}
+\alias{has_names}
+\alias{has_missing}
+\alias{has_infinite}
 \alias{is_empty}
-\alias{is_named}
 \title{Utility Predicates}
 \usage{
-is_empty(x)
+has_length(x, n = NULL)
 
-is_named(x)
+has_names(x, names = NULL)
+
+has_missing(x)
+
+has_infinite(x)
+
+is_empty(x)
 }
 \arguments{
-\item{x}{An object to be tested.}
+\item{x}{A \code{\link{vector}} to be tested.}
+
+\item{n}{A length-one \code{\link{numeric}} vector specifying the length to test \code{x}
+with. If \code{NULL}, returns \code{TRUE} if \code{x} has length greater than zero, and
+\code{FALSE} otherwise.}
+
+\item{names}{A \code{\link{character}} vector specifying the names to test \code{x}
+with. If \code{NULL}, returns \code{TRUE} if \code{x} has names, and \code{FALSE} otherwise.}
 }
 \value{
 A \code{\link{logical}} scalar.
 }
 \description{
 \itemize{
-\item \code{is_empty()} checks if a vector or list is empty.
-\item \code{is_missing()} checks if a vector or list contains missing values.
-\item \code{is_named()} checks if an object is named.
-\item \code{is_uuid()} checks if a string is a canonically formatted UUID that is
-version 1 through 5 and is the appropriate Variant as per RFC4122.
+\item \code{is_empty()} checks is an object is empty (any zero-length dimensions).
+\item \code{has_length()} checks how long is an object.
+\item \code{has_names()} checks if an object is named.
+\item \code{has_missing()} checks if an object contains missing values.
 }
 }
 \seealso{

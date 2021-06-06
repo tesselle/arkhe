@@ -4,9 +4,8 @@
 #'   **Type:** \tab Package \cr
 #'   **Version:** \tab 0.3.1 \cr
 #'   **License:** \tab GPL-3 \cr
+#'   **Zenodo:** \tab \doi{10.5281/zenodo.3526659} \cr
 #'  }
-#'
-#' \doi{10.5281/zenodo.3526659}
 #'
 #' @section Package options:
 #'  `arkhe` uses the following [options()] to configure behavior:

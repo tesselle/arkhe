@@ -2,18 +2,16 @@
 % Please edit documentation in R/check.R
 \name{check-matrix}
 \alias{check-matrix}
-\alias{check_square}
-\alias{check_symmetric}
+\alias{assert_matrix}
 \title{Check Matrix}
 \usage{
-check_square(x)
-
-check_symmetric(x)
+assert_matrix(x, expected)
 }
 \arguments{
 \item{x}{A \code{\link{matrix}} to be checked.}
 
-\item{expected}{An appropriate expected value.}
+\item{expected}{A \code{\link{character}} string specifying the expected
+value. It must be one of "\code{square}" or "\code{symmetric}".}
 }
 \value{
 Throw an error, if any.
@@ -23,11 +21,7 @@ Check Matrix
 }
 \seealso{
 Other check: 
-\code{\link{check-attribute}},
-\code{\link{check-graph}},
-\code{\link{check-missing}},
-\code{\link{check-numeric}},
-\code{\link{check-type}}
+\code{\link{check-graph}}
 }
 \author{
 N. Frerebeau

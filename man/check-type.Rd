@@ -2,13 +2,13 @@
 % Please edit documentation in R/check.R
 \name{check-type}
 \alias{check-type}
-\alias{check_type}
-\alias{check_scalar}
+\alias{assert_type}
+\alias{assert_scalar}
 \title{Check Data Types}
 \usage{
-check_type(x, expected)
+assert_type(x, expected)
 
-check_scalar(x, expected, strict = TRUE)
+assert_scalar(x, expected)
 }
 \arguments{
 \item{x}{An object to be checked.}
@@ -16,26 +16,21 @@ check_scalar(x, expected, strict = TRUE)
 \item{expected}{A \code{\link{character}} string specifying the expected
 type. It must be one of "\code{list}", "\code{atomic}", "\code{vector}", "\code{numeric}",
 "\code{integer}", "\code{double}", "\code{character}" or "\code{logical}".}
-
-\item{strict}{A \code{\link{logical}} scalar: should length-zero object be
-tested?}
 }
 \value{
-Throw an error, if any.
+Throws an error, if any, and returns \code{x} invisibly otherwise.
 }
 \description{
 Check Data Types
 }
 \seealso{
-Other check: 
+Other validation methods: 
 \code{\link{check-attribute}},
-\code{\link{check-graph}},
-\code{\link{check-matrix}},
 \code{\link{check-missing}},
-\code{\link{check-numeric}}
+\code{\link{check-numeric}},
+\code{\link{validate}()}
 }
 \author{
 N. Frerebeau
 }
-\concept{check}
-\keyword{internal}
+\concept{validation methods}

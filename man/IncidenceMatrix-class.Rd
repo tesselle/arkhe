@@ -65,7 +65,7 @@ B[, 1:3] # Get the first three column
 \seealso{
 \code{\link[=as_incidence]{as_incidence()}}
 
-Other matrix: 
+Other classes: 
 \code{\link{CompositionMatrix-class}},
 \code{\link{CountMatrix-class}},
 \code{\link{DataMatrix}},
@@ -76,4 +76,4 @@ Other matrix:
 \author{
 N. Frerebeau
 }
-\concept{matrix}
+\concept{classes}

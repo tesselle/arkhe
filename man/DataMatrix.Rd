@@ -17,7 +17,7 @@ S4 classes that represent a \eqn{m \times p}{m x p} matrix.
 These classes inherit from \code{\link{matrix}}.
 }
 \seealso{
-Other matrix: 
+Other classes: 
 \code{\link{CompositionMatrix-class}},
 \code{\link{CountMatrix-class}},
 \code{\link{IncidenceMatrix-class}},
@@ -28,5 +28,5 @@ Other matrix:
 \author{
 N. Frerebeau
 }
-\concept{matrix}
+\concept{classes}
 \keyword{internal}

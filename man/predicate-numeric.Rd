@@ -2,7 +2,6 @@
 % Please edit documentation in R/predicates.R
 \name{predicate-numeric}
 \alias{predicate-numeric}
-\alias{is_missing}
 \alias{is_zero}
 \alias{is_odd}
 \alias{is_even}
@@ -11,8 +10,6 @@
 \alias{is_whole}
 \title{Numeric Predicates}
 \usage{
-is_missing(x, finite = FALSE)
-
 is_zero(x, na.rm = FALSE)
 
 is_odd(x, na.rm = FALSE)
@@ -27,9 +24,6 @@ is_whole(x, na.rm = FALSE, tolerance = .Machine$double.eps^0.5)
 }
 \arguments{
 \item{x}{A \code{\link{numeric}} object to be tested.}
-
-\item{finite}{A \code{\link{logical}} scalar: should non-\code{\link{finite}} values also be
-removed?}
 
 \item{na.rm}{A \code{\link{logical}} scalar: should missing values (including \code{NaN})
 be omitted?}

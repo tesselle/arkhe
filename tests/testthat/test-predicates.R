@@ -1,11 +1,25 @@
 test_that("Utility predicates", {
+  expect_true(is_empty(matrix(nrow = 0, ncol = 0)))
   expect_true(is_empty(numeric(0)))
   expect_false(is_empty(numeric(1)))
 
-  a <- seq_len(5)
-  expect_false(is_named(a))
-  names(a) <- letters[a]
-  expect_true(is_named(a))
+  expect_true(has_length(numeric(1)))
+  expect_true(has_length(numeric(0), n = 0))
+  expect_false(has_length(numeric(0)))
+
+  x <- seq_len(5)
+  expect_false(has_names(x))
+  names(x) <- letters[x]
+  expect_true(has_names(x))
+
+  y <- c(1, 2, NA)
+  z <- c(1, 2, Inf)
+  expect_true(has_missing(y))
+  expect_true(has_infinite(z))
+  expect_false(has_missing(z))
+  expect_false(has_infinite(y))
+  expect_false(has_missing(1))
+  expect_false(has_infinite(1))
 })
 test_that("Type predicates", {
   expect_true(is_list(list()))
@@ -37,8 +51,8 @@ test_that("Type predicates", {
   expect_true(is_error(try(log("X"), silent = TRUE)))
   expect_false(is_error(try(log(1), silent = TRUE)))
 
-  is_message(catch_conditions(message("custom_message"))[[1]])
-  is_warning(catch_conditions(warning("custom_warning"))[[1]])
+  expect_true(is_message(catch_conditions(message("custom_message"))[[1]]))
+  expect_true(is_warning(catch_conditions(warning("custom_warning"))[[1]]))
 })
 test_that("Scalar type predicates", {
   expect_true(is_scalar_list(list(1)))
@@ -74,10 +88,6 @@ test_that("Scalar type predicates", {
   expect_false(is_scalar_logical(logical(2)))
 })
 test_that("Numeric predicates", {
-  expect_true(is_missing(NA, finite = FALSE))
-  expect_true(is_missing(Inf, finite = TRUE))
-  expect_false(is_missing(1))
-
   expect_true(is_zero(0))
   expect_false(is_zero(1))
 
@@ -105,21 +115,21 @@ test_that("Trend predicates", {
   expect_true(is_constant(c(1, 1, 1, 1, 1)))
   expect_true(is_constant(c(1, 1.1, 1.2, 1.3, 1.4), tolerance = 0.5))
   expect_true(is_constant(c(1, 1, 1, NA, 1), na.rm = TRUE))
-  expect_false(is_constant(c(1, 1, 1, NA, 1), na.rm = FALSE))
+  expect_equal(is_constant(c(1, 1, 1, NA, 1), na.rm = FALSE), NA)
   expect_false(is_constant(c(1, 2, 1, 1, 1)))
   expect_error(is_constant(LETTERS))
 
   expect_true(is_increasing(c(1, 2, 3, 4, 5)))
   expect_true(is_increasing(c(1, 1, 1, 1, 1)))
   expect_true(is_increasing(c(1, 2, 3, NA, 5), na.rm = TRUE))
-  expect_false(is_increasing(c(1, 2, 3, NA, 5), na.rm = FALSE))
+  expect_equal(is_increasing(c(1, 2, 3, NA, 5), na.rm = FALSE), NA)
   expect_false(is_increasing(c(5, 4, 3, 2, 1)))
   expect_error(is_increasing(LETTERS))
 
   expect_true(is_decreasing(c(5, 4, 3, 2, 1)))
   expect_true(is_decreasing(c(1, 1, 1, 1, 1)))
   expect_true(is_decreasing(c(5, 4, 3, NA, 1), na.rm = TRUE))
-  expect_false(is_decreasing(c(5, 4, 3, NA, 1), na.rm = FALSE))
+  expect_equal(is_decreasing(c(5, 4, 3, NA, 1), na.rm = FALSE), NA)
   expect_false(is_decreasing(c(1, 2, 3, 4, 5)))
   expect_error(is_decreasing(LETTERS))
 })

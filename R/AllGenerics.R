@@ -5,9 +5,9 @@ NULL
 # Clean ========================================================================
 #' Data Replacement
 #'
-#' Removes empty row/column or row/column with missing values or zeros.
+#' Replaces [`missing`][NA] or [`infinite`][is.finite()] values or zeros.
 #' @param x A [`matrix`], a [`data.frame`] or a `*Matrix` object.
-#' @param value A possible value to replace missing values of `x`.
+#' @param value A possible value to replace missing or infinite values of `x`.
 #' @param ... Currently not used.
 #' @example inst/examples/ex-clean.R
 #' @author N. Frerebeau
@@ -24,15 +24,28 @@ setGeneric(
   def = function(x, ...) standardGeneric("replace_NA")
 )
 
+#' @rdname replace
+#' @aliases replace_Inf-method
+setGeneric(
+  name = "replace_Inf",
+  def = function(x, ...) standardGeneric("replace_Inf")
+)
+
+#' @rdname replace
+#' @aliases replace_zero-method
+setGeneric(
+  name = "replace_zero",
+  def = function(x, ...) standardGeneric("replace_zero")
+)
+
 #' Data Cleaning
 #'
-#' Removes empty row/column or row/column with missing values or zeros.
+#' Removes empty row/column or row/column with [`missing`][NA]/
+#' [`infinite`][is.finite()] values or zeros.
 #' @param x A [`matrix`], a [`data.frame`] or a `*Matrix` object.
 #' @param margin An [`integer`] giving the subscript which the
 #'  cleaning will be applied over (`1` indicates rows, `2` indicates
 #'  columns).
-#' @param finite A [`logical`] scalar: should non-[`finite`] values also be
-#'  removed?
 #' @param ... Currently not used.
 #' @example inst/examples/ex-clean.R
 #' @author N. Frerebeau
@@ -47,6 +60,13 @@ NULL
 setGeneric(
   name = "remove_NA",
   def = function(x, ...) standardGeneric("remove_NA")
+)
+
+#' @rdname remove
+#' @aliases remove_Inf-method
+setGeneric(
+  name = "remove_Inf",
+  def = function(x, ...) standardGeneric("remove_Inf")
 )
 
 #' @rdname remove
@@ -106,7 +126,7 @@ setGeneric(
 #' @example inst/examples/ex-coerce.R
 #' @author N. Frerebeau
 #' @docType methods
-#' @family matrix
+#' @family classes
 #' @name coerce
 #' @rdname coerce
 NULL
@@ -187,7 +207,7 @@ setGeneric(
 #' @example inst/examples/ex-matrix.R
 #' @author N. Frerebeau
 #' @docType methods
-#' @family mutator
+#' @family mutators
 #' @name mutator
 #' @rdname mutator
 #' @aliases get set
@@ -264,7 +284,7 @@ setGeneric(
 #' @example inst/examples/ex-matrix.R
 #' @author N. Frerebeau
 #' @docType methods
-#' @family mutator
+#' @family mutators
 #' @name subset
 #' @rdname subset
 NULL

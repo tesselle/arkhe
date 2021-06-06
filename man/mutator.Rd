@@ -101,10 +101,10 @@ B[1, , drop = FALSE] # Get the first row
 B[, 1:3] # Get the first three column
 }
 \seealso{
-Other mutator: 
+Other mutators: 
 \code{\link{subset}()}
 }
 \author{
 N. Frerebeau
 }
-\concept{mutator}
+\concept{mutators}

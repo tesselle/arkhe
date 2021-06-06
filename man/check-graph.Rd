@@ -2,10 +2,10 @@
 % Please edit documentation in R/check.R
 \name{check-graph}
 \alias{check-graph}
-\alias{check_dag}
+\alias{assert_dag}
 \title{Check Graph}
 \usage{
-check_dag(x)
+assert_dag(x)
 }
 \arguments{
 \item{x}{A \code{\link{matrix}} to be checked.}
@@ -20,11 +20,7 @@ Check Graph
 }
 \seealso{
 Other check: 
-\code{\link{check-attribute}},
-\code{\link{check-matrix}},
-\code{\link{check-missing}},
-\code{\link{check-numeric}},
-\code{\link{check-type}}
+\code{\link{check-matrix}}
 }
 \author{
 N. Frerebeau

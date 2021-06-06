@@ -25,9 +25,8 @@ A collection of classes that represent
 \strong{Type:} \tab Package \cr
 \strong{Version:} \tab 0.3.1 \cr
 \strong{License:} \tab GPL-3 \cr
+\strong{Zenodo:} \tab \doi{10.5281/zenodo.3526659} \cr
 }
-
-\doi{10.5281/zenodo.3526659}
 }
 \section{Package options}{
 

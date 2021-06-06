@@ -2,22 +2,25 @@
 % Please edit documentation in R/check.R
 \name{check-attribute}
 \alias{check-attribute}
-\alias{check_length}
-\alias{check_lengths}
-\alias{check_dimension}
-\alias{check_names}
-\alias{check_dimnames}
+\alias{assert_empty}
+\alias{assert_length}
+\alias{assert_lengths}
+\alias{assert_dimensions}
+\alias{assert_names}
+\alias{assert_dimnames}
 \title{Check Object Attributes}
 \usage{
-check_length(x, expected, strict = TRUE)
+assert_empty(x)
 
-check_lengths(x, expected)
+assert_length(x, expected)
 
-check_dimension(x, expected)
+assert_lengths(x, expected)
 
-check_names(x, expected)
+assert_dimensions(x, expected)
 
-check_dimnames(x, expected, margin = c(1, 2))
+assert_names(x, expected)
+
+assert_dimnames(x, expected)
 }
 \arguments{
 \item{x}{An object to be checked.}
@@ -25,21 +28,20 @@ check_dimnames(x, expected, margin = c(1, 2))
 \item{expected}{An appropriate expected value.}
 }
 \value{
-Throw an error, if any.
+Throws an error, if any, and returns \code{x} invisibly otherwise.
 }
 \description{
 Check Object Attributes
 }
 \seealso{
-Other check: 
-\code{\link{check-graph}},
-\code{\link{check-matrix}},
+Other validation methods: 
 \code{\link{check-missing}},
 \code{\link{check-numeric}},
-\code{\link{check-type}}
+\code{\link{check-type}},
+\code{\link{validate}()}
 }
 \author{
 N. Frerebeau
 }
-\concept{check}
+\concept{validation methods}
 \keyword{internal}

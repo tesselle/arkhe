@@ -1,3 +1,13 @@
+# arkhe 0.3.1.9000
+
+## New classes and methods
+* Add `replace_Inf()` to replace infinite values in a `matrix`-like object.
+* Add `replace_zero()` to replace zero in a `matrix`-like object.
+* Add `remove_Inf()` to remove infinite values in a `matrix`-like object.
+
+## Internal
+* Add `assert_*()` and `validate()` functions to validate objects.
+
 # arkhe 0.3.1
 
 ## Bugfixes & changes

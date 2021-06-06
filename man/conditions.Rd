@@ -4,12 +4,15 @@
 \alias{conditions}
 \alias{throw_error}
 \alias{throw_warning}
+\alias{catch_message}
 \alias{catch_conditions}
 \title{Conditions}
 \usage{
 throw_error(.subclass, message, call = NULL, ...)
 
 throw_warning(.subclass, message, call = NULL, ...)
+
+catch_message(expr)
 
 catch_conditions(expr)
 }
@@ -30,7 +33,8 @@ returned.}
 \itemize{
 \item \code{throw_error()} stops execution of the current expression and executes an
 error action.
-\item \code{catch_conditions()} handles unusual conditions.
+\item \code{throw_warning()} generates a warning message.
+\item \code{catch_conditions()} and \code{catch_message()} handles unusual conditions.
 }
 }
 \author{

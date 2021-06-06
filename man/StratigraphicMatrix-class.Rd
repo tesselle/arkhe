@@ -40,7 +40,7 @@ strati <- as_stratigraphy(harris)
 \seealso{
 \code{\link[=as_stratigraphy]{as_stratigraphy()}}
 
-Other matrix: 
+Other classes: 
 \code{\link{CompositionMatrix-class}},
 \code{\link{CountMatrix-class}},
 \code{\link{DataMatrix}},
@@ -51,4 +51,4 @@ Other matrix:
 \author{
 N. Frerebeau
 }
-\concept{matrix}
+\concept{classes}

@@ -16,6 +16,32 @@ setMethod(
   }
 )
 
+## Infinite values -------------------------------------------------------------
+#' @export
+#' @rdname replace
+#' @aliases replace_Inf,matrix-method
+setMethod(
+  f = "replace_Inf",
+  signature = signature(x = "matrix"),
+  definition = function(x, value = 0) {
+    x[is.infinite(x)] <- value
+    x
+  }
+)
+
+## Infinite values -------------------------------------------------------------
+#' @export
+#' @rdname replace
+#' @aliases replace_zero,matrix-method
+setMethod(
+  f = "replace_zero",
+  signature = signature(x = "matrix"),
+  definition = function(x, value) {
+    x[is_zero(x)] <- value
+    x
+  }
+)
+
 # Remove =======================================================================
 ## Missing values --------------------------------------------------------------
 #' @export
@@ -24,8 +50,23 @@ setMethod(
 setMethod(
   f = "remove_NA",
   signature = signature(x = "matrix"),
-  definition = function(x, margin = 1, finite = TRUE) {
-    index <- !detect_missing(x, margin = margin, finite = finite)
+  definition = function(x, margin = 1) {
+    index <- !detect_missing(x, margin = margin)
+    if (margin == 1) x <- x[index, , drop = FALSE]
+    if (margin == 2) x <- x[, index, drop = FALSE]
+    x
+  }
+)
+
+## Infinite values -------------------------------------------------------------
+#' @export
+#' @rdname remove
+#' @aliases remove_Inf,matrix-method
+setMethod(
+  f = "remove_Inf",
+  signature = signature(x = "matrix"),
+  definition = function(x, margin = 1) {
+    index <- !detect_infinite(x, margin = margin)
     if (margin == 1) x <- x[index, , drop = FALSE]
     if (margin == 2) x <- x[, index, drop = FALSE]
     x
@@ -68,8 +109,6 @@ setMethod(
 #' @param x An object. It will be coerced to a [`matrix`] as by [as.matrix()].
 #' @param margin A vector giving the subscripts which the function will be
 #'  applied over (see [apply()]).
-#' @param finite A [`logical`] scalar: should non-[`finite`] values also be
-#'  removed?
 #' @param f A predicate [`function`].
 #' @param type A [`character`] vector.
 #' @return
@@ -77,8 +116,11 @@ setMethod(
 #' @author N. Frerebeau
 #' @keywords internal
 #' @noRd
-detect_missing <- function(x, margin = 1, finite = FALSE) {
-  detect_any(x, f = is_missing, margin = margin, finite = finite)
+detect_missing <- function(x, margin = 1) {
+  detect_any(x, f = is.na, margin = margin)
+}
+detect_infinite <- function(x, margin = 1) {
+  detect_any(x, f = is.infinite, margin = margin)
 }
 detect_zero <- function(x, margin = 1) {
   detect_any(x, f = is_zero, margin = margin)

@@ -7,11 +7,11 @@
 \alias{is_decreasing}
 \title{Numeric Trend Predicates}
 \usage{
-is_constant(x, tolerance = .Machine$double.eps^0.5, na.rm = TRUE)
+is_constant(x, tolerance = .Machine$double.eps^0.5, na.rm = FALSE)
 
-is_increasing(x, na.rm = TRUE)
+is_increasing(x, na.rm = FALSE)
 
-is_decreasing(x, na.rm = TRUE)
+is_decreasing(x, na.rm = FALSE)
 }
 \arguments{
 \item{x}{A \code{\link{numeric}} object to be tested.}
@@ -30,7 +30,6 @@ Check numeric objects:
 \item \code{is_constant()} checks for equality among all elements of a vector.
 \item \code{is_increasing()} and \code{is_decreasing()} check if a sequence of numbers
 is monotonically increasing or decreasing, respectively.
-\item \code{is_overlapping()} checks if two data ranges overlap at all.
 }
 }
 \seealso{

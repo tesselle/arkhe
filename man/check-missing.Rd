@@ -2,34 +2,33 @@
 % Please edit documentation in R/check.R
 \name{check-missing}
 \alias{check-missing}
-\alias{check_missing}
-\alias{check_infinite}
+\alias{assert_missing}
+\alias{assert_infinite}
 \title{Check Missing Values}
 \usage{
-check_missing(x)
+assert_missing(x)
 
-check_infinite(x)
+assert_infinite(x)
 }
 \arguments{
 \item{x}{An object to be checked.}
 }
 \value{
-Throw an error, if any.
+Throws an error, if any, and returns \code{x} invisibly otherwise.
 }
 \description{
 Checks if an object contains any missing (\code{NA}, \code{NaN}) or infinite (\code{Inf})
 value.
 }
 \seealso{
-Other check: 
+Other validation methods: 
 \code{\link{check-attribute}},
-\code{\link{check-graph}},
-\code{\link{check-matrix}},
 \code{\link{check-numeric}},
-\code{\link{check-type}}
+\code{\link{check-type}},
+\code{\link{validate}()}
 }
 \author{
 N. Frerebeau
 }
-\concept{check}
+\concept{validation methods}
 \keyword{internal}

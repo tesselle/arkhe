@@ -34,7 +34,7 @@
 #' @note
 #'  These classes inherit from [`matrix`].
 #' @author N. Frerebeau
-#' @family matrix
+#' @family classes
 #' @docType class
 #' @name DataMatrix
 #' @rdname DataMatrix
@@ -75,7 +75,7 @@ NULL
 #' @seealso [as_count()]
 #' @example inst/examples/ex-matrix.R
 #' @author N. Frerebeau
-#' @family matrix
+#' @family classes
 #' @docType class
 #' @exportClass CountMatrix
 #' @aliases CountMatrix-class
@@ -114,7 +114,7 @@ CountMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
 #' @seealso [as_occurrence()]
 #' @example inst/examples/ex-matrix.R
 #' @author N. Frerebeau
-#' @family matrix
+#' @family classes
 #' @docType class
 #' @aliases OccurrenceMatrix-class
 .OccurrenceMatrix <- setClass(
@@ -136,7 +136,7 @@ CountMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
 #' @seealso [as_composition()]
 #' @example inst/examples/ex-matrix.R
 #' @author N. Frerebeau
-#' @family matrix
+#' @family classes
 #' @docType class
 #' @export .CompositionMatrix
 #' @exportClass CompositionMatrix
@@ -179,7 +179,7 @@ CompositionMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
 #' @seealso [as_incidence()]
 #' @example inst/examples/ex-matrix.R
 #' @author N. Frerebeau
-#' @family matrix
+#' @family classes
 #' @docType class
 #' @export .IncidenceMatrix
 #' @exportClass IncidenceMatrix
@@ -219,7 +219,7 @@ IncidenceMatrix <- function(data = FALSE, nrow = 1, ncol = 1, byrow = FALSE,
 #' @seealso [as_stratigraphy()]
 #' @example inst/examples/ex-stratigraphy.R
 #' @author N. Frerebeau
-#' @family matrix
+#' @family classes
 #' @docType class
 #' @aliases StratigraphicMatrix-class
 .StratigraphicMatrix <- setClass(

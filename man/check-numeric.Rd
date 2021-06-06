@@ -2,36 +2,36 @@
 % Please edit documentation in R/check.R
 \name{check-numeric}
 \alias{check-numeric}
-\alias{check_numbers}
-\alias{check_constant}
+\alias{assert_numeric}
+\alias{assert_trend}
 \title{Check Numeric Values}
 \usage{
-check_numbers(x, expected, ...)
+assert_numeric(x, expected, ...)
 
-check_constant(x)
+assert_trend(x, expected, ...)
 }
 \arguments{
 \item{x}{A \code{\link{numeric}} object to be checked.}
 
 \item{expected}{A \code{\link{character}} string specifying the expected
-value. It must be one of "\code{positive}", "\code{whole}", "\code{odd}" or "\code{even}".}
+value. It must be one of "\code{positive}", "\code{whole}", "\code{odd}", "\code{even}",
+"\code{constant}", "\code{decreasing}" or "\code{increasing}".}
 }
 \value{
-Throw an error, if any.
+Throws an error, if any, and returns \code{x} invisibly otherwise.
 }
 \description{
 Check Numeric Values
 }
 \seealso{
-Other check: 
+Other validation methods: 
 \code{\link{check-attribute}},
-\code{\link{check-graph}},
-\code{\link{check-matrix}},
 \code{\link{check-missing}},
-\code{\link{check-type}}
+\code{\link{check-type}},
+\code{\link{validate}()}
 }
 \author{
 N. Frerebeau
 }
-\concept{check}
+\concept{validation methods}
 \keyword{internal}

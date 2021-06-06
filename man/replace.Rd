@@ -5,22 +5,36 @@
 \alias{replace}
 \alias{replace_NA}
 \alias{replace_NA-method}
+\alias{replace_Inf}
+\alias{replace_Inf-method}
+\alias{replace_zero}
+\alias{replace_zero-method}
 \alias{replace_NA,matrix-method}
+\alias{replace_Inf,matrix-method}
+\alias{replace_zero,matrix-method}
 \title{Data Replacement}
 \usage{
 replace_NA(x, ...)
 
+replace_Inf(x, ...)
+
+replace_zero(x, ...)
+
 \S4method{replace_NA}{matrix}(x, value = 0)
+
+\S4method{replace_Inf}{matrix}(x, value = 0)
+
+\S4method{replace_zero}{matrix}(x, value)
 }
 \arguments{
 \item{x}{A \code{\link{matrix}}, a \code{\link{data.frame}} or a \verb{*Matrix} object.}
 
 \item{...}{Currently not used.}
 
-\item{value}{A possible value to replace missing values of \code{x}.}
+\item{value}{A possible value to replace missing or infinite values of \code{x}.}
 }
 \description{
-Removes empty row/column or row/column with missing values or zeros.
+Replaces \code{\link[=NA]{missing}} or \code{\link[=is.finite]{infinite}} values or zeros.
 }
 \examples{
 ## Create a count data matrix

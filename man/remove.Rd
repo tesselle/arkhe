@@ -5,22 +5,29 @@
 \alias{remove}
 \alias{remove_NA}
 \alias{remove_NA-method}
+\alias{remove_Inf}
+\alias{remove_Inf-method}
 \alias{remove_empty}
 \alias{remove_empty-method}
 \alias{remove_zero}
 \alias{remove_zero-method}
 \alias{remove_NA,matrix-method}
+\alias{remove_Inf,matrix-method}
 \alias{remove_zero,matrix-method}
 \alias{remove_empty,matrix-method}
 \title{Data Cleaning}
 \usage{
 remove_NA(x, ...)
 
+remove_Inf(x, ...)
+
 remove_empty(x, ...)
 
 remove_zero(x, ...)
 
-\S4method{remove_NA}{matrix}(x, margin = 1, finite = TRUE)
+\S4method{remove_NA}{matrix}(x, margin = 1)
+
+\S4method{remove_Inf}{matrix}(x, margin = 1)
 
 \S4method{remove_zero}{matrix}(x, margin = 1)
 
@@ -34,12 +41,10 @@ remove_zero(x, ...)
 \item{margin}{An \code{\link{integer}} giving the subscript which the
 cleaning will be applied over (\code{1} indicates rows, \code{2} indicates
 columns).}
-
-\item{finite}{A \code{\link{logical}} scalar: should non-\code{\link{finite}} values also be
-removed?}
 }
 \description{
-Removes empty row/column or row/column with missing values or zeros.
+Removes empty row/column or row/column with \code{\link[=NA]{missing}}/
+\code{\link[=is.finite]{infinite}} values or zeros.
 }
 \examples{
 ## Create a count data matrix
