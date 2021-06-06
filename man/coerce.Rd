@@ -9,8 +9,6 @@
 \alias{as_count-method}
 \alias{as_composition}
 \alias{as_composition-method}
-\alias{as_abundance}
-\alias{as_abundance-method}
 \alias{as_incidence}
 \alias{as_incidence-method}
 \alias{as_occurrence}
@@ -21,7 +19,6 @@
 \alias{as_stratigraphy-method}
 \alias{as_count,ANY-method}
 \alias{as_composition,ANY-method}
-\alias{as_abundance,ANY-method}
 \alias{as_incidence,ANY-method}
 \alias{as_occurrence,ANY-method}
 \alias{as_stratigraphy,ANY-method}
@@ -36,8 +33,6 @@ as_count(from)
 
 as_composition(from)
 
-as_abundance(from)
-
 as_incidence(from)
 
 as_occurrence(from)
@@ -49,8 +44,6 @@ as_stratigraphy(from)
 \S4method{as_count}{ANY}(from)
 
 \S4method{as_composition}{ANY}(from)
-
-\S4method{as_abundance}{ANY}(from)
 
 \S4method{as_incidence}{ANY}(from)
 

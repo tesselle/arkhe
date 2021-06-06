@@ -57,6 +57,7 @@ assert_type <- function(x, expected) {
   invisible(x)
 }
 
+#' @export
 #' @rdname check-type
 assert_scalar <- function(x, expected) {
   arg <- deparse(substitute(x))
@@ -144,6 +145,7 @@ assert_dimensions <- function(x, expected) {
   invisible(x)
 }
 
+#' @export
 #' @rdname check-attribute
 assert_names <- function(x, expected) {
   arg <- deparse(substitute(x))

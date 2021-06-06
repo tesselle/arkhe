@@ -110,17 +110,6 @@ setMethod(
   signature = signature(from = "ANY"),
   definition = function(from) methods::as(from, "CompositionMatrix")
 )
-#' @export
-#' @rdname coerce
-#' @aliases as_abundance,ANY-method
-setMethod(
-  f = "as_abundance",
-  signature = signature(from = "ANY"),
-  definition = function(from) {
-    .Deprecated(new = "as_composition", old = "as_abundance")
-    methods::as(from, "CompositionMatrix")
-  }
-)
 
 setAs(
   from = "matrix",

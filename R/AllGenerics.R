@@ -156,14 +156,6 @@ setGeneric(
 )
 
 #' @rdname coerce
-#' @aliases as_abundance-method
-setGeneric(
-  name = "as_abundance",
-  def = function(from) standardGeneric("as_abundance"),
-  valueClass = "CompositionMatrix"
-)
-
-#' @rdname coerce
 #' @aliases as_incidence-method
 setGeneric(
   name = "as_incidence",
