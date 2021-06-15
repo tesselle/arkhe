@@ -35,7 +35,7 @@ Check Object Attributes
 }
 \seealso{
 Other validation methods: 
-\code{\link{check-missing}},
+\code{\link{check-data}},
 \code{\link{check-numeric}},
 \code{\link{check-type}},
 \code{\link{validate}()}

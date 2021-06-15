@@ -142,7 +142,7 @@ test_that("Remove zeros", {
   options(arkhe.verbose = TRUE)
   expect_message(remove_zero(mtx, margin = 1))
 })
-test_that("Remove empty row/column", {
+test_that("Remove empty row/column (numeric)", {
   options(arkhe.verbose = FALSE)
   num <- sample(1:10, 25, TRUE) # Create matrix
   mtx <- matrix(data = num, nrow = 5, ncol = 5)
@@ -179,4 +179,34 @@ test_that("Remove empty row/column", {
   # Check message
   options(arkhe.verbose = TRUE)
   expect_message(remove_empty(mtx, margin = 1))
+})
+test_that("Remove empty row/column (character)", {
+  options(arkhe.verbose = FALSE)
+  char <- sample(LETTERS, 25, TRUE) # Create matrix
+  mtx <- matrix(data = char, nrow = 5, ncol = 5)
+
+  # Nothing to remove
+  clean <- remove_empty(mtx, margin = 1)
+  expect_equal(dim(clean), dim(mtx))
+
+  mtx[1, ] <- "" # Add blank
+  mtx[, 1] <- "" # Add blank
+
+  # Remove rows
+  clean_row <- remove_empty(mtx, margin = 1)
+  expect_lt(nrow(clean_row), nrow(mtx))
+  expect_equal(ncol(clean_row), ncol(mtx))
+
+  # Remove columns
+  clean_col <- remove_empty(mtx, margin = 2)
+  expect_lt(ncol(clean_col), ncol(mtx))
+  expect_equal(nrow(clean_col), nrow(mtx))
+})
+test_that("Remove empty row/column (logical)", {
+  options(arkhe.verbose = FALSE)
+  char <- sample(c(TRUE, FALSE), 25, TRUE) # Create matrix
+  mtx <- matrix(data = char, nrow = 5, ncol = 5)
+
+  # Nothing to remove
+  expect_error(remove_empty(mtx, margin = 1))
 })

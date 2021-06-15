@@ -4,6 +4,7 @@
 \alias{predicate-utils}
 \alias{has_length}
 \alias{has_names}
+\alias{has_duplicates}
 \alias{has_missing}
 \alias{has_infinite}
 \alias{is_empty}
@@ -12,6 +13,8 @@
 has_length(x, n = NULL)
 
 has_names(x, names = NULL)
+
+has_duplicates(x)
 
 has_missing(x)
 
@@ -37,7 +40,9 @@ A \code{\link{logical}} scalar.
 \item \code{is_empty()} checks is an object is empty (any zero-length dimensions).
 \item \code{has_length()} checks how long is an object.
 \item \code{has_names()} checks if an object is named.
-\item \code{has_missing()} checks if an object contains missing values.
+\item \code{has_duplicates()} checks if an object has duplicated elements.
+\item \code{has_missing()} and \code{has_infinite()} check if an object contains missing
+or infinite values.
 }
 }
 \seealso{

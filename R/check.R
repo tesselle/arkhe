@@ -172,23 +172,24 @@ assert_dimnames <- function(x, expected) {
   invisible(x)
 }
 
-# NA/NaN/Inf ===================================================================
-#' Check Missing Values
+# NA/NaN/Inf/duplicates ========================================================
+#' Check Data
 #'
-#' Checks if an object contains any missing (`NA`, `NaN`) or infinite (`Inf`)
-#' value.
+#' * `assert_missing()` and `assert_infinite()` check if an object contains any
+#' missing (`NA`, `NaN`) or infinite (`Inf`) value.
+#' * `assert_unique()` checks if an object contains duplicated elements.``
 #' @param x An object to be checked.
 #' @return
 #'  Throws an error, if any, and returns `x` invisibly otherwise.
 #' @author N. Frerebeau
 #' @family validation methods
-#' @name check-missing
-#' @rdname check-missing
+#' @name check-data
+#' @rdname check-data
 #' @keywords internal
 NULL
 
 #' @export
-#' @rdname check-missing
+#' @rdname check-data
 assert_missing <- function(x) {
   arg <- deparse(substitute(x))
   n <- sum(is.na(x))
@@ -201,7 +202,7 @@ assert_missing <- function(x) {
 }
 
 #' @export
-#' @rdname check-missing
+#' @rdname check-data
 assert_infinite <- function(x) {
   arg <- deparse(substitute(x))
   n <- sum(is.infinite(x))
@@ -209,6 +210,17 @@ assert_infinite <- function(x) {
     msg <- sprintf("%s must not contain infinite values (%d detected).",
                    sQuote(arg), n)
     throw_error("error_data_infinite", msg)
+  }
+  invisible(x)
+}
+
+#' @export
+#' @rdname check-data
+assert_unique <- function(x, expected) {
+  arg <- deparse(substitute(x))
+  if (has_duplicates(x)) {
+    msg <- sprintf("Elements of %s must be unique.", sQuote(arg))
+    throw_error("error_data_duplicates", msg)
   }
   invisible(x)
 }

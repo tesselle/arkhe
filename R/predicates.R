@@ -6,7 +6,9 @@
 #' * `is_empty()` checks is an object is empty (any zero-length dimensions).
 #' * `has_length()` checks how long is an object.
 #' * `has_names()` checks if an object is named.
-#' * `has_missing()` checks if an object contains missing values.
+#' * `has_duplicates()` checks if an object has duplicated elements.
+#' * `has_missing()` and `has_infinite()` check if an object contains missing
+#' or infinite values.
 #' @param x A [`vector`] to be tested.
 #' @param n A length-one [`numeric`] vector specifying the length to test `x`
 #'  with. If `NULL`, returns `TRUE` if `x` has length greater than zero, and
@@ -30,8 +32,13 @@ has_names <- function(x, names = NULL) {
   if (is.null(names)) {
     has_length(names(x))
   } else {
-    identical(x, names)
+    identical(names(x), names)
   }
+}
+#' @export
+#' @rdname predicate-utils
+has_duplicates <- function(x) {
+  any(duplicated(x))
 }
 #' @export
 #' @rdname predicate-utils

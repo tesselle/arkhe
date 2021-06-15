@@ -20,6 +20,11 @@ test_that("Utility predicates", {
   expect_false(has_infinite(y))
   expect_false(has_missing(1))
   expect_false(has_infinite(1))
+
+  a <- c(1, 1, 3)
+  b <- c(1, 2, 3)
+  expect_true(has_duplicates(a))
+  expect_false(has_duplicates(b))
 })
 test_that("Type predicates", {
   expect_true(is_list(list()))

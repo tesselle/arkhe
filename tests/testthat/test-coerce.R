@@ -66,6 +66,12 @@ test_that("CountMatrix <> CompositionMatrix", {
   counts2 <- as_count(freq1)
   expect_equal(counts1, counts2)
 })
+test_that("CountMatrix <> IncidenceMatrix", {
+  cts <- matrix(sample(0:100, 50, TRUE), ncol = 10)
+
+  counts1 <- as_count(cts)
+  expect_s4_class(as_incidence(counts1), "IncidenceMatrix")
+})
 test_that("DataMatrix > long", {
   cts <- matrix(sample(0:100, 50, TRUE), ncol = 10)
   counts <- as(cts, "CountMatrix")

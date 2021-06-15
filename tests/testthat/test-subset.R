@@ -51,9 +51,20 @@ test_that("Extract/replace with a numeric index", {
   expect_error(cts[[, 1:2]])
 
   freq <- as_composition(cts)
-  expect_equal(get_totals(freq[1:5, ]), get_totals(freq)[1:5])
-  expect_equal(get_totals(freq[5:10, 5:10]), get_totals(freq)[5:10])
+  expect_identical(get_totals(freq[1:5, ]), get_totals(freq)[1:5])
+  expect_identical(get_totals(freq[5:10, 5:10]), get_totals(freq)[5:10])
 
   cts[] <- rep(0L, 100)
   expect_equal(sum(cts), 0)
+})
+test_that("Subset extra slots", {
+  mtx <- matrix(data = sample(2:10, 100, TRUE), ncol = 5)
+  cts <- as_count(mtx)
+
+  set_groups(cts) <- rep(c("A", "B"), each = 10)
+  set_samples(cts) <- rep(c("X", "Y"), times = 10)
+
+  tmp <- cts[1:10, ]
+  expect_identical(get_groups(tmp), rep("A", 10))
+  expect_identical(get_samples(tmp), rep(c("X", "Y"), times = 5))
 })

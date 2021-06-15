@@ -26,7 +26,7 @@ Check Data Types
 \seealso{
 Other validation methods: 
 \code{\link{check-attribute}},
-\code{\link{check-missing}},
+\code{\link{check-data}},
 \code{\link{check-numeric}},
 \code{\link{validate}()}
 }
