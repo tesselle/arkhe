@@ -16,5 +16,5 @@ citEntry(
         "R package version 0.3.1",
         "Université Bordeaux Montaigne, Pessac, France.",
         "DOI 10.5281/zenodo.3526659.",
-        "URL https://arkhe.tesselle.org.")
+        "URL https://packages.tesselle.org/arkhe.")
 )
