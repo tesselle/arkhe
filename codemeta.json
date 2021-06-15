@@ -10,7 +10,7 @@
   "codeRepository": "https://github.com/tesselle/arkhe",
   "relatedLink": [
     "https://CRAN.R-project.org/package=arkhe",
-    "https://packages.tesselle.org/arkhe"
+    "https://packages.tesselle.org/arkhe/"
   ],
   "issueTracker": "https://github.com/tesselle/arkhe/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
@@ -117,9 +117,14 @@
       "@type": "SoftwareApplication",
       "identifier": "stats",
       "name": "stats"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "utils",
+      "name": "utils"
     }
   ],
-  "fileSize": "769.436KB",
+  "fileSize": "772.014KB",
   "contIntegration": "https://codecov.io/gh/tesselle/arkhe",
   "developmentStatus": "https://www.repostatus.org/#active",
   "keywords": [
