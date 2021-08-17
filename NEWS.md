@@ -1,4 +1,4 @@
-# arkhe 0.3.1.9000
+# arkhe 0.4.0
 
 ## New classes and methods
 * Add `replace_Inf()` to replace infinite values in a `matrix`-like object.

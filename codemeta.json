@@ -14,7 +14,7 @@
   ],
   "issueTracker": "https://github.com/tesselle/arkhe/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.3.1.9000",
+  "version": "0.4.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -124,7 +124,7 @@
       "name": "utils"
     }
   ],
-  "fileSize": "772.014KB",
+  "fileSize": "773.178KB",
   "contIntegration": "https://codecov.io/gh/tesselle/arkhe",
   "developmentStatus": "https://www.repostatus.org/#active",
   "keywords": [
@@ -146,7 +146,7 @@
       ],
       "name": "arkhe: Representation of Archaeological Data",
       "url": "https://doi.org/10.5281/zenodo.3526659",
-      "description": "R package version 0.3.1"
+      "description": "R package version 0.4.0"
     }
   ],
   "provider": {

@@ -8,8 +8,6 @@
 
 0 errors | 0 warnings | 0 note
 
-* CRAN package check warning ("data length differs from size of matrix") has been fixed.
-
 ## Reverse dependencies
 
 We checked 1 reverse dependency, comparing R CMD check results across CRAN and dev versions of this package.

@@ -126,7 +126,7 @@ setValidity(
 #'  `TRUE` if not.
 #' @author N. Frerebeau
 #' @keywords internal
-#' @noRd
+#' @export
 check_class <- function(object, conditions) {
   cnd <- compact(is_empty, conditions)
   if (has_length(cnd)) {
