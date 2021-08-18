@@ -19,11 +19,16 @@ Throw an error, if any.
 Check Graph
 }
 \seealso{
-Other check: 
-\code{\link{check-matrix}}
+Other validation methods: 
+\code{\link{check-attribute}},
+\code{\link{check-data}},
+\code{\link{check-matrix}},
+\code{\link{check-numeric}},
+\code{\link{check-type}},
+\code{\link{validate}()}
 }
 \author{
 N. Frerebeau
 }
-\concept{check}
+\concept{validation methods}
 \keyword{internal}

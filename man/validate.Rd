@@ -4,7 +4,7 @@
 \alias{validate}
 \title{Validate a Condition}
 \usage{
-validate(expr, empty = FALSE)
+validate(expr)
 }
 \arguments{
 \item{expr}{An object to be evaluated.}
@@ -19,6 +19,8 @@ Validate a Condition
 Other validation methods: 
 \code{\link{check-attribute}},
 \code{\link{check-data}},
+\code{\link{check-graph}},
+\code{\link{check-matrix}},
 \code{\link{check-numeric}},
 \code{\link{check-type}}
 }
@@ -26,4 +28,3 @@ Other validation methods:
 N. Frerebeau
 }
 \concept{validation methods}
-\keyword{internal}

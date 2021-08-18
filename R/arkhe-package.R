@@ -9,9 +9,11 @@
 #'
 #' @section Package options:
 #'  `arkhe` uses the following [options()] to configure behavior:
-#'  * `arkhe.autodetect`: a [`logical`] scalar.
+#'  * `arkhe.autodetect`: a [`logical`] scalar. Try to automatically assign
+#'    values to the corresponding slot of a `*Matrix` object when coercing a
+#'    `data.frame`? Defaults to `TRUE`.
 #'  * `arkhe.verbose`: a [`logical`] scalar. Should \R report extra information
-#'    on progress?
+#'    on progress? Defaults to `TRUE`.
 #'
 #' @author
 #'  **Full list of authors and contributors** (alphabetic order):

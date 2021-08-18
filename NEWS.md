@@ -4,8 +4,6 @@
 * Add `replace_Inf()` to replace infinite values in a `matrix`-like object.
 * Add `replace_zero()` to replace zero in a `matrix`-like object.
 * Add `remove_Inf()` to remove infinite values in a `matrix`-like object.
-
-## Internal
 * Add `assert_*()` and `validate()` functions to validate objects.
 
 # arkhe 0.3.1
@@ -39,7 +37,7 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3668868.svg)](https://doi.org/10.5281/zenodo.3668868)
 
 ## Bugfixes & changes
-* CRAN package check warnings have been fixed (documented arguments not in \usage' in the r-devel checks).
+* CRAN package check warnings have been fixed ("documented arguments not in \usage" in the r-devel checks).
 
 # arkhe 0.2.0
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3583089.svg)](https://doi.org/10.5281/zenodo.3583089)

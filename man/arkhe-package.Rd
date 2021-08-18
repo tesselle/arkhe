@@ -32,9 +32,11 @@ A collection of classes that represent
 
 \code{arkhe} uses the following \code{\link[=options]{options()}} to configure behavior:
 \itemize{
-\item \code{arkhe.autodetect}: a \code{\link{logical}} scalar.
+\item \code{arkhe.autodetect}: a \code{\link{logical}} scalar. Try to automatically assign
+values to the corresponding slot of a \verb{*Matrix} object when coercing a
+\code{data.frame}? Defaults to \code{TRUE}.
 \item \code{arkhe.verbose}: a \code{\link{logical}} scalar. Should \R report extra information
-on progress?
+on progress? Defaults to \code{TRUE}.
 }
 }
 

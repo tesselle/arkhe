@@ -11,9 +11,8 @@ NULL
 #' @family validation methods
 #' @name validate
 #' @rdname validate
-#' @keywords internal
 #' @export
-validate <- function(expr, empty = FALSE) {
+validate <- function(expr) {
   cnd <- catch_message(eval(expr))
   if (has_length(cnd)) return(cnd)
   NULL
@@ -91,7 +90,6 @@ assert_scalar <- function(x, expected) {
 #' @family validation methods
 #' @name check-attribute
 #' @rdname check-attribute
-#' @keywords internal
 NULL
 
 #' @export
@@ -179,13 +177,13 @@ assert_dimnames <- function(x, expected) {
 #' missing (`NA`, `NaN`) or infinite (`Inf`) value.
 #' * `assert_unique()` checks if an object contains duplicated elements.``
 #' @param x An object to be checked.
+#' @param expected An appropriate expected value.
 #' @return
 #'  Throws an error, if any, and returns `x` invisibly otherwise.
 #' @author N. Frerebeau
 #' @family validation methods
 #' @name check-data
 #' @rdname check-data
-#' @keywords internal
 NULL
 
 #' @export
@@ -232,13 +230,13 @@ assert_unique <- function(x, expected) {
 #' @param expected A [`character`] string specifying the expected
 #'  value. It must be one of "`positive`", "`whole`", "`odd`", "`even`",
 #'  "`constant`", "`decreasing`" or "`increasing`".
+#' @param ... Extra parameters to be passed to internal methods.
 #' @return
 #'  Throws an error, if any, and returns `x` invisibly otherwise.
 #' @author N. Frerebeau
 #' @family validation methods
 #' @name check-numeric
 #' @rdname check-numeric
-#' @keywords internal
 NULL
 
 #' @export
@@ -286,10 +284,9 @@ assert_trend <- function(x, expected, ...) {
 #'  value. It must be one of "`square`" or "`symmetric`".
 #' @return Throw an error, if any.
 #' @author N. Frerebeau
-#' @family check
+#' @family validation methods
 #' @name check-matrix
 #' @rdname check-matrix
-#' @keywords internal
 NULL
 
 #' @export
@@ -317,7 +314,7 @@ assert_matrix <- function(x, expected) {
 #' @param expected An appropriate expected value.
 #' @return Throw an error, if any.
 #' @author N. Frerebeau
-#' @family check
+#' @family validation methods
 #' @name check-graph
 #' @rdname check-graph
 #' @keywords internal

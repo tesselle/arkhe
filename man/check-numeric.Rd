@@ -16,6 +16,8 @@ assert_trend(x, expected, ...)
 \item{expected}{A \code{\link{character}} string specifying the expected
 value. It must be one of "\code{positive}", "\code{whole}", "\code{odd}", "\code{even}",
 "\code{constant}", "\code{decreasing}" or "\code{increasing}".}
+
+\item{...}{Extra parameters to be passed to internal methods.}
 }
 \value{
 Throws an error, if any, and returns \code{x} invisibly otherwise.
@@ -27,6 +29,8 @@ Check Numeric Values
 Other validation methods: 
 \code{\link{check-attribute}},
 \code{\link{check-data}},
+\code{\link{check-graph}},
+\code{\link{check-matrix}},
 \code{\link{check-type}},
 \code{\link{validate}()}
 }
@@ -34,4 +38,3 @@ Other validation methods:
 N. Frerebeau
 }
 \concept{validation methods}
-\keyword{internal}

@@ -24,3 +24,6 @@ reference:
 - title: Predicates
   contents:
   - has_concept("predicates")
+- title: Validation
+  contents:
+  - has_concept("validation methods")

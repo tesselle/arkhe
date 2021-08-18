@@ -15,6 +15,8 @@ assert_unique(x, expected)
 }
 \arguments{
 \item{x}{An object to be checked.}
+
+\item{expected}{An appropriate expected value.}
 }
 \value{
 Throws an error, if any, and returns \code{x} invisibly otherwise.
@@ -29,6 +31,8 @@ missing (\code{NA}, \code{NaN}) or infinite (\code{Inf}) value.
 \seealso{
 Other validation methods: 
 \code{\link{check-attribute}},
+\code{\link{check-graph}},
+\code{\link{check-matrix}},
 \code{\link{check-numeric}},
 \code{\link{check-type}},
 \code{\link{validate}()}
@@ -37,4 +41,3 @@ Other validation methods:
 N. Frerebeau
 }
 \concept{validation methods}
-\keyword{internal}
