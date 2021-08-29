@@ -6,19 +6,26 @@ nomnoml::nomnoml("
 
 [base::matrix||
  replace_NA();
+ replace_Inf();
+ replace_zero();
  remove_NA();
+ remove_Inf();
  remove_zero();
  remove_empty()
 ]
 
 [<abstract>AbundanceMatrix|
  +samples: character;
- +groups: character|
+ +groups: character;
+ +date_from: integer;
+ +date_to: integer|
  get_samples();
  set_samples();
  has_groups();
  get_groups();
  set_groups();
+ get_dates();
+ set_dates();
  as_long();
  as_features()
 ]

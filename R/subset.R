@@ -20,9 +20,14 @@ setMethod(
     if (!missing(i)) {
       samples <- x@samples
       groups <- x@groups
-      if (length(samples) > 0) samples <- samples[i]
-      if (length(groups) > 0) groups <- groups[i]
-      methods::initialize(x, z, samples = samples, groups = groups)
+      dates_from <- x@dates_from
+      dates_to <- x@dates_to
+      if (!is_empty(samples)) samples <- samples[i]
+      if (!is_empty(groups)) groups <- groups[i]
+      if (!is_empty(dates_from)) dates_from <- dates_from[i]
+      if (!is_empty(dates_to)) dates_to <- dates_to[i]
+      methods::initialize(x, z, samples = samples, groups = groups,
+                          dates_from = dates_from, dates_to = dates_to)
     } else{
       methods::initialize(x, z)
     }
@@ -45,7 +50,7 @@ setMethod(
       return(z)
     }
 
-    if (!missing(i) & length(totals) > 0) {
+    if (!missing(i) & !is_empty(totals)) {
       methods::initialize(x, z, total = totals[i])
     } else{
       methods::initialize(x, z)

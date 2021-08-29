@@ -6,6 +6,8 @@
 #' A virtual S4 class to represent archaeological data.
 #' @slot samples A [`character`] vector.
 #' @slot groups A [`character`] vector.
+#' @slot dates_from An [`integer`] vector.
+#' @slot dates_to An [`integer`] vector.
 #' @section Get and set:
 #'  In the code snippets below, `x` is an `AbundanceMatrix` object.
 #'  \describe{
@@ -13,6 +15,11 @@
 #'   the sample names of `x`.}
 #'   \item{`get_groups(x)` and `set_groups(x) <- value`}{Get or set
 #'   the groups of `x`.}
+#'   \item{`get_dates(x)` and `set_dates(x) <- value`}{Get or set
+#'   the dates of `x`. `value` can be a [`list`] with components `from` (TPQ)
+#'   and `to` (TAQ) or a [`numeric`] vector (point estimate). The elements of
+#'   `value` are coerced to [`integer`] with [as.integer()] (hence truncated
+#'   towards zero).}
 #'  }
 #' @author N. Frerebeau
 #' @docType class
@@ -22,7 +29,9 @@
   Class = "AbundanceMatrix",
   slots = c(
     samples = "character",
-    groups = "character"
+    groups = "character",
+    dates_from = "integer",
+    dates_to = "integer"
   ),
   contains = "VIRTUAL"
 )

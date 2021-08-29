@@ -5,7 +5,7 @@ test_that("Empty instance", {
   expect_s4_class(.IncidenceMatrix(), "IncidenceMatrix")
   expect_s4_class(.StratigraphicMatrix(), "StratigraphicMatrix")
 })
-test_that("CountMatrix", {
+test_that("Initialize a CountMatrix instance", {
   # Coerce values to integer
   # Try double
   expect_s4_class(CountMatrix(1.1), "CountMatrix")

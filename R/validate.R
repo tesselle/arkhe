@@ -10,13 +10,19 @@ setValidity(
     n <- nrow(object)
     samples <- object@samples
     groups <- object@groups
+    from <- object@dates_from
+    to <- object@dates_to
 
-    cnd <- list()
-    if (!is_empty(samples)) {
-      cnd <- c(cnd, validate(assert_length(samples, n)))
-    }
-    if (!is_empty(groups)) {
-      cnd <- c(cnd, validate(assert_length(groups, n)))
+    cnd <- list(
+      validate(assert_length(samples, n, empty = FALSE)),
+      validate(assert_length(groups, n, empty = TRUE)),
+      validate(assert_length(from, n, empty = TRUE)),
+      validate(assert_length(to, n, empty = TRUE))
+    )
+
+    if (!is_empty(from) & !is_empty(to)) {
+      rel <- validate(assert_relation(from, to, "smaller", na.rm = TRUE))
+      cnd <- c(cnd, rel)
     }
 
     # Return cnd, if any

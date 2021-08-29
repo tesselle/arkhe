@@ -37,6 +37,7 @@ extract <- function(x, pattern) {
   regmatches(x, regexpr(pattern, x))
 }
 
+# Matrix =======================================================================
 #' Build a Matrix
 #'
 #' Creates a matrix from the given set of values.
@@ -45,22 +46,6 @@ extract <- function(x, pattern) {
 #' @family utilities
 #' @keywords internal utilities
 #' @noRd
-make_names <- function(x, n = 0, prefix = "var") {
-  if (is.null(x)) {
-    x <- if (n > 0) paste0(prefix, seq_len(n)) else character(0)
-  } else {
-    x <- make.unique(as.character(x), sep = "_")
-  }
-  x
-}
-
-make_dimnames <- function(x) {
-  list(
-    make_names(dimnames(x)[[1L]], nrow(x), "row"),
-    make_names(dimnames(x)[[2L]], ncol(x), "col")
-  )
-}
-
 make_matrix <- function(data, nrow, ncol, byrow, dimnames, row, col) {
 
   if (nrow == 0 & ncol == 0) {
@@ -84,4 +69,20 @@ make_matrix <- function(data, nrow, ncol, byrow, dimnames, row, col) {
   dimnames(data) <- list(row_names, column_names)
 
   data
+}
+
+make_names <- function(x, n = 0, prefix = "var") {
+  if (is.null(x)) {
+    x <- if (n > 0) paste0(prefix, seq_len(n)) else character(0)
+  } else {
+    x <- make.unique(as.character(x), sep = "_")
+  }
+  x
+}
+
+make_dimnames <- function(x) {
+  list(
+    make_names(dimnames(x)[[1L]], nrow(x), "row"),
+    make_names(dimnames(x)[[2L]], ncol(x), "col")
+  )
 }

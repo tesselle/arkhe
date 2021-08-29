@@ -115,14 +115,26 @@ E <- as_occurrence(A1)
 ```
 
 The `CountMatrix`, `CompositionMatrix` and `IncidenceMatrix` classes
-have two special slots:
+have special slots:
 
 -   `samples` for replicated measurements/observation,
 -   `groups` to group data by site/area.
+-   `dates_from` and `dates_to` to specify the chronology of an
+    assemblage.
+
+The way chronological information is handled is somewhat opinionated:
+
+-   Sub-annual precision is overkill/meaningless in most situations:
+    dates are assumed to be expressed in years CE and are stored as
+    integers (values are coerced with `as.integer()` and hence truncated
+    towards zero).
+-   A date range
+    (i.e. <abbr title="terminus post quem">TPQ</abbr>/<abbr title="terminus ante quem">TAQ</abbr>)
+    is expected, although it is possible to specify a point estimate.
 
 When coercing a `data.frame` to a `*Matrix` object, an attempt is made
-to automatically assign the corresponding values. This behavior can be
-disabled by setting `options(arkhe.autodetect = FALSE)`.
+to automatically assign values to the `samples` and `group` slots. This
+behavior can be disabled by setting `options(arkhe.autodetect = FALSE)`.
 
 ``` r
 Y <- as.data.frame(X)
@@ -139,6 +151,30 @@ get_samples(Z)
 ## Get groups
 get_groups(Z)
 #>  [1] "A" "A" "A" "A" "A" "B" "B" "B" "B" "B" "C" "C" "C" "C" "C"
+
+## Set/get dates
+dates <- list(
+  from = sample(1301:1400, 15, TRUE),
+  to = sample(1451:1500, 15, TRUE)
+)
+set_dates(Z) <- dates
+get_dates(Z)
+#>    from   to
+#> 1  1393 1457
+#> 2  1342 1493
+#> 3  1365 1466
+#> 4  1301 1492
+#> 5  1345 1480
+#> 6  1362 1467
+#> 7  1380 1480
+#> 8  1322 1462
+#> 9  1304 1451
+#> 10 1384 1493
+#> 11 1388 1464
+#> 12 1380 1457
+#> 13 1354 1454
+#> 14 1387 1466
+#> 15 1361 1492
 ```
 
 ## Contributing

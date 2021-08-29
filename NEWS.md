@@ -4,7 +4,8 @@
 * Add `replace_Inf()` to replace infinite values in a `matrix`-like object.
 * Add `replace_zero()` to replace zero in a `matrix`-like object.
 * Add `remove_Inf()` to remove infinite values in a `matrix`-like object.
-* Add `assert_*()` and `validate()` functions to validate objects.
+* Add `assert_*()` and `validate()` to validate objects.
+* Add `get_dates()` and `set_dates()<-` to extract/replace `dates_from` and `dates_to` slots.
 
 # arkhe 0.3.1
 

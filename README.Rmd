@@ -107,12 +107,18 @@ D <- as_incidence(A1)
 E <- as_occurrence(A1)
 ```
 
-The `CountMatrix`, `CompositionMatrix` and `IncidenceMatrix` classes have two special slots:
+The `CountMatrix`, `CompositionMatrix` and `IncidenceMatrix` classes have special slots:
 
 * `samples` for replicated measurements/observation,
 * `groups` to group data by site/area.
+* `dates_from` and `dates_to` to specify the chronology of an assemblage.
 
-When coercing a `data.frame` to a `*Matrix` object, an attempt is made to automatically assign the corresponding values. This behavior can be disabled by setting `options(arkhe.autodetect = FALSE)`.
+The way chronological information is handled is somewhat opinionated:
+
+* Sub-annual precision is overkill/meaningless in most situations: dates are assumed to be expressed in years CE and are stored as integers (values are coerced with `as.integer()` and hence truncated towards zero).
+* A date range (i.e. <abbr title="terminus post quem">TPQ</abbr>/<abbr title="terminus ante quem">TAQ</abbr>) is expected, although it is possible to specify a point estimate.
+
+When coercing a `data.frame` to a `*Matrix` object, an attempt is made to automatically assign values to the `samples` and `group` slots. This behavior can be disabled by setting `options(arkhe.autodetect = FALSE)`.
 
 ```{r group}
 Y <- as.data.frame(X)
@@ -127,6 +133,14 @@ get_samples(Z)
 
 ## Get groups
 get_groups(Z)
+
+## Set/get dates
+dates <- list(
+  from = sample(1301:1400, 15, TRUE),
+  to = sample(1451:1500, 15, TRUE)
+)
+set_dates(Z) <- dates
+get_dates(Z)
 ```
 
 ## Contributing

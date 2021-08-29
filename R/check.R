@@ -84,6 +84,7 @@ assert_scalar <- function(x, expected) {
 #'
 #' @param x An object to be checked.
 #' @param expected An appropriate expected value.
+#' @param empty A [`logical`] scalar: should empty objects be ignored?
 #' @return
 #'  Throws an error, if any, and returns `x` invisibly otherwise.
 #' @author N. Frerebeau
@@ -105,9 +106,9 @@ assert_empty <- function(x) {
 
 #' @export
 #' @rdname check-attribute
-assert_length <- function(x, expected) {
+assert_length <- function(x, expected, empty = FALSE) {
   arg <- deparse(substitute(x))
-  if (!has_length(x, n = expected)) {
+  if (!(empty & is_empty(x)) && !has_length(x, n = expected)) {
     msg <- sprintf("%s must be of length %d; not %s.", sQuote(arg),
                    expected, length(x))
     throw_error("error_bad_length", msg)
@@ -226,11 +227,17 @@ assert_unique <- function(x, expected) {
 # Numeric ======================================================================
 #' Check Numeric Values
 #'
-#' @param x A [`numeric`] object to be checked.
+#' @param x,y A [`numeric`] object to be checked.
 #' @param expected A [`character`] string specifying the expected
-#'  value. It must be one of "`positive`", "`whole`", "`odd`", "`even`",
-#'  "`constant`", "`decreasing`" or "`increasing`".
+#'  value (see details).
 #' @param ... Extra parameters to be passed to internal methods.
+#' @details
+#'  Possible values for `expected`:
+#'  \describe{
+#'   \item{`assert_numeric()`}{"`positive`", "`whole`", "`odd`" or "`even`"}
+#'   \item{`assert_trend()`}{"`constant`", "`decreasing`" or "`increasing`"}
+#'   \item{`assert_relation()`}{"`smaller`" or "`greater`"}
+#'  }
 #' @return
 #'  Throws an error, if any, and returns `x` invisibly otherwise.
 #' @author N. Frerebeau
@@ -271,6 +278,25 @@ assert_trend <- function(x, expected, ...) {
   )
   if (!predicate(x, ...)) {
     msg <- sprintf("%s must be %s.", sQuote(arg), expected)
+    throw_error("error_bad_number", msg)
+  }
+  invisible(x)
+}
+
+#' @export
+#' @rdname check-numeric
+assert_relation <- function(x, y, expected, ...) {
+  arg_x <- deparse(substitute(x))
+  arg_y <- deparse(substitute(y))
+  predicate <- switch(
+    expected,
+    smaller = is_smaller,
+    greater = is_greater,
+    stop("Can't find a predicate for this: ", expected, call. = FALSE)
+  )
+  if (!predicate(x, y, ...)) {
+    msg <- sprintf("%s must be %s than %s.", sQuote(arg_x), expected,
+                   sQuote(arg_y))
     throw_error("error_bad_number", msg)
   }
   invisible(x)

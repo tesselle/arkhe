@@ -63,8 +63,11 @@ test_that("Subset extra slots", {
 
   set_groups(cts) <- rep(c("A", "B"), each = 10)
   set_samples(cts) <- rep(c("X", "Y"), times = 10)
+  set_dates(cts) <- 1:20
 
   tmp <- cts[1:10, ]
+  dts <- data.frame(from = 1:10, to = 1:10, row.names = paste0("row", 1:10))
   expect_identical(get_groups(tmp), rep("A", 10))
   expect_identical(get_samples(tmp), rep(c("X", "Y"), times = 5))
+  expect_identical(get_dates(tmp), dts)
 })

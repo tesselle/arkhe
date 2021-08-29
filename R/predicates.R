@@ -256,6 +256,19 @@ is_decreasing <- function(x, na.rm = FALSE) {
   all(x == cummin(x))
 }
 
+is_greater <- function(x, y, strict = FALSE, na.rm = FALSE) {
+  assert_type(x, "numeric")
+  assert_type(y, "numeric")
+  z <- if (strict) x > y else x >= y
+  all(z, na.rm = na.rm)
+}
+is_smaller <- function(x, y, strict = FALSE, na.rm = FALSE) {
+  assert_type(x, "numeric")
+  assert_type(y, "numeric")
+  z <- if (strict) x < y else x <= y
+  all(z, na.rm = na.rm)
+}
+
 # Matrix =======================================================================
 #' Matrix Predicates
 #'

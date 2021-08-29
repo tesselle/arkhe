@@ -191,12 +191,27 @@ setGeneric(
 #' Get or Set Parts of an Object
 #'
 #' Getters and setters to retrieve or set parts of an object.
-#' @param x An object from which to get or set element(s) (typically a
-#'  `*Matrix` object).
+#' @param x An object from which to get or set element(s) (typically an
+#'  [`AbundanceMatrix-class`] object).
 #' @param value A possible value for the element(s) of `x`.
+#' @details
+#'  \describe{
+#'   \item{`get_samples(x)` and `get_samples(x) <- value`}{Get or set
+#'   the sample names of `x`.}
+#'   \item{`get_groups(x)` and `set_groups(x) <- value`}{Get or set
+#'   the groups of `x`.}
+#'   \item{`get_dates(x)` and `set_dates(x) <- value`}{Get or set
+#'   the dates of `x`. `value` can be a [`list`] with components `from` (TPQ)
+#'   and `to` (TAQ) or a [`numeric`] vector (point estimate). The elements of
+#'   `value` are coerced to [`integer`] with [as.integer()] (hence truncated
+#'   towards zero).}
+#'  }
 #' @return
-#'  An object of the same sort as `x` with the new values assigned.
-#' @example inst/examples/ex-matrix.R
+#'  * `set_*()` returns an object of the same sort as `x` with the new values
+#'    assigned.
+#'  * `get_*()` returns the part of `x`.
+#'  * `has_*()` returns a [`logical`] scalar.
+#' @example inst/examples/ex-mutators.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family mutators
@@ -238,6 +253,27 @@ setGeneric(
 setGeneric(
   name = "set_samples<-",
   def = function(x, value) standardGeneric("set_samples<-")
+)
+
+#' @rdname mutator
+#' @aliases has_dates-method
+setGeneric(
+  name = "has_dates",
+  def = function(x) standardGeneric("has_dates")
+)
+
+#' @rdname mutator
+#' @aliases get_dates-method
+setGeneric(
+  name = "get_dates",
+  def = function(x) standardGeneric("get_dates")
+)
+
+#' @rdname mutator
+#' @aliases set_dates-method
+setGeneric(
+  name = "set_dates<-",
+  def = function(x, value) standardGeneric("set_dates<-")
 )
 
 #' @rdname mutator

@@ -29,7 +29,7 @@ setMethod(
   }
 )
 
-## Infinite values -------------------------------------------------------------
+## Zeros -----------------------------------------------------------------------
 #' @export
 #' @rdname replace
 #' @aliases replace_zero,matrix-method

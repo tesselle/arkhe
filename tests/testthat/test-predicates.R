@@ -137,6 +137,17 @@ test_that("Trend predicates", {
   expect_equal(is_decreasing(c(5, 4, 3, NA, 1), na.rm = FALSE), NA)
   expect_false(is_decreasing(c(1, 2, 3, 4, 5)))
   expect_error(is_decreasing(LETTERS))
+
+  x <- c(1, 6, 7, 8, 9)
+  y <- c(1, 2, 3, 4, 5)
+  expect_true(is_greater(x, y, strict = FALSE))
+  expect_false(is_greater(x, y, strict = TRUE))
+  expect_false(is_greater(y, x, strict = TRUE))
+  expect_true(is_smaller(y, x, strict = FALSE))
+  expect_false(is_smaller(y, x, strict = TRUE))
+  expect_false(is_smaller(x, y, strict = TRUE))
+  expect_error(is_smaller(x, LETTERS))
+  expect_error(is_smaller(LETTERS, y))
 })
 test_that("Matrix predicates", {
   expect_true(is_square(matrix(nrow = 3, ncol = 3)))

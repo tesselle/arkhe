@@ -15,6 +15,12 @@
 \alias{get_samples-method}
 \alias{set_samples<-}
 \alias{set_samples-method}
+\alias{has_dates}
+\alias{has_dates-method}
+\alias{get_dates}
+\alias{get_dates-method}
+\alias{set_dates<-}
+\alias{set_dates-method}
 \alias{get_totals}
 \alias{get_totals-method}
 \alias{set_totals<-}
@@ -22,12 +28,20 @@
 \alias{has_groups,AbundanceMatrix-method}
 \alias{get_groups,AbundanceMatrix-method}
 \alias{get_samples,AbundanceMatrix-method}
+\alias{has_dates,AbundanceMatrix-method}
+\alias{get_dates,AbundanceMatrix-method}
 \alias{get_totals,CompositionMatrix-method}
 \alias{get_totals,OccurrenceMatrix-method}
 \alias{set_groups<-,AbundanceMatrix-method}
 \alias{set_groups,AbundanceMatrix-method}
 \alias{set_samples<-,AbundanceMatrix-method}
 \alias{set_samples,AbundanceMatrix-method}
+\alias{set_dates<-,AbundanceMatrix,NULL-method}
+\alias{set_dates,AbundanceMatrix,NULL-method}
+\alias{set_dates<-,AbundanceMatrix,numeric-method}
+\alias{set_dates,AbundanceMatrix,numeric-method}
+\alias{set_dates<-,AbundanceMatrix,list-method}
+\alias{set_dates,AbundanceMatrix,list-method}
 \alias{set_totals<-,CompositionMatrix-method}
 \alias{set_totals,CompositionMatrix-method}
 \title{Get or Set Parts of an Object}
@@ -42,6 +56,12 @@ get_samples(x)
 
 set_samples(x) <- value
 
+has_dates(x)
+
+get_dates(x)
+
+set_dates(x) <- value
+
 get_totals(x)
 
 set_totals(x) <- value
@@ -52,6 +72,10 @@ set_totals(x) <- value
 
 \S4method{get_samples}{AbundanceMatrix}(x)
 
+\S4method{has_dates}{AbundanceMatrix}(x)
+
+\S4method{get_dates}{AbundanceMatrix}(x)
+
 \S4method{get_totals}{CompositionMatrix}(x)
 
 \S4method{get_totals}{OccurrenceMatrix}(x)
@@ -60,45 +84,70 @@ set_totals(x) <- value
 
 \S4method{set_samples}{AbundanceMatrix}(x) <- value
 
+\S4method{set_dates}{AbundanceMatrix,`NULL`}(x) <- value
+
+\S4method{set_dates}{AbundanceMatrix,numeric}(x) <- value
+
+\S4method{set_dates}{AbundanceMatrix,list}(x) <- value
+
 \S4method{set_totals}{CompositionMatrix}(x) <- value
 }
 \arguments{
-\item{x}{An object from which to get or set element(s) (typically a
-\verb{*Matrix} object).}
+\item{x}{An object from which to get or set element(s) (typically an
+\code{\linkS4class{AbundanceMatrix}} object).}
 
 \item{value}{A possible value for the element(s) of \code{x}.}
 }
 \value{
-An object of the same sort as \code{x} with the new values assigned.
+\itemize{
+\item \verb{set_*()} returns an object of the same sort as \code{x} with the new values
+assigned.
+\item \verb{get_*()} returns the part of \code{x}.
+\item \verb{has_*()} returns a \code{\link{logical}} scalar.
+}
 }
 \description{
 Getters and setters to retrieve or set parts of an object.
 }
+\details{
+\describe{
+\item{\code{get_samples(x)} and \code{get_samples(x) <- value}}{Get or set
+the sample names of \code{x}.}
+\item{\code{get_groups(x)} and \code{set_groups(x) <- value}}{Get or set
+the groups of \code{x}.}
+\item{\code{get_dates(x)} and \code{set_dates(x) <- value}}{Get or set
+the dates of \code{x}. \code{value} can be a \code{\link{list}} with components \code{from} (TPQ)
+and \code{to} (TAQ) or a \code{\link{numeric}} vector (point estimate). The elements of
+\code{value} are coerced to \code{\link{integer}} with \code{\link[=as.integer]{as.integer()}} (hence truncated
+towards zero).}
+}
+}
 \examples{
-## Create an incidence (presence/absence) matrix
-## Data will be coerced with as.logical()
-A <- IncidenceMatrix(data = sample(0:1, 100, TRUE, c(1, 1/3)), nrow = 20)
-## Create a count data matrix
-B <- CountMatrix(data = sample(0:10, 100, TRUE), nrow = 20)
+## Create a data.frame
+X <- matrix(data = sample(0:10, 50, TRUE), nrow = 10, ncol = 5)
+Y <- as.data.frame(X)
 
-## Access
-dim(B) # Get the matrix dimensions
-row(B) # Get the row indexes
-col(B, as.factor = TRUE) # Get the column indexes
-nrow(B) # Get the number of rows
-ncol(B) # Get the number of columns
-dimnames(B) # Get the dimension names
-rownames(B) <- LETTERS[1:20] # Set the row names
-rownames(B) # Get the rownames
-colnames(B) <- letters[21:25] # Set the column names
-colnames(B) # Get the column names
+## Coerce to a count matrix
+Z <- as_count(Y)
 
-## Subset
-B[[1, 1]] # Get the first value
-B[1] # Get the first value
-B[, ] # Get all values
-B[1, , drop = FALSE] # Get the first row
-B[, 1:3] # Get the first three column
+## Set/get groups
+set_samples(Z) <- rep(c("a", "b", "c", "d", "e"), each = 2)
+get_samples(Z)
+
+## Set/get groups
+set_groups(Z) <- rep(c("A", "B"), each = 5)
+get_groups(Z)
+
+## Get/get dates
+dates <- list(
+  from = sample(1301:1400, 10, replace = TRUE),
+  to = sample(1451:1500, 10, replace = TRUE)
+)
+set_dates(Z) <- dates
+get_dates(Z)
+
+## Collection of features
+as_features(Z)
 }
 \seealso{
 Other mutators: 

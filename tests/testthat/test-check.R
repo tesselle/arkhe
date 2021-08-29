@@ -23,9 +23,14 @@ test_that("Assert scalar", {
 })
 test_that("Assert object attributes", {
   ## Length
-  cnd <- catch_conditions(assert_length(LETTERS, expected = 10))
+  cnd <- catch_conditions(assert_length(LETTERS, expected = 10, empty = FALSE))
+  expect_s3_class(cnd[[1]], "error_bad_length")
+  cnd <- catch_conditions(assert_length(LETTERS, expected = 10, empty = TRUE))
+  expect_s3_class(cnd[[1]], "error_bad_length")
+  cnd <- catch_conditions(assert_length(numeric(0), expected = 10, empty = FALSE))
   expect_s3_class(cnd[[1]], "error_bad_length")
 
+  expect_invisible(assert_length(numeric(0), expected = 10, empty = TRUE))
   expect_identical(assert_length(LETTERS, expected = 26), LETTERS)
 
   ## Lengths
@@ -145,6 +150,18 @@ test_that("Assert numeric trends", {
   expect_s3_class(cnd[[1]], "error_bad_number")
 
   expect_identical(assert_trend(k, expected = "increasing"), k)
+})
+test_that("Assert numeric relation", {
+  x <- c(1, 2, 3, 4, 5)
+  y <- c(1, 6, 7, 8, 9)
+
+  cnd <- catch_conditions(assert_relation(x, y, "greater"))
+  expect_s3_class(cnd[[1]], "error_bad_number")
+
+  cnd <- catch_conditions(assert_relation(y, x, "smaller"))
+  expect_s3_class(cnd[[1]], "error_bad_number")
+
+  expect_identical(assert_relation(x, y, "smaller"), x)
 })
 test_that("Assert matrix", {
   k <- matrix(sample(1:5, 50, TRUE), nrow = 5, ncol = 10)

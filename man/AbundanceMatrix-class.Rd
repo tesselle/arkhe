@@ -14,6 +14,10 @@ A virtual S4 class to represent archaeological data.
 \item{\code{samples}}{A \code{\link{character}} vector.}
 
 \item{\code{groups}}{A \code{\link{character}} vector.}
+
+\item{\code{dates_from}}{An \code{\link{integer}} vector.}
+
+\item{\code{dates_to}}{An \code{\link{integer}} vector.}
 }}
 
 \section{Get and set}{
@@ -24,6 +28,11 @@ In the code snippets below, \code{x} is an \code{AbundanceMatrix} object.
 the sample names of \code{x}.}
 \item{\code{get_groups(x)} and \code{set_groups(x) <- value}}{Get or set
 the groups of \code{x}.}
+\item{\code{get_dates(x)} and \code{set_dates(x) <- value}}{Get or set
+the dates of \code{x}. \code{value} can be a \code{\link{list}} with components \code{from} (TPQ)
+and \code{to} (TAQ) or a \code{\link{numeric}} vector (point estimate). The elements of
+\code{value} are coerced to \code{\link{integer}} with \code{\link[=as.integer]{as.integer()}} (hence truncated
+towards zero).}
 }
 }
 

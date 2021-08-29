@@ -4,18 +4,20 @@
 \alias{check-numeric}
 \alias{assert_numeric}
 \alias{assert_trend}
+\alias{assert_relation}
 \title{Check Numeric Values}
 \usage{
 assert_numeric(x, expected, ...)
 
 assert_trend(x, expected, ...)
+
+assert_relation(x, y, expected, ...)
 }
 \arguments{
-\item{x}{A \code{\link{numeric}} object to be checked.}
+\item{x, y}{A \code{\link{numeric}} object to be checked.}
 
 \item{expected}{A \code{\link{character}} string specifying the expected
-value. It must be one of "\code{positive}", "\code{whole}", "\code{odd}", "\code{even}",
-"\code{constant}", "\code{decreasing}" or "\code{increasing}".}
+value (see details).}
 
 \item{...}{Extra parameters to be passed to internal methods.}
 }
@@ -24,6 +26,14 @@ Throws an error, if any, and returns \code{x} invisibly otherwise.
 }
 \description{
 Check Numeric Values
+}
+\details{
+Possible values for \code{expected}:
+\describe{
+\item{\code{assert_numeric()}}{"\code{positive}", "\code{whole}", "\code{odd}" or "\code{even}"}
+\item{\code{assert_trend()}}{"\code{constant}", "\code{decreasing}" or "\code{increasing}"}
+\item{\code{assert_relation()}}{"\code{smaller}" or "\code{greater}"}
+}
 }
 \seealso{
 Other validation methods: 

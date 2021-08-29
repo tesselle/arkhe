@@ -77,9 +77,11 @@ test_that("DataMatrix > long", {
   counts <- as(cts, "CountMatrix")
 
   A <- as_long(counts, factor = TRUE, reverse = FALSE)
-  expect_equal(dim(A), c(50, 5))
+  expect_equal(dim(A), c(50, 7))
   expect_s3_class(A$row, "factor")
   expect_s3_class(A$column, "factor")
+  expect_type(A$from, "integer")
+  expect_type(A$to, "integer")
 
   B <- as_long(counts, factor = TRUE, reverse = TRUE)
   expect_equal(rev(levels(A$row)), levels(B$row))
@@ -89,7 +91,7 @@ test_that("DataMatrix > features", {
   freq <- as_composition(cts)
   feat <- as_features(freq)
 
-  expect_equal(dim(feat), c(5, 12))
+  expect_equal(dim(feat), c(5, 14))
 })
 # Autodetect ===================================================================
 test_that("Autodetect", {

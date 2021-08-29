@@ -23,9 +23,8 @@ as_integer <- function(x) {
 #' @param reverse A [`logical`] scalar: should the order of factor
 #'  levels be reversed? Useful for plotting.
 #' @details
-#'  Encodes a vector as a factor without sorting it into increasing (or
-#'  decreasing if `reverse` is `TRUE`) order of `x` (preserves original
-#'  ordering).
+#'  Encodes a vector as a factor without sorting it (preserves original
+#'  ordering or reverse it if `reverse` is `TRUE`).
 #' @return An [`factor`] object.
 #' @author N. Frerebeau
 #' @family utilities
@@ -37,6 +36,43 @@ as_factor <- function(x, reverse = FALSE) {
     lvl <- rev(lvl)
   }
   factor(x, levels = lvl)
+}
+
+#' Autodetect Values
+#'
+#' @param x A [`data.frame`].
+#' @param samples A [`character`] vector.
+#' @param groups A [`character`] vector.
+#' @param from An [`integer`] vector.
+#' @param to An [`integer`] vector.
+#' @return A [`list`].
+#' @author N. Frerebeau
+#' @family utilities
+#' @keywords internal utilities
+#' @noRd
+autodetect <- function(x, samples = character(0), groups = character(0),
+                       from = integer(0), to = integer(0)) {
+  if (getOption("arkhe.autodetect")) {
+    extra_names <- colnames(x)
+
+    if (!is_empty(x) > 0 & !is_empty(extra_names)) {
+      ## Samples
+      spl_i <- grep("sample", extra_names, ignore.case = TRUE, value = FALSE)
+      if (has_length(spl_i, 1)) samples <- as.character(x[[spl_i]])
+
+      ## Groups
+      grp_i <- grep("group", extra_names, ignore.case = TRUE, value = FALSE)
+      if (has_length(grp_i, 1)) groups <- as.character(x[[grp_i]])
+
+      ## TODO: Dates
+      # from_i <- grep("from", extra_names, ignore.case = TRUE, value = FALSE)
+      # if (has_length(from_i, 1)) from <- as.integer(x[[from_i]])
+      # to_i <- grep("to", extra_names, ignore.case = TRUE, value = FALSE)
+      # if (has_length(to_i, 1)) to <- as.integer(x[[to_i]])
+    }
+  }
+
+  list(samples = samples, groups = groups, from = from, to = to)
 }
 
 # To CountMatrix ===============================================================
@@ -66,27 +102,19 @@ setAs(
     ## Remove non-numeric columns
     ok <- detect(is_numeric, from)
     extra <- from[, !ok, drop = FALSE]
+
     ## Build matrix
     clean <- from[, ok, drop = FALSE]
     to <- data.matrix(clean, rownames.force = NA)
     to <- as_integer(to)
     dim(to) <- dim(clean)
     dimnames(to) <- make_dimnames(clean)
+
     ## Add extra info
-    spl <- rownames(to)
-    grp <- character(0)
-    if (getOption("arkhe.autodetect")) {
-      extra_names <- colnames(extra)
-      if (ncol(extra) > 0 & !is.null(extra_names)) {
-        ## Samples
-        spl_i <- grepl("sample", extra_names)
-        if (sum(spl_i) == 1) spl <- extra[, spl_i, drop = TRUE]
-        ## Groups
-        grp_i <- grepl("group", extra_names)
-        if (sum(grp_i) == 1) grp <- extra[, grp_i, drop = TRUE]
-      }
-    }
-    .CountMatrix(to, samples = spl, groups = grp)
+    info <- autodetect(extra, samples = rownames(to))
+
+    .CountMatrix(to, samples = info$samples, groups = info$groups,
+                 dates_from = info$from, dates_to = info$to)
   }
 )
 setAs(
@@ -97,7 +125,8 @@ setAs(
     counts <- as_integer(from * totals)
     dim(counts) <- dim(from)
     dimnames(counts) <- dimnames(from)
-    .CountMatrix(counts, samples = from@samples, groups = from@groups)
+    .CountMatrix(counts, samples = from@samples, groups = from@groups,
+                 dates_from = from@dates_from, dates_to = from@dates_to)
   }
 )
 
@@ -130,6 +159,7 @@ setAs(
     ## Remove non-numeric columns
     ok <- detect(is_numeric, from)
     extra <- from[, !ok, drop = FALSE]
+
     ## Build matrix
     clean <- from[, ok, drop = FALSE]
     to <- data.matrix(clean, rownames.force = NA)
@@ -137,21 +167,13 @@ setAs(
     to <- to / totals
     dim(to) <- dim(clean)
     dimnames(to) <- make_dimnames(clean)
+
     ## Add extra info
-    spl <- rownames(to)
-    grp <- character(0)
-    if (getOption("arkhe.autodetect")) {
-      extra_names <- colnames(extra)
-      if (ncol(extra) > 0 & !is.null(extra_names)) {
-        ## Samples
-        spl_i <- grepl("sample", extra_names)
-        if (sum(spl_i) == 1) spl <- extra[, spl_i, drop = TRUE]
-        ## Groups
-        grp_i <- grepl("group", extra_names)
-        if (sum(grp_i) == 1) grp <- extra[, grp_i, drop = TRUE]
-      }
-    }
-    .CompositionMatrix(to, samples = spl, groups = grp, total = totals)
+    info <- autodetect(extra, samples = rownames(to))
+
+    .CompositionMatrix(to, samples = info$samples, groups = info$groups,
+                       dates_from = info$from, dates_to = info$to,
+                       total = totals)
   }
 )
 setAs(
@@ -163,6 +185,7 @@ setAs(
     dim(to) <- dim(from)
     dimnames(to) <- make_dimnames(from)
     .CompositionMatrix(to, samples = from@samples, groups = from@groups,
+                       dates_from = from@dates_from, dates_to = from@dates_to,
                        total = totals)
   }
 )
@@ -194,27 +217,19 @@ setAs(
     ## Remove non-numeric columns
     ok <- detect(is_numeric, from) | detect(is_logical, from)
     extra <- from[, !ok, drop = FALSE]
+
     ## Build matrix
     clean <- from[, ok, drop = FALSE]
     to <- data.matrix(clean, rownames.force = NA)
     to <- to > 0
     dim(to) <- dim(clean)
     dimnames(to) <- make_dimnames(clean)
+
     ## Add extra info
-    spl <- rownames(to)
-    grp <- character(0)
-    if (getOption("arkhe.autodetect")) {
-      extra_names <- colnames(extra)
-      if (ncol(extra) > 0 & !is.null(extra_names)) {
-        ## Samples
-        spl_i <- grepl("sample", extra_names)
-        if (sum(spl_i) == 1) spl <- extra[, spl_i, drop = TRUE]
-        ## Groups
-        grp_i <- grepl("group", extra_names)
-        if (sum(grp_i) == 1) grp <- extra[, grp_i, drop = TRUE]
-      }
-    }
-    .IncidenceMatrix(to, samples = spl, groups = grp)
+    info <- autodetect(extra, samples = rownames(to))
+
+    .IncidenceMatrix(to, samples = info$samples, groups = info$groups,
+                     dates_from = info$from, dates_to = info$to)
   }
 )
 setAs(
@@ -224,7 +239,8 @@ setAs(
     incid <- from > 0
     dim(incid) <- dim(from)
     dimnames(incid) <- dimnames(from)
-    .IncidenceMatrix(incid, samples = from@samples, groups = from@groups)
+    .IncidenceMatrix(incid, samples = from@samples, groups = from@groups,
+                     dates_from = from@dates_from, dates_to = from@dates_to)
   }
 )
 
@@ -341,6 +357,9 @@ setMethod(
     groups <- from@groups %||% NA_character_
     x$groups <- if (factor) as_factor(groups, reverse = reverse) else groups
 
+    x$from <- from@dates_from %||% NA_integer_
+    x$to <- from@dates_to %||% NA_integer_
+
     x
   }
 )
@@ -355,6 +374,8 @@ setMethod(
     x <- as.data.frame(from)
     x$samples <- from@samples %||% NA_character_
     x$group <- from@groups %||% NA_character_
+    x$from <- from@dates_from %||% NA_integer_
+    x$to <- from@dates_to %||% NA_integer_
     x
   }
 )

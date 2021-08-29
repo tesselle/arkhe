@@ -12,7 +12,7 @@
 \usage{
 assert_empty(x)
 
-assert_length(x, expected)
+assert_length(x, expected, empty = FALSE)
 
 assert_lengths(x, expected)
 
@@ -26,6 +26,8 @@ assert_dimnames(x, expected)
 \item{x}{An object to be checked.}
 
 \item{expected}{An appropriate expected value.}
+
+\item{empty}{A \code{\link{logical}} scalar: should empty objects be ignored?}
 }
 \value{
 Throws an error, if any, and returns \code{x} invisibly otherwise.
