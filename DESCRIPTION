@@ -55,6 +55,7 @@ Collate:
     'conditions.R'
     'mutators.R'
     'show.R'
+    'statistics.R'
     'subset.R'
     'utilities.R'
     'validate.R'

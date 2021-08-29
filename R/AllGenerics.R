@@ -316,3 +316,65 @@ setGeneric(
 #' @name subset
 #' @rdname subset
 NULL
+
+# Statistics ===================================================================
+#' Jackknife Estimation
+#'
+#' @param x A [`numeric`] vector.
+#' @param do A [`function`] that takes `x` as an argument and returns a single
+#'  numeric value.
+#' @param ... Extra arguments passed to `do`.
+#' @return A `numeric` vector with the following elements:
+#'  \describe{
+#'   \item{`mean`}{The jackknife estimate of mean.}
+#'   \item{`bias`}{The jackknife estimate of bias.}
+#'   \item{`error`}{he jackknife estimate of standard error.}
+#'  }
+# @example inst/examples/ex-statistics.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family statistics
+#' @name jackknife
+#' @rdname jackknife
+NULL
+
+#' @rdname jackknife
+#' @aliases jackknife-method
+setGeneric(
+  name = "jackknife",
+  def = function(x, ...) standardGeneric("jackknife")
+)
+
+#' Bootstrap Estimation
+#'
+#' @param x A [`numeric`] vector.
+#' @param do A [`function`] that takes `x` as an argument
+#'  and returns a single numeric value.
+#' @param probs A [`numeric`] vector of probabilities with values in
+#'  \eqn{[0,1]} (see [stats::quantile()]).
+#' @param n A non-negative [`integer`] giving the number of bootstrap
+#'  replications.
+#' @param na.rm A [`logical`] scalar: should missing values be removed
+#'  from `x` before the sample statistics are computed?
+#' @param ... Extra arguments passed to `do`.
+#' @return A `numeric` vector with the following elements:
+#'  \describe{
+#'   \item{`min`}{Minimum value.}
+#'   \item{`mean`}{Mean value.}
+#'   \item{`max`}{Maximum value.}
+#'   \item{`Q*`}{Sample quantile to `*` probability.}
+#'  }
+# @example inst/examples/ex-statistics.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family statistics
+#' @name bootstrap
+#' @rdname bootstrap
+NULL
+
+#' @rdname bootstrap
+#' @aliases bootstrap-method
+setGeneric(
+  name = "bootstrap",
+  def = function(x, ...) standardGeneric("bootstrap")
+)

@@ -16,6 +16,9 @@ reference:
 - title: Data cleaning
   contents:
   - has_concept("utilities")
+- title: Statistics
+  contents:
+  - has_concept("statistics")
 - title: Predicates
   contents:
   - has_concept("predicates")

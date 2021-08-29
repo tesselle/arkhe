@@ -3,15 +3,17 @@
 \docType{methods}
 \name{subset}
 \alias{subset}
+\alias{[,AbundanceMatrix,ANY,ANY,ANY-method}
 \alias{[,AbundanceMatrix-method}
+\alias{[,CompositionMatrix,ANY,ANY,ANY-method}
 \alias{[,CompositionMatrix-method}
 \alias{[<-,AbundanceMatrix-method}
 \alias{[[<-,AbundanceMatrix-method}
 \title{Extract or Replace Parts of an Object}
 \usage{
-\S4method{[}{AbundanceMatrix}(x, i, j, ..., drop = TRUE)
+\S4method{[}{AbundanceMatrix,ANY,ANY,ANY}(x, i, j, ..., drop = TRUE)
 
-\S4method{[}{CompositionMatrix}(x, i, j, ..., drop = TRUE)
+\S4method{[}{CompositionMatrix,ANY,ANY,ANY}(x, i, j, ..., drop = TRUE)
 
 \S4method{[}{AbundanceMatrix}(x, i, j, ...) <- value
 
