@@ -10,6 +10,7 @@ setValidity(
     n <- nrow(object)
     samples <- object@samples
     groups <- object@groups
+    totals <- object@totals
     from <- object@dates_from
     to <- object@dates_to
 
@@ -17,8 +18,13 @@ setValidity(
       validate(assert_length(samples, n, empty = FALSE)),
       validate(assert_length(groups, n, empty = TRUE)),
       validate(assert_length(from, n, empty = TRUE)),
+      validate(assert_length(totals, n, empty = FALSE)),
       validate(assert_length(to, n, empty = TRUE))
     )
+
+    if (!is_empty(totals)) {
+      cnd <- c(cnd, validate(assert_numeric(totals, "positive")))
+    }
 
     if (!is_empty(from) & !is_empty(to)) {
       rel <- validate(assert_relation(from, to, "smaller", na.rm = TRUE))
@@ -89,19 +95,9 @@ setValidity(
 setValidity(
   Class = "CompositionMatrix",
   method = function(object) {
-    # Get data
-    n <- nrow(object)
-    total <- object@total
-
     cnd <- list(
       validate(assert_numeric(object, "positive", strict = FALSE, na.rm = TRUE))
     )
-    if (!is_empty(total)) {
-      cnd <- c(cnd, validate(assert_numeric(total, "positive")))
-      cnd <- c(cnd, validate(assert_length(total, n)))
-    }
-
-    # Return cnd, if any
     check_class(object, cnd)
   }
 )

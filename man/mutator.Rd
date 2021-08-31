@@ -30,7 +30,7 @@
 \alias{get_samples,AbundanceMatrix-method}
 \alias{has_dates,AbundanceMatrix-method}
 \alias{get_dates,AbundanceMatrix-method}
-\alias{get_totals,CompositionMatrix-method}
+\alias{get_totals,AbundanceMatrix-method}
 \alias{get_totals,OccurrenceMatrix-method}
 \alias{set_groups<-,AbundanceMatrix-method}
 \alias{set_groups,AbundanceMatrix-method}
@@ -42,8 +42,8 @@
 \alias{set_dates,AbundanceMatrix,numeric-method}
 \alias{set_dates<-,AbundanceMatrix,list-method}
 \alias{set_dates,AbundanceMatrix,list-method}
-\alias{set_totals<-,CompositionMatrix-method}
-\alias{set_totals,CompositionMatrix-method}
+\alias{set_totals<-,AbundanceMatrix-method}
+\alias{set_totals,AbundanceMatrix-method}
 \title{Get or Set Parts of an Object}
 \usage{
 has_groups(x)
@@ -76,7 +76,7 @@ set_totals(x) <- value
 
 \S4method{get_dates}{AbundanceMatrix}(x)
 
-\S4method{get_totals}{CompositionMatrix}(x)
+\S4method{get_totals}{AbundanceMatrix}(x)
 
 \S4method{get_totals}{OccurrenceMatrix}(x)
 
@@ -90,7 +90,7 @@ set_totals(x) <- value
 
 \S4method{set_dates}{AbundanceMatrix,list}(x) <- value
 
-\S4method{set_totals}{CompositionMatrix}(x) <- value
+\S4method{set_totals}{AbundanceMatrix}(x) <- value
 }
 \arguments{
 \item{x}{An object from which to get or set element(s) (typically an

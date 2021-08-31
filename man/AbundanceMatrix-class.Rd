@@ -15,6 +15,8 @@ A virtual S4 class to represent archaeological data.
 
 \item{\code{groups}}{A \code{\link{character}} vector.}
 
+\item{\code{totals}}{A \code{\link{numeric}} vector giving the absolute row sums.}
+
 \item{\code{dates_from}}{An \code{\link{integer}} vector.}
 
 \item{\code{dates_to}}{An \code{\link{integer}} vector.}

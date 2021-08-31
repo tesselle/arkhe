@@ -6,6 +6,7 @@
 #' A virtual S4 class to represent archaeological data.
 #' @slot samples A [`character`] vector.
 #' @slot groups A [`character`] vector.
+#' @slot totals A [`numeric`] vector giving the absolute row sums.
 #' @slot dates_from An [`integer`] vector.
 #' @slot dates_to An [`integer`] vector.
 #' @section Get and set:
@@ -30,6 +31,7 @@
   slots = c(
     samples = "character",
     groups = "character",
+    totals = "numeric",
     dates_from = "integer",
     dates_to = "integer"
   ),
@@ -107,8 +109,9 @@ CountMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
     missing(ncol)
   )
   spl <- rownames(mtx) %||% character(0)
+  totals <- rowSums(mtx, na.rm = TRUE)
 
-  .CountMatrix(mtx, samples = spl)
+  .CountMatrix(mtx, samples = spl, totals = totals)
 }
 
 ## OccurrenceMatrix ------------------------------------------------------------
@@ -140,7 +143,6 @@ CountMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
 #'
 #' An S4 class to represent a relative frequency matrix (i.e. the fraction of
 #' times a given datum occurs in a dataset).
-#' @slot total A [`numeric`] vector giving the absolute row sums.
 #' @inheritParams base::matrix
 #' @seealso [as_composition()]
 #' @example inst/examples/ex-matrix.R
@@ -152,9 +154,6 @@ CountMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
 #' @aliases CompositionMatrix-class
 .CompositionMatrix <- setClass(
   Class = "CompositionMatrix",
-  slots = c(
-    total = "numeric"
-  ),
   contains = c("NumericMatrix", "AbundanceMatrix")
 )
 
@@ -176,7 +175,7 @@ CompositionMatrix <- function(data = 0, nrow = 1, ncol = 1, byrow = FALSE,
   mtx <- mtx / totals
   # mtx[is.nan(mtx)] <- 0 # Prevent division by zero
 
-  .CompositionMatrix(mtx, samples = spl, total = totals)
+  .CompositionMatrix(mtx, samples = spl, totals = totals)
 }
 
 # LogicalMatrix ================================================================
@@ -212,8 +211,9 @@ IncidenceMatrix <- function(data = FALSE, nrow = 1, ncol = 1, byrow = FALSE,
     missing(ncol)
   )
   spl <- rownames(mtx) %||% character(0)
+  totals <- rowSums(mtx, na.rm = TRUE)
 
-  .IncidenceMatrix(mtx, samples = spl)
+  .IncidenceMatrix(mtx, samples = spl, totals = totals)
 }
 
 ## Stratigraphic ---------------------------------------------------------------

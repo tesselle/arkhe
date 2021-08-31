@@ -8,6 +8,9 @@
 * Add `assert_*()` and `validate()` to validate objects.
 * Add `get_dates()` and `set_dates()<-` to extract/replace `dates_from` and `dates_to` slots.
 
+## Internals
+* `AbundanceMatrix` class gained a new slot to store the sample sizes (`totals`).
+
 # arkhe 0.3.1
 
 ## Bugfixes & changes

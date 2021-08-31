@@ -92,7 +92,8 @@ setAs(
     to <- as_integer(to)
     dim(to) <- dim(from)
     dimnames(to) <- make_dimnames(from)
-    .CountMatrix(to, samples = rownames(to))
+    totals <- rowSums(to, na.rm = TRUE)
+    .CountMatrix(to, samples = rownames(to), totals = totals)
   }
 )
 setAs(
@@ -109,24 +110,26 @@ setAs(
     to <- as_integer(to)
     dim(to) <- dim(clean)
     dimnames(to) <- make_dimnames(clean)
+    totals <- rowSums(to, na.rm = TRUE)
 
     ## Add extra info
     info <- autodetect(extra, samples = rownames(to))
 
     .CountMatrix(to, samples = info$samples, groups = info$groups,
-                 dates_from = info$from, dates_to = info$to)
+                 totals = totals, dates_from = info$from, dates_to = info$to)
   }
 )
 setAs(
   from = "CompositionMatrix",
   to = "CountMatrix",
   def = function(from) {
-    totals <- from@total
+    totals <- from@totals
     counts <- as_integer(from * totals)
     dim(counts) <- dim(from)
     dimnames(counts) <- dimnames(from)
     .CountMatrix(counts, samples = from@samples, groups = from@groups,
-                 dates_from = from@dates_from, dates_to = from@dates_to)
+                 totals = totals, dates_from = from@dates_from,
+                 dates_to = from@dates_to)
   }
 )
 
@@ -149,7 +152,7 @@ setAs(
     to <- to / totals
     dim(to) <- dim(from)
     dimnames(to) <- make_dimnames(from)
-    .CompositionMatrix(to, samples = rownames(to), total = totals)
+    .CompositionMatrix(to, samples = rownames(to), totals = totals)
   }
 )
 setAs(
@@ -172,21 +175,21 @@ setAs(
     info <- autodetect(extra, samples = rownames(to))
 
     .CompositionMatrix(to, samples = info$samples, groups = info$groups,
-                       dates_from = info$from, dates_to = info$to,
-                       total = totals)
+                       totals = totals, dates_from = info$from,
+                       dates_to = info$to)
   }
 )
 setAs(
   from = "CountMatrix",
   to = "CompositionMatrix",
   def = function(from) {
-    totals <- rowSums(from, na.rm = TRUE)
+    totals <- from@totals
     to <- from / totals
     dim(to) <- dim(from)
     dimnames(to) <- make_dimnames(from)
     .CompositionMatrix(to, samples = from@samples, groups = from@groups,
-                       dates_from = from@dates_from, dates_to = from@dates_to,
-                       total = totals)
+                       totals = totals, dates_from = from@dates_from,
+                       dates_to = from@dates_to)
   }
 )
 
@@ -205,9 +208,10 @@ setAs(
   def = function(from) {
     to <- data.matrix(from, rownames.force = NA)
     to <- to > 0
+    totals <- rowSums(to, na.rm = TRUE)
     dim(to) <- dim(from)
     dimnames(to) <- make_dimnames(from)
-    .IncidenceMatrix(to, samples = rownames(to))
+    .IncidenceMatrix(to, samples = rownames(to), totals = totals)
   }
 )
 setAs(
@@ -222,6 +226,7 @@ setAs(
     clean <- from[, ok, drop = FALSE]
     to <- data.matrix(clean, rownames.force = NA)
     to <- to > 0
+    totals <- rowSums(to, na.rm = TRUE)
     dim(to) <- dim(clean)
     dimnames(to) <- make_dimnames(clean)
 
@@ -229,7 +234,8 @@ setAs(
     info <- autodetect(extra, samples = rownames(to))
 
     .IncidenceMatrix(to, samples = info$samples, groups = info$groups,
-                     dates_from = info$from, dates_to = info$to)
+                     totals = totals, dates_from = info$from,
+                     dates_to = info$to)
   }
 )
 setAs(
@@ -240,7 +246,8 @@ setAs(
     dim(incid) <- dim(from)
     dimnames(incid) <- dimnames(from)
     .IncidenceMatrix(incid, samples = from@samples, groups = from@groups,
-                     dates_from = from@dates_from, dates_to = from@dates_to)
+                     totals = from@totals, dates_from = from@dates_from,
+                     dates_to = from@dates_to)
   }
 )
 

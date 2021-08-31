@@ -17,6 +17,7 @@ nomnoml::nomnoml("
 [<abstract>AbundanceMatrix|
  +samples: character;
  +groups: character;
+ +totals: numeric;
  +date_from: integer;
  +date_to: integer|
  get_samples();
@@ -24,6 +25,8 @@ nomnoml::nomnoml("
  has_groups();
  get_groups();
  set_groups();
+ get_totals();
+ set_totals();
  get_dates();
  set_dates();
  as_long();
@@ -44,12 +47,9 @@ nomnoml::nomnoml("
  get_totals()
 ]
 
-[CompositionMatrix|
- +total: numeric|
+[CompositionMatrix||
  CompositionMatrix();
- as_composition();
- get_totals();
- set_totals()
+ as_composition()
 ]
 
 [IncidenceMatrix||
