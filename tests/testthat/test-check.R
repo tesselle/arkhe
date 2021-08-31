@@ -45,6 +45,8 @@ test_that("Assert object attributes", {
   expect_s3_class(cnd[[1]], "error_bad_dimensions")
 
   k <- list()
+  cnd <- catch_conditions(assert_filled(k))
+  expect_s3_class(cnd[[1]], "error_bad_dimensions")
   expect_identical(assert_empty(k), k)
 
   ## Dimensions

@@ -118,12 +118,14 @@ The way chronological information is handled is somewhat opinionated:
 * Sub-annual precision is overkill/meaningless in most situations: dates are assumed to be expressed in years CE and are stored as integers (values are coerced with `as.integer()` and hence truncated towards zero).
 * A date range (i.e. <abbr title="terminus post quem">TPQ</abbr>/<abbr title="terminus ante quem">TAQ</abbr>) is expected, although it is possible to specify a point estimate.
 
-When coercing a `data.frame` to a `*Matrix` object, an attempt is made to automatically assign values to the `samples` and `group` slots. This behavior can be disabled by setting `options(arkhe.autodetect = FALSE)`.
+When coercing a `data.frame` to a `*Matrix` object, an attempt is made to automatically assign values to these slots. This behavior can be disabled by setting `options(arkhe.autodetect = FALSE)`.
 
 ```{r group}
 Y <- as.data.frame(X)
 Y$samples <- rep(c("a", "b", "c", "d", "e"), each = 3)
 Y$groups <- rep(c("A", "B", "C"), each = 5)
+Y$from <- sample(1301:1400, 15, TRUE) # TPQ
+Y$to <- sample(1451:1500, 15, TRUE) # TAQ
 
 ## Coerce to a count matrix
 Z <- as_count(Y)
@@ -134,12 +136,7 @@ get_samples(Z)
 ## Get groups
 get_groups(Z)
 
-## Set/get dates
-dates <- list(
-  from = sample(1301:1400, 15, TRUE),
-  to = sample(1451:1500, 15, TRUE)
-)
-set_dates(Z) <- dates
+## Get dates
 get_dates(Z)
 ```
 

@@ -133,13 +133,15 @@ The way chronological information is handled is somewhat opinionated:
     is expected, although it is possible to specify a point estimate.
 
 When coercing a `data.frame` to a `*Matrix` object, an attempt is made
-to automatically assign values to the `samples` and `group` slots. This
-behavior can be disabled by setting `options(arkhe.autodetect = FALSE)`.
+to automatically assign values to these slots. This behavior can be
+disabled by setting `options(arkhe.autodetect = FALSE)`.
 
 ``` r
 Y <- as.data.frame(X)
 Y$samples <- rep(c("a", "b", "c", "d", "e"), each = 3)
 Y$groups <- rep(c("A", "B", "C"), each = 5)
+Y$from <- sample(1301:1400, 15, TRUE) # TPQ
+Y$to <- sample(1451:1500, 15, TRUE) # TAQ
 
 ## Coerce to a count matrix
 Z <- as_count(Y)
@@ -152,29 +154,24 @@ get_samples(Z)
 get_groups(Z)
 #>  [1] "A" "A" "A" "A" "A" "B" "B" "B" "B" "B" "C" "C" "C" "C" "C"
 
-## Set/get dates
-dates <- list(
-  from = sample(1301:1400, 15, TRUE),
-  to = sample(1451:1500, 15, TRUE)
-)
-set_dates(Z) <- dates
+## Get dates
 get_dates(Z)
 #>    from   to
-#> 1  1393 1457
-#> 2  1342 1493
-#> 3  1365 1466
-#> 4  1301 1492
-#> 5  1345 1480
-#> 6  1362 1467
-#> 7  1380 1480
-#> 8  1322 1462
-#> 9  1304 1451
-#> 10 1384 1493
-#> 11 1388 1464
-#> 12 1380 1457
-#> 13 1354 1454
-#> 14 1387 1466
-#> 15 1361 1492
+#> 1  1357 1457
+#> 2  1313 1498
+#> 3  1390 1482
+#> 4  1366 1472
+#> 5  1376 1478
+#> 6  1391 1466
+#> 7  1319 1483
+#> 8  1341 1482
+#> 9  1341 1461
+#> 10 1368 1498
+#> 11 1391 1486
+#> 12 1325 1483
+#> 13 1347 1455
+#> 14 1335 1477
+#> 15 1396 1497
 ```
 
 ## Contributing

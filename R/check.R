@@ -106,6 +106,17 @@ assert_empty <- function(x) {
 
 #' @export
 #' @rdname check-attribute
+assert_filled <- function(x) {
+  arg <- deparse(substitute(x))
+  if (is_empty(x)) {
+    msg <- sprintf("%s must not be empty.", sQuote(arg))
+    throw_error("error_bad_dimensions", msg)
+  }
+  invisible(x)
+}
+
+#' @export
+#' @rdname check-attribute
 assert_length <- function(x, expected, empty = FALSE) {
   arg <- deparse(substitute(x))
   if (!(empty & is_empty(x)) && !has_length(x, n = expected)) {

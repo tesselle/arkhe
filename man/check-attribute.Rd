@@ -3,6 +3,7 @@
 \name{check-attribute}
 \alias{check-attribute}
 \alias{assert_empty}
+\alias{assert_filled}
 \alias{assert_length}
 \alias{assert_lengths}
 \alias{assert_dimensions}
@@ -11,6 +12,8 @@
 \title{Check Object Attributes}
 \usage{
 assert_empty(x)
+
+assert_filled(x)
 
 assert_length(x, expected, empty = FALSE)
 

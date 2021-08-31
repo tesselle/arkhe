@@ -1,3 +1,29 @@
+test_that("Autodetect", {
+  samples <- rep(c("a", "b", "c", "d", "e"), each = 3)
+  groups <- rep(c("A", "B", "C"), each = 5)
+  from <- sample(1301:1400, 15, TRUE)
+  to <- sample(1451:1500, 15, TRUE)
+
+  X <- matrix(data = sample(0:10, 75, TRUE), nrow = 15, ncol = 5)
+  Y <- data.frame(samples = samples, groups = groups, from = from, to = to, X)
+
+  options(arkhe.autodetect = FALSE)
+  Z <- as_count(Y)
+  expect_equal(get_samples(Z), rownames(Y))
+  expect_equal(get_groups(Z), character(0))
+  expect_equal(get_dates(Z), data.frame(from = integer(0), to = integer(0)))
+
+  options(arkhe.autodetect = TRUE)
+  Z <- as_count(Y)
+  expect_equal(get_samples(Z), samples)
+  expect_equal(get_groups(Z), groups)
+  expect_equal(get_dates(Z), data.frame(from = from, to = to),
+               ignore_attr = TRUE)
+
+  Y <- data.frame(samples = character(0), groups = character(0),
+                  from = integer(0), to = integer(0))
+  expect_error(as_count(Y))
+})
 # matrix =======================================================================
 test_that("matrix > *Matrix", {
   cts <- matrix(sample(0:100, 50, TRUE), ncol = 10)

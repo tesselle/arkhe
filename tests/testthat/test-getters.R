@@ -67,11 +67,13 @@ test_that("AbundanceMatrix dates", {
   expect_s3_class(cnd[[1]], "arkhe_error_class")
   expect_true(grepl("must be of length 15; not 5", cnd[[1]]$message))
 })
-test_that("CompositionMatrix totals", {
-  cts <- matrix(sample(1:100, 100, TRUE), ncol = 10)
+test_that("AbundanceMatrix totals", {
+  mtx <- matrix(sample(1:100, 100, TRUE), ncol = 10)
+  cts <- as_count(mtx)
   freq <- as_composition(cts)
 
-  expect_equal(get_totals(freq), rowSums(cts))
+  expect_equal(get_totals(cts), rowSums(mtx), ignore_attr = TRUE)
+  expect_equal(get_totals(freq), rowSums(mtx), ignore_attr = TRUE)
 
   set_totals(freq) <- seq_len(10)
   expect_equal(get_totals(freq), seq_len(10))
