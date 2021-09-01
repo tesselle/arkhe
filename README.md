@@ -118,9 +118,8 @@ The `CountMatrix`, `CompositionMatrix` and `IncidenceMatrix` classes
 have special slots:
 
 -   `samples` for replicated measurements/observation,
--   `groups` to group data by site/area.
--   `dates_from` and `dates_to` to specify the chronology of an
-    assemblage.
+-   `groups` to group data by site/area,
+-   `tqp` and `taq` to specify the chronology of an assemblage.
 
 The way chronological information is handled is somewhat opinionated:
 
@@ -133,15 +132,16 @@ The way chronological information is handled is somewhat opinionated:
     is expected, although it is possible to specify a point estimate.
 
 When coercing a `data.frame` to a `*Matrix` object, an attempt is made
-to automatically assign values to these slots. This behavior can be
-disabled by setting `options(arkhe.autodetect = FALSE)`.
+to automatically assign values to these slots by mapping column names.
+This behavior can be disabled by setting
+`options(arkhe.autodetect = FALSE)`.
 
 ``` r
 Y <- as.data.frame(X)
 Y$samples <- rep(c("a", "b", "c", "d", "e"), each = 3)
 Y$groups <- rep(c("A", "B", "C"), each = 5)
-Y$from <- sample(1301:1400, 15, TRUE) # TPQ
-Y$to <- sample(1451:1500, 15, TRUE) # TAQ
+Y$tpq <- sample(1301:1400, 15, TRUE) # TPQ
+Y$taq <- sample(1451:1500, 15, TRUE) # TAQ
 
 ## Coerce to a count matrix
 Z <- as_count(Y)
@@ -156,22 +156,22 @@ get_groups(Z)
 
 ## Get dates
 get_dates(Z)
-#>    from   to
-#> 1  1357 1457
-#> 2  1313 1498
-#> 3  1390 1482
-#> 4  1366 1472
-#> 5  1376 1478
-#> 6  1391 1466
-#> 7  1319 1483
-#> 8  1341 1482
-#> 9  1341 1461
-#> 10 1368 1498
-#> 11 1391 1486
-#> 12 1325 1483
-#> 13 1347 1455
-#> 14 1335 1477
-#> 15 1396 1497
+#>        tpq  taq
+#> row1  1350 1456
+#> row2  1302 1451
+#> row3  1357 1483
+#> row4  1398 1475
+#> row5  1345 1485
+#> row6  1397 1484
+#> row7  1303 1471
+#> row8  1340 1462
+#> row9  1394 1476
+#> row10 1304 1478
+#> row11 1363 1466
+#> row12 1318 1478
+#> row13 1334 1471
+#> row14 1362 1491
+#> row15 1400 1491
 ```
 
 ## Contributing

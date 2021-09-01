@@ -43,52 +43,55 @@ as_factor <- function(x, reverse = FALSE) {
 #' @param x A [`data.frame`].
 #' @param spl_i An [`integer`].
 #' @param grp_i An [`integer`].
-#' @param from_i An [`integer`].
-#' @param to_i An [`integer`].
+#' @param tpq_i An [`integer`].
+#' @param tap_i An [`integer`].
+#' @param keep A [`character`] string.
 #' @return A [`list`].
 #' @author N. Frerebeau
 #' @family utilities
 #' @keywords internal utilities
 #' @noRd
 autodetect <- function(x, spl_i = NULL, grp_i = NULL,
-                       from_i = NULL, to_i = NULL) {
+                       tpq_i = NULL, tap_i = NULL,
+                       keep = "numeric") {
   ## Default values
-  samples <- rownames(x)
+  samples <- rownames(x) %||% character(0)
   groups <- character(0)
-  from <- to <- integer(0)
+  tpq <- taq <- integer(0)
 
-  extra_names <- colnames(x)
-  auto <- getOption("arkhe.autodetect") && !is.null(extra_names)
-
-  ## Samples
-  if (is.null(spl_i) && auto) {
-    spl_i <- grep("sample", extra_names, ignore.case = TRUE, value = FALSE)
+  cols <- colnames(x)
+  auto <- getOption("arkhe.autodetect") && !is.null(cols)
+  index <- function(what, where) {
+    grep(what, where, ignore.case = TRUE, value = FALSE)
   }
+  ## Samples
+  if (is.null(spl_i) && auto) spl_i <- index("^sample[s]{0,1}$", cols)
   if (has_length(spl_i, 1)) samples <- as.character(x[[spl_i]])
 
   ## Groups
-  if (is.null(grp_i) && auto) {
-    grp_i <- grep("group", extra_names, ignore.case = TRUE, value = FALSE)
-  }
+  if (is.null(grp_i) && auto) grp_i <- index("^group[s]{0,1}$", cols)
   if (has_length(grp_i, 1)) groups <- as.character(x[[grp_i]])
 
   ## Dates
-  if (is.null(from_i) && auto) {
-    from_i <- grep("from", extra_names, ignore.case = TRUE, value = FALSE)
-  }
-  if (has_length(from_i, 1)) from <- as.integer(x[[from_i]])
+  if (is.null(tpq_i) && auto) tpq_i <- index("tpq", cols)
+  if (has_length(tpq_i, 1)) tpq <- as.integer(x[[tpq_i]])
 
-  if (is.null(to_i) && auto) {
-    to_i <- grep("to", extra_names, ignore.case = TRUE, value = FALSE)
-  }
-  if (has_length(to_i, 1)) to <- as.integer(x[[to_i]])
+  if (is.null(tap_i) && auto) tap_i <- index("taq", cols)
+  if (has_length(tap_i, 1)) taq <- as.integer(x[[tap_i]])
 
   ## Drop extra columns (if any)
-  drop <- c(spl_i, grp_i, from_i, to_i)
+  drop <- c(spl_i, grp_i, tpq_i, tap_i)
   data <- if (length(drop) > 0) x[, -drop, drop = FALSE] else x
-  assert_filled(x)
+  assert_filled(data)
 
-  list(samples = samples, groups = groups, from = from, to = to, data = data)
+  ## Remove non-numeric columns
+  ok_num <- ok_log <- rep(FALSE, ncol(data))
+  if (any(keep == "numeric")) ok_num <- detect(is_numeric, data)
+  if (any(keep == "logical")) ok_log <- detect(is_logical, data)
+  data <- data[, ok_num | ok_log, drop = FALSE]
+  assert_filled(data)
+
+  list(samples = samples, groups = groups, tpq = tpq, taq = taq, data = data)
 }
 
 # To CountMatrix ===============================================================
@@ -98,7 +101,9 @@ autodetect <- function(x, spl_i = NULL, grp_i = NULL,
 setMethod(
   f = "as_count",
   signature = signature(from = "ANY"),
-  definition = function(from) methods::as(from, "CountMatrix")
+  definition = function(from) {
+    methods::as(from, "CountMatrix")
+  }
 )
 setAs(
   from = "matrix",
@@ -108,8 +113,10 @@ setAs(
     to <- as_integer(to)
     dim(to) <- dim(from)
     dimnames(to) <- make_dimnames(from)
+
+    samples <- rownames(to) %||% character(0)
     totals <- rowSums(to, na.rm = TRUE)
-    .CountMatrix(to, samples = rownames(to), totals = totals)
+    .CountMatrix(to, samples = samples, totals = totals)
   }
 )
 setAs(
@@ -117,22 +124,15 @@ setAs(
   to = "CountMatrix",
   def = function(from) {
     ## Get extra info
-    extra <- autodetect(from)
-    from <- extra$data
-
-    ## Remove non-numeric columns
-    ok <- detect(is_numeric, from)
-    clean <- from[, ok, drop = FALSE]
+    extra <- autodetect(from, keep = "numeric")
+    clean <- extra$data
 
     ## Build matrix
-    to <- data.matrix(clean, rownames.force = NA)
-    to <- as_integer(to)
-    dim(to) <- dim(clean)
-    dimnames(to) <- make_dimnames(clean)
-    totals <- rowSums(to, na.rm = TRUE)
+    mtx <- data.matrix(clean, rownames.force = NA)
+    mtx <- methods::as(mtx, "CountMatrix")
 
-    .CountMatrix(to, samples = extra$samples, groups = extra$groups,
-                 totals = totals, dates_from = extra$from, dates_to = extra$to)
+    methods::initialize(mtx, samples = extra$samples, groups = extra$groups,
+                        tpq = extra$tpq, taq = extra$taq)
   }
 )
 setAs(
@@ -144,8 +144,7 @@ setAs(
     dim(counts) <- dim(from)
     dimnames(counts) <- dimnames(from)
     .CountMatrix(counts, samples = from@samples, groups = from@groups,
-                 totals = totals, dates_from = from@dates_from,
-                 dates_to = from@dates_to)
+                 totals = totals, tpq = from@tpq, taq = from@taq)
   }
 )
 
@@ -156,7 +155,9 @@ setAs(
 setMethod(
   f = "as_composition",
   signature = signature(from = "ANY"),
-  definition = function(from) methods::as(from, "CompositionMatrix")
+  definition = function(from) {
+    methods::as(from, "CompositionMatrix")
+  }
 )
 
 setAs(
@@ -166,9 +167,12 @@ setAs(
     to <- data.matrix(from, rownames.force = NA)
     totals <- rowSums(to, na.rm = TRUE)
     to <- to / totals
+    # to[is.nan(to)] <- 0 # Prevent division by zero?
     dim(to) <- dim(from)
     dimnames(to) <- make_dimnames(from)
-    .CompositionMatrix(to, samples = rownames(to), totals = totals)
+
+    samples <- rownames(to) %||% character(0)
+    .CompositionMatrix(to, samples = samples, totals = totals)
   }
 )
 setAs(
@@ -176,23 +180,15 @@ setAs(
   to = "CompositionMatrix",
   def = function(from) {
     ## Get extra info
-    extra <- autodetect(from)
-    from <- extra$data
-
-    ## Remove non-numeric columns
-    ok <- detect(is_numeric, from)
-    clean <- from[, ok, drop = FALSE]
+    extra <- autodetect(from, keep = "numeric")
+    clean <- extra$data
 
     ## Build matrix
-    to <- data.matrix(clean, rownames.force = NA)
-    totals <- rowSums(to, na.rm = TRUE)
-    to <- to / totals
-    dim(to) <- dim(clean)
-    dimnames(to) <- make_dimnames(clean)
+    mtx <- data.matrix(clean, rownames.force = NA)
+    mtx <- methods::as(mtx, "CompositionMatrix")
 
-    .CompositionMatrix(to, samples = extra$samples, groups = extra$groups,
-                       totals = totals, dates_from = extra$from,
-                       dates_to = extra$to)
+    .CompositionMatrix(mtx, samples = extra$samples, groups = extra$groups,
+                       tpq = extra$tpq, taq = extra$taq)
   }
 )
 setAs(
@@ -204,8 +200,7 @@ setAs(
     dim(to) <- dim(from)
     dimnames(to) <- make_dimnames(from)
     .CompositionMatrix(to, samples = from@samples, groups = from@groups,
-                       totals = totals, dates_from = from@dates_from,
-                       dates_to = from@dates_to)
+                       totals = totals, tpq = from@tpq, taq = from@taq)
   }
 )
 
@@ -216,7 +211,9 @@ setAs(
 setMethod(
   f = "as_incidence",
   signature = signature(from = "ANY"),
-  definition = function(from) methods::as(from, "IncidenceMatrix")
+  definition = function(from) {
+    methods::as(from, "IncidenceMatrix")
+  }
 )
 setAs(
   from = "matrix",
@@ -224,10 +221,12 @@ setAs(
   def = function(from) {
     to <- data.matrix(from, rownames.force = NA)
     to <- to > 0
-    totals <- rowSums(to, na.rm = TRUE)
     dim(to) <- dim(from)
     dimnames(to) <- make_dimnames(from)
-    .IncidenceMatrix(to, samples = rownames(to), totals = totals)
+
+    samples <- rownames(to) %||% character(0)
+    totals <- rowSums(to, na.rm = TRUE)
+    .IncidenceMatrix(to, samples = samples, totals = totals)
   }
 )
 setAs(
@@ -235,23 +234,15 @@ setAs(
   to = "IncidenceMatrix",
   def = function(from) {
     ## Get extra info
-    extra <- autodetect(from)
-    from <- extra$data
-
-    ## Remove non-numeric columns
-    ok <- detect(is_numeric, from) | detect(is_logical, from)
-    clean <- from[, ok, drop = FALSE]
+    extra <- autodetect(from, keep = c("numeric", "logical"))
+    clean <- extra$data
 
     ## Build matrix
-    to <- data.matrix(clean, rownames.force = NA)
-    to <- to > 0
-    totals <- rowSums(to, na.rm = TRUE)
-    dim(to) <- dim(clean)
-    dimnames(to) <- make_dimnames(clean)
+    mtx <- data.matrix(clean, rownames.force = NA)
+    mtx <- methods::as(mtx, "IncidenceMatrix")
 
-    .IncidenceMatrix(to, samples = extra$samples, groups = extra$groups,
-                     totals = totals, dates_from = extra$from,
-                     dates_to = extra$to)
+    .IncidenceMatrix(mtx, samples = extra$samples, groups = extra$groups,
+                     tpq = extra$tpq, taq = extra$taq)
   }
 )
 setAs(
@@ -262,8 +253,7 @@ setAs(
     dim(incid) <- dim(from)
     dimnames(incid) <- dimnames(from)
     .IncidenceMatrix(incid, samples = from@samples, groups = from@groups,
-                     totals = from@totals, dates_from = from@dates_from,
-                     dates_to = from@dates_to)
+                     totals = from@totals, tpq = from@tpq, taq = from@taq)
   }
 )
 
@@ -380,8 +370,8 @@ setMethod(
     groups <- from@groups %||% NA_character_
     x$groups <- if (factor) as_factor(groups, reverse = reverse) else groups
 
-    x$from <- from@dates_from %||% NA_integer_
-    x$to <- from@dates_to %||% NA_integer_
+    x$tpq <- from@tpq %||% NA_integer_
+    x$taq <- from@taq %||% NA_integer_
 
     x
   }
@@ -397,8 +387,8 @@ setMethod(
     x <- as.data.frame(from)
     x$samples <- from@samples %||% NA_character_
     x$group <- from@groups %||% NA_character_
-    x$from <- from@dates_from %||% NA_integer_
-    x$to <- from@dates_to %||% NA_integer_
+    x$tpq <- from@tpq %||% NA_integer_
+    x$taq <- from@taq %||% NA_integer_
     x
   }
 )

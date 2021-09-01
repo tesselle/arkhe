@@ -73,7 +73,7 @@ reversed? Only used if \code{factor} is \code{TRUE}. Useful for plotting.}
 A coerced object.
 }
 \description{
-Coerce
+Coerces an object to a \verb{*Matrix} object.
 }
 \details{
 The following methods coerce an object to a \verb{*Matrix} object:
@@ -87,7 +87,7 @@ The following methods coerce an object to a \verb{*Matrix} object:
 \code{as_stratigraphy()} \tab \linkS4class{StratigraphicMatrix} \tab stratigraphic relationships
 }
 
-\strong{Note that \code{as_count} rounds numeric values to zero decimal places and
+\emph{Note that \code{as_count()} rounds numeric values to zero decimal places and
 then coerces to integer as by \code{as.integer()}.}
 
 \code{as_stratigraphy()} converts a set of stratigraphic relationships (edges)
@@ -105,6 +105,35 @@ bottom units and the second the top units (adjacency).
 a \code{\link{data.frame}} with all informations as extra columns (result may differ
 according to the class of \code{from}).
 }
+\section{Abundance Matrix}{
+
+The \code{CountMatrix}, \code{CompositionMatrix} and \code{IncidenceMatrix} classes have
+special slots:
+\itemize{
+\item \code{samples} for replicated measurements/observation,
+\item \code{groups} to group data by site/area,
+\item \code{tqp} and \code{taq} to specify the chronology of an assemblage.
+}
+
+When coercing a \code{data.frame} to a \verb{*Matrix} object, an attempt is made to
+automatically assign values to these slots by mapping column names (case
+insensitive, plural insensitive). This behavior can be disabled by setting
+\code{options(arkhe.autodetect = FALSE)} or overrided by explicitly specifying
+the columns to be used in \verb{as_*()}.
+}
+
+\section{Chronology}{
+
+The way chronological information is handled is somewhat opinionated:
+\itemize{
+\item Sub-annual precision is overkill/meaningless in most situations: dates are
+assumed to be expressed in years CE and are stored as integers (values are
+coerced with \code{as.integer()} and hence truncated towards zero).
+\item A date range (i.e. TPQ/TAQ) is expected, although it is possible to
+specify a point estimate.
+}
+}
+
 \examples{
 ## Create a count matrix
 A0 <- matrix(data = sample(0:10, 100, TRUE), nrow = 20, ncol = 5)

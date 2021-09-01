@@ -15,8 +15,8 @@ get_groups(Z)
 
 ## Get/get dates
 dates <- list(
-  from = sample(1301:1400, 10, replace = TRUE),
-  to = sample(1451:1500, 10, replace = TRUE)
+  tpq = sample(1301:1400, 10, replace = TRUE),
+  taq = sample(1451:1500, 10, replace = TRUE)
 )
 set_dates(Z) <- dates
 get_dates(Z)

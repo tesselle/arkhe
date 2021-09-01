@@ -224,8 +224,9 @@ is_whole <- function(x, na.rm = FALSE, tolerance = .Machine$double.eps^0.5) {
 #' * `is_constant()` checks for equality among all elements of a vector.
 #' * `is_increasing()` and `is_decreasing()` check if a sequence of numbers
 #'   is monotonically increasing or decreasing, respectively.
-#' @param x A [`numeric`] object to be tested.
+#' @param x,y A [`numeric`] object to be tested.
 #' @param tolerance A [`numeric`] scalar giving the tolerance to check within.
+#' @param strict A [`logical`] scalar: should strict inequality be used?
 #' @param na.rm A [`logical`] scalar: should missing values (including `NaN`)
 #'  be omitted?
 #' @return A [`logical`] scalar.
@@ -255,14 +256,17 @@ is_decreasing <- function(x, na.rm = FALSE) {
   if (na.rm) x <- stats::na.omit(x)
   all(x == cummin(x))
 }
-
+#' @export
+#' @rdname predicate-trend
 is_greater <- function(x, y, strict = FALSE, na.rm = FALSE) {
   assert_type(x, "numeric")
   assert_type(y, "numeric")
   z <- if (strict) x > y else x >= y
   all(z, na.rm = na.rm)
 }
-is_smaller <- function(x, y, strict = FALSE, na.rm = FALSE) {
+#' @export
+#' @rdname predicate-trend
+is_lower <- function(x, y, strict = FALSE, na.rm = FALSE) {
   assert_type(x, "numeric")
   assert_type(y, "numeric")
   z <- if (strict) x < y else x <= y

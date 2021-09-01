@@ -160,10 +160,10 @@ test_that("Assert numeric relation", {
   cnd <- catch_conditions(assert_relation(x, y, "greater"))
   expect_s3_class(cnd[[1]], "error_bad_number")
 
-  cnd <- catch_conditions(assert_relation(y, x, "smaller"))
+  cnd <- catch_conditions(assert_relation(y, x, "lower"))
   expect_s3_class(cnd[[1]], "error_bad_number")
 
-  expect_identical(assert_relation(x, y, "smaller"), x)
+  expect_identical(assert_relation(x, y, "lower"), x)
 })
 test_that("Assert matrix", {
   k <- matrix(sample(1:5, 50, TRUE), nrow = 5, ncol = 10)

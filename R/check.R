@@ -301,7 +301,7 @@ assert_relation <- function(x, y, expected, ...) {
   arg_y <- deparse(substitute(y))
   predicate <- switch(
     expected,
-    smaller = is_smaller,
+    lower = is_lower,
     greater = is_greater,
     stop("Can't find a predicate for this: ", expected, call. = FALSE)
   )

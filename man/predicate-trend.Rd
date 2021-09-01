@@ -5,6 +5,8 @@
 \alias{is_constant}
 \alias{is_increasing}
 \alias{is_decreasing}
+\alias{is_greater}
+\alias{is_lower}
 \title{Numeric Trend Predicates}
 \usage{
 is_constant(x, tolerance = .Machine$double.eps^0.5, na.rm = FALSE)
@@ -12,14 +14,20 @@ is_constant(x, tolerance = .Machine$double.eps^0.5, na.rm = FALSE)
 is_increasing(x, na.rm = FALSE)
 
 is_decreasing(x, na.rm = FALSE)
+
+is_greater(x, y, strict = FALSE, na.rm = FALSE)
+
+is_lower(x, y, strict = FALSE, na.rm = FALSE)
 }
 \arguments{
-\item{x}{A \code{\link{numeric}} object to be tested.}
+\item{x, y}{A \code{\link{numeric}} object to be tested.}
 
 \item{tolerance}{A \code{\link{numeric}} scalar giving the tolerance to check within.}
 
 \item{na.rm}{A \code{\link{logical}} scalar: should missing values (including \code{NaN})
 be omitted?}
+
+\item{strict}{A \code{\link{logical}} scalar: should strict inequality be used?}
 }
 \value{
 A \code{\link{logical}} scalar.

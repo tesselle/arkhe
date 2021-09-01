@@ -1,27 +1,35 @@
 test_that("Autodetect", {
   samples <- rep(c("a", "b", "c", "d", "e"), each = 3)
   groups <- rep(c("A", "B", "C"), each = 5)
-  from <- sample(1301:1400, 15, TRUE)
-  to <- sample(1451:1500, 15, TRUE)
+  tpq <- sample(1301:1400, 15, TRUE)
+  taq <- sample(1451:1500, 15, TRUE)
 
   X <- matrix(data = sample(0:10, 75, TRUE), nrow = 15, ncol = 5)
-  Y <- data.frame(samples = samples, groups = groups, from = from, to = to, X)
+  Y <- data.frame(samples = samples, groups = groups, tpq = tpq, taq = taq, X)
 
   options(arkhe.autodetect = FALSE)
   Z <- as_count(Y)
   expect_equal(get_samples(Z), rownames(Y))
   expect_equal(get_groups(Z), character(0))
-  expect_equal(get_dates(Z), data.frame(from = integer(0), to = integer(0)))
+  expect_equal(get_dates(Z), data.frame(tpq = integer(0), taq = integer(0)))
 
   options(arkhe.autodetect = TRUE)
   Z <- as_count(Y)
   expect_equal(get_samples(Z), samples)
   expect_equal(get_groups(Z), groups)
-  expect_equal(get_dates(Z), data.frame(from = from, to = to),
+  expect_equal(get_dates(Z), data.frame(tpq = tpq, taq = taq),
                ignore_attr = TRUE)
 
+  Y$label <- LETTERS[1:15]
+  Z <- as_count(Y)
+  expect_equal(dim(Z), dim(X))
+
+  Y$logic <- rep(c(TRUE, FALSE, TRUE), 5)
+  A <- as_incidence(Y)
+  expect_equal(dim(A), dim(X) + c(0, 1))
+
   Y <- data.frame(samples = character(0), groups = character(0),
-                  from = integer(0), to = integer(0))
+                  tpq = integer(0), taq = integer(0))
   expect_error(as_count(Y))
 })
 # matrix =======================================================================
@@ -106,8 +114,8 @@ test_that("DataMatrix > long", {
   expect_equal(dim(A), c(50, 7))
   expect_s3_class(A$row, "factor")
   expect_s3_class(A$column, "factor")
-  expect_type(A$from, "integer")
-  expect_type(A$to, "integer")
+  expect_type(A$tpq, "integer")
+  expect_type(A$tpq, "integer")
 
   B <- as_long(counts, factor = TRUE, reverse = TRUE)
   expect_equal(rev(levels(A$row)), levels(B$row))
@@ -144,6 +152,6 @@ test_that("Autodetect", {
 
   options(arkhe.autodetect = FALSE)
   counts <- as_count(cts)
-  expect_equal(get_samples(counts), rownames(counts))
+  expect_equal(get_samples(counts), rownames(cts))
   expect_equal(get_groups(counts), character(0))
 })

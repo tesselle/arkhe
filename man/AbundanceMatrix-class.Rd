@@ -17,9 +17,9 @@ A virtual S4 class to represent archaeological data.
 
 \item{\code{totals}}{A \code{\link{numeric}} vector giving the absolute row sums.}
 
-\item{\code{dates_from}}{An \code{\link{integer}} vector.}
+\item{\code{tpq}}{An \code{\link{integer}} vector specifying the TPQ of each row.}
 
-\item{\code{dates_to}}{An \code{\link{integer}} vector.}
+\item{\code{taq}}{An \code{\link{integer}} vector specifying the TAQ of each row.}
 }}
 
 \section{Get and set}{
@@ -31,10 +31,39 @@ the sample names of \code{x}.}
 \item{\code{get_groups(x)} and \code{set_groups(x) <- value}}{Get or set
 the groups of \code{x}.}
 \item{\code{get_dates(x)} and \code{set_dates(x) <- value}}{Get or set
-the dates of \code{x}. \code{value} can be a \code{\link{list}} with components \code{from} (TPQ)
-and \code{to} (TAQ) or a \code{\link{numeric}} vector (point estimate). The elements of
-\code{value} are coerced to \code{\link{integer}} with \code{\link[=as.integer]{as.integer()}} (hence truncated
-towards zero).}
+the dates of \code{x}. \code{value} can be a \code{\link{list}} with components \code{tpq} (TPQ -
+\emph{terminus post quem}) and \code{taq} (TAQ - \emph{terminus ante quem}) or a
+\code{\link{numeric}} vector (point estimate). The elements of \code{value} are coerced to
+\code{\link{integer}} with \code{\link[=as.integer]{as.integer()}} (hence truncated towards zero).}
+}
+}
+
+\section{Abundance Matrix}{
+
+The \code{CountMatrix}, \code{CompositionMatrix} and \code{IncidenceMatrix} classes have
+special slots:
+\itemize{
+\item \code{samples} for replicated measurements/observation,
+\item \code{groups} to group data by site/area,
+\item \code{tqp} and \code{taq} to specify the chronology of an assemblage.
+}
+
+When coercing a \code{data.frame} to a \verb{*Matrix} object, an attempt is made to
+automatically assign values to these slots by mapping column names (case
+insensitive, plural insensitive). This behavior can be disabled by setting
+\code{options(arkhe.autodetect = FALSE)} or overrided by explicitly specifying
+the columns to be used in \verb{as_*()}.
+}
+
+\section{Chronology}{
+
+The way chronological information is handled is somewhat opinionated:
+\itemize{
+\item Sub-annual precision is overkill/meaningless in most situations: dates are
+assumed to be expressed in years CE and are stored as integers (values are
+coerced with \code{as.integer()} and hence truncated towards zero).
+\item A date range (i.e. TPQ/TAQ) is expected, although it is possible to
+specify a point estimate.
 }
 }
 

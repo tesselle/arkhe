@@ -86,6 +86,7 @@ setGeneric(
 # Coerce =======================================================================
 #' Coerce
 #'
+#' Coerces an object to a `*Matrix` object.
 #' @param from An object to be coerced.
 #' @param factor A [`logical`] scalar: should character string be
 #'  coerced to [`factor`]? Default to `FALSE`, if `TRUE` the original ordering is
@@ -105,8 +106,8 @@ setGeneric(
 #'   `as_stratigraphy()` \tab [StratigraphicMatrix-class] \tab stratigraphic relationships
 #'  }
 #'
-#'  **Note that `as_count` rounds numeric values to zero decimal places and
-#'  then coerces to integer as by `as.integer()`.**
+#'  *Note that `as_count()` rounds numeric values to zero decimal places and
+#'  then coerces to integer as by `as.integer()`.*
 #'
 #'  `as_stratigraphy()` converts a set of stratigraphic relationships (edges)
 #'  to a stratigraphic (adjacency) matrix. `from` can be a [`matrix`], [`list`],
@@ -122,6 +123,8 @@ setGeneric(
 #'  `as_features()` converts a `*Matrix` object to a collection of features:
 #'  a [`data.frame`] with all informations as extra columns (result may differ
 #'  according to the class of `from`).
+#' @inheritSection AbundanceMatrix-class Abundance Matrix
+#' @inheritSection AbundanceMatrix-class Chronology
 #' @return A coerced object.
 #' @example inst/examples/ex-coerce.R
 #' @author N. Frerebeau
@@ -201,11 +204,14 @@ setGeneric(
 #'   \item{`get_groups(x)` and `set_groups(x) <- value`}{Get or set
 #'   the groups of `x`.}
 #'   \item{`get_dates(x)` and `set_dates(x) <- value`}{Get or set
-#'   the dates of `x`. `value` can be a [`list`] with components `from` (TPQ)
-#'   and `to` (TAQ) or a [`numeric`] vector (point estimate). The elements of
-#'   `value` are coerced to [`integer`] with [as.integer()] (hence truncated
-#'   towards zero).}
+#'   the dates of `x`. `value` can be a [`list`] with components `tpq` (TPQ -
+#'   *terminus post quem*) and `taq` (TAQ - *terminus ante quem*) or a
+#'   [`numeric`] vector (point estimate). The elements of `value` are coerced to
+#'   [`integer`] with [as.integer()] (hence truncated towards zero).}
+#'   \item{`get_tpq(x)` and `set_tpq(x) <- value`,
+#'   `get_taq(x)` and `set_taq(x) <- value`}{Get or set the TPQ/TAQ of `x`.}
 #'  }
+#' @inheritSection AbundanceMatrix-class Chronology
 #' @return
 #'  * `set_*()` returns an object of the same sort as `x` with the new values
 #'    assigned.
@@ -274,6 +280,34 @@ setGeneric(
 setGeneric(
   name = "set_dates<-",
   def = function(x, value) standardGeneric("set_dates<-")
+)
+
+#' @rdname mutator
+#' @aliases get_tpq-method
+setGeneric(
+  name = "get_tpq",
+  def = function(x) standardGeneric("get_tpq")
+)
+
+#' @rdname mutator
+#' @aliases set_tpq-method
+setGeneric(
+  name = "set_tpq<-",
+  def = function(x, value) standardGeneric("set_tpq<-")
+)
+
+#' @rdname mutator
+#' @aliases get_taq-method
+setGeneric(
+  name = "get_taq",
+  def = function(x) standardGeneric("get_taq")
+)
+
+#' @rdname mutator
+#' @aliases set_taq-method
+setGeneric(
+  name = "set_taq<-",
+  def = function(x, value) standardGeneric("set_taq<-")
 )
 
 #' @rdname mutator

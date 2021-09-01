@@ -21,19 +21,31 @@ setMethod("get_samples", "AbundanceMatrix", function(x) x@samples)
 #' @export
 #' @rdname mutator
 #' @aliases has_dates,AbundanceMatrix-method
-setMethod("has_dates", "AbundanceMatrix", function(x) length(x@dates_from) > 0)
+setMethod("has_dates", "AbundanceMatrix", function(x) {
+  !is_empty(x@tpq) || !is_empty(x@taq)
+})
 
 #' @export
 #' @rdname mutator
 #' @aliases get_dates,AbundanceMatrix-method
 setMethod("get_dates", "AbundanceMatrix", function(x) {
   y <- data.frame(
-    from = x@dates_from,
-    to = x@dates_to
+    tpq = x@tpq,
+    taq = x@taq
   )
   if (!is_empty(y)) rownames(y) <- rownames(x)
   y
 })
+
+#' @export
+#' @rdname mutator
+#' @aliases get_tpq,AbundanceMatrix-method
+setMethod("get_tpq", "AbundanceMatrix", function(x) x@tpq)
+
+#' @export
+#' @rdname mutator
+#' @aliases get_taq,AbundanceMatrix-method
+setMethod("get_taq", "AbundanceMatrix", function(x) x@taq)
 
 #' @export
 #' @rdname mutator
@@ -79,8 +91,8 @@ setMethod(
   f = "set_dates<-",
   signature = c(x = "AbundanceMatrix", value = "NULL"),
   definition = function(x, value) {
-    x@dates_from <- integer(0)
-    x@dates_to <- integer(0)
+    x@tpq <- integer(0)
+    x@taq <- integer(0)
 
     methods::validObject(x)
     x
@@ -95,8 +107,8 @@ setMethod(
   signature = c(x = "AbundanceMatrix", value = "numeric"),
   definition = function(x, value) {
     ## Coerce to integer
-    x@dates_from <- as.integer(value)
-    x@dates_to <- as.integer(value)
+    x@tpq <- as.integer(value)
+    x@taq <- as.integer(value)
 
     methods::validObject(x)
     x
@@ -111,17 +123,70 @@ setMethod(
   signature = c(x = "AbundanceMatrix", value = "list"),
   definition = function(x, value) {
     ## Validation
-    k <- match(c("from", "to"), names(value))
+    names(value) <- tolower(names(value))
+    k <- match(c("tpq", "taq"), names(value))
     if (anyNA(k)) {
       msg <- sprintf("%s is a list, but does not have components %s and %s.",
-                     sQuote("x"), sQuote("from"), sQuote("to"))
+                     sQuote("x"), sQuote("tpq"), sQuote("taq"))
       stop(msg, call. = FALSE)
     }
 
     ## Coerce to integer
-    x@dates_from <- as.integer(value$from)
-    x@dates_to <- as.integer(value$to)
+    x@tpq <- as.integer(value$tpq)
+    x@taq <- as.integer(value$taq)
 
+    methods::validObject(x)
+    x
+  }
+)
+
+#' @export
+#' @rdname mutator
+#' @aliases set_tpq,AbundanceMatrix,NULL-method
+setMethod(
+  f = "set_tpq<-",
+  signature = c(x = "AbundanceMatrix", value = "NULL"),
+  definition = function(x, value) {
+    x@tpq <- integer(0)
+    methods::validObject(x)
+    x
+  }
+)
+
+#' @export
+#' @rdname mutator
+#' @aliases set_tpq,AbundanceMatrix,numeric-method
+setMethod(
+  f = "set_tpq<-",
+  signature = c(x = "AbundanceMatrix", value = "numeric"),
+  definition = function(x, value) {
+    x@tpq <- as.integer(value)
+    methods::validObject(x)
+    x
+  }
+)
+
+#' @export
+#' @rdname mutator
+#' @aliases set_taq,AbundanceMatrix,NULL-method
+setMethod(
+  f = "set_taq<-",
+  signature = c(x = "AbundanceMatrix", value = "NULL"),
+  definition = function(x, value) {
+    x@taq <- integer(0)
+    methods::validObject(x)
+    x
+  }
+)
+
+#' @export
+#' @rdname mutator
+#' @aliases set_taq,AbundanceMatrix,numeric-method
+setMethod(
+  f = "set_taq<-",
+  signature = c(x = "AbundanceMatrix", value = "numeric"),
+  definition = function(x, value) {
+    x@taq <- as.integer(value)
     methods::validObject(x)
     x
   }

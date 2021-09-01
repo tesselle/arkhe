@@ -36,20 +36,29 @@ test_that("AbundanceMatrix samples", {
 })
 test_that("AbundanceMatrix dates", {
   cts <- CountMatrix(sample(1:100, 75, TRUE), ncol = 5)
+  tpq <- sample(1301:1400, 15, replace = TRUE)
+  taq <- sample(1451:1500, 15, replace = TRUE)
+  dates <- list(tpq = tpq, taq = taq)
 
-  expect_equal(get_dates(cts), data.frame(from = integer(0), to = integer(0)))
+  expect_equal(get_dates(cts), data.frame(tpq = integer(0), taq = integer(0)))
 
-  dates <- list(
-    from = sample(1301:1400, 15, replace = TRUE),
-    to = sample(1451:1500, 15, replace = TRUE)
-  )
   set_dates(cts) <- dates
   expect_true(has_dates(cts))
   expect_equal(get_dates(cts), as.data.frame(dates), ignore_attr = TRUE)
+  expect_equal(get_tpq(cts), dates$tpq)
+  expect_equal(get_taq(cts), dates$taq)
 
   set_dates(cts) <- NULL
   expect_false(has_dates(cts))
-  expect_equal(get_dates(cts), data.frame(from = integer(0), to = integer(0)))
+  expect_equal(get_dates(cts), data.frame(tpq = integer(0), taq = integer(0)))
+
+  set_tpq(cts) <- tpq
+  set_taq(cts) <- taq
+  expect_true(has_dates(cts))
+
+  set_tpq(cts) <- NULL
+  set_taq(cts) <- NULL
+  expect_false(has_dates(cts))
 
   # Invalid values
   # Try unnamed list
@@ -58,10 +67,10 @@ test_that("AbundanceMatrix dates", {
   expect_s3_class(cnd[[1]], "simpleError")
   expect_true(grepl("but does not have components", cnd[[1]]$message))
   # Try wrong order
-  names(dates) <- c("to", "from")
+  names(dates) <- c("taq", "tpq")
   cnd <- catch_conditions(set_dates(cts) <- dates)
   expect_s3_class(cnd[[1]], "arkhe_error_class")
-  expect_true(grepl("must be smaller than", cnd[[1]]$message))
+  expect_true(grepl("must be lower than", cnd[[1]]$message))
   # Try wrong length
   cnd <- catch_conditions(set_dates(cts) <- 1:5)
   expect_s3_class(cnd[[1]], "arkhe_error_class")

@@ -11,23 +11,23 @@ setValidity(
     samples <- object@samples
     groups <- object@groups
     totals <- object@totals
-    from <- object@dates_from
-    to <- object@dates_to
+    tpq <- object@tpq
+    taq <- object@taq
 
     cnd <- list(
       validate(assert_length(samples, n, empty = FALSE)),
       validate(assert_length(groups, n, empty = TRUE)),
-      validate(assert_length(from, n, empty = TRUE)),
-      validate(assert_length(totals, n, empty = FALSE)),
-      validate(assert_length(to, n, empty = TRUE))
+      validate(assert_length(tpq, n, empty = TRUE)),
+      validate(assert_length(taq, n, empty = TRUE)),
+      validate(assert_length(totals, n, empty = FALSE))
     )
 
     if (!is_empty(totals)) {
       cnd <- c(cnd, validate(assert_numeric(totals, "positive")))
     }
 
-    if (!is_empty(from) & !is_empty(to)) {
-      rel <- validate(assert_relation(from, to, "smaller", na.rm = TRUE))
+    if (!is_empty(tpq) & !is_empty(taq)) {
+      rel <- validate(assert_relation(tpq, taq, "lower", na.rm = TRUE))
       cnd <- c(cnd, rel)
     }
 
