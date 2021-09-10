@@ -43,6 +43,6 @@
 #' .hasSlot initialize is Logic Math Math2 new Ops setClass setClassUnion
 #' setGeneric setMethod slot slot<- slotNames Summary validObject
 #' .valueClassTest
-#' @importFrom stats quantile na.omit rmultinom xtabs
+#' @importFrom stats quantile na.omit rmultinom sd xtabs
 #' @importFrom utils capture.output combn
 NULL

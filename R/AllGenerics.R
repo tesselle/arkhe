@@ -381,11 +381,19 @@ setGeneric(
 
 #' Bootstrap Estimation
 #'
+#' Creates \eqn{n} bootstrapped replicates by resampling with replacement from
+#' the original data and applies a function.
 #' @param x A [`numeric`] vector.
 #' @param do A [`function`] that takes `x` as an argument
 #'  and returns a single numeric value.
+#' @param level A length-one [`numeric`] vector giving the confidence level.
+#'  Must be a single number between \eqn{0} and \eqn{1}.
+#' @param type A [`character`] string giving the type of confidence
+#'  interval to be returned. It must be one "`student`" (default) or
+#'  "`normal`". Any unambiguous substring can be given.
 #' @param probs A [`numeric`] vector of probabilities with values in
-#'  \eqn{[0,1]} (see [stats::quantile()]).
+#'  \eqn{[0,1]} (see [stats::quantile()]). If `NULL`, quantiles are not
+#'  computed.
 #' @param n A non-negative [`integer`] giving the number of bootstrap
 #'  replications.
 #' @param na.rm A [`logical`] scalar: should missing values be removed
@@ -396,6 +404,8 @@ setGeneric(
 #'   \item{`min`}{Minimum value.}
 #'   \item{`mean`}{Mean value.}
 #'   \item{`max`}{Maximum value.}
+#'   \item{`lower`}{Lower bound of the confidence interval.}
+#'   \item{`upper`}{Upper bound of the confidence interval.}
 #'   \item{`Q*`}{Sample quantile to `*` probability.}
 #'  }
 # @example inst/examples/ex-statistics.R

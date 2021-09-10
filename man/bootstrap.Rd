@@ -9,7 +9,16 @@
 \usage{
 bootstrap(x, ...)
 
-\S4method{bootstrap}{numeric}(x, do, probs = c(0.05, 0.95), n = 1000, na.rm = FALSE, ...)
+\S4method{bootstrap}{numeric}(
+  x,
+  do,
+  level = 0.95,
+  type = c("student", "normal"),
+  probs = c(0.25, 0.75),
+  n = 1000,
+  na.rm = FALSE,
+  ...
+)
 }
 \arguments{
 \item{x}{A \code{\link{numeric}} vector.}
@@ -19,8 +28,16 @@ bootstrap(x, ...)
 \item{do}{A \code{\link{function}} that takes \code{x} as an argument
 and returns a single numeric value.}
 
+\item{level}{A length-one \code{\link{numeric}} vector giving the confidence level.
+Must be a single number between \eqn{0} and \eqn{1}.}
+
+\item{type}{A \code{\link{character}} string giving the type of confidence
+interval to be returned. It must be one "\code{student}" (default) or
+"\code{normal}". Any unambiguous substring can be given.}
+
 \item{probs}{A \code{\link{numeric}} vector of probabilities with values in
-\eqn{[0,1]} (see \code{\link[stats:quantile]{stats::quantile()}}).}
+\eqn{[0,1]} (see \code{\link[stats:quantile]{stats::quantile()}}). If \code{NULL}, quantiles are not
+computed.}
 
 \item{n}{A non-negative \code{\link{integer}} giving the number of bootstrap
 replications.}
@@ -34,11 +51,14 @@ A \code{numeric} vector with the following elements:
 \item{\code{min}}{Minimum value.}
 \item{\code{mean}}{Mean value.}
 \item{\code{max}}{Maximum value.}
+\item{\code{lower}}{Lower bound of the confidence interval.}
+\item{\code{upper}}{Upper bound of the confidence interval.}
 \item{\verb{Q*}}{Sample quantile to \code{*} probability.}
 }
 }
 \description{
-Bootstrap Estimation
+Creates \eqn{n} bootstrapped replicates by resampling with replacement from
+the original data and applies a function.
 }
 \seealso{
 Other statistics: 
