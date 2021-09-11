@@ -21,6 +21,12 @@
 \alias{get_dates-method}
 \alias{set_dates<-}
 \alias{set_dates-method}
+\alias{has_terminus}
+\alias{has_terminus-method}
+\alias{get_terminus}
+\alias{get_terminus-method}
+\alias{set_terminus<-}
+\alias{set_terminus-method}
 \alias{get_tpq}
 \alias{get_tpq-method}
 \alias{set_tpq<-}
@@ -38,6 +44,8 @@
 \alias{get_samples,AbundanceMatrix-method}
 \alias{has_dates,AbundanceMatrix-method}
 \alias{get_dates,AbundanceMatrix-method}
+\alias{has_terminus,AbundanceMatrix-method}
+\alias{get_terminus,AbundanceMatrix-method}
 \alias{get_tpq,AbundanceMatrix-method}
 \alias{get_taq,AbundanceMatrix-method}
 \alias{get_totals,AbundanceMatrix-method}
@@ -50,8 +58,10 @@
 \alias{set_dates,AbundanceMatrix,NULL-method}
 \alias{set_dates<-,AbundanceMatrix,numeric-method}
 \alias{set_dates,AbundanceMatrix,numeric-method}
-\alias{set_dates<-,AbundanceMatrix,list-method}
-\alias{set_dates,AbundanceMatrix,list-method}
+\alias{set_terminus<-,AbundanceMatrix,NULL-method}
+\alias{set_terminus,AbundanceMatrix,NULL-method}
+\alias{set_terminus<-,AbundanceMatrix,list-method}
+\alias{set_terminus,AbundanceMatrix,list-method}
 \alias{set_tpq<-,AbundanceMatrix,NULL-method}
 \alias{set_tpq,AbundanceMatrix,NULL-method}
 \alias{set_tpq<-,AbundanceMatrix,numeric-method}
@@ -80,6 +90,12 @@ get_dates(x)
 
 set_dates(x) <- value
 
+has_terminus(x)
+
+get_terminus(x)
+
+set_terminus(x) <- value
+
 get_tpq(x)
 
 set_tpq(x) <- value
@@ -102,6 +118,10 @@ set_totals(x) <- value
 
 \S4method{get_dates}{AbundanceMatrix}(x)
 
+\S4method{has_terminus}{AbundanceMatrix}(x)
+
+\S4method{get_terminus}{AbundanceMatrix}(x)
+
 \S4method{get_tpq}{AbundanceMatrix}(x)
 
 \S4method{get_taq}{AbundanceMatrix}(x)
@@ -118,7 +138,9 @@ set_totals(x) <- value
 
 \S4method{set_dates}{AbundanceMatrix,numeric}(x) <- value
 
-\S4method{set_dates}{AbundanceMatrix,list}(x) <- value
+\S4method{set_terminus}{AbundanceMatrix,`NULL`}(x) <- value
+
+\S4method{set_terminus}{AbundanceMatrix,list}(x) <- value
 
 \S4method{set_tpq}{AbundanceMatrix,`NULL`}(x) <- value
 
@@ -153,25 +175,21 @@ Getters and setters to retrieve or set parts of an object.
 the sample names of \code{x}.}
 \item{\code{get_groups(x)} and \code{set_groups(x) <- value}}{Get or set
 the groups of \code{x}.}
-\item{\code{get_dates(x)} and \code{set_dates(x) <- value}}{Get or set
-the dates of \code{x}. \code{value} can be a \code{\link{list}} with components \code{tpq} (TPQ -
-\emph{terminus post quem}) and \code{taq} (TAQ - \emph{terminus ante quem}) or a
-\code{\link{numeric}} vector (point estimate). The elements of \code{value} are coerced to
-\code{\link{integer}} with \code{\link[=as.integer]{as.integer()}} (hence truncated towards zero).}
+\item{\code{get_dates(x)} and \code{set_dates(x) <- value}}{Get or set the dates of
+\code{x}.}
+\item{\code{get_terminus(x)} and \code{set_terminus(x) <- value}}{Get or set
+the chronology of \code{x}. \code{value} must be a \code{\link{list}} with components \code{tpq}
+(TPQ - \emph{terminus post quem}) and \code{taq} (TAQ - \emph{terminus ante quem}).}
 \item{\code{get_tpq(x)} and \code{set_tpq(x) <- value},
 \code{get_taq(x)} and \code{set_taq(x) <- value}}{Get or set the TPQ/TAQ of \code{x}.}
 }
 }
 \section{Chronology}{
 
-The way chronological information is handled is somewhat opinionated:
-\itemize{
-\item Sub-annual precision is overkill/meaningless in most situations: dates are
+The way chronological information is handled is somewhat opinionated.
+Sub-annual precision is overkill/meaningless in most situations: dates are
 assumed to be expressed in years CE and are stored as integers (values are
 coerced with \code{as.integer()} and hence truncated towards zero).
-\item A date range (i.e. TPQ/TAQ) is expected, although it is possible to
-specify a point estimate.
-}
 }
 
 \examples{
@@ -190,13 +208,13 @@ get_samples(Z)
 set_groups(Z) <- rep(c("A", "B"), each = 5)
 get_groups(Z)
 
-## Get/get dates
-dates <- list(
+## Get/get TPQ/TAQ
+chrono <- list(
   tpq = sample(1301:1400, 10, replace = TRUE),
   taq = sample(1451:1500, 10, replace = TRUE)
 )
-set_dates(Z) <- dates
-get_dates(Z)
+set_terminus(Z) <- chrono
+get_terminus(Z)
 
 ## Collection of features
 as_features(Z)

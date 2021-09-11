@@ -119,17 +119,14 @@ have special slots:
 
 -   `samples` for replicated measurements/observation,
 -   `groups` to group data by site/area,
+-   `dates` to specify the date point estimate of an assemblage,
 -   `tqp` and `taq` to specify the chronology of an assemblage.
 
-The way chronological information is handled is somewhat opinionated:
-
--   Sub-annual precision is overkill/meaningless in most situations:
-    dates are assumed to be expressed in years CE and are stored as
-    integers (values are coerced with `as.integer()` and hence truncated
-    towards zero).
--   A date range
-    (i.e. <abbr title="terminus post quem">TPQ</abbr>/<abbr title="terminus ante quem">TAQ</abbr>)
-    is expected, although it is possible to specify a point estimate.
+The way chronological information is handled is somewhat opinionated.
+Sub-annual precision is overkill/meaningless in most situations: dates
+are assumed to be expressed in years CE and are stored as integers
+(values are coerced with `as.integer()` and hence truncated towards
+zero).
 
 When coercing a `data.frame` to a `*Matrix` object, an attempt is made
 to automatically assign values to these slots by mapping column names.
@@ -140,6 +137,7 @@ This behavior can be disabled by setting
 Y <- as.data.frame(X)
 Y$samples <- rep(c("a", "b", "c", "d", "e"), each = 3)
 Y$groups <- rep(c("A", "B", "C"), each = 5)
+Y$dates <- sample(1400:1451, 15, TRUE)
 Y$tpq <- sample(1301:1400, 15, TRUE) # TPQ
 Y$taq <- sample(1451:1500, 15, TRUE) # TAQ
 
@@ -156,22 +154,26 @@ get_groups(Z)
 
 ## Get dates
 get_dates(Z)
+#>  [1] 1425 1446 1422 1430 1403 1448 1407 1411 1437 1446 1430 1449 1406 1435 1418
+
+## Get chronology
+get_terminus(Z)
 #>        tpq  taq
-#> row1  1350 1456
-#> row2  1302 1451
-#> row3  1357 1483
-#> row4  1398 1475
-#> row5  1345 1485
-#> row6  1397 1484
-#> row7  1303 1471
-#> row8  1340 1462
-#> row9  1394 1476
-#> row10 1304 1478
-#> row11 1363 1466
-#> row12 1318 1478
-#> row13 1334 1471
-#> row14 1362 1491
-#> row15 1400 1491
+#> row1  1316 1458
+#> row2  1390 1464
+#> row3  1368 1470
+#> row4  1310 1476
+#> row5  1368 1496
+#> row6  1357 1464
+#> row7  1311 1451
+#> row8  1382 1500
+#> row9  1380 1498
+#> row10 1306 1477
+#> row11 1379 1485
+#> row12 1316 1464
+#> row13 1359 1496
+#> row14 1323 1459
+#> row15 1372 1452
 ```
 
 ## Contributing

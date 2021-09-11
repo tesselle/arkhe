@@ -43,6 +43,7 @@ as_factor <- function(x, reverse = FALSE) {
 #' @param x A [`data.frame`].
 #' @param spl_i An [`integer`].
 #' @param grp_i An [`integer`].
+#' @param dts_i An [`integer`].
 #' @param tpq_i An [`integer`].
 #' @param tap_i An [`integer`].
 #' @param keep A [`character`] string.
@@ -51,13 +52,12 @@ as_factor <- function(x, reverse = FALSE) {
 #' @family utilities
 #' @keywords internal utilities
 #' @noRd
-autodetect <- function(x, spl_i = NULL, grp_i = NULL,
-                       tpq_i = NULL, tap_i = NULL,
-                       keep = "numeric") {
+autodetect <- function(x, spl_i = NULL, grp_i = NULL, dts_i = NULL,
+                       tpq_i = NULL, tap_i = NULL, keep = "numeric") {
   ## Default values
   samples <- rownames(x) %||% character(0)
   groups <- character(0)
-  tpq <- taq <- integer(0)
+  dts <- tpq <- taq <- integer(0)
 
   cols <- colnames(x)
   auto <- getOption("arkhe.autodetect") && !is.null(cols)
@@ -73,6 +73,9 @@ autodetect <- function(x, spl_i = NULL, grp_i = NULL,
   if (has_length(grp_i, 1)) groups <- as.character(x[[grp_i]])
 
   ## Dates
+  if (is.null(dts_i) && auto) dts_i <- index("^date[s]{0,1}$", cols)
+  if (has_length(dts_i, 1)) dts <- as.integer(x[[dts_i]])
+
   if (is.null(tpq_i) && auto) tpq_i <- index("tpq", cols)
   if (has_length(tpq_i, 1)) tpq <- as.integer(x[[tpq_i]])
 
@@ -80,7 +83,7 @@ autodetect <- function(x, spl_i = NULL, grp_i = NULL,
   if (has_length(tap_i, 1)) taq <- as.integer(x[[tap_i]])
 
   ## Drop extra columns (if any)
-  drop <- c(spl_i, grp_i, tpq_i, tap_i)
+  drop <- c(spl_i, grp_i, dts_i, tpq_i, tap_i)
   data <- if (length(drop) > 0) x[, -drop, drop = FALSE] else x
   assert_filled(data)
 
@@ -91,7 +94,14 @@ autodetect <- function(x, spl_i = NULL, grp_i = NULL,
   data <- data[, ok_num | ok_log, drop = FALSE]
   assert_filled(data)
 
-  list(samples = samples, groups = groups, tpq = tpq, taq = taq, data = data)
+  list(
+    samples = samples,
+    groups = groups,
+    dates = dts,
+    tpq = tpq,
+    taq = taq,
+    data = data
+  )
 }
 
 # To CountMatrix ===============================================================
@@ -132,7 +142,7 @@ setAs(
     mtx <- methods::as(mtx, "CountMatrix")
 
     methods::initialize(mtx, samples = extra$samples, groups = extra$groups,
-                        tpq = extra$tpq, taq = extra$taq)
+                        dates = extra$dates, tpq = extra$tpq, taq = extra$taq)
   }
 )
 setAs(
@@ -144,7 +154,8 @@ setAs(
     dim(counts) <- dim(from)
     dimnames(counts) <- dimnames(from)
     .CountMatrix(counts, samples = from@samples, groups = from@groups,
-                 totals = totals, tpq = from@tpq, taq = from@taq)
+                 totals = totals, dates = from@dates, tpq = from@tpq,
+                 taq = from@taq)
   }
 )
 
@@ -188,7 +199,7 @@ setAs(
     mtx <- methods::as(mtx, "CompositionMatrix")
 
     .CompositionMatrix(mtx, samples = extra$samples, groups = extra$groups,
-                       tpq = extra$tpq, taq = extra$taq)
+                       dates = extra$dates, tpq = extra$tpq, taq = extra$taq)
   }
 )
 setAs(
@@ -200,7 +211,8 @@ setAs(
     dim(to) <- dim(from)
     dimnames(to) <- make_dimnames(from)
     .CompositionMatrix(to, samples = from@samples, groups = from@groups,
-                       totals = totals, tpq = from@tpq, taq = from@taq)
+                       totals = totals, dates = from@dates, tpq = from@tpq,
+                       taq = from@taq)
   }
 )
 
@@ -242,7 +254,7 @@ setAs(
     mtx <- methods::as(mtx, "IncidenceMatrix")
 
     .IncidenceMatrix(mtx, samples = extra$samples, groups = extra$groups,
-                     tpq = extra$tpq, taq = extra$taq)
+                     dates = extra$dates, tpq = extra$tpq, taq = extra$taq)
   }
 )
 setAs(
@@ -253,7 +265,8 @@ setAs(
     dim(incid) <- dim(from)
     dimnames(incid) <- dimnames(from)
     .IncidenceMatrix(incid, samples = from@samples, groups = from@groups,
-                     totals = from@totals, tpq = from@tpq, taq = from@taq)
+                     totals = from@totals, dates = from@dates, tpq = from@tpq,
+                     taq = from@taq)
   }
 )
 
@@ -370,6 +383,7 @@ setMethod(
     groups <- from@groups %||% NA_character_
     x$groups <- if (factor) as_factor(groups, reverse = reverse) else groups
 
+    x$dates <- from@dates %||% NA_integer_
     x$tpq <- from@tpq %||% NA_integer_
     x$taq <- from@taq %||% NA_integer_
 
@@ -387,6 +401,7 @@ setMethod(
     x <- as.data.frame(from)
     x$samples <- from@samples %||% NA_character_
     x$group <- from@groups %||% NA_character_
+    x$dates <- from@dates %||% NA_integer_
     x$tpq <- from@tpq %||% NA_integer_
     x$taq <- from@taq %||% NA_integer_
     x

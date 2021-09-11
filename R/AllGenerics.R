@@ -203,11 +203,11 @@ setGeneric(
 #'   the sample names of `x`.}
 #'   \item{`get_groups(x)` and `set_groups(x) <- value`}{Get or set
 #'   the groups of `x`.}
-#'   \item{`get_dates(x)` and `set_dates(x) <- value`}{Get or set
-#'   the dates of `x`. `value` can be a [`list`] with components `tpq` (TPQ -
-#'   *terminus post quem*) and `taq` (TAQ - *terminus ante quem*) or a
-#'   [`numeric`] vector (point estimate). The elements of `value` are coerced to
-#'   [`integer`] with [as.integer()] (hence truncated towards zero).}
+#'   \item{`get_dates(x)` and `set_dates(x) <- value`}{Get or set the dates of
+#'   `x`.}
+#'   \item{`get_terminus(x)` and `set_terminus(x) <- value`}{Get or set
+#'   the chronology of `x`. `value` must be a [`list`] with components `tpq`
+#'   (TPQ - *terminus post quem*) and `taq` (TAQ - *terminus ante quem*).}
 #'   \item{`get_tpq(x)` and `set_tpq(x) <- value`,
 #'   `get_taq(x)` and `set_taq(x) <- value`}{Get or set the TPQ/TAQ of `x`.}
 #'  }
@@ -280,6 +280,27 @@ setGeneric(
 setGeneric(
   name = "set_dates<-",
   def = function(x, value) standardGeneric("set_dates<-")
+)
+
+#' @rdname mutator
+#' @aliases has_terminus-method
+setGeneric(
+  name = "has_terminus",
+  def = function(x) standardGeneric("has_terminus")
+)
+
+#' @rdname mutator
+#' @aliases get_terminus-method
+setGeneric(
+  name = "get_terminus",
+  def = function(x) standardGeneric("get_terminus")
+)
+
+#' @rdname mutator
+#' @aliases set_terminus-method
+setGeneric(
+  name = "set_terminus<-",
+  def = function(x, value) standardGeneric("set_terminus<-")
 )
 
 #' @rdname mutator

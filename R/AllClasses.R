@@ -7,6 +7,8 @@
 #' @slot samples A [`character`] vector.
 #' @slot groups A [`character`] vector.
 #' @slot totals A [`numeric`] vector giving the absolute row sums.
+#' @slot dates An [`integer`] vector specifying the date point estimate of each
+#'  row.
 #' @slot tpq An [`integer`] vector specifying the TPQ of each row.
 #' @slot taq An [`integer`] vector specifying the TAQ of each row.
 #' @section Get and set:
@@ -28,6 +30,7 @@
 #'
 #'  * `samples` for replicated measurements/observation,
 #'  * `groups` to group data by site/area,
+#'  * `dates` to specify the date point estimate of an assemblage,
 #'  * `tqp` and `taq` to specify the chronology of an assemblage.
 #'
 #'  When coercing a `data.frame` to a `*Matrix` object, an attempt is made to
@@ -36,13 +39,10 @@
 #'  `options(arkhe.autodetect = FALSE)` or overrided by explicitly specifying
 #'  the columns to be used in `as_*()`.
 #' @section Chronology:
-#'  The way chronological information is handled is somewhat opinionated:
-#'
-#'  * Sub-annual precision is overkill/meaningless in most situations: dates are
-#'    assumed to be expressed in years CE and are stored as integers (values are
-#'    coerced with `as.integer()` and hence truncated towards zero).
-#'  * A date range (i.e. TPQ/TAQ) is expected, although it is possible to
-#'    specify a point estimate.
+#'  The way chronological information is handled is somewhat opinionated.
+#'  Sub-annual precision is overkill/meaningless in most situations: dates are
+#'  assumed to be expressed in years CE and are stored as integers (values are
+#'  coerced with `as.integer()` and hence truncated towards zero).
 #' @author N. Frerebeau
 #' @docType class
 #' @aliases AbundanceMatrix-class
@@ -53,6 +53,7 @@
     samples = "character",
     groups = "character",
     totals = "numeric",
+    dates = "integer",
     tpq = "integer",
     taq = "integer"
   ),

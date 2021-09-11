@@ -6,7 +6,7 @@ NULL
 #' @export
 #' @rdname mutator
 #' @aliases has_groups,AbundanceMatrix-method
-setMethod("has_groups", "AbundanceMatrix", function(x) length(x@groups) > 0)
+setMethod("has_groups", "AbundanceMatrix", function(x) !is_empty(x@groups))
 
 #' @export
 #' @rdname mutator
@@ -21,14 +21,24 @@ setMethod("get_samples", "AbundanceMatrix", function(x) x@samples)
 #' @export
 #' @rdname mutator
 #' @aliases has_dates,AbundanceMatrix-method
-setMethod("has_dates", "AbundanceMatrix", function(x) {
-  !is_empty(x@tpq) || !is_empty(x@taq)
-})
+setMethod("has_dates", "AbundanceMatrix", function(x) !is_empty(x@dates))
 
 #' @export
 #' @rdname mutator
 #' @aliases get_dates,AbundanceMatrix-method
-setMethod("get_dates", "AbundanceMatrix", function(x) {
+setMethod("get_dates", "AbundanceMatrix", function(x) x@dates)
+
+#' @export
+#' @rdname mutator
+#' @aliases has_terminus,AbundanceMatrix-method
+setMethod("has_terminus", "AbundanceMatrix", function(x) {
+  !is_empty(x@tpq) && !is_empty(x@taq)
+})
+
+#' @export
+#' @rdname mutator
+#' @aliases get_terminus,AbundanceMatrix-method
+setMethod("get_terminus", "AbundanceMatrix", function(x) {
   y <- data.frame(
     tpq = x@tpq,
     taq = x@taq
@@ -91,9 +101,7 @@ setMethod(
   f = "set_dates<-",
   signature = c(x = "AbundanceMatrix", value = "NULL"),
   definition = function(x, value) {
-    x@tpq <- integer(0)
-    x@taq <- integer(0)
-
+    x@dates <- integer(0)
     methods::validObject(x)
     x
   }
@@ -106,9 +114,21 @@ setMethod(
   f = "set_dates<-",
   signature = c(x = "AbundanceMatrix", value = "numeric"),
   definition = function(x, value) {
-    ## Coerce to integer
-    x@tpq <- as.integer(value)
-    x@taq <- as.integer(value)
+    x@dates <- as.integer(value)
+    methods::validObject(x)
+    x
+  }
+)
+
+#' @export
+#' @rdname mutator
+#' @aliases set_terminus,AbundanceMatrix,NULL-method
+setMethod(
+  f = "set_terminus<-",
+  signature = c(x = "AbundanceMatrix", value = "NULL"),
+  definition = function(x, value) {
+    x@tpq <- integer(0)
+    x@taq <- integer(0)
 
     methods::validObject(x)
     x
@@ -117,9 +137,9 @@ setMethod(
 
 #' @export
 #' @rdname mutator
-#' @aliases set_dates,AbundanceMatrix,list-method
+#' @aliases set_terminus,AbundanceMatrix,list-method
 setMethod(
-  f = "set_dates<-",
+  f = "set_terminus<-",
   signature = c(x = "AbundanceMatrix", value = "list"),
   definition = function(x, value) {
     ## Validation

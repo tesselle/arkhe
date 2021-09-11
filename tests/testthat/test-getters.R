@@ -36,41 +36,60 @@ test_that("AbundanceMatrix samples", {
 })
 test_that("AbundanceMatrix dates", {
   cts <- CountMatrix(sample(1:100, 75, TRUE), ncol = 5)
+  dates <- sample(1400:1451, 15, replace = TRUE)
   tpq <- sample(1301:1400, 15, replace = TRUE)
   taq <- sample(1451:1500, 15, replace = TRUE)
-  dates <- list(tpq = tpq, taq = taq)
+  terminus <- data.frame(tpq = tpq, taq = taq)
 
-  expect_equal(get_dates(cts), data.frame(tpq = integer(0), taq = integer(0)))
+  expect_equal(get_dates(cts), integer(0))
+  expect_equal(get_terminus(cts), data.frame(tpq = integer(0), taq = integer(0)))
 
   set_dates(cts) <- dates
   expect_true(has_dates(cts))
-  expect_equal(get_dates(cts), as.data.frame(dates), ignore_attr = TRUE)
-  expect_equal(get_tpq(cts), dates$tpq)
-  expect_equal(get_taq(cts), dates$taq)
+  expect_equal(get_dates(cts), dates)
+
+  set_terminus(cts) <- terminus
+  expect_true(has_terminus(cts))
+  expect_equal(get_terminus(cts), terminus, ignore_attr = TRUE)
+  expect_equal(get_tpq(cts), terminus$tpq)
+  expect_equal(get_taq(cts), terminus$taq)
 
   set_dates(cts) <- NULL
   expect_false(has_dates(cts))
-  expect_equal(get_dates(cts), data.frame(tpq = integer(0), taq = integer(0)))
+
+  set_terminus(cts) <- NULL
+  expect_false(has_terminus(cts))
 
   set_tpq(cts) <- tpq
   set_taq(cts) <- taq
-  expect_true(has_dates(cts))
+  expect_true(has_terminus(cts))
 
   set_tpq(cts) <- NULL
   set_taq(cts) <- NULL
-  expect_false(has_dates(cts))
+  expect_false(has_terminus(cts))
 
   # Invalid values
   # Try unnamed list
-  names(dates) <- NULL
-  cnd <- catch_conditions(set_dates(cts) <- dates)
+  names(terminus) <- NULL
+  cnd <- catch_conditions(set_terminus(cts) <- terminus)
   expect_s3_class(cnd[[1]], "simpleError")
   expect_true(grepl("but does not have components", cnd[[1]]$message))
+
   # Try wrong order
-  names(dates) <- c("taq", "tpq")
-  cnd <- catch_conditions(set_dates(cts) <- dates)
+  names(terminus) <- c("taq", "tpq")
+  cnd <- catch_conditions(set_terminus(cts) <- terminus)
   expect_s3_class(cnd[[1]], "arkhe_error_class")
   expect_true(grepl("must be lower than", cnd[[1]]$message))
+
+  names(terminus) <- c("tpq", "taq")
+  set_terminus(cts) <- terminus
+  cnd <- catch_conditions(set_dates(cts) <- -dates)
+  expect_s3_class(cnd[[1]], "arkhe_error_class")
+  expect_true(grepl("must be greater than", cnd[[1]]$message))
+  cnd <- catch_conditions(set_dates(cts) <- dates + 1000)
+  expect_s3_class(cnd[[1]], "arkhe_error_class")
+  expect_true(grepl("must be lower than", cnd[[1]]$message))
+
   # Try wrong length
   cnd <- catch_conditions(set_dates(cts) <- 1:5)
   expect_s3_class(cnd[[1]], "arkhe_error_class")

@@ -111,12 +111,10 @@ The `CountMatrix`, `CompositionMatrix` and `IncidenceMatrix` classes have specia
 
 * `samples` for replicated measurements/observation,
 * `groups` to group data by site/area,
+* `dates` to specify the date point estimate of an assemblage,
 * `tqp` and `taq` to specify the chronology of an assemblage.
 
-The way chronological information is handled is somewhat opinionated:
-
-* Sub-annual precision is overkill/meaningless in most situations: dates are assumed to be expressed in years CE and are stored as integers (values are coerced with `as.integer()` and hence truncated towards zero).
-* A date range (i.e. <abbr title="terminus post quem">TPQ</abbr>/<abbr title="terminus ante quem">TAQ</abbr>) is expected, although it is possible to specify a point estimate.
+The way chronological information is handled is somewhat opinionated. Sub-annual precision is overkill/meaningless in most situations: dates are assumed to be expressed in years CE and are stored as integers (values are coerced with `as.integer()` and hence truncated towards zero).
 
 When coercing a `data.frame` to a `*Matrix` object, an attempt is made to automatically assign values to these slots by mapping column names. This behavior can be disabled by setting `options(arkhe.autodetect = FALSE)`.
 
@@ -124,6 +122,7 @@ When coercing a `data.frame` to a `*Matrix` object, an attempt is made to automa
 Y <- as.data.frame(X)
 Y$samples <- rep(c("a", "b", "c", "d", "e"), each = 3)
 Y$groups <- rep(c("A", "B", "C"), each = 5)
+Y$dates <- sample(1400:1451, 15, TRUE)
 Y$tpq <- sample(1301:1400, 15, TRUE) # TPQ
 Y$taq <- sample(1451:1500, 15, TRUE) # TAQ
 
@@ -138,6 +137,9 @@ get_groups(Z)
 
 ## Get dates
 get_dates(Z)
+
+## Get chronology
+get_terminus(Z)
 ```
 
 ## Contributing

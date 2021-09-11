@@ -32,7 +32,7 @@ Possible values for \code{expected}:
 \describe{
 \item{\code{assert_numeric()}}{"\code{positive}", "\code{whole}", "\code{odd}" or "\code{even}"}
 \item{\code{assert_trend()}}{"\code{constant}", "\code{decreasing}" or "\code{increasing}"}
-\item{\code{assert_relation()}}{"\code{smaller}" or "\code{greater}"}
+\item{\code{assert_relation()}}{"\code{lower}" or "\code{greater}"}
 }
 }
 \seealso{

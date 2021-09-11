@@ -247,7 +247,7 @@ assert_unique <- function(x, expected) {
 #'  \describe{
 #'   \item{`assert_numeric()`}{"`positive`", "`whole`", "`odd`" or "`even`"}
 #'   \item{`assert_trend()`}{"`constant`", "`decreasing`" or "`increasing`"}
-#'   \item{`assert_relation()`}{"`smaller`" or "`greater`"}
+#'   \item{`assert_relation()`}{"`lower`" or "`greater`"}
 #'  }
 #' @return
 #'  Throws an error, if any, and returns `x` invisibly otherwise.

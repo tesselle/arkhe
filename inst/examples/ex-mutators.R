@@ -13,13 +13,13 @@ get_samples(Z)
 set_groups(Z) <- rep(c("A", "B"), each = 5)
 get_groups(Z)
 
-## Get/get dates
-dates <- list(
+## Get/get TPQ/TAQ
+chrono <- list(
   tpq = sample(1301:1400, 10, replace = TRUE),
   taq = sample(1451:1500, 10, replace = TRUE)
 )
-set_dates(Z) <- dates
-get_dates(Z)
+set_terminus(Z) <- chrono
+get_terminus(Z)
 
 ## Collection of features
 as_features(Z)

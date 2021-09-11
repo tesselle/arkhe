@@ -11,12 +11,14 @@ setValidity(
     samples <- object@samples
     groups <- object@groups
     totals <- object@totals
+    dates <- object@dates
     tpq <- object@tpq
     taq <- object@taq
 
     cnd <- list(
       validate(assert_length(samples, n, empty = FALSE)),
       validate(assert_length(groups, n, empty = TRUE)),
+      validate(assert_length(dates, n, empty = TRUE)),
       validate(assert_length(tpq, n, empty = TRUE)),
       validate(assert_length(taq, n, empty = TRUE)),
       validate(assert_length(totals, n, empty = FALSE))
@@ -28,6 +30,16 @@ setValidity(
 
     if (!is_empty(tpq) & !is_empty(taq)) {
       rel <- validate(assert_relation(tpq, taq, "lower", na.rm = TRUE))
+      cnd <- c(cnd, rel)
+    }
+
+    if (!is_empty(dates) & !is_empty(tpq)) {
+      rel <- validate(assert_relation(dates, tpq, "greater", na.rm = TRUE))
+      cnd <- c(cnd, rel)
+    }
+
+    if (!is_empty(dates) & !is_empty(taq)) {
+      rel <- validate(assert_relation(dates, taq, "lower", na.rm = TRUE))
       cnd <- c(cnd, rel)
     }
 

@@ -6,10 +6,12 @@
 * Add `remove_Inf()` to remove infinite values in a `matrix`-like object.
 * Add resampling methods: `bootstrap()` and `jackknife()`.
 * Add `assert_*()` and `validate()` to validate objects.
-* Add `get_dates()` and `set_dates()<-` to extract/replace `dates_from` and `dates_to` slots.
+* Add `get_dates()`, `set_dates()<-` to extract/replace `dates` slot.
+* Add `get_terminus()`, `set_terminus()<-`, `get_tpq()`, `set_tpq()<-`, `get_taq()`, `set_taq()<-` to extract/replace `tpq` and `taq` slots.
 
 ## Internals
 * `AbundanceMatrix` class gained a new slot to store the sample sizes (`totals`).
+* `AbundanceMatrix` class gained two new slots to store chronological information (`dates`, `tpq`, `taq`).
 
 # arkhe 0.3.1
 

@@ -17,6 +17,9 @@ A virtual S4 class to represent archaeological data.
 
 \item{\code{totals}}{A \code{\link{numeric}} vector giving the absolute row sums.}
 
+\item{\code{dates}}{An \code{\link{integer}} vector specifying the date point estimate of each
+row.}
+
 \item{\code{tpq}}{An \code{\link{integer}} vector specifying the TPQ of each row.}
 
 \item{\code{taq}}{An \code{\link{integer}} vector specifying the TAQ of each row.}
@@ -45,6 +48,7 @@ special slots:
 \itemize{
 \item \code{samples} for replicated measurements/observation,
 \item \code{groups} to group data by site/area,
+\item \code{dates} to specify the date point estimate of an assemblage,
 \item \code{tqp} and \code{taq} to specify the chronology of an assemblage.
 }
 
@@ -57,14 +61,10 @@ the columns to be used in \verb{as_*()}.
 
 \section{Chronology}{
 
-The way chronological information is handled is somewhat opinionated:
-\itemize{
-\item Sub-annual precision is overkill/meaningless in most situations: dates are
+The way chronological information is handled is somewhat opinionated.
+Sub-annual precision is overkill/meaningless in most situations: dates are
 assumed to be expressed in years CE and are stored as integers (values are
 coerced with \code{as.integer()} and hence truncated towards zero).
-\item A date range (i.e. TPQ/TAQ) is expected, although it is possible to
-specify a point estimate.
-}
 }
 
 \author{

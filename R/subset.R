@@ -21,15 +21,17 @@ setMethod(
       samples <- x@samples
       groups <- x@groups
       totals <- x@totals
+      dates <- x@dates
       tpq <- x@tpq
       taq <- x@taq
       if (!is_empty(samples)) samples <- samples[i]
       if (!is_empty(groups)) groups <- groups[i]
       if (!is_empty(totals)) totals <- totals[i]
+      if (!is_empty(dates)) dates <- dates[i]
       if (!is_empty(tpq)) tpq <- tpq[i]
       if (!is_empty(taq)) taq <- taq[i]
       methods::initialize(x, z, samples = samples, groups = groups,
-                          totals = totals, tpq = tpq, taq = taq)
+                          totals = totals, dates = dates, tpq = tpq, taq = taq)
     } else{
       methods::initialize(x, z)
     }
