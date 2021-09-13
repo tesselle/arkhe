@@ -7,6 +7,7 @@
 
 [![R-CMD-check](https://github.com/tesselle/arkhe/workflows/R-CMD-check/badge.svg)](https://github.com/tesselle/arkhe/actions)
 [![codecov](https://codecov.io/gh/tesselle/arkhe/branch/master/graph/badge.svg)](https://codecov.io/gh/tesselle/arkhe)
+[![CodeFactor](https://www.codefactor.io/repository/github/tesselle/arkhe/badge/master)](https://www.codefactor.io/repository/github/tesselle/arkhe/overview/master)
 
 [![r-universe](https://tesselle.r-universe.dev/badges/arkhe)](https://tesselle.r-universe.dev)
 [![CRAN
