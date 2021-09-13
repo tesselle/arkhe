@@ -48,6 +48,29 @@ setValidity(
   }
 )
 
+setValidity(
+  Class = "AbundanceSummary",
+  method = function(object) {
+    # Get data
+    groups <- object@groups
+    rows <- object@rows
+    cols <- object@columns
+    replicates <- object@replicates
+    chronology <- object@chronology
+    n <- length(groups)
+
+    cnd <- list(
+      validate(assert_length(rows, n, empty = FALSE)),
+      validate(assert_length(cols, n, empty = FALSE)),
+      validate(assert_length(replicates, n, empty = FALSE)),
+      validate(assert_dimensions(chronology, c(n, 2)))
+    )
+
+    # Return cnd, if any
+    check_class(object, cnd)
+  }
+)
+
 # DataMatrix ===================================================================
 setValidity(
   Class = "IntegerMatrix",

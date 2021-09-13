@@ -4,39 +4,39 @@ NULL
 
 # Getters ======================================================================
 #' @export
-#' @rdname mutator
+#' @rdname mutators
 #' @aliases has_groups,AbundanceMatrix-method
 setMethod("has_groups", "AbundanceMatrix", function(x) !is_empty(x@groups))
 
 #' @export
-#' @rdname mutator
+#' @rdname mutators
 #' @aliases get_groups,AbundanceMatrix-method
 setMethod("get_groups", "AbundanceMatrix", function(x) x@groups)
 
 #' @export
-#' @rdname mutator
+#' @rdname mutators
 #' @aliases get_samples,AbundanceMatrix-method
 setMethod("get_samples", "AbundanceMatrix", function(x) x@samples)
 
 #' @export
-#' @rdname mutator
+#' @rdname mutators
 #' @aliases has_dates,AbundanceMatrix-method
 setMethod("has_dates", "AbundanceMatrix", function(x) !is_empty(x@dates))
 
 #' @export
-#' @rdname mutator
+#' @rdname mutators
 #' @aliases get_dates,AbundanceMatrix-method
 setMethod("get_dates", "AbundanceMatrix", function(x) x@dates)
 
 #' @export
-#' @rdname mutator
+#' @rdname mutators
 #' @aliases has_terminus,AbundanceMatrix-method
 setMethod("has_terminus", "AbundanceMatrix", function(x) {
   !is_empty(x@tpq) && !is_empty(x@taq)
 })
 
 #' @export
-#' @rdname mutator
+#' @rdname mutators
 #' @aliases get_terminus,AbundanceMatrix-method
 setMethod("get_terminus", "AbundanceMatrix", function(x) {
   y <- data.frame(
@@ -48,28 +48,28 @@ setMethod("get_terminus", "AbundanceMatrix", function(x) {
 })
 
 #' @export
-#' @rdname mutator
+#' @rdname mutators
 #' @aliases get_tpq,AbundanceMatrix-method
 setMethod("get_tpq", "AbundanceMatrix", function(x) x@tpq)
 
 #' @export
-#' @rdname mutator
+#' @rdname mutators
 #' @aliases get_taq,AbundanceMatrix-method
 setMethod("get_taq", "AbundanceMatrix", function(x) x@taq)
 
 #' @export
-#' @rdname mutator
+#' @rdname mutators
 #' @aliases get_totals,AbundanceMatrix-method
 setMethod("get_totals", "AbundanceMatrix", function(x) x@totals)
 
 #' @export
-#' @rdname mutator
+#' @rdname mutators
 #' @aliases get_totals,OccurrenceMatrix-method
 setMethod("get_totals", "OccurrenceMatrix", function(x) x@total)
 
 # Setters ======================================================================
 #' @export
-#' @rdname mutator
+#' @rdname mutators
 #' @aliases set_groups,AbundanceMatrix-method
 setMethod(
   f = "set_groups<-",
@@ -82,7 +82,7 @@ setMethod(
 )
 
 #' @export
-#' @rdname mutator
+#' @rdname mutators
 #' @aliases set_samples,AbundanceMatrix-method
 setMethod(
   f = "set_samples<-",
@@ -95,7 +95,7 @@ setMethod(
 )
 
 #' @export
-#' @rdname mutator
+#' @rdname mutators
 #' @aliases set_dates,AbundanceMatrix,NULL-method
 setMethod(
   f = "set_dates<-",
@@ -108,7 +108,7 @@ setMethod(
 )
 
 #' @export
-#' @rdname mutator
+#' @rdname mutators
 #' @aliases set_dates,AbundanceMatrix,numeric-method
 setMethod(
   f = "set_dates<-",
@@ -121,7 +121,7 @@ setMethod(
 )
 
 #' @export
-#' @rdname mutator
+#' @rdname mutators
 #' @aliases set_terminus,AbundanceMatrix,NULL-method
 setMethod(
   f = "set_terminus<-",
@@ -136,7 +136,7 @@ setMethod(
 )
 
 #' @export
-#' @rdname mutator
+#' @rdname mutators
 #' @aliases set_terminus,AbundanceMatrix,list-method
 setMethod(
   f = "set_terminus<-",
@@ -161,7 +161,7 @@ setMethod(
 )
 
 #' @export
-#' @rdname mutator
+#' @rdname mutators
 #' @aliases set_tpq,AbundanceMatrix,NULL-method
 setMethod(
   f = "set_tpq<-",
@@ -174,7 +174,7 @@ setMethod(
 )
 
 #' @export
-#' @rdname mutator
+#' @rdname mutators
 #' @aliases set_tpq,AbundanceMatrix,numeric-method
 setMethod(
   f = "set_tpq<-",
@@ -187,7 +187,7 @@ setMethod(
 )
 
 #' @export
-#' @rdname mutator
+#' @rdname mutators
 #' @aliases set_taq,AbundanceMatrix,NULL-method
 setMethod(
   f = "set_taq<-",
@@ -200,7 +200,7 @@ setMethod(
 )
 
 #' @export
-#' @rdname mutator
+#' @rdname mutators
 #' @aliases set_taq,AbundanceMatrix,numeric-method
 setMethod(
   f = "set_taq<-",
@@ -213,7 +213,7 @@ setMethod(
 )
 
 #' @export
-#' @rdname mutator
+#' @rdname mutators
 #' @aliases set_totals,AbundanceMatrix-method
 setMethod(
   f = "set_totals<-",

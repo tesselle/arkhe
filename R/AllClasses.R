@@ -73,6 +73,17 @@
   contains = "VIRTUAL"
 )
 
+.AbundanceSummary <- setClass(
+  Class = "AbundanceSummary",
+  slots = c(
+    groups = "character",
+    rows = "integer",
+    columns = "integer",
+    replicates = "logical",
+    chronology = "matrix"
+  )
+)
+
 # DataMatrix ===================================================================
 #' Data Matrix
 #'

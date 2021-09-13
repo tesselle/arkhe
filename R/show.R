@@ -10,31 +10,58 @@ setMethod(
     p <- ncol(object)
     mtx <- methods::as(object, "matrix")
 
-    ## Extra info
-    obs <- ngettext(m, "Observation", "Observations")
-    grp <- FALSE
-    if (has_groups(object)) {
-      grp <- length(unique(get_groups(object))) < length(get_samples(object))
-    }
-    chr <- "unknown"
-    if (has_dates(object)) {
-      chr <- paste0(range(get_dates(object), na.rm = TRUE, finite = TRUE),
-                    collapse = " - ")
-    }
     txt_dim <- sprintf("%d x %d", m, p)
     txt_mtx <- sprintf("<%s: %s>", class(object), txt_dim)
-    txt_obs <- sprintf("* %s: %d", obs, m)
-    txt_grp <- sprintf("* %s: %s", "Replicated measurements", as.character(grp))
-    txt_chr <- sprintf("* %s: %s (year CE)", "Chronology", chr)
 
     cat(
       txt_mtx,
-      # txt_obs,
-      # txt_grp,
-      # txt_chr,
       utils::capture.output(mtx),
       sep = "\n"
     )
+    invisible(object)
+  }
+)
+
+setMethod(
+  f = "show",
+  signature = "AbundanceSummary",
+  definition = function(object) {
+
+    w <- getOption("width")
+    txt_dots <- strrep("-", w)
+
+    groups <- object@groups
+    rows <- object@rows
+    cols <- object@columns
+    replicates <- object@replicates
+    chronology <- object@chronology
+    n <- length(groups)
+
+    txt <- vector(mode = "list", length = n)
+    for (i in seq_len(n)) {
+      m <- rows[[i]]
+      p <- cols[[i]]
+      group <- groups[[i]]
+      replic <- replicates[[i]]
+      chrono <- chronology[i, , drop = TRUE]
+
+      nrows <- ngettext(m, "Observation", "Observations")
+      ncols <- ngettext(p, "Variable", "Variables")
+      chro <- if (anyNA(chrono)) "unknown" else paste0(chrono, collapse = " - ")
+
+      txt[[i]] <- paste(
+        sprintf("%s %s", group, strrep("-", w - nchar(group) - 1)),
+        sprintf("* %s: %d", nrows, m),
+        sprintf("* %s: %d", ncols, p),
+        sprintf("* %s: %s", "Replicated measurements", replic),
+        sprintf("* %s: %s (year CE)", "Chronology", chro),
+        sep = "\n"
+      )
+    }
+
+    txt_dim <- sprintf("%d x %d", sum(rows), max(cols))
+    txt_mtx <- sprintf("<%s: %s>", class(object), txt_dim)
+    cat(txt_mtx, unlist(txt), txt_dots, sep = "\n")
     invisible(object)
   }
 )

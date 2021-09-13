@@ -120,8 +120,8 @@ When coercing a `data.frame` to a `*Matrix` object, an attempt is made to automa
 
 ```{r group}
 Y <- as.data.frame(X)
-Y$samples <- rep(c("a", "b", "c", "d", "e"), each = 3)
-Y$groups <- rep(c("A", "B", "C"), each = 5)
+Y$samples <- sample(c("a", "b", "c", "d", "e"), 15, TRUE)
+Y$groups <- sample(c("A", "B", "C", "D", "E"), 15, TRUE)
 Y$dates <- sample(1400:1451, 15, TRUE)
 Y$tpq <- sample(1301:1400, 15, TRUE) # TPQ
 Y$taq <- sample(1451:1500, 15, TRUE) # TAQ
@@ -140,6 +140,9 @@ get_dates(Z)
 
 ## Get chronology
 get_terminus(Z)
+
+## Summarize
+summary(Z)
 ```
 
 ## Contributing

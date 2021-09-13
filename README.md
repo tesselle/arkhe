@@ -135,8 +135,8 @@ This behavior can be disabled by setting
 
 ``` r
 Y <- as.data.frame(X)
-Y$samples <- rep(c("a", "b", "c", "d", "e"), each = 3)
-Y$groups <- rep(c("A", "B", "C"), each = 5)
+Y$samples <- sample(c("a", "b", "c", "d", "e"), 15, TRUE)
+Y$groups <- sample(c("A", "B", "C", "D", "E"), 15, TRUE)
 Y$dates <- sample(1400:1451, 15, TRUE)
 Y$tpq <- sample(1301:1400, 15, TRUE) # TPQ
 Y$taq <- sample(1451:1500, 15, TRUE) # TAQ
@@ -146,34 +146,64 @@ Z <- as_count(Y)
 
 ## Get groups
 get_samples(Z)
-#>  [1] "a" "a" "a" "b" "b" "b" "c" "c" "c" "d" "d" "d" "e" "e" "e"
+#>  [1] "d" "e" "a" "c" "b" "e" "e" "b" "a" "b" "c" "b" "a" "a" "d"
 
 ## Get groups
 get_groups(Z)
-#>  [1] "A" "A" "A" "A" "A" "B" "B" "B" "B" "B" "C" "C" "C" "C" "C"
+#>  [1] "A" "D" "A" "E" "D" "C" "C" "A" "C" "B" "C" "B" "D" "D" "A"
 
 ## Get dates
 get_dates(Z)
-#>  [1] 1425 1446 1422 1430 1403 1448 1407 1411 1437 1446 1430 1449 1406 1435 1418
+#>  [1] 1428 1400 1430 1413 1421 1421 1451 1418 1442 1413 1401 1435 1447 1412 1405
 
 ## Get chronology
 get_terminus(Z)
 #>        tpq  taq
-#> row1  1316 1458
-#> row2  1390 1464
-#> row3  1368 1470
-#> row4  1310 1476
-#> row5  1368 1496
-#> row6  1357 1464
-#> row7  1311 1451
-#> row8  1382 1500
-#> row9  1380 1498
-#> row10 1306 1477
-#> row11 1379 1485
-#> row12 1316 1464
-#> row13 1359 1496
-#> row14 1323 1459
-#> row15 1372 1452
+#> row1  1382 1497
+#> row2  1332 1456
+#> row3  1322 1468
+#> row4  1373 1490
+#> row5  1383 1480
+#> row6  1352 1490
+#> row7  1329 1499
+#> row8  1374 1487
+#> row9  1357 1486
+#> row10 1398 1495
+#> row11 1348 1467
+#> row12 1338 1463
+#> row13 1354 1477
+#> row14 1306 1470
+#> row15 1361 1486
+
+## Summarize
+summary(Z)
+#> <AbundanceSummary: 15 x 5>
+#> A ------------------------------------------------------------------------------
+#> * Observations: 4
+#> * Variables: 5
+#> * Replicated measurements: TRUE
+#> * Chronology: 1322 - 1497 (year CE)
+#> B ------------------------------------------------------------------------------
+#> * Observations: 2
+#> * Variables: 5
+#> * Replicated measurements: TRUE
+#> * Chronology: 1338 - 1495 (year CE)
+#> C ------------------------------------------------------------------------------
+#> * Observations: 4
+#> * Variables: 5
+#> * Replicated measurements: TRUE
+#> * Chronology: 1329 - 1499 (year CE)
+#> D ------------------------------------------------------------------------------
+#> * Observations: 4
+#> * Variables: 5
+#> * Replicated measurements: TRUE
+#> * Chronology: 1306 - 1480 (year CE)
+#> E ------------------------------------------------------------------------------
+#> * Observation: 1
+#> * Variables: 5
+#> * Replicated measurements: FALSE
+#> * Chronology: 1373 - 1490 (year CE)
+#> --------------------------------------------------------------------------------
 ```
 
 ## Contributing

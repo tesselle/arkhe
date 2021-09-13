@@ -23,3 +23,6 @@ get_terminus(Z)
 
 ## Collection of features
 as_features(Z)
+
+## Summarize data
+summary(Z)

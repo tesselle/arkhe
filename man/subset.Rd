@@ -67,7 +67,8 @@ B[, 1:3] # Get the first three column
 }
 \seealso{
 Other mutators: 
-\code{\link{mutator}}
+\code{\link{mutators}},
+\code{\link{summary}()}
 }
 \author{
 N. Frerebeau

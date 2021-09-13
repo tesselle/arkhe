@@ -221,124 +221,124 @@ setGeneric(
 #' @author N. Frerebeau
 #' @docType methods
 #' @family mutators
-#' @name mutator
-#' @rdname mutator
+#' @name mutators
+#' @rdname mutators
 #' @aliases get set
 NULL
 
-#' @rdname mutator
+#' @rdname mutators
 #' @aliases has_groups-method
 setGeneric(
   name = "has_groups",
   def = function(x) standardGeneric("has_groups")
 )
 
-#' @rdname mutator
+#' @rdname mutators
 #' @aliases get_groups-method
 setGeneric(
   name = "get_groups",
   def = function(x) standardGeneric("get_groups")
 )
 
-#' @rdname mutator
+#' @rdname mutators
 #' @aliases set_groups-method
 setGeneric(
   name = "set_groups<-",
   def = function(x, value) standardGeneric("set_groups<-")
 )
 
-#' @rdname mutator
+#' @rdname mutators
 #' @aliases get_samples-method
 setGeneric(
   name = "get_samples",
   def = function(x) standardGeneric("get_samples")
 )
 
-#' @rdname mutator
+#' @rdname mutators
 #' @aliases set_samples-method
 setGeneric(
   name = "set_samples<-",
   def = function(x, value) standardGeneric("set_samples<-")
 )
 
-#' @rdname mutator
+#' @rdname mutators
 #' @aliases has_dates-method
 setGeneric(
   name = "has_dates",
   def = function(x) standardGeneric("has_dates")
 )
 
-#' @rdname mutator
+#' @rdname mutators
 #' @aliases get_dates-method
 setGeneric(
   name = "get_dates",
   def = function(x) standardGeneric("get_dates")
 )
 
-#' @rdname mutator
+#' @rdname mutators
 #' @aliases set_dates-method
 setGeneric(
   name = "set_dates<-",
   def = function(x, value) standardGeneric("set_dates<-")
 )
 
-#' @rdname mutator
+#' @rdname mutators
 #' @aliases has_terminus-method
 setGeneric(
   name = "has_terminus",
   def = function(x) standardGeneric("has_terminus")
 )
 
-#' @rdname mutator
+#' @rdname mutators
 #' @aliases get_terminus-method
 setGeneric(
   name = "get_terminus",
   def = function(x) standardGeneric("get_terminus")
 )
 
-#' @rdname mutator
+#' @rdname mutators
 #' @aliases set_terminus-method
 setGeneric(
   name = "set_terminus<-",
   def = function(x, value) standardGeneric("set_terminus<-")
 )
 
-#' @rdname mutator
+#' @rdname mutators
 #' @aliases get_tpq-method
 setGeneric(
   name = "get_tpq",
   def = function(x) standardGeneric("get_tpq")
 )
 
-#' @rdname mutator
+#' @rdname mutators
 #' @aliases set_tpq-method
 setGeneric(
   name = "set_tpq<-",
   def = function(x, value) standardGeneric("set_tpq<-")
 )
 
-#' @rdname mutator
+#' @rdname mutators
 #' @aliases get_taq-method
 setGeneric(
   name = "get_taq",
   def = function(x) standardGeneric("get_taq")
 )
 
-#' @rdname mutator
+#' @rdname mutators
 #' @aliases set_taq-method
 setGeneric(
   name = "set_taq<-",
   def = function(x, value) standardGeneric("set_taq<-")
 )
 
-#' @rdname mutator
+#' @rdname mutators
 #' @aliases get_totals-method
 setGeneric(
   name = "get_totals",
   def = function(x) standardGeneric("get_totals")
 )
 
-#' @rdname mutator
+#' @rdname mutators
 #' @aliases set_totals-method
 setGeneric(
   name = "set_totals<-",
@@ -370,6 +370,22 @@ setGeneric(
 #' @family mutators
 #' @name subset
 #' @rdname subset
+NULL
+
+# Summary ======================================================================
+#' Object Summaries
+#'
+#' Produces result summaries.
+#' @param object An [`AbundanceMatrix-class`] object.
+#' @param ... Currently not used.
+#' @return
+#'  An `AbundanceSummary` object.
+#' @example inst/examples/ex-mutators.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family mutators
+#' @name summary
+#' @rdname summary
 NULL
 
 # Statistics ===================================================================

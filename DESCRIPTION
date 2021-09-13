@@ -58,6 +58,7 @@ Collate:
     'show.R'
     'statistics.R'
     'subset.R'
+    'summary.R'
     'utilities.R'
     'validate.R'
     'zzz.R'
