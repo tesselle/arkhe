@@ -2,6 +2,7 @@
 #' @include AllClasses.R AllGenerics.R
 NULL
 
+# Jaccknife ====================================================================
 #' @export
 #' @rdname jackknife
 #' @aliases jackknife,numeric-method
@@ -12,7 +13,7 @@ setMethod(
     n <- length(x)
     hat <- do(x, ...)
 
-    jack_values <- vapply(
+    values <- vapply(
       X = seq_len(n),
       FUN = function(i, x, do, ...) {
         do(x[-i], ...)
@@ -20,10 +21,21 @@ setMethod(
       FUN.VALUE = double(1),
       x = x, do = do, ...
     )
+    .JackknifeVector(values, hat = hat)
+  }
+)
 
-    jack_mean <- mean(jack_values)
-    jack_bias <- (n - 1) * (jack_mean - hat)
-    jack_error <- sqrt(((n - 1) / n) * sum((jack_values - jack_mean)^2))
+#' @export
+#' @rdname jackknife
+#' @aliases summary,JackknifeVector-method
+setMethod(
+  f = "summary",
+  signature = c(object = "JackknifeVector"),
+  definition = function(object, ...) {
+    n <- length(object)
+    jack_mean <- mean(object)
+    jack_bias <- (n - 1) * (jack_mean - object@hat)
+    jack_error <- sqrt(((n - 1) / n) * sum((object - jack_mean)^2))
 
     results <- c(jack_mean, jack_bias, jack_error)
     names(results) <- c("mean", "bias", "error")
@@ -31,34 +43,66 @@ setMethod(
   }
 )
 
+# Bootstrap ====================================================================
 #' @export
-#' @rdname bootstrap
+#' @describeIn bootstrap Samples randomly from the elements of `x` with
+#'  replacement.
 #' @aliases bootstrap,numeric-method
 setMethod(
   f = "bootstrap",
   signature = c(x = "numeric"),
-  definition = function(x, do, level = 0.95, type = c("student", "normal"),
-                        probs = c(0.25, 0.75), n = 1000, na.rm = FALSE, ...) {
-    total <- sum(x)
-    replicates <- stats::rmultinom(n, size = total, prob = x / total)
+  definition = function(x, do, n, ...) {
+    spl <- sample(x, size = length(x) * n, replace = TRUE)
+    replicates <- t(matrix(spl, nrow = n))
     values <- apply(X = replicates, MARGIN = 2, FUN = do, ...)
+    .BootstrapVector(values)
+  }
+)
 
-    CI <- confidence_mean(values, level = level, type = type)
+#' @export
+#' @describeIn bootstrap Samples observations from a multinomial distribution.
+#' @aliases bootstrap,integer-method
+setMethod(
+  f = "bootstrap",
+  signature = c(x = "integer"),
+  definition = function(x, do, n, ...) {
+    size <- sum(x)
+    replicates <- stats::rmultinom(n, size = size, prob = x / size)
+    values <- apply(X = replicates, MARGIN = 2, FUN = do, ...)
+    .BootstrapVector(values)
+  }
+)
 
+#' @export
+#' @rdname bootstrap
+#' @aliases summary,BootstrapVector-method
+setMethod(
+  f = "summary",
+  signature = c(object = "BootstrapVector"),
+  definition = function(object, level = 0.95, type = c("student", "normal"),
+                        probs = c(0.25, 0.75), na.rm = FALSE, ...) {
+    ## Confidence interval for the mean
+    CI <- conf <- NULL
+    if (!is.null(level)) {
+      CI <- confidence_mean(object, level = level, type = type)
+      conf <- c("lower", "upper")
+    }
+
+    ## Quantiles
     QU <- quant <- NULL
     if (!is.null(probs)) {
-      QU <- stats::quantile(values, probs = probs, na.rm = na.rm, names = FALSE)
+      QU <- stats::quantile(object, probs = probs, na.rm = na.rm, names = FALSE)
       quant <- sprintf("Q%02d", round(probs * 100, 0))
     }
 
     results <- c(
-      min(values, na.rm = na.rm),
-      mean(values, na.rm = na.rm),
-      max(values, na.rm = na.rm),
+      min(object, na.rm = na.rm),
+      mean(object, na.rm = na.rm),
+      max(object, na.rm = na.rm),
       CI,
       QU
     )
-    names(results) <- c("min", "mean", "max", "lower", "upper", quant)
+    names(results) <- c("min", "mean", "max", conf, quant)
     results
   }
 )

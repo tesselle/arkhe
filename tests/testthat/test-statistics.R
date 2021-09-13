@@ -1,21 +1,39 @@
-test_that("Boostrap", {
-  x <- c(89, 76, 92, 71, 63, 98, 50, 85, 87, 54, 95, 50, 57, 59, 53, 92, 84,
-         57, 54, 91, 74, 54, 90, 97, 71, 66, 94, 62, 54, 52)
+test_that("Non-parametric boostrap", {
   with_seed(12345, {
-    # With quantiles
-    boot1 <- bootstrap(x, do = min, probs = c(0.05, 0.95), n = 30)
-    expect_snapshot(boot1)
+    x <- rnorm(20)
+    rboot <- bootstrap(x, do = mean, n = 30)
   })
+
+  # With quantiles and confidence interval
+  rboot1 <- summary(rboot, level = 0.95, probs = c(0.05, 0.95))
+  expect_snapshot(rboot1)
+})
+test_that("Multinomial boostrap", {
   with_seed(12345, {
-    # Without quantiles
-    boot2 <- bootstrap(x, do = min, probs = NULL, n = 30)
-    expect_snapshot(boot2)
+    x <- sample(1:100, 50, TRUE)
+    mboot <- bootstrap(x, do = min, n = 30)
   })
+
+  # With quantiles and confidence interval
+  boot1 <- summary(mboot, level = 0.95, probs = c(0.05, 0.95))
+  expect_snapshot(boot1)
+
+  # Without confidence interval
+  boot2 <- summary(mboot, level = NULL, probs = c(0.05, 0.95))
+  expect_snapshot(boot2)
+
+  # Without quantiles
+  boot3 <- summary(mboot, level = 0.95, probs = NULL)
+  expect_snapshot(boot3)
 })
 test_that("Jackknife", {
-  x <- 1:10
-  expected <- c(mean = 49.5, bias = -49.5, error = 8.616844)
-  expect_equal(jackknife(x, do = sum), expected)
+  with_seed(12345, {
+    x <- rnorm(20)
+    jack <- jackknife(x, do = mean)
+  })
+
+  jack1 <- summary(jack)
+  expect_snapshot(jack1)
 })
 test_that("Confidence interval", {
   with_seed(12345, {

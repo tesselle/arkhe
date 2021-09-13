@@ -5,48 +5,59 @@
 \alias{bootstrap}
 \alias{bootstrap-method}
 \alias{bootstrap,numeric-method}
+\alias{bootstrap,integer-method}
+\alias{summary,BootstrapVector-method}
 \title{Bootstrap Estimation}
 \usage{
 bootstrap(x, ...)
 
-\S4method{bootstrap}{numeric}(
-  x,
-  do,
+\S4method{bootstrap}{numeric}(x, do, n, ...)
+
+\S4method{bootstrap}{integer}(x, do, n, ...)
+
+\S4method{summary}{BootstrapVector}(
+  object,
   level = 0.95,
   type = c("student", "normal"),
   probs = c(0.25, 0.75),
-  n = 1000,
   na.rm = FALSE,
   ...
 )
 }
 \arguments{
-\item{x}{A \code{\link{numeric}} vector.}
+\item{x}{A \code{\link{numeric}} or an \code{\link{integer}} vector (see below).}
 
 \item{...}{Extra arguments passed to \code{do}.}
 
 \item{do}{A \code{\link{function}} that takes \code{x} as an argument
 and returns a single numeric value.}
 
+\item{n}{A non-negative \code{\link{integer}} giving the number of bootstrap
+replications.}
+
+\item{object}{A \code{BootstrapVector} object.}
+
 \item{level}{A length-one \code{\link{numeric}} vector giving the confidence level.
-Must be a single number between \eqn{0} and \eqn{1}.}
+Must be a single number between \eqn{0} and \eqn{1}. If \code{NULL}, no
+confidence interval are computed.}
 
 \item{type}{A \code{\link{character}} string giving the type of confidence
 interval to be returned. It must be one "\code{student}" (default) or
-"\code{normal}". Any unambiguous substring can be given.}
+"\code{normal}". Any unambiguous substring can be given. Only used if \code{level}
+is not \code{NULL}.``}
 
 \item{probs}{A \code{\link{numeric}} vector of probabilities with values in
 \eqn{[0,1]} (see \code{\link[stats:quantile]{stats::quantile()}}). If \code{NULL}, quantiles are not
 computed.}
 
-\item{n}{A non-negative \code{\link{integer}} giving the number of bootstrap
-replications.}
-
 \item{na.rm}{A \code{\link{logical}} scalar: should missing values be removed
-from \code{x} before the sample statistics are computed?}
+from \code{object} before the sample statistics are computed?}
 }
 \value{
-A \code{numeric} vector with the following elements:
+\code{bootstrap()} returns a \code{BootstrapVector} object (i.e. a \code{numeric}
+vector of the \code{n} bootstrap values of \code{do}).
+
+\code{summary()} returns a \code{numeric} vector with the following elements:
 \describe{
 \item{\code{min}}{Minimum value.}
 \item{\code{mean}}{Mean value.}
@@ -59,6 +70,30 @@ A \code{numeric} vector with the following elements:
 \description{
 Creates \eqn{n} bootstrapped replicates by resampling with replacement from
 the original data and applies a function.
+}
+\section{Methods (by class)}{
+\itemize{
+\item \code{numeric}: Samples randomly from the elements of \code{x} with
+replacement.
+
+\item \code{integer}: Samples observations from a multinomial distribution.
+}}
+
+\examples{
+## Jackknife
+x <- rnorm(20)
+jack <- jackknife(x, do = mean) # Sample mean
+summary(jack)
+
+## Random samples from x with replacement
+x <- rnorm(20) # numeric
+boot <- bootstrap(x, do = mean, n = 100) # Sample mean
+summary(boot)
+
+## Sample observations from a multinomial distribution
+x <- sample(1:100, 100, TRUE) # integer
+boot <- bootstrap(x, do = median, n = 100)
+summary(boot)
 }
 \seealso{
 Other statistics: 

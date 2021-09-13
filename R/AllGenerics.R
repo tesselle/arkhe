@@ -378,14 +378,19 @@ NULL
 #' @param x A [`numeric`] vector.
 #' @param do A [`function`] that takes `x` as an argument and returns a single
 #'  numeric value.
+#' @param object A `JackknifeVector` object.
 #' @param ... Extra arguments passed to `do`.
-#' @return A `numeric` vector with the following elements:
+#' @return
+#'  `jackknife()` returns a `JackknifeVector` object (i.e. a `numeric`
+#'  vector of the `n` leave-one-out values of `do`).
+#'
+#'  `summary()` returns a named `numeric` vector with the following elements:
 #'  \describe{
-#'   \item{`mean`}{The jackknife estimate of mean.}
-#'   \item{`bias`}{The jackknife estimate of bias.}
-#'   \item{`error`}{he jackknife estimate of standard error.}
+#'   \item{`mean`}{The jackknife estimate of mean of `do`.}
+#'   \item{`bias`}{The jackknife estimate of bias of `do`.}
+#'   \item{`error`}{he jackknife estimate of standard error of `do`.}
 #'  }
-# @example inst/examples/ex-statistics.R
+#' @example inst/examples/ex-statistics.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family statistics
@@ -404,23 +409,30 @@ setGeneric(
 #'
 #' Creates \eqn{n} bootstrapped replicates by resampling with replacement from
 #' the original data and applies a function.
-#' @param x A [`numeric`] vector.
+#' @param x A [`numeric`] or an [`integer`] vector (see below).
 #' @param do A [`function`] that takes `x` as an argument
 #'  and returns a single numeric value.
+#' @param n A non-negative [`integer`] giving the number of bootstrap
+#'  replications.
+#' @param object A `BootstrapVector` object.
 #' @param level A length-one [`numeric`] vector giving the confidence level.
-#'  Must be a single number between \eqn{0} and \eqn{1}.
+#'  Must be a single number between \eqn{0} and \eqn{1}. If `NULL`, no
+#'  confidence interval are computed.
 #' @param type A [`character`] string giving the type of confidence
 #'  interval to be returned. It must be one "`student`" (default) or
-#'  "`normal`". Any unambiguous substring can be given.
+#'  "`normal`". Any unambiguous substring can be given. Only used if `level`
+#'  is not `NULL`.``
 #' @param probs A [`numeric`] vector of probabilities with values in
 #'  \eqn{[0,1]} (see [stats::quantile()]). If `NULL`, quantiles are not
 #'  computed.
-#' @param n A non-negative [`integer`] giving the number of bootstrap
-#'  replications.
 #' @param na.rm A [`logical`] scalar: should missing values be removed
-#'  from `x` before the sample statistics are computed?
+#'  from `object` before the sample statistics are computed?
 #' @param ... Extra arguments passed to `do`.
-#' @return A `numeric` vector with the following elements:
+#' @return
+#'  `bootstrap()` returns a `BootstrapVector` object (i.e. a `numeric`
+#'  vector of the `n` bootstrap values of `do`).
+#'
+#'  `summary()` returns a `numeric` vector with the following elements:
 #'  \describe{
 #'   \item{`min`}{Minimum value.}
 #'   \item{`mean`}{Mean value.}
@@ -429,7 +441,7 @@ setGeneric(
 #'   \item{`upper`}{Upper bound of the confidence interval.}
 #'   \item{`Q*`}{Sample quantile to `*` probability.}
 #'  }
-# @example inst/examples/ex-statistics.R
+#' @example inst/examples/ex-statistics.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family statistics

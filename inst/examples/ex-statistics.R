@@ -1,15 +1,14 @@
-## Create count data matrix
-A <- CountMatrix(data = sample(0:10, 100, TRUE), nrow = 20, ncol = 5)
+## Jackknife
+x <- rnorm(20)
+jack <- jackknife(x, do = mean) # Sample mean
+summary(jack)
 
-## Row and column means
-rowMeans(A)
-colMeans(A)
+## Random samples from x with replacement
+x <- rnorm(20) # numeric
+boot <- bootstrap(x, do = mean, n = 100) # Sample mean
+summary(boot)
 
-## Row and column sums
-rowSums(A)
-colSums(A)
-
-## Variance, covariance and correlation matrix
-var(A)
-cov(A)
-cor(A)
+## Sample observations from a multinomial distribution
+x <- sample(1:100, 100, TRUE) # integer
+boot <- bootstrap(x, do = median, n = 100)
+summary(boot)
