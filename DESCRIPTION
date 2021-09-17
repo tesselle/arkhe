@@ -56,7 +56,6 @@ Collate:
     'initialize.R'
     'mutators.R'
     'show.R'
-    'statistics.R'
     'subset.R'
     'summary.R'
     'utilities.R'

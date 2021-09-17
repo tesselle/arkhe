@@ -4,7 +4,6 @@
 * Add `replace_Inf()` to replace infinite values in a `matrix`-like object.
 * Add `replace_zero()` to replace zero in a `matrix`-like object.
 * Add `remove_Inf()` to remove infinite values in a `matrix`-like object.
-* Add resampling methods: `bootstrap()` and `jackknife()`.
 * Add `assert_*()` and `validate()` to validate objects.
 * Add `get_dates()`, `set_dates()<-` to extract/replace `dates` slot.
 * Add `get_terminus()`, `set_terminus()<-`, `get_tpq()`, `set_tpq()<-`, `get_taq()`, `set_taq()<-` to extract/replace `tpq` and `taq` slots.
@@ -14,7 +13,6 @@
 * `AbundanceMatrix` class gained a new slot to store the sample sizes (`totals`).
 * `AbundanceMatrix` class gained two new slots to store chronological information (`dates`, `tpq`, `taq`).
 * Add `AbundanceSummary` class to store summary of an `AbundanceMatrix` object.
-* Add `BootstrapVector` and `JackknifeVector` classes to store bootstrap and jackknife resampling values (inherit from base `numeric`).
 
 # arkhe 0.3.1
 
