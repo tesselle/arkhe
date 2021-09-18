@@ -1,4 +1,8 @@
+# arkhe 0.4.0.9000
+
 # arkhe 0.4.0
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5515470)](https://doi.org/10.5281/zenodo.5515470)
 
 ## New classes and methods
 * Add `replace_Inf()` to replace infinite values in a `matrix`-like object.
@@ -20,6 +24,7 @@
 * Fix warning "data length differs from size of matrix" in examples (R-devel).
 
 # arkhe 0.3.0
+
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4675724.svg)](https://doi.org/10.5281/zenodo.4675724)
 
 ## New classes and methods
@@ -35,6 +40,7 @@
 * `as_long()` gained a new `reverse` argument.
 
 # arkhe 0.2.2
+
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3724463.svg)](https://doi.org/10.5281/zenodo.3724463)
 
 ## Bugfixes & changes
@@ -42,17 +48,20 @@
 * CRAN package check warnings have been fixed (remove **nomnoml** from suggested packages).
 
 # arkhe 0.2.1
+
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3668868.svg)](https://doi.org/10.5281/zenodo.3668868)
 
 ## Bugfixes & changes
 * CRAN package check warnings have been fixed ("documented arguments not in \usage" in the r-devel checks).
 
 # arkhe 0.2.0
+
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3583089.svg)](https://doi.org/10.5281/zenodo.3583089)
 
 * Initial version on CRAN.
 
 # arkhe 0.1.0
+
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3526660.svg)](https://doi.org/10.5281/zenodo.3526660)
 
 * Beta release.
