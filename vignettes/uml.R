@@ -5,12 +5,12 @@ nomnoml::nomnoml("
 [<package>arkhe|
 
 [base::matrix||
- replace_NA();
- replace_Inf();
- replace_zero();
  remove_NA();
+ replace_NA();
  remove_Inf();
+ replace_Inf();
  remove_zero();
+ replace_zero();
  remove_empty()
 ]
 
@@ -18,8 +18,9 @@ nomnoml::nomnoml("
  +samples: character;
  +groups: character;
  +totals: numeric;
- +date_from: integer;
- +date_to: integer|
+ +dates: integer;
+ +tpq: integer;
+ +taq: integer|
  get_samples();
  set_samples();
  has_groups();
@@ -27,8 +28,16 @@ nomnoml::nomnoml("
  set_groups();
  get_totals();
  set_totals();
+ has_dates();
  get_dates();
  set_dates();
+ has_terminus();
+ get_terminus();
+ set_terminus();
+ get_tpq();
+ set_tpq();
+ get_taq();
+ set_taq();
  as_long();
  as_features()
 ]
