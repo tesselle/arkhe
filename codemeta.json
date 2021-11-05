@@ -124,7 +124,7 @@
       "name": "utils"
     }
   ],
-  "fileSize": "949.401KB",
+  "fileSize": "948.943KB",
   "contIntegration": "https://codecov.io/gh/tesselle/arkhe",
   "developmentStatus": "https://www.repostatus.org/#active",
   "keywords": [
@@ -145,8 +145,11 @@
         }
       ],
       "name": "arkhe: Representation of Archaeological Data",
-      "url": "https://doi.org/10.5281/zenodo.3526659",
-      "description": "R package version 0.4.0"
+      "identifier": "10.5281/zenodo.3526659",
+      "url": "https://packages.tesselle.org/arkhe",
+      "description": "R package version 0.4.0",
+      "@id": "https://doi.org/10.5281/zenodo.3526659",
+      "sameAs": "https://doi.org/10.5281/zenodo.3526659"
     }
   ],
   "provider": {

@@ -8,7 +8,8 @@ citEntry(
   organization = "Université Bordeaux Montaigne",
   address      = "Pessac, France",
   note         = "R package version 0.4.0",
-  url          = "https://doi.org/10.5281/zenodo.3526659",
+  url          = "https://packages.tesselle.org/arkhe",
+  doi          = "10.5281/zenodo.3526659",
 
   textVersion  =
   paste("Frerebeau, Nicolas (2021).",

@@ -1,0 +1,91 @@
+# -----------------------------------------------------------
+# CITATION file created with {cffr} R package, v0.1.0
+# See also: https://docs.ropensci.org/cffr/
+# -----------------------------------------------------------
+ 
+cff-version: 1.2.0
+message: 'To cite package "arkhe" in publications use:'
+type: software
+license: GPL-3.0-or-later
+title: 'arkhe: Representation of Archaeological Data'
+version: 0.4.0.9000
+abstract: A collection of classes that represent archaeological data. This package
+  provides a set of S4 classes that represent different special types of matrix (absolute/relative
+  frequency, presence/absence data, co-occurrence matrix, etc.) upon which package
+  developers can build subclasses. It also provides a set of generic methods (mutators
+  and coercion mechanisms) and functions (e.g. summary statistics, predicates). In
+  addition, a few classes of general interest (e.g. that represent stratigraphic relationships)
+  are implemented.
+authors:
+- family-names: Frerebeau
+  given-names: Nicolas
+  email: nicolas.frerebeau@u-bordeaux-montaigne.fr
+  orcid: https://orcid.org/0000-0001-5759-4944
+  affiliation: Université Bordeaux Montaigne
+preferred-citation:
+  type: manual
+  title: 'arkhe: Representation of Archaeological Data'
+  authors:
+  - family-names: Frerebeau
+    given-names: Nicolas
+    email: nicolas.frerebeau@u-bordeaux-montaigne.fr
+    orcid: https://orcid.org/0000-0001-5759-4944
+    affiliation: Université Bordeaux Montaigne
+  version: 0.4.0.9000
+  abstract: A collection of classes that represent archaeological data. This package
+    provides a set of S4 classes that represent different special types of matrix
+    (absolute/relative frequency, presence/absence data, co-occurrence matrix, etc.)
+    upon which package developers can build subclasses. It also provides a set of
+    generic methods (mutators and coercion mechanisms) and functions (e.g. summary
+    statistics, predicates). In addition, a few classes of general interest (e.g.
+    that represent stratigraphic relationships) are implemented.
+  repository: https://CRAN.R-project.org/package=arkhe
+  repository-code: https://github.com/tesselle/arkhe
+  url: https://packages.tesselle.org/arkhe/
+  contact:
+  - family-names: Frerebeau
+    given-names: Nicolas
+    email: nicolas.frerebeau@u-bordeaux-montaigne.fr
+    orcid: https://orcid.org/0000-0001-5759-4944
+    affiliation: Université Bordeaux Montaigne
+  license: GPL-3.0-or-later
+  year: '2021'
+repository: https://CRAN.R-project.org/package=arkhe
+repository-code: https://github.com/tesselle/arkhe
+url: https://packages.tesselle.org/arkhe/
+contact:
+- family-names: Frerebeau
+  given-names: Nicolas
+  email: nicolas.frerebeau@u-bordeaux-montaigne.fr
+  orcid: https://orcid.org/0000-0001-5759-4944
+  affiliation: Université Bordeaux Montaigne
+keywords:
+- data representation
+- archaeology
+- archaeological science
+- r package
+identifiers:
+- description: The concept DOI.
+  type: doi
+  value: 10.5281/zenodo.3526659
+- description: The versioned DOI for version 0.1.0.
+  type: doi
+  value: 10.5281/zenodo.3526660
+- description: The versioned DOI for version 0.2.0.
+  type: doi
+  value: 10.5281/zenodo.3583089
+- description: The versioned DOI for version 0.2.1.
+  type: doi
+  value: 10.5281/zenodo.3668868
+- description: The versioned DOI for version 0.2.2.
+  type: doi
+  value: 10.5281/zenodo.3724463
+- description: The versioned DOI for version 0.3.0.
+  type: doi
+  value: 10.5281/zenodo.4675724
+- description: The versioned DOI for version 0.3.1.
+  type: doi
+  value: 10.5281/zenodo.4761928
+- description: The versioned DOI for version 0.4.0.
+  type: doi
+  value: 10.5281/zenodo.5515470
