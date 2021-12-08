@@ -6,8 +6,8 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/tesselle/arkhe/workflows/R-CMD-check/badge.svg)](https://github.com/tesselle/arkhe/actions)
-[![codecov](https://codecov.io/gh/tesselle/arkhe/branch/master/graph/badge.svg)](https://codecov.io/gh/tesselle/arkhe)
-[![CodeFactor](https://www.codefactor.io/repository/github/tesselle/arkhe/badge/master)](https://www.codefactor.io/repository/github/tesselle/arkhe/overview/master)
+[![codecov](https://codecov.io/gh/tesselle/arkhe/branch/main/graph/badge.svg)](https://codecov.io/gh/tesselle/arkhe)
+[![CodeFactor](https://www.codefactor.io/repository/github/tesselle/arkhe/badge/main)](https://www.codefactor.io/repository/github/tesselle/arkhe/overview/main)
 
 [![r-universe](https://tesselle.r-universe.dev/badges/arkhe)](https://tesselle.r-universe.dev)
 [![CRAN
@@ -147,34 +147,34 @@ Z <- as_count(Y)
 
 ## Get groups
 get_samples(Z)
-#>  [1] "d" "e" "a" "c" "b" "e" "e" "b" "a" "b" "c" "b" "a" "a" "d"
+#>  [1] "b" "e" "a" "c" "b" "b" "d" "d" "a" "a" "d" "c" "c" "c" "e"
 
 ## Get groups
 get_groups(Z)
-#>  [1] "A" "D" "A" "E" "D" "C" "C" "A" "C" "B" "C" "B" "D" "D" "A"
+#>  [1] "A" "E" "D" "B" "A" "B" "B" "B" "D" "C" "D" "A" "E" "B" "A"
 
 ## Get dates
 get_dates(Z)
-#>  [1] 1428 1400 1430 1413 1421 1421 1451 1418 1442 1413 1401 1435 1447 1412 1405
+#>  [1] 1447 1441 1423 1411 1408 1425 1435 1415 1443 1416 1416 1442 1442 1451 1437
 
 ## Get chronology
 get_terminus(Z)
 #>        tpq  taq
-#> row1  1382 1497
-#> row2  1332 1456
-#> row3  1322 1468
-#> row4  1373 1490
-#> row5  1383 1480
-#> row6  1352 1490
-#> row7  1329 1499
-#> row8  1374 1487
-#> row9  1357 1486
-#> row10 1398 1495
-#> row11 1348 1467
-#> row12 1338 1463
-#> row13 1354 1477
-#> row14 1306 1470
-#> row15 1361 1486
+#> row1  1318 1471
+#> row2  1374 1483
+#> row3  1394 1470
+#> row4  1385 1465
+#> row5  1399 1452
+#> row6  1339 1471
+#> row7  1317 1455
+#> row8  1368 1495
+#> row9  1343 1465
+#> row10 1332 1455
+#> row11 1343 1483
+#> row12 1392 1490
+#> row13 1324 1478
+#> row14 1364 1477
+#> row15 1356 1466
 
 ## Summarize
 summary(Z)
@@ -183,27 +183,27 @@ summary(Z)
 #> * Observations: 4
 #> * Variables: 5
 #> * Replicated measurements: TRUE
-#> * Chronology: 1322 - 1497 (year CE)
+#> * Chronology: 1318 - 1490 (year CE)
 #> B ------------------------------------------------------------------------------
-#> * Observations: 2
+#> * Observations: 5
 #> * Variables: 5
 #> * Replicated measurements: TRUE
-#> * Chronology: 1338 - 1495 (year CE)
+#> * Chronology: 1317 - 1495 (year CE)
 #> C ------------------------------------------------------------------------------
-#> * Observations: 4
-#> * Variables: 5
-#> * Replicated measurements: TRUE
-#> * Chronology: 1329 - 1499 (year CE)
-#> D ------------------------------------------------------------------------------
-#> * Observations: 4
-#> * Variables: 5
-#> * Replicated measurements: TRUE
-#> * Chronology: 1306 - 1480 (year CE)
-#> E ------------------------------------------------------------------------------
 #> * Observation: 1
 #> * Variables: 5
 #> * Replicated measurements: FALSE
-#> * Chronology: 1373 - 1490 (year CE)
+#> * Chronology: 1332 - 1455 (year CE)
+#> D ------------------------------------------------------------------------------
+#> * Observations: 3
+#> * Variables: 5
+#> * Replicated measurements: TRUE
+#> * Chronology: 1343 - 1483 (year CE)
+#> E ------------------------------------------------------------------------------
+#> * Observations: 2
+#> * Variables: 5
+#> * Replicated measurements: FALSE
+#> * Chronology: 1324 - 1483 (year CE)
 #> --------------------------------------------------------------------------------
 ```
 
