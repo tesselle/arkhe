@@ -1,17 +1,11 @@
 {
-  "@context": [
-    "https://doi.org/10.5063/schema/codemeta-2.0",
-    "http://schema.org"
-  ],
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "arkhe",
-  "description": "A collection of classes that represent\n    archaeological data. This package provides a set of S4 classes that\n    represent different special types of matrix (absolute/relative\n    frequency, presence/absence data, co-occurrence matrix, etc.) upon\n    which package developers can build subclasses. It also provides a set\n    of generic methods (mutators and coercion mechanisms) and functions\n    (e.g. summary statistics, predicates). In addition, a few classes of \n    general interest (e.g. that represent stratigraphic relationships) \n    are implemented.",
+  "description": "A collection of classes that represent archaeological data. This package provides a set of S4 classes that represent different special types of matrix (absolute/relative frequency, presence/absence data, co-occurrence matrix, etc.) upon which package developers can build subclasses. It also provides a set of generic methods (mutators and coercion mechanisms) and functions (e.g. summary statistics, predicates). In addition, a few classes of general interest (e.g. that represent stratigraphic relationships) are implemented.",
   "name": "arkhe: Representation of Archaeological Data",
+  "relatedLink": ["https://packages.tesselle.org/arkhe/", "https://CRAN.R-project.org/package=arkhe"],
   "codeRepository": "https://github.com/tesselle/arkhe",
-  "relatedLink": [
-    "https://CRAN.R-project.org/package=arkhe",
-    "https://packages.tesselle.org/arkhe/"
-  ],
   "issueTracker": "https://github.com/tesselle/arkhe/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
   "version": "0.4.0.9000",
@@ -20,7 +14,13 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.1.1 (2021-08-10)",
+  "runtimePlatform": "R version 4.2.0 (2022-04-22)",
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
   "author": [
     {
       "@type": "Person",
@@ -39,8 +39,6 @@
       "@id": "https://orcid.org/0000-0001-7503-8685"
     }
   ],
-  "copyrightHolder": {},
-  "funder": {},
   "maintainer": [
     {
       "@type": "Person",
@@ -101,38 +99,31 @@
       "sameAs": "https://CRAN.R-project.org/package=testthat"
     }
   ],
-  "softwareRequirements": [
-    {
+  "softwareRequirements": {
+    "1": {
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
       "version": ">= 3.3"
     },
-    {
+    "2": {
       "@type": "SoftwareApplication",
       "identifier": "methods",
       "name": "methods"
     },
-    {
+    "3": {
       "@type": "SoftwareApplication",
       "identifier": "stats",
       "name": "stats"
     },
-    {
+    "4": {
       "@type": "SoftwareApplication",
       "identifier": "utils",
       "name": "utils"
-    }
-  ],
-  "fileSize": "948.939KB",
-  "contIntegration": "https://codecov.io/gh/tesselle/arkhe",
-  "developmentStatus": "https://www.repostatus.org/#active",
-  "keywords": [
-    "archaeology",
-    "archaeological-science",
-    "data-representation",
-    "r-package"
-  ],
+    },
+    "SystemRequirements": null
+  },
+  "fileSize": "957.233KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -152,12 +143,9 @@
       "sameAs": "https://doi.org/10.5281/zenodo.3526659"
     }
   ],
-  "provider": {
-    "@id": "https://cran.r-project.org",
-    "@type": "Organization",
-    "name": "Comprehensive R Archive Network (CRAN)",
-    "url": "https://cran.r-project.org"
-  },
   "releaseNotes": "https://github.com/tesselle/arkhe/blob/master/NEWS.md",
-  "readme": "https://github.com/tesselle/arkhe/blob/main/README.md"
+  "readme": "https://github.com/tesselle/arkhe/blob/main/README.md",
+  "contIntegration": ["https://github.com/tesselle/arkhe/actions", "https://codecov.io/gh/tesselle/arkhe"],
+  "developmentStatus": "https://www.repostatus.org/#active",
+  "keywords": ["archaeology", "archaeological-science", "data-representation", "r-package"]
 }

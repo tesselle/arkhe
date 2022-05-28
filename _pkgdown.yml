@@ -18,7 +18,7 @@ reference:
   - has_concept("utilities")
 - title: Statistics
   contents:
-  - has_concept("statistics")
+  - has_concept("resampling methods")
 - title: Predicates
   contents:
   - has_concept("predicates")
