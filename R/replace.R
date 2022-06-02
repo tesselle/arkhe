@@ -1,0 +1,43 @@
+# DATA CLEANING: REPLACE
+#' @include AllClasses.R AllGenerics.R
+NULL
+
+# Replace ======================================================================
+## Missing values --------------------------------------------------------------
+#' @export
+#' @rdname replace
+#' @aliases replace_NA,matrix-method
+setMethod(
+  f = "replace_NA",
+  signature = signature(x = "matrix"),
+  definition = function(x, value = 0) {
+    x[is.na(x)] <- value
+    x
+  }
+)
+
+## Infinite values -------------------------------------------------------------
+#' @export
+#' @rdname replace
+#' @aliases replace_Inf,matrix-method
+setMethod(
+  f = "replace_Inf",
+  signature = signature(x = "matrix"),
+  definition = function(x, value = 0) {
+    x[is.infinite(x)] <- value
+    x
+  }
+)
+
+## Zeros -----------------------------------------------------------------------
+#' @export
+#' @rdname replace
+#' @aliases replace_zero,matrix-method
+setMethod(
+  f = "replace_zero",
+  signature = signature(x = "matrix"),
+  definition = function(x, value) {
+    x[is_zero(x)] <- value
+    x
+  }
+)

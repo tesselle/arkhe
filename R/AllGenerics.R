@@ -2,7 +2,95 @@
 #' @include AllClasses.R
 NULL
 
-# Clean ========================================================================
+# Data Cleaning ================================================================
+## Assign ----------------------------------------------------------------------
+#' Assign a specific row/column to the column/row names
+#'
+#'
+#' @param x A [`data.frame`].
+#' @param row A length-one [`numeric`] vector specifying the row number that is
+#'  to become the column names.
+#' @param column A length-one [`numeric`] vector specifying the column number
+#'  that is to become the row names.
+#' @param remove A [`logical`] scalar: should the specified row/column be removed
+#'  after making it the column/row names?
+#' @param ... Currently not used.
+#' @return A [`data.frame`].
+#' @author N. Frerebeau
+#' @docType methods
+#' @family data cleaning tools
+#' @name assign
+#' @rdname assign
+NULL
+
+#' @rdname assign
+#' @aliases assign_colnames-method
+setGeneric(
+  name = "assign_colnames",
+  def = function(x, ...) standardGeneric("assign_colnames")
+)
+
+#' @rdname assign
+#' @aliases assign_rownames-method
+setGeneric(
+  name = "assign_rownames",
+  def = function(x, ...) standardGeneric("assign_rownames")
+)
+
+## Count -----------------------------------------------------------------------
+#' Count values according to a given predicate
+#'
+#' Counts values by rows/columns according to a given predicate.
+#' @param x An object (should be a [`matrix`] or a [`data.frame`]).
+#' @param f A predicate [`function`].
+#' @param margin A vector giving the subscripts which the function will be
+#'  applied over (`1` indicates rows, `2` indicates columns).
+#' @param negate A [`logical`] scalar: should the negation of `f` be used
+#'  instead of `f`?
+#' @param ... Currently not used.
+#' @return A [`numeric`] vector.
+#' @example inst/examples/ex-clean.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family data cleaning tools
+#' @name count
+#' @rdname count
+NULL
+
+#' @rdname count
+#' @aliases count-method
+setGeneric(
+  name = "count",
+  def = function(x, f, ...) standardGeneric("count")
+)
+
+## Detect ----------------------------------------------------------------------
+#' Find values according to a given predicate
+#'
+#' Finds rows/columns in an array-like object according to a given predicate.
+#' @inheritParams count
+#' @param all A [`logical`] scalar. If `TRUE`, only the rows/columns whose
+#'  values all meet the condition defined by `f` are considered. If `FALSE`
+#'  (the default), only rows/columns where at least one value validates the
+#'  condition defined by `f` are considered.
+#' @param ... Currently not used.
+#' @return A [`logical`] vector.
+#' @example inst/examples/ex-clean.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family data cleaning tools
+#' @name detect
+#' @rdname detect
+NULL
+
+#' @rdname detect
+#' @aliases detect-method
+setGeneric(
+  name = "detect",
+  def = function(x, f, ...) standardGeneric("detect")
+)
+
+## Replace ---------------------------------------------------------------------
 #' Data Replacement
 #'
 #' Replaces [`missing`][NA] or [`infinite`][is.finite()] values or zeros.
@@ -12,7 +100,7 @@ NULL
 #' @example inst/examples/ex-clean.R
 #' @author N. Frerebeau
 #' @docType methods
-#' @family utilities
+#' @family data cleaning tools
 #' @name replace
 #' @rdname replace
 NULL
@@ -38,22 +126,33 @@ setGeneric(
   def = function(x, ...) standardGeneric("replace_zero")
 )
 
-#' Data Cleaning
+## Remove ----------------------------------------------------------------------
+#' Remove values according to a given predicate
 #'
-#' Removes empty row/column or row/column with [`missing`][NA]/
-#' [`infinite`][is.finite()] values or zeros.
-#' @param x A [`matrix`], a [`data.frame`] or a `*Matrix` object.
-#' @param margin An [`integer`] giving the subscript which the
-#'  cleaning will be applied over (`1` indicates rows, `2` indicates
-#'  columns).
+#' Removes rows/columns in an array-like object according to a given predicate.
+#' @inheritParams detect
 #' @param ... Currently not used.
+#' @details
+#'  * `remove_NA()` remove rows/columns that contain [missing values][NA].
+#'  * `remove_Inf()` remove rows/columns that contain [infinite values][is.finite].
+#'  * `remove_zero()` remove rows/columns that contain zero.
+#'  * `remove_empty()` is a special case that remove empty rows/columns.
+#'    A row/column is empty if it contains only `NA`, zeros (if of type
+#'    `numeric`) or zero length character strings (if of type `character`).
 #' @example inst/examples/ex-clean.R
 #' @author N. Frerebeau
 #' @docType methods
-#' @family utilities
+#' @family data cleaning tools
 #' @name remove
 #' @rdname remove
 NULL
+
+#' @rdname remove
+#' @aliases compact-method
+setGeneric(
+  name = "compact",
+  def = function(x, f, ...) standardGeneric("compact")
+)
 
 #' @rdname remove
 #' @aliases remove_NA-method
@@ -70,17 +169,17 @@ setGeneric(
 )
 
 #' @rdname remove
-#' @aliases remove_empty-method
-setGeneric(
-  name = "remove_empty",
-  def = function(x, ...) standardGeneric("remove_empty")
-)
-
-#' @rdname remove
 #' @aliases remove_zero-method
 setGeneric(
   name = "remove_zero",
   def = function(x, ...) standardGeneric("remove_zero")
+)
+
+#' @rdname remove
+#' @aliases remove_empty-method
+setGeneric(
+  name = "remove_empty",
+  def = function(x, ...) standardGeneric("remove_empty")
 )
 
 # Coerce =======================================================================

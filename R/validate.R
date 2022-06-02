@@ -165,7 +165,7 @@ setValidity(
 #' @keywords internal
 #' @export
 check_class <- function(object, conditions) {
-  cnd <- compact(is_empty, conditions)
+  cnd <- Filter(Negate(is_empty), conditions)
   if (has_length(cnd)) {
     err <- sprintf("<%s> instance initialization:\n%s", class(object),
                    paste0("* ", cnd, collapse = "\n"))

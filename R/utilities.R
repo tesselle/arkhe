@@ -3,9 +3,9 @@
 # Helpers ======================================================================
 #' Helpers
 #'
-#' * `compact()` removes elements from a list or vector.
-#' * `detect()` finds values in a list or vector according to a given predicate.
-#' * `count()` counts values in a list or vector according to a given predicate.
+# * `compact()` removes elements from a list or vector.
+# * `detect()` finds values in a list or vector according to a given predicate.
+# * `count()` counts values in a list or vector according to a given predicate.
 #' * `extract()` extracts a string form another string based on a pattern.
 #' * `\%o\%` allows for function composition.
 #' * `\%||\%` allows to define a default value.
@@ -24,15 +24,15 @@
 `%o%` <- function(f, g) {
   function(...) f(g(...))
 }
-compact <- function(f, x) {
-  Filter(Negate(f), x)
-}
-detect <- function(f, x) {
-  vapply(x, f, logical(1))
-}
-count <- function(f, x) {
-  sum(detect(f, x))
-}
+# compact <- function(f, x) {
+#   Filter(Negate(f), x)
+# }
+# detect <- function(f, x) {
+#   vapply(x, f, logical(1))
+# }
+# count <- function(f, x) {
+#   sum(detect(f, x))
+# }
 extract <- function(x, pattern) {
   regmatches(x, regexpr(pattern, x))
 }

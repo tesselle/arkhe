@@ -89,8 +89,8 @@ autodetect <- function(x, spl_i = NULL, grp_i = NULL, dts_i = NULL,
 
   ## Remove non-numeric columns
   ok_num <- ok_log <- rep(FALSE, ncol(data))
-  if (any(keep == "numeric")) ok_num <- detect(is_numeric, data)
-  if (any(keep == "logical")) ok_log <- detect(is_logical, data)
+  if (any(keep == "numeric")) ok_num <- detect(data, is_numeric, 2)
+  if (any(keep == "logical")) ok_log <- detect(data, is_logical, 2)
   data <- data[, ok_num | ok_log, drop = FALSE]
   assert_filled(data)
 
