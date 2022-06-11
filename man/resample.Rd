@@ -9,7 +9,7 @@
 \usage{
 resample(object, ...)
 
-\S4method{resample}{numeric}(object, do, n, ..., f = NULL)
+\S4method{resample}{numeric}(object, do, n, size = sum(object), ..., f = NULL)
 }
 \arguments{
 \item{object}{A \code{\link{numeric}} vector of count data (absolute frequencies).}
@@ -19,8 +19,10 @@ resample(object, ...)
 \item{do}{A \code{\link{function}} that takes \code{object} as an argument
 and returns a single numeric value.}
 
-\item{n}{A non-negative \code{\link{integer}} giving the number of bootstrap
+\item{n}{A non-negative \code{\link{integer}} specifying the number of bootstrap
 replications.}
+
+\item{size}{A non-negative \code{\link{integer}} specifying the sample size.}
 
 \item{f}{A \code{\link{function}} that takes a single numeric vector (the result of
 \code{do}) as argument.}
@@ -46,7 +48,10 @@ x <- rnorm(20)
 jackknife(x, do = mean) # Sample mean
 }
 \seealso{
+\code{stats::rmultinom()}
+
 Other resampling methods: 
+\code{\link{confidence}()},
 \code{\link{jackknife}()}
 }
 \author{

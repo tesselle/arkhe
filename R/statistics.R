@@ -2,6 +2,42 @@
 #' @include AllClasses.R AllGenerics.R
 NULL
 
+# Interval =====================================================================
+#' @export
+#' @rdname confidence
+#' @aliases confidence,numeric-method
+setMethod(
+  f = "confidence",
+  signature = c(object = "numeric"),
+  definition = function(object, level = 0.95, type = c("student", "normal")) {
+    margin <- confidence_margin(object, level = level, type = type)
+    interval <- mean(object) + margin * c(-1, 1)
+    names(interval) <- c("lower", "upper")
+    interval
+  }
+)
+
+confidence_margin <- function(x, level = 0.95, type = c("student", "normal")) {
+  z <- zscore(level = level, n = length(x), type = type)
+  z * stardard_error(x)
+}
+
+stardard_error <- function(x) {
+  stats::sd(x) / sqrt(length(x))
+}
+
+zscore <- function(level, n, type = c("student", "normal")) {
+  ## Validation
+  type <- match.arg(type, several.ok = FALSE)
+
+  alpha <- 1 - level
+  switch(
+    type,
+    normal = stats::qnorm(1 - alpha / 2), # Large sample size
+    student = stats::qt(1 - alpha / 2, df = n - 1), # Small sample size
+  )
+}
+
 # Bootstrap ====================================================================
 #' @export
 #' @rdname resample
@@ -9,49 +45,17 @@ NULL
 setMethod(
   f = "resample",
   signature = c(object = "numeric"),
-  definition = function(object, do, n, ..., f = NULL) {
-    size <- sum(object)
-    replicates <- stats::rmultinom(n, size = size, prob = object / size)
+  definition = function(object, do, n, size = sum(object), ..., f = NULL) {
+    ## Validation
+    assert_count(object)
+
+    prob <- object / sum(object)
+    replicates <- stats::rmultinom(n, size = size, prob = prob)
     values <- apply(X = replicates, MARGIN = 2, FUN = do, ...)
     if (is.function(f)) values <- f(values)
     values
   }
 )
-
-#' Confidence Interval for a Mean
-#'
-#' Computes the margin of errors of a confidence interval at a desired level of
-#'  significance.
-#' @param x A [`numeric`] vector.
-#' @param level A length-one [`numeric`] vector giving the confidence level.
-#'  Must be a single number between \eqn{0} and \eqn{1}.
-#' @param type A [`character`] string giving the type of confidence
-#'  interval to be returned. It must be one "`student`" (default) or
-#'  "`normal`". Any unambiguous substring can be given.
-#' @return A length-two [`numeric`] vector giving the margins of errors.
-#' @author N. Frerebeau
-#' @keywords internal
-#' @noRd
-confidence_mean <- function(x, level = 0.95, type = c("student", "normal")) {
-  ## Validation
-  type <- match.arg(type, several.ok = FALSE)
-
-  n <- length(x)
-  z <- zscore(alpha = 1 - level, n = n, type = type)
-  stardard_error <- stats::sd(x) / sqrt(n)
-
-  margin <- z * stardard_error
-  mean(x) + margin * c(-1, 1)
-}
-
-zscore <- function(alpha, n, type = c("student", "normal")) {
-  switch(
-    type,
-    normal = stats::qnorm(1 - alpha / 2), # Large sample size
-    student = stats::qt(1 - alpha / 2, n - 1), # Small sample size
-    stop(sprintf("There is no such type: %s", type), call. = FALSE)
-  )
-}
 
 # Jaccknife ====================================================================
 #' @export
@@ -64,7 +68,7 @@ setMethod(
     n <- length(object)
     hat <- do(object, ...)
 
-   values <- vapply(
+    values <- vapply(
       X = seq_len(n),
       FUN = function(i, x, do, ...) {
         do(x[-i], ...)
@@ -72,8 +76,8 @@ setMethod(
       FUN.VALUE = double(1),
       x = object, do = do, ...
     )
-   values <- summary_jackknife(values, hat)
-   values
+    values <- summary_jackknife(values, hat)
+    values
   }
 )
 

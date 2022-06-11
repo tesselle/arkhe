@@ -445,6 +445,30 @@ setGeneric(
 )
 
 # Statistics ===================================================================
+## Interval ====================================================================
+#' Confidence Interval for a Mean
+#'
+#' Computes a confidence interval for a mean at a desired level of significance.
+#' @param object A [`numeric`] vector.
+#' @param level A length-one [`numeric`] vector giving the confidence level.
+#'  Must be a single number between \eqn{0} and \eqn{1}.
+#' @param type A [`character`] string giving the type of confidence
+#'  interval to be returned. It must be one "`student`" (the default) or
+#'  "`normal`". Any unambiguous substring can be given.
+#' @param ... Currently not used.
+#' @return A length-two [`numeric`] vector giving lower and upper confidence
+#'  limits.
+#' @example inst/examples/ex-resample.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family resampling methods
+#' @rdname confidence
+#' @aliases confidence-method
+setGeneric(
+  name = "confidence",
+  def = function(object, ...) standardGeneric("confidence")
+)
+
 ## Bootstrap -------------------------------------------------------------------
 #' Resample
 #'
@@ -452,14 +476,16 @@ setGeneric(
 #' @param object A [`numeric`] vector of count data (absolute frequencies).
 #' @param do A [`function`] that takes `object` as an argument
 #'  and returns a single numeric value.
-#' @param n A non-negative [`integer`] giving the number of bootstrap
+#' @param n A non-negative [`integer`] specifying the number of bootstrap
 #'  replications.
+#' @param size A non-negative [`integer`] specifying the sample size.
 #' @param f A [`function`] that takes a single numeric vector (the result of
 #'  `do`) as argument.
 #' @param ... Extra arguments passed to `do`.
 #' @return
 #'  If `f` is `NULL`, returns a [`numeric`] vector giving the `n` values of
 #'  `do`. Else, returns the result of `f` applied to the `n` values of `do`.
+#' @seealso `stats::rmultinom()`
 #' @example inst/examples/ex-resample.R
 #' @author N. Frerebeau
 #' @docType methods
