@@ -470,32 +470,7 @@ setGeneric(
 )
 
 ## Bootstrap -------------------------------------------------------------------
-#' Resample
-#'
-#' Samples observations from a multinomial distribution.
-#' @param object A [`numeric`] vector of count data (absolute frequencies).
-#' @param do A [`function`] that takes `object` as an argument
-#'  and returns a single numeric value.
-#' @param n A non-negative [`integer`] specifying the number of bootstrap
-#'  replications.
-#' @param size A non-negative [`integer`] specifying the sample size.
-#' @param f A [`function`] that takes a single numeric vector (the result of
-#'  `do`) as argument.
-#' @param ... Extra arguments passed to `do`.
-#' @return
-#'  If `f` is `NULL`, returns a [`numeric`] vector giving the `n` values of
-#'  `do`. Else, returns the result of `f` applied to the `n` values of `do`.
-#' @seealso `stats::rmultinom()`
-#' @example inst/examples/ex-resample.R
-#' @author N. Frerebeau
-#' @docType methods
-#' @family resampling methods
-#' @rdname resample
-#' @aliases resample-method
-setGeneric(
-  name = "resample",
-  def = function(object, ...) standardGeneric("resample")
-)
+
 
 ## Jackknife -------------------------------------------------------------------
 #' Jackknife Estimation
