@@ -15,7 +15,7 @@ A collection of classes that represent archaeological data. This package provide
 \tabular{ll}{
 \strong{Package:} \tab arkhe \cr
 \strong{Type:} \tab Package \cr
-\strong{Version:} \tab 0.4.0 \cr
+\strong{Version:} \tab 0.5.0 \cr
 \strong{License:} \tab GPL-3 \cr
 \strong{Zenodo:} \tab \doi{10.5281/zenodo.3526659} \cr
 }

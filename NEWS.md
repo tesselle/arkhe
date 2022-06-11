@@ -1,11 +1,12 @@
-# arkhe 0.4.0.9000
+# arkhe 0.5.0
 ## New classes and methods
 * Add `assign_rownames()` and `assign_colnames()` to make a specific row/column the column/row names of a `data.frame`.
+* Add `assert_count()` to validate count data (absolute frequencies/integer).
 * Add `count()` to count values by rows/columns according to a given predicate.
 * Add `detect()` to find rows/columns in an array-like object according to a given predicate.
 * Add `compact()` to remove rows/columns in an array-like object according to a given predicate.
-* Add `resample()` to sample observations from a multinomial distribution (partial bootstrap).
 * Add `jackknife()` for jackknife estimation.
+* Add `confidence()` to compute confidence interval for the mean.
 
 # arkhe 0.4.0
 ## New classes and methods

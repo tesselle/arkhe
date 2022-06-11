@@ -1,22 +1,24 @@
 # Platform
 
-|field    |value                        |
-|:--------|:----------------------------|
-|version  |R version 4.1.1 (2021-08-10) |
-|os       |Ubuntu 20.04.3 LTS           |
-|system   |x86_64, linux-gnu            |
-|ui       |RStudio                      |
-|language |(EN)                         |
-|collate  |fr_FR.UTF-8                  |
-|ctype    |fr_FR.UTF-8                  |
-|tz       |Europe/Paris                 |
-|date     |2021-09-18                   |
+|field    |value                                                       |
+|:--------|:-----------------------------------------------------------|
+|version  |R version 4.2.0 (2022-04-22)                                |
+|os       |Ubuntu 20.04.4 LTS                                          |
+|system   |x86_64, linux-gnu                                           |
+|ui       |RStudio                                                     |
+|language |(EN)                                                        |
+|collate  |fr_FR.UTF-8                                                 |
+|ctype    |fr_FR.UTF-8                                                 |
+|tz       |Europe/Paris                                                |
+|date     |2022-06-12                                                  |
+|rstudio  |2022.02.3+492 Prairie Trillium (desktop)                    |
+|pandoc   |2.17.1.1 @ /usr/lib/rstudio/bin/quarto/bin/ (via rmarkdown) |
 
 # Dependencies
 
 |package |old   |new   |Δ  |
 |:-------|:-----|:-----|:--|
-|arkhe   |0.3.1 |0.4.0 |*  |
+|arkhe   |0.4.0 |0.5.0 |*  |
 
 # Revdeps
 
