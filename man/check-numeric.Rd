@@ -2,11 +2,14 @@
 % Please edit documentation in R/check.R
 \name{check-numeric}
 \alias{check-numeric}
+\alias{assert_count}
 \alias{assert_numeric}
 \alias{assert_trend}
 \alias{assert_relation}
 \title{Check Numeric Values}
 \usage{
+assert_count(x)
+
 assert_numeric(x, expected, ...)
 
 assert_trend(x, expected, ...)

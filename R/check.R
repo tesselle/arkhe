@@ -259,6 +259,17 @@ NULL
 
 #' @export
 #' @rdname check-numeric
+assert_count <- function(x) {
+  arg <- deparse(substitute(x))
+  if (!all(x == round(x))) {
+    msg <- sprintf("%s must contain integers (counts).", sQuote(arg))
+    throw_error("error_bad_number", msg)
+  }
+  invisible(x)
+}
+
+#' @export
+#' @rdname check-numeric
 assert_numeric <- function(x, expected, ...) {
   arg <- deparse(substitute(x))
   predicate <- switch(

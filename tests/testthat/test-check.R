@@ -140,6 +140,14 @@ test_that("Assert numeric data", {
 
   expect_identical(assert_numeric(k, expected = "positive"), k)
 })
+test_that("Assert count data", {
+  x <- c(1.1, 2, 3, 4, 5)
+  cnd <- catch_conditions(assert_count(x))
+  expect_s3_class(cnd[[1]], "error_bad_number")
+
+  x <- c(1, 2, 3, 4, 5)
+  expect_equal(assert_count(x), x)
+})
 test_that("Assert numeric trends", {
   k <- c(1, 3, 5, 7, 9)
   cnd <- catch_conditions(assert_trend(k, "constant"))
