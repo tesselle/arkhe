@@ -8,7 +8,7 @@ message: 'To cite package "arkhe" in publications use:'
 type: software
 license: GPL-3.0-or-later
 title: 'arkhe: Representation of Archaeological Data'
-version: 0.5.0
+version: 0.5.0.9000
 abstract: A collection of classes that represent archaeological data. This package
   provides a set of S4 classes that represent different special types of matrix (absolute/relative
   frequency, presence/absence data, co-occurrence matrix, etc.) upon which package
@@ -31,7 +31,7 @@ preferred-citation:
     email: nicolas.frerebeau@u-bordeaux-montaigne.fr
     orcid: https://orcid.org/0000-0001-5759-4944
     affiliation: Université Bordeaux Montaigne
-  version: 0.5.0
+  version: 0.5.0.9000
   abstract: A collection of classes that represent archaeological data. This package
     provides a set of S4 classes that represent different special types of matrix
     (absolute/relative frequency, presence/absence data, co-occurrence matrix, etc.)
@@ -214,3 +214,6 @@ identifiers:
 - description: The versioned DOI for version 0.4.0.
   type: doi
   value: 10.5281/zenodo.5515470
+- description: The versioned DOI for version 0.5.0.
+  type: doi
+  value: 10.5281/zenodo.6647041
