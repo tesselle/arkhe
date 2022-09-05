@@ -62,7 +62,6 @@ replace_NA(X, value = 0)
 }
 \seealso{
 Other data cleaning tools: 
-\code{\link{assign}()},
 \code{\link{detect}()},
 \code{\link{remove}()},
 \code{\link{replace}()}

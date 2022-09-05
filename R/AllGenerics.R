@@ -1,41 +1,7 @@
 # GENERIC METHODS
 NULL
 
-# Data Cleaning ================================================================
-## Assign ----------------------------------------------------------------------
-#' Assign a specific row/column to the column/row names
-#'
-#'
-#' @param x A [`data.frame`].
-#' @param row A length-one [`numeric`] vector specifying the row number that is
-#'  to become the column names.
-#' @param column A length-one [`numeric`] vector specifying the column number
-#'  that is to become the row names.
-#' @param remove A [`logical`] scalar: should the specified row/column be removed
-#'  after making it the column/row names?
-#' @param ... Currently not used.
-#' @return A [`data.frame`].
-#' @author N. Frerebeau
-#' @docType methods
-#' @family data cleaning tools
-#' @name assign
-#' @rdname assign
-NULL
-
-#' @rdname assign
-#' @aliases assign_colnames-method
-setGeneric(
-  name = "assign_colnames",
-  def = function(x, ...) standardGeneric("assign_colnames")
-)
-
-#' @rdname assign
-#' @aliases assign_rownames-method
-setGeneric(
-  name = "assign_rownames",
-  def = function(x, ...) standardGeneric("assign_rownames")
-)
-
+# Data cleaning ================================================================
 ## Count -----------------------------------------------------------------------
 #' Count values according to a given predicate
 #'
@@ -181,10 +147,45 @@ setGeneric(
   def = function(x, ...) standardGeneric("remove_empty")
 )
 
-# Coerce =======================================================================
-#' Coerce
+# Data transformation ==========================================================
+## Assign ----------------------------------------------------------------------
+#' Assign a specific row/column to the column/row names
 #'
-#' Coerces an object to a `*Matrix` object.
+#'
+#' @param x A [`data.frame`].
+#' @param row A length-one [`numeric`] vector specifying the row number that is
+#'  to become the column names.
+#' @param column A length-one [`numeric`] vector specifying the column number
+#'  that is to become the row names.
+#' @param remove A [`logical`] scalar: should the specified row/column be removed
+#'  after making it the column/row names?
+#' @param ... Currently not used.
+#' @return A [`data.frame`].
+#' @author N. Frerebeau
+#' @docType methods
+#' @family transformation tools
+#' @name assign
+#' @rdname assign
+NULL
+
+#' @rdname assign
+#' @aliases assign_colnames-method
+setGeneric(
+  name = "assign_colnames",
+  def = function(x, ...) standardGeneric("assign_colnames")
+)
+
+#' @rdname assign
+#' @aliases assign_rownames-method
+setGeneric(
+  name = "assign_rownames",
+  def = function(x, ...) standardGeneric("assign_rownames")
+)
+
+## Reshape ---------------------------------------------------------------------
+#' Reshape
+#'
+#' Transforms a `matrix` to a long `data.frame`.
 #' @param from An object to be coerced.
 #' @param factor A [`logical`] scalar: should character string be
 #'  coerced to [`factor`]? Default to `FALSE`, if `TRUE` the original ordering is
@@ -196,12 +197,12 @@ setGeneric(
 #' @example inst/examples/ex-coerce.R
 #' @author N. Frerebeau
 #' @docType methods
-#' @family classes
-#' @name coerce
-#' @rdname coerce
+#' @family transformation tools
+#' @name reshape
+#' @rdname reshape
 NULL
 
-#' @rdname coerce
+#' @rdname reshape
 #' @aliases as_long-method
 setGeneric(
   name = "as_long",

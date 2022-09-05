@@ -24,7 +24,7 @@ as_factor <- function(x, reverse = FALSE) {
 }
 
 #' @export
-#' @rdname coerce
+#' @rdname reshape
 #' @aliases as_long,matrix-method
 setMethod(
   f = "as_long",

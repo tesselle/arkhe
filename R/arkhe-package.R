@@ -9,9 +9,6 @@
 #'
 #' @section Package options:
 #'  `arkhe` uses the following [options()] to configure behavior:
-#'  * `arkhe.autodetect`: a [`logical`] scalar. Try to automatically assign
-#'    values to the corresponding slot of a `*Matrix` object when coercing a
-#'    `data.frame`? Defaults to `TRUE`.
 #'  * `arkhe.verbose`: a [`logical`] scalar. Should \R report extra information
 #'    on progress? Defaults to `TRUE`.
 #'
@@ -39,10 +36,7 @@
 #' @keywords internal
 "_PACKAGE"
 
-#' @importFrom methods Arith as as<- callGeneric callNextMethod Compare
-#' .hasSlot initialize is Logic Math Math2 new Ops setClass setClassUnion
-#' setGeneric setMethod slot slot<- slotNames Summary validObject
+#' @importFrom methods callGeneric callNextMethod setGeneric setMethod
 #' .valueClassTest
 #' @importFrom stats quantile na.omit rmultinom sd xtabs
-#' @importFrom utils capture.output combn
 NULL

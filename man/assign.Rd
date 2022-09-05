@@ -40,13 +40,10 @@ A \code{\link{data.frame}}.
 Assign a specific row/column to the column/row names
 }
 \seealso{
-Other data cleaning tools: 
-\code{\link{count}()},
-\code{\link{detect}()},
-\code{\link{remove}()},
-\code{\link{replace}()}
+Other transformation tools: 
+\code{\link{reshape}()}
 }
 \author{
 N. Frerebeau
 }
-\concept{data cleaning tools}
+\concept{transformation tools}

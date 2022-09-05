@@ -100,7 +100,6 @@ replace_NA(X, value = 0)
 }
 \seealso{
 Other data cleaning tools: 
-\code{\link{assign}()},
 \code{\link{count}()},
 \code{\link{detect}()},
 \code{\link{replace}()}
