@@ -66,47 +66,58 @@ is_empty <- function(x) {
 #' @rdname predicate-type
 NULL
 
+#' @export
 #' @rdname predicate-type
 is_list <- function(x) {
   typeof(x) == "list"
 }
+#' @export
 #' @rdname predicate-type
 is_atomic <- function(x) {
   typeof(x) %in% c("logical", "integer", "double",
                    "complex", "character", "raw")
 }
+#' @export
 #' @rdname predicate-type
 is_vector <- function(x) {
   is_atomic(x) || is_list(x)
 }
+#' @export
 #' @rdname predicate-type
 is_numeric <- function(x) {
   typeof(x) %in% c("integer", "double")
 }
+#' @export
 #' @rdname predicate-type
 is_integer <- function(x) {
   typeof(x) == "integer"
 }
+#' @export
 #' @rdname predicate-type
 is_double <- function(x) {
   typeof(x) == "double"
 }
+#' @export
 #' @rdname predicate-type
 is_character <- function(x) {
   typeof(x) == "character"
 }
+#' @export
 #' @rdname predicate-type
 is_logical <- function(x) {
   typeof(x) == "logical"
 }
+#' @export
 #' @rdname predicate-type
 is_error <- function(x) {
   inherits(x, "try-error") || inherits(x, "simpleError") || inherits(x, "error")
 }
+#' @export
 #' @rdname predicate-type
 is_warning <- function(x) {
   inherits(x, "simpleWarning") || inherits(x, "warning")
 }
+#' @export
 #' @rdname predicate-type
 is_message <- function(x) {
   inherits(x, "simpleMessage") || inherits(x, "message")
@@ -122,34 +133,42 @@ is_message <- function(x) {
 #' @rdname predicate-scalar
 NULL
 
+#' @export
 #' @rdname predicate-scalar
 is_scalar_list <- function(x) {
   is_list(x) && length(x) == 1
 }
+#' @export
 #' @rdname predicate-scalar
 is_scalar_atomic <- function(x) {
   is_atomic(x) && length(x) == 1
 }
+#' @export
 #' @rdname predicate-scalar
 is_scalar_vector <- function(x) {
   is_vector(x) && length(x) == 1
 }
+#' @export
 #' @rdname predicate-scalar
 is_scalar_numeric <- function(x) {
   is_numeric(x) && length(x) == 1
 }
+#' @export
 #' @rdname predicate-scalar
 is_scalar_integer <- function(x) {
   is_integer(x) && length(x) == 1
 }
+#' @export
 #' @rdname predicate-scalar
 is_scalar_double <- function(x) {
   is_double(x) && length(x) == 1
 }
+#' @export
 #' @rdname predicate-scalar
 is_scalar_character <- function(x) {
   is_character(x) && length(x) == 1
 }
+#' @export
 #' @rdname predicate-scalar
 is_scalar_logical <- function(x) {
   is_logical(x) && length(x) == 1
