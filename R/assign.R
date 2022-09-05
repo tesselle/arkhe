@@ -1,5 +1,5 @@
 # DATA CLEANING: ASSIGN
-#' @include AllClasses.R AllGenerics.R
+#' @include AllGenerics.R
 NULL
 
 #' @export

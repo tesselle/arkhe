@@ -356,25 +356,25 @@ assert_matrix <- function(x, expected) {
 }
 
 # Graph ========================================================================
-#' Check Graph
-#'
-#' @param x A [`matrix`] to be checked.
-#' @param expected An appropriate expected value.
-#' @return Throw an error, if any.
-#' @author N. Frerebeau
-#' @family validation methods
-#' @name check-graph
-#' @rdname check-graph
-#' @keywords internal
+# Check Graph
+#
+# @param x A [`matrix`] to be checked.
+# @param expected An appropriate expected value.
+# @return Throw an error, if any.
+# @author N. Frerebeau
+# @family validation methods
+# @name check-graph
+# @rdname check-graph
+# @keywords internal
 NULL
 
-#' @export
-#' @rdname check-graph
-assert_dag <- function(x) {
-  arg <- deparse(substitute(x))
-  if (!is_dag(x)) {
-    msg <- sprintf("%s must not contain cycles.", sQuote(arg))
-    throw_error("error_bad_graph", msg)
-  }
-  invisible(x)
-}
+# @export
+# @rdname check-graph
+# assert_dag <- function(x) {
+#   arg <- deparse(substitute(x))
+#   if (!is_dag(x)) {
+#     msg <- sprintf("%s must not contain cycles.", sQuote(arg))
+#     throw_error("error_bad_graph", msg)
+#   }
+#   invisible(x)
+# }

@@ -47,7 +47,6 @@ or infinite values.
 }
 \seealso{
 Other predicates: 
-\code{\link{predicate-graph}},
 \code{\link{predicate-matrix}},
 \code{\link{predicate-numeric}},
 \code{\link{predicate-scalar}},

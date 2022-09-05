@@ -1,5 +1,5 @@
 # DATA CLEANING
-#' @include AllClasses.R AllGenerics.R
+#' @include AllGenerics.R
 NULL
 
 # Compact ======================================================================

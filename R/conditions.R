@@ -100,3 +100,25 @@ catch_conditions <- function(expr) {
   )
   return(cnd)
 }
+
+# Diagnostic ===================================================================
+#' Class Diagnostic
+#'
+#' @param object An object to which error messages are related.
+#' @param conditions A [`list`] of condition messages.
+#' @return
+#'  Throw an error if `conditions` is of non-zero length, invisibly returns
+#'  `TRUE` if not.
+#' @author N. Frerebeau
+#' @keywords internal
+#' @export
+check_class <- function(object, conditions) {
+  cnd <- Filter(Negate(is_empty), conditions)
+  if (has_length(cnd)) {
+    err <- sprintf("<%s> instance initialization:\n%s", class(object),
+                   paste0("* ", cnd, collapse = "\n"))
+    throw_error("arkhe_error_class", err, call = NULL)
+  }
+
+  invisible(TRUE)
+}

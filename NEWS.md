@@ -1,4 +1,6 @@
 # arkhe 0.5.0.9000
+## Breaking changes
+* Remove all `*Matrix` classes and methods.
 
 # arkhe 0.5.0
 ## New classes and methods

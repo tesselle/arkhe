@@ -31,7 +31,6 @@ missing (\code{NA}, \code{NaN}) or infinite (\code{Inf}) value.
 \seealso{
 Other validation methods: 
 \code{\link{check-attribute}},
-\code{\link{check-graph}},
 \code{\link{check-matrix}},
 \code{\link{check-numeric}},
 \code{\link{check-type}},

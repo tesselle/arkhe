@@ -19,7 +19,6 @@ Validate a Condition
 Other validation methods: 
 \code{\link{check-attribute}},
 \code{\link{check-data}},
-\code{\link{check-graph}},
 \code{\link{check-matrix}},
 \code{\link{check-numeric}},
 \code{\link{check-type}}

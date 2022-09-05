@@ -1,5 +1,5 @@
 # STATISTICS
-#' @include AllClasses.R AllGenerics.R
+#' @include AllGenerics.R
 NULL
 
 # Interval =====================================================================
@@ -71,7 +71,7 @@ summary_jackknife <- function(x, hat) {
   jack_bias <- (n - 1) * (jack_mean - hat)
   jack_error <- sqrt(((n - 1) / n) * sum((x - jack_mean)^2))
 
-  results <- c(jack_mean, jack_bias, jack_error)
-  names(results) <- c("mean", "bias", "error")
+  results <- c(hat, jack_mean, jack_bias, jack_error)
+  names(results) <- c("original", "mean", "bias", "error")
   results
 }

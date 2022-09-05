@@ -42,7 +42,6 @@ Possible values for \code{expected}:
 Other validation methods: 
 \code{\link{check-attribute}},
 \code{\link{check-data}},
-\code{\link{check-graph}},
 \code{\link{check-matrix}},
 \code{\link{check-type}},
 \code{\link{validate}()}

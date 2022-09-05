@@ -44,10 +44,9 @@ VignetteBuilder:
     knitr
 Config/testthat/edition: 3
 Encoding: UTF-8
-RoxygenNote: 7.2.0
+RoxygenNote: 7.2.1
 Roxygen: list(markdown = TRUE)
 Collate: 
-    'AllClasses.R'
     'AllGenerics.R'
     'arkhe-package.R'
     'assign.R'
@@ -57,13 +56,7 @@ Collate:
     'compact.R'
     'conditions.R'
     'detect.R'
-    'initialize.R'
-    'mutators.R'
     'replace.R'
-    'show.R'
     'statistics.R'
-    'subset.R'
-    'summary.R'
     'utilities.R'
-    'validate.R'
     'zzz.R'
