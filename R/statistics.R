@@ -10,20 +10,24 @@ setMethod(
   f = "confidence",
   signature = c(object = "numeric"),
   definition = function(object, level = 0.95, type = c("student", "normal")) {
-    margin <- confidence_margin(object, level = level, type = type)
+    margin <- confidence_mean(object, level = level, type = type)
     interval <- mean(object) + margin * c(-1, 1)
     names(interval) <- c("lower", "upper")
     interval
   }
 )
 
-confidence_margin <- function(x, level = 0.95, type = c("student", "normal")) {
+confidence_mean <- function(x, level = 0.95, type = c("student", "normal")) {
   z <- zscore(level = level, n = length(x), type = type)
-  z * stardard_error(x)
+  z * stats::sd(x) / sqrt(length(x))
 }
 
-stardard_error <- function(x) {
-  stats::sd(x) / sqrt(length(x))
+confidence_prop <- function(x, level = 0.95, type = c("student", "normal")) {
+  n <- sum(x)
+  p <- x / n
+
+  z <- zscore(level = level, n = length(x), type = type)
+  z * sqrt(p * (1 - p) / n)
 }
 
 zscore <- function(level, n, type = c("student", "normal")) {
@@ -39,7 +43,33 @@ zscore <- function(level, n, type = c("student", "normal")) {
 }
 
 # Bootstrap ====================================================================
+#' @export
+#' @rdname bootstrap
+#' @aliases bootstrap,numeric-method
+setMethod(
+  f = "bootstrap",
+  signature = c(object = "numeric"),
+  definition = function(object, do, n, ..., f = NULL) {
+    hat <- do(object, ...)
 
+    spl <- sample(object, size = length(object) * n, replace = TRUE)
+    replicates <- t(matrix(spl, nrow = n))
+    values <- apply(X = replicates, MARGIN = 2, FUN = do, ...)
+    values <- if (is.function(f)) f(values) else summary_bootstrap(values, hat)
+    values
+  }
+)
+
+summary_bootstrap <- function(x, hat) {
+  n <- length(x)
+  boot_mean <- mean(x)
+  boot_bias <- boot_mean - hat
+  boot_error <- stats::sd(x)
+
+  results <- c(hat, boot_mean, boot_bias, boot_error)
+  names(results) <- c("original", "mean", "bias", "error")
+  results
+}
 
 # Jaccknife ====================================================================
 #' @export

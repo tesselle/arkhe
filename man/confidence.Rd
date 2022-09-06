@@ -31,12 +31,15 @@ limits.
 Computes a confidence interval for a mean at a desired level of significance.
 }
 \examples{
-## Jackknife
-x <- rnorm(20)
-jackknife(x, do = mean) # Sample mean
+x <- seq(from = -4, to = 4, by = 0.01)
+y <- dnorm(x)
+
+confidence(y, type = "student")
+confidence(y, type = "normal")
 }
 \seealso{
 Other resampling methods: 
+\code{\link{bootstrap}()},
 \code{\link{jackknife}()}
 }
 \author{

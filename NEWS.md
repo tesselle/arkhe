@@ -1,6 +1,7 @@
 # arkhe 0.5.0.9000
 ## New classes and methods
 * Export all type and scalar predicates.
+* Add `bootstrap()` for bootstrap estimation.
 
 ## Breaking changes
 * Remove all `*Matrix` classes and methods.

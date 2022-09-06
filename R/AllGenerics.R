@@ -224,7 +224,7 @@ setGeneric(
 #' @param ... Currently not used.
 #' @return A length-two [`numeric`] vector giving lower and upper confidence
 #'  limits.
-#' @example inst/examples/ex-resample.R
+#' @example inst/examples/ex-statistics.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family resampling methods
@@ -236,7 +236,39 @@ setGeneric(
 )
 
 ## Bootstrap -------------------------------------------------------------------
-
+#' Bootstrap Estimation
+#'
+#' Samples randomly from the elements of `object` with replacement.
+#' @param object A [`numeric`] vector.
+#' @param do A [`function`] that takes `object` as an argument and returns a
+#'  single numeric value.
+#' @param n A non-negative [`integer`] giving the number of bootstrap
+#'  replications.
+#' @param f A [`function`] that takes a single numeric vector (the result of
+#'  `do`) as argument.
+#' @param ... Extra arguments to be passed to `do`.
+#' @return
+#'  If `f` is not `NULL`, `bootstrap()` returns the result of `f` applied to
+#'  the `n` values of `do`.
+#'
+#'  If `f` is `NULL`, `bootstrap()` returns a named `numeric` `vector` with the
+#'  following elements:
+#'  \describe{
+#'   \item{`original`}{The observed value of `do` applied to `object`.}
+#'   \item{`mean`}{The bootstrap estimate of mean of `do`.}
+#'   \item{`bias`}{The bootstrap estimate of bias of `do`.}
+#'   \item{`error`}{he bootstrap estimate of standard error of `do`.}
+#'  }
+#' @example inst/examples/ex-resample.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family resampling methods
+#' @rdname bootstrap
+#' @aliases bootstrap-method
+setGeneric(
+  name = "bootstrap",
+  def = function(object, ...) standardGeneric("bootstrap")
+)
 
 ## Jackknife -------------------------------------------------------------------
 #' Jackknife Estimation
@@ -244,10 +276,11 @@ setGeneric(
 #' @param object A [`numeric`] vector.
 #' @param do A [`function`] that takes `object` as an argument and returns a
 #'  single numeric value.
-#' @param ... Extra arguments passed to `do`.
+#' @param ... Extra arguments to be passed to `do`.
 #' @return
-#'  Returns a named `numeric` vector with the following elements:
+#'  Returns a named `numeric` `vector` with the following elements:
 #'  \describe{
+#'   \item{`original`}{The observed value of `do` applied to `object`.}
 #'   \item{`mean`}{The jackknife estimate of mean of `do`.}
 #'   \item{`bias`}{The jackknife estimate of bias of `do`.}
 #'   \item{`error`}{he jackknife estimate of standard error of `do`.}

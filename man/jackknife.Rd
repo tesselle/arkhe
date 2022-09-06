@@ -14,14 +14,15 @@ jackknife(object, ...)
 \arguments{
 \item{object}{A \code{\link{numeric}} vector.}
 
-\item{...}{Extra arguments passed to \code{do}.}
+\item{...}{Extra arguments to be passed to \code{do}.}
 
 \item{do}{A \code{\link{function}} that takes \code{object} as an argument and returns a
 single numeric value.}
 }
 \value{
-Returns a named \code{numeric} vector with the following elements:
+Returns a named \code{numeric} \code{vector} with the following elements:
 \describe{
+\item{\code{original}}{The observed value of \code{do} applied to \code{object}.}
 \item{\code{mean}}{The jackknife estimate of mean of \code{do}.}
 \item{\code{bias}}{The jackknife estimate of bias of \code{do}.}
 \item{\code{error}}{he jackknife estimate of standard error of \code{do}.}
@@ -31,12 +32,21 @@ Returns a named \code{numeric} vector with the following elements:
 Jackknife Estimation
 }
 \examples{
-## Jackknife
 x <- rnorm(20)
+
+## Bootstrap
+bootstrap(x, do = mean, n = 100)
+
+## Estimate the 25th and 95th percentiles
+quant <- function(x) { quantile(x, probs = c(0.25, 0.75)) }
+bootstrap(x, n = 100, do = mean, f = quant)
+
+## Jackknife
 jackknife(x, do = mean) # Sample mean
 }
 \seealso{
 Other resampling methods: 
+\code{\link{bootstrap}()},
 \code{\link{confidence}()}
 }
 \author{
