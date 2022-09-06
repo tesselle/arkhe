@@ -1,5 +1,5 @@
 Package: arkhe
-Title: Representation of Archaeological Data
+Title: Tools for cleaning rectangular data
 Version: 0.5.0.9000
 Authors@R: 
     c(person(given = "Nicolas",
@@ -16,15 +16,10 @@ Authors@R:
                          affiliation = "Université Bordeaux Montaigne")))
 Maintainer: Nicolas Frerebeau
     <nicolas.frerebeau@u-bordeaux-montaigne.fr>
-Description: A collection of classes that represent
-    archaeological data. This package provides a set of S4 classes that
-    represent different special types of matrix (absolute/relative
-    frequency, presence/absence data, co-occurrence matrix, etc.) upon
-    which package developers can build subclasses. It also provides a set
-    of generic methods (mutators and coercion mechanisms) and functions
-    (e.g. summary statistics, predicates). In addition, a few classes of 
-    general interest (e.g. that represent stratigraphic relationships) 
-    are implemented.
+Description: A collection of simple functions for cleaning rectangular data. 
+    This package allows to detect, count and replace values or delete 
+    rows/columns according to a specific predicate. In addition, it provides 
+    tools to check conditions and return informative error messages.
 License: GPL (>= 3)
 URL: https://packages.tesselle.org/arkhe/,
     https://github.com/tesselle/arkhe
@@ -33,8 +28,7 @@ Depends:
     R (>= 3.3)
 Imports: 
     methods,
-    stats,
-    utils
+    stats
 Suggests: 
     covr,
     knitr,

@@ -10,15 +10,15 @@ reference:
 - title: Data cleaning
   contents:
   - has_concept("data cleaning tools")
-- title: Predicates
-  contents:
-  - has_concept("predicates")
-- title: Validation
-  contents:
-  - has_concept("validation methods")
 - title: Data transformation
   contents:
   - has_concept("transformation tools")
 - title: Statistics
   contents:
   - has_concept("resampling methods")
+- title: Predicates
+  contents:
+  - has_concept("predicates")
+- title: Validation
+  contents:
+  - has_concept("validation methods")
