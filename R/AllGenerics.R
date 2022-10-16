@@ -68,6 +68,7 @@ setGeneric(
 #'  * `remove_NA()` remove rows/columns that contain [missing values][NA].
 #'  * `replace_NA` replaces [missing values][NA] values.
 #' @inheritParams detect
+#' @param value A possible replacement value.
 #' @param ... Currently not used.
 #' @example inst/examples/ex-clean.R
 #' @author N. Frerebeau
@@ -98,6 +99,7 @@ setGeneric(
 #'  * `remove_Inf()` remove rows/columns that contain [infinite values][is.finite].
 #'  * `replace_Inf` replaces [infinite values][is.finite] values.
 #' @inheritParams detect
+#' @param value A possible replacement value.
 #' @param ... Currently not used.
 #' @example inst/examples/ex-clean.R
 #' @author N. Frerebeau
@@ -128,6 +130,7 @@ setGeneric(
 #'  * `remove_zero()` remove rows/columns that contain zeros.
 #'  * `replace_zero` replaces zeros.
 #' @inheritParams detect
+#' @param value A possible replacement value.
 #' @param ... Currently not used.
 #' @example inst/examples/ex-clean.R
 #' @author N. Frerebeau

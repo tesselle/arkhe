@@ -31,6 +31,8 @@ applied over (\code{1} indicates rows, \code{2} indicates columns).}
 values all meet the condition defined by \code{f} are considered. If \code{FALSE}
 (the default), only rows/columns where at least one value validates the
 condition defined by \code{f} are considered.}
+
+\item{value}{A possible replacement value.}
 }
 \description{
 \itemize{
