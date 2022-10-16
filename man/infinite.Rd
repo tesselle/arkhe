@@ -9,7 +9,7 @@
 \alias{replace_Inf-method}
 \alias{remove_Inf,ANY-method}
 \alias{replace_Inf,matrix-method}
-\title{Infinite Values}
+\title{Tools for working with infinite values}
 \usage{
 remove_Inf(x, ...)
 

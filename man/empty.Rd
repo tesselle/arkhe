@@ -12,7 +12,7 @@
 \alias{remove_empty,ANY-method}
 \alias{remove_empty_cols,ANY-method}
 \alias{remove_empty_rows,ANY-method}
-\title{Empty Values}
+\title{Tools for working with empty values}
 \usage{
 remove_empty(x, ...)
 

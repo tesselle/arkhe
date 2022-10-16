@@ -9,7 +9,7 @@
 \alias{replace_zero-method}
 \alias{remove_zero,ANY-method}
 \alias{replace_zero,matrix-method}
-\title{Zeros}
+\title{Tools for working with zeros}
 \usage{
 remove_zero(x, ...)
 

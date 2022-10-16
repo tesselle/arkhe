@@ -9,7 +9,7 @@
 \alias{replace_NA-method}
 \alias{remove_NA,ANY-method}
 \alias{replace_NA,matrix-method}
-\title{Missing Values}
+\title{Tools for working with missing values}
 \usage{
 remove_NA(x, ...)
 

@@ -62,7 +62,7 @@ setGeneric(
 )
 
 ## NA --------------------------------------------------------------------------
-#' Missing Values
+#' Tools for working with missing values
 #'
 #' @description
 #'  * `remove_NA()` remove rows/columns that contain [missing values][NA].
@@ -93,7 +93,7 @@ setGeneric(
 )
 
 ## Inf -------------------------------------------------------------------------
-#' Infinite Values
+#' Tools for working with infinite values
 #'
 #' @description
 #'  * `remove_Inf()` remove rows/columns that contain [infinite values][is.finite].
@@ -124,7 +124,7 @@ setGeneric(
 )
 
 ## Zeros -----------------------------------------------------------------------
-#' Zeros
+#' Tools for working with zeros
 #'
 #' @description
 #'  * `remove_zero()` remove rows/columns that contain zeros.
@@ -155,7 +155,7 @@ setGeneric(
 )
 
 ## Empty -----------------------------------------------------------------------
-#' Empty Values
+#' Tools for working with empty values
 #'
 #' @description
 #'  * `remove_empty()` remove empty rows/columns.
