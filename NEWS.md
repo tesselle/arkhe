@@ -1,7 +1,11 @@
 # arkhe 0.5.0.9000
 ## New classes and methods
-* Export all type and scalar predicates.
+* Add `append_rownames()` to convert row names to an explicit column.
 * Add `bootstrap()` for bootstrap estimation.
+* Add `remove_empty_cols()` and `remove_empty_rows()`to remove empty columns and rows in a `matrix`.
+
+## Bugfixes & changes
+* Export all type and scalar predicates.
 
 ## Breaking changes
 * Remove all `*Matrix` classes and methods.

@@ -39,6 +39,7 @@ head(as_long(A))
 }
 \seealso{
 Other transformation tools: 
+\code{\link{append}()},
 \code{\link{assign}()}
 }
 \author{

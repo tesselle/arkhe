@@ -206,6 +206,7 @@ setGeneric(
 #' @param remove A [`logical`] scalar: should the specified row/column be removed
 #'  after making it the column/row names?
 #' @param ... Currently not used.
+#' @example inst/examples/ex-reshape.R
 #' @return A [`data.frame`].
 #' @author N. Frerebeau
 #' @docType methods
@@ -227,6 +228,32 @@ setGeneric(
   name = "assign_rownames",
   def = function(x, ...) standardGeneric("assign_rownames")
 )
+
+#' Convert row names to an explicit column
+#'
+#' @param x A [`data.frame`].
+#' @param after A length-one [`numeric`] vector specifying a subscript,
+#'  after which the row names are to be appended.
+#' @param var A [`character`] string giving the name of column to use for row
+#'  names.
+#' @param remove A [`logical`] scalar: should the row names be removed?
+#' @param ... Currently not used.
+#' @example inst/examples/ex-reshape.R
+#' @return A [`data.frame`].
+#' @author N. Frerebeau
+#' @docType methods
+#' @family transformation tools
+#' @name append
+#' @rdname append
+NULL
+
+#' @rdname append
+#' @aliases append_rownames-method
+setGeneric(
+  name = "append_rownames",
+  def = function(x, ...) standardGeneric("append_rownames")
+)
+
 
 ## Reshape ---------------------------------------------------------------------
 #' Reshape

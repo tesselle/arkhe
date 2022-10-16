@@ -42,6 +42,7 @@ RoxygenNote: 7.2.1
 Roxygen: list(markdown = TRUE)
 Collate: 
     'AllGenerics.R'
+    'append.R'
     'arkhe-package.R'
     'assign.R'
     'predicates.R'
