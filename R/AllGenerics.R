@@ -176,6 +176,20 @@ setGeneric(
   def = function(x, ...) standardGeneric("remove_empty")
 )
 
+#' @rdname empty
+#' @aliases remove_empty_cols-method
+setGeneric(
+  name = "remove_empty_cols",
+  def = function(x, ...) standardGeneric("remove_empty_cols")
+)
+
+#' @rdname empty
+#' @aliases remove_empty_rows-method
+setGeneric(
+  name = "remove_empty_rows",
+  def = function(x, ...) standardGeneric("remove_empty_rows")
+)
+
 # Data transformation ==========================================================
 ## Assign ----------------------------------------------------------------------
 #' Assign a specific row/column to the column/row names

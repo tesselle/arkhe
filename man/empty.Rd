@@ -5,12 +5,26 @@
 \alias{empty}
 \alias{remove_empty}
 \alias{remove_empty-method}
+\alias{remove_empty_cols}
+\alias{remove_empty_cols-method}
+\alias{remove_empty_rows}
+\alias{remove_empty_rows-method}
 \alias{remove_empty,ANY-method}
+\alias{remove_empty_cols,ANY-method}
+\alias{remove_empty_rows,ANY-method}
 \title{Empty Values}
 \usage{
 remove_empty(x, ...)
 
+remove_empty_cols(x, ...)
+
+remove_empty_rows(x, ...)
+
 \S4method{remove_empty}{ANY}(x, margin = 1)
+
+\S4method{remove_empty_cols}{ANY}(x)
+
+\S4method{remove_empty_rows}{ANY}(x)
 }
 \arguments{
 \item{x}{An object (should be a \code{\link{matrix}} or a \code{\link{data.frame}}).}

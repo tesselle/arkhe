@@ -70,3 +70,25 @@ setMethod(
     compact(x, f = vide, margin = margin, all = TRUE)
   }
 )
+
+#' @export
+#' @rdname empty
+#' @aliases remove_empty_cols,ANY-method
+setMethod(
+  f = "remove_empty_cols",
+  signature = signature(x = "ANY"),
+  definition = function(x) {
+    remove_empty(x, margin = 2)
+  }
+)
+
+#' @export
+#' @rdname empty
+#' @aliases remove_empty_rows,ANY-method
+setMethod(
+  f = "remove_empty_rows",
+  signature = signature(x = "ANY"),
+  definition = function(x) {
+    remove_empty(x, margin = 1)
+  }
+)

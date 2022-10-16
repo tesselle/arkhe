@@ -169,19 +169,19 @@ test_that("Remove empty rows/columns (numeric)", {
   mtx <- matrix(data = num, nrow = 5, ncol = 5)
 
   # Nothing to remove
-  clean <- remove_empty(mtx, margin = 1)
+  clean <- remove_empty_rows(mtx)
   expect_equal(dim(clean), dim(mtx))
 
   mtx[1, ] <- 0 # Add zeros
   mtx[, 1] <- 0 # Add zeros
 
   # Remove rows
-  clean_row <- remove_empty(mtx, margin = 1)
+  clean_row <- remove_empty_rows(mtx)
   expect_equal(nrow(clean_row), 4)
   expect_equal(ncol(clean_row), ncol(mtx))
 
   # Remove columns
-  clean_col <- remove_empty(mtx, margin = 2)
+  clean_col <- remove_empty_cols(mtx)
   expect_equal(ncol(clean_col), 4)
   expect_equal(nrow(clean_col), nrow(mtx))
 })
@@ -190,19 +190,19 @@ test_that("Remove empty rows/columns (character)", {
   mtx <- matrix(data = char, nrow = 5, ncol = 5)
 
   # Nothing to remove
-  clean <- remove_empty(mtx, margin = 1)
+  clean <- remove_empty_rows(mtx)
   expect_equal(dim(clean), dim(mtx))
 
   mtx[1, ] <- "" # Add blank
   mtx[, 1] <- "" # Add blank
 
   # Remove rows
-  clean_row <- remove_empty(mtx, margin = 1)
+  clean_row <- remove_empty_rows(mtx)
   expect_equal(nrow(clean_row), 4)
   expect_equal(ncol(clean_row), ncol(mtx))
 
   # Remove columns
-  clean_col <- remove_empty(mtx, margin = 2)
+  clean_col <- remove_empty_cols(mtx)
   expect_equal(ncol(clean_col), 4)
   expect_equal(nrow(clean_col), nrow(mtx))
 })
@@ -211,19 +211,19 @@ test_that("Remove empty rows/columns (logical)", {
   mtx <- matrix(data = char, nrow = 5, ncol = 5)
 
   # Nothing to remove
-  clean <- remove_empty(mtx, margin = 1)
+  clean <- remove_empty_rows(mtx)
   expect_equal(dim(clean), dim(mtx))
 
   mtx[1, ] <- NA # Add NA
   mtx[, 1] <- NA # Add NA
 
   # Remove rows
-  clean_row <- remove_empty(mtx, margin = 1)
+  clean_row <- remove_empty_rows(mtx)
   expect_equal(nrow(clean_row), 4)
   expect_equal(ncol(clean_row), ncol(mtx))
 
   # Remove columns
-  clean_col <- remove_empty(mtx, margin = 2)
+  clean_col <- remove_empty_cols(mtx)
   expect_equal(ncol(clean_col), 4)
   expect_equal(nrow(clean_col), nrow(mtx))
 })
