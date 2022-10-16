@@ -4,7 +4,7 @@ NULL
 
 # Compact ======================================================================
 #' @export
-#' @rdname remove
+#' @rdname compact
 #' @aliases compact,ANY,function-method
 setMethod(
   f = "compact",
@@ -19,7 +19,7 @@ setMethod(
 
 ## Missing values --------------------------------------------------------------
 #' @export
-#' @rdname remove
+#' @rdname missing
 #' @aliases remove_NA,ANY-method
 setMethod(
   f = "remove_NA",
@@ -31,7 +31,7 @@ setMethod(
 
 ## Infinite values -------------------------------------------------------------
 #' @export
-#' @rdname remove
+#' @rdname infinite
 #' @aliases remove_Inf,ANY-method
 setMethod(
   f = "remove_Inf",
@@ -43,7 +43,7 @@ setMethod(
 
 ## Zeros -----------------------------------------------------------------------
 #' @export
-#' @rdname remove
+#' @rdname zero
 #' @aliases remove_zero,ANY-method
 setMethod(
   f = "remove_zero",
@@ -55,7 +55,7 @@ setMethod(
 
 ## Empty rows/columns ----------------------------------------------------------
 #' @export
-#' @rdname remove
+#' @rdname empty
 #' @aliases remove_empty,ANY-method
 setMethod(
   f = "remove_empty",

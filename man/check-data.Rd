@@ -25,7 +25,7 @@ Throws an error, if any, and returns \code{x} invisibly otherwise.
 \itemize{
 \item \code{assert_missing()} and \code{assert_infinite()} check if an object contains any
 missing (\code{NA}, \code{NaN}) or infinite (\code{Inf}) value.
-\item \code{assert_unique()} checks if an object contains duplicated elements.``
+\item \code{assert_unique()} checks if an object contains duplicated elements.
 }
 }
 \seealso{

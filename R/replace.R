@@ -5,7 +5,7 @@ NULL
 # Replace ======================================================================
 ## Missing values --------------------------------------------------------------
 #' @export
-#' @rdname replace
+#' @rdname missing
 #' @aliases replace_NA,matrix-method
 setMethod(
   f = "replace_NA",
@@ -18,7 +18,7 @@ setMethod(
 
 ## Infinite values -------------------------------------------------------------
 #' @export
-#' @rdname replace
+#' @rdname infinite
 #' @aliases replace_Inf,matrix-method
 setMethod(
   f = "replace_Inf",
@@ -31,7 +31,7 @@ setMethod(
 
 ## Zeros -----------------------------------------------------------------------
 #' @export
-#' @rdname replace
+#' @rdname zero
 #' @aliases replace_zero,matrix-method
 setMethod(
   f = "replace_zero",

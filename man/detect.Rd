@@ -64,9 +64,12 @@ replace_NA(X, value = 0)
 }
 \seealso{
 Other data cleaning tools: 
+\code{\link{compact}()},
 \code{\link{count}()},
-\code{\link{remove}()},
-\code{\link{replace}()}
+\code{\link{empty}},
+\code{\link{infinite}},
+\code{\link{missing}},
+\code{\link{zero}}
 }
 \author{
 N. Frerebeau

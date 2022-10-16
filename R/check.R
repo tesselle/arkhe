@@ -187,7 +187,7 @@ assert_dimnames <- function(x, expected) {
 #'
 #' * `assert_missing()` and `assert_infinite()` check if an object contains any
 #' missing (`NA`, `NaN`) or infinite (`Inf`) value.
-#' * `assert_unique()` checks if an object contains duplicated elements.``
+#' * `assert_unique()` checks if an object contains duplicated elements.
 #' @param x An object to be checked.
 #' @param expected An appropriate expected value.
 #' @return
