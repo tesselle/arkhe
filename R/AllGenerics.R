@@ -55,10 +55,24 @@ setGeneric(
 #' @author N. Frerebeau
 #' @docType methods
 #' @family data cleaning tools
-#' @aliases compact-method
+#' @aliases discard-method
 setGeneric(
-  name = "compact",
-  def = function(x, f, ...) standardGeneric("compact")
+  name = "discard",
+  def = function(x, f, ...) standardGeneric("discard")
+)
+
+#' @rdname discard
+#' @aliases discard_cols-method
+setGeneric(
+  name = "discard_cols",
+  def = function(x, f, ...) standardGeneric("discard_cols")
+)
+
+#' @rdname discard
+#' @aliases discard_rows-method
+setGeneric(
+  name = "discard_rows",
+  def = function(x, f, ...) standardGeneric("discard_rows")
 )
 
 ## NA --------------------------------------------------------------------------

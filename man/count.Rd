@@ -53,17 +53,17 @@ detect(X, f = is.na, margin = 1)
 detect(X, f = is.na, margin = 2, negate = TRUE, all = TRUE)
 
 ## Remove row with any NA
-compact(X, f = is.na, margin = 1, all = FALSE)
+discard(X, f = is.na, margin = 1, all = FALSE)
 ## Remove column with any NA
-compact(X, f = is.na, margin = 2, all = FALSE)
+discard(X, f = is.na, margin = 2, all = FALSE)
 
 ## Replace NA with zeros
 replace_NA(X, value = 0)
 }
 \seealso{
 Other data cleaning tools: 
-\code{\link{compact}()},
 \code{\link{detect}()},
+\code{\link{discard}()},
 \code{\link{empty}},
 \code{\link{infinite}},
 \code{\link{missing}},

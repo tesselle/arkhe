@@ -38,29 +38,29 @@ test_that("Detect", {
   no_na <- detect(df, f = is.na, margin = 2, negate = TRUE, all = TRUE)
   expect_equal(no_na, c(V1 = FALSE, V2 = TRUE, V3 = FALSE))
 })
-test_that("Compact", {
+test_that("Discard", {
   num <- sample(1:10, 25, TRUE) # Create matrix
   mtx <- matrix(data = num, nrow = 5, ncol = 5)
 
   # Nothing to remove
-  clean <- compact(mtx, f = is_zero, margin = 1, all = FALSE)
+  clean <- discard_rows(mtx, f = is_zero, all = FALSE)
   expect_equal(dim(clean), dim(mtx))
 
   mtx[1, ] <- 0 # Add zeros
 
   # Nothing to remove
-  clean <- compact(mtx, f = is_zero, margin = 2, all = TRUE)
+  clean <- discard_cols(mtx, f = is_zero, all = TRUE)
   expect_equal(dim(clean), dim(mtx))
 
   mtx[, 1] <- 0 # Add zeros
 
   # Remove rows
-  clean_row <- compact(mtx, f = is_zero, margin = 1, all = TRUE)
+  clean_row <- discard_rows(mtx, f = is_zero, all = TRUE)
   expect_lt(nrow(clean_row), nrow(mtx))
   expect_equal(ncol(clean_row), ncol(mtx))
 
   # Remove columns
-  clean_col <- compact(mtx, f = is_zero, margin = 2, all = TRUE)
+  clean_col <- discard_cols(mtx, f = is_zero, all = TRUE)
   expect_lt(ncol(clean_col), ncol(mtx))
   expect_equal(nrow(clean_col), nrow(mtx))
 })
