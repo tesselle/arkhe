@@ -1,5 +1,5 @@
 # CONDITIONS
-#' @include check.R
+#' @include AllGenerics.R
 NULL
 
 #' Conditions

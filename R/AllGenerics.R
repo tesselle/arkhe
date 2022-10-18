@@ -413,3 +413,17 @@ setGeneric(
   name = "jackknife",
   def = function(object, ...) standardGeneric("jackknife")
 )
+
+# Deprecated ===================================================================
+#' Deprecated Methods
+#'
+#' @param x,y A [`numeric`] object to be checked.
+#' @param expected A [`character`] string specifying the expected
+#'  value (see details).
+#' @param ... Extra parameters to be passed to internal methods.
+#' @author N. Frerebeau
+#' @docType methods
+#' @name deprecate
+#' @rdname deprecate
+#' @keywords internal
+NULL

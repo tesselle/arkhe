@@ -76,6 +76,12 @@ test_that("Assert object attributes", {
   cnd <- catch_conditions(assert_dimnames(k, expected = z))
   expect_s3_class(cnd[[1]], "error_bad_names")
 
+  cnd <- catch_conditions(assert_rownames(k, expected = z[[1]]))
+  expect_s3_class(cnd[[1]], "error_bad_names")
+
+  cnd <- catch_conditions(assert_colnames(k, expected = z[[2]]))
+  expect_s3_class(cnd[[1]], "error_bad_names")
+
   dimnames(k) <- list(NULL, letters[4:6])
   cnd <- catch_conditions(assert_dimnames(k, expected = z))
   expect_s3_class(cnd[[1]], "error_bad_names")
@@ -115,73 +121,73 @@ test_that("Assert missing/infinite/duplicated values", {
 })
 test_that("Assert numeric data", {
   k <- seq(from = -1, to = 10, by = 1)
-  cnd <- catch_conditions(assert_numeric(k, expected = "positive", strict = FALSE))
-  expect_s3_class(cnd[[1]], "error_bad_number")
+  cnd <- catch_conditions(assert_positive(k, strict = FALSE))
+  expect_s3_class(cnd[[1]], "error_bad_numeric")
 
   k <- seq(from = 0, to = 10, by = 1)
-  cnd <- catch_conditions(assert_numeric(k, expected = "positive", strict = TRUE))
-  expect_s3_class(cnd[[1]], "error_bad_number")
+  cnd <- catch_conditions(assert_positive(k, strict = TRUE))
+  expect_s3_class(cnd[[1]], "error_bad_numeric")
 
   k <- seq(from = 1, to = 10, by = 0.5)
-  cnd <- catch_conditions(assert_numeric(k, expected = "whole"))
-  expect_s3_class(cnd[[1]], "error_bad_number")
+  cnd <- catch_conditions(assert_whole(k))
+  expect_s3_class(cnd[[1]], "error_bad_numeric")
 
   k <- seq(from = 1, to = 10, by = 0.5)
-  cnd <- catch_conditions(assert_numeric(k, expected = "whole", tolerance = 0.2))
-  expect_s3_class(cnd[[1]], "error_bad_number")
+  cnd <- catch_conditions(assert_whole(k, tolerance = 0.2))
+  expect_s3_class(cnd[[1]], "error_bad_numeric")
 
   k <- c(2, 4, 6, 8, 10)
-  cnd <- catch_conditions(assert_numeric(k, expected = "odd"))
-  expect_s3_class(cnd[[1]], "error_bad_number")
+  cnd <- catch_conditions(assert_odd(k))
+  expect_s3_class(cnd[[1]], "error_bad_numeric")
 
   k <- c(1, 3, 5, 7, 9)
-  cnd <- catch_conditions(assert_numeric(k, expected = "even"))
-  expect_s3_class(cnd[[1]], "error_bad_number")
+  cnd <- catch_conditions(assert_even(k))
+  expect_s3_class(cnd[[1]], "error_bad_numeric")
 
-  expect_identical(assert_numeric(k, expected = "positive"), k)
+  expect_identical(assert_positive(k), k)
 })
 test_that("Assert count data", {
   x <- c(1.1, 2, 3, 4, 5)
   cnd <- catch_conditions(assert_count(x))
-  expect_s3_class(cnd[[1]], "error_bad_number")
+  expect_s3_class(cnd[[1]], "error_bad_numeric")
 
   x <- c(1, 2, 3, 4, 5)
   expect_equal(assert_count(x), x)
 })
 test_that("Assert numeric trends", {
   k <- c(1, 3, 5, 7, 9)
-  cnd <- catch_conditions(assert_trend(k, "constant"))
-  expect_s3_class(cnd[[1]], "error_bad_number")
+  cnd <- catch_conditions(assert_constant(k))
+  expect_s3_class(cnd[[1]], "error_bad_numeric")
 
-  cnd <- catch_conditions(assert_trend(k, "decreasing"))
-  expect_s3_class(cnd[[1]], "error_bad_number")
+  cnd <- catch_conditions(assert_decreasing(k))
+  expect_s3_class(cnd[[1]], "error_bad_numeric")
 
-  cnd <- catch_conditions(assert_trend(rev(k), "increasing"))
-  expect_s3_class(cnd[[1]], "error_bad_number")
+  cnd <- catch_conditions(assert_increasing(rev(k)))
+  expect_s3_class(cnd[[1]], "error_bad_numeric")
 
-  expect_identical(assert_trend(k, expected = "increasing"), k)
+  expect_identical(assert_increasing(k), k)
 })
 test_that("Assert numeric relation", {
   x <- c(1, 2, 3, 4, 5)
   y <- c(1, 6, 7, 8, 9)
 
-  cnd <- catch_conditions(assert_relation(x, y, "greater"))
-  expect_s3_class(cnd[[1]], "error_bad_number")
+  cnd <- catch_conditions(assert_greater(x, y))
+  expect_s3_class(cnd[[1]], "error_bad_numeric")
 
-  cnd <- catch_conditions(assert_relation(y, x, "lower"))
-  expect_s3_class(cnd[[1]], "error_bad_number")
+  cnd <- catch_conditions(assert_lower(y, x))
+  expect_s3_class(cnd[[1]], "error_bad_numeric")
 
-  expect_identical(assert_relation(x, y, "lower"), x)
+  expect_identical(assert_lower(x, y), x)
 })
 test_that("Assert matrix", {
   k <- matrix(sample(1:5, 50, TRUE), nrow = 5, ncol = 10)
 
-  cnd <- catch_conditions(assert_matrix(k, "square"))
+  cnd <- catch_conditions(assert_square(k))
   expect_s3_class(cnd[[1]], "error_bad_matrix")
 
-  cnd <- catch_conditions(assert_matrix(k, "symmetric"))
+  cnd <- catch_conditions(assert_symmetric(k))
   expect_s3_class(cnd[[1]], "error_bad_matrix")
 
   k <- matrix(sample(1:5, 25, TRUE), nrow = 5, ncol = 5)
-  expect_identical(assert_matrix(k, expected = "square"), k)
+  expect_identical(assert_square(k), k)
 })

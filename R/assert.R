@@ -182,6 +182,28 @@ assert_dimnames <- function(x, expected) {
   invisible(x)
 }
 
+#' @export
+#' @rdname check-attribute
+assert_rownames <- function(x, expected) {
+  arg <- deparse(substitute(x))
+  if (!identical(rownames(x), expected)) {
+    msg <- sprintf("%s must have rownames.", sQuote(arg))
+    throw_error("error_bad_names", msg)
+  }
+  invisible(x)
+}
+
+#' @export
+#' @rdname check-attribute
+assert_colnames <- function(x, expected) {
+  arg <- deparse(substitute(x))
+  if (!identical(colnames(x), expected)) {
+    msg <- sprintf("%s must have rownames.", sQuote(arg))
+    throw_error("error_bad_names", msg)
+  }
+  invisible(x)
+}
+
 # NA/NaN/Inf/duplicates ========================================================
 #' Check Data
 #'
@@ -242,13 +264,6 @@ assert_unique <- function(x, expected) {
 #' @param expected A [`character`] string specifying the expected
 #'  value (see details).
 #' @param ... Extra parameters to be passed to internal methods.
-#' @details
-#'  Possible values for `expected`:
-#'  \describe{
-#'   \item{`assert_numeric()`}{"`positive`", "`whole`", "`odd`" or "`even`"}
-#'   \item{`assert_trend()`}{"`constant`", "`decreasing`" or "`increasing`"}
-#'   \item{`assert_relation()`}{"`lower`" or "`greater`"}
-#'  }
 #' @return
 #'  Throws an error, if any, and returns `x` invisibly otherwise.
 #' @author N. Frerebeau
@@ -259,67 +274,138 @@ NULL
 
 #' @export
 #' @rdname check-numeric
-assert_count <- function(x) {
+assert_count <- function(x, ...) {
   arg <- deparse(substitute(x))
-  if (!all(x == round(x))) {
+  if (!all(is_whole(x, ...))) {
     msg <- sprintf("%s must contain integers (counts).", sQuote(arg))
-    throw_error("error_bad_number", msg)
+    throw_error("error_bad_numeric", msg)
   }
   invisible(x)
 }
 
+assert_whole <- assert_count
+
 #' @export
 #' @rdname check-numeric
-assert_numeric <- function(x, expected, ...) {
+assert_positive <- function(x, ...) {
   arg <- deparse(substitute(x))
-  predicate <- switch(
-    expected,
-    positive = is_positive,
-    whole = is_whole,
-    odd = is_odd,
-    even = is_even,
-    stop("Can't find a predicate for this: ", expected, call. = FALSE)
-  )
-  if (!all(predicate(x, ...))) {
-    msg <- sprintf("%s must contain %s numbers.", sQuote(arg), expected)
-    throw_error("error_bad_number", msg)
+  if (!all(is_positive(x, ...))) {
+    msg <- sprintf("%s must contain positive numbers.", sQuote(arg))
+    throw_error("error_bad_numeric", msg)
   }
   invisible(x)
 }
 
 #' @export
 #' @rdname check-numeric
-assert_trend <- function(x, expected, ...) {
+assert_negative <- function(x, ...) {
   arg <- deparse(substitute(x))
-  predicate <- switch(
-    expected,
-    constant = is_constant,
-    decreasing = is_decreasing,
-    increasing = is_increasing,
-    stop("Can't find a predicate for this: ", expected, call. = FALSE)
-  )
-  if (!predicate(x, ...)) {
-    msg <- sprintf("%s must be %s.", sQuote(arg), expected)
-    throw_error("error_bad_number", msg)
+  if (!all(is_negative(x, ...))) {
+    msg <- sprintf("%s must contain negative numbers.", sQuote(arg))
+    throw_error("error_bad_numeric", msg)
   }
   invisible(x)
 }
 
 #' @export
 #' @rdname check-numeric
-assert_relation <- function(x, y, expected, ...) {
+assert_odd <- function(x, ...) {
+  arg <- deparse(substitute(x))
+  if (!all(is_odd(x, ...))) {
+    msg <- sprintf("%s must contain odd numbers.", sQuote(arg))
+    throw_error("error_bad_numeric", msg)
+  }
+  invisible(x)
+}
+
+#' @export
+#' @rdname check-numeric
+assert_even <- function(x, ...) {
+  arg <- deparse(substitute(x))
+  if (!all(is_even(x, ...))) {
+    msg <- sprintf("%s must contain even numbers.", sQuote(arg))
+    throw_error("error_bad_numeric", msg)
+  }
+  invisible(x)
+}
+
+#' Check Numeric Trend
+#'
+#' @param x A [`numeric`] object to be checked.
+#' @param ... Extra parameters to be passed to internal methods.
+#' @return
+#'  Throws an error, if any, and returns `x` invisibly otherwise.
+#' @author N. Frerebeau
+#' @family validation methods
+#' @name check-numeric-trend
+#' @rdname check-numeric-trend
+NULL
+
+#' @export
+#' @rdname check-numeric-trend
+assert_constant <- function(x, ...) {
+  arg <- deparse(substitute(x))
+  if (!is_constant(x, ...)) {
+    msg <- sprintf("%s must be constant.", sQuote(arg))
+    throw_error("error_bad_numeric", msg)
+  }
+  invisible(x)
+}
+
+#' @export
+#' @rdname check-numeric-trend
+assert_decreasing <- function(x, ...) {
+  arg <- deparse(substitute(x))
+  if (!is_decreasing(x, ...)) {
+    msg <- sprintf("%s must be decreasing.", sQuote(arg))
+    throw_error("error_bad_numeric", msg)
+  }
+  invisible(x)
+}
+
+#' @export
+#' @rdname check-numeric-trend
+assert_increasing <- function(x, ...) {
+  arg <- deparse(substitute(x))
+  if (!is_increasing(x, ...)) {
+    msg <- sprintf("%s must be increasing.", sQuote(arg))
+    throw_error("error_bad_numeric", msg)
+  }
+  invisible(x)
+}
+
+#' Check Numeric Relations
+#'
+#' @param x,y A [`numeric`] object to be checked.
+#' @param ... Extra parameters to be passed to internal methods.
+#' @return
+#'  Throws an error, if any, and returns `x` invisibly otherwise.
+#' @author N. Frerebeau
+#' @family validation methods
+#' @name check-numeric-comparison
+#' @rdname check-numeric-comparison
+NULL
+
+#' @export
+#' @rdname check-numeric-comparison
+assert_lower <- function(x, y, ...) {
   arg_x <- deparse(substitute(x))
   arg_y <- deparse(substitute(y))
-  predicate <- switch(
-    expected,
-    lower = is_lower,
-    greater = is_greater,
-    stop("Can't find a predicate for this: ", expected, call. = FALSE)
-  )
-  if (!predicate(x, y, ...)) {
-    msg <- sprintf("%s must be %s than %s.", sQuote(arg_x), expected,
-                   sQuote(arg_y))
-    throw_error("error_bad_number", msg)
+  if (!is_lower(x, y, ...)) {
+    msg <- sprintf("%s must be lower than %s.", sQuote(arg_x), sQuote(arg_y))
+    throw_error("error_bad_numeric", msg)
+  }
+  invisible(x)
+}
+
+#' @export
+#' @rdname check-numeric-comparison
+assert_greater <- function(x, y, ...) {
+  arg_x <- deparse(substitute(x))
+  arg_y <- deparse(substitute(y))
+  if (!is_greater(x, y, ...)) {
+    msg <- sprintf("%s must be greater than %s.", sQuote(arg_x), sQuote(arg_y))
+    throw_error("error_bad_numeric", msg)
   }
   invisible(x)
 }
@@ -328,9 +414,7 @@ assert_relation <- function(x, y, expected, ...) {
 #' Check Matrix
 #'
 #' @param x A [`matrix`] to be checked.
-#' @param expected A [`character`] string specifying the expected
-#'  value. It must be one of "`square`" or "`symmetric`".
-#' @return Throw an error, if any.
+#' @return Throw an error, if any, and returns `x` invisibly otherwise.
 #' @author N. Frerebeau
 #' @family validation methods
 #' @name check-matrix
@@ -339,17 +423,22 @@ NULL
 
 #' @export
 #' @rdname check-matrix
-assert_matrix <- function(x, expected) {
+assert_symmetric <- function(x) {
   arg <- deparse(substitute(x))
-  predicate <- switch(
-    expected,
-    square = is_square,
-    symmetric = is_symmetric,
-    stop("Can't find a predicate for this: ", expected, call. = FALSE)
-  )
-  if (!predicate(x)) {
+  if (!is_symmetric(x)) {
+    msg <- sprintf("%s must be a symmetric matrix.", sQuote(arg))
+    throw_error("error_bad_matrix", msg)
+  }
+  invisible(x)
+}
+
+#' @export
+#' @rdname check-matrix
+assert_square <- function(x) {
+  arg <- deparse(substitute(x))
+  if (!is_square(x)) {
     k <- paste0(dim(x), collapse = " x ")
-    msg <- sprintf("%s must be a %s matrix, not %s.", sQuote(arg), expected, k)
+    msg <- sprintf("%s must be a sqaure matrix, not %s.", sQuote(arg), k)
     throw_error("error_bad_matrix", msg)
   }
   invisible(x)
