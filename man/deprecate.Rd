@@ -3,12 +3,19 @@
 \docType{methods}
 \name{deprecate}
 \alias{deprecate}
+\alias{confidence}
+\alias{confidence-method}
+\alias{confidence,numeric-method}
 \alias{assert_numeric}
 \alias{assert_trend}
 \alias{assert_matrix}
 \alias{remove_empty}
 \title{Deprecated Methods}
 \usage{
+confidence(object, ...)
+
+\S4method{confidence}{numeric}(object, level = 0.95, type = c("student", "normal"))
+
 assert_numeric(x, expected, ...)
 
 assert_trend(x, expected, ...)
@@ -18,12 +25,21 @@ assert_matrix(x, expected)
 remove_empty(x, margin = 1)
 }
 \arguments{
-\item{x, y}{A \code{\link{numeric}} object to be checked.}
+\item{object}{A \code{\link{numeric}} vector.}
+
+\item{...}{Extra parameters to be passed to internal methods.}
+
+\item{level}{A length-one \code{\link{numeric}} vector giving the confidence level.
+Must be a single number between \eqn{0} and \eqn{1}.}
+
+\item{type}{A \code{\link{character}} string giving the type of confidence
+interval to be returned. It must be one "\code{student}" (the default) or
+"\code{normal}". Any unambiguous substring can be given.}
+
+\item{x}{A \code{\link{numeric}} object to be checked.}
 
 \item{expected}{A \code{\link{character}} string specifying the expected
 value (see details).}
-
-\item{...}{Extra parameters to be passed to internal methods.}
 
 \item{margin}{A vector giving the subscripts which the function will be
 applied over (\code{1} indicates rows, \code{2} indicates columns).}

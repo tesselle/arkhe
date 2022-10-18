@@ -46,8 +46,7 @@ jackknife(x, do = mean) # Sample mean
 }
 \seealso{
 Other resampling methods: 
-\code{\link{bootstrap}()},
-\code{\link{confidence}()}
+\code{\link{bootstrap}()}
 }
 \author{
 N. Frerebeau

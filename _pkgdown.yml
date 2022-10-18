@@ -15,6 +15,9 @@ reference:
   - has_concept("transformation tools")
 - title: Statistics
   contents:
+  - has_concept("summary statistics")
+- title: Resampling
+  contents:
   - has_concept("resampling methods")
 - title: Predicates
   contents:

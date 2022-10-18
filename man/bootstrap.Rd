@@ -56,7 +56,6 @@ jackknife(x, do = mean) # Sample mean
 }
 \seealso{
 Other resampling methods: 
-\code{\link{confidence}()},
 \code{\link{jackknife}()}
 }
 \author{

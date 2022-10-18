@@ -340,17 +340,64 @@ setGeneric(
 #'  interval to be returned. It must be one "`student`" (the default) or
 #'  "`normal`". Any unambiguous substring can be given.
 #' @param ... Currently not used.
-#' @return A length-two [`numeric`] vector giving lower and upper confidence
+#' @return A length-two [`numeric`] vector giving the lower and upper confidence
 #'  limits.
 #' @example inst/examples/ex-statistics.R
 #' @author N. Frerebeau
 #' @docType methods
-#' @family resampling methods
-#' @rdname confidence
-#' @aliases confidence-method
+#' @family summary statistics
+#' @aliases confidence_mean-method
 setGeneric(
-  name = "confidence",
-  def = function(object, ...) standardGeneric("confidence")
+  name = "confidence_mean",
+  def = function(object, ...) standardGeneric("confidence_mean")
+)
+
+#' Confidence Interval for Binomial Proportions
+#'
+#' Computes a Wald interval for a proportion at a desired level of significance.
+#' @param object A [`numeric`] vector giving the number of success.
+#' @param n A length-one [`numeric`] vector giving the number of trials.
+#' @param level A length-one [`numeric`] vector giving the confidence level.
+#'  Must be a single number between \eqn{0} and \eqn{1}.
+#' @param method A [`character`] string specifying the method to be used.
+#'  Any unambiguous substring can be used.
+#' @param corrected A [`logical`] scalar: should continuity correction be used?
+#'  Only used if `method` is "`wald`".
+#' @param ... Currently not used.
+#' @return A length-two [`numeric`] vector giving the lower and upper confidence
+#'  limits.
+#' @example inst/examples/ex-statistics.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family summary statistics
+#' @aliases confidence_binomial-method
+setGeneric(
+  name = "confidence_binomial",
+  def = function(object, ...) standardGeneric("confidence_binomial")
+)
+
+#' Confidence Interval for Multinomial Proportions
+#'
+#' Computes a Wald interval for a proportion at a desired level of significance.
+#' @param object A [`numeric`] vector of positive integers giving the number of
+#'  occurrences of each class.
+#' @param level A length-one [`numeric`] vector giving the confidence level.
+#'  Must be a single number between \eqn{0} and \eqn{1}.
+#' @param method A [`character`] string specifying the method to be used.
+#'  Any unambiguous substring can be used.
+#' @param corrected A [`logical`] scalar: should continuity correction be used?
+#'  Only used if `method` is "`wald`".
+#' @param ... Currently not used.
+#' @return A two column [`numeric`] `matrix` giving the lower and upper
+#'  confidence limits.
+#' @example inst/examples/ex-statistics.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family summary statistics
+#' @aliases confidence_multinomial-method
+setGeneric(
+  name = "confidence_multinomial",
+  def = function(object, ...) standardGeneric("confidence_multinomial")
 )
 
 ## Bootstrap -------------------------------------------------------------------
@@ -417,7 +464,13 @@ setGeneric(
 # Deprecated ===================================================================
 #' Deprecated Methods
 #'
-#' @param x,y A [`numeric`] object to be checked.
+#' @param object A [`numeric`] vector.
+#' @param level A length-one [`numeric`] vector giving the confidence level.
+#'  Must be a single number between \eqn{0} and \eqn{1}.
+#' @param type A [`character`] string giving the type of confidence
+#'  interval to be returned. It must be one "`student`" (the default) or
+#'  "`normal`". Any unambiguous substring can be given.
+#' @param x A [`numeric`] object to be checked.
 #' @param expected A [`character`] string specifying the expected
 #'  value (see details).
 #' @param margin A vector giving the subscripts which the function will be

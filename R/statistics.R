@@ -4,31 +4,69 @@ NULL
 
 # Interval =====================================================================
 #' @export
-#' @rdname confidence
-#' @aliases confidence,numeric-method
+#' @rdname confidence_mean
+#' @aliases confidence_mean,numeric-method
 setMethod(
-  f = "confidence",
+  f = "confidence_mean",
   signature = c(object = "numeric"),
   definition = function(object, level = 0.95, type = c("student", "normal")) {
-    margin <- confidence_mean(object, level = level, type = type)
+    z <- zscore(level = level, n = length(object), type = type)
+    margin <- z * stats::sd(object) / sqrt(length(object))
     interval <- mean(object) + margin * c(-1, 1)
     names(interval) <- c("lower", "upper")
     interval
   }
 )
 
-confidence_mean <- function(x, level = 0.95, type = c("student", "normal")) {
-  z <- zscore(level = level, n = length(x), type = type)
-  z * stats::sd(x) / sqrt(length(x))
-}
+#' @export
+#' @rdname confidence_binomial
+#' @aliases confidence_binomial,numeric-method
+setMethod(
+  f = "confidence_binomial",
+  signature = c(object = "numeric"),
+  definition = function(object, n, level = 0.95, method = "wald",
+                        corrected = FALSE) {
+    method <- match.arg(method, several.ok = FALSE)
 
-confidence_prop <- function(x, level = 0.95, type = c("student", "normal")) {
-  n <- sum(x)
-  p <- x / n
+    p <- object / n
+    q <- 1 - p
+    alpha <- 1 - level
 
-  z <- zscore(level = level, n = length(x), type = type)
-  z * sqrt(p * (1 - p) / n)
-}
+    z <- stats::qnorm(1 - alpha / 2)
+    margin <- z * sqrt(p * q / n)
+    if (corrected) {
+      margin <- margin + 1 / (2 * n) # Wald with continuity correction
+    }
+
+    interval <- c(lower = pmax(0, p - margin), upper = pmin(1, p + margin))
+    interval
+  }
+)
+
+#' @export
+#' @rdname confidence_multinomial
+#' @aliases confidence_multinomial,numeric-method
+setMethod(
+  f = "confidence_multinomial",
+  signature = c(object = "numeric"),
+  definition = function(object, level = 0.95, method = "wald",
+                        corrected = FALSE) {
+    method <- match.arg(method, several.ok = FALSE)
+
+    n <- sum(object)
+    f <- switch (
+      method,
+      wald = function(x) confidence_binomial(x, n = n, level = level,
+                                             method = "wald",
+                                             corrected = corrected)
+    )
+
+    interval <- vapply(X = object, FUN = f, FUN.VALUE = numeric(2))
+    interval <- t(interval)
+    rownames(interval) <- names(object)
+    interval
+  }
+)
 
 zscore <- function(level, n, type = c("student", "normal")) {
   ## Validation
