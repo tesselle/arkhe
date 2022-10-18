@@ -63,30 +63,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "knitr",
-      "name": "knitr",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=knitr"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "rmarkdown",
-      "name": "rmarkdown",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=rmarkdown"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "testthat",
       "name": "testthat",
       "version": ">= 3.0.0",
@@ -118,7 +94,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "220.048KB",
+  "fileSize": "231.566KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -142,5 +118,5 @@
   "readme": "https://github.com/tesselle/arkhe/blob/main/README.md",
   "contIntegration": ["https://github.com/tesselle/arkhe/actions", "https://app.codecov.io/gh/tesselle/arkhe"],
   "developmentStatus": "https://www.repostatus.org/#active",
-  "keywords": ["archaeology", "archaeological-science", "data-representation", "r-package"]
+  "keywords": ["archaeology", "archaeological-science", "r-package", "data-cleaning"]
 }
