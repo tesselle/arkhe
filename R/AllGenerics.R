@@ -45,6 +45,36 @@ setGeneric(
   def = function(x, f, ...) standardGeneric("detect")
 )
 
+## Keep ------------------------------------------------------------------------
+#' Keep values according to a given predicate
+#'
+#' Keeps rows/columns in an array-like object according to a given predicate.
+#' @inheritParams detect
+#' @param ... Currently not used.
+#' @example inst/examples/ex-clean.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family data cleaning tools
+#' @aliases keep-method
+setGeneric(
+  name = "keep",
+  def = function(x, f, ...) standardGeneric("keep")
+)
+
+#' @rdname keep
+#' @aliases keep_cols-method
+setGeneric(
+  name = "keep_cols",
+  def = function(x, f, ...) standardGeneric("keep_cols")
+)
+
+#' @rdname keep
+#' @aliases keep_rows-method
+setGeneric(
+  name = "keep_rows",
+  def = function(x, f, ...) standardGeneric("keep_rows")
+)
+
 ## Remove ----------------------------------------------------------------------
 #' Remove values according to a given predicate
 #'

@@ -50,6 +50,7 @@ Collate:
     'conditions.R'
     'detect.R'
     'discard.R'
+    'keep.R'
     'replace.R'
     'reshape.R'
     'statistics.R'

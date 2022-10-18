@@ -64,6 +64,37 @@ test_that("Discard", {
   expect_lt(ncol(clean_col), ncol(mtx))
   expect_equal(nrow(clean_col), nrow(mtx))
 })
+test_that("Keep", {
+  num <- sample(1:10, 25, TRUE) # Create matrix
+  mtx <- matrix(data = num, nrow = 5, ncol = 5)
+
+  # Nothing to keep
+  clean <- keep_rows(mtx, f = is_zero, all = FALSE)
+  expect_equal(dim(clean), c(0, 5))
+
+  mtx[1, ] <- 0 # Add zeros
+
+  # Nothing to keep
+  clean <- keep_cols(mtx, f = is_zero, all = TRUE)
+  expect_equal(dim(clean), c(5, 0))
+
+  mtx[, 1] <- 0 # Add zeros
+
+  # Keep all
+  clean_row <- keep_rows(mtx, f = is_zero, all = FALSE)
+  expect_equal(dim(clean_row), dim(mtx))
+
+  clean_col <- keep_cols(mtx, f = is_zero, all = FALSE)
+  expect_equal(dim(clean_col), dim(mtx))
+
+  # Remove rows
+  clean_row <- keep_rows(mtx, f = is_zero, all = TRUE)
+  expect_equal(dim(clean_row), c(1, 5))
+
+  # Remove columns
+  clean_col <- keep_cols(mtx, f = is_zero, all = TRUE)
+  expect_equal(dim(clean_col), c(5, 1))
+})
 # Missing values ===============================================================
 test_that("Replace missing values", {
   num <- sample(1:10, 25, TRUE) # Create matrix

@@ -59,6 +59,11 @@ detect(X, f = is.na, margin = 1)
 ## Find column without any NA
 detect(X, f = is.na, margin = 2, negate = TRUE, all = TRUE)
 
+## Keep row without any NA
+keep(X, f = is.na, margin = 1, negate = TRUE, all = TRUE)
+## Keep row without any NA
+keep(X, f = is.na, margin = 2, negate = TRUE, all = TRUE)
+
 ## Remove row with any NA
 discard(X, f = is.na, margin = 1, all = FALSE)
 ## Remove column with any NA
@@ -73,6 +78,7 @@ Other data cleaning tools:
 \code{\link{detect}()},
 \code{\link{discard}()},
 \code{\link{empty}},
+\code{\link{keep}()},
 \code{\link{missing}},
 \code{\link{zero}}
 }
