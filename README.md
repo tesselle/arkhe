@@ -34,10 +34,11 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 
 ## Overview
 
-A collection of simple functions for cleaning rectangular data. This
-package allows to detect, count and replace values or delete
-rows/columns according to a specific predicate. In addition, it provides
-tools to check conditions and return informative error messages.
+A dependency-free collection of simple functions for cleaning
+rectangular data. This package allows to detect, count and replace
+values or discard rows/columns using a predicate function. In addition,
+it provides tools to check conditions and return informative error
+messages.
 
 ## Installation
 
@@ -71,48 +72,48 @@ k <- sample(1:25, 3, FALSE)
 X[k] <- NA
 X
 #>      [,1] [,2] [,3] [,4] [,5]
-#> [1,]    6    7    8    9    2
-#> [2,]    8   10   NA    7    6
-#> [3,]   NA    1   10    4    1
-#> [4,]    7   10    7   10    3
-#> [5,]   NA    9    4    3    1
+#> [1,]    3    7   NA    2   10
+#> [2,]    5    1   10   10    1
+#> [3,]    1   NA   10    3    1
+#> [4,]   NA    6   10    2    1
+#> [5,]    7   10    3    5   10
 
 ## Count missing values in rows
 count(X, f = is.na, margin = 1)
-#> [1] 0 1 1 0 1
+#> [1] 1 0 1 1 0
 ## Count non-missing values in columns
 count(X, f = is.na, margin = 2, negate = TRUE)
-#> [1] 3 5 4 5 5
+#> [1] 4 4 4 5 5
 
 ## Find row with NA
 detect(X, f = is.na, margin = 1)
-#> [1] FALSE  TRUE  TRUE FALSE  TRUE
+#> [1]  TRUE FALSE  TRUE  TRUE FALSE
 ## Find column without any NA
 detect(X, f = is.na, margin = 2, negate = TRUE, all = TRUE)
-#> [1] FALSE  TRUE FALSE  TRUE  TRUE
+#> [1] FALSE FALSE FALSE  TRUE  TRUE
 
 ## Remove row with any NA
-compact(X, f = is.na, margin = 1, all = FALSE)
+discard(X, f = is.na, margin = 1, all = FALSE)
 #>      [,1] [,2] [,3] [,4] [,5]
-#> [1,]    6    7    8    9    2
-#> [2,]    7   10    7   10    3
+#> [1,]    5    1   10   10    1
+#> [2,]    7   10    3    5   10
 ## Remove column with any NA
-compact(X, f = is.na, margin = 2, all = FALSE)
-#>      [,1] [,2] [,3]
-#> [1,]    7    9    2
-#> [2,]   10    7    6
-#> [3,]    1    4    1
-#> [4,]   10   10    3
-#> [5,]    9    3    1
+discard(X, f = is.na, margin = 2, all = FALSE)
+#>      [,1] [,2]
+#> [1,]    2   10
+#> [2,]   10    1
+#> [3,]    3    1
+#> [4,]    2    1
+#> [5,]    5   10
 
 ## Replace NA with zeros
 replace_NA(X, value = 0)
 #>      [,1] [,2] [,3] [,4] [,5]
-#> [1,]    6    7    8    9    2
-#> [2,]    8   10    0    7    6
-#> [3,]    0    1   10    4    1
-#> [4,]    7   10    7   10    3
-#> [5,]    0    9    4    3    1
+#> [1,]    3    7    0    2   10
+#> [2,]    5    1   10   10    1
+#> [3,]    1    0   10    3    1
+#> [4,]    0    6   10    2    1
+#> [5,]    7   10    3    5   10
 ```
 
 ## Contributing

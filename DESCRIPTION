@@ -1,5 +1,5 @@
 Package: arkhe
-Title: Tools for cleaning rectangular data
+Title: Tools for Cleaning Rectangular Data
 Version: 0.5.0.9000
 Authors@R: 
     c(person(given = "Nicolas",
@@ -16,10 +16,10 @@ Authors@R:
                          affiliation = "Université Bordeaux Montaigne")))
 Maintainer: Nicolas Frerebeau
     <nicolas.frerebeau@u-bordeaux-montaigne.fr>
-Description: A collection of simple functions for cleaning rectangular data. 
-    This package allows to detect, count and replace values or delete 
-    rows/columns according to a specific predicate. In addition, it provides 
-    tools to check conditions and return informative error messages.
+Description: A dependency-free collection of simple functions for cleaning 
+    rectangular data. This package allows to detect, count and replace values 
+    or discard rows/columns using a predicate function. In addition, it 
+    provides tools to check conditions and return informative error messages.
 License: GPL (>= 3)
 URL: https://packages.tesselle.org/arkhe/,
     https://github.com/tesselle/arkhe

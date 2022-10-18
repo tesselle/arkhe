@@ -5,11 +5,11 @@
 \alias{arkhe-package}
 \alias{_PACKAGE}
 \alias{arkhe}
-\title{arkhe: Tools for cleaning rectangular data}
+\title{arkhe: Tools for Cleaning Rectangular Data}
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-A collection of simple functions for cleaning rectangular data. This package allows to detect, count and replace values or delete rows/columns according to a specific predicate. In addition, it provides tools to check conditions and return informative error messages.
+A dependency-free collection of simple functions for cleaning rectangular data. This package allows to detect, count and replace values or discard rows/columns using a predicate function. In addition, it provides tools to check conditions and return informative error messages.
 }
 \details{
 \tabular{ll}{

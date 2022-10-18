@@ -2,8 +2,8 @@
   "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "arkhe",
-  "description": "A collection of simple functions for cleaning rectangular data. This package allows to detect, count and replace values or delete rows/columns according to a specific predicate. In addition, it provides tools to check conditions and return informative error messages.",
-  "name": "arkhe: Tools for cleaning rectangular data",
+  "description": "A dependency-free collection of simple functions for cleaning rectangular data. This package allows to detect, count and replace values or discard rows/columns using a predicate function. In addition, it provides tools to check conditions and return informative error messages.",
+  "name": "arkhe: Tools for Cleaning Rectangular Data",
   "relatedLink": ["https://packages.tesselle.org/arkhe/", "https://CRAN.R-project.org/package=arkhe"],
   "codeRepository": "https://github.com/tesselle/arkhe",
   "issueTracker": "https://github.com/tesselle/arkhe/issues",
@@ -118,7 +118,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "212.198KB",
+  "fileSize": "212.183KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",

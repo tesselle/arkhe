@@ -33,7 +33,7 @@ knitr::opts_chunk$set(
 
 ## Overview
 
-A collection of simple functions for cleaning rectangular data. This package allows to detect, count and replace values or delete rows/columns according to a specific predicate. In addition, it provides tools to check conditions and return informative error messages.
+A dependency-free collection of simple functions for cleaning rectangular data. This package allows to detect, count and replace values or discard rows/columns using a predicate function. In addition, it provides tools to check conditions and return informative error messages.
 
 ## Installation
 
@@ -77,9 +77,9 @@ detect(X, f = is.na, margin = 1)
 detect(X, f = is.na, margin = 2, negate = TRUE, all = TRUE)
 
 ## Remove row with any NA
-compact(X, f = is.na, margin = 1, all = FALSE)
+discard(X, f = is.na, margin = 1, all = FALSE)
 ## Remove column with any NA
-compact(X, f = is.na, margin = 2, all = FALSE)
+discard(X, f = is.na, margin = 2, all = FALSE)
 
 ## Replace NA with zeros
 replace_NA(X, value = 0)
