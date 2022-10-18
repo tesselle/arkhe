@@ -3,9 +3,9 @@ NULL
 
 # Data cleaning ================================================================
 ## Count -----------------------------------------------------------------------
-#' Count values according to a given predicate
+#' Count values using a predicate
 #'
-#' Counts values by rows/columns according to a given predicate.
+#' Counts values by rows/columns using a predicate function.
 #' @param x An object (should be a [`matrix`] or a [`data.frame`]).
 #' @param f A predicate [`function`].
 #' @param margin A vector giving the subscripts which the function will be
@@ -25,9 +25,9 @@ setGeneric(
 )
 
 ## Detect ----------------------------------------------------------------------
-#' Find values according to a given predicate
+#' Find rows/columns using a predicate
 #'
-#' Finds rows/columns in an array-like object according to a given predicate.
+#' Finds rows/columns in an array-like object using a predicate function.
 #' @inheritParams count
 #' @param all A [`logical`] scalar. If `TRUE`, only the rows/columns whose
 #'  values all meet the condition defined by `f` are considered. If `FALSE`
@@ -46,9 +46,9 @@ setGeneric(
 )
 
 ## Keep ------------------------------------------------------------------------
-#' Keep values according to a given predicate
+#' Keep rows/columns using a predicate
 #'
-#' Keeps rows/columns in an array-like object according to a given predicate.
+#' Keeps rows/columns in an array-like object using a predicate function.
 #' @inheritParams detect
 #' @param ... Currently not used.
 #' @example inst/examples/ex-clean.R
@@ -75,10 +75,10 @@ setGeneric(
   def = function(x, f, ...) standardGeneric("keep_rows")
 )
 
-## Remove ----------------------------------------------------------------------
-#' Remove values according to a given predicate
+## Discard ---------------------------------------------------------------------
+#' Remove rows/columns using a predicate
 #'
-#' Removes rows/columns in an array-like object according to a given predicate.
+#' Removes rows/columns in an array-like object using a predicate function.
 #' @inheritParams detect
 #' @param ... Currently not used.
 #' @example inst/examples/ex-clean.R
@@ -105,7 +105,47 @@ setGeneric(
   def = function(x, f, ...) standardGeneric("discard_rows")
 )
 
-## NA --------------------------------------------------------------------------
+## Compact ---------------------------------------------------------------------
+#' Remove empty rows/columns
+#'
+#' Removes empty rows/columns in an array-like object using a predicate
+#' function.
+#' @inheritParams detect
+#' @param ... Currently not used.
+#' @details
+#'  A row/column is empty if it contains only `NA`, zeros (if of type `numeric`)
+#'  or zero length character strings (if of type `character`).
+#' @example inst/examples/ex-clean.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family data cleaning tools
+#' @name compact
+#' @rdname compact
+NULL
+
+#' @rdname compact
+#' @aliases compact-method
+setGeneric(
+  name = "compact",
+  def = function(x, ...) standardGeneric("compact")
+)
+
+#' @rdname compact
+#' @aliases compact_cols-method
+setGeneric(
+  name = "compact_cols",
+  def = function(x, ...) standardGeneric("compact_cols")
+)
+
+#' @rdname compact
+#' @aliases compact_rows-method
+setGeneric(
+  name = "compact_rows",
+  def = function(x, ...) standardGeneric("compact_rows")
+)
+
+## Remove ----------------------------------------------------------------------
+### NA --------------------------------------------------------------------------
 #' Tools for working with missing values
 #'
 #' @description
@@ -136,7 +176,7 @@ setGeneric(
   def = function(x, ...) standardGeneric("replace_NA")
 )
 
-## Inf -------------------------------------------------------------------------
+### Inf -------------------------------------------------------------------------
 #' Tools for working with infinite values
 #'
 #' @description
@@ -167,7 +207,7 @@ setGeneric(
   def = function(x, ...) standardGeneric("replace_Inf")
 )
 
-## Zeros -----------------------------------------------------------------------
+### Zeros -----------------------------------------------------------------------
 #' Tools for working with zeros
 #'
 #' @description
@@ -196,45 +236,6 @@ setGeneric(
 setGeneric(
   name = "replace_zero",
   def = function(x, ...) standardGeneric("replace_zero")
-)
-
-## Empty -----------------------------------------------------------------------
-#' Tools for working with empty values
-#'
-#' @description
-#'  * `remove_empty()` remove empty rows/columns.
-#' @inheritParams detect
-#' @param ... Currently not used.
-#' @details
-#'  A row/column is empty if it contains only `NA`, zeros (if of type `numeric`)
-#'  or zero length character strings (if of type `character`).
-#' @example inst/examples/ex-clean.R
-#' @author N. Frerebeau
-#' @docType methods
-#' @family data cleaning tools
-#' @name empty
-#' @rdname empty
-NULL
-
-#' @rdname empty
-#' @aliases remove_empty-method
-setGeneric(
-  name = "remove_empty",
-  def = function(x, ...) standardGeneric("remove_empty")
-)
-
-#' @rdname empty
-#' @aliases remove_empty_cols-method
-setGeneric(
-  name = "remove_empty_cols",
-  def = function(x, ...) standardGeneric("remove_empty_cols")
-)
-
-#' @rdname empty
-#' @aliases remove_empty_rows-method
-setGeneric(
-  name = "remove_empty_rows",
-  def = function(x, ...) standardGeneric("remove_empty_rows")
 )
 
 # Data transformation ==========================================================

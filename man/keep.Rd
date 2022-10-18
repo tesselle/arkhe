@@ -11,7 +11,7 @@
 \alias{keep,ANY,function-method}
 \alias{keep_rows,ANY,function-method}
 \alias{keep_cols,ANY,function-method}
-\title{Keep values according to a given predicate}
+\title{Keep rows/columns using a predicate}
 \usage{
 keep(x, f, ...)
 
@@ -44,7 +44,7 @@ values all meet the condition defined by \code{f} are considered. If \code{FALSE
 condition defined by \code{f} are considered.}
 }
 \description{
-Keeps rows/columns in an array-like object according to a given predicate.
+Keeps rows/columns in an array-like object using a predicate function.
 }
 \examples{
 ## Create a count data matrix
@@ -80,10 +80,10 @@ replace_NA(X, value = 0)
 }
 \seealso{
 Other data cleaning tools: 
+\code{\link{compact}()},
 \code{\link{count}()},
 \code{\link{detect}()},
 \code{\link{discard}()},
-\code{\link{empty}},
 \code{\link{infinite}},
 \code{\link{missing}},
 \code{\link{zero}}

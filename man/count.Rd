@@ -6,7 +6,7 @@
 \alias{count-method}
 \alias{count,matrix,function-method}
 \alias{count,data.frame,function-method}
-\title{Count values according to a given predicate}
+\title{Count values using a predicate}
 \usage{
 count(x, f, ...)
 
@@ -31,7 +31,7 @@ instead of \code{f}?}
 A \code{\link{numeric}} vector.
 }
 \description{
-Counts values by rows/columns according to a given predicate.
+Counts values by rows/columns using a predicate function.
 }
 \examples{
 ## Create a count data matrix
@@ -67,9 +67,9 @@ replace_NA(X, value = 0)
 }
 \seealso{
 Other data cleaning tools: 
+\code{\link{compact}()},
 \code{\link{detect}()},
 \code{\link{discard}()},
-\code{\link{empty}},
 \code{\link{infinite}},
 \code{\link{keep}()},
 \code{\link{missing}},

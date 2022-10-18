@@ -47,6 +47,7 @@ Collate:
     'assign.R'
     'predicates.R'
     'check.R'
+    'compact.R'
     'conditions.R'
     'detect.R'
     'discard.R'

@@ -195,66 +195,66 @@ test_that("Remove zeros", {
   expect_equal(nrow(clean_col), nrow(mtx))
 })
 # Empty rows/columns ===========================================================
-test_that("Remove empty rows/columns (numeric)", {
+test_that("Compact (numeric)", {
   num <- sample(1:10, 25, TRUE) # Create matrix
   mtx <- matrix(data = num, nrow = 5, ncol = 5)
 
   # Nothing to remove
-  clean <- remove_empty_rows(mtx)
+  clean <- compact_rows(mtx)
   expect_equal(dim(clean), dim(mtx))
 
   mtx[1, ] <- 0 # Add zeros
   mtx[, 1] <- 0 # Add zeros
 
   # Remove rows
-  clean_row <- remove_empty_rows(mtx)
+  clean_row <- compact_rows(mtx)
   expect_equal(nrow(clean_row), 4)
   expect_equal(ncol(clean_row), ncol(mtx))
 
   # Remove columns
-  clean_col <- remove_empty_cols(mtx)
+  clean_col <- compact_cols(mtx)
   expect_equal(ncol(clean_col), 4)
   expect_equal(nrow(clean_col), nrow(mtx))
 })
-test_that("Remove empty rows/columns (character)", {
+test_that("Compact (character)", {
   char <- sample(LETTERS, 25, TRUE) # Create matrix
   mtx <- matrix(data = char, nrow = 5, ncol = 5)
 
   # Nothing to remove
-  clean <- remove_empty_rows(mtx)
+  clean <- compact_rows(mtx)
   expect_equal(dim(clean), dim(mtx))
 
   mtx[1, ] <- "" # Add blank
   mtx[, 1] <- "" # Add blank
 
   # Remove rows
-  clean_row <- remove_empty_rows(mtx)
+  clean_row <- compact_rows(mtx)
   expect_equal(nrow(clean_row), 4)
   expect_equal(ncol(clean_row), ncol(mtx))
 
   # Remove columns
-  clean_col <- remove_empty_cols(mtx)
+  clean_col <- compact_cols(mtx)
   expect_equal(ncol(clean_col), 4)
   expect_equal(nrow(clean_col), nrow(mtx))
 })
-test_that("Remove empty rows/columns (logical)", {
+test_that("Compact (logical)", {
   char <- sample(c(TRUE, FALSE), 25, TRUE) # Create matrix
   mtx <- matrix(data = char, nrow = 5, ncol = 5)
 
   # Nothing to remove
-  clean <- remove_empty_rows(mtx)
+  clean <- compact_rows(mtx)
   expect_equal(dim(clean), dim(mtx))
 
   mtx[1, ] <- NA # Add NA
   mtx[, 1] <- NA # Add NA
 
   # Remove rows
-  clean_row <- remove_empty_rows(mtx)
+  clean_row <- compact_rows(mtx)
   expect_equal(nrow(clean_row), 4)
   expect_equal(ncol(clean_row), ncol(mtx))
 
   # Remove columns
-  clean_col <- remove_empty_cols(mtx)
+  clean_col <- compact_cols(mtx)
   expect_equal(ncol(clean_col), 4)
   expect_equal(nrow(clean_col), nrow(mtx))
 })

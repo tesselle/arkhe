@@ -5,7 +5,7 @@
 \alias{detect}
 \alias{detect-method}
 \alias{detect,ANY,function-method}
-\title{Find values according to a given predicate}
+\title{Find rows/columns using a predicate}
 \usage{
 detect(x, f, ...)
 
@@ -33,7 +33,7 @@ condition defined by \code{f} are considered.}
 A \code{\link{logical}} vector.
 }
 \description{
-Finds rows/columns in an array-like object according to a given predicate.
+Finds rows/columns in an array-like object using a predicate function.
 }
 \examples{
 ## Create a count data matrix
@@ -69,9 +69,9 @@ replace_NA(X, value = 0)
 }
 \seealso{
 Other data cleaning tools: 
+\code{\link{compact}()},
 \code{\link{count}()},
 \code{\link{discard}()},
-\code{\link{empty}},
 \code{\link{infinite}},
 \code{\link{keep}()},
 \code{\link{missing}},

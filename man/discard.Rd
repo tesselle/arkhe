@@ -11,7 +11,7 @@
 \alias{discard,ANY,function-method}
 \alias{discard_rows,ANY,function-method}
 \alias{discard_cols,ANY,function-method}
-\title{Remove values according to a given predicate}
+\title{Remove rows/columns using a predicate}
 \usage{
 discard(x, f, ...)
 
@@ -44,7 +44,7 @@ values all meet the condition defined by \code{f} are considered. If \code{FALSE
 condition defined by \code{f} are considered.}
 }
 \description{
-Removes rows/columns in an array-like object according to a given predicate.
+Removes rows/columns in an array-like object using a predicate function.
 }
 \examples{
 ## Create a count data matrix
@@ -80,9 +80,9 @@ replace_NA(X, value = 0)
 }
 \seealso{
 Other data cleaning tools: 
+\code{\link{compact}()},
 \code{\link{count}()},
 \code{\link{detect}()},
-\code{\link{empty}},
 \code{\link{infinite}},
 \code{\link{keep}()},
 \code{\link{missing}},
