@@ -470,7 +470,7 @@ setGeneric(
 #' @param type A [`character`] string giving the type of confidence
 #'  interval to be returned. It must be one "`student`" (the default) or
 #'  "`normal`". Any unambiguous substring can be given.
-#' @param x A [`numeric`] object to be checked.
+#' @param x,y A [`numeric`] object to be checked.
 #' @param expected A [`character`] string specifying the expected
 #'  value (see details).
 #' @param margin A vector giving the subscripts which the function will be

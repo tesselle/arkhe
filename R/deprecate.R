@@ -59,7 +59,7 @@ assert_trend <- function(x, expected, ...) {
 }
 
 #' @export
-#' @rdname check-numeric
+#' @rdname deprecate
 assert_relation <- function(x, y, expected, ...) {
   .Deprecated("assert_lower() or assert_greater()")
   arg_x <- deparse(substitute(x))

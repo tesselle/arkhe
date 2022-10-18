@@ -260,9 +260,7 @@ assert_unique <- function(x, expected) {
 # Numeric ======================================================================
 #' Check Numeric Values
 #'
-#' @param x,y A [`numeric`] object to be checked.
-#' @param expected A [`character`] string specifying the expected
-#'  value (see details).
+#' @param x A [`numeric`] object to be checked.
 #' @param ... Extra parameters to be passed to internal methods.
 #' @return
 #'  Throws an error, if any, and returns `x` invisibly otherwise.

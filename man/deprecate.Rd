@@ -8,6 +8,7 @@
 \alias{confidence,numeric-method}
 \alias{assert_numeric}
 \alias{assert_trend}
+\alias{assert_relation}
 \alias{assert_matrix}
 \alias{remove_empty}
 \title{Deprecated Methods}
@@ -19,6 +20,8 @@ confidence(object, ...)
 assert_numeric(x, expected, ...)
 
 assert_trend(x, expected, ...)
+
+assert_relation(x, y, expected, ...)
 
 assert_matrix(x, expected)
 
@@ -36,7 +39,7 @@ Must be a single number between \eqn{0} and \eqn{1}.}
 interval to be returned. It must be one "\code{student}" (the default) or
 "\code{normal}". Any unambiguous substring can be given.}
 
-\item{x}{A \code{\link{numeric}} object to be checked.}
+\item{x, y}{A \code{\link{numeric}} object to be checked.}
 
 \item{expected}{A \code{\link{character}} string specifying the expected
 value (see details).}
