@@ -1,6 +1,26 @@
 # DEPRECATED
 
 #' @rdname deprecate
+#' @aliases as_long-method
+setGeneric(
+  name = "as_long",
+  def = function(from, ...) standardGeneric("as_long"),
+  valueClass = "data.frame"
+)
+
+#' @export
+#' @rdname deprecate
+#' @aliases as_long,matrix-method
+setMethod(
+  f = "as_long",
+  signature = signature(from = "matrix"),
+  definition = function(from, factor = FALSE, reverse = FALSE) {
+    .Deprecated("to_long()", old = "as_long()")
+    to_long(from, factor = FALSE, reverse = FALSE)
+  }
+)
+
+#' @rdname deprecate
 #' @aliases confidence-method
 setGeneric(
   name = "confidence",

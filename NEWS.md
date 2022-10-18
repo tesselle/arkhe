@@ -5,10 +5,11 @@
 * Add `bootstrap()` for bootstrap estimation.
 * Add `compact()` to remove empty columns/rows in an array-like object.
 * Add `discard()` and `keep()` remove/keep rows/columns in an array-like object using a predicate function.
+* Add `to_long()` to transform a `matrix` to a long `data.frame`.
 
 ## Bugfixes & changes
 * Export all predicate functions.
-* Deprecate `assert_numeric()`, `assert_trend()`, `assert_relation()`, `assert_matrix()` and `remove_empty()`.
+* Deprecate `as_long()`, `assert_numeric()`, `assert_trend()`, `assert_relation()`, `assert_matrix()` and `remove_empty()`.
 
 ## Breaking changes
 * Remove all `*Matrix` classes and methods.

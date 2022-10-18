@@ -3,6 +3,9 @@
 \docType{methods}
 \name{deprecate}
 \alias{deprecate}
+\alias{as_long}
+\alias{as_long-method}
+\alias{as_long,matrix-method}
 \alias{confidence}
 \alias{confidence-method}
 \alias{confidence,numeric-method}
@@ -13,6 +16,10 @@
 \alias{remove_empty}
 \title{Deprecated Methods}
 \usage{
+as_long(from, ...)
+
+\S4method{as_long}{matrix}(from, factor = FALSE, reverse = FALSE)
+
 confidence(object, ...)
 
 \S4method{confidence}{numeric}(object, level = 0.95, type = c("student", "normal"))
@@ -28,9 +35,18 @@ assert_matrix(x, expected)
 remove_empty(x, margin = 1)
 }
 \arguments{
-\item{object}{A \code{\link{numeric}} vector.}
+\item{from}{An object to be coerced.}
 
 \item{...}{Extra parameters to be passed to internal methods.}
+
+\item{factor}{A \code{\link{logical}} scalar: should character string be
+coerced to \code{\link{factor}}? Default to \code{FALSE}, if \code{TRUE} the original ordering is
+preserved.}
+
+\item{reverse}{A \code{\link{logical}} scalar: should the order of factor levels be
+reversed? Only used if \code{factor} is \code{TRUE}. Useful for plotting.}
+
+\item{object}{A \code{\link{numeric}} vector.}
 
 \item{level}{A length-one \code{\link{numeric}} vector giving the confidence level.
 Must be a single number between \eqn{0} and \eqn{1}.}

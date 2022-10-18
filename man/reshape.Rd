@@ -3,14 +3,14 @@
 \docType{methods}
 \name{reshape}
 \alias{reshape}
-\alias{as_long}
-\alias{as_long-method}
-\alias{as_long,matrix-method}
+\alias{to_long}
+\alias{to_long-method}
+\alias{to_long,matrix-method}
 \title{Reshape}
 \usage{
-as_long(from, ...)
+to_long(from, ...)
 
-\S4method{as_long}{matrix}(from, factor = FALSE, reverse = FALSE)
+\S4method{to_long}{matrix}(from, factor = FALSE, reverse = FALSE)
 }
 \arguments{
 \item{from}{An object to be coerced.}
@@ -35,7 +35,7 @@ Transforms a \code{matrix} to a long \code{data.frame}.
 A <- matrix(data = sample(0:10, 100, TRUE), nrow = 20, ncol = 5)
 
 ## Transform to long data.frame
-head(as_long(A))
+head(to_long(A))
 }
 \seealso{
 Other transformation tools: 

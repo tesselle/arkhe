@@ -25,9 +25,9 @@ as_factor <- function(x, reverse = FALSE) {
 
 #' @export
 #' @rdname reshape
-#' @aliases as_long,matrix-method
+#' @aliases to_long,matrix-method
 setMethod(
-  f = "as_long",
+  f = "to_long",
   signature = signature(from = "matrix"),
   definition = function(from, factor = FALSE, reverse = FALSE) {
     x <- data.frame(

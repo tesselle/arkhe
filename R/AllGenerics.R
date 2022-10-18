@@ -251,7 +251,7 @@ setGeneric(
 #' @param remove A [`logical`] scalar: should the specified row/column be removed
 #'  after making it the column/row names?
 #' @param ... Currently not used.
-#' @example inst/examples/ex-reshape.R
+#' @example inst/examples/ex-assign.R
 #' @return A [`data.frame`].
 #' @author N. Frerebeau
 #' @docType methods
@@ -283,7 +283,7 @@ setGeneric(
 #'  names.
 #' @param remove A [`logical`] scalar: should the row names be removed?
 #' @param ... Currently not used.
-#' @example inst/examples/ex-reshape.R
+#' @example inst/examples/ex-assign.R
 #' @return A [`data.frame`].
 #' @author N. Frerebeau
 #' @docType methods
@@ -312,7 +312,7 @@ setGeneric(
 #'  reversed? Only used if `factor` is `TRUE`. Useful for plotting.
 #' @param ... Currently not used.
 #' @return A coerced object.
-#' @example inst/examples/ex-coerce.R
+#' @example inst/examples/ex-reshape.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family transformation tools
@@ -321,10 +321,10 @@ setGeneric(
 NULL
 
 #' @rdname reshape
-#' @aliases as_long-method
+#' @aliases to_long-method
 setGeneric(
-  name = "as_long",
-  def = function(from, ...) standardGeneric("as_long"),
+  name = "to_long",
+  def = function(from, ...) standardGeneric("to_long"),
   valueClass = "data.frame"
 )
 
@@ -464,6 +464,12 @@ setGeneric(
 # Deprecated ===================================================================
 #' Deprecated Methods
 #'
+#' @param from An object to be coerced.
+#' @param factor A [`logical`] scalar: should character string be
+#'  coerced to [`factor`]? Default to `FALSE`, if `TRUE` the original ordering is
+#'  preserved.
+#' @param reverse A [`logical`] scalar: should the order of factor levels be
+#'  reversed? Only used if `factor` is `TRUE`. Useful for plotting.
 #' @param object A [`numeric`] vector.
 #' @param level A length-one [`numeric`] vector giving the confidence level.
 #'  Must be a single number between \eqn{0} and \eqn{1}.
