@@ -283,6 +283,8 @@ assert_count <- function(x, ...) {
   invisible(x)
 }
 
+#' @export
+#' @rdname check-numeric
 assert_whole <- assert_count
 
 #' @export

@@ -420,6 +420,8 @@ setGeneric(
 #' @param x,y A [`numeric`] object to be checked.
 #' @param expected A [`character`] string specifying the expected
 #'  value (see details).
+#' @param margin A vector giving the subscripts which the function will be
+#'  applied over (`1` indicates rows, `2` indicates columns).
 #' @param ... Extra parameters to be passed to internal methods.
 #' @author N. Frerebeau
 #' @docType methods

@@ -77,3 +77,16 @@ assert_matrix <- function(x, expected) {
   }
   invisible(x)
 }
+
+#' @export
+#' @rdname deprecate
+remove_empty <- function(x, margin = 1) {
+  .Deprecated("compact()")
+  vide <- function(x) {
+    miss <- is.na(x)
+    if (is_numeric(x)) x == 0 | miss
+    else if (is_character(x)) x == "" | miss
+    else miss
+  }
+  discard(x, f = vide, margin = margin, all = TRUE)
+}

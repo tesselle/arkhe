@@ -3,6 +3,7 @@
 \name{check-numeric}
 \alias{check-numeric}
 \alias{assert_count}
+\alias{assert_whole}
 \alias{assert_positive}
 \alias{assert_negative}
 \alias{assert_odd}
@@ -11,6 +12,8 @@
 \title{Check Numeric Values}
 \usage{
 assert_count(x, ...)
+
+assert_whole(x, ...)
 
 assert_positive(x, ...)
 

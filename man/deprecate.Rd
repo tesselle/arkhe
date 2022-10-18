@@ -6,6 +6,7 @@
 \alias{assert_numeric}
 \alias{assert_trend}
 \alias{assert_matrix}
+\alias{remove_empty}
 \title{Deprecated Methods}
 \usage{
 assert_numeric(x, expected, ...)
@@ -13,6 +14,8 @@ assert_numeric(x, expected, ...)
 assert_trend(x, expected, ...)
 
 assert_matrix(x, expected)
+
+remove_empty(x, margin = 1)
 }
 \arguments{
 \item{x, y}{A \code{\link{numeric}} object to be checked.}
@@ -21,6 +24,9 @@ assert_matrix(x, expected)
 value (see details).}
 
 \item{...}{Extra parameters to be passed to internal methods.}
+
+\item{margin}{A vector giving the subscripts which the function will be
+applied over (\code{1} indicates rows, \code{2} indicates columns).}
 }
 \description{
 Deprecated Methods
