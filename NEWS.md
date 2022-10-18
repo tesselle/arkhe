@@ -1,14 +1,17 @@
-# arkhe 0.5.0.9000
+# arkhe 1.0.0
 ## New classes and methods
 * Add `append_rownames()` to convert row names to an explicit column.
 * Add `bootstrap()` for bootstrap estimation.
-* Add `remove_empty_cols()` and `remove_empty_rows()`to remove empty columns and rows in a `matrix`.
+* Add `discard()` and `keep()` remove/keep rows/columns in an array-like object using a predicate function.
+* Add `compact()` to remove empty columns and rows in a `matrix`.
+* Add `assert_positive()`, `assert_negative()`, `assert_odd()`, `assert_even()`, `assert_constant()`, `assert_decreasing()`, `assert_increasing()`, `assert_lower()` and `assert_greater()` to check `numeric` vectors.
 
 ## Bugfixes & changes
-* Export all type and scalar predicates.
+* Export all predicate functions.
 
 ## Breaking changes
 * Remove all `*Matrix` classes and methods.
+* Rename `compact()` to `discard()`.
 
 # arkhe 0.5.0
 ## New classes and methods
