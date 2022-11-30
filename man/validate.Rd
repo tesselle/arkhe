@@ -23,7 +23,8 @@ Other validation methods:
 \code{\link{check-numeric-comparison}},
 \code{\link{check-numeric-trend}},
 \code{\link{check-numeric}},
-\code{\link{check-type}}
+\code{\link{check-type}},
+\code{\link{needs}()}
 }
 \author{
 N. Frerebeau

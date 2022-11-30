@@ -14,7 +14,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.2.1 (2022-06-23)",
+  "runtimePlatform": "R version 4.2.2 Patched (2022-11-10 r83330)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -92,9 +92,14 @@
       "identifier": "stats",
       "name": "stats"
     },
+    "4": {
+      "@type": "SoftwareApplication",
+      "identifier": "utils",
+      "name": "utils"
+    },
     "SystemRequirements": null
   },
-  "fileSize": "231.591KB",
+  "fileSize": "234.129KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",

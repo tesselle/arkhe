@@ -28,7 +28,8 @@ Depends:
     R (>= 3.3)
 Imports: 
     methods,
-    stats
+    stats,
+    utils
 Suggests: 
     covr,
     testthat (>= 3.0.0)
