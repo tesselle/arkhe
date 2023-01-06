@@ -119,11 +119,6 @@ setGeneric(
 #' @author N. Frerebeau
 #' @docType methods
 #' @family data cleaning tools
-#' @name compact
-#' @rdname compact
-NULL
-
-#' @rdname compact
 #' @aliases compact-method
 setGeneric(
   name = "compact",

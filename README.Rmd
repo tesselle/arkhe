@@ -23,7 +23,7 @@ knitr::opts_chunk$set(
 
 [![r-universe](https://tesselle.r-universe.dev/badges/arkhe)](https://tesselle.r-universe.dev){.pkgdown-devel}
 [![CRAN Version](http://www.r-pkg.org/badges/version/arkhe)](https://cran.r-project.org/package=arkhe){.pkgdown-release}
-[![CRAN checks](https://cranchecks.info/badges/worst/arkhe)](https://cran.r-project.org/web/checks/check_results_arkhe.html){.pkgdown-release}
+[![CRAN checks](https://badges.cranchecks.info/worst/arkhe.svg)](https://cran.r-project.org/web/checks/check_results_arkhe.html){.pkgdown-release}
 [![CRAN Downloads](http://cranlogs.r-pkg.org/badges/arkhe)](https://cran.r-project.org/package=arkhe){.pkgdown-release}
 
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
@@ -52,12 +52,10 @@ remotes::install_github("tesselle/arkhe")
 
 ## Usage
 
-```{r packages}
+```{r}
 ## Load the package
 library(arkhe)
-```
 
-```{r}
 ## Create a matrix
 X <- matrix(sample(1:10, 25, TRUE), nrow = 5, ncol = 5)
 
