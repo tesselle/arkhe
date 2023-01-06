@@ -321,10 +321,10 @@ setGeneric(
 NULL
 
 #' @rdname reshape
-#' @aliases to_long-method
+#' @aliases wide_to_long-method
 setGeneric(
-  name = "to_long",
-  def = function(from, ...) standardGeneric("to_long"),
+  name = "wide_to_long",
+  def = function(from, ...) standardGeneric("wide_to_long"),
   valueClass = "data.frame"
 )
 
