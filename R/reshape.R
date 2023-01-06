@@ -45,4 +45,12 @@ setMethod(
 )
 
 #' @export
-to_long <- wide_to_long
+#' @rdname reshape
+#' @aliases to_long,matrix-method
+setMethod(
+  f = "to_long",
+  signature = signature(from = "matrix"),
+  definition = function(from, factor = FALSE, reverse = FALSE) {
+    wide_to_long(from, factor = factor, reverse = reverse)
+  }
+)

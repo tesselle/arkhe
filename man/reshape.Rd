@@ -5,12 +5,19 @@
 \alias{reshape}
 \alias{wide_to_long}
 \alias{wide_to_long-method}
+\alias{to_long}
+\alias{to_long-method}
 \alias{wide_to_long,matrix-method}
+\alias{to_long,matrix-method}
 \title{Reshape}
 \usage{
 wide_to_long(from, ...)
 
+to_long(from, ...)
+
 \S4method{wide_to_long}{matrix}(from, factor = FALSE, reverse = FALSE)
+
+\S4method{to_long}{matrix}(from, factor = FALSE, reverse = FALSE)
 }
 \arguments{
 \item{from}{An object to be coerced.}

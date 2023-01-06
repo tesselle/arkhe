@@ -324,6 +324,14 @@ setGeneric(
   valueClass = "data.frame"
 )
 
+#' @rdname reshape
+#' @aliases to_long-method
+setGeneric(
+  name = "to_long",
+  def = function(from, ...) standardGeneric("to_long"),
+  valueClass = "data.frame"
+)
+
 # Statistics ===================================================================
 ## Interval ====================================================================
 #' Confidence Interval for a Mean
@@ -456,3 +464,20 @@ setGeneric(
   name = "jackknife",
   def = function(object, ...) standardGeneric("jackknife")
 )
+
+# Deprecated ===================================================================
+#' Deprecated Methods
+#'
+#' @param object A [`numeric`] vector.
+#' @param level A length-one [`numeric`] vector giving the confidence level.
+#'  Must be a single number between \eqn{0} and \eqn{1}.
+#' @param type A [`character`] string giving the type of confidence
+#'  interval to be returned. It must be one "`student`" (the default) or
+#'  "`normal`". Any unambiguous substring can be given.
+#' @param ... Currently not used.
+#' @author N. Frerebeau
+#' @docType methods
+#' @name deprecate
+#' @rdname deprecate
+#' @keywords internal
+NULL
