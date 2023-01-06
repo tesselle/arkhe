@@ -1,6 +1,6 @@
 Package: arkhe
 Title: Tools for Cleaning Rectangular Data
-Version: 1.0.0.9000
+Version: 1.1.0
 Authors@R: 
     c(person(given = "Nicolas",
              family = "Frerebeau",

@@ -4,17 +4,17 @@ citEntry(
   entry        = "Manual",
   title        = "arkhe: Tools for Cleaning Rectangular Data",
   author       = c(person("Nicolas", "Frerebeau", role = "aut")),
-  year         = "2021",
+  year         = "2023",
   organization = "Université Bordeaux Montaigne",
   address      = "Pessac, France",
-  note         = "R package version 1.0.0",
+  note         = "R package version 1.1.0",
   url          = "https://packages.tesselle.org/arkhe/",
   doi          = "10.5281/zenodo.3526659",
 
   textVersion  =
-  paste("Frerebeau, Nicolas (2021).",
+  paste("Frerebeau, Nicolas (2023).",
         "arkhe: Tools for Cleaning Rectangular Data.",
-        "R package version 1.0.0",
+        "R package version 1.1.0",
         "Université Bordeaux Montaigne, Pessac, France.",
         "DOI 10.5281/zenodo.3526659.",
         "URL https://packages.tesselle.org/arkhe.")
