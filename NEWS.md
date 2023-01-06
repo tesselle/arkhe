@@ -2,6 +2,9 @@
 ## New classes and methods
 * Add `needs()` to check for the availability of a package.
 
+## Bugfixes & changes
+* Remove deprecated methods.
+
 # arkhe 1.0.0
 ## New classes and methods
 * Add `append_rownames()` to convert row names to an explicit column.
