@@ -5,6 +5,8 @@ NULL
 #' Check the Availability of a Package
 #'
 #' @param x A [`character`] vector naming the packages to check.
+#' @param ask A [`logical`] scalar: should the user be asked to select packages
+#'  before they are downloaded and installed?
 #' @details
 #'  `needs()` is designed for use inside other functions in your own package
 #'  to check for the availability of a suggested package.
@@ -15,7 +17,7 @@ NULL
 #' @family validation methods
 #' @author N. Frerebeau
 #' @export
-needs <- function(x) {
+needs <- function(x, ask = TRUE) {
   ok <- vapply(X = x, FUN = requireNamespace, FUN.VALUE = logical(1),
                quietly = TRUE)
 
@@ -25,10 +27,11 @@ needs <- function(x) {
   if (n != 0) {
     msg <- ngettext(n, "Package %s is required.", "Packages %s are required.")
     pkg <- paste0(sQuote(miss), collapse = ", ")
+    err <- sprintf(msg, pkg)
     install <- "0"
-    if (interactive()) {
+    if (ask && interactive()) {
       cat(
-        sprintf(msg, pkg),
+        err,
         sprintf("Do you want to install %s?", ngettext(n, "it", "them")),
         "1. Yes",
         "2. No",
@@ -39,7 +42,7 @@ needs <- function(x) {
     if (install == "1") {
       utils::install.packages(miss)
     } else {
-      stop(sprintf(msg, pkg), call. = FALSE)
+      throw_error("error_missing_package", err)
     }
   }
   invisible(NULL)

@@ -4,10 +4,13 @@
 \alias{needs}
 \title{Check the Availability of a Package}
 \usage{
-needs(x)
+needs(x, ask = TRUE)
 }
 \arguments{
 \item{x}{A \code{\link{character}} vector naming the packages to check.}
+
+\item{ask}{A \code{\link{logical}} scalar: should the user be asked to select packages
+before they are downloaded and installed?}
 }
 \value{
 Invisibly returns \code{NULL}.

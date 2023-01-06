@@ -3,6 +3,10 @@ test_that("Validate", {
   expect_type(validate(mean(c("a", "b", "c"))), "character")
   expect_length(validate(mean(c("a", "b", "c"))), 1)
 })
+test_that("Missing package", {
+  cnd <- catch_conditions(needs("ABC123XYZ", ask = FALSE))
+  expect_s3_class(cnd[[1]], "error_missing_package")
+})
 test_that("Assert type", {
   x <- numeric()
   cnd <- catch_conditions(assert_type(x, expected = "character"))
