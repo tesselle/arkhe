@@ -1,4 +1,5 @@
 # GENERIC METHODS
+#' @importFrom methods setGeneric setMethod .valueClassTest
 NULL
 
 # Data cleaning ================================================================

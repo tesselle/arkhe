@@ -35,9 +35,3 @@
 #' @docType package
 #' @keywords internal
 "_PACKAGE"
-
-#' @importFrom methods callGeneric callNextMethod setGeneric setMethod
-#' .valueClassTest
-#' @importFrom stats quantile na.omit rmultinom sd xtabs
-#' @importFrom utils install.packages
-NULL
