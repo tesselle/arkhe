@@ -4,6 +4,7 @@
 
 ## Bugfixes & changes
 * Remove deprecated methods.
+* Remove unused argument in `assert_unique()`.
 
 # arkhe 1.0.0
 ## New classes and methods

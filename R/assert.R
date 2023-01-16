@@ -257,7 +257,6 @@ assert_colnames <- function(x, expected) {
 #' missing (`NA`, `NaN`) or infinite (`Inf`) value.
 #' * `assert_unique()` checks if an object contains duplicated elements.
 #' @param x An object to be checked.
-#' @param expected An appropriate expected value.
 #' @return
 #'  Throws an error, if any, and returns `x` invisibly otherwise.
 #' @author N. Frerebeau
@@ -294,7 +293,7 @@ assert_infinite <- function(x) {
 
 #' @export
 #' @rdname check-data
-assert_unique <- function(x, expected) {
+assert_unique <- function(x) {
   arg <- deparse(substitute(x))
   if (has_duplicates(x)) {
     msg <- sprintf("Elements of %s must be unique.", sQuote(arg))
