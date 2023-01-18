@@ -142,3 +142,6 @@ identifiers:
 - description: The versioned DOI for version 1.0.0.
   type: doi
   value: 10.5281/zenodo.7261616
+- description: The versioned DOI for version 1.1.0.
+  type: doi
+  value: 10.5281/zenodo.7546749

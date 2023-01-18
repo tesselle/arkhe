@@ -8,7 +8,7 @@
   "codeRepository": "https://github.com/tesselle/arkhe",
   "issueTracker": "https://github.com/tesselle/arkhe/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "1.1.0",
+  "version": "1.1.0.9000",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -87,7 +87,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "228.189KB",
+  "fileSize": "230.734KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
