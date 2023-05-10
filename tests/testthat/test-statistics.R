@@ -21,3 +21,19 @@ test_that("Confidence interval for binomial proportions", {
   expect_snapshot(confidence_multinomial(x))
   expect_snapshot(confidence_multinomial(x, corrected = TRUE))
 })
+test_that("Bootstrap", {
+  bootstrap_summary <- with_seed({
+    bootstrap(rnorm(20), n = 100, do = mean)
+  }, seed = 12345)
+  expect_snapshot(bootstrap_summary)
+
+  bootstrap_values <- with_seed({
+    bootstrap(rnorm(20), n = 100, do = mean, f = function(x) { x })
+  }, seed = 12345)
+  expect_snapshot(bootstrap_values)
+})
+test_that("Jackknife", {
+  x <- with_seed(rnorm(20), seed = 12345)
+  expect_snapshot(jackknife(x, do = mean))
+  expect_snapshot(jackknife(x, do = mean, f = function(x) { x }))
+})

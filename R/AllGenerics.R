@@ -494,17 +494,17 @@ setGeneric(
 #'  `do`) as argument.
 #' @param ... Extra arguments to be passed to `do`.
 #' @return
-#'  If `f` is not `NULL`, `bootstrap()` returns the result of `f` applied to
-#'  the `n` values of `do`.
-#'
-#'  If `f` is `NULL`, `bootstrap()` returns a named `numeric` `vector` with the
-#'  following elements:
+#'  If `f` is `NULL` (the default), `bootstrap()` returns a named `numeric`
+#'  vector with the following elements:
 #'  \describe{
 #'   \item{`original`}{The observed value of `do` applied to `object`.}
 #'   \item{`mean`}{The bootstrap estimate of mean of `do`.}
 #'   \item{`bias`}{The bootstrap estimate of bias of `do`.}
 #'   \item{`error`}{he bootstrap estimate of standard error of `do`.}
 #'  }
+#'
+#'  If `f` is a `function`, `bootstrap()` returns the result of `f` applied to
+#'  the `n` values of `do`.
 #' @example inst/examples/ex-resample.R
 #' @author N. Frerebeau
 #' @docType methods
@@ -523,14 +523,20 @@ setGeneric(
 #' @param do A [`function`] that takes `object` as an argument and returns a
 #'  single numeric value.
 #' @param ... Extra arguments to be passed to `do`.
+#' @param f A [`function`] that takes a single numeric vector (the leave-one-out
+#'  values of `do`) as argument.
 #' @return
-#'  Returns a named `numeric` `vector` with the following elements:
+#'  If `f` is `NULL` (the default), `jackknife()` returns a named `numeric`
+#'  vector with the following elements:
 #'  \describe{
 #'   \item{`original`}{The observed value of `do` applied to `object`.}
 #'   \item{`mean`}{The jackknife estimate of mean of `do`.}
 #'   \item{`bias`}{The jackknife estimate of bias of `do`.}
 #'   \item{`error`}{he jackknife estimate of standard error of `do`.}
 #'  }
+#'
+#'  If `f` is a `function`, `jackknife()` returns the result of `f` applied to
+#'  the leave-one-out values of `do`.
 #' @example inst/examples/ex-resample.R
 #' @author N. Frerebeau
 #' @docType methods

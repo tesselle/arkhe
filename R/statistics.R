@@ -164,8 +164,9 @@ setMethod(
     spl <- sample(object, size = length(object) * n, replace = TRUE)
     replicates <- t(matrix(spl, nrow = n))
     values <- apply(X = replicates, MARGIN = 2, FUN = do, ...)
-    values <- if (is.function(f)) f(values) else summary_bootstrap(values, hat)
-    values
+
+    if (is.function(f)) return(f(values))
+    summary_bootstrap(values, hat)
   }
 )
 
@@ -187,7 +188,7 @@ summary_bootstrap <- function(x, hat) {
 setMethod(
   f = "jackknife",
   signature = c(object = "numeric"),
-  definition = function(object, do, ...) {
+  definition = function(object, do, ..., f = NULL) {
     n <- length(object)
     hat <- do(object, ...)
 
@@ -199,8 +200,9 @@ setMethod(
       FUN.VALUE = double(1),
       x = object, do = do, ...
     )
-    values <- summary_jackknife(values, hat)
-    values
+
+    if (is.function(f)) return(f(values))
+    summary_jackknife(values, hat)
   }
 )
 

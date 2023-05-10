@@ -26,17 +26,17 @@ replications.}
 \code{do}) as argument.}
 }
 \value{
-If \code{f} is not \code{NULL}, \code{bootstrap()} returns the result of \code{f} applied to
-the \code{n} values of \code{do}.
-
-If \code{f} is \code{NULL}, \code{bootstrap()} returns a named \code{numeric} \code{vector} with the
-following elements:
+If \code{f} is \code{NULL} (the default), \code{bootstrap()} returns a named \code{numeric}
+vector with the following elements:
 \describe{
 \item{\code{original}}{The observed value of \code{do} applied to \code{object}.}
 \item{\code{mean}}{The bootstrap estimate of mean of \code{do}.}
 \item{\code{bias}}{The bootstrap estimate of bias of \code{do}.}
 \item{\code{error}}{he bootstrap estimate of standard error of \code{do}.}
 }
+
+If \code{f} is a \code{function}, \code{bootstrap()} returns the result of \code{f} applied to
+the \code{n} values of \code{do}.
 }
 \description{
 Samples randomly from the elements of \code{object} with replacement.
@@ -51,8 +51,14 @@ bootstrap(x, do = mean, n = 100)
 quant <- function(x) { quantile(x, probs = c(0.25, 0.75)) }
 bootstrap(x, n = 100, do = mean, f = quant)
 
+## Get the n bootstrap values
+bootstrap(x, n = 100, do = mean, f = function(x) { x })
+
 ## Jackknife
 jackknife(x, do = mean) # Sample mean
+
+## Get the leave-one-out values instead of summary
+jackknife(x, do = mean, f = function(x) { x })
 }
 \seealso{
 Other resampling methods: 
