@@ -365,6 +365,52 @@ setGeneric(
 
 # Statistics ===================================================================
 ## Interval --------------------------------------------------------------------
+#' Highest Density Regions
+#'
+#' @param x A [`numeric`] vector giving the coordinates of the points where
+#'  the density is estimated.
+#' @param y A [`numeric`] vector giving the estimated density values.
+#'  If `y` is missing and `x` is a `numeric` vector, density estimates will be
+#'  computed from `x`.
+#' @param level A length-one [`numeric`] vector giving the confidence level.
+#' @param ... Further arguments to be passed to [stats::density()].
+#' @return
+#'  A three-columns `numeric` [`matrix`] giving the lower and upper boundaries
+#'  of the HPD interval and associated probabilities.
+#' @references
+#'  Hyndman, R. J. (1996). Computing and graphing highest density regions.
+#'  *American Statistician*, 50: 120-126. \doi{10.2307/2684423}.
+#' @example inst/examples/ex-interval.R
+#' @author N. Frerebeau
+#' @family summary statistics
+#' @docType methods
+#' @aliases interval_hdr-method
+setGeneric(
+  name = "interval_hdr",
+  def = function(x, y, ...) standardGeneric("interval_hdr")
+)
+
+#' Bayesian Credible Interval
+#'
+#' Computes the shortest credible interval within which an unobserved parameter
+#' value falls with a particular probability.
+#' @param x A [`numeric`] vector.
+#' @param level A length-one [`numeric`] vector giving the confidence level.
+#' @param ... Currently not used.
+#' @return
+#'  A three-columns `numeric` [`matrix`] giving the lower and upper boundaries
+#'  of the credible interval and associated probability.
+#' @example inst/examples/ex-interval.R
+#' @author N. Frerebeau
+#' @family summary statistics
+#' @docType methods
+#' @aliases interval_credible-method
+setGeneric(
+  name = "interval_credible",
+  def = function(x, ...) standardGeneric("interval_credible")
+)
+
+## Confidence ------------------------------------------------------------------
 #' Confidence Interval for a Mean
 #'
 #' Computes a confidence interval for a mean at a desired level of significance.

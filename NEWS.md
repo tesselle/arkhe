@@ -1,6 +1,7 @@
 # arkhe 1.1.0.9000
 ## New classes and methods
 * Add `math_lcm()` and `math_gcd()` to compute the lowest common multiple and the greatest common divisor.
+* Add `interval_hdr()` and `interval_credible()` to compute the credible intervals.
 
 # arkhe 1.1.0
 ## New classes and methods

@@ -55,7 +55,9 @@ confidence_multinomial(x)
 \seealso{
 Other summary statistics: 
 \code{\link{confidence_binomial}()},
-\code{\link{confidence_mean}()}
+\code{\link{confidence_mean}()},
+\code{\link{interval_credible}()},
+\code{\link{interval_hdr}()}
 }
 \author{
 N. Frerebeau

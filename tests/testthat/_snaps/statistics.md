@@ -1,3 +1,20 @@
+# Highest density regions
+
+    Code
+      interval_hdr(faithful$eruptions)
+    Output
+              start      end    p
+      [1,] 1.307160 2.837942 0.33
+      [2,] 3.150567 5.295819 0.62
+
+# Bayesian credible interval
+
+    Code
+      interval_credible(faithful$eruptions)
+    Output
+           start  end    p
+      [1,] 1.733 4.85 0.95
+
 # Confidence interval for the mean
 
     Code

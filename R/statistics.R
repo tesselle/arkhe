@@ -2,7 +2,78 @@
 #' @include AllGenerics.R
 NULL
 
-# Interval =====================================================================
+# HPDI =========================================================================
+#' @export
+#' @rdname interval_hdr
+#' @aliases interval_hdr,numeric,numeric-method
+setMethod(
+  f = "interval_hdr",
+  signature = c(x = "numeric", y = "numeric"),
+  definition = function(x, y, level = 0.954) {
+    ## Compute density
+    y <- y / sum(y)
+
+    ## Order the sample (faster sorting with radix method)
+    sorted <- sort(y, decreasing = TRUE, method = "radix")
+    i <- min(which(cumsum(sorted) >= sum(y) * level))
+    h <- sorted[[i]]
+    idx <- which(y >= h)
+
+    gap <- which(diff(idx) > 1)
+    inf <- idx[c(1, gap + 1)]
+    sup <- idx[c(gap, length(idx))]
+
+    int <- mapply(FUN = seq, from = inf, to = sup,
+                  SIMPLIFY = FALSE, USE.NAMES = FALSE)
+    p <- vapply(X = int, FUN = function(i, y) { sum(y[i]) },
+                FUN.VALUE = numeric(1), y = y)
+
+    cbind(start = x[inf], end = x[sup], p = round(p, digits = 2))
+  }
+)
+
+#' @export
+#' @rdname interval_hdr
+#' @aliases interval_hdr,numeric,missing-method
+setMethod(
+  f = "interval_hdr",
+  signature = c(x = "numeric", y = "missing"),
+  definition = function(x, level = 0.954, ...) {
+    ## Compute density
+    d <- stats::density(x, ...)
+    methods::callGeneric(x = d$x, y = d$y, level = level)
+  }
+)
+
+# Credible interval ============================================================
+#' @export
+#' @rdname interval_credible
+#' @aliases interval_credible,numeric-method
+setMethod(
+  f = "interval_credible",
+  signature = "numeric",
+  definition = function(x, level = 0.95) {
+    ## Order the sample
+    sorted <- sort(x, method = "radix") # Faster sorting with radix method
+
+    ## Sample size
+    N <- length(x)
+
+    ## Number of data to be outside of the interval
+    outside <- as.integer(N * (1 - level))
+    inf <- seq(from = 1L, to = outside + 1L, by = 1L)
+    sup <- seq(from = N - outside, to = N, by = 1L)
+
+    ## Look for the shortest interval
+    a <- sorted[sup]
+    b <- sorted[inf]
+    ind <- which.min(a - b)
+
+    cbind(start = b[[ind]], end = a[[ind]], p = level)
+  }
+)
+
+# Confidence interval ==========================================================
 #' @export
 #' @rdname confidence_mean
 #' @aliases confidence_mean,numeric-method
