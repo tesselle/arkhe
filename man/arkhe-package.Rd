@@ -15,7 +15,7 @@ A dependency-free collection of simple functions for cleaning rectangular data. 
 \tabular{ll}{
 \strong{Package:} \tab arkhe \cr
 \strong{Type:} \tab Package \cr
-\strong{Version:} \tab 1.1.0 \cr
+\strong{Version:} \tab 1.2.0 \cr
 \strong{License:} \tab GPL-3 \cr
 \strong{Zenodo:} \tab \doi{10.5281/zenodo.3526659} \cr
 }

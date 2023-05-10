@@ -1,6 +1,6 @@
 Package: arkhe
 Title: Tools for Cleaning Rectangular Data
-Version: 1.1.0.9000
+Version: 1.2.0
 Authors@R: 
     c(person(given = "Nicolas",
              family = "Frerebeau",
@@ -34,7 +34,7 @@ Suggests:
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Encoding: UTF-8
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)
 Collate: 
     'AllGenerics.R'

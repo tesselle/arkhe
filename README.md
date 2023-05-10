@@ -6,7 +6,7 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/tesselle/arkhe/workflows/R-CMD-check/badge.svg)](https://github.com/tesselle/arkhe/actions)
-[![codecov](https://codecov.io/gh/tesselle/arkhe/branch/main/graph/badge.svg)](https://app.codecov.io/gh/tesselle/arkhe)
+[![codecov](https://codecov.io/gh/tesselle/arkhe/branch/main/graph/badge.svg?token=3TUSMmF18Q)](https://app.codecov.io/gh/tesselle/arkhe)
 [![CodeFactor](https://www.codefactor.io/repository/github/tesselle/arkhe/badge/main)](https://www.codefactor.io/repository/github/tesselle/arkhe/overview/main)
 [![Dependencies](https://tinyverse.netlify.com/badge/arkhe)](https://cran.r-project.org/package=arkhe)
 
@@ -70,49 +70,49 @@ k <- sample(1:25, 3, FALSE)
 X[k] <- NA
 X
 #>      [,1] [,2] [,3] [,4] [,5]
-#> [1,]    4    6    1    2    8
-#> [2,]    6    8    2    7   10
-#> [3,]   NA    1    2    9    2
-#> [4,]   NA    9   NA   10    8
-#> [5,]    5    4    3    6    6
+#> [1,]    2    5   NA    6   NA
+#> [2,]    4    1    5    2    5
+#> [3,]    2    6   NA    6   10
+#> [4,]    1    7    6    5    6
+#> [5,]    6    1    8    8    6
 
 ## Count missing values in rows
 count(X, f = is.na, margin = 1)
-#> [1] 0 0 1 2 0
+#> [1] 2 0 1 0 0
 ## Count non-missing values in columns
 count(X, f = is.na, margin = 2, negate = TRUE)
-#> [1] 3 5 4 5 5
+#> [1] 5 5 3 5 4
 
 ## Find row with NA
 detect(X, f = is.na, margin = 1)
-#> [1] FALSE FALSE  TRUE  TRUE FALSE
+#> [1]  TRUE FALSE  TRUE FALSE FALSE
 ## Find column without any NA
 detect(X, f = is.na, margin = 2, negate = TRUE, all = TRUE)
-#> [1] FALSE  TRUE FALSE  TRUE  TRUE
+#> [1]  TRUE  TRUE FALSE  TRUE FALSE
 
 ## Remove row with any NA
 discard(X, f = is.na, margin = 1, all = FALSE)
 #>      [,1] [,2] [,3] [,4] [,5]
-#> [1,]    4    6    1    2    8
-#> [2,]    6    8    2    7   10
-#> [3,]    5    4    3    6    6
+#> [1,]    4    1    5    2    5
+#> [2,]    1    7    6    5    6
+#> [3,]    6    1    8    8    6
 ## Remove column with any NA
 discard(X, f = is.na, margin = 2, all = FALSE)
 #>      [,1] [,2] [,3]
-#> [1,]    6    2    8
-#> [2,]    8    7   10
-#> [3,]    1    9    2
-#> [4,]    9   10    8
-#> [5,]    4    6    6
+#> [1,]    2    5    6
+#> [2,]    4    1    2
+#> [3,]    2    6    6
+#> [4,]    1    7    5
+#> [5,]    6    1    8
 
 ## Replace NA with zeros
 replace_NA(X, value = 0)
 #>      [,1] [,2] [,3] [,4] [,5]
-#> [1,]    4    6    1    2    8
-#> [2,]    6    8    2    7   10
-#> [3,]    0    1    2    9    2
-#> [4,]    0    9    0   10    8
-#> [5,]    5    4    3    6    6
+#> [1,]    2    5    0    6    0
+#> [2,]    4    1    5    2    5
+#> [3,]    2    6    0    6   10
+#> [4,]    1    7    6    5    6
+#> [5,]    6    1    8    8    6
 ```
 
 ## Contributing
