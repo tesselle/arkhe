@@ -332,8 +332,39 @@ setGeneric(
   valueClass = "data.frame"
 )
 
+# Mathematics ==================================================================
+#' Least Common Multiple
+#'
+#' Computes the lowest common multiple of the denominators of a set of
+#' fractions.
+#' @param x,y A [`numeric`] vector.
+#' @return A [`numeric`] vector.
+#' @author N. Frerebeau
+#' @docType methods
+#' @family mathematic functions
+#' @aliases math_lcm-method
+setGeneric(
+  name = "math_lcm",
+  def = function(x, y) standardGeneric("math_lcm")
+)
+
+#' Greatest Common Divisor
+#'
+#' Computes the greatest common divisor (GCD) of two integer using the Euclidean
+#' algorithm.
+#' @param x,y A [`numeric`] vector.
+#' @return A [`numeric`] vector.
+#' @author N. Frerebeau
+#' @docType methods
+#' @family mathematic functions
+#' @aliases math_gcd-method
+setGeneric(
+  name = "math_gcd",
+  def = function(x, y) standardGeneric("math_gcd")
+)
+
 # Statistics ===================================================================
-## Interval ====================================================================
+## Interval --------------------------------------------------------------------
 #' Confidence Interval for a Mean
 #'
 #' Computes a confidence interval for a mean at a desired level of significance.

@@ -49,6 +49,7 @@ Collate:
     'detect.R'
     'discard.R'
     'keep.R'
+    'mathematics.R'
     'replace.R'
     'reshape.R'
     'statistics.R'
