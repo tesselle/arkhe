@@ -35,6 +35,10 @@ knitr::opts_chunk$set(
 
 A dependency-free collection of simple functions for cleaning rectangular data. This package allows to detect, count and replace values or discard rows/columns using a predicate function. In addition, it provides tools to check conditions and return informative error messages.
 
+```{r citation, echo=FALSE, comment=''}
+utils::citation("arkhe")
+```
+
 ## Installation
 
 You can install the released version of **arkhe** from [CRAN](https://CRAN.R-project.org) with:
