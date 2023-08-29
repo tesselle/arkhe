@@ -26,7 +26,7 @@ compact_rows(x, ...)
 \S4method{compact_rows}{ANY}(x)
 }
 \arguments{
-\item{x}{An object (should be a \code{\link{matrix}} or a \code{\link{data.frame}}).}
+\item{x}{An \R object (should be a \code{\link{matrix}} or a \code{\link{data.frame}}).}
 
 \item{...}{Currently not used.}
 
@@ -81,6 +81,7 @@ Other data cleaning tools:
 \code{\link{infinite}},
 \code{\link{keep}()},
 \code{\link{missing}},
+\code{\link{remove_constant}()},
 \code{\link{zero}}
 }
 \author{

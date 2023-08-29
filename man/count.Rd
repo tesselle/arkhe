@@ -15,7 +15,7 @@ count(x, f, ...)
 \S4method{count}{matrix,`function`}(x, f, margin = 1, negate = FALSE, ...)
 }
 \arguments{
-\item{x}{An object (should be a \code{\link{matrix}} or a \code{\link{data.frame}}).}
+\item{x}{An \R object (should be a \code{\link{matrix}} or a \code{\link{data.frame}}).}
 
 \item{f}{A predicate \code{\link{function}}.}
 
@@ -73,6 +73,7 @@ Other data cleaning tools:
 \code{\link{infinite}},
 \code{\link{keep}()},
 \code{\link{missing}},
+\code{\link{remove_constant}()},
 \code{\link{zero}}
 }
 \author{

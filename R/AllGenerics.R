@@ -7,7 +7,7 @@ NULL
 #' Count values using a predicate
 #'
 #' Counts values by rows/columns using a predicate function.
-#' @param x An object (should be a [`matrix`] or a [`data.frame`]).
+#' @param x An \R object (should be a [`matrix`] or a [`data.frame`]).
 #' @param f A predicate [`function`].
 #' @param margin A vector giving the subscripts which the function will be
 #'  applied over (`1` indicates rows, `2` indicates columns).
@@ -209,7 +209,9 @@ setGeneric(
 #'  * `replace_zero` replaces zeros.
 #' @inheritParams detect
 #' @param value A possible replacement value.
-#' @param ... Further arguments to be passed to [is_zero()].
+#' @param na.rm A [`logical`] scalar: should `NA` values be stripped before the
+#'  computation proceeds?
+#' @param ... Currently not used.
 #' @example inst/examples/ex-clean.R
 #' @author N. Frerebeau
 #' @docType methods
@@ -230,6 +232,23 @@ setGeneric(
 setGeneric(
   name = "replace_zero",
   def = function(x, ...) standardGeneric("replace_zero")
+)
+
+### Constant -------------------------------------------------------------------
+#' Remove Constant Columns
+#'
+#' @param x An \R object (should be a [`matrix`] or a [`data.frame`]).
+#' @param na.rm A [`logical`] scalar: should `NA` values be stripped before the
+#'  computation proceeds?
+#' @param ... Currently not used.
+#' @example inst/examples/ex-clean.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family data cleaning tools
+#' @aliases remove_constant-method
+setGeneric(
+  name = "remove_constant",
+  def = function(x, ...) standardGeneric("remove_constant")
 )
 
 # Data transformation ==========================================================

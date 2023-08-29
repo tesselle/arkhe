@@ -15,14 +15,14 @@ remove_zero(x, ...)
 
 replace_zero(x, ...)
 
-\S4method{remove_zero}{ANY}(x, margin = 1, all = FALSE, ...)
+\S4method{remove_zero}{ANY}(x, margin = 1, all = FALSE, na.rm = FALSE)
 
 \S4method{replace_zero}{matrix}(x, value)
 }
 \arguments{
-\item{x}{An object (should be a \code{\link{matrix}} or a \code{\link{data.frame}}).}
+\item{x}{An \R object (should be a \code{\link{matrix}} or a \code{\link{data.frame}}).}
 
-\item{...}{Further arguments to be passed to \code{\link[=is_zero]{is_zero()}}.}
+\item{...}{Currently not used.}
 
 \item{margin}{A vector giving the subscripts which the function will be
 applied over (\code{1} indicates rows, \code{2} indicates columns).}
@@ -31,6 +31,9 @@ applied over (\code{1} indicates rows, \code{2} indicates columns).}
 values all meet the condition defined by \code{f} are considered. If \code{FALSE}
 (the default), only rows/columns where at least one value validates the
 condition defined by \code{f} are considered.}
+
+\item{na.rm}{A \code{\link{logical}} scalar: should \code{NA} values be stripped before the
+computation proceeds?}
 
 \item{value}{A possible replacement value.}
 }
@@ -80,7 +83,8 @@ Other data cleaning tools:
 \code{\link{discard}()},
 \code{\link{infinite}},
 \code{\link{keep}()},
-\code{\link{missing}}
+\code{\link{missing}},
+\code{\link{remove_constant}()}
 }
 \author{
 N. Frerebeau

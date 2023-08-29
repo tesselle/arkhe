@@ -194,6 +194,17 @@ test_that("Remove zeros", {
   expect_gt(ncol(clean_col), 0)
   expect_equal(nrow(clean_col), nrow(mtx))
 })
+test_that("Constant columns", {
+  df1 <- data.frame(A = 1, B = 1:3)
+  df2 <- data.frame(B = 1:3)
+
+  expect_equal(remove_constant(df1), df2)
+
+  df1[1, 1] <- NA # Add NA
+  expect_equal(remove_constant(df1), df1)
+
+  expect_equal(remove_constant(df1, na.rm = TRUE), df2)
+})
 # Empty rows/columns ===========================================================
 test_that("Compact (numeric)", {
   num <- sample(1:10, 25, TRUE) # Create matrix

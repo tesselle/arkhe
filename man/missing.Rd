@@ -20,7 +20,7 @@ replace_NA(x, ...)
 \S4method{replace_NA}{matrix}(x, value = 0)
 }
 \arguments{
-\item{x}{An object (should be a \code{\link{matrix}} or a \code{\link{data.frame}}).}
+\item{x}{An \R object (should be a \code{\link{matrix}} or a \code{\link{data.frame}}).}
 
 \item{...}{Currently not used.}
 
@@ -80,6 +80,7 @@ Other data cleaning tools:
 \code{\link{discard}()},
 \code{\link{infinite}},
 \code{\link{keep}()},
+\code{\link{remove_constant}()},
 \code{\link{zero}}
 }
 \author{

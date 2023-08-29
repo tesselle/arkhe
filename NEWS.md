@@ -1,4 +1,5 @@
 # arkhe 1.2.0.9000
+* Add `remove_constant()` to remove constant columns.
 
 # arkhe 1.2.0
 ## New classes and methods
