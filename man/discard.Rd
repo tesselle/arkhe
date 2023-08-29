@@ -11,7 +11,7 @@
 \alias{discard,ANY,function-method}
 \alias{discard_rows,ANY,function-method}
 \alias{discard_cols,ANY,function-method}
-\title{Remove rows/columns using a predicate}
+\title{Remove Rows/Columns Using a Predicate}
 \usage{
 discard(x, f, ...)
 
@@ -47,7 +47,7 @@ condition defined by \code{f} are considered.}
 Removes rows/columns in an array-like object using a predicate function.
 }
 \examples{
-## Create a count data matrix
+## Create a data matrix
 X <- matrix(sample(1:10, 25, TRUE), nrow = 5, ncol = 5)
 
 ## Add NA
@@ -55,28 +55,10 @@ k <- sample(1:25, 3, FALSE)
 X[k] <- NA
 X
 
-## Count missing values in rows
-count(X, f = is.na, margin = 1)
-## Count non-missing values in columns
-count(X, f = is.na, margin = 2, negate = TRUE)
-
-## Find row with NA
-detect(X, f = is.na, margin = 1)
-## Find column without any NA
-detect(X, f = is.na, margin = 2, negate = TRUE, all = TRUE)
-
-## Keep row without any NA
-keep(X, f = is.na, margin = 1, negate = TRUE, all = TRUE)
-## Keep row without any NA
-keep(X, f = is.na, margin = 2, negate = TRUE, all = TRUE)
-
 ## Remove row with any NA
 discard(X, f = is.na, margin = 1, all = FALSE)
 ## Remove column with any NA
 discard(X, f = is.na, margin = 2, all = FALSE)
-
-## Replace NA with zeros
-replace_NA(X, value = 0)
 }
 \seealso{
 Other data cleaning tools: 

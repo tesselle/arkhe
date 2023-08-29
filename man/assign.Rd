@@ -9,7 +9,7 @@
 \alias{assign_rownames-method}
 \alias{assign_rownames,data.frame-method}
 \alias{assign_colnames,data.frame-method}
-\title{Assign a specific row/column to the column/row names}
+\title{Assign a Specific Row/Column to the Column/Row Names}
 \usage{
 assign_colnames(x, ...)
 
@@ -37,7 +37,7 @@ to become the column names.}
 A \code{\link{data.frame}}.
 }
 \description{
-Assign a specific row/column to the column/row names
+Assign a Specific Row/Column to the Column/Row Names
 }
 \examples{
 X <- data.frame(

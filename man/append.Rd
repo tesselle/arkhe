@@ -6,7 +6,7 @@
 \alias{append_rownames}
 \alias{append_rownames-method}
 \alias{append_rownames,data.frame-method}
-\title{Convert row names to an explicit column}
+\title{Convert Row Names to an Explicit Column}
 \usage{
 append_rownames(x, ...)
 
@@ -29,7 +29,7 @@ names.}
 A \code{\link{data.frame}}.
 }
 \description{
-Convert row names to an explicit column
+Convert Row Names to an Explicit Column
 }
 \examples{
 X <- data.frame(

@@ -26,36 +26,15 @@ computation proceeds?}
 Remove Constant Columns
 }
 \examples{
-## Create a count data matrix
-X <- matrix(sample(1:10, 25, TRUE), nrow = 5, ncol = 5)
+## Create a data.frame
+df <- data.frame(A = 1, B = 1:3)
+
+remove_constant(df)
 
 ## Add NA
-k <- sample(1:25, 3, FALSE)
-X[k] <- NA
-X
-
-## Count missing values in rows
-count(X, f = is.na, margin = 1)
-## Count non-missing values in columns
-count(X, f = is.na, margin = 2, negate = TRUE)
-
-## Find row with NA
-detect(X, f = is.na, margin = 1)
-## Find column without any NA
-detect(X, f = is.na, margin = 2, negate = TRUE, all = TRUE)
-
-## Keep row without any NA
-keep(X, f = is.na, margin = 1, negate = TRUE, all = TRUE)
-## Keep row without any NA
-keep(X, f = is.na, margin = 2, negate = TRUE, all = TRUE)
-
-## Remove row with any NA
-discard(X, f = is.na, margin = 1, all = FALSE)
-## Remove column with any NA
-discard(X, f = is.na, margin = 2, all = FALSE)
-
-## Replace NA with zeros
-replace_NA(X, value = 0)
+df[1, 1] <- NA
+remove_constant(df)
+remove_constant(df, na.rm = TRUE)
 }
 \seealso{
 Other data cleaning tools: 

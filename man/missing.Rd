@@ -9,7 +9,7 @@
 \alias{replace_NA-method}
 \alias{remove_NA,ANY-method}
 \alias{replace_NA,matrix-method}
-\title{Tools for working with missing values}
+\title{Tools for Working With Missing Values}
 \usage{
 remove_NA(x, ...)
 
@@ -41,7 +41,7 @@ condition defined by \code{f} are considered.}
 }
 }
 \examples{
-## Create a count data matrix
+## Create a data matrix
 X <- matrix(sample(1:10, 25, TRUE), nrow = 5, ncol = 5)
 
 ## Add NA
@@ -49,25 +49,8 @@ k <- sample(1:25, 3, FALSE)
 X[k] <- NA
 X
 
-## Count missing values in rows
-count(X, f = is.na, margin = 1)
-## Count non-missing values in columns
-count(X, f = is.na, margin = 2, negate = TRUE)
-
-## Find row with NA
-detect(X, f = is.na, margin = 1)
-## Find column without any NA
-detect(X, f = is.na, margin = 2, negate = TRUE, all = TRUE)
-
-## Keep row without any NA
-keep(X, f = is.na, margin = 1, negate = TRUE, all = TRUE)
-## Keep row without any NA
-keep(X, f = is.na, margin = 2, negate = TRUE, all = TRUE)
-
-## Remove row with any NA
-discard(X, f = is.na, margin = 1, all = FALSE)
-## Remove column with any NA
-discard(X, f = is.na, margin = 2, all = FALSE)
+## Remove rows with NA
+remove_NA(X, margin = 1)
 
 ## Replace NA with zeros
 replace_NA(X, value = 0)

@@ -9,7 +9,7 @@
 \alias{replace_Inf-method}
 \alias{remove_Inf,ANY-method}
 \alias{replace_Inf,matrix-method}
-\title{Tools for working with infinite values}
+\title{Tools for Working With Infinite Values}
 \usage{
 remove_Inf(x, ...)
 
@@ -41,36 +41,19 @@ condition defined by \code{f} are considered.}
 }
 }
 \examples{
-## Create a count data matrix
+## Create a data matrix
 X <- matrix(sample(1:10, 25, TRUE), nrow = 5, ncol = 5)
 
-## Add NA
+## Add Inf
 k <- sample(1:25, 3, FALSE)
-X[k] <- NA
+X[k] <- Inf
 X
 
-## Count missing values in rows
-count(X, f = is.na, margin = 1)
-## Count non-missing values in columns
-count(X, f = is.na, margin = 2, negate = TRUE)
+## Remove rows with Inf
+remove_Inf(X, margin = 1)
 
-## Find row with NA
-detect(X, f = is.na, margin = 1)
-## Find column without any NA
-detect(X, f = is.na, margin = 2, negate = TRUE, all = TRUE)
-
-## Keep row without any NA
-keep(X, f = is.na, margin = 1, negate = TRUE, all = TRUE)
-## Keep row without any NA
-keep(X, f = is.na, margin = 2, negate = TRUE, all = TRUE)
-
-## Remove row with any NA
-discard(X, f = is.na, margin = 1, all = FALSE)
-## Remove column with any NA
-discard(X, f = is.na, margin = 2, all = FALSE)
-
-## Replace NA with zeros
-replace_NA(X, value = 0)
+## Replace Inf with zeros
+replace_Inf(X, value = 0)
 }
 \seealso{
 Other data cleaning tools: 

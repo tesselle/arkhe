@@ -1,10 +1,8 @@
 # GENERIC METHODS
-#' @importFrom methods setGeneric setMethod .valueClassTest
-NULL
 
 # Data cleaning ================================================================
 ## Count -----------------------------------------------------------------------
-#' Count values using a predicate
+#' Count Values Using a Predicate
 #'
 #' Counts values by rows/columns using a predicate function.
 #' @param x An \R object (should be a [`matrix`] or a [`data.frame`]).
@@ -15,7 +13,7 @@ NULL
 #'  instead of `f`?
 #' @param ... Further arguments to be passed to `f`.
 #' @return A [`numeric`] vector.
-#' @example inst/examples/ex-clean.R
+#' @example inst/examples/ex-count.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family data cleaning tools
@@ -26,7 +24,7 @@ setGeneric(
 )
 
 ## Detect ----------------------------------------------------------------------
-#' Find rows/columns using a predicate
+#' Find Rows/Columns Using a Predicate
 #'
 #' Finds rows/columns in an array-like object using a predicate function.
 #' @inheritParams count
@@ -36,7 +34,7 @@ setGeneric(
 #'  condition defined by `f` are considered.
 #' @param ... Further arguments to be passed to `f`.
 #' @return A [`logical`] vector.
-#' @example inst/examples/ex-clean.R
+#' @example inst/examples/ex-detect.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family data cleaning tools
@@ -47,11 +45,11 @@ setGeneric(
 )
 
 ## Keep ------------------------------------------------------------------------
-#' Keep rows/columns using a predicate
+#' Keep Rows/Columns Using a Predicate
 #'
 #' Keeps rows/columns in an array-like object using a predicate function.
 #' @inheritParams detect
-#' @example inst/examples/ex-clean.R
+#' @example inst/examples/ex-keep.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family data cleaning tools
@@ -76,11 +74,11 @@ setGeneric(
 )
 
 ## Discard ---------------------------------------------------------------------
-#' Remove rows/columns using a predicate
+#' Remove Rows/Columns Using a Predicate
 #'
 #' Removes rows/columns in an array-like object using a predicate function.
 #' @inheritParams detect
-#' @example inst/examples/ex-clean.R
+#' @example inst/examples/ex-discard.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family data cleaning tools
@@ -105,7 +103,7 @@ setGeneric(
 )
 
 ## Compact ---------------------------------------------------------------------
-#' Remove empty rows/columns
+#' Remove Empty Rows/Columns
 #'
 #' Removes empty rows/columns in an array-like object using a predicate
 #' function.
@@ -114,7 +112,7 @@ setGeneric(
 #' @details
 #'  A row/column is empty if it contains only `NA`, zeros (if of type `numeric`)
 #'  or zero length character strings (if of type `character`).
-#' @example inst/examples/ex-clean.R
+#' @example inst/examples/ex-compact.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family data cleaning tools
@@ -140,7 +138,7 @@ setGeneric(
 
 ## Remove ----------------------------------------------------------------------
 ### NA --------------------------------------------------------------------------
-#' Tools for working with missing values
+#' Tools for Working With Missing Values
 #'
 #' @description
 #'  * `remove_NA()` remove rows/columns that contain [missing values][NA].
@@ -148,7 +146,7 @@ setGeneric(
 #' @inheritParams detect
 #' @param value A possible replacement value.
 #' @param ... Currently not used.
-#' @example inst/examples/ex-clean.R
+#' @example inst/examples/ex-missing.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family data cleaning tools
@@ -171,7 +169,7 @@ setGeneric(
 )
 
 ### Inf -------------------------------------------------------------------------
-#' Tools for working with infinite values
+#' Tools for Working With Infinite Values
 #'
 #' @description
 #'  * `remove_Inf()` remove rows/columns that contain [infinite values][is.finite].
@@ -179,7 +177,7 @@ setGeneric(
 #' @inheritParams detect
 #' @param value A possible replacement value.
 #' @param ... Currently not used.
-#' @example inst/examples/ex-clean.R
+#' @example inst/examples/ex-infinite.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family data cleaning tools
@@ -202,7 +200,7 @@ setGeneric(
 )
 
 ### Zeros -----------------------------------------------------------------------
-#' Tools for working with zeros
+#' Tools for Working With Zeros
 #'
 #' @description
 #'  * `remove_zero()` remove rows/columns that contain zeros.
@@ -212,7 +210,7 @@ setGeneric(
 #' @param na.rm A [`logical`] scalar: should `NA` values be stripped before the
 #'  computation proceeds?
 #' @param ... Currently not used.
-#' @example inst/examples/ex-clean.R
+#' @example inst/examples/ex-zero.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family data cleaning tools
@@ -241,7 +239,7 @@ setGeneric(
 #' @param na.rm A [`logical`] scalar: should `NA` values be stripped before the
 #'  computation proceeds?
 #' @param ... Currently not used.
-#' @example inst/examples/ex-clean.R
+#' @example inst/examples/ex-constant.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family data cleaning tools
@@ -253,7 +251,7 @@ setGeneric(
 
 # Data transformation ==========================================================
 ## Assign ----------------------------------------------------------------------
-#' Assign a specific row/column to the column/row names
+#' Assign a Specific Row/Column to the Column/Row Names
 #'
 #'
 #' @param x A [`data.frame`].
@@ -287,7 +285,7 @@ setGeneric(
   def = function(x, ...) standardGeneric("assign_rownames")
 )
 
-#' Convert row names to an explicit column
+#' Convert Row Names to an Explicit Column
 #'
 #' @param x A [`data.frame`].
 #' @param after A length-one [`numeric`] vector specifying a subscript,
@@ -564,20 +562,3 @@ setGeneric(
   name = "jackknife",
   def = function(object, ...) standardGeneric("jackknife")
 )
-
-# Deprecated ===================================================================
-#' Deprecated Methods
-#'
-#' @param object A [`numeric`] vector.
-#' @param level A length-one [`numeric`] vector giving the confidence level.
-#'  Must be a single number between \eqn{0} and \eqn{1}.
-#' @param type A [`character`] string giving the type of confidence
-#'  interval to be returned. It must be one "`student`" (the default) or
-#'  "`normal`". Any unambiguous substring can be given.
-#' @param ... Currently not used.
-#' @author N. Frerebeau
-#' @docType methods
-#' @name deprecate
-#' @rdname deprecate
-#' @keywords internal
-NULL

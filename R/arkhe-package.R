@@ -35,3 +35,6 @@
 #' @docType package
 #' @keywords internal
 "_PACKAGE"
+
+#' @importFrom methods setGeneric setMethod .valueClassTest
+NULL

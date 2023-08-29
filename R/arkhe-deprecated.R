@@ -1,6 +1,11 @@
-# DEPRECATED
+#' Deprecated Functions in arkhe
+#'
+#' These functions still work but will be removed (defunct) in the next version.
+#' @name arkhe-deprecated
+#' @keywords internal
+NULL
 
-#' @rdname deprecate
+#' @rdname arkhe-deprecated
 #' @aliases confidence-method
 setGeneric(
   name = "confidence",
@@ -8,7 +13,7 @@ setGeneric(
 )
 
 #' @export
-#' @rdname deprecate
+#' @rdname arkhe-deprecated
 #' @aliases confidence,numeric-method
 setMethod(
   f = "confidence",

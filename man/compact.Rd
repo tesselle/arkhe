@@ -11,7 +11,7 @@
 \alias{compact,ANY-method}
 \alias{compact_cols,ANY-method}
 \alias{compact_rows,ANY-method}
-\title{Remove empty rows/columns}
+\title{Remove Empty Rows/Columns}
 \usage{
 compact(x, ...)
 
@@ -42,36 +42,12 @@ A row/column is empty if it contains only \code{NA}, zeros (if of type \code{num
 or zero length character strings (if of type \code{character}).
 }
 \examples{
-## Create a count data matrix
-X <- matrix(sample(1:10, 25, TRUE), nrow = 5, ncol = 5)
-
-## Add NA
-k <- sample(1:25, 3, FALSE)
-X[k] <- NA
+## Create a data.frame
+X <- data.frame(A = 0, B = 1:5, C = 6, D = "", F = letters[1:5])
 X
 
-## Count missing values in rows
-count(X, f = is.na, margin = 1)
-## Count non-missing values in columns
-count(X, f = is.na, margin = 2, negate = TRUE)
-
-## Find row with NA
-detect(X, f = is.na, margin = 1)
-## Find column without any NA
-detect(X, f = is.na, margin = 2, negate = TRUE, all = TRUE)
-
-## Keep row without any NA
-keep(X, f = is.na, margin = 1, negate = TRUE, all = TRUE)
-## Keep row without any NA
-keep(X, f = is.na, margin = 2, negate = TRUE, all = TRUE)
-
-## Remove row with any NA
-discard(X, f = is.na, margin = 1, all = FALSE)
-## Remove column with any NA
-discard(X, f = is.na, margin = 2, all = FALSE)
-
-## Replace NA with zeros
-replace_NA(X, value = 0)
+## Remove empty columns
+compact(X, margin = 2)
 }
 \seealso{
 Other data cleaning tools: 

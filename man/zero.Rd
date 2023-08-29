@@ -9,7 +9,7 @@
 \alias{replace_zero-method}
 \alias{remove_zero,ANY-method}
 \alias{replace_zero,matrix-method}
-\title{Tools for working with zeros}
+\title{Tools for Working With Zeros}
 \usage{
 remove_zero(x, ...)
 
@@ -44,36 +44,19 @@ computation proceeds?}
 }
 }
 \examples{
-## Create a count data matrix
+## Create a data matrix
 X <- matrix(sample(1:10, 25, TRUE), nrow = 5, ncol = 5)
 
-## Add NA
+## Add zero
 k <- sample(1:25, 3, FALSE)
-X[k] <- NA
+X[k] <- 0
 X
 
-## Count missing values in rows
-count(X, f = is.na, margin = 1)
-## Count non-missing values in columns
-count(X, f = is.na, margin = 2, negate = TRUE)
+## Remove rows with zero
+remove_zero(X, margin = 1)
 
-## Find row with NA
-detect(X, f = is.na, margin = 1)
-## Find column without any NA
-detect(X, f = is.na, margin = 2, negate = TRUE, all = TRUE)
-
-## Keep row without any NA
-keep(X, f = is.na, margin = 1, negate = TRUE, all = TRUE)
-## Keep row without any NA
-keep(X, f = is.na, margin = 2, negate = TRUE, all = TRUE)
-
-## Remove row with any NA
-discard(X, f = is.na, margin = 1, all = FALSE)
-## Remove column with any NA
-discard(X, f = is.na, margin = 2, all = FALSE)
-
-## Replace NA with zeros
-replace_NA(X, value = 0)
+## Replace zero with zeros
+replace_zero(X, value = 1)
 }
 \seealso{
 Other data cleaning tools: 

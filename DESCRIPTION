@@ -39,6 +39,7 @@ Roxygen: list(markdown = TRUE)
 Collate: 
     'AllGenerics.R'
     'append.R'
+    'arkhe-deprecated.R'
     'arkhe-package.R'
     'predicates.R'
     'assert.R'
@@ -46,7 +47,6 @@ Collate:
     'compact.R'
     'conditions.R'
     'count.R'
-    'deprecate.R'
     'detect.R'
     'discard.R'
     'keep.R'
