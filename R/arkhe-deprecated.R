@@ -6,20 +6,50 @@
 NULL
 
 #' @rdname arkhe-deprecated
-#' @aliases confidence-method
+#' @aliases wide_to_long-method
 setGeneric(
-  name = "confidence",
-  def = function(object, ...) standardGeneric("confidence")
+  name = "wide_to_long",
+  def = function(from, ...) standardGeneric("wide_to_long"),
+  valueClass = "data.frame"
+)
+
+#' @rdname arkhe-deprecated
+#' @aliases to_long-method
+setGeneric(
+  name = "to_long",
+  def = function(from, ...) standardGeneric("to_long"),
+  valueClass = "data.frame"
 )
 
 #' @export
 #' @rdname arkhe-deprecated
-#' @aliases confidence,numeric-method
+#' @aliases wide_to_long,matrix-method
 setMethod(
-  f = "confidence",
-  signature = c(object = "numeric"),
-  definition = function(object, level = 0.95, type = c("student", "normal")) {
-    .Deprecated("confidence_mean()", old = "confidence()")
-    confidence_mean(object, level = level, type = type)
+  f = "wide_to_long",
+  signature = signature(from = "matrix"),
+  definition = function(from, factor = FALSE, reverse = FALSE) {
+    .Deprecated(old = "wide_to_long")
+    x <- data.frame(
+      row = as.vector(row(from, as.factor = factor)),
+      column = as.vector(col(from, as.factor = factor)),
+      value = as.vector(from),
+      stringsAsFactors = FALSE
+    )
+    if (factor) {
+      x$row <- as_factor(x$row, reverse = reverse)
+      x$column <- as_factor(x$column, reverse = reverse)
+    }
+    x
+  }
+)
+
+#' @export
+#' @rdname arkhe-deprecated
+#' @aliases to_long,matrix-method
+setMethod(
+  f = "to_long",
+  signature = signature(from = "matrix"),
+  definition = function(from, factor = FALSE, reverse = FALSE) {
+    wide_to_long(from, factor = factor, reverse = reverse)
   }
 )

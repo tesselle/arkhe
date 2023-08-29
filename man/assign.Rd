@@ -54,8 +54,7 @@ X <- data.frame(
 }
 \seealso{
 Other transformation tools: 
-\code{\link{append}()},
-\code{\link{reshape}()}
+\code{\link{append}()}
 }
 \author{
 N. Frerebeau

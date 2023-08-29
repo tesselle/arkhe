@@ -4,6 +4,7 @@
 
 ## Bugfixes & changes
 * Remove deprecated methods.
+* Deprecate `to_long()` and `wide_to_long()`.
 
 ## Internals
 * Use **tinytest** instead of **testthat**.

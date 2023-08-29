@@ -310,43 +310,6 @@ setGeneric(
   def = function(x, ...) standardGeneric("append_rownames")
 )
 
-
-## Reshape ---------------------------------------------------------------------
-#' Reshape
-#'
-#' Transforms a `matrix` to a long `data.frame`.
-#' @param from An object to be coerced.
-#' @param factor A [`logical`] scalar: should character string be
-#'  coerced to [`factor`]? Default to `FALSE`, if `TRUE` the original ordering is
-#'  preserved.
-#' @param reverse A [`logical`] scalar: should the order of factor levels be
-#'  reversed? Only used if `factor` is `TRUE`. Useful for plotting.
-#' @param ... Currently not used.
-#' @return A coerced object.
-#' @example inst/examples/ex-reshape.R
-#' @author N. Frerebeau
-#' @docType methods
-#' @family transformation tools
-#' @name reshape
-#' @rdname reshape
-NULL
-
-#' @rdname reshape
-#' @aliases wide_to_long-method
-setGeneric(
-  name = "wide_to_long",
-  def = function(from, ...) standardGeneric("wide_to_long"),
-  valueClass = "data.frame"
-)
-
-#' @rdname reshape
-#' @aliases to_long-method
-setGeneric(
-  name = "to_long",
-  def = function(from, ...) standardGeneric("to_long"),
-  valueClass = "data.frame"
-)
-
 # Mathematics ==================================================================
 #' Least Common Multiple
 #'

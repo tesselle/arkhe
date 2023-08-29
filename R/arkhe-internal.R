@@ -41,9 +41,6 @@ with_seed <- function(expr, seed, ..., envir = parent.frame(), rounding = TRUE) 
 # Helpers ======================================================================
 #' Helpers
 #'
-# * `compact()` removes elements from a list or vector.
-# * `detect()` finds values in a list or vector according to a given predicate.
-# * `count()` counts values in a list or vector according to a given predicate.
 #' * `extract()` extracts a string form another string based on a pattern.
 #' * `\%o\%` allows for function composition.
 #' * `\%||\%` allows to define a default value.
@@ -62,15 +59,27 @@ with_seed <- function(expr, seed, ..., envir = parent.frame(), rounding = TRUE) 
 `%o%` <- function(f, g) {
   function(...) f(g(...))
 }
-# compact <- function(f, x) {
-#   Filter(Negate(f), x)
-# }
-# detect <- function(f, x) {
-#   vapply(x, f, logical(1))
-# }
-# count <- function(f, x) {
-#   sum(detect(f, x))
-# }
 extract <- function(x, pattern) {
   regmatches(x, regexpr(pattern, x))
+}
+
+#' Factors
+#'
+#' @param x A vector to be coerced.
+#' @param reverse A [`logical`] scalar: should the order of factor
+#'  levels be reversed? Useful for plotting.
+#' @details
+#'  Encodes a vector as a factor without sorting it (preserves original
+#'  ordering or reverse it if `reverse` is `TRUE`).
+#' @return An [`factor`] object.
+#' @author N. Frerebeau
+#' @family utilities
+#' @keywords internal utilities
+#' @noRd
+as_factor <- function(x, reverse = FALSE) {
+  lvl <- unique(x)
+  if (reverse) {
+    lvl <- rev(lvl)
+  }
+  factor(x, levels = lvl)
 }

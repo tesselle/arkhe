@@ -46,8 +46,7 @@ X <- data.frame(
 }
 \seealso{
 Other transformation tools: 
-\code{\link{assign}()},
-\code{\link{reshape}()}
+\code{\link{assign}()}
 }
 \author{
 N. Frerebeau
