@@ -2,7 +2,7 @@
 #' @include AllGenerics.R
 NULL
 
-## compact rows/columns --------------------------------------------------------
+## compact rows/columns ========================================================
 #' @export
 #' @rdname compact
 #' @aliases compact,ANY-method

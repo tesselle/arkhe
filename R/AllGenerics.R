@@ -13,7 +13,7 @@ NULL
 #'  applied over (`1` indicates rows, `2` indicates columns).
 #' @param negate A [`logical`] scalar: should the negation of `f` be used
 #'  instead of `f`?
-#' @param ... Currently not used.
+#' @param ... Further arguments to be passed to `f`.
 #' @return A [`numeric`] vector.
 #' @example inst/examples/ex-clean.R
 #' @author N. Frerebeau
@@ -34,7 +34,7 @@ setGeneric(
 #'  values all meet the condition defined by `f` are considered. If `FALSE`
 #'  (the default), only rows/columns where at least one value validates the
 #'  condition defined by `f` are considered.
-#' @param ... Currently not used.
+#' @param ... Further arguments to be passed to `f`.
 #' @return A [`logical`] vector.
 #' @example inst/examples/ex-clean.R
 #' @author N. Frerebeau
@@ -51,7 +51,6 @@ setGeneric(
 #'
 #' Keeps rows/columns in an array-like object using a predicate function.
 #' @inheritParams detect
-#' @param ... Currently not used.
 #' @example inst/examples/ex-clean.R
 #' @author N. Frerebeau
 #' @docType methods
@@ -81,7 +80,6 @@ setGeneric(
 #'
 #' Removes rows/columns in an array-like object using a predicate function.
 #' @inheritParams detect
-#' @param ... Currently not used.
 #' @example inst/examples/ex-clean.R
 #' @author N. Frerebeau
 #' @docType methods
@@ -211,7 +209,7 @@ setGeneric(
 #'  * `replace_zero` replaces zeros.
 #' @inheritParams detect
 #' @param value A possible replacement value.
-#' @param ... Currently not used.
+#' @param ... Further arguments to be passed to [is_zero()].
 #' @example inst/examples/ex-clean.R
 #' @author N. Frerebeau
 #' @docType methods

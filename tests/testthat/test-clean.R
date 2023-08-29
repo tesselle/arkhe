@@ -8,7 +8,7 @@ test_that("Count", {
   expect_equal(count(mtx, f = is.na, margin = 1), c(0, 1, 1, 1, 0))
   ## Count non-missing values in columns
   no_na <- count(mtx, f = is.na, margin = 2, negate = TRUE)
-  expect_equal(no_na, c(3, 5, 4))
+  expect_equal(no_na, c(V1 = 3, V2 = 5, V3 = 4))
 
   df <- as.data.frame(mtx)
 
@@ -28,7 +28,7 @@ test_that("Detect", {
   expect_equal(detect(mtx, f = is.na, margin = 1), c(FALSE, TRUE, TRUE, TRUE, FALSE))
   ## Find column without any NA
   no_na <- detect(mtx, f = is.na, margin = 2, negate = TRUE, all = TRUE)
-  expect_equal(no_na, c(FALSE, TRUE, FALSE))
+  expect_equal(no_na, c(V1 = FALSE, V2 = TRUE, V3 = FALSE))
 
   df <- as.data.frame(mtx)
 

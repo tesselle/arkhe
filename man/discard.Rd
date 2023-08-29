@@ -19,18 +19,18 @@ discard_cols(x, f, ...)
 
 discard_rows(x, f, ...)
 
-\S4method{discard}{ANY,`function`}(x, f, margin = 1, negate = FALSE, all = FALSE)
+\S4method{discard}{ANY,`function`}(x, f, margin = 1, negate = FALSE, all = FALSE, ...)
 
-\S4method{discard_rows}{ANY,`function`}(x, f, negate = FALSE, all = FALSE)
+\S4method{discard_rows}{ANY,`function`}(x, f, negate = FALSE, all = FALSE, ...)
 
-\S4method{discard_cols}{ANY,`function`}(x, f, negate = FALSE, all = FALSE)
+\S4method{discard_cols}{ANY,`function`}(x, f, negate = FALSE, all = FALSE, ...)
 }
 \arguments{
 \item{x}{An object (should be a \code{\link{matrix}} or a \code{\link{data.frame}}).}
 
 \item{f}{A predicate \code{\link{function}}.}
 
-\item{...}{Currently not used.}
+\item{...}{Further arguments to be passed to \code{f}.}
 
 \item{margin}{A vector giving the subscripts which the function will be
 applied over (\code{1} indicates rows, \code{2} indicates columns).}
