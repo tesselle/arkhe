@@ -27,14 +27,15 @@ Remove Constant Columns
 }
 \examples{
 ## Create a data.frame
-df <- data.frame(A = 1, B = 1:3)
+X <- data.frame(A = 1, B = 1:3)
+X
 
-remove_constant(df)
+remove_constant(X)
 
 ## Add NA
-df[1, 1] <- NA
-remove_constant(df)
-remove_constant(df, na.rm = TRUE)
+X[1, 1] <- NA
+remove_constant(X)
+remove_constant(X, na.rm = TRUE)
 }
 \seealso{
 Other data cleaning tools: 

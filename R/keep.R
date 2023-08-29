@@ -11,8 +11,8 @@ setMethod(
   signature = signature(x = "ANY", f = "function"),
   definition = function(x, f, margin = 1, negate = FALSE, all = FALSE, ...) {
     i <- detect(x, f = f, margin = margin, negate = negate, all = all, ...)
-    if (margin == 1) return(x[i, , drop = FALSE])
-    if (margin == 2) return(x[, i, drop = FALSE])
+    if (any(margin == 1)) return(x[i, , drop = FALSE])
+    if (any(margin == 2)) return(x[, i, drop = FALSE])
     x
   }
 )

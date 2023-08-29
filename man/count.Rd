@@ -10,9 +10,9 @@
 \usage{
 count(x, f, ...)
 
-\S4method{count}{data.frame,`function`}(x, f, margin = 1, negate = FALSE, ...)
+\S4method{count}{data.frame,`function`}(x, f, margin = 1, negate = FALSE, na.rm = FALSE, ...)
 
-\S4method{count}{matrix,`function`}(x, f, margin = 1, negate = FALSE, ...)
+\S4method{count}{matrix,`function`}(x, f, margin = 1, negate = FALSE, na.rm = FALSE, ...)
 }
 \arguments{
 \item{x}{An \R object (should be a \code{\link{matrix}} or a \code{\link{data.frame}}).}
@@ -21,11 +21,14 @@ count(x, f, ...)
 
 \item{...}{Further arguments to be passed to \code{f}.}
 
-\item{margin}{A vector giving the subscripts which the function will be
-applied over (\code{1} indicates rows, \code{2} indicates columns).}
+\item{margin}{A length-one \code{\link{numeric}} vector giving the subscripts which the
+function will be applied over (\code{1} indicates rows, \code{2} indicates columns).}
 
 \item{negate}{A \code{\link{logical}} scalar: should the negation of \code{f} be used
 instead of \code{f}?}
+
+\item{na.rm}{A \code{\link{logical}} scalar: should \code{NA} values be stripped before the
+computation proceeds?}
 }
 \value{
 A \code{\link{numeric}} vector.

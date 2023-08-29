@@ -13,8 +13,8 @@ setMethod(
     total <- count(x, f, margin = margin, negate = negate, ...)
     k <- 1
     if (all) {
-      if (margin == 1) k <- ncol(x)
-      if (margin == 2) k <- nrow(x)
+      if (any(margin == 1)) k <- ncol(x)
+      if (any(margin == 2)) k <- nrow(x)
     }
     total >= k
   }

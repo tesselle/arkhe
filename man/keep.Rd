@@ -32,8 +32,8 @@ keep_rows(x, f, ...)
 
 \item{...}{Further arguments to be passed to \code{f}.}
 
-\item{margin}{A vector giving the subscripts which the function will be
-applied over (\code{1} indicates rows, \code{2} indicates columns).}
+\item{margin}{A length-one \code{\link{numeric}} vector giving the subscripts which the
+function will be applied over (\code{1} indicates rows, \code{2} indicates columns).}
 
 \item{negate}{A \code{\link{logical}} scalar: should the negation of \code{f} be used
 instead of \code{f}?}

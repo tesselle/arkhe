@@ -24,8 +24,8 @@ replace_Inf(x, ...)
 
 \item{...}{Currently not used.}
 
-\item{margin}{A vector giving the subscripts which the function will be
-applied over (\code{1} indicates rows, \code{2} indicates columns).}
+\item{margin}{A length-one \code{\link{numeric}} vector giving the subscripts which the
+function will be applied over (\code{1} indicates rows, \code{2} indicates columns).}
 
 \item{all}{A \code{\link{logical}} scalar. If \code{TRUE}, only the rows/columns whose
 values all meet the condition defined by \code{f} are considered. If \code{FALSE}

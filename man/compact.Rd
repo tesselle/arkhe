@@ -30,8 +30,8 @@ compact_rows(x, ...)
 
 \item{...}{Currently not used.}
 
-\item{margin}{A vector giving the subscripts which the function will be
-applied over (\code{1} indicates rows, \code{2} indicates columns).}
+\item{margin}{A length-one \code{\link{numeric}} vector giving the subscripts which the
+function will be applied over (\code{1} indicates rows, \code{2} indicates columns).}
 }
 \description{
 Removes empty rows/columns in an array-like object using a predicate

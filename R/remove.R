@@ -46,12 +46,11 @@ setMethod(
   f = "remove_constant",
   signature = signature(x = "data.frame"),
   definition = function(x, na.rm = FALSE) {
-    all_unique <- function(x, na.rm = FALSE) {
+    all_unique <- function(x) {
       if (na.rm) x <- stats::na.omit(x)
       length(unique(x)) <= 1
     }
-    i <- vapply(X = x, FUN = all_unique, FUN.VALUE = logical(1), na.rm = na.rm)
-    x[, !i, drop = FALSE]
+    discard(x, f = all_unique, margin = 2, all = FALSE)
   }
 )
 

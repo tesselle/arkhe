@@ -7,10 +7,12 @@
 #' Counts values by rows/columns using a predicate function.
 #' @param x An \R object (should be a [`matrix`] or a [`data.frame`]).
 #' @param f A predicate [`function`].
-#' @param margin A vector giving the subscripts which the function will be
-#'  applied over (`1` indicates rows, `2` indicates columns).
+#' @param margin A length-one [`numeric`] vector giving the subscripts which the
+#'  function will be applied over (`1` indicates rows, `2` indicates columns).
 #' @param negate A [`logical`] scalar: should the negation of `f` be used
 #'  instead of `f`?
+#' @param na.rm A [`logical`] scalar: should `NA` values be stripped before the
+#'  computation proceeds?
 #' @param ... Further arguments to be passed to `f`.
 #' @return A [`numeric`] vector.
 #' @example inst/examples/ex-count.R
@@ -78,6 +80,8 @@ setGeneric(
 #'
 #' Removes rows/columns in an array-like object using a predicate function.
 #' @inheritParams detect
+#' @param verbose A [`logical`] scalar: should \R report extra information
+#'  on progress?
 #' @example inst/examples/ex-discard.R
 #' @author N. Frerebeau
 #' @docType methods

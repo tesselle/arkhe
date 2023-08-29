@@ -19,11 +19,33 @@ discard_cols(x, f, ...)
 
 discard_rows(x, f, ...)
 
-\S4method{discard}{ANY,`function`}(x, f, margin = 1, negate = FALSE, all = FALSE, ...)
+\S4method{discard}{ANY,`function`}(
+  x,
+  f,
+  margin = 1,
+  negate = FALSE,
+  all = FALSE,
+  verbose = getOption("arkhe.verbose"),
+  ...
+)
 
-\S4method{discard_rows}{ANY,`function`}(x, f, negate = FALSE, all = FALSE, ...)
+\S4method{discard_rows}{ANY,`function`}(
+  x,
+  f,
+  negate = FALSE,
+  all = FALSE,
+  verbose = getOption("arkhe.verbose"),
+  ...
+)
 
-\S4method{discard_cols}{ANY,`function`}(x, f, negate = FALSE, all = FALSE, ...)
+\S4method{discard_cols}{ANY,`function`}(
+  x,
+  f,
+  negate = FALSE,
+  all = FALSE,
+  verbose = getOption("arkhe.verbose"),
+  ...
+)
 }
 \arguments{
 \item{x}{An \R object (should be a \code{\link{matrix}} or a \code{\link{data.frame}}).}
@@ -32,8 +54,8 @@ discard_rows(x, f, ...)
 
 \item{...}{Further arguments to be passed to \code{f}.}
 
-\item{margin}{A vector giving the subscripts which the function will be
-applied over (\code{1} indicates rows, \code{2} indicates columns).}
+\item{margin}{A length-one \code{\link{numeric}} vector giving the subscripts which the
+function will be applied over (\code{1} indicates rows, \code{2} indicates columns).}
 
 \item{negate}{A \code{\link{logical}} scalar: should the negation of \code{f} be used
 instead of \code{f}?}
@@ -42,6 +64,9 @@ instead of \code{f}?}
 values all meet the condition defined by \code{f} are considered. If \code{FALSE}
 (the default), only rows/columns where at least one value validates the
 condition defined by \code{f} are considered.}
+
+\item{verbose}{A \code{\link{logical}} scalar: should \R report extra information
+on progress?}
 }
 \description{
 Removes rows/columns in an array-like object using a predicate function.
