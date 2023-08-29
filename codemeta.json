@@ -51,16 +51,15 @@
   "softwareSuggestions": [
     {
       "@type": "SoftwareApplication",
-      "identifier": "testthat",
-      "name": "testthat",
-      "version": ">= 3.0.0",
+      "identifier": "tinytest",
+      "name": "tinytest",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=testthat"
+      "sameAs": "https://CRAN.R-project.org/package=tinytest"
     }
   ],
   "softwareRequirements": {
@@ -68,7 +67,7 @@
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
-      "version": ">= 3.3"
+      "version": ">= 3.5"
     },
     "2": {
       "@type": "SoftwareApplication",
@@ -87,7 +86,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "247.878KB",
+  "fileSize": "248.04KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",

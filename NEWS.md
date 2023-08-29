@@ -1,5 +1,12 @@
 # arkhe 1.2.0.9000
+## New classes and methods
 * Add `remove_constant()` to remove constant columns.
+
+## Bugfixes & changes
+* Remove deprecated methods.
+
+## Internals
+* Use **tinytest** instead of **testthat**.
 
 # arkhe 1.2.0
 ## New classes and methods
