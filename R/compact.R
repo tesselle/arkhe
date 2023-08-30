@@ -8,7 +8,7 @@ NULL
 #' @aliases compact,ANY-method
 setMethod(
   f = "compact",
-  signature = signature(x = "ANY"),
+  signature = c(x = "ANY"),
   definition = function(x, margin = 1) {
     vide <- function(x) {
       miss <- is.na(x)
@@ -25,7 +25,7 @@ setMethod(
 #' @aliases compact_cols,ANY-method
 setMethod(
   f = "compact_cols",
-  signature = signature(x = "ANY"),
+  signature = c(x = "ANY"),
   definition = function(x) {
     compact(x, margin = 2)
   }
@@ -36,7 +36,7 @@ setMethod(
 #' @aliases compact_rows,ANY-method
 setMethod(
   f = "compact_rows",
-  signature = signature(x = "ANY"),
+  signature = c(x = "ANY"),
   definition = function(x) {
     compact(x, margin = 1)
   }

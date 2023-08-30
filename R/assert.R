@@ -125,6 +125,17 @@ assert_scalar <- function(x, expected) {
   invisible(x)
 }
 
+#' @export
+#' @rdname check-type
+assert_function <- function(x) {
+  arg <- deparse(substitute(x))
+  if (!is.function(x)) {
+    msg <- sprintf("%s must be a function.", sQuote(arg))
+    throw_error("error_bad_type", msg)
+  }
+  invisible(x)
+}
+
 # Attributes ===================================================================
 #' Check Object Attributes
 #'

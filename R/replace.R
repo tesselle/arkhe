@@ -9,7 +9,7 @@ NULL
 #' @aliases replace_NA,matrix-method
 setMethod(
   f = "replace_NA",
-  signature = signature(x = "matrix"),
+  signature = c(x = "matrix"),
   definition = function(x, value = 0) {
     x[is.na(x)] <- value
     x
@@ -21,7 +21,7 @@ setMethod(
 #' @aliases replace_NA,data.frame-method
 setMethod(
   f = "replace_NA",
-  signature = signature(x = "data.frame"),
+  signature = c(x = "data.frame"),
   definition = function(x, value = 0) {
     x[] <- lapply(
       X = x,
@@ -41,7 +41,7 @@ setMethod(
 #' @aliases replace_Inf,matrix-method
 setMethod(
   f = "replace_Inf",
-  signature = signature(x = "matrix"),
+  signature = c(x = "matrix"),
   definition = function(x, value = 0) {
     x[is.infinite(x)] <- value
     x
@@ -53,7 +53,7 @@ setMethod(
 #' @aliases replace_Inf,data.frame-method
 setMethod(
   f = "replace_Inf",
-  signature = signature(x = "data.frame"),
+  signature = c(x = "data.frame"),
   definition = function(x, value = 0) {
     x[] <- lapply(
       X = x,
@@ -73,7 +73,7 @@ setMethod(
 #' @aliases replace_zero,matrix-method
 setMethod(
   f = "replace_zero",
-  signature = signature(x = "matrix"),
+  signature = c(x = "matrix"),
   definition = function(x, value) {
     x[is_zero(x)] <- value
     x
@@ -85,7 +85,7 @@ setMethod(
 #' @aliases replace_zero,data.frame-method
 setMethod(
   f = "replace_zero",
-  signature = signature(x = "data.frame"),
+  signature = c(x = "data.frame"),
   definition = function(x, value) {
     num <- vapply(X = x, FUN = is.numeric, FUN.VALUE = logical(1))
     nozero <- vapply(
@@ -108,7 +108,7 @@ setMethod(
 #' @aliases replace_empty,matrix-method
 setMethod(
   f = "replace_empty",
-  signature = signature(x = "matrix"),
+  signature = c(x = "matrix"),
   definition = function(x, value) {
     x[is_empty_string(x)] <- value
     x
@@ -120,7 +120,7 @@ setMethod(
 #' @aliases replace_empty,data.frame-method
 setMethod(
   f = "replace_empty",
-  signature = signature(x = "data.frame"),
+  signature = c(x = "data.frame"),
   definition = function(x, value) {
     char <- vapply(X = x, FUN = is.character, FUN.VALUE = logical(1))
     noblank <- vapply(

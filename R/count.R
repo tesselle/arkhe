@@ -5,11 +5,13 @@ NULL
 # Count ========================================================================
 #' @export
 #' @rdname count
-#' @aliases count,data.frame,function-method
+#' @aliases count,data.frame-method
 setMethod(
   f = "count",
-  signature = signature(x = "data.frame", f = "function"),
+  signature = c(x = "data.frame"),
   definition = function(x, f, margin = 1, negate = FALSE, na.rm = FALSE, ...) {
+    assert_function(f)
+
     if (negate) f <- Negate(f)
     x <- lapply(X = x, FUN = f, ...)
     x <- do.call(cbind.data.frame, x)
@@ -21,10 +23,10 @@ setMethod(
 
 #' @export
 #' @rdname count
-#' @aliases count,matrix,function-method
+#' @aliases count,matrix-method
 setMethod(
   f = "count",
-  signature = signature(x = "matrix", f = "function"),
+  signature = c(x = "matrix"),
   definition = function(x, f, margin = 1, negate = FALSE, na.rm = FALSE, ...) {
     x <- as.data.frame(x)
     methods::callGeneric(x, f = f, margin = margin, negate = negate,

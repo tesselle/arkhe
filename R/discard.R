@@ -5,10 +5,10 @@ NULL
 # discard ======================================================================
 #' @export
 #' @rdname discard
-#' @aliases discard,ANY,function-method
+#' @aliases discard,ANY-method
 setMethod(
   f = "discard",
-  signature = signature(x = "ANY", f = "function"),
+  signature = c(x = "ANY"),
   definition = function(x, f, margin = 1, negate = FALSE, all = FALSE,
                         verbose = getOption("arkhe.verbose"), ...) {
     i <- !detect(x, f = f, margin = margin, negate = negate, all = all, ...)
@@ -21,10 +21,10 @@ setMethod(
 
 #' @export
 #' @rdname discard
-#' @aliases discard_rows,ANY,function-method
+#' @aliases discard_rows,ANY-method
 setMethod(
   f = "discard_rows",
-  signature = signature(x = "ANY", f = "function"),
+  signature = c(x = "ANY"),
   definition = function(x, f, negate = FALSE, all = FALSE,
                         verbose = getOption("arkhe.verbose"), ...) {
     discard(x, f, margin = 1, negate = negate, all = all, verbose = verbose, ...)
@@ -33,10 +33,10 @@ setMethod(
 
 #' @export
 #' @rdname discard
-#' @aliases discard_cols,ANY,function-method
+#' @aliases discard_cols,ANY-method
 setMethod(
   f = "discard_cols",
-  signature = signature(x = "ANY", f = "function"),
+  signature = c(x = "ANY"),
   definition = function(x, f, negate = FALSE, all = FALSE,
                         verbose = getOption("arkhe.verbose"), ...) {
     discard(x, f, margin = 2, negate = negate, all = all, verbose = verbose, ...)

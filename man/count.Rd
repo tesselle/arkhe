@@ -4,22 +4,22 @@
 \name{count}
 \alias{count}
 \alias{count-method}
-\alias{count,data.frame,function-method}
-\alias{count,matrix,function-method}
+\alias{count,data.frame-method}
+\alias{count,matrix-method}
 \title{Count Values Using a Predicate}
 \usage{
-count(x, f, ...)
+count(x, ...)
 
-\S4method{count}{data.frame,`function`}(x, f, margin = 1, negate = FALSE, na.rm = FALSE, ...)
+\S4method{count}{data.frame}(x, f, margin = 1, negate = FALSE, na.rm = FALSE, ...)
 
-\S4method{count}{matrix,`function`}(x, f, margin = 1, negate = FALSE, na.rm = FALSE, ...)
+\S4method{count}{matrix}(x, f, margin = 1, negate = FALSE, na.rm = FALSE, ...)
 }
 \arguments{
 \item{x}{An \R object (should be a \code{\link{matrix}} or a \code{\link{data.frame}}).}
 
-\item{f}{A predicate \code{\link{function}}.}
-
 \item{...}{Further arguments to be passed to \code{f}.}
+
+\item{f}{A predicate \code{\link{function}}.}
 
 \item{margin}{A length-one \code{\link{numeric}} vector giving the subscripts which the
 function will be applied over (\code{1} indicates rows, \code{2} indicates columns).}

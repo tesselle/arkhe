@@ -8,18 +8,18 @@
 \alias{discard_cols-method}
 \alias{discard_rows}
 \alias{discard_rows-method}
-\alias{discard,ANY,function-method}
-\alias{discard_rows,ANY,function-method}
-\alias{discard_cols,ANY,function-method}
+\alias{discard,ANY-method}
+\alias{discard_rows,ANY-method}
+\alias{discard_cols,ANY-method}
 \title{Remove Rows/Columns Using a Predicate}
 \usage{
-discard(x, f, ...)
+discard(x, ...)
 
-discard_cols(x, f, ...)
+discard_cols(x, ...)
 
-discard_rows(x, f, ...)
+discard_rows(x, ...)
 
-\S4method{discard}{ANY,`function`}(
+\S4method{discard}{ANY}(
   x,
   f,
   margin = 1,
@@ -29,7 +29,7 @@ discard_rows(x, f, ...)
   ...
 )
 
-\S4method{discard_rows}{ANY,`function`}(
+\S4method{discard_rows}{ANY}(
   x,
   f,
   negate = FALSE,
@@ -38,7 +38,7 @@ discard_rows(x, f, ...)
   ...
 )
 
-\S4method{discard_cols}{ANY,`function`}(
+\S4method{discard_cols}{ANY}(
   x,
   f,
   negate = FALSE,
@@ -50,9 +50,9 @@ discard_rows(x, f, ...)
 \arguments{
 \item{x}{An \R object (should be a \code{\link{matrix}} or a \code{\link{data.frame}}).}
 
-\item{f}{A predicate \code{\link{function}}.}
-
 \item{...}{Further arguments to be passed to \code{f}.}
+
+\item{f}{A predicate \code{\link{function}}.}
 
 \item{margin}{A length-one \code{\link{numeric}} vector giving the subscripts which the
 function will be applied over (\code{1} indicates rows, \code{2} indicates columns).}

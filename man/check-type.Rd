@@ -4,11 +4,14 @@
 \alias{check-type}
 \alias{assert_type}
 \alias{assert_scalar}
+\alias{assert_function}
 \title{Check Data Types}
 \usage{
 assert_type(x, expected)
 
 assert_scalar(x, expected)
+
+assert_function(x)
 }
 \arguments{
 \item{x}{An object to be checked.}

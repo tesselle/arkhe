@@ -5,10 +5,10 @@ NULL
 # Detect =======================================================================
 #' @export
 #' @rdname detect
-#' @aliases detect,ANY,function-method
+#' @aliases detect,ANY-method
 setMethod(
   f = "detect",
-  signature = signature(x = "ANY", f = "function"),
+  signature = c(x = "ANY"),
   definition = function(x, f, margin = 1, negate = FALSE, all = FALSE, ...) {
     total <- count(x, f, margin = margin, negate = negate, ...)
     k <- 1

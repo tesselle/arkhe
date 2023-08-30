@@ -4,19 +4,19 @@
 \name{detect}
 \alias{detect}
 \alias{detect-method}
-\alias{detect,ANY,function-method}
+\alias{detect,ANY-method}
 \title{Find Rows/Columns Using a Predicate}
 \usage{
-detect(x, f, ...)
+detect(x, ...)
 
-\S4method{detect}{ANY,`function`}(x, f, margin = 1, negate = FALSE, all = FALSE, ...)
+\S4method{detect}{ANY}(x, f, margin = 1, negate = FALSE, all = FALSE, ...)
 }
 \arguments{
 \item{x}{An \R object (should be a \code{\link{matrix}} or a \code{\link{data.frame}}).}
 
-\item{f}{A predicate \code{\link{function}}.}
-
 \item{...}{Further arguments to be passed to \code{f}.}
+
+\item{f}{A predicate \code{\link{function}}.}
 
 \item{margin}{A length-one \code{\link{numeric}} vector giving the subscripts which the
 function will be applied over (\code{1} indicates rows, \code{2} indicates columns).}

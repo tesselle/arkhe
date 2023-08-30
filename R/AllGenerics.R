@@ -22,7 +22,7 @@
 #' @aliases count-method
 setGeneric(
   name = "count",
-  def = function(x, f, ...) standardGeneric("count")
+  def = function(x, ...) standardGeneric("count")
 )
 
 ## Detect ----------------------------------------------------------------------
@@ -43,7 +43,7 @@ setGeneric(
 #' @aliases detect-method
 setGeneric(
   name = "detect",
-  def = function(x, f, ...) standardGeneric("detect")
+  def = function(x, ...) standardGeneric("detect")
 )
 
 ## Keep ------------------------------------------------------------------------
@@ -58,21 +58,21 @@ setGeneric(
 #' @aliases keep-method
 setGeneric(
   name = "keep",
-  def = function(x, f, ...) standardGeneric("keep")
+  def = function(x, ...) standardGeneric("keep")
 )
 
 #' @rdname keep
 #' @aliases keep_cols-method
 setGeneric(
   name = "keep_cols",
-  def = function(x, f, ...) standardGeneric("keep_cols")
+  def = function(x, ...) standardGeneric("keep_cols")
 )
 
 #' @rdname keep
 #' @aliases keep_rows-method
 setGeneric(
   name = "keep_rows",
-  def = function(x, f, ...) standardGeneric("keep_rows")
+  def = function(x, ...) standardGeneric("keep_rows")
 )
 
 ## Discard ---------------------------------------------------------------------
@@ -89,21 +89,21 @@ setGeneric(
 #' @aliases discard-method
 setGeneric(
   name = "discard",
-  def = function(x, f, ...) standardGeneric("discard")
+  def = function(x, ...) standardGeneric("discard")
 )
 
 #' @rdname discard
 #' @aliases discard_cols-method
 setGeneric(
   name = "discard_cols",
-  def = function(x, f, ...) standardGeneric("discard_cols")
+  def = function(x, ...) standardGeneric("discard_cols")
 )
 
 #' @rdname discard
 #' @aliases discard_rows-method
 setGeneric(
   name = "discard_rows",
-  def = function(x, f, ...) standardGeneric("discard_rows")
+  def = function(x, ...) standardGeneric("discard_rows")
 )
 
 ## Compact ---------------------------------------------------------------------

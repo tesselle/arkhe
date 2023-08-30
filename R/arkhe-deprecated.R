@@ -26,7 +26,7 @@ setGeneric(
 #' @aliases wide_to_long,matrix-method
 setMethod(
   f = "wide_to_long",
-  signature = signature(from = "matrix"),
+  signature = c(from = "matrix"),
   definition = function(from, factor = FALSE, reverse = FALSE) {
     .Deprecated(old = "wide_to_long")
     x <- data.frame(
@@ -48,7 +48,7 @@ setMethod(
 #' @aliases to_long,matrix-method
 setMethod(
   f = "to_long",
-  signature = signature(from = "matrix"),
+  signature = c(from = "matrix"),
   definition = function(from, factor = FALSE, reverse = FALSE) {
     wide_to_long(from, factor = factor, reverse = reverse)
   }

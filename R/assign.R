@@ -7,7 +7,7 @@ NULL
 #' @aliases assign_rownames,data.frame-method
 setMethod(
   f = "assign_rownames",
-  signature = signature(x = "data.frame"),
+  signature = c(x = "data.frame"),
   definition = function(x, column, remove = TRUE) {
     ## Validation
     assert_length(column, 1)
@@ -27,7 +27,7 @@ setMethod(
 #' @aliases assign_colnames,data.frame-method
 setMethod(
   f = "assign_colnames",
-  signature = signature(x = "data.frame"),
+  signature = c(x = "data.frame"),
   definition = function(x, row, remove = TRUE) {
     ## Validation
     assert_length(row, 1)

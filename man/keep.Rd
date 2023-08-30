@@ -8,29 +8,29 @@
 \alias{keep_cols-method}
 \alias{keep_rows}
 \alias{keep_rows-method}
-\alias{keep,ANY,function-method}
-\alias{keep_rows,ANY,function-method}
-\alias{keep_cols,ANY,function-method}
+\alias{keep,ANY-method}
+\alias{keep_rows,ANY-method}
+\alias{keep_cols,ANY-method}
 \title{Keep Rows/Columns Using a Predicate}
 \usage{
-keep(x, f, ...)
+keep(x, ...)
 
-keep_cols(x, f, ...)
+keep_cols(x, ...)
 
-keep_rows(x, f, ...)
+keep_rows(x, ...)
 
-\S4method{keep}{ANY,`function`}(x, f, margin = 1, negate = FALSE, all = FALSE, ...)
+\S4method{keep}{ANY}(x, f, margin = 1, negate = FALSE, all = FALSE, ...)
 
-\S4method{keep_rows}{ANY,`function`}(x, f, negate = FALSE, all = FALSE, ...)
+\S4method{keep_rows}{ANY}(x, f, negate = FALSE, all = FALSE, ...)
 
-\S4method{keep_cols}{ANY,`function`}(x, f, negate = FALSE, all = FALSE, ...)
+\S4method{keep_cols}{ANY}(x, f, negate = FALSE, all = FALSE, ...)
 }
 \arguments{
 \item{x}{An \R object (should be a \code{\link{matrix}} or a \code{\link{data.frame}}).}
 
-\item{f}{A predicate \code{\link{function}}.}
-
 \item{...}{Further arguments to be passed to \code{f}.}
+
+\item{f}{A predicate \code{\link{function}}.}
 
 \item{margin}{A length-one \code{\link{numeric}} vector giving the subscripts which the
 function will be applied over (\code{1} indicates rows, \code{2} indicates columns).}

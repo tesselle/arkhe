@@ -25,6 +25,12 @@ expect_inherits(cnd[[1]], "error_bad_scalar")
 
 expect_identical(assert_scalar(y, expected = "numeric"), y)
 
+# Assert function ==============================================================
+cnd <- arkhe:::catch_conditions(assert_function("ABC123XYZ"))
+expect_inherits(cnd[[1]], "error_bad_type")
+
+expect_identical(assert_function(mean), mean)
+
 # Assert object attributes =====================================================
 ## Length ----------------------------------------------------------------------
 cnd <- arkhe:::catch_conditions(assert_length(LETTERS, expected = 10, empty = FALSE))
