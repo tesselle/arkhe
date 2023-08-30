@@ -9,5 +9,5 @@ X
 ## Remove rows with zero
 remove_zero(X, margin = 1)
 
-## Replace zero with zeros
+## Replace zero
 replace_zero(X, value = 1)

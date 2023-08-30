@@ -1,5 +1,12 @@
 # PREDICATES
 
+# Not exported =================================================================
+is_empty_string <- function(x, na.rm = FALSE) {
+  assert_type(x, "character")
+  if (na.rm) x <- stats::na.omit(x)
+  x == ""
+}
+
 # Helpers ======================================================================
 #' Utility Predicates
 #'

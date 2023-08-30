@@ -50,10 +50,13 @@ X
 compact(X, margin = 2)
 }
 \seealso{
+\code{\link[=remove_NA]{remove_NA()}}, \code{\link[=remove_zero]{remove_zero()}}, \code{\link[=remove_empty]{remove_empty()}}
+
 Other data cleaning tools: 
 \code{\link{count}()},
 \code{\link{detect}()},
 \code{\link{discard}()},
+\code{\link{empty}},
 \code{\link{infinite}},
 \code{\link{keep}()},
 \code{\link{missing}},

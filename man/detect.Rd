@@ -54,6 +54,7 @@ Other data cleaning tools:
 \code{\link{compact}()},
 \code{\link{count}()},
 \code{\link{discard}()},
+\code{\link{empty}},
 \code{\link{infinite}},
 \code{\link{keep}()},
 \code{\link{missing}},

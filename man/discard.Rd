@@ -90,6 +90,7 @@ Other data cleaning tools:
 \code{\link{compact}()},
 \code{\link{count}()},
 \code{\link{detect}()},
+\code{\link{empty}},
 \code{\link{infinite}},
 \code{\link{keep}()},
 \code{\link{missing}},

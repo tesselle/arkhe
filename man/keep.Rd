@@ -66,6 +66,7 @@ Other data cleaning tools:
 \code{\link{count}()},
 \code{\link{detect}()},
 \code{\link{discard}()},
+\code{\link{empty}},
 \code{\link{infinite}},
 \code{\link{missing}},
 \code{\link{remove_constant}()},

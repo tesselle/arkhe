@@ -38,6 +38,18 @@ setMethod(
   }
 )
 
+# Empty string =================================================================
+#' @export
+#' @rdname empty
+#' @aliases remove_empty,ANY-method
+setMethod(
+  f = "remove_empty",
+  signature = signature(x = "ANY"),
+  definition = function(x, margin = 1, all = FALSE, na.rm = FALSE) {
+    discard(x, f = is_empty_string, margin = margin, all = all, na.rm = na.rm)
+  }
+)
+
 # Constant =====================================================================
 #' @export
 #' @rdname remove_constant

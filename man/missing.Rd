@@ -9,6 +9,7 @@
 \alias{replace_NA-method}
 \alias{remove_NA,ANY-method}
 \alias{replace_NA,matrix-method}
+\alias{replace_NA,data.frame-method}
 \title{Tools for Working With Missing Values}
 \usage{
 remove_NA(x, ...)
@@ -18,6 +19,8 @@ replace_NA(x, ...)
 \S4method{remove_NA}{ANY}(x, margin = 1, all = FALSE)
 
 \S4method{replace_NA}{matrix}(x, value = 0)
+
+\S4method{replace_NA}{data.frame}(x, value = 0)
 }
 \arguments{
 \item{x}{An \R object (should be a \code{\link{matrix}} or a \code{\link{data.frame}}).}
@@ -61,6 +64,7 @@ Other data cleaning tools:
 \code{\link{count}()},
 \code{\link{detect}()},
 \code{\link{discard}()},
+\code{\link{empty}},
 \code{\link{infinite}},
 \code{\link{keep}()},
 \code{\link{remove_constant}()},

@@ -43,6 +43,7 @@ Other data cleaning tools:
 \code{\link{count}()},
 \code{\link{detect}()},
 \code{\link{discard}()},
+\code{\link{empty}},
 \code{\link{infinite}},
 \code{\link{keep}()},
 \code{\link{missing}},

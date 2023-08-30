@@ -9,6 +9,7 @@
 \alias{replace_Inf-method}
 \alias{remove_Inf,ANY-method}
 \alias{replace_Inf,matrix-method}
+\alias{replace_Inf,data.frame-method}
 \title{Tools for Working With Infinite Values}
 \usage{
 remove_Inf(x, ...)
@@ -18,6 +19,8 @@ replace_Inf(x, ...)
 \S4method{remove_Inf}{ANY}(x, margin = 1, all = FALSE)
 
 \S4method{replace_Inf}{matrix}(x, value = 0)
+
+\S4method{replace_Inf}{data.frame}(x, value = 0)
 }
 \arguments{
 \item{x}{An \R object (should be a \code{\link{matrix}} or a \code{\link{data.frame}}).}
@@ -61,6 +64,7 @@ Other data cleaning tools:
 \code{\link{count}()},
 \code{\link{detect}()},
 \code{\link{discard}()},
+\code{\link{empty}},
 \code{\link{keep}()},
 \code{\link{missing}},
 \code{\link{remove_constant}()},

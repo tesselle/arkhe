@@ -116,6 +116,7 @@ setGeneric(
 #' @details
 #'  A row/column is empty if it contains only `NA`, zeros (if of type `numeric`)
 #'  or zero length character strings (if of type `character`).
+#' @seealso [remove_NA()], [remove_zero()], [remove_empty()]
 #' @example inst/examples/ex-compact.R
 #' @author N. Frerebeau
 #' @docType methods
@@ -234,6 +235,39 @@ setGeneric(
 setGeneric(
   name = "replace_zero",
   def = function(x, ...) standardGeneric("replace_zero")
+)
+
+### Empty string ---------------------------------------------------------------
+#' Tools for Working With Empty String
+#'
+#' @description
+#'  * `remove_empty()` remove rows/columns that contain empty strings.
+#'  * `replace_empty()` replaces empty strings.
+#' @inheritParams detect
+#' @param value A possible replacement value.
+#' @param na.rm A [`logical`] scalar: should `NA` values be stripped before the
+#'  computation proceeds?
+#' @param ... Currently not used.
+#' @example inst/examples/ex-empty.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family data cleaning tools
+#' @name empty
+#' @rdname empty
+NULL
+
+#' @rdname empty
+#' @aliases remove_empty-method
+setGeneric(
+  name = "remove_empty",
+  def = function(x, ...) standardGeneric("remove_empty")
+)
+
+#' @rdname empty
+#' @aliases replace_empty-method
+setGeneric(
+  name = "replace_empty",
+  def = function(x, ...) standardGeneric("replace_empty")
 )
 
 ### Constant -------------------------------------------------------------------
