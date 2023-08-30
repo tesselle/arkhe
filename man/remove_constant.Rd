@@ -4,15 +4,12 @@
 \name{remove_constant}
 \alias{remove_constant}
 \alias{remove_constant-method}
-\alias{remove_constant,data.frame-method}
-\alias{remove_constant,matrix-method}
+\alias{remove_constant,ANY-method}
 \title{Remove Constant Columns}
 \usage{
 remove_constant(x, ...)
 
-\S4method{remove_constant}{data.frame}(x, na.rm = FALSE)
-
-\S4method{remove_constant}{matrix}(x, na.rm = FALSE)
+\S4method{remove_constant}{ANY}(x, na.rm = FALSE)
 }
 \arguments{
 \item{x}{An \R object (should be a \code{\link{matrix}} or a \code{\link{data.frame}}).}

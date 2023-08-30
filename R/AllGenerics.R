@@ -51,6 +51,8 @@ setGeneric(
 #'
 #' Keeps rows/columns in an array-like object using a predicate function.
 #' @inheritParams detect
+#' @param verbose A [`logical`] scalar: should \R report extra information
+#'  on progress?
 #' @example inst/examples/ex-keep.R
 #' @author N. Frerebeau
 #' @docType methods

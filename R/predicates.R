@@ -1,6 +1,10 @@
 # PREDICATES
 
 # Not exported =================================================================
+is_unique <- function(x, na.rm = FALSE) {
+  if (na.rm) x <- stats::na.omit(x)
+  length(unique(x)) <= 1
+}
 is_empty_string <- function(x, na.rm = FALSE) {
   assert_type(x, "character")
   if (na.rm) x <- stats::na.omit(x)

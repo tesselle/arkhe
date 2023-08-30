@@ -9,11 +9,13 @@ NULL
 setMethod(
   f = "keep",
   signature = c(x = "ANY"),
-  definition = function(x, f, margin = 1, negate = FALSE, all = FALSE, ...) {
+  definition = function(x, f, margin = 1, negate = FALSE, all = FALSE,
+                        verbose = getOption("arkhe.verbose"), ...) {
     i <- detect(x, f = f, margin = margin, negate = negate, all = all, ...)
+    discard_message(x, keep = i, margin = margin, verbose = verbose)
     if (any(margin == 1)) return(x[i, , drop = FALSE])
     if (any(margin == 2)) return(x[, i, drop = FALSE])
-    x
+    i
   }
 )
 
@@ -23,8 +25,9 @@ setMethod(
 setMethod(
   f = "keep_rows",
   signature = c(x = "ANY"),
-  definition = function(x, f, negate = FALSE, all = FALSE, ...) {
-    keep(x, f, margin = 1, negate = negate, all = all, ...)
+  definition = function(x, f, negate = FALSE, all = FALSE,
+                        verbose = getOption("arkhe.verbose"), ...) {
+    keep(x, f, margin = 1, negate = negate, all = all, verbose = verbose, ...)
   }
 )
 
@@ -34,7 +37,8 @@ setMethod(
 setMethod(
   f = "keep_cols",
   signature = c(x = "ANY"),
-  definition = function(x, f, negate = FALSE, all = FALSE, ...) {
-    keep(x, f, margin = 2, negate = negate, all = all, ...)
+  definition = function(x, f, negate = FALSE, all = FALSE,
+                        verbose = getOption("arkhe.verbose"), ...) {
+    keep(x, f, margin = 2, negate = negate, all = all, verbose = verbose, ...)
   }
 )

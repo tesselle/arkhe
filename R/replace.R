@@ -88,13 +88,12 @@ setMethod(
   signature = c(x = "data.frame"),
   definition = function(x, value) {
     num <- vapply(X = x, FUN = is.numeric, FUN.VALUE = logical(1))
-    nozero <- vapply(
-      X = x[, num],
+    nozero <- lapply(
+      X = x[, num, drop = FALSE],
       FUN = function(x, value) {
         x[is_zero(x)] <- value
         x
       },
-      FUN.VALUE = numeric(nrow(x)),
       value = value
     )
     x[, num] <- nozero
@@ -123,13 +122,12 @@ setMethod(
   signature = c(x = "data.frame"),
   definition = function(x, value) {
     char <- vapply(X = x, FUN = is.character, FUN.VALUE = logical(1))
-    noblank <- vapply(
-      X = x[, char],
+    noblank <- lapply(
+      X = x[, char, drop = FALSE],
       FUN = function(x, value) {
         x[is_empty_string(x)] <- value
         x
       },
-      FUN.VALUE = character(nrow(x)),
       value = value
     )
     x[, char] <- noblank

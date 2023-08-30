@@ -53,27 +53,11 @@ setMethod(
 # Constant =====================================================================
 #' @export
 #' @rdname remove_constant
-#' @aliases remove_constant,data.frame-method
+#' @aliases remove_constant,ANY-method
 setMethod(
   f = "remove_constant",
-  signature = c(x = "data.frame"),
+  signature = c(x = "ANY"),
   definition = function(x, na.rm = FALSE) {
-    all_unique <- function(x) {
-      if (na.rm) x <- stats::na.omit(x)
-      length(unique(x)) <= 1
-    }
-    discard(x, f = all_unique, margin = 2, all = FALSE)
-  }
-)
-
-#' @export
-#' @rdname remove_constant
-#' @aliases remove_constant,matrix-method
-setMethod(
-  f = "remove_constant",
-  signature = c(x = "matrix"),
-  definition = function(x, na.rm = FALSE) {
-    x <- as.data.frame(x)
-    methods::callGeneric(x, na.rm = na.rm)
+    discard(x, f = function(x) { is_unique(x, na.rm) }, margin = 2, all = FALSE)
   }
 )

@@ -19,11 +19,33 @@ keep_cols(x, ...)
 
 keep_rows(x, ...)
 
-\S4method{keep}{ANY}(x, f, margin = 1, negate = FALSE, all = FALSE, ...)
+\S4method{keep}{ANY}(
+  x,
+  f,
+  margin = 1,
+  negate = FALSE,
+  all = FALSE,
+  verbose = getOption("arkhe.verbose"),
+  ...
+)
 
-\S4method{keep_rows}{ANY}(x, f, negate = FALSE, all = FALSE, ...)
+\S4method{keep_rows}{ANY}(
+  x,
+  f,
+  negate = FALSE,
+  all = FALSE,
+  verbose = getOption("arkhe.verbose"),
+  ...
+)
 
-\S4method{keep_cols}{ANY}(x, f, negate = FALSE, all = FALSE, ...)
+\S4method{keep_cols}{ANY}(
+  x,
+  f,
+  negate = FALSE,
+  all = FALSE,
+  verbose = getOption("arkhe.verbose"),
+  ...
+)
 }
 \arguments{
 \item{x}{An \R object (should be a \code{\link{matrix}} or a \code{\link{data.frame}}).}
@@ -42,6 +64,9 @@ instead of \code{f}?}
 values all meet the condition defined by \code{f} are considered. If \code{FALSE}
 (the default), only rows/columns where at least one value validates the
 condition defined by \code{f} are considered.}
+
+\item{verbose}{A \code{\link{logical}} scalar: should \R report extra information
+on progress?}
 }
 \description{
 Keeps rows/columns in an array-like object using a predicate function.

@@ -11,11 +11,11 @@ setMethod(
   signature = c(x = "ANY"),
   definition = function(x, f, margin = 1, negate = FALSE, all = FALSE,
                         verbose = getOption("arkhe.verbose"), ...) {
-    i <- !detect(x, f = f, margin = margin, negate = negate, all = all, ...)
-    discard_message(x, keep = i, margin = margin, verbose = verbose)
-    if (any(margin == 1)) return(x[i, , drop = FALSE])
-    if (any(margin == 2)) return(x[, i, drop = FALSE])
-    x
+    i <- detect(x, f = f, margin = margin, negate = negate, all = all, ...)
+    discard_message(x, keep = !i, margin = margin, verbose = verbose)
+    if (any(margin == 1)) return(x[!i, , drop = FALSE])
+    if (any(margin == 2)) return(x[, !i, drop = FALSE])
+    i
   }
 )
 
@@ -58,8 +58,9 @@ setMethod(
 discard_message <- function(x, keep, margin,
                             verbose = getOption("arkhe.verbose")) {
   drop <- sum(!keep)
-  if (margin == 1) what <- ngettext(drop, "row", "rows")
-  if (margin == 2) what <- ngettext(drop, "column", "columns")
+  what <- ngettext(drop, "element", "elements")
+  if (any(margin == 1)) what <- ngettext(drop, "row", "rows")
+  if (any(margin == 2)) what <- ngettext(drop, "column", "columns")
 
   if (drop == 0) {
     msg <- sprintf("No %s to remove.", what)
