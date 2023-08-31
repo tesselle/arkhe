@@ -13,6 +13,12 @@ reference:
 - title: Data transformation
   contents:
   - has_concept("transformation tools")
+- title: Predicates
+  contents:
+  - has_concept("predicates")
+- title: Validation
+  contents:
+  - has_concept("validation methods")
 - title: Statistics
   contents:
   - has_concept("summary statistics")
@@ -22,9 +28,3 @@ reference:
 - title: Mathematics
   contents:
   - has_concept("mathematic functions")
-- title: Predicates
-  contents:
-  - has_concept("predicates")
-- title: Validation
-  contents:
-  - has_concept("validation methods")

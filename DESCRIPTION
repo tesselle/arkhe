@@ -1,6 +1,6 @@
 Package: arkhe
 Title: Tools for Cleaning Rectangular Data
-Version: 1.2.0.9000
+Version: 1.3.0
 Authors@R: c(
     person("Nicolas", "Frerebeau", , "nicolas.frerebeau@u-bordeaux-montaigne.fr", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-5759-4944", affiliation = "Université Bordeaux Montaigne")),

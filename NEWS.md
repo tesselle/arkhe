@@ -1,4 +1,4 @@
-# arkhe 1.2.0.9000
+# arkhe 1.3.0
 ## New classes and methods
 * Add `remove_constant()` to remove constant columns.
 * Add `remove_empty()` to remove empty strings in a `matrix`-like object.
