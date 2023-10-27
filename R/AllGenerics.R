@@ -111,12 +111,11 @@ setGeneric(
 ## Compact ---------------------------------------------------------------------
 #' Remove Empty Rows/Columns
 #'
-#' Removes empty rows/columns in an array-like object using a predicate
-#' function.
+#' Removes empty rows/columns in an array-like object.
 #' @inheritParams detect
 #' @param ... Currently not used.
 #' @details
-#'  A row/column is empty if it contains only `NA`, zeros (if of type `numeric`)
+#'  A row/column is empty if it contains only zeros (if of type `numeric`)
 #'  or zero length character strings (if of type `character`).
 #' @seealso [remove_NA()], [remove_zero()], [remove_empty()]
 #' @example inst/examples/ex-compact.R
@@ -211,11 +210,9 @@ setGeneric(
 #'
 #' @description
 #'  * `remove_zero()` remove rows/columns that contain zeros.
-#'  * `replace_zero` replaces zeros.
+#'  * `replace_zero()` replaces zeros.
 #' @inheritParams detect
 #' @param value A possible replacement value.
-#' @param na.rm A [`logical`] scalar: should `NA` values be stripped before the
-#'  computation proceeds?
 #' @param ... Currently not used.
 #' @example inst/examples/ex-zero.R
 #' @author N. Frerebeau
@@ -247,8 +244,6 @@ setGeneric(
 #'  * `replace_empty()` replaces empty strings.
 #' @inheritParams detect
 #' @param value A possible replacement value.
-#' @param na.rm A [`logical`] scalar: should `NA` values be stripped before the
-#'  computation proceeds?
 #' @param ... Currently not used.
 #' @example inst/examples/ex-empty.R
 #' @author N. Frerebeau

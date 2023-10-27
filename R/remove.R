@@ -33,8 +33,8 @@ setMethod(
 setMethod(
   f = "remove_zero",
   signature = c(x = "ANY"),
-  definition = function(x, margin = 1, all = FALSE, na.rm = FALSE) {
-    discard(x, f = is_zero, margin = margin, all = all, na.rm = na.rm)
+  definition = function(x, margin = 1, all = FALSE) {
+    discard(x, f = is_zero_numeric, margin = margin, all = all, na.rm = TRUE)
   }
 )
 
@@ -45,8 +45,8 @@ setMethod(
 setMethod(
   f = "remove_empty",
   signature = c(x = "ANY"),
-  definition = function(x, margin = 1, all = FALSE, na.rm = FALSE) {
-    discard(x, f = is_empty_string, margin = margin, all = all, na.rm = na.rm)
+  definition = function(x, margin = 1, all = FALSE) {
+    discard(x, f = is_empty_string, margin = margin, all = all, na.rm = TRUE)
   }
 )
 

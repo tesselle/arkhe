@@ -16,7 +16,7 @@ remove_zero(x, ...)
 
 replace_zero(x, ...)
 
-\S4method{remove_zero}{ANY}(x, margin = 1, all = FALSE, na.rm = FALSE)
+\S4method{remove_zero}{ANY}(x, margin = 1, all = FALSE)
 
 \S4method{replace_zero}{matrix}(x, value)
 
@@ -35,15 +35,12 @@ values all meet the condition defined by \code{f} are considered. If \code{FALSE
 (the default), only rows/columns where at least one value validates the
 condition defined by \code{f} are considered.}
 
-\item{na.rm}{A \code{\link{logical}} scalar: should \code{NA} values be stripped before the
-computation proceeds?}
-
 \item{value}{A possible replacement value.}
 }
 \description{
 \itemize{
 \item \code{remove_zero()} remove rows/columns that contain zeros.
-\item \code{replace_zero} replaces zeros.
+\item \code{replace_zero()} replaces zeros.
 }
 }
 \examples{

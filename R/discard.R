@@ -10,8 +10,10 @@ setMethod(
   f = "discard",
   signature = c(x = "ANY"),
   definition = function(x, f, margin = 1, negate = FALSE, all = FALSE,
-                        verbose = getOption("arkhe.verbose"), ...) {
-    i <- detect(x, f = f, margin = margin, negate = negate, all = all, ...)
+                        na.rm = FALSE, verbose = getOption("arkhe.verbose"),
+                        ...) {
+    i <- detect(x, f = f, margin = margin, negate = negate, all = all,
+                na.rm = na.rm, ...)
     discard_message(x, keep = !i, margin = margin, verbose = verbose)
     if (any(margin == 1)) return(x[!i, , drop = FALSE])
     if (any(margin == 2)) return(x[, !i, drop = FALSE])
@@ -25,9 +27,10 @@ setMethod(
 setMethod(
   f = "discard_rows",
   signature = c(x = "ANY"),
-  definition = function(x, f, negate = FALSE, all = FALSE,
+  definition = function(x, f, negate = FALSE, all = FALSE, na.rm = FALSE,
                         verbose = getOption("arkhe.verbose"), ...) {
-    discard(x, f, margin = 1, negate = negate, all = all, verbose = verbose, ...)
+    discard(x, f, margin = 1, negate = negate, all = all, na.rm = na.rm,
+            verbose = verbose, ...)
   }
 )
 
@@ -37,9 +40,10 @@ setMethod(
 setMethod(
   f = "discard_cols",
   signature = c(x = "ANY"),
-  definition = function(x, f, negate = FALSE, all = FALSE,
+  definition = function(x, f, negate = FALSE, all = FALSE, na.rm = FALSE,
                         verbose = getOption("arkhe.verbose"), ...) {
-    discard(x, f, margin = 2, negate = negate, all = all, verbose = verbose, ...)
+    discard(x, f, margin = 2, negate = negate, all = all, na.rm = na.rm,
+            verbose = verbose, ...)
   }
 )
 
@@ -57,7 +61,7 @@ setMethod(
 #' @noRd
 discard_message <- function(x, keep, margin,
                             verbose = getOption("arkhe.verbose")) {
-  drop <- sum(!keep)
+  drop <- sum(!keep, na.rm = TRUE)
   what <- ngettext(drop, "element", "elements")
   if (any(margin == 1)) what <- ngettext(drop, "row", "rows")
   if (any(margin == 2)) what <- ngettext(drop, "column", "columns")

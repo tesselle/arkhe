@@ -10,23 +10,22 @@
 \alias{is_whole}
 \title{Numeric Predicates}
 \usage{
-is_zero(x, na.rm = FALSE)
+is_zero(x, ...)
 
-is_odd(x, na.rm = FALSE)
+is_odd(x, ...)
 
-is_even(x, na.rm = FALSE)
+is_even(x, ...)
 
-is_positive(x, strict = FALSE, na.rm = FALSE)
+is_positive(x, strict = FALSE, ...)
 
-is_negative(x, strict = FALSE, na.rm = FALSE)
+is_negative(x, strict = FALSE, ...)
 
-is_whole(x, na.rm = FALSE, tolerance = .Machine$double.eps^0.5)
+is_whole(x, tolerance = .Machine$double.eps^0.5, ...)
 }
 \arguments{
 \item{x}{A \code{\link{numeric}} object to be tested.}
 
-\item{na.rm}{A \code{\link{logical}} scalar: should missing values (including \code{NaN})
-be omitted?}
+\item{...}{Currently not used.}
 
 \item{strict}{A \code{\link{logical}} scalar: should strict inequality be used?}
 

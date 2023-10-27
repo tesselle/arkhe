@@ -1,14 +1,15 @@
 # PREDICATES
 
 # Not exported =================================================================
-is_unique <- function(x, na.rm = FALSE) {
-  if (na.rm) x <- stats::na.omit(x)
-  length(unique(x)) <= 1
+is_empty_string <- function(x, na.rm = FALSE, assert_type = FALSE) {
+  if (isTRUE(assert_type)) assert_type(x, "character")
+  z <- x == ""
+  z
 }
-is_empty_string <- function(x, na.rm = FALSE) {
-  assert_type(x, "character")
-  if (na.rm) x <- stats::na.omit(x)
-  x == ""
+is_zero_numeric <- function(x, na.rm = FALSE, assert_type = FALSE) {
+  if (isTRUE(assert_type)) assert_type(x, "numeric")
+  z <- x == 0
+  z
 }
 
 # Helpers ======================================================================
@@ -26,6 +27,8 @@ is_empty_string <- function(x, na.rm = FALSE) {
 #'  `FALSE` otherwise.
 #' @param names A [`character`] vector specifying the names to test `x`
 #'  with. If `NULL`, returns `TRUE` if `x` has names, and `FALSE` otherwise.
+#' @param na.rm A [`logical`] scalar: should missing values (including `NaN`)
+#'  be omitted?
 #' @return A [`logical`] scalar.
 #' @family predicates
 #' @name predicate-utils
@@ -65,6 +68,12 @@ has_infinite <- function(x) {
 #' @rdname predicate-utils
 is_empty <- function(x) {
   any((dim(x) %||% length(x)) == 0)
+}
+#' @export
+#' @rdname predicate-utils
+is_unique <- function(x, na.rm = FALSE) {
+  if (na.rm) x <- stats::na.omit(x)
+  length(unique(x)) == 1
 }
 
 # Type =========================================================================
@@ -197,8 +206,7 @@ is_scalar_logical <- function(x) {
 #' @param x A [`numeric`] object to be tested.
 #' @param tolerance A [`numeric`] scalar giving the tolerance to check within.
 #' @param strict A [`logical`] scalar: should strict inequality be used?
-#' @param na.rm A [`logical`] scalar: should missing values (including `NaN`)
-#'  be omitted?
+#' @param ... Currently not used.
 #' @return A [`logical`] vector.
 #' @family predicates
 #' @name predicate-numeric
@@ -207,44 +215,38 @@ NULL
 
 #' @export
 #' @rdname predicate-numeric
-is_zero <- function(x, na.rm = FALSE) {
+is_zero <- function(x, ...) {
   assert_type(x, "numeric")
-  if (na.rm) x <- stats::na.omit(x)
   x == 0
 }
 #' @export
 #' @rdname predicate-numeric
-is_odd <- function(x, na.rm = FALSE) { # impair
+is_odd <- function(x, ...) { # impair
   assert_type(x, "numeric")
-  if (na.rm) x <- stats::na.omit(x)
   as.logical(x %% 2)
 }
 #' @export
 #' @rdname predicate-numeric
-is_even <- function(x, na.rm = FALSE) { # pair
+is_even <- function(x, ...) { # pair
   assert_type(x, "numeric")
-  if (na.rm) x <- stats::na.omit(x)
   !as.logical(x %% 2)
 }
 #' @export
 #' @rdname predicate-numeric
-is_positive <- function(x, strict = FALSE, na.rm = FALSE) {
+is_positive <- function(x, strict = FALSE, ...) {
   assert_type(x, "numeric")
-  if (na.rm) x <- stats::na.omit(x)
   if (strict) x > 0 else x >= 0
 }
 #' @export
 #' @rdname predicate-numeric
-is_negative <- function(x, strict = FALSE, na.rm = FALSE) {
+is_negative <- function(x, strict = FALSE, ...) {
   assert_type(x, "numeric")
-  if (na.rm) x <- stats::na.omit(x)
   if (strict) x < 0 else x <= 0
 }
 #' @export
 #' @rdname predicate-numeric
-is_whole <- function(x, na.rm = FALSE, tolerance = .Machine$double.eps^0.5) {
+is_whole <- function(x, tolerance = .Machine$double.eps^0.5, ...) {
   assert_type(x, "numeric")
-  if (na.rm) x <- stats::na.omit(x)
   abs(x - round(x, digits = 0)) <= tolerance
 }
 
@@ -269,8 +271,7 @@ NULL
 #' @rdname predicate-trend
 is_constant <- function(x, tolerance = .Machine$double.eps^0.5, na.rm = FALSE) {
   assert_type(x, "numeric")
-  if (na.rm) x <- stats::na.omit(x)
-  abs(max(x) - min(x)) <= tolerance
+  abs(max(x, na.rm = na.rm) - min(x, na.rm = na.rm)) <= tolerance
 }
 #' @export
 #' @rdname predicate-trend

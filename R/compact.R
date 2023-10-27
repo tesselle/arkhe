@@ -9,14 +9,14 @@ NULL
 setMethod(
   f = "compact",
   signature = c(x = "ANY"),
-  definition = function(x, margin = 1) {
+  definition = function(x, margin = 1, na.rm = FALSE) {
     vide <- function(x) {
-      miss <- is.na(x)
-      if (is_numeric(x)) x == 0 | miss
-      else if (is_character(x)) x == "" | miss
-      else miss
+      if (is_numeric(x)) x == 0
+      else if (is_logical(x)) !x
+      else if (is_character(x)) x == ""
+      else rep(FALSE, length(x))
     }
-    discard(x, f = vide, margin = margin, all = TRUE)
+    discard(x, f = vide, margin = margin, all = TRUE, na.rm = na.rm)
   }
 )
 
@@ -26,8 +26,8 @@ setMethod(
 setMethod(
   f = "compact_cols",
   signature = c(x = "ANY"),
-  definition = function(x) {
-    compact(x, margin = 2)
+  definition = function(x, na.rm = FALSE) {
+    compact(x, margin = 2, na.rm = na.rm)
   }
 )
 
@@ -37,7 +37,7 @@ setMethod(
 setMethod(
   f = "compact_rows",
   signature = c(x = "ANY"),
-  definition = function(x) {
-    compact(x, margin = 1)
+  definition = function(x, na.rm = FALSE) {
+    compact(x, margin = 1, na.rm = na.rm)
   }
 )

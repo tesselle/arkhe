@@ -19,11 +19,11 @@ compact_cols(x, ...)
 
 compact_rows(x, ...)
 
-\S4method{compact}{ANY}(x, margin = 1)
+\S4method{compact}{ANY}(x, margin = 1, na.rm = FALSE)
 
-\S4method{compact_cols}{ANY}(x)
+\S4method{compact_cols}{ANY}(x, na.rm = FALSE)
 
-\S4method{compact_rows}{ANY}(x)
+\S4method{compact_rows}{ANY}(x, na.rm = FALSE)
 }
 \arguments{
 \item{x}{An \R object (should be a \code{\link{matrix}} or a \code{\link{data.frame}}).}
@@ -32,13 +32,15 @@ compact_rows(x, ...)
 
 \item{margin}{A length-one \code{\link{numeric}} vector giving the subscripts which the
 function will be applied over (\code{1} indicates rows, \code{2} indicates columns).}
+
+\item{na.rm}{A \code{\link{logical}} scalar: should \code{NA} values be stripped before the
+computation proceeds?}
 }
 \description{
-Removes empty rows/columns in an array-like object using a predicate
-function.
+Removes empty rows/columns in an array-like object.
 }
 \details{
-A row/column is empty if it contains only \code{NA}, zeros (if of type \code{numeric})
+A row/column is empty if it contains only zeros (if of type \code{numeric})
 or zero length character strings (if of type \code{character}).
 }
 \examples{

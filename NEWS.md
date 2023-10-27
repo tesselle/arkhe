@@ -1,4 +1,6 @@
 # arkhe 1.3.0.9000
+## Bugfixes & changes
+* Remove `na.rm` argument of numeric predicates (so that the length of the output equals the length of the input).
 
 # arkhe 1.3.0
 ## New classes and methods

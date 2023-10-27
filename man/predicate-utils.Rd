@@ -8,6 +8,7 @@
 \alias{has_missing}
 \alias{has_infinite}
 \alias{is_empty}
+\alias{is_unique}
 \title{Utility Predicates}
 \usage{
 has_length(x, n = NULL)
@@ -21,6 +22,8 @@ has_missing(x)
 has_infinite(x)
 
 is_empty(x)
+
+is_unique(x, na.rm = FALSE)
 }
 \arguments{
 \item{x}{A \code{\link{vector}} to be tested.}
@@ -31,6 +34,9 @@ with. If \code{NULL}, returns \code{TRUE} if \code{x} has length greater than ze
 
 \item{names}{A \code{\link{character}} vector specifying the names to test \code{x}
 with. If \code{NULL}, returns \code{TRUE} if \code{x} has names, and \code{FALSE} otherwise.}
+
+\item{na.rm}{A \code{\link{logical}} scalar: should missing values (including \code{NaN})
+be omitted?}
 }
 \value{
 A \code{\link{logical}} scalar.

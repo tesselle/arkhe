@@ -9,7 +9,7 @@
 \usage{
 detect(x, ...)
 
-\S4method{detect}{ANY}(x, f, margin = 1, negate = FALSE, all = FALSE, ...)
+\S4method{detect}{ANY}(x, f, margin = 1, negate = FALSE, all = FALSE, na.rm = FALSE, ...)
 }
 \arguments{
 \item{x}{An \R object (should be a \code{\link{matrix}} or a \code{\link{data.frame}}).}
@@ -28,6 +28,9 @@ instead of \code{f}?}
 values all meet the condition defined by \code{f} are considered. If \code{FALSE}
 (the default), only rows/columns where at least one value validates the
 condition defined by \code{f} are considered.}
+
+\item{na.rm}{A \code{\link{logical}} scalar: should \code{NA} values be stripped before the
+computation proceeds?}
 }
 \value{
 A \code{\link{logical}} vector.
