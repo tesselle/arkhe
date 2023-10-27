@@ -10,20 +10,23 @@
 \alias{assert_even}
 \title{Check Numeric Values}
 \usage{
-assert_count(x, ...)
+assert_count(x, na.rm = FALSE, ...)
 
-assert_whole(x, ...)
+assert_whole(x, na.rm = FALSE, ...)
 
-assert_positive(x, ...)
+assert_positive(x, na.rm = FALSE, ...)
 
-assert_negative(x, ...)
+assert_negative(x, na.rm = FALSE, ...)
 
-assert_odd(x, ...)
+assert_odd(x, na.rm = FALSE, ...)
 
-assert_even(x, ...)
+assert_even(x, na.rm = FALSE, ...)
 }
 \arguments{
 \item{x}{A \code{\link{numeric}} object to be checked.}
+
+\item{na.rm}{A \code{\link{logical}} scalar: should missing values (including \code{NaN})
+be omitted?}
 
 \item{...}{Extra parameters to be passed to internal methods.}
 }

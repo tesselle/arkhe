@@ -317,6 +317,8 @@ assert_unique <- function(x) {
 #' Check Numeric Values
 #'
 #' @param x A [`numeric`] object to be checked.
+#' @param na.rm A [`logical`] scalar: should missing values (including `NaN`)
+#'  be omitted?
 #' @param ... Extra parameters to be passed to internal methods.
 #' @return
 #'  Throws an error, if any, and returns `x` invisibly otherwise.
@@ -328,9 +330,9 @@ NULL
 
 #' @export
 #' @rdname check-numeric
-assert_count <- function(x, ...) {
+assert_count <- function(x, na.rm = FALSE, ...) {
   arg <- deparse(substitute(x))
-  if (!all(is_whole(x, ...))) {
+  if (!all(is_whole(x, ...), na.rm = na.rm)) {
     msg <- sprintf("%s must contain integers (counts).", sQuote(arg))
     throw_error("error_bad_numeric", msg)
   }
@@ -343,9 +345,9 @@ assert_whole <- assert_count
 
 #' @export
 #' @rdname check-numeric
-assert_positive <- function(x, ...) {
+assert_positive <- function(x, na.rm = FALSE, ...) {
   arg <- deparse(substitute(x))
-  if (!all(is_positive(x, ...))) {
+  if (!all(is_positive(x, ...), na.rm = na.rm)) {
     msg <- sprintf("%s must contain positive numbers.", sQuote(arg))
     throw_error("error_bad_numeric", msg)
   }
@@ -354,9 +356,9 @@ assert_positive <- function(x, ...) {
 
 #' @export
 #' @rdname check-numeric
-assert_negative <- function(x, ...) {
+assert_negative <- function(x, na.rm = FALSE, ...) {
   arg <- deparse(substitute(x))
-  if (!all(is_negative(x, ...))) {
+  if (!all(is_negative(x, ...), na.rm = na.rm)) {
     msg <- sprintf("%s must contain negative numbers.", sQuote(arg))
     throw_error("error_bad_numeric", msg)
   }
@@ -365,9 +367,9 @@ assert_negative <- function(x, ...) {
 
 #' @export
 #' @rdname check-numeric
-assert_odd <- function(x, ...) {
+assert_odd <- function(x, na.rm = FALSE, ...) {
   arg <- deparse(substitute(x))
-  if (!all(is_odd(x, ...))) {
+  if (!all(is_odd(x, ...), na.rm = na.rm)) {
     msg <- sprintf("%s must contain odd numbers.", sQuote(arg))
     throw_error("error_bad_numeric", msg)
   }
@@ -376,9 +378,9 @@ assert_odd <- function(x, ...) {
 
 #' @export
 #' @rdname check-numeric
-assert_even <- function(x, ...) {
+assert_even <- function(x, na.rm = FALSE, ...) {
   arg <- deparse(substitute(x))
-  if (!all(is_even(x, ...))) {
+  if (!all(is_even(x, ...), na.rm = na.rm)) {
     msg <- sprintf("%s must contain even numbers.", sQuote(arg))
     throw_error("error_bad_numeric", msg)
   }
