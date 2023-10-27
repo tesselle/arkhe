@@ -1,65 +1,65 @@
-mtx <- matrix(c(8L, 10L, 1L, 10L, 2L, 5L, 10L, 10L, 3L, 3L, 6L, 8L, 4L, 4L, 8L),
-              nrow = 5, ncol = 3)
-
-mtxZero <- mtxInf <- mtxNA <- mtx
-mtxNA[c(1, 4, 13)] <- NA
-mtxInf[c(1, 4, 13)] <- Inf
-mtxZero[c(1, 4, 13)] <- 0
-
-mtxEmpty <- apply(X = mtx, MARGIN = 2, FUN = as.character)
-mtxEmpty[c(1, 4, 13)] <- ""
+## Read fake data
+artefacts <- read.csv(system.file("tinytest/fake.csv", package = "arkhe"))
 
 # Missing values ===============================================================
 ## Nothing to remove
-clean <- remove_NA(mtx, margin = 1)
-expect_equal(dim(clean), dim(mtx))
+no_rows <- remove_NA(artefacts, margin = 1, all = TRUE)
+expect_equal(dim(no_rows), dim(artefacts))
+no_cols <- remove_NA(artefacts, margin = 2, all = TRUE)
+expect_equal(dim(no_cols), dim(artefacts))
 
 ## Remove rows
-clean_row <- remove_NA(mtxNA, margin = 1)
-expect_equal(dim(clean_row), c(2, 3))
+clean_row <- remove_NA(artefacts, margin = 1, all = FALSE)
+expect_equal(dim(clean_row), dim(artefacts) - c(35, 0))
 
 ## Remove columns
-clean_col <- remove_NA(mtxNA, margin = 2)
-expect_equal(dim(clean_col), c(5, 1))
+clean_col <- remove_NA(artefacts, margin = 2, all = FALSE)
+expect_equal(dim(clean_col), dim(artefacts) - c(0, 4))
 
 # Infinite values ==============================================================
 ## Nothing to remove
-clean <- remove_Inf(mtx, margin = 1)
-expect_equal(dim(clean), dim(mtx))
+no_rows <- remove_Inf(artefacts, margin = 1, all = TRUE)
+expect_equal(dim(no_rows), dim(artefacts))
+no_cols <- remove_Inf(artefacts, margin = 2, all = TRUE)
+expect_equal(dim(no_cols), dim(artefacts))
 
 ## Remove rows
-clean_row <- remove_Inf(mtxInf, margin = 1)
-expect_equal(dim(clean_row), c(2, 3))
+clean_row <- remove_Inf(artefacts, margin = 1, all = FALSE)
+expect_equal(dim(clean_row), dim(artefacts) - c(1, 0))
 
 ## Remove columns
-clean_col <- remove_Inf(mtxInf, margin = 2)
-expect_equal(dim(clean_col), c(5, 1))
+clean_col <- remove_Inf(artefacts, margin = 2, all = FALSE)
+expect_equal(dim(clean_col), dim(artefacts) - c(0, 2))
 
 # Zeros ========================================================================
 ## Nothing to remove
-clean <- remove_zero(mtxZero, margin = 2, all = TRUE)
-expect_equal(clean, mtxZero)
+no_rows <- remove_zero(artefacts, margin = 1, all = TRUE)
+expect_equal(dim(no_rows), dim(artefacts))
+no_cols <- remove_zero(artefacts, margin = 2, all = TRUE)
+expect_equal(dim(no_cols), dim(artefacts))
 
 ## Remove rows
-clean_row <- remove_zero(mtxZero, margin = 1)
-expect_equal(dim(clean_row), c(2, 3))
+clean_row <- remove_zero(artefacts, margin = 1, all = FALSE)
+expect_equal(dim(clean_row), dim(artefacts) - c(19, 0))
 
 ## Remove columns
-clean_col <- remove_zero(mtxZero, margin = 2)
-expect_equal(dim(clean_col), c(5, 1))
+clean_col <- remove_zero(artefacts, margin = 2, all = FALSE)
+expect_equal(dim(clean_col), dim(artefacts) - c(0, 2))
 
 # Empty strings ================================================================
 ## Nothing to remove
-clean <- remove_empty(mtxEmpty, margin = 2, all = TRUE)
-expect_equal(clean, mtxEmpty)
+no_rows <- remove_empty(artefacts, margin = 1, all = TRUE)
+expect_equal(dim(no_rows), dim(artefacts))
+no_cols <- remove_empty(artefacts, margin = 2, all = TRUE)
+expect_equal(dim(no_cols), dim(artefacts))
 
 ## Remove rows
-clean_row <- remove_empty(mtxEmpty, margin = 1)
-expect_equal(dim(clean_row), c(2, 3))
+clean_row <- remove_empty(artefacts, margin = 1, all = FALSE)
+expect_equal(dim(clean_row), dim(artefacts) - c(10, 0))
 
 ## Remove columns
-clean_col <- remove_empty(mtxEmpty, margin = 2)
-expect_equal(dim(clean_col), c(5, 1))
+clean_col <- remove_empty(artefacts, margin = 2, all = FALSE)
+expect_equal(dim(clean_col), dim(artefacts) - c(0, 1))
 
 # Constant columns =============================================================
 df1 <- data.frame(A = 1, B = 1:3)
