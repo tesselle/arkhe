@@ -2,22 +2,7 @@
 % Please edit documentation in R/arkhe-deprecated.R
 \name{arkhe-deprecated}
 \alias{arkhe-deprecated}
-\alias{wide_to_long}
-\alias{wide_to_long-method}
-\alias{to_long}
-\alias{to_long-method}
-\alias{wide_to_long,matrix-method}
-\alias{to_long,matrix-method}
 \title{Deprecated Functions in arkhe}
-\usage{
-wide_to_long(from, ...)
-
-to_long(from, ...)
-
-\S4method{wide_to_long}{matrix}(from, factor = FALSE, reverse = FALSE)
-
-\S4method{to_long}{matrix}(from, factor = FALSE, reverse = FALSE)
-}
 \description{
 These functions still work but will be removed (defunct) in the next version.
 }
