@@ -53,3 +53,24 @@ setMethod(
     wide_to_long(from, factor = factor, reverse = reverse)
   }
 )
+
+#' Factors
+#'
+#' @param x A vector to be coerced.
+#' @param reverse A [`logical`] scalar: should the order of factor
+#'  levels be reversed? Useful for plotting.
+#' @details
+#'  Encodes a vector as a factor without sorting it (preserves original
+#'  ordering or reverse it if `reverse` is `TRUE`).
+#' @return An [`factor`] object.
+#' @author N. Frerebeau
+#' @family utilities
+#' @keywords internal utilities
+#' @noRd
+as_factor <- function(x, reverse = FALSE) {
+  lvl <- unique(x)
+  if (reverse) {
+    lvl <- rev(lvl)
+  }
+  factor(x, levels = lvl)
+}

@@ -28,3 +28,6 @@ reference:
 - title: Mathematics
   contents:
   - has_concept("mathematic functions")
+- title: Utilities
+  contents:
+  - has_concept("utilities")

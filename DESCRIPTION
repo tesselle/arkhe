@@ -47,4 +47,5 @@ Collate:
     'remove.R'
     'replace.R'
     'statistics.R'
+    'utilities.R'
     'zzz.R'
