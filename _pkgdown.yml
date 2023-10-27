@@ -13,6 +13,9 @@ reference:
 - title: Data transformation
   contents:
   - has_concept("transformation tools")
+- title: Scales
+  contents:
+  - has_concept("scales")
 - title: Predicates
   contents:
   - has_concept("predicates")
