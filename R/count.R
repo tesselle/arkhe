@@ -26,8 +26,10 @@ setMethod(
   f = "count",
   signature = c(x = "matrix"),
   definition = function(x, f, margin = 1, negate = FALSE, na.rm = FALSE, ...) {
-    x <- as.data.frame(x)
-    methods::callGeneric(x, f = f, margin = margin, negate = negate,
-                         na.rm = na.rm, ...)
+    assert_function(f)
+    if (negate) f <- Negate(f)
+    x <- apply(X = x, MARGIN = margin, FUN = f, ...)
+    ## apply() returns an array of dimension c(n, dim(X)[MARGIN])
+    colSums(x, na.rm = na.rm)
   }
 )

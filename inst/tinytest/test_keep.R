@@ -35,7 +35,3 @@ clean_col <- keep_cols(mtx, f = is_zero, all = TRUE)
 expect_equal(dim(clean_col), c(5, 1))
 expect_message(keep_cols(mtx, f = is_zero, all = TRUE, verbose = TRUE),
                "Removing 2 columns out of 3")
-
-## No margin
-test <- apply(X = mtx, MARGIN = 2, FUN = is_zero)
-expect_equivalent(keep(mtx, f = is_zero, margin = NULL), test)

@@ -7,7 +7,7 @@ expect_equal(detect(mtx, f = is.na, margin = 1), c(FALSE, TRUE, TRUE, TRUE, FALS
 
 ## Find column without any NA
 no_na <- detect(mtx, f = is.na, margin = 2, negate = TRUE, all = TRUE)
-expect_equal(no_na, c(V1 = FALSE, V2 = TRUE, V3 = FALSE))
+expect_equal(no_na, c(FALSE, TRUE, FALSE))
 
 # data.frame ===================================================================
 df <- data.frame(

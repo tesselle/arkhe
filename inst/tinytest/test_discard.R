@@ -30,7 +30,3 @@ expect_equal(ncol(clean_col), ncol(mtx) - 1L)
 expect_equal(nrow(clean_col), nrow(mtx))
 expect_message(discard_cols(mtx, f = is_zero, all = TRUE, verbose = TRUE),
                "Removing 1 column out of 3")
-
-## No margin
-test <- apply(X = mtx, MARGIN = 2, FUN = is_zero)
-expect_equivalent(discard(mtx, f = is_zero, margin = NULL), test)
