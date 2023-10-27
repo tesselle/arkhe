@@ -1,6 +1,6 @@
 Package: arkhe
 Title: Tools for Cleaning Rectangular Data
-Version: 1.3.0.9000
+Version: 1.4.0
 Authors@R: c(
     person("Nicolas", "Frerebeau", , "nicolas.frerebeau@u-bordeaux-montaigne.fr", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-5759-4944", affiliation = "Université Bordeaux Montaigne")),
@@ -20,6 +20,7 @@ BugReports: https://github.com/tesselle/arkhe/issues
 Depends: 
     R (>= 3.5)
 Imports: 
+    graphics,
     methods,
     stats,
     utils
@@ -44,8 +45,10 @@ Collate:
     'discard.R'
     'keep.R'
     'mathematics.R'
+    'plot.R'
     'remove.R'
     'replace.R'
+    'scale.R'
     'statistics.R'
     'utilities.R'
     'zzz.R'

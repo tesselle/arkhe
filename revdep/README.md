@@ -10,15 +10,15 @@
 |collate  |fr_FR.UTF-8                                                                  |
 |ctype    |fr_FR.UTF-8                                                                  |
 |tz       |Europe/Paris                                                                 |
-|date     |2023-08-31                                                                   |
-|rstudio  |2023.06.1+524 Mountain Hydrangea (desktop)                                   |
+|date     |2023-10-27                                                                   |
+|rstudio  |2023.09.0+463 Desert Sunflower (desktop)                                     |
 |pandoc   |3.1.1 @ /usr/lib/rstudio/resources/app/bin/quarto/bin/tools/ (via rmarkdown) |
 
 # Dependencies
 
 |package |old   |new   |Δ  |
 |:-------|:-----|:-----|:--|
-|arkhe   |1.2.0 |1.3.0 |*  |
+|arkhe   |1.3.0 |1.4.0 |*  |
 
 # Revdeps
 

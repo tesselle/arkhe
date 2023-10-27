@@ -8,19 +8,13 @@
   "codeRepository": "https://github.com/tesselle/arkhe",
   "issueTracker": "https://github.com/tesselle/arkhe/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "1.3.0.9000",
+  "version": "1.4.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
   "runtimePlatform": "R version 4.3.1 (2023-06-16)",
-  "provider": {
-    "@id": "https://cran.r-project.org",
-    "@type": "Organization",
-    "name": "Comprehensive R Archive Network (CRAN)",
-    "url": "https://cran.r-project.org"
-  },
   "author": [
     {
       "@type": "Person",
@@ -52,14 +46,7 @@
     {
       "@type": "SoftwareApplication",
       "identifier": "tinytest",
-      "name": "tinytest",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=tinytest"
+      "name": "tinytest"
     }
   ],
   "softwareRequirements": {
@@ -71,22 +58,27 @@
     },
     "2": {
       "@type": "SoftwareApplication",
+      "identifier": "graphics",
+      "name": "graphics"
+    },
+    "3": {
+      "@type": "SoftwareApplication",
       "identifier": "methods",
       "name": "methods"
     },
-    "3": {
+    "4": {
       "@type": "SoftwareApplication",
       "identifier": "stats",
       "name": "stats"
     },
-    "4": {
+    "5": {
       "@type": "SoftwareApplication",
       "identifier": "utils",
       "name": "utils"
     },
     "SystemRequirements": null
   },
-  "fileSize": "256.781KB",
+  "fileSize": "275.718KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -101,7 +93,7 @@
       "name": "{arkhe: Tools for Cleaning Rectangular Data}",
       "identifier": "10.5281/zenodo.3526659",
       "url": "https://packages.tesselle.org/arkhe/",
-      "description": "R package version 1.3.0.9000",
+      "description": "R package version 1.4.0",
       "@id": "https://doi.org/10.5281/zenodo.3526659",
       "sameAs": "https://doi.org/10.5281/zenodo.3526659"
     }

@@ -1,5 +1,11 @@
-# arkhe 1.3.0.9000
+# arkhe 1.4.0
+## New classes and methods
+* Add `%||%` to replace `NULL` with a default value.
+* Add `%+%` to concatenate character vectors.
+* Add `scale_range` to rescale a continuous vector to have specified minimum and maximum.
+
 ## Bugfixes & changes
+* Remove deprecated methods.
 * Remove `na.rm` argument of numeric predicates (so that the length of the output equals the length of the input).
 
 # arkhe 1.3.0
