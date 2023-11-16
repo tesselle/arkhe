@@ -37,6 +37,7 @@ preferred-citation:
   doi: 10.5281/zenodo.3526659
   institution:
     name: Université Bordeaux Montaigne
+repository: https://CRAN.R-project.org/package=arkhe
 repository-code: https://github.com/tesselle/arkhe
 url: https://packages.tesselle.org/arkhe/
 contact:

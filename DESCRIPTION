@@ -5,7 +5,9 @@ Authors@R: c(
     person("Nicolas", "Frerebeau", , "nicolas.frerebeau@u-bordeaux-montaigne.fr", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-5759-4944", affiliation = "Université Bordeaux Montaigne")),
     person("Brice", "Lebrun", , "brice.lebrun@u-bordeaux-montaigne.fr", role = "ctb",
-           comment = c(ORCID = "0000-0001-7503-8685", affiliation = "Université Bordeaux Montaigne"))
+           comment = c(ORCID = "0000-0001-7503-8685", affiliation = "Université Bordeaux Montaigne")),
+    person("Université Bordeaux Montaigne", role = "fnd"),
+    person("CNRS", role = "fnd")
   )
 Maintainer: Nicolas Frerebeau <nicolas.frerebeau@u-bordeaux-montaigne.fr>
 Description: A dependency-free collection of simple functions for cleaning

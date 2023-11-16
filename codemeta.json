@@ -14,7 +14,13 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.3.1 (2023-06-16)",
+  "runtimePlatform": "R version 4.3.2 (2023-10-31)",
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
   "author": [
     {
       "@type": "Person",
@@ -33,6 +39,16 @@
       "@id": "https://orcid.org/0000-0001-7503-8685"
     }
   ],
+  "funder": [
+    {
+      "@type": "Organization",
+      "name": "Université Bordeaux Montaigne"
+    },
+    {
+      "@type": "Organization",
+      "name": "CNRS"
+    }
+  ],
   "maintainer": [
     {
       "@type": "Person",
@@ -46,7 +62,14 @@
     {
       "@type": "SoftwareApplication",
       "identifier": "tinytest",
-      "name": "tinytest"
+      "name": "tinytest",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=tinytest"
     }
   ],
   "softwareRequirements": {
@@ -78,7 +101,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "275.718KB",
+  "fileSize": "276.216KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
