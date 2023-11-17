@@ -159,3 +159,6 @@ identifiers:
 - description: The versioned DOI for version 1.3.0.
   type: doi
   value: 10.5281/zenodo.8308598
+- description: The versioned DOI for version 1.4.0.
+  type: doi
+  value: 10.5281/zenodo.10148702
