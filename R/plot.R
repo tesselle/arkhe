@@ -78,8 +78,8 @@ label_percent <- function(x, digits = NULL, trim = FALSE) {
 #'  way (see [grDevices::xy.coords()]).
 #' @param labels A [`character`] vector or [`expression`] specifying the text
 #'  to be written.
-#' @param segment A [`logical`] scalar.
-#' @param box A [`logical`] scalar.
+#' @param segment A [`logical`] scalar: should segments be drawn?
+#' @param box A [`logical`] scalar: should a box be drawn underneath labels?
 #' @param ... Further arguments to be passed to [graphics::text()],
 #'  particularly, character expansion, `cex` and color, `col`.
 #' @return

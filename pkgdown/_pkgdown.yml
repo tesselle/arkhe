@@ -28,6 +28,9 @@ reference:
 - title: Mathematics
   contents:
   - has_concept("mathematic functions")
+- title: Palettes
+  contents:
+  - has_concept("palettes")
 - title: Utilities
   contents:
   - has_concept("utilities")

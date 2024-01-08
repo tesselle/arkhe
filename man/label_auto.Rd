@@ -24,9 +24,9 @@ particularly, character expansion, \code{cex} and color, \code{col}.}
 \item{labels}{A \code{\link{character}} vector or \code{\link{expression}} specifying the text
 to be written.}
 
-\item{segment}{A \code{\link{logical}} scalar.}
+\item{segment}{A \code{\link{logical}} scalar: should segments be drawn?}
 
-\item{box}{A \code{\link{logical}} scalar.}
+\item{box}{A \code{\link{logical}} scalar: should a box be drawn underneath labels?}
 }
 \value{
 \code{label_auto()} is called it for its side-effects.
