@@ -38,4 +38,9 @@ A \code{\link{character}} vector of colors.
 \description{
 Color Mapping
 }
-\concept{palette}
+\seealso{
+Other palettes: 
+\code{\link{palette_shape}()},
+\code{\link{palette_size}()}
+}
+\concept{palettes}
