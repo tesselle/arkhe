@@ -16,7 +16,7 @@ remove_Inf(x, ...)
 
 replace_Inf(x, ...)
 
-\S4method{remove_Inf}{ANY}(x, margin = 1, all = FALSE)
+\S4method{remove_Inf}{ANY}(x, margin = 1, all = FALSE, verbose = getOption("arkhe.verbose"))
 
 \S4method{replace_Inf}{matrix}(x, value = 0)
 
@@ -34,6 +34,9 @@ function will be applied over (\code{1} indicates rows, \code{2} indicates colum
 values all meet the condition defined by \code{f} are considered. If \code{FALSE}
 (the default), only rows/columns where at least one value validates the
 condition defined by \code{f} are considered.}
+
+\item{verbose}{A \code{\link{logical}} scalar: should \R report extra information
+on progress?}
 
 \item{value}{A possible replacement value.}
 }

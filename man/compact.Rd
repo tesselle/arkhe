@@ -19,11 +19,11 @@ compact_cols(x, ...)
 
 compact_rows(x, ...)
 
-\S4method{compact}{ANY}(x, margin = 1, na.rm = FALSE)
+\S4method{compact}{ANY}(x, margin = 1, na.rm = FALSE, verbose = getOption("arkhe.verbose"))
 
-\S4method{compact_cols}{ANY}(x, na.rm = FALSE)
+\S4method{compact_cols}{ANY}(x, na.rm = FALSE, verbose = getOption("arkhe.verbose"))
 
-\S4method{compact_rows}{ANY}(x, na.rm = FALSE)
+\S4method{compact_rows}{ANY}(x, na.rm = FALSE, verbose = getOption("arkhe.verbose"))
 }
 \arguments{
 \item{x}{An \R object (should be a \code{\link{matrix}} or a \code{\link{data.frame}}).}
@@ -35,6 +35,9 @@ function will be applied over (\code{1} indicates rows, \code{2} indicates colum
 
 \item{na.rm}{A \code{\link{logical}} scalar: should \code{NA} values be stripped before the
 computation proceeds?}
+
+\item{verbose}{A \code{\link{logical}} scalar: should \R report extra information
+on progress?}
 }
 \description{
 Removes empty rows/columns in an array-like object.

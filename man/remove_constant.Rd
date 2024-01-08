@@ -9,7 +9,7 @@
 \usage{
 remove_constant(x, ...)
 
-\S4method{remove_constant}{ANY}(x, na.rm = FALSE)
+\S4method{remove_constant}{ANY}(x, na.rm = FALSE, verbose = getOption("arkhe.verbose"))
 }
 \arguments{
 \item{x}{An \R object (should be a \code{\link{matrix}} or a \code{\link{data.frame}}).}
@@ -18,6 +18,9 @@ remove_constant(x, ...)
 
 \item{na.rm}{A \code{\link{logical}} scalar: should \code{NA} values be stripped before the
 computation proceeds?}
+
+\item{verbose}{A \code{\link{logical}} scalar: should \R report extra information
+on progress?}
 }
 \description{
 Remove Constant Columns

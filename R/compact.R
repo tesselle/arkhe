@@ -9,14 +9,16 @@ NULL
 setMethod(
   f = "compact",
   signature = c(x = "ANY"),
-  definition = function(x, margin = 1, na.rm = FALSE) {
+  definition = function(x, margin = 1, na.rm = FALSE,
+                        verbose = getOption("arkhe.verbose")) {
     vide <- function(x) {
       if (is_numeric(x)) x == 0
       else if (is_logical(x)) !x
       else if (is_character(x)) x == ""
       else rep(FALSE, length(x))
     }
-    discard(x, f = vide, margin = margin, all = TRUE, na.rm = na.rm)
+    discard(x, f = vide, margin = margin, all = TRUE,
+            na.rm = na.rm, verbose = verbose)
   }
 )
 
@@ -26,8 +28,8 @@ setMethod(
 setMethod(
   f = "compact_cols",
   signature = c(x = "ANY"),
-  definition = function(x, na.rm = FALSE) {
-    compact(x, margin = 2, na.rm = na.rm)
+  definition = function(x, na.rm = FALSE, verbose = getOption("arkhe.verbose")) {
+    compact(x, margin = 2, na.rm = na.rm, verbose = verbose)
   }
 )
 
@@ -37,7 +39,7 @@ setMethod(
 setMethod(
   f = "compact_rows",
   signature = c(x = "ANY"),
-  definition = function(x, na.rm = FALSE) {
-    compact(x, margin = 1, na.rm = na.rm)
+  definition = function(x, na.rm = FALSE, verbose = getOption("arkhe.verbose")) {
+    compact(x, margin = 1, na.rm = na.rm, verbose = verbose)
   }
 )

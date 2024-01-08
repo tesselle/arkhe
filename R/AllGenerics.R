@@ -113,6 +113,8 @@ setGeneric(
 #'
 #' Removes empty rows/columns in an array-like object.
 #' @inheritParams detect
+#' @param verbose A [`logical`] scalar: should \R report extra information
+#'  on progress?
 #' @param ... Currently not used.
 #' @details
 #'  A row/column is empty if it contains only zeros (if of type `numeric`)
@@ -150,6 +152,8 @@ setGeneric(
 #'  * `remove_NA()` remove rows/columns that contain [missing values][NA].
 #'  * `replace_NA` replaces [missing values][NA] values.
 #' @inheritParams detect
+#' @param verbose A [`logical`] scalar: should \R report extra information
+#'  on progress?
 #' @param value A possible replacement value.
 #' @param ... Currently not used.
 #' @example inst/examples/ex-missing.R
@@ -181,6 +185,8 @@ setGeneric(
 #'  * `remove_Inf()` remove rows/columns that contain [infinite values][is.finite].
 #'  * `replace_Inf` replaces [infinite values][is.finite] values.
 #' @inheritParams detect
+#' @param verbose A [`logical`] scalar: should \R report extra information
+#'  on progress?
 #' @param value A possible replacement value.
 #' @param ... Currently not used.
 #' @example inst/examples/ex-infinite.R
@@ -212,6 +218,8 @@ setGeneric(
 #'  * `remove_zero()` remove rows/columns that contain zeros.
 #'  * `replace_zero()` replaces zeros.
 #' @inheritParams detect
+#' @param verbose A [`logical`] scalar: should \R report extra information
+#'  on progress?
 #' @param value A possible replacement value.
 #' @param ... Currently not used.
 #' @example inst/examples/ex-zero.R
@@ -243,6 +251,8 @@ setGeneric(
 #'  * `remove_empty()` remove rows/columns that contain empty strings.
 #'  * `replace_empty()` replaces empty strings.
 #' @inheritParams detect
+#' @param verbose A [`logical`] scalar: should \R report extra information
+#'  on progress?
 #' @param value A possible replacement value.
 #' @param ... Currently not used.
 #' @example inst/examples/ex-empty.R
@@ -273,6 +283,8 @@ setGeneric(
 #' @param x An \R object (should be a [`matrix`] or a [`data.frame`]).
 #' @param na.rm A [`logical`] scalar: should `NA` values be stripped before the
 #'  computation proceeds?
+#' @param verbose A [`logical`] scalar: should \R report extra information
+#'  on progress?
 #' @param ... Currently not used.
 #' @example inst/examples/ex-constant.R
 #' @author N. Frerebeau

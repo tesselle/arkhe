@@ -1,5 +1,8 @@
 # arkhe 1.4.0.9000
 
+## Enhancements
+* `compact()` and `remove_*()` gained a new `verbose` argument to report extra information on progress.
+
 # arkhe 1.4.0
 ## New classes and methods
 * Add `%||%` to replace `NULL` with a default value.
