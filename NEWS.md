@@ -6,6 +6,9 @@
 ## Enhancements
 * `compact()` and `remove_*()` gained a new `verbose` argument to report extra information on progress.
 
+## Bugfixes & changes
+* Rename `needs()` to `assert_package()`.
+
 # arkhe 1.4.0
 ## New classes and methods
 * Add `%||%` to replace `NULL` with a default value.

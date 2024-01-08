@@ -2,6 +2,23 @@
 #' @include predicates.R
 NULL
 
+#' Validate a Condition
+#'
+#' @param expr An object to be evaluated.
+#' @return
+#'  Returns `NULL` on success, otherwise returns the error as a string.
+#' @author N. Frerebeau
+#' @family validation methods
+#' @name validate
+#' @rdname validate
+#' @export
+validate <- function(expr) {
+  cnd <- catch_message(eval(expr))
+  if (has_length(cnd)) return(cnd)
+  NULL
+}
+
+# Packages =====================================================================
 #' Check the Availability of a Package
 #'
 #' @param x A [`character`] vector naming the packages to check.
@@ -16,8 +33,13 @@ NULL
 #' @return Invisibly returns `NULL`.
 #' @family validation methods
 #' @author N. Frerebeau
+#' @name check-package
+#' @rdname check-package
+NULL
+
 #' @export
-needs <- function(x, ask = TRUE) {
+#' @rdname check-package
+assert_package <- function(x, ask = TRUE) {
   ok <- vapply(X = x, FUN = requireNamespace, FUN.VALUE = logical(1),
                quietly = TRUE)
 
@@ -48,21 +70,9 @@ needs <- function(x, ask = TRUE) {
   invisible(NULL)
 }
 
-#' Validate a Condition
-#'
-#' @param expr An object to be evaluated.
-#' @return
-#'  Returns `NULL` on success, otherwise returns the error as a string.
-#' @author N. Frerebeau
-#' @family validation methods
-#' @name validate
-#' @rdname validate
 #' @export
-validate <- function(expr) {
-  cnd <- catch_message(eval(expr))
-  if (has_length(cnd)) return(cnd)
-  NULL
-}
+#' @rdname check-package
+needs <- assert_package
 
 # Types ========================================================================
 #' Check Data Types
@@ -177,7 +187,7 @@ assert_filled <- function(x) {
 assert_length <- function(x, expected, empty = FALSE) {
   arg <- deparse(substitute(x))
   if (!(empty & is_empty(x)) && !has_length(x, n = expected)) {
-    msg <- sprintf("%s must be of length %d; not %s.", sQuote(arg),
+    msg <- sprintf("%s must be of length %d; not %d.", sQuote(arg),
                    expected, length(x))
     throw_error("error_bad_length", msg)
   }

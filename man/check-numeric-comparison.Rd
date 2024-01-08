@@ -28,8 +28,8 @@ Other validation methods:
 \code{\link{check-matrix}},
 \code{\link{check-numeric-trend}},
 \code{\link{check-numeric}},
+\code{\link{check-package}},
 \code{\link{check-type}},
-\code{\link{needs}()},
 \code{\link{validate}()}
 }
 \author{

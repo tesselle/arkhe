@@ -33,8 +33,8 @@ Other validation methods:
 \code{\link{check-numeric-comparison}},
 \code{\link{check-numeric-trend}},
 \code{\link{check-numeric}},
+\code{\link{check-package}},
 \code{\link{check-type}},
-\code{\link{needs}()},
 \code{\link{validate}()}
 }
 \author{
