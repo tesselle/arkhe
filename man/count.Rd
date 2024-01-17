@@ -57,7 +57,9 @@ Other data preparation tools:
 \code{\link{compact}()},
 \code{\link{detect}()},
 \code{\link{discard}()},
-\code{\link{keep}()}
+\code{\link{get}()},
+\code{\link{keep}()},
+\code{\link{seek}()}
 }
 \author{
 N. Frerebeau

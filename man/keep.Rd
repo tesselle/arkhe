@@ -98,7 +98,9 @@ Other data preparation tools:
 \code{\link{compact}()},
 \code{\link{count}()},
 \code{\link{detect}()},
-\code{\link{discard}()}
+\code{\link{discard}()},
+\code{\link{get}()},
+\code{\link{seek}()}
 }
 \author{
 N. Frerebeau

@@ -143,6 +143,65 @@ setGeneric(
   def = function(x, ...) standardGeneric("compact_rows")
 )
 
+## Seek ------------------------------------------------------------------------
+#' Search Rows/Columns by Name
+#'
+#' Searches rows/columns by name in an array-like object.
+#' @param x An \R object (should be a [`matrix`] or a [`data.frame`]).
+#' @param select A [`function`] to be applied to the row/colum names
+#'  (e.g. [startsWith()]). Must return a single `integer` or `logical` vector.
+#' @param ... Further arguments to be passed to `select`.
+#' @return An [`integer`] vector or `NULL`.
+#' @example inst/examples/ex-seek.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family data preparation tools
+#' @name seek
+#' @rdname seek
+NULL
+
+#' @rdname seek
+#' @aliases seek_columns-method
+setGeneric(
+  name = "seek_columns",
+  def = function(x, ...) standardGeneric("seek_columns")
+)
+
+#' @rdname seek
+#' @aliases seek_rows-method
+setGeneric(
+  name = "seek_rows",
+  def = function(x, ...) standardGeneric("seek_rows")
+)
+
+## Seek ------------------------------------------------------------------------
+#' Get Rows/Columns by Name
+#'
+#' Returns rows/columns selected by name in an array-like object.
+#' @inheritParams seek
+#' @return An object of the same sort as `x`.
+#' @example inst/examples/ex-seek.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family data preparation tools
+#' @name get
+#' @rdname get
+NULL
+
+#' @rdname get
+#' @aliases get_columns-method
+setGeneric(
+  name = "get_columns",
+  def = function(x, ...) standardGeneric("get_columns")
+)
+
+#' @rdname get
+#' @aliases get_rows-method
+setGeneric(
+  name = "get_rows",
+  def = function(x, ...) standardGeneric("get_rows")
+)
+
 ## Assign ----------------------------------------------------------------------
 #' Assign a Specific Row/Column to the Column/Row Names
 #'
