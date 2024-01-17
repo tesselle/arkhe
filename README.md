@@ -10,7 +10,8 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/tesselle/arkhe/badge/main)](https://www.codefactor.io/repository/github/tesselle/arkhe/overview/main)
 [![Dependencies](https://tinyverse.netlify.com/badge/arkhe)](https://cran.r-project.org/package=arkhe)
 
-<a href="https://tesselle.r-universe.dev" class="pkgdown-devel"><img
+<a href="https://tesselle.r-universe.dev/arkhe"
+class="pkgdown-devel"><img
 src="https://tesselle.r-universe.dev/badges/arkhe"
 alt="r-universe" /></a>
 <a href="https://cran.r-project.org/package=arkhe"
@@ -42,20 +43,20 @@ messages.
 
     To cite arkhe in publications use:
 
-      Frerebeau N (2023). _arkhe: Tools for Cleaning Rectangular Data_.
+      Frerebeau N (2024). _arkhe: Tools for Cleaning Rectangular Data_.
       Université Bordeaux Montaigne, Pessac, France.
       doi:10.5281/zenodo.3526659 <https://doi.org/10.5281/zenodo.3526659>,
-      R package version 1.4.0, <https://packages.tesselle.org/arkhe/>.
+      R package version 1.5.0, <https://packages.tesselle.org/arkhe/>.
 
     A BibTeX entry for LaTeX users is
 
       @Manual{,
         author = {Nicolas Frerebeau},
         title = {{arkhe: Tools for Cleaning Rectangular Data}},
-        year = {2023},
+        year = {2024},
         organization = {Université Bordeaux Montaigne},
         address = {Pessac, France},
-        note = {R package version 1.4.0},
+        note = {R package version 1.5.0},
         url = {https://packages.tesselle.org/arkhe/},
         doi = {10.5281/zenodo.3526659},
       }
@@ -93,49 +94,49 @@ k <- sample(1:25, 3, FALSE)
 X[k] <- NA
 X
 #>      [,1] [,2] [,3] [,4] [,5]
-#> [1,]    9   10   10    4    9
-#> [2,]    1    6    6   10    4
-#> [3,]   NA    3   NA    3    5
-#> [4,]    3   10    2    8   NA
-#> [5,]    4    9    3    9    3
+#> [1,]    3    1    4    9    6
+#> [2,]    8   NA    7    8    6
+#> [3,]    5    9    4    4    8
+#> [4,]    7   NA   NA    3    4
+#> [5,]    8    2    5    3    4
 
 ## Count missing values in rows
 count(X, f = is.na, margin = 1)
-#> [1] 0 0 2 1 0
+#> [1] 0 1 0 2 0
 ## Count non-missing values in columns
 count(X, f = is.na, margin = 2, negate = TRUE)
-#> [1] 4 5 4 5 4
+#> [1] 5 3 4 5 5
 
 ## Find row with NA
 detect(X, f = is.na, margin = 1)
-#> [1] FALSE FALSE  TRUE  TRUE FALSE
+#> [1] FALSE  TRUE FALSE  TRUE FALSE
 ## Find column without any NA
 detect(X, f = is.na, margin = 2, negate = TRUE, all = TRUE)
-#> [1] FALSE  TRUE FALSE  TRUE FALSE
+#> [1]  TRUE FALSE FALSE  TRUE  TRUE
 
 ## Remove row with any NA
 discard(X, f = is.na, margin = 1, all = FALSE)
 #>      [,1] [,2] [,3] [,4] [,5]
-#> [1,]    9   10   10    4    9
-#> [2,]    1    6    6   10    4
-#> [3,]    4    9    3    9    3
+#> [1,]    3    1    4    9    6
+#> [2,]    5    9    4    4    8
+#> [3,]    8    2    5    3    4
 ## Remove column with any NA
 discard(X, f = is.na, margin = 2, all = FALSE)
-#>      [,1] [,2]
-#> [1,]   10    4
-#> [2,]    6   10
-#> [3,]    3    3
-#> [4,]   10    8
-#> [5,]    9    9
+#>      [,1] [,2] [,3]
+#> [1,]    3    9    6
+#> [2,]    8    8    6
+#> [3,]    5    4    8
+#> [4,]    7    3    4
+#> [5,]    8    3    4
 
 ## Replace NA with zeros
 replace_NA(X, value = 0)
 #>      [,1] [,2] [,3] [,4] [,5]
-#> [1,]    9   10   10    4    9
-#> [2,]    1    6    6   10    4
-#> [3,]    0    3    0    3    5
-#> [4,]    3   10    2    8    0
-#> [5,]    4    9    3    9    3
+#> [1,]    3    1    4    9    6
+#> [2,]    8    0    7    8    6
+#> [3,]    5    9    4    4    8
+#> [4,]    7    0    0    3    4
+#> [5,]    8    2    5    3    4
 ```
 
 ## Contributing
