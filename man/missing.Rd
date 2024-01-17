@@ -66,6 +66,7 @@ Other data cleaning tools:
 \code{\link{empty}},
 \code{\link{infinite}},
 \code{\link{remove_constant}()},
+\code{\link{remove_whitespace}()},
 \code{\link{zero}}
 }
 \author{

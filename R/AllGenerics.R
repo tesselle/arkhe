@@ -355,6 +355,25 @@ setGeneric(
   def = function(x, ...) standardGeneric("remove_constant")
 )
 
+## Whitespace ------------------------------------------------------------------
+#' Remove Leading/Trailing Whitespace
+#'
+#' @param x An \R object (should be a [`matrix`] or a [`data.frame`]).
+#' @param which A [`character`] string specifying whether to remove `both`
+#'  leading and trailing whitespace (default), or only leading ("`left`") or
+#'  trailing ("`right`").
+#' @param ... Currently not used.
+#' @example inst/examples/ex-whitespace.R
+#' @seealso [trimws()]
+#' @author N. Frerebeau
+#' @docType methods
+#' @family data cleaning tools
+#' @aliases remove_whitespace-method
+setGeneric(
+  name = "remove_whitespace",
+  def = function(x, ...) standardGeneric("remove_whitespace")
+)
+
 # Data transformation ==========================================================
 
 # Mathematics ==================================================================

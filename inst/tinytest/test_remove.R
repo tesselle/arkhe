@@ -71,3 +71,15 @@ df1[1, 1] <- NA # Add NA
 expect_equal(remove_constant(df1), df1)
 
 expect_equal(remove_constant(df1, na.rm = TRUE), df2)
+
+# Whitespace ===================================================================
+x <- data.frame(A = c("  Both. ", "  Left.", "Right.  "), B = 1:3)
+xb <- xl <- xr <- x
+xb$A <- trimws(x$A, which = "both")
+xl$A <- trimws(x$A, which = "left")
+xr$A <- trimws(x$A, which = "right")
+
+expect_equal(remove_whitespace(x, which = "both"), xb)
+expect_equal(remove_whitespace(x, which = "left"), xl)
+expect_equal(remove_whitespace(x, which = "right"), xr)
+expect_equal(remove_whitespace(as.matrix(x), which = "both"), as.matrix(xb))

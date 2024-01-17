@@ -42,6 +42,7 @@ Other data cleaning tools:
 \code{\link{empty}},
 \code{\link{infinite}},
 \code{\link{missing}},
+\code{\link{remove_whitespace}()},
 \code{\link{zero}}
 }
 \author{

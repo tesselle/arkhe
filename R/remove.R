@@ -68,3 +68,35 @@ setMethod(
             margin = 2, all = FALSE, verbose = verbose)
   }
 )
+
+# Whitespace ===================================================================
+#' @export
+#' @rdname remove_whitespace
+#' @aliases remove_whitespace,data.frame-method
+setMethod(
+  f = "remove_whitespace",
+  signature = c(x = "data.frame"),
+  definition = function(x, which = c("both", "left", "right")) {
+    x[] <- lapply(
+      X = x,
+      FUN = function(x, which) {
+        if (!is.character(x)) return(x)
+        trimws(x, which = which)
+      },
+      which = which
+    )
+    x
+  }
+)
+
+#' @export
+#' @rdname remove_whitespace
+#' @aliases remove_whitespace,matrix-method
+setMethod(
+  f = "remove_whitespace",
+  signature = c(x = "matrix"),
+  definition = function(x, which = c("both", "left", "right")) {
+    x[] <- trimws(x, which = which)
+    x
+  }
+)
