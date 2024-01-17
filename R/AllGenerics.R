@@ -1,6 +1,6 @@
 # GENERIC METHODS
 
-# Data cleaning ================================================================
+# Data preparation =============================================================
 ## Count -----------------------------------------------------------------------
 #' Count Values Using a Predicate
 #'
@@ -18,7 +18,7 @@
 #' @example inst/examples/ex-count.R
 #' @author N. Frerebeau
 #' @docType methods
-#' @family data cleaning tools
+#' @family data preparation tools
 #' @aliases count-method
 setGeneric(
   name = "count",
@@ -39,7 +39,7 @@ setGeneric(
 #' @example inst/examples/ex-detect.R
 #' @author N. Frerebeau
 #' @docType methods
-#' @family data cleaning tools
+#' @family data preparation tools
 #' @aliases detect-method
 setGeneric(
   name = "detect",
@@ -56,7 +56,7 @@ setGeneric(
 #' @example inst/examples/ex-keep.R
 #' @author N. Frerebeau
 #' @docType methods
-#' @family data cleaning tools
+#' @family data preparation tools
 #' @aliases keep-method
 setGeneric(
   name = "keep",
@@ -87,7 +87,7 @@ setGeneric(
 #' @example inst/examples/ex-discard.R
 #' @author N. Frerebeau
 #' @docType methods
-#' @family data cleaning tools
+#' @family data preparation tools
 #' @aliases discard-method
 setGeneric(
   name = "discard",
@@ -123,7 +123,7 @@ setGeneric(
 #' @example inst/examples/ex-compact.R
 #' @author N. Frerebeau
 #' @docType methods
-#' @family data cleaning tools
+#' @family data preparation tools
 #' @aliases compact-method
 setGeneric(
   name = "compact",
@@ -144,8 +144,67 @@ setGeneric(
   def = function(x, ...) standardGeneric("compact_rows")
 )
 
-## Remove ----------------------------------------------------------------------
-### NA --------------------------------------------------------------------------
+## Assign ----------------------------------------------------------------------
+#' Assign a Specific Row/Column to the Column/Row Names
+#'
+#' @param x A [`data.frame`].
+#' @param row A length-one [`numeric`] vector specifying the row number that is
+#'  to become the column names.
+#' @param column A length-one [`numeric`] vector specifying the column number
+#'  that is to become the row names.
+#' @param remove A [`logical`] scalar: should the specified row/column be removed
+#'  after making it the column/row names?
+#' @param ... Currently not used.
+#' @example inst/examples/ex-assign.R
+#' @return A [`data.frame`].
+#' @author N. Frerebeau
+#' @docType methods
+#' @family data preparation tools
+#' @name assign
+#' @rdname assign
+NULL
+
+#' @rdname assign
+#' @aliases assign_colnames-method
+setGeneric(
+  name = "assign_colnames",
+  def = function(x, ...) standardGeneric("assign_colnames")
+)
+
+#' @rdname assign
+#' @aliases assign_rownames-method
+setGeneric(
+  name = "assign_rownames",
+  def = function(x, ...) standardGeneric("assign_rownames")
+)
+
+#' Convert Row Names to an Explicit Column
+#'
+#' @param x A [`data.frame`].
+#' @param after A length-one [`numeric`] vector specifying a subscript,
+#'  after which the row names are to be appended.
+#' @param var A [`character`] string giving the name of column to use for row
+#'  names.
+#' @param remove A [`logical`] scalar: should the row names be removed?
+#' @param ... Currently not used.
+#' @example inst/examples/ex-assign.R
+#' @return A [`data.frame`].
+#' @author N. Frerebeau
+#' @docType methods
+#' @family data preparation tools
+#' @name append
+#' @rdname append
+NULL
+
+#' @rdname append
+#' @aliases append_rownames-method
+setGeneric(
+  name = "append_rownames",
+  def = function(x, ...) standardGeneric("append_rownames")
+)
+
+# Data cleaning ================================================================
+## NA --------------------------------------------------------------------------
 #' Tools for Working With Missing Values
 #'
 #' @description
@@ -178,7 +237,7 @@ setGeneric(
   def = function(x, ...) standardGeneric("replace_NA")
 )
 
-### Inf -------------------------------------------------------------------------
+## Inf -------------------------------------------------------------------------
 #' Tools for Working With Infinite Values
 #'
 #' @description
@@ -211,7 +270,7 @@ setGeneric(
   def = function(x, ...) standardGeneric("replace_Inf")
 )
 
-### Zeros -----------------------------------------------------------------------
+## Zeros -----------------------------------------------------------------------
 #' Tools for Working With Zeros
 #'
 #' @description
@@ -244,7 +303,7 @@ setGeneric(
   def = function(x, ...) standardGeneric("replace_zero")
 )
 
-### Empty string ---------------------------------------------------------------
+## Empty string ----------------------------------------------------------------
 #' Tools for Working With Empty String
 #'
 #' @description
@@ -277,7 +336,7 @@ setGeneric(
   def = function(x, ...) standardGeneric("replace_empty")
 )
 
-### Constant -------------------------------------------------------------------
+## Constant --------------------------------------------------------------------
 #' Remove Constant Columns
 #'
 #' @param x An \R object (should be a [`matrix`] or a [`data.frame`]).
@@ -297,65 +356,6 @@ setGeneric(
 )
 
 # Data transformation ==========================================================
-## Assign ----------------------------------------------------------------------
-#' Assign a Specific Row/Column to the Column/Row Names
-#'
-#'
-#' @param x A [`data.frame`].
-#' @param row A length-one [`numeric`] vector specifying the row number that is
-#'  to become the column names.
-#' @param column A length-one [`numeric`] vector specifying the column number
-#'  that is to become the row names.
-#' @param remove A [`logical`] scalar: should the specified row/column be removed
-#'  after making it the column/row names?
-#' @param ... Currently not used.
-#' @example inst/examples/ex-assign.R
-#' @return A [`data.frame`].
-#' @author N. Frerebeau
-#' @docType methods
-#' @family transformation tools
-#' @name assign
-#' @rdname assign
-NULL
-
-#' @rdname assign
-#' @aliases assign_colnames-method
-setGeneric(
-  name = "assign_colnames",
-  def = function(x, ...) standardGeneric("assign_colnames")
-)
-
-#' @rdname assign
-#' @aliases assign_rownames-method
-setGeneric(
-  name = "assign_rownames",
-  def = function(x, ...) standardGeneric("assign_rownames")
-)
-
-#' Convert Row Names to an Explicit Column
-#'
-#' @param x A [`data.frame`].
-#' @param after A length-one [`numeric`] vector specifying a subscript,
-#'  after which the row names are to be appended.
-#' @param var A [`character`] string giving the name of column to use for row
-#'  names.
-#' @param remove A [`logical`] scalar: should the row names be removed?
-#' @param ... Currently not used.
-#' @example inst/examples/ex-assign.R
-#' @return A [`data.frame`].
-#' @author N. Frerebeau
-#' @docType methods
-#' @family transformation tools
-#' @name append
-#' @rdname append
-NULL
-
-#' @rdname append
-#' @aliases append_rownames-method
-setGeneric(
-  name = "append_rownames",
-  def = function(x, ...) standardGeneric("append_rownames")
-)
 
 # Mathematics ==================================================================
 #' Least Common Multiple
@@ -506,6 +506,7 @@ setGeneric(
   def = function(object, ...) standardGeneric("confidence_multinomial")
 )
 
+# Resampling ===================================================================
 ## Bootstrap -------------------------------------------------------------------
 #' Bootstrap Estimation
 #'

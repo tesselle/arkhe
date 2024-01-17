@@ -63,13 +63,8 @@ replace_zero(X, value = 1)
 }
 \seealso{
 Other data cleaning tools: 
-\code{\link{compact}()},
-\code{\link{count}()},
-\code{\link{detect}()},
-\code{\link{discard}()},
 \code{\link{empty}},
 \code{\link{infinite}},
-\code{\link{keep}()},
 \code{\link{missing}},
 \code{\link{remove_constant}()}
 }

@@ -63,12 +63,7 @@ replace_empty(X, value = "XXX")
 }
 \seealso{
 Other data cleaning tools: 
-\code{\link{compact}()},
-\code{\link{count}()},
-\code{\link{detect}()},
-\code{\link{discard}()},
 \code{\link{infinite}},
-\code{\link{keep}()},
 \code{\link{missing}},
 \code{\link{remove_constant}()},
 \code{\link{zero}}

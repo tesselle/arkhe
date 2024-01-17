@@ -63,12 +63,7 @@ replace_Inf(X, value = 0)
 }
 \seealso{
 Other data cleaning tools: 
-\code{\link{compact}()},
-\code{\link{count}()},
-\code{\link{detect}()},
-\code{\link{discard}()},
 \code{\link{empty}},
-\code{\link{keep}()},
 \code{\link{missing}},
 \code{\link{remove_constant}()},
 \code{\link{zero}}

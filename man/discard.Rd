@@ -92,18 +92,15 @@ discard(X, f = is.na, margin = 1, all = FALSE)
 discard(X, f = is.na, margin = 2, all = FALSE)
 }
 \seealso{
-Other data cleaning tools: 
+Other data preparation tools: 
+\code{\link{append}()},
+\code{\link{assign}()},
 \code{\link{compact}()},
 \code{\link{count}()},
 \code{\link{detect}()},
-\code{\link{empty}},
-\code{\link{infinite}},
-\code{\link{keep}()},
-\code{\link{missing}},
-\code{\link{remove_constant}()},
-\code{\link{zero}}
+\code{\link{keep}()}
 }
 \author{
 N. Frerebeau
 }
-\concept{data cleaning tools}
+\concept{data preparation tools}

@@ -30,7 +30,7 @@ Suggests:
     tinytest
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.0
 Collate: 
     'AllGenerics.R'
     'append.R'
@@ -47,10 +47,11 @@ Collate:
     'discard.R'
     'keep.R'
     'mathematics.R'
+    'palettes.R'
     'plot.R'
     'remove.R'
     'replace.R'
-    'scale.R'
     'statistics.R'
+    'transform.R'
     'utilities.R'
     'zzz.R'

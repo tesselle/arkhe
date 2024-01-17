@@ -92,18 +92,15 @@ keep(X, f = is.na, margin = 1, negate = TRUE, all = TRUE)
 keep(X, f = is.na, margin = 2, negate = TRUE, all = TRUE)
 }
 \seealso{
-Other data cleaning tools: 
+Other data preparation tools: 
+\code{\link{append}()},
+\code{\link{assign}()},
 \code{\link{compact}()},
 \code{\link{count}()},
 \code{\link{detect}()},
-\code{\link{discard}()},
-\code{\link{empty}},
-\code{\link{infinite}},
-\code{\link{missing}},
-\code{\link{remove_constant}()},
-\code{\link{zero}}
+\code{\link{discard}()}
 }
 \author{
 N. Frerebeau
 }
-\concept{data cleaning tools}
+\concept{data preparation tools}

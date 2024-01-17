@@ -4,21 +4,15 @@ template:
   package: tekton
 
 reference:
-- title: Data cleaning
+- title: Data Preparation
+  contents:
+  - has_concept("data preparation tools")
+- title: Data Cleaning
   contents:
   - has_concept("data cleaning tools")
 - title: Data transformation
   contents:
-  - has_concept("transformation tools")
-- title: Scales
-  contents:
-  - has_concept("scales")
-- title: Predicates
-  contents:
-  - has_concept("predicates")
-- title: Validation
-  contents:
-  - has_concept("validation methods")
+  - has_concept("data transformation tools")
 - title: Statistics
   contents:
   - has_concept("summary statistics")
@@ -31,6 +25,12 @@ reference:
 - title: Palettes
   contents:
   - has_concept("palettes")
+- title: Predicates
+  contents:
+  - has_concept("predicates")
+- title: Validation
+  contents:
+  - has_concept("validation methods")
 - title: Utilities
   contents:
   - has_concept("utilities")

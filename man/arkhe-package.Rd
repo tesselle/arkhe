@@ -3,7 +3,6 @@
 \docType{package}
 \name{arkhe-package}
 \alias{arkhe-package}
-\alias{_PACKAGE}
 \alias{arkhe}
 \title{arkhe: Tools for Cleaning Rectangular Data}
 \description{
