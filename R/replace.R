@@ -5,7 +5,7 @@ NULL
 # Replace ======================================================================
 ## Missing values --------------------------------------------------------------
 #' @export
-#' @rdname missing
+#' @rdname replace_NA
 #' @aliases replace_NA,matrix-method
 setMethod(
   f = "replace_NA",
@@ -17,7 +17,7 @@ setMethod(
 )
 
 #' @export
-#' @rdname missing
+#' @rdname replace_NA
 #' @aliases replace_NA,data.frame-method
 setMethod(
   f = "replace_NA",
@@ -37,7 +37,7 @@ setMethod(
 
 ## Infinite values -------------------------------------------------------------
 #' @export
-#' @rdname infinite
+#' @rdname replace_Inf
 #' @aliases replace_Inf,matrix-method
 setMethod(
   f = "replace_Inf",
@@ -49,7 +49,7 @@ setMethod(
 )
 
 #' @export
-#' @rdname infinite
+#' @rdname replace_Inf
 #' @aliases replace_Inf,data.frame-method
 setMethod(
   f = "replace_Inf",
@@ -69,7 +69,7 @@ setMethod(
 
 ## Zeros -----------------------------------------------------------------------
 #' @export
-#' @rdname zero
+#' @rdname replace_zero
 #' @aliases replace_zero,matrix-method
 setMethod(
   f = "replace_zero",
@@ -81,7 +81,7 @@ setMethod(
 )
 
 #' @export
-#' @rdname zero
+#' @rdname replace_zero
 #' @aliases replace_zero,data.frame-method
 setMethod(
   f = "replace_zero",
@@ -103,7 +103,7 @@ setMethod(
 
 ## Empty string ----------------------------------------------------------------
 #' @export
-#' @rdname empty
+#' @rdname replace_empty
 #' @aliases replace_empty,matrix-method
 setMethod(
   f = "replace_empty",
@@ -115,7 +115,7 @@ setMethod(
 )
 
 #' @export
-#' @rdname empty
+#' @rdname replace_empty
 #' @aliases replace_empty,data.frame-method
 setMethod(
   f = "replace_empty",

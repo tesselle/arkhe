@@ -119,7 +119,6 @@ setGeneric(
 #' @details
 #'  A row/column is empty if it contains only zeros (if of type `numeric`)
 #'  or zero length character strings (if of type `character`).
-#' @seealso [remove_NA()], [remove_zero()], [remove_empty()]
 #' @example inst/examples/ex-compact.R
 #' @author N. Frerebeau
 #' @docType methods
@@ -205,32 +204,33 @@ setGeneric(
 
 # Data cleaning ================================================================
 ## NA --------------------------------------------------------------------------
-#' Tools for Working With Missing Values
+#' Remove Rows/Columns with Missing Values
 #'
-#' @description
-#'  * `remove_NA()` remove rows/columns that contain [missing values][NA].
-#'  * `replace_NA` replaces [missing values][NA] values.
+#' Removes rows/columns that contain [missing values][NA].
 #' @inheritParams detect
 #' @param verbose A [`logical`] scalar: should \R report extra information
 #'  on progress?
-#' @param value A possible replacement value.
 #' @param ... Currently not used.
 #' @example inst/examples/ex-missing.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family data cleaning tools
-#' @name missing
-#' @rdname missing
-NULL
-
-#' @rdname missing
 #' @aliases remove_NA-method
 setGeneric(
   name = "remove_NA",
   def = function(x, ...) standardGeneric("remove_NA")
 )
 
-#' @rdname missing
+#' Replace Missing Values
+#'
+#' Replaces [missing values][NA] values.
+#' @inheritParams detect
+#' @param value A possible replacement value.
+#' @param ... Currently not used.
+#' @example inst/examples/ex-missing.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family data cleaning tools
 #' @aliases replace_NA-method
 setGeneric(
   name = "replace_NA",
@@ -238,32 +238,33 @@ setGeneric(
 )
 
 ## Inf -------------------------------------------------------------------------
-#' Tools for Working With Infinite Values
+#' Remove Rows/Columns with Infinite Values
 #'
-#' @description
-#'  * `remove_Inf()` remove rows/columns that contain [infinite values][is.finite].
-#'  * `replace_Inf` replaces [infinite values][is.finite] values.
+#' Removes rows/columns that contain [infinite values][is.finite].
 #' @inheritParams detect
 #' @param verbose A [`logical`] scalar: should \R report extra information
 #'  on progress?
-#' @param value A possible replacement value.
 #' @param ... Currently not used.
 #' @example inst/examples/ex-infinite.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family data cleaning tools
-#' @name infinite
-#' @rdname infinite
-NULL
-
-#' @rdname infinite
 #' @aliases remove_Inf-method
 setGeneric(
   name = "remove_Inf",
   def = function(x, ...) standardGeneric("remove_Inf")
 )
 
-#' @rdname infinite
+#' Replace Infinite Values
+#'
+#' Replaces [infinite values][is.finite] values.
+#' @inheritParams detect
+#' @param value A possible replacement value.
+#' @param ... Currently not used.
+#' @example inst/examples/ex-infinite.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family data cleaning tools
 #' @aliases replace_Inf-method
 setGeneric(
   name = "replace_Inf",
@@ -271,32 +272,33 @@ setGeneric(
 )
 
 ## Zeros -----------------------------------------------------------------------
-#' Tools for Working With Zeros
+#' Remove Rows/Columns with Zeros
 #'
-#' @description
-#'  * `remove_zero()` remove rows/columns that contain zeros.
-#'  * `replace_zero()` replaces zeros.
+#' Removes rows/columns that contain zeros.
 #' @inheritParams detect
 #' @param verbose A [`logical`] scalar: should \R report extra information
 #'  on progress?
-#' @param value A possible replacement value.
 #' @param ... Currently not used.
 #' @example inst/examples/ex-zero.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family data cleaning tools
-#' @name zero
-#' @rdname zero
-NULL
-
-#' @rdname zero
 #' @aliases remove_zero-method
 setGeneric(
   name = "remove_zero",
   def = function(x, ...) standardGeneric("remove_zero")
 )
 
-#' @rdname zero
+#' Replace Zeros
+#'
+#' Replaces zeros.
+#' @inheritParams detect
+#' @param value A possible replacement value.
+#' @param ... Currently not used.
+#' @example inst/examples/ex-zero.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family data cleaning tools
 #' @aliases replace_zero-method
 setGeneric(
   name = "replace_zero",
@@ -304,32 +306,33 @@ setGeneric(
 )
 
 ## Empty string ----------------------------------------------------------------
-#' Tools for Working With Empty String
+#' Remove Rows/Columns with Empty String
 #'
-#' @description
-#'  * `remove_empty()` remove rows/columns that contain empty strings.
-#'  * `replace_empty()` replaces empty strings.
+#' Removes rows/columns that contain empty strings.
 #' @inheritParams detect
 #' @param verbose A [`logical`] scalar: should \R report extra information
 #'  on progress?
-#' @param value A possible replacement value.
 #' @param ... Currently not used.
 #' @example inst/examples/ex-empty.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family data cleaning tools
-#' @name empty
-#' @rdname empty
-NULL
-
-#' @rdname empty
 #' @aliases remove_empty-method
 setGeneric(
   name = "remove_empty",
   def = function(x, ...) standardGeneric("remove_empty")
 )
 
-#' @rdname empty
+#' Replace Empty String
+#'
+#' Replaces empty strings.
+#' @inheritParams detect
+#' @param value A possible replacement value.
+#' @param ... Currently not used.
+#' @example inst/examples/ex-empty.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family data cleaning tools
 #' @aliases replace_empty-method
 setGeneric(
   name = "replace_empty",
@@ -362,16 +365,18 @@ setGeneric(
 #' @param which A [`character`] string specifying whether to remove `both`
 #'  leading and trailing whitespace (default), or only leading ("`left`") or
 #'  trailing ("`right`").
+#' @param squish A [`logical`] scalar: should all internal whitespace be
+#'  replaced with a single space?
 #' @param ... Currently not used.
 #' @example inst/examples/ex-whitespace.R
 #' @seealso [trimws()]
 #' @author N. Frerebeau
 #' @docType methods
 #' @family data cleaning tools
-#' @aliases remove_whitespace-method
+#' @aliases clean_whitespace-method
 setGeneric(
-  name = "remove_whitespace",
-  def = function(x, ...) standardGeneric("remove_whitespace")
+  name = "clean_whitespace",
+  def = function(x, ...) standardGeneric("clean_whitespace")
 )
 
 # Data transformation ==========================================================

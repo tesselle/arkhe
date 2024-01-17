@@ -2,7 +2,7 @@
 ## New classes and methods
 * Add `palette_color_continuous()` and `palette_color_discrete()` for color mapping.
 * Add `palette_shape()` and `palette_size()` for symbol shape and size mapping.
-* Add `remove_whitespace()` to remove leading/trailing Whitespace.
+* Add `clean_whitespace()` to remove leading/trailing Whitespace.
 
 ## Enhancements
 * `compact()` and `remove_*()` gained a new `verbose` argument to report extra information on progress.

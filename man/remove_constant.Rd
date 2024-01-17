@@ -39,11 +39,15 @@ remove_constant(X, na.rm = TRUE)
 }
 \seealso{
 Other data cleaning tools: 
-\code{\link{empty}},
-\code{\link{infinite}},
-\code{\link{missing}},
-\code{\link{remove_whitespace}()},
-\code{\link{zero}}
+\code{\link{clean_whitespace}()},
+\code{\link{remove_Inf}()},
+\code{\link{remove_NA}()},
+\code{\link{remove_empty}()},
+\code{\link{remove_zero}()},
+\code{\link{replace_Inf}()},
+\code{\link{replace_NA}()},
+\code{\link{replace_empty}()},
+\code{\link{replace_zero}()}
 }
 \author{
 N. Frerebeau
