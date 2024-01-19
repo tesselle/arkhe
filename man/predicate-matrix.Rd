@@ -24,8 +24,8 @@ A \code{\link{logical}} scalar.
 }
 \seealso{
 Other predicates: 
+\code{\link{is_scalar}},
 \code{\link{predicate-numeric}},
-\code{\link{predicate-scalar}},
 \code{\link{predicate-trend}},
 \code{\link{predicate-type}},
 \code{\link{predicate-utils}}

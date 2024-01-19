@@ -42,6 +42,13 @@ has_length <- function(x, n = NULL) {
 }
 #' @export
 #' @rdname predicate-utils
+is_empty <- function(x) {
+  if (!is.null(dim(x))) nrow(x) == 0 || ncol(x) == 0
+  else length(x) == 0
+}
+
+#' @export
+#' @rdname predicate-utils
 has_names <- function(x, names = NULL) {
   if (is.null(names)) {
     has_length(names(x))
@@ -49,11 +56,7 @@ has_names <- function(x, names = NULL) {
     identical(names(x), names)
   }
 }
-#' @export
-#' @rdname predicate-utils
-has_duplicates <- function(x) {
-  any(duplicated(x))
-}
+
 #' @export
 #' @rdname predicate-utils
 has_missing <- function(x) {
@@ -64,16 +67,17 @@ has_missing <- function(x) {
 has_infinite <- function(x) {
   any(is.infinite(x))
 }
-#' @export
-#' @rdname predicate-utils
-is_empty <- function(x) {
-  any((dim(x) %||% length(x)) == 0)
-}
+
 #' @export
 #' @rdname predicate-utils
 is_unique <- function(x, na.rm = FALSE) {
   if (na.rm) x <- stats::na.omit(x)
   length(unique(x)) == 1
+}
+#' @export
+#' @rdname predicate-utils
+has_duplicates <- function(x) {
+  any(duplicated(x))
 }
 
 # Type =========================================================================
@@ -149,47 +153,47 @@ is_message <- function(x) {
 #' @param x An object to be tested.
 #' @return A [`logical`] scalar.
 #' @family predicates
-#' @name predicate-scalar
-#' @rdname predicate-scalar
+#' @name is_scalar
+#' @rdname is_scalar
 NULL
 
 #' @export
-#' @rdname predicate-scalar
+#' @rdname is_scalar
 is_scalar_list <- function(x) {
   is_list(x) && length(x) == 1
 }
 #' @export
-#' @rdname predicate-scalar
+#' @rdname is_scalar
 is_scalar_atomic <- function(x) {
   is_atomic(x) && length(x) == 1
 }
 #' @export
-#' @rdname predicate-scalar
+#' @rdname is_scalar
 is_scalar_vector <- function(x) {
   is_vector(x) && length(x) == 1
 }
 #' @export
-#' @rdname predicate-scalar
+#' @rdname is_scalar
 is_scalar_numeric <- function(x) {
   is_numeric(x) && length(x) == 1
 }
 #' @export
-#' @rdname predicate-scalar
+#' @rdname is_scalar
 is_scalar_integer <- function(x) {
   is_integer(x) && length(x) == 1
 }
 #' @export
-#' @rdname predicate-scalar
+#' @rdname is_scalar
 is_scalar_double <- function(x) {
   is_double(x) && length(x) == 1
 }
 #' @export
-#' @rdname predicate-scalar
+#' @rdname is_scalar
 is_scalar_character <- function(x) {
   is_character(x) && length(x) == 1
 }
 #' @export
-#' @rdname predicate-scalar
+#' @rdname is_scalar
 is_scalar_logical <- function(x) {
   is_logical(x) && length(x) == 1
 }
@@ -338,13 +342,8 @@ is_symmetric <- function(x) {
 #  Kahn, A. B. (1962). Topological sorting of large networks. *Communications
 #  of the ACM*, 5(11), p. 558-562. \doi{10.1145/368996.369025}.
 # @family predicates
-# @name predicate-graph
-# @rdname predicate-graph
 # @keywords internal
-NULL
-
 # @export
-# @rdname predicate-graph
 # is_dag <- function(x) {
 #   # Get edges
 #   G <- matrix2edges(x)

@@ -3,27 +3,27 @@
 \name{predicate-utils}
 \alias{predicate-utils}
 \alias{has_length}
+\alias{is_empty}
 \alias{has_names}
-\alias{has_duplicates}
 \alias{has_missing}
 \alias{has_infinite}
-\alias{is_empty}
 \alias{is_unique}
+\alias{has_duplicates}
 \title{Utility Predicates}
 \usage{
 has_length(x, n = NULL)
 
-has_names(x, names = NULL)
+is_empty(x)
 
-has_duplicates(x)
+has_names(x, names = NULL)
 
 has_missing(x)
 
 has_infinite(x)
 
-is_empty(x)
-
 is_unique(x, na.rm = FALSE)
+
+has_duplicates(x)
 }
 \arguments{
 \item{x}{A \code{\link{vector}} to be tested.}
@@ -53,9 +53,9 @@ or infinite values.
 }
 \seealso{
 Other predicates: 
+\code{\link{is_scalar}},
 \code{\link{predicate-matrix}},
 \code{\link{predicate-numeric}},
-\code{\link{predicate-scalar}},
 \code{\link{predicate-trend}},
 \code{\link{predicate-type}}
 }

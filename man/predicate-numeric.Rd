@@ -46,8 +46,8 @@ Check numeric objects:
 }
 \seealso{
 Other predicates: 
+\code{\link{is_scalar}},
 \code{\link{predicate-matrix}},
-\code{\link{predicate-scalar}},
 \code{\link{predicate-trend}},
 \code{\link{predicate-type}},
 \code{\link{predicate-utils}}

@@ -17,14 +17,15 @@ Validate a Condition
 }
 \seealso{
 Other validation methods: 
-\code{\link{check-attribute}},
-\code{\link{check-data}},
-\code{\link{check-matrix}},
-\code{\link{check-numeric-comparison}},
-\code{\link{check-numeric-trend}},
-\code{\link{check-numeric}},
-\code{\link{check-package}},
-\code{\link{check-type}}
+\code{\link{assert_constant}()},
+\code{\link{assert_data}},
+\code{\link{assert_length}()},
+\code{\link{assert_lower}()},
+\code{\link{assert_names}()},
+\code{\link{assert_numeric}},
+\code{\link{assert_package}()},
+\code{\link{assert_square}()},
+\code{\link{assert_type}()}
 }
 \author{
 N. Frerebeau
