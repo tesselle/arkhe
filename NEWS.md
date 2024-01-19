@@ -1,3 +1,5 @@
+# arkhe 1.5.0.9000
+
 # arkhe 1.5.0
 ## New classes and methods
 * Add `palette_color_continuous()` and `palette_color_discrete()` for color mapping.
