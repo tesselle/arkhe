@@ -23,11 +23,13 @@ Invisibly returns \code{NULL}.
 Check the Availability of a Package
 }
 \details{
-\code{needs()} is designed for use inside other functions in your own package
-to check for the availability of a suggested package.
+\code{assert_package()} is designed for use inside other functions in your own
+package to check for the availability of a suggested package.
 
 If the required packages are not available and \R is running interactively,
 the user will be asked to install the packages.
+
+\code{needs()} is an alias for \code{assert_package()}.
 }
 \seealso{
 Other validation methods: 

@@ -4,6 +4,7 @@
 \name{remove_NA}
 \alias{remove_NA}
 \alias{remove_NA-method}
+\alias{missing}
 \alias{remove_NA,ANY-method}
 \title{Remove Rows/Columns with Missing Values}
 \usage{

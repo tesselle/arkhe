@@ -25,11 +25,13 @@ validate <- function(expr) {
 #' @param ask A [`logical`] scalar: should the user be asked to select packages
 #'  before they are downloaded and installed?
 #' @details
-#'  `needs()` is designed for use inside other functions in your own package
-#'  to check for the availability of a suggested package.
+#'  `assert_package()` is designed for use inside other functions in your own
+#'  package to check for the availability of a suggested package.
 #'
 #'  If the required packages are not available and \R is running interactively,
 #'  the user will be asked to install the packages.
+#'
+#'  `needs()` is an alias for `assert_package()`.
 #' @return Invisibly returns `NULL`.
 #' @family validation methods
 #' @author N. Frerebeau

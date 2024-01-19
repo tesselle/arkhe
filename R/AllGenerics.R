@@ -274,7 +274,7 @@ setGeneric(
 #' @author N. Frerebeau
 #' @docType methods
 #' @family data cleaning tools
-#' @aliases remove_NA-method
+#' @aliases remove_NA-method missing
 setGeneric(
   name = "remove_NA",
   def = function(x, ...) standardGeneric("remove_NA")
@@ -358,7 +358,7 @@ setGeneric(
 #' @author N. Frerebeau
 #' @docType methods
 #' @family data cleaning tools
-#' @aliases replace_zero-method
+#' @aliases replace_zero-method zero
 setGeneric(
   name = "replace_zero",
   def = function(x, ...) standardGeneric("replace_zero")
