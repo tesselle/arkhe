@@ -4,7 +4,6 @@
 \name{replace_zero}
 \alias{replace_zero}
 \alias{replace_zero-method}
-\alias{zero}
 \alias{replace_zero,matrix-method}
 \alias{replace_zero,data.frame-method}
 \title{Replace Zeros}
