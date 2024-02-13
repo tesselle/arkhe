@@ -438,6 +438,24 @@ setGeneric(
   def = function(x, ...) standardGeneric("clean_whitespace")
 )
 
+# Data summary =================================================================
+#' Data Description
+#'
+#' Describes an object.
+#' @param x An \R object (should be a [`matrix`] or a [`data.frame`]).
+#' @param ... Currently not used.
+#' @return
+#'  `describe()` is called for its side-effects. Invisibly returns `x`.
+#' @example inst/examples/ex-describe.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family data summaries
+#' @aliases describe-method
+setGeneric(
+  name = "describe",
+  def = function(x, ...) standardGeneric("describe")
+)
+
 # Data transformation ==========================================================
 
 # Mathematics ==================================================================

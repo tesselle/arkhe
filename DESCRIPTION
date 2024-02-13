@@ -44,6 +44,7 @@ Collate:
     'compact.R'
     'conditions.R'
     'count.R'
+    'describe.R'
     'detect.R'
     'discard.R'
     'get.R'

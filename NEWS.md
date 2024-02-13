@@ -1,4 +1,6 @@
 # arkhe 1.5.0.9000
+## New classes and methods
+* Add `describe()` to describe a table.
 
 # arkhe 1.5.0
 ## New classes and methods

@@ -4,6 +4,9 @@ template:
   package: tekton
 
 reference:
+- title: Data summary
+  contents:
+  - has_concept("data summaries")
 - title: Data Preparation
   contents:
   - has_concept("data preparation tools")
