@@ -275,6 +275,7 @@ setGeneric(
 #' @docType methods
 #' @family data cleaning tools
 #' @aliases remove_NA-method
+#' @aliases missing
 setGeneric(
   name = "remove_NA",
   def = function(x, ...) standardGeneric("remove_NA")
@@ -343,6 +344,7 @@ setGeneric(
 #' @docType methods
 #' @family data cleaning tools
 #' @aliases remove_zero-method
+#' @aliases zero
 setGeneric(
   name = "remove_zero",
   def = function(x, ...) standardGeneric("remove_zero")
@@ -454,6 +456,27 @@ setGeneric(
 setGeneric(
   name = "describe",
   def = function(x, ...) standardGeneric("describe")
+)
+
+#' Sparsity
+#'
+#' Computes data sparsity (proportion of zeros).
+#' @param x An \R object (should be a [`matrix`] or a [`data.frame`]).
+#' @param count A [`logical`] scalar: should a count be returned instead of a
+#'  proportion?
+#' @param ... Currently not used.
+#' @details
+#'  If `x` is a `data.frame`, sparsity is computed on `numeric` variables only.
+#' @return
+#'  A length-one [`numeric`] vector.
+#' @example inst/examples/ex-describe.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family data summaries
+#' @aliases sparsity-method
+setGeneric(
+  name = "sparsity",
+  def = function(x, ...) standardGeneric("sparsity")
 )
 
 # Data transformation ==========================================================

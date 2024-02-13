@@ -109,7 +109,7 @@ setMethod(
   f = "replace_empty",
   signature = c(x = "matrix"),
   definition = function(x, value) {
-    x[is_empty_string(x)] <- value
+    x[!nzchar(x)] <- value
     x
   }
 )
@@ -125,7 +125,7 @@ setMethod(
     noblank <- lapply(
       X = x[, char, drop = FALSE],
       FUN = function(x, value) {
-        x[is_empty_string(x)] <- value
+        x[!nzchar(x)] <- value
         x
       },
       value = value

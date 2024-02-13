@@ -51,7 +51,7 @@ setMethod(
   signature = c(x = "ANY"),
   definition = function(x, margin = 1, all = FALSE,
                         verbose = getOption("arkhe.verbose")) {
-    discard(x, f = is_empty_string, margin = margin,
+    discard(x, f = nzchar, margin = margin, negate = TRUE,
             all = all, na.rm = TRUE, verbose = verbose)
   }
 )
@@ -64,7 +64,7 @@ setMethod(
   f = "remove_constant",
   signature = c(x = "ANY"),
   definition = function(x, na.rm = FALSE, verbose = getOption("arkhe.verbose")) {
-    discard(x, f = function(x) { is_unique(x, na.rm) },
+    discard(x, f = function(x) { is_unique(x, na.rm = na.rm) },
             margin = 2, all = FALSE, verbose = verbose)
   }
 )

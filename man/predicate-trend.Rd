@@ -9,7 +9,7 @@
 \alias{is_lower}
 \title{Numeric Trend Predicates}
 \usage{
-is_constant(x, tolerance = .Machine$double.eps^0.5, na.rm = FALSE)
+is_constant(x, tolerance = sqrt(.Machine$double.eps), na.rm = FALSE)
 
 is_increasing(x, na.rm = FALSE)
 

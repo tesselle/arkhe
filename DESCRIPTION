@@ -55,6 +55,7 @@ Collate:
     'remove.R'
     'replace.R'
     'seek.R'
+    'sparsity.R'
     'statistics.R'
     'transform.R'
     'utilities.R'

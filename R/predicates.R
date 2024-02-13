@@ -1,15 +1,9 @@
 # PREDICATES
 
 # Not exported =================================================================
-is_empty_string <- function(x, na.rm = FALSE, assert_type = FALSE) {
-  if (isTRUE(assert_type)) assert_type(x, "character")
-  z <- x == ""
-  z
-}
-is_zero_numeric <- function(x, na.rm = FALSE, assert_type = FALSE) {
-  if (isTRUE(assert_type)) assert_type(x, "numeric")
-  z <- x == 0
-  z
+is_zero_numeric <- function(x, tolerance = sqrt(.Machine$double.eps)) {
+  if (is.numeric(x)) return(abs(x) <= tolerance)
+  rep(FALSE, length(x))
 }
 
 # Helpers ======================================================================
@@ -27,6 +21,8 @@ is_zero_numeric <- function(x, na.rm = FALSE, assert_type = FALSE) {
 #'  `FALSE` otherwise.
 #' @param names A [`character`] vector specifying the names to test `x`
 #'  with. If `NULL`, returns `TRUE` if `x` has names, and `FALSE` otherwise.
+#' @param tolerance A [`numeric`] scalar giving the tolerance to check within
+#'  (for `numeric` vector).
 #' @param na.rm A [`logical`] scalar: should missing values (including `NaN`)
 #'  be omitted?
 #' @return A [`logical`] scalar.
@@ -70,9 +66,15 @@ has_infinite <- function(x) {
 
 #' @export
 #' @rdname predicate-utils
-is_unique <- function(x, na.rm = FALSE) {
+is_unique <- function(x, tolerance = sqrt(.Machine$double.eps), na.rm = FALSE) {
   if (na.rm) x <- stats::na.omit(x)
-  length(unique(x)) == 1
+  if (is.numeric(x)) {
+    cte <- is_constant(x, tolerance = tolerance)
+    if (is.na(cte)) cte <- FALSE
+  } else {
+    cte <- length(unique(x)) == 1
+  }
+  cte
 }
 #' @export
 #' @rdname predicate-utils
@@ -219,9 +221,9 @@ NULL
 
 #' @export
 #' @rdname predicate-numeric
-is_zero <- function(x, ...) {
+is_zero <- function(x, tolerance = sqrt(.Machine$double.eps), ...) {
   assert_type(x, "numeric")
-  x == 0
+  abs(x) <= tolerance
 }
 #' @export
 #' @rdname predicate-numeric
@@ -249,7 +251,7 @@ is_negative <- function(x, strict = FALSE, ...) {
 }
 #' @export
 #' @rdname predicate-numeric
-is_whole <- function(x, tolerance = .Machine$double.eps^0.5, ...) {
+is_whole <- function(x, tolerance = sqrt(.Machine$double.eps), ...) {
   assert_type(x, "numeric")
   abs(x - round(x, digits = 0)) <= tolerance
 }
@@ -273,7 +275,7 @@ NULL
 
 #' @export
 #' @rdname predicate-trend
-is_constant <- function(x, tolerance = .Machine$double.eps^0.5, na.rm = FALSE) {
+is_constant <- function(x, tolerance = sqrt(.Machine$double.eps), na.rm = FALSE) {
   assert_type(x, "numeric")
   abs(max(x, na.rm = na.rm) - min(x, na.rm = na.rm)) <= tolerance
 }

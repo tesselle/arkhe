@@ -28,20 +28,38 @@ setMethod(
     pc <- label_percent(c(m_NA / m, p_NA / p), digits = 1, trim = TRUE)
     pc_NA <- sprintf(" (%s)", pc)
 
-    msg_row_NA <- sprintf("%d %s%s containing missing values", m_NA, rows_NA, pc_NA[[1]])
-    msg_col_NA <- sprintf("%d %s%s containing missing values", p_NA, cols_NA, pc_NA[[2]])
+    msg_row_NA <- sprintf("%d %s%s containing missing values.", m_NA, rows_NA, pc_NA[[1]])
+    msg_col_NA <- sprintf("%d %s%s containing missing values.", p_NA, cols_NA, pc_NA[[2]])
 
     ## Constant columns
     p_var <- sum(detect(x, f = function(x) is_unique(x), margin = 2))
     cols_var <- ngettext(p_var, "variable", "variables")
-    msg_col_var <- sprintf("%d %s with no variance", p_var, cols_var)
+    msg_col_var <- sprintf("%d %s with no variance.", p_var, cols_var)
 
-    cat(msg_tbl, msg_row_NA, msg_col_NA, msg_col_var, sep = "\n* ")
+    ## Sparsity
+    spa <- sparsity(x, count = FALSE)
+    msg_spa <- sprintf("%s of numeric values are zero.", label_percent(spa, digits = 1))
+
+    ## Variable types
+    num <- detect(x, f = is.numeric, margin = 2)
+    bin <- detect(x, f = is.logical, margin = 2)
+    n_num <- sum(num)
+    n_bin <- sum(bin)
+    n_cha <- sum(!num & !bin)
+
+    msg_num <- sprintf("%d numeric %s.", n_num, ngettext(n_num, "variable", "variables"))
+    msg_bin <- sprintf("%d binary %s.", n_bin, ngettext(n_bin, "variable", "variables"))
+    msg_cha <- sprintf("%d categorial %s.", n_cha, ngettext(n_cha, "variable", "variables"))
+
+    cat(msg_tbl, msg_num, msg_cha, msg_bin, sep = "\n* ")
+    cat("\nData checking:", msg_spa, msg_col_var, sep = "\n* ")
+    cat("\nMissing values:", msg_row_NA, msg_col_NA, sep = "\n* ")
 
     # tot <- list(
     #   m = m, p = p,
+    #   n_numeric = n_num, n_categorial = n_cha, n_binary = n_bin,
     #   row_missing = m_NA, col_missing = p_NA,
-    #   col_constant = p_var
+    #   zero_values = spa, zero_variance = p_var
     # )
     invisible(x)
   }

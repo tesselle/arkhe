@@ -10,7 +10,7 @@
 \alias{is_whole}
 \title{Numeric Predicates}
 \usage{
-is_zero(x, ...)
+is_zero(x, tolerance = sqrt(.Machine$double.eps), ...)
 
 is_odd(x, ...)
 
@@ -20,16 +20,16 @@ is_positive(x, strict = FALSE, ...)
 
 is_negative(x, strict = FALSE, ...)
 
-is_whole(x, tolerance = .Machine$double.eps^0.5, ...)
+is_whole(x, tolerance = sqrt(.Machine$double.eps), ...)
 }
 \arguments{
 \item{x}{A \code{\link{numeric}} object to be tested.}
 
+\item{tolerance}{A \code{\link{numeric}} scalar giving the tolerance to check within.}
+
 \item{...}{Currently not used.}
 
 \item{strict}{A \code{\link{logical}} scalar: should strict inequality be used?}
-
-\item{tolerance}{A \code{\link{numeric}} scalar giving the tolerance to check within.}
 }
 \value{
 A \code{\link{logical}} vector.

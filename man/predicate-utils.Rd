@@ -21,7 +21,7 @@ has_missing(x)
 
 has_infinite(x)
 
-is_unique(x, na.rm = FALSE)
+is_unique(x, tolerance = sqrt(.Machine$double.eps), na.rm = FALSE)
 
 has_duplicates(x)
 }
@@ -34,6 +34,9 @@ with. If \code{NULL}, returns \code{TRUE} if \code{x} has length greater than ze
 
 \item{names}{A \code{\link{character}} vector specifying the names to test \code{x}
 with. If \code{NULL}, returns \code{TRUE} if \code{x} has names, and \code{FALSE} otherwise.}
+
+\item{tolerance}{A \code{\link{numeric}} scalar giving the tolerance to check within
+(for \code{numeric} vector).}
 
 \item{na.rm}{A \code{\link{logical}} scalar: should missing values (including \code{NaN})
 be omitted?}

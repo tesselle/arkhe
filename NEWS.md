@@ -1,6 +1,7 @@
 # arkhe 1.5.0.9000
 ## New classes and methods
-* Add `describe()` to describe a table.
+* Add `describe()` to quickly describe a table.
+* Add `sparsity()` to computes data sparsity (proportion of zeros).
 
 # arkhe 1.5.0
 ## New classes and methods
