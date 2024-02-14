@@ -4,6 +4,7 @@
 \name{remove_zero}
 \alias{remove_zero}
 \alias{remove_zero-method}
+\alias{zero}
 \alias{remove_zero,ANY-method}
 \title{Remove Rows/Columns with Zeros}
 \usage{

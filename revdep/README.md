@@ -10,15 +10,15 @@
 |collate  |fr_FR.UTF-8                         |
 |ctype    |fr_FR.UTF-8                         |
 |tz       |Europe/Paris                        |
-|date     |2024-01-19                          |
-|rstudio  |2023.12.0+369 Ocean Storm (desktop) |
+|date     |2024-02-13                          |
+|rstudio  |2023.12.1+402 Ocean Storm (desktop) |
 |pandoc   |NA                                  |
 
 # Dependencies
 
-|package |old   |new   |Δ  |
-|:-------|:-----|:-----|:--|
-|arkhe   |1.4.0 |1.5.0 |*  |
+|package |old   |new        |Δ  |
+|:-------|:-----|:----------|:--|
+|arkhe   |1.5.0 |1.5.0.9000 |*  |
 
 # Revdeps
 
