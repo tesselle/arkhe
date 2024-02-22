@@ -1,3 +1,5 @@
+# arkhe 1.6.0.9000
+
 # arkhe 1.6.0
 ## New classes and methods
 * Add `describe()` to quickly describe a `matrix`-like object.

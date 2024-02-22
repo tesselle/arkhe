@@ -46,7 +46,7 @@ messages.
       Frerebeau N (2024). _arkhe: Tools for Cleaning Rectangular Data_.
       Université Bordeaux Montaigne, Pessac, France.
       doi:10.5281/zenodo.3526659 <https://doi.org/10.5281/zenodo.3526659>,
-      R package version 1.5.0, <https://packages.tesselle.org/arkhe/>.
+      R package version 1.6.0, <https://packages.tesselle.org/arkhe/>.
 
     A BibTeX entry for LaTeX users is
 
@@ -56,7 +56,7 @@ messages.
         year = {2024},
         organization = {Université Bordeaux Montaigne},
         address = {Pessac, France},
-        note = {R package version 1.5.0},
+        note = {R package version 1.6.0},
         url = {https://packages.tesselle.org/arkhe/},
         doi = {10.5281/zenodo.3526659},
       }
@@ -94,49 +94,49 @@ k <- sample(1:25, 3, FALSE)
 X[k] <- NA
 X
 #>      [,1] [,2] [,3] [,4] [,5]
-#> [1,]    3    1    4    9    6
-#> [2,]    8   NA    7    8    6
-#> [3,]    5    9    4    4    8
-#> [4,]    7   NA   NA    3    4
-#> [5,]    8    2    5    3    4
+#> [1,]    6    7    1   NA   NA
+#> [2,]    6    3    1    7    1
+#> [3,]    9    5    6    4   10
+#> [4,]   10    9    6   NA    5
+#> [5,]    6   10   10    7    9
 
 ## Count missing values in rows
 count(X, f = is.na, margin = 1)
-#> [1] 0 1 0 2 0
+#> [1] 2 0 0 1 0
 ## Count non-missing values in columns
 count(X, f = is.na, margin = 2, negate = TRUE)
-#> [1] 5 3 4 5 5
+#> [1] 5 5 5 3 4
 
 ## Find row with NA
 detect(X, f = is.na, margin = 1)
-#> [1] FALSE  TRUE FALSE  TRUE FALSE
+#> [1]  TRUE FALSE FALSE  TRUE FALSE
 ## Find column without any NA
 detect(X, f = is.na, margin = 2, negate = TRUE, all = TRUE)
-#> [1]  TRUE FALSE FALSE  TRUE  TRUE
+#> [1]  TRUE  TRUE  TRUE FALSE FALSE
 
 ## Remove row with any NA
 discard(X, f = is.na, margin = 1, all = FALSE)
 #>      [,1] [,2] [,3] [,4] [,5]
-#> [1,]    3    1    4    9    6
-#> [2,]    5    9    4    4    8
-#> [3,]    8    2    5    3    4
+#> [1,]    6    3    1    7    1
+#> [2,]    9    5    6    4   10
+#> [3,]    6   10   10    7    9
 ## Remove column with any NA
 discard(X, f = is.na, margin = 2, all = FALSE)
 #>      [,1] [,2] [,3]
-#> [1,]    3    9    6
-#> [2,]    8    8    6
-#> [3,]    5    4    8
-#> [4,]    7    3    4
-#> [5,]    8    3    4
+#> [1,]    6    7    1
+#> [2,]    6    3    1
+#> [3,]    9    5    6
+#> [4,]   10    9    6
+#> [5,]    6   10   10
 
 ## Replace NA with zeros
 replace_NA(X, value = 0)
 #>      [,1] [,2] [,3] [,4] [,5]
-#> [1,]    3    1    4    9    6
-#> [2,]    8    0    7    8    6
-#> [3,]    5    9    4    4    8
-#> [4,]    7    0    0    3    4
-#> [5,]    8    2    5    3    4
+#> [1,]    6    7    1    0    0
+#> [2,]    6    3    1    7    1
+#> [3,]    9    5    6    4   10
+#> [4,]   10    9    6    0    5
+#> [5,]    6   10   10    7    9
 ```
 
 ## Contributing
