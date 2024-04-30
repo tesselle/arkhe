@@ -4,7 +4,7 @@ template:
   package: tekton
 
 reference:
-- title: Data summary
+- title: Data Summary
   contents:
   - has_concept("data summaries")
 - title: Data Preparation
@@ -13,7 +13,7 @@ reference:
 - title: Data Cleaning
   contents:
   - has_concept("data cleaning tools")
-- title: Data transformation
+- title: Data Transformation
   contents:
   - has_concept("data transformation tools")
 - title: Statistics
