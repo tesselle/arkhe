@@ -10,7 +10,7 @@
 \alias{is_whole}
 \title{Numeric Predicates}
 \usage{
-is_zero(x, tolerance = sqrt(.Machine$double.eps), ...)
+is_zero(x, tolerance = sqrt(.Machine$double.eps))
 
 is_odd(x, ...)
 

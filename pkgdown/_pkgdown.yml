@@ -13,9 +13,9 @@ reference:
 - title: Data Cleaning
   contents:
   - has_concept("data cleaning tools")
-- title: Data Transformation
+- title: Scales
   contents:
-  - has_concept("data transformation tools")
+  - has_concept("scales")
 - title: Statistics
   contents:
   - has_concept("summary statistics")
