@@ -12,7 +12,7 @@ NULL
 #' @family scales
 #' @export
 scale_range <- function(x, to = c(0, 1), from = range(x, finite = TRUE)) {
-  if (is_zero(to) || is_zero(from)) return(ifelse(is.na(x), NA, mean(to)))
+  if (.is_zero(to) || .is_zero(from)) return(ifelse(is.na(x), NA, mean(to)))
   (x - from[1L]) / diff(from) * diff(to) + to[1L]
 }
 
@@ -29,11 +29,11 @@ scale_range <- function(x, to = c(0, 1), from = range(x, finite = TRUE)) {
 #' @family scales
 #' @export
 scale_midpoint <- function(x, to = c(0, 1), from = range(x, finite = TRUE), midpoint = 0) {
-  if (is_zero(to) || is_zero(from)) return(ifelse(is.na(x), NA, mean(to)))
+  if (.is_zero(to) || .is_zero(from)) return(ifelse(is.na(x), NA, mean(to)))
   extent <- 2 * max(abs(from - midpoint))
   (x - midpoint) / extent * diff(to) + mean(to)
 }
 
-is_zero <- function(x, tolerance = sqrt(.Machine$double.eps)) {
+.is_zero <- function(x, tolerance = sqrt(.Machine$double.eps)) {
   diff(range(x)) <= tolerance
 }
