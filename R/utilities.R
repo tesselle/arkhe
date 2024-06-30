@@ -13,7 +13,12 @@ NULL
 #' @rdname null
 #' @export
 `%||%` <- function(x, y) {
-  if (!is.null(x)) x else y
+  if (is.null(x)) y else x
+}
+
+# Reexport from base on newer versions of R to avoid conflict messages
+if (exists("%||%", envir = baseenv())) {
+  `%||%` <- get("%||%", envir = baseenv())
 }
 
 #' Concatenate
