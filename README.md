@@ -8,7 +8,7 @@
 [![R-CMD-check](https://github.com/tesselle/arkhe/workflows/R-CMD-check/badge.svg)](https://github.com/tesselle/arkhe/actions)
 [![codecov](https://codecov.io/gh/tesselle/arkhe/branch/main/graph/badge.svg?token=3TUSMmF18Q)](https://app.codecov.io/gh/tesselle/arkhe)
 [![CodeFactor](https://www.codefactor.io/repository/github/tesselle/arkhe/badge/main)](https://www.codefactor.io/repository/github/tesselle/arkhe/overview/main)
-[![Dependencies](https://tinyverse.netlify.com/badge/arkhe)](https://cran.r-project.org/package=arkhe)
+[![Dependencies](https://tinyverse.netlify.app/badge/arkhe)](https://cran.r-project.org/package=arkhe)
 
 <a href="https://tesselle.r-universe.dev/arkhe"
 class="pkgdown-devel"><img
@@ -41,28 +41,17 @@ values or discard rows/columns using a predicate function. In addition,
 it provides tools to check conditions and return informative error
 messages.
 
-    To cite arkhe in publications use:
+------------------------------------------------------------------------
 
-      Frerebeau N (2024). _arkhe: Tools for Cleaning Rectangular Data_.
-      Université Bordeaux Montaigne, Pessac, France.
-      doi:10.5281/zenodo.3526659 <https://doi.org/10.5281/zenodo.3526659>,
-      R package version 1.6.0, <https://packages.tesselle.org/arkhe/>.
+To cite arkhe in publications use:
 
-    A BibTeX entry for LaTeX users is
+Frerebeau N (2024). *arkhe: Tools for Cleaning Rectangular Data*.
+Université Bordeaux Montaigne, Pessac, France.
+<doi:10.5281/zenodo.3526659> <https://doi.org/10.5281/zenodo.3526659>, R
+package version 1.7.0, <https://packages.tesselle.org/arkhe/>.
 
-      @Manual{,
-        author = {Nicolas Frerebeau},
-        title = {{arkhe: Tools for Cleaning Rectangular Data}},
-        year = {2024},
-        organization = {Université Bordeaux Montaigne},
-        address = {Pessac, France},
-        note = {R package version 1.6.0},
-        url = {https://packages.tesselle.org/arkhe/},
-        doi = {10.5281/zenodo.3526659},
-      }
-
-    This package is a part of the tesselle project
-    <https://www.tesselle.org>.
+This package is a part of the tesselle project
+<https://www.tesselle.org>.
 
 ## Installation
 
@@ -94,49 +83,48 @@ k <- sample(1:25, 3, FALSE)
 X[k] <- NA
 X
 #>      [,1] [,2] [,3] [,4] [,5]
-#> [1,]    6    7    1   NA   NA
-#> [2,]    6    3    1    7    1
-#> [3,]    9    5    6    4   10
-#> [4,]   10    9    6   NA    5
-#> [5,]    6   10   10    7    9
+#> [1,]    7    8    9    1   NA
+#> [2,]    8    9    7    2    3
+#> [3,]    8   NA    2   10    2
+#> [4,]    4    7    7    5    3
+#> [5,]    4    7   NA    6    1
 
 ## Count missing values in rows
 count(X, f = is.na, margin = 1)
-#> [1] 2 0 0 1 0
+#> [1] 1 0 1 0 1
 ## Count non-missing values in columns
 count(X, f = is.na, margin = 2, negate = TRUE)
-#> [1] 5 5 5 3 4
+#> [1] 5 4 4 5 4
 
 ## Find row with NA
 detect(X, f = is.na, margin = 1)
-#> [1]  TRUE FALSE FALSE  TRUE FALSE
+#> [1]  TRUE FALSE  TRUE FALSE  TRUE
 ## Find column without any NA
 detect(X, f = is.na, margin = 2, negate = TRUE, all = TRUE)
-#> [1]  TRUE  TRUE  TRUE FALSE FALSE
+#> [1]  TRUE FALSE FALSE  TRUE FALSE
 
 ## Remove row with any NA
 discard(X, f = is.na, margin = 1, all = FALSE)
 #>      [,1] [,2] [,3] [,4] [,5]
-#> [1,]    6    3    1    7    1
-#> [2,]    9    5    6    4   10
-#> [3,]    6   10   10    7    9
+#> [1,]    8    9    7    2    3
+#> [2,]    4    7    7    5    3
 ## Remove column with any NA
 discard(X, f = is.na, margin = 2, all = FALSE)
-#>      [,1] [,2] [,3]
-#> [1,]    6    7    1
-#> [2,]    6    3    1
-#> [3,]    9    5    6
-#> [4,]   10    9    6
-#> [5,]    6   10   10
+#>      [,1] [,2]
+#> [1,]    7    1
+#> [2,]    8    2
+#> [3,]    8   10
+#> [4,]    4    5
+#> [5,]    4    6
 
 ## Replace NA with zeros
 replace_NA(X, value = 0)
 #>      [,1] [,2] [,3] [,4] [,5]
-#> [1,]    6    7    1    0    0
-#> [2,]    6    3    1    7    1
-#> [3,]    9    5    6    4   10
-#> [4,]   10    9    6    0    5
-#> [5,]    6   10   10    7    9
+#> [1,]    7    8    9    1    0
+#> [2,]    8    9    7    2    3
+#> [3,]    8    0    2   10    2
+#> [4,]    4    7    7    5    3
+#> [5,]    4    7    0    6    1
 ```
 
 ## Contributing

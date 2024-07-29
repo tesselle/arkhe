@@ -8,13 +8,13 @@
   "codeRepository": "https://github.com/tesselle/arkhe",
   "issueTracker": "https://github.com/tesselle/arkhe/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "1.6.0.9000",
+  "version": "1.7.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.3.2 (2023-10-31)",
+  "runtimePlatform": "R version 4.4.1 (2024-06-14)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -81,27 +81,22 @@
     },
     "2": {
       "@type": "SoftwareApplication",
-      "identifier": "graphics",
-      "name": "graphics"
-    },
-    "3": {
-      "@type": "SoftwareApplication",
       "identifier": "methods",
       "name": "methods"
     },
-    "4": {
+    "3": {
       "@type": "SoftwareApplication",
       "identifier": "stats",
       "name": "stats"
     },
-    "5": {
+    "4": {
       "@type": "SoftwareApplication",
       "identifier": "utils",
       "name": "utils"
     },
     "SystemRequirements": null
   },
-  "fileSize": "312.291KB",
+  "fileSize": "293.808KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -116,7 +111,7 @@
       "name": "{arkhe: Tools for Cleaning Rectangular Data}",
       "identifier": "10.5281/zenodo.3526659",
       "url": "https://packages.tesselle.org/arkhe/",
-      "description": "R package version 1.6.0.9000",
+      "description": "R package version 1.7.0",
       "@id": "https://doi.org/10.5281/zenodo.3526659",
       "sameAs": "https://doi.org/10.5281/zenodo.3526659"
     }

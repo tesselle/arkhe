@@ -1,124 +1,15 @@
-# -----------------------------------------------------------
-# CITATION file created with {cffr} R package, v0.5.0
+# --------------------------------------------
+# CITATION file created with {cffr} R package
 # See also: https://docs.ropensci.org/cffr/
-# -----------------------------------------------------------
+# --------------------------------------------
  
 cff-version: 1.2.0
 message: 'To cite package "arkhe" in publications use:'
 type: software
 license: GPL-3.0-or-later
 title: 'arkhe: Tools for Cleaning Rectangular Data'
-version: 1.6.0
+version: 1.7.0
 doi: 10.5281/zenodo.3526659
-abstract: A dependency-free collection of simple functions for cleaning rectangular
-  data. This package allows to detect, count and replace values or discard rows/columns
-  using a predicate function. In addition, it provides tools to check conditions and
-  return informative error messages.
-authors:
-- family-names: Frerebeau
-  given-names: Nicolas
-  email: nicolas.frerebeau@u-bordeaux-montaigne.fr
-  orcid: https://orcid.org/0000-0001-5759-4944
-  affiliation: Université Bordeaux Montaigne
-preferred-citation:
-  type: manual
-  title: 'arkhe: Tools for Cleaning Rectangular Data'
-  authors:
-  - family-names: Frerebeau
-    given-names: Nicolas
-    email: nicolas.frerebeau@u-bordeaux-montaigne.fr
-    orcid: https://orcid.org/0000-0001-5759-4944
-    affiliation: Université Bordeaux Montaigne
-  year: '2024'
-  location:
-    name: Pessac, France
-  notes: R package version 1.6.0
-  url: https://packages.tesselle.org/arkhe/
-  doi: 10.5281/zenodo.3526659
-  institution:
-    name: Université Bordeaux Montaigne
-repository: https://CRAN.R-project.org/package=arkhe
-repository-code: https://github.com/tesselle/arkhe
-url: https://packages.tesselle.org/arkhe/
-contact:
-- family-names: Frerebeau
-  given-names: Nicolas
-  email: nicolas.frerebeau@u-bordeaux-montaigne.fr
-  orcid: https://orcid.org/0000-0001-5759-4944
-  affiliation: Université Bordeaux Montaigne
-keywords:
-- data cleaning
-- statistics
-- r package
-references:
-- type: software
-  title: 'R: A Language and Environment for Statistical Computing'
-  notes: Depends
-  url: https://www.R-project.org/
-  authors:
-  - name: R Core Team
-  location:
-    name: Vienna, Austria
-  year: '2024'
-  institution:
-    name: R Foundation for Statistical Computing
-  version: '>= 3.5'
-- type: software
-  title: graphics
-  abstract: 'R: A Language and Environment for Statistical Computing'
-  notes: Imports
-  authors:
-  - name: R Core Team
-  location:
-    name: Vienna, Austria
-  year: '2024'
-  institution:
-    name: R Foundation for Statistical Computing
-- type: software
-  title: methods
-  abstract: 'R: A Language and Environment for Statistical Computing'
-  notes: Imports
-  authors:
-  - name: R Core Team
-  location:
-    name: Vienna, Austria
-  year: '2024'
-  institution:
-    name: R Foundation for Statistical Computing
-- type: software
-  title: stats
-  abstract: 'R: A Language and Environment for Statistical Computing'
-  notes: Imports
-  authors:
-  - name: R Core Team
-  location:
-    name: Vienna, Austria
-  year: '2024'
-  institution:
-    name: R Foundation for Statistical Computing
-- type: software
-  title: utils
-  abstract: 'R: A Language and Environment for Statistical Computing'
-  notes: Imports
-  authors:
-  - name: R Core Team
-  location:
-    name: Vienna, Austria
-  year: '2024'
-  institution:
-    name: R Foundation for Statistical Computing
-- type: software
-  title: tinytest
-  abstract: 'tinytest: Lightweight and Feature Complete Unit Testing Framework'
-  notes: Suggests
-  url: https://github.com/markvanderloo/tinytest
-  repository: https://CRAN.R-project.org/package=tinytest
-  authors:
-  - family-names: van der Loo
-    given-names: Mark
-    email: mark.vanderloo@gmail.com
-    orcid: https://orcid.org/0000-0002-9807-4686
-  year: '2024'
 identifiers:
 - description: The concept DOI.
   type: doi
@@ -168,3 +59,102 @@ identifiers:
 - description: The versioned DOI for version 1.6.0.
   type: doi
   value: 10.5281/zenodo.10694357
+abstract: A dependency-free collection of simple functions for cleaning rectangular
+  data. This package allows to detect, count and replace values or discard rows/columns
+  using a predicate function. In addition, it provides tools to check conditions and
+  return informative error messages.
+authors:
+- family-names: Frerebeau
+  given-names: Nicolas
+  email: nicolas.frerebeau@u-bordeaux-montaigne.fr
+  orcid: https://orcid.org/0000-0001-5759-4944
+  affiliation: Université Bordeaux Montaigne
+preferred-citation:
+  type: manual
+  title: 'arkhe: Tools for Cleaning Rectangular Data'
+  authors:
+  - family-names: Frerebeau
+    given-names: Nicolas
+    email: nicolas.frerebeau@u-bordeaux-montaigne.fr
+    orcid: https://orcid.org/0000-0001-5759-4944
+    affiliation: Université Bordeaux Montaigne
+  year: '2024'
+  institution:
+    name: Université Bordeaux Montaigne
+    address: Pessac, France
+  notes: R package version 1.7.0
+  url: https://packages.tesselle.org/arkhe/
+  doi: 10.5281/zenodo.3526659
+repository: https://CRAN.R-project.org/package=arkhe
+repository-code: https://github.com/tesselle/arkhe
+url: https://packages.tesselle.org/arkhe/
+contact:
+- family-names: Frerebeau
+  given-names: Nicolas
+  email: nicolas.frerebeau@u-bordeaux-montaigne.fr
+  orcid: https://orcid.org/0000-0001-5759-4944
+  affiliation: Université Bordeaux Montaigne
+keywords:
+- data cleaning
+- statistics
+- r package
+references:
+- type: software
+  title: 'R: A Language and Environment for Statistical Computing'
+  notes: Depends
+  url: https://www.R-project.org/
+  authors:
+  - name: R Core Team
+  institution:
+    name: R Foundation for Statistical Computing
+    address: Vienna, Austria
+  year: '2024'
+  version: '>= 3.5'
+- type: software
+  title: methods
+  abstract: 'R: A Language and Environment for Statistical Computing'
+  notes: Imports
+  authors:
+  - name: R Core Team
+  institution:
+    name: R Foundation for Statistical Computing
+    address: Vienna, Austria
+  year: '2024'
+  doi: 10.32614/CRAN.package.methods
+- type: software
+  title: stats
+  abstract: 'R: A Language and Environment for Statistical Computing'
+  notes: Imports
+  authors:
+  - name: R Core Team
+  institution:
+    name: R Foundation for Statistical Computing
+    address: Vienna, Austria
+  year: '2024'
+  doi: 10.32614/CRAN.package.stats
+- type: software
+  title: utils
+  abstract: 'R: A Language and Environment for Statistical Computing'
+  notes: Imports
+  authors:
+  - name: R Core Team
+  institution:
+    name: R Foundation for Statistical Computing
+    address: Vienna, Austria
+  year: '2024'
+  doi: 10.32614/CRAN.package.utils
+- type: software
+  title: tinytest
+  abstract: 'tinytest: Lightweight and Feature Complete Unit Testing Framework'
+  notes: Suggests
+  url: https://github.com/markvanderloo/tinytest
+  repository: https://CRAN.R-project.org/package=tinytest
+  authors:
+  - family-names: Loo
+    given-names: Mark
+    name-particle: van der
+    email: mark.vanderloo@gmail.com
+    orcid: https://orcid.org/0000-0002-9807-4686
+  year: '2024'
+  doi: 10.32614/CRAN.package.tinytest
+

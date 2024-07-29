@@ -1,6 +1,6 @@
 Package: arkhe
 Title: Tools for Cleaning Rectangular Data
-Version: 1.6.0.9000
+Version: 1.7.0
 Authors@R: c(
     person("Nicolas", "Frerebeau", , "nicolas.frerebeau@u-bordeaux-montaigne.fr", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-5759-4944", affiliation = "Université Bordeaux Montaigne")),
@@ -22,7 +22,6 @@ BugReports: https://github.com/tesselle/arkhe/issues
 Depends: 
     R (>= 3.5)
 Imports: 
-    graphics,
     methods,
     stats,
     utils
@@ -30,7 +29,7 @@ Suggests:
     tinytest
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.0
+RoxygenNote: 7.3.2
 Collate: 
     'AllGenerics.R'
     'append.R'

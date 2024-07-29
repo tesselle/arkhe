@@ -20,7 +20,7 @@ Sys.setlocale("LC_MESSAGES", 'en_GB.UTF-8') # Force locale
 [![R-CMD-check](https://github.com/tesselle/arkhe/workflows/R-CMD-check/badge.svg)](https://github.com/tesselle/arkhe/actions)
 [![codecov](https://codecov.io/gh/tesselle/arkhe/branch/main/graph/badge.svg?token=3TUSMmF18Q)](https://app.codecov.io/gh/tesselle/arkhe)
 [![CodeFactor](https://www.codefactor.io/repository/github/tesselle/arkhe/badge/main)](https://www.codefactor.io/repository/github/tesselle/arkhe/overview/main)
-[![Dependencies](https://tinyverse.netlify.com/badge/arkhe)](https://cran.r-project.org/package=arkhe)
+[![Dependencies](https://tinyverse.netlify.app/badge/arkhe)](https://cran.r-project.org/package=arkhe)
 
 [![r-universe](https://tesselle.r-universe.dev/badges/arkhe)](https://tesselle.r-universe.dev/arkhe){.pkgdown-devel}
 [![CRAN Version](http://www.r-pkg.org/badges/version/arkhe)](https://cran.r-project.org/package=arkhe){.pkgdown-release}
@@ -36,8 +36,11 @@ Sys.setlocale("LC_MESSAGES", 'en_GB.UTF-8') # Force locale
 
 A dependency-free collection of simple functions for cleaning rectangular data. This package allows to detect, count and replace values or discard rows/columns using a predicate function. In addition, it provides tools to check conditions and return informative error messages.
 
-```{r citation, echo=FALSE, comment=''}
-utils::citation("arkhe")
+---
+
+```{r citation, echo=FALSE, comment='', results='asis'}
+cite <- utils::citation("arkhe")
+print(cite, bibtex = FALSE)
 ```
 
 ## Installation
