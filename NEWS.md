@@ -1,3 +1,5 @@
+# arkhe 1.7.0.9000
+
 # arkhe 1.7.0
 ## New classes and methods
 * Add `scale_midpoint` to rescale a continuous vector to have specified minimum, midpoint and maximum.

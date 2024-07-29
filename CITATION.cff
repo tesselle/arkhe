@@ -59,6 +59,9 @@ identifiers:
 - description: The versioned DOI for version 1.6.0.
   type: doi
   value: 10.5281/zenodo.10694357
+- description: The versioned DOI for version 1.7.0.
+  type: doi
+  value: 10.5281/zenodo.13121710
 abstract: A dependency-free collection of simple functions for cleaning rectangular
   data. This package allows to detect, count and replace values or discard rows/columns
   using a predicate function. In addition, it provides tools to check conditions and
