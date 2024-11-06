@@ -3,6 +3,7 @@
 seek <- function(x, margin = 2, select = NULL, names = NULL, ...) {
   assert_filled(x)
   assert_length(margin, 1)
+  assert_type(names, "character", allow_null = TRUE)
 
   dm <- dim(x)[[margin]]
   nm <- dimnames(x)[[margin]]
@@ -10,7 +11,6 @@ seek <- function(x, margin = 2, select = NULL, names = NULL, ...) {
 
   if (is.null(select)) {
     if (!is.null(names)) {
-      assert_type(names, "character")
       select <- function(i) match(names, i)
     } else {
       return(seq_len(dm))

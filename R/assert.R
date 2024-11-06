@@ -273,7 +273,7 @@ assert_unique <- function(x) {
 #' @family checking methods
 #' @export
 assert_type <- function(x, expected, allow_empty = TRUE, allow_null = FALSE) {
-  if (is.null(x) && isTRUE(allow_null)) return(NULL)
+  if (is.null(x) && isTRUE(allow_null)) return(invisible(NULL))
   if (isFALSE(allow_empty)) assert_filled(x)
 
   arg <- deparse(substitute(x))
