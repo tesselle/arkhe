@@ -52,7 +52,8 @@ count(X, f = is.na, margin = 2, negate = TRUE)
 }
 \seealso{
 Other data preparation tools: 
-\code{\link{append}()},
+\code{\link{append_column}()},
+\code{\link{append_rownames}()},
 \code{\link{assign}()},
 \code{\link{compact}()},
 \code{\link{detect}()},

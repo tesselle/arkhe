@@ -239,13 +239,13 @@ setGeneric(
   def = function(x, ...) standardGeneric("assign_rownames")
 )
 
+## Append ----------------------------------------------------------------------
 #' Convert Row Names to an Explicit Column
 #'
 #' @param x A [`data.frame`].
 #' @param after A length-one [`numeric`] vector specifying a subscript,
 #'  after which the row names are to be appended.
-#' @param var A [`character`] string giving the name of column to use for row
-#'  names.
+#' @param var A [`character`] string giving the name of name of the new column.
 #' @param remove A [`logical`] scalar: should the row names be removed?
 #' @param ... Currently not used.
 #' @example inst/examples/ex-assign.R
@@ -253,15 +253,34 @@ setGeneric(
 #' @author N. Frerebeau
 #' @docType methods
 #' @family data preparation tools
-#' @name append
-#' @rdname append
-NULL
-
-#' @rdname append
 #' @aliases append_rownames-method
 setGeneric(
   name = "append_rownames",
   def = function(x, ...) standardGeneric("append_rownames")
+)
+
+#' Add a (Named) Vector as a Column
+#'
+#' @param x A [`data.frame`].
+#' @param column A (named) `vector`.
+#' @param after A length-one [`numeric`] vector specifying a subscript,
+#'  after which the new column is to be appended.
+#' @param var A [`character`] string giving the name of the new column.
+#' @param ... Currently not used.
+#' @details
+#'  If `column` is named, names will be matched to the row names of `x`. Only
+#'  the first match is retained, and elements of `column` without a match are
+#'  removed. This allows to add as a column a vector whose length is less than
+#'  the number of rows in `x` (`NA`s will be inserted).
+#' @example inst/examples/ex-append.R
+#' @return A [`data.frame`].
+#' @author N. Frerebeau
+#' @docType methods
+#' @family data preparation tools
+#' @aliases append_column-method
+setGeneric(
+  name = "append_column",
+  def = function(x, ...) standardGeneric("append_column")
 )
 
 # Data cleaning ================================================================
@@ -481,8 +500,6 @@ setGeneric(
   name = "sparsity",
   def = function(x, ...) standardGeneric("sparsity")
 )
-
-# Data transformation ==========================================================
 
 # Mathematics ==================================================================
 #' Least Common Multiple

@@ -56,7 +56,8 @@ compact(X, margin = 2)
 }
 \seealso{
 Other data preparation tools: 
-\code{\link{append}()},
+\code{\link{append_column}()},
+\code{\link{append_rownames}()},
 \code{\link{assign}()},
 \code{\link{count}()},
 \code{\link{detect}()},

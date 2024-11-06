@@ -50,7 +50,8 @@ head(x)
 }
 \seealso{
 Other data preparation tools: 
-\code{\link{append}()},
+\code{\link{append_column}()},
+\code{\link{append_rownames}()},
 \code{\link{assign}()},
 \code{\link{compact}()},
 \code{\link{count}()},

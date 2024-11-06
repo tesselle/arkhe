@@ -11,21 +11,6 @@ df2 <- data.frame(
 )
 expect_equal(df1, df2)
 
-# Append row names =============================================================
-df <- data.frame(
-  x = 1:5,
-  y = 6:10,
-  row.names = LETTERS[1:5]
-)
-
-df1 <- append_rownames(df, after = 3, remove = TRUE)
-df2 <- data.frame(
-  x = 1:5,
-  y = 6:10,
-  rownames = LETTERS[1:5]
-)
-expect_equal(df1, df2)
-
 # Assign column names ==========================================================
 df <- data.frame(
   a = LETTERS[1:5],
