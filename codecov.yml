@@ -3,7 +3,6 @@ comment: false
 ignore:
   - "R/arkhe-deprecated.R"
   - "R/zzz.R"
-  - "R/plot.R"
 
 coverage:
   status:

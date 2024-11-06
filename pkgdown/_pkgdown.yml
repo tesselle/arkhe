@@ -25,14 +25,12 @@ reference:
 - title: Mathematics
   contents:
   - has_concept("mathematic functions")
-- title: Palettes
-  contents:
-  - has_concept("palettes")
 - title: Predicates
   contents:
   - has_concept("predicates")
 - title: Validation
   contents:
+  - has_concept("checking methods")
   - has_concept("validation methods")
 - title: Utilities
   contents:
