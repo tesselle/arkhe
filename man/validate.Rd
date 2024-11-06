@@ -15,18 +15,6 @@ Returns \code{NULL} on success, otherwise returns the error as a string.
 \description{
 Validate a Condition
 }
-\seealso{
-Other validation methods: 
-\code{\link{assert_constant}()},
-\code{\link{assert_data}},
-\code{\link{assert_length}()},
-\code{\link{assert_lower}()},
-\code{\link{assert_names}()},
-\code{\link{assert_numeric}},
-\code{\link{assert_package}()},
-\code{\link{assert_square}()},
-\code{\link{assert_type}()}
-}
 \author{
 N. Frerebeau
 }

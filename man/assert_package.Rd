@@ -31,18 +31,19 @@ the user will be asked to install the packages.
 \code{needs()} is an alias for \code{assert_package()}.
 }
 \seealso{
-Other validation methods: 
+Other checking methods: 
 \code{\link{assert_constant}()},
-\code{\link{assert_data}},
+\code{\link{assert_infinite}()},
 \code{\link{assert_length}()},
 \code{\link{assert_lower}()},
+\code{\link{assert_missing}()},
 \code{\link{assert_names}()},
 \code{\link{assert_numeric}},
 \code{\link{assert_square}()},
 \code{\link{assert_type}()},
-\code{\link{validate}()}
+\code{\link{assert_unique}()}
 }
 \author{
 N. Frerebeau
 }
-\concept{validation methods}
+\concept{checking methods}

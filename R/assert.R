@@ -33,7 +33,7 @@ validate <- function(expr) {
 #'
 #'  `needs()` is an alias for `assert_package()`.
 #' @return Invisibly returns `NULL`.
-#' @family validation methods
+#' @family checking methods
 #' @author N. Frerebeau
 #' @export
 assert_package <- function(x, ask = TRUE) {
@@ -80,7 +80,7 @@ needs <- assert_package
 #' @return
 #'  Throws an error, if any, and returns `x` invisibly otherwise.
 #' @author N. Frerebeau
-#' @family validation methods
+#' @family checking methods
 #' @export
 assert_length <- function(x, expected, empty = FALSE) {
   arg <- deparse(substitute(x))
@@ -150,7 +150,7 @@ assert_dimensions <- function(x, expected) {
 #' @return
 #'  Throws an error, if any, and returns `x` invisibly otherwise.
 #' @author N. Frerebeau
-#' @family validation methods
+#' @family checking methods
 #' @export
 assert_names <- function(x, expected = NULL) {
   arg <- deparse(substitute(x))
@@ -199,22 +199,15 @@ assert_colnames <- function(x, expected = NULL) {
 }
 
 # NA/NaN/Inf/duplicates ========================================================
-#' Check Data
+#' Check Missing Values
 #'
-#' * `assert_missing()` and `assert_infinite()` check if an object contains any
-#' missing (`NA`, `NaN`) or infinite (`Inf`) value.
-#' * `assert_unique()` checks if an object contains duplicated elements.
+#' Checks if an object contains any missing (`NA`, `NaN`) values.
 #' @param x An object to be checked.
 #' @return
 #'  Throws an error, if any, and returns `x` invisibly otherwise.
 #' @author N. Frerebeau
-#' @family validation methods
-#' @name assert_data
-#' @rdname assert_data
-NULL
-
+#' @family checking methods
 #' @export
-#' @rdname assert_data
 assert_missing <- function(x) {
   arg <- deparse(substitute(x))
   n <- sum(is.na(x))
@@ -226,8 +219,15 @@ assert_missing <- function(x) {
   invisible(x)
 }
 
+#' Check Infinite Values
+#'
+#' Checks if an object contains any infinite (`Inf`) values.
+#' @param x An object to be checked.
+#' @return
+#'  Throws an error, if any, and returns `x` invisibly otherwise.
+#' @author N. Frerebeau
+#' @family checking methods
 #' @export
-#' @rdname assert_data
 assert_infinite <- function(x) {
   arg <- deparse(substitute(x))
   n <- sum(is.infinite(x))
@@ -239,8 +239,15 @@ assert_infinite <- function(x) {
   invisible(x)
 }
 
+#' Check Duplicates
+#'
+#' Checks if an object contains duplicated elements.
+#' @param x An object to be checked.
+#' @return
+#'  Throws an error, if any, and returns `x` invisibly otherwise.
+#' @author N. Frerebeau
+#' @family checking methods
 #' @export
-#' @rdname assert_data
 assert_unique <- function(x) {
   arg <- deparse(substitute(x))
   if (has_duplicates(x)) {
@@ -333,7 +340,7 @@ assert_function <- function(x) {
 #' @return
 #'  Throws an error, if any, and returns `x` invisibly otherwise.
 #' @author N. Frerebeau
-#' @family validation methods
+#' @family checking methods
 #' @name assert_numeric
 #' @rdname assert_numeric
 NULL
@@ -404,7 +411,7 @@ assert_even <- function(x, na.rm = FALSE, ...) {
 #' @return
 #'  Throws an error, if any, and returns `x` invisibly otherwise.
 #' @author N. Frerebeau
-#' @family validation methods
+#' @family checking methods
 #' @export
 assert_constant <- function(x, ...) {
   arg <- deparse(substitute(x))
@@ -444,7 +451,7 @@ assert_increasing <- function(x, ...) {
 #' @return
 #'  Throws an error, if any, and returns `x` invisibly otherwise.
 #' @author N. Frerebeau
-#' @family validation methods
+#' @family checking methods
 #' @export
 assert_lower <- function(x, y, ...) {
   arg_x <- deparse(substitute(x))
@@ -474,7 +481,7 @@ assert_greater <- function(x, y, ...) {
 #' @param x A [`matrix`] to be checked.
 #' @return Throw an error, if any, and returns `x` invisibly otherwise.
 #' @author N. Frerebeau
-#' @family validation methods
+#' @family checking methods
 #' @export
 assert_square <- function(x) {
   arg <- deparse(substitute(x))
@@ -503,7 +510,7 @@ assert_symmetric <- function(x) {
 # @param expected An appropriate expected value.
 # @return Throw an error, if any.
 # @author N. Frerebeau
-# @family validation methods
+# @family checking methods
 # @keywords internal
 # @export
 # assert_dag <- function(x) {
