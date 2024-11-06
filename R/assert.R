@@ -257,12 +257,18 @@ assert_unique <- function(x) {
 #' @param expected A [`character`] string specifying the expected
 #'  type. It must be one of "`list`", "`atomic`", "`vector`", "`numeric`",
 #'  "`integer`", "`double`", "`character`" or "`logical`".
+#' @param allow_empty A [`logical`] scalar: should [empty][is_empty()] object be
+#'  allowed?
+#' @param allow_null A [`logical`] scalar: should `NULL` object be allowed?
 #' @return
 #'  Throws an error, if any, and returns `x` invisibly otherwise.
 #' @author N. Frerebeau
-#' @family validation methods
+#' @family checking methods
 #' @export
-assert_type <- function(x, expected) {
+assert_type <- function(x, expected, allow_empty = TRUE, allow_null = FALSE) {
+  if (is.null(x) && isTRUE(allow_null)) return(NULL)
+  if (isFALSE(allow_empty)) assert_filled(x)
+
   arg <- deparse(substitute(x))
   predicate <- switch(
     expected,

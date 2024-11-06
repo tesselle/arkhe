@@ -8,11 +8,18 @@ cnd <- arkhe:::catch_conditions(needs("ABC123XYZ", ask = FALSE))
 expect_inherits(cnd[[1]], "error_missing_package")
 
 # Assert type ==================================================================
+cnd <- arkhe:::catch_conditions(assert_type(NULL, expected = "numeric"))
+expect_inherits(cnd[[1]], "error_bad_type")
+
 x <- numeric()
+cnd <- arkhe:::catch_conditions(assert_type(x, expected = "numeric", allow_empty = FALSE))
+expect_inherits(cnd[[1]], "error_bad_dimensions")
+
 cnd <- arkhe:::catch_conditions(assert_type(x, expected = "character"))
 expect_inherits(cnd[[1]], "error_bad_type")
 
 expect_identical(assert_type(x, expected = "numeric"), x)
+expect_null(assert_type(NULL, expected = "numeric", allow_null = TRUE))
 
 # Assert scalar ================================================================
 x <- numeric(3)

@@ -1,6 +1,7 @@
 # arkhe 1.7.0.9000
 ## Enhancements
 * `seek_rows()` and `seek_columns()` gained a new `names` argument.
+* `assert_type()` gained new `allow_empty` and `allow_null` arguments.
 
 # arkhe 1.7.0
 ## New classes and methods
