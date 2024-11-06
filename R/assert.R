@@ -71,73 +71,6 @@ assert_package <- function(x, ask = TRUE) {
 #' @rdname assert_package
 needs <- assert_package
 
-# Types ========================================================================
-#' Check Data Types
-#'
-#' @param x An object to be checked.
-#' @param expected A [`character`] string specifying the expected
-#'  type. It must be one of "`list`", "`atomic`", "`vector`", "`numeric`",
-#'  "`integer`", "`double`", "`character`" or "`logical`".
-#' @return
-#'  Throws an error, if any, and returns `x` invisibly otherwise.
-#' @author N. Frerebeau
-#' @family validation methods
-#' @export
-assert_type <- function(x, expected) {
-  arg <- deparse(substitute(x))
-  predicate <- switch(
-    expected,
-    list = is_list,
-    atomic = is_atomic,
-    vector = is_vector,
-    numeric = is_numeric,
-    integer = is_integer,
-    double = is_double,
-    character = is_character,
-    logical = is_logical,
-    stop("Can't find a predicate for this type: ", expected, call. = FALSE)
-  )
-  if (!predicate(x)) {
-    msg <- sprintf("%s must be %s; not %s.", sQuote(arg), expected, typeof(x))
-    throw_error("error_bad_type", msg)
-  }
-  invisible(x)
-}
-
-#' @export
-#' @rdname assert_type
-assert_scalar <- function(x, expected) {
-  arg <- deparse(substitute(x))
-  predicate <- switch(
-    expected,
-    list = is_scalar_list,
-    atomic = is_scalar_atomic,
-    vector = is_scalar_vector,
-    numeric = is_scalar_numeric,
-    integer = is_scalar_integer,
-    double = is_scalar_double,
-    character = is_scalar_character,
-    logical = is_scalar_logical,
-    stop("Can't find a predicate for this scalar: ", expected, call. = FALSE)
-  )
-  if (!predicate(x)) {
-    msg <- sprintf("%s must be a scalar (%s).", sQuote(arg), expected)
-    throw_error("error_bad_scalar", msg)
-  }
-  invisible(x)
-}
-
-#' @export
-#' @rdname assert_type
-assert_function <- function(x) {
-  arg <- deparse(substitute(x))
-  if (!is.function(x)) {
-    msg <- sprintf("%s must be a function.", sQuote(arg))
-    throw_error("error_bad_type", msg)
-  }
-  invisible(x)
-}
-
 # Attributes ===================================================================
 #' Check Object Length/Dimensions
 #'
@@ -209,6 +142,7 @@ assert_dimensions <- function(x, expected) {
   invisible(x)
 }
 
+# Names ========================================================================
 #' Check Object Names
 #'
 #' @param x An object to be checked.
@@ -218,7 +152,7 @@ assert_dimensions <- function(x, expected) {
 #' @author N. Frerebeau
 #' @family validation methods
 #' @export
-assert_names <- function(x, expected) {
+assert_names <- function(x, expected = NULL) {
   arg <- deparse(substitute(x))
   if (!has_names(x, names = expected)) {
     if (is.null(expected)) {
@@ -234,10 +168,15 @@ assert_names <- function(x, expected) {
 
 #' @export
 #' @rdname assert_names
-assert_dimnames <- function(x, expected) {
+assert_rownames <- function(x, expected = NULL) {
   arg <- deparse(substitute(x))
-  if (!identical(dimnames(x), expected)) {
-    msg <- sprintf("%s must have dimnames.", sQuote(arg))
+  if (!has_rownames(x, names = expected)) {
+    if (is.null(expected)) {
+      msg <- sprintf("%s must have row names.", sQuote(arg))
+    } else {
+      msg <- sprintf("%s must have the following row names: %s.",
+                     sQuote(arg), paste0(expected, collapse = ", "))
+    }
     throw_error("error_bad_names", msg)
   }
   invisible(x)
@@ -245,21 +184,15 @@ assert_dimnames <- function(x, expected) {
 
 #' @export
 #' @rdname assert_names
-assert_rownames <- function(x, expected) {
+assert_colnames <- function(x, expected = NULL) {
   arg <- deparse(substitute(x))
-  if (!identical(rownames(x), expected)) {
-    msg <- sprintf("%s must have rownames.", sQuote(arg))
-    throw_error("error_bad_names", msg)
-  }
-  invisible(x)
-}
-
-#' @export
-#' @rdname assert_names
-assert_colnames <- function(x, expected) {
-  arg <- deparse(substitute(x))
-  if (!identical(colnames(x), expected)) {
-    msg <- sprintf("%s must have rownames.", sQuote(arg))
+  if (!has_colnames(x, names = expected)) {
+    if (is.null(expected)) {
+      msg <- sprintf("%s must have column names.", sQuote(arg))
+    } else {
+      msg <- sprintf("%s must have the following column names: %s.",
+                     sQuote(arg), paste0(expected, collapse = ", "))
+    }
     throw_error("error_bad_names", msg)
   }
   invisible(x)
@@ -313,6 +246,73 @@ assert_unique <- function(x) {
   if (has_duplicates(x)) {
     msg <- sprintf("Elements of %s must be unique.", sQuote(arg))
     throw_error("error_data_duplicates", msg)
+  }
+  invisible(x)
+}
+
+# Types ========================================================================
+#' Check Data Types
+#'
+#' @param x An object to be checked.
+#' @param expected A [`character`] string specifying the expected
+#'  type. It must be one of "`list`", "`atomic`", "`vector`", "`numeric`",
+#'  "`integer`", "`double`", "`character`" or "`logical`".
+#' @return
+#'  Throws an error, if any, and returns `x` invisibly otherwise.
+#' @author N. Frerebeau
+#' @family validation methods
+#' @export
+assert_type <- function(x, expected) {
+  arg <- deparse(substitute(x))
+  predicate <- switch(
+    expected,
+    list = is_list,
+    atomic = is_atomic,
+    vector = is_vector,
+    numeric = is_numeric,
+    integer = is_integer,
+    double = is_double,
+    character = is_character,
+    logical = is_logical,
+    stop("Can't find a predicate for this type: ", expected, call. = FALSE)
+  )
+  if (!predicate(x)) {
+    msg <- sprintf("%s must be %s; not %s.", sQuote(arg), expected, typeof(x))
+    throw_error("error_bad_type", msg)
+  }
+  invisible(x)
+}
+
+#' @export
+#' @rdname assert_type
+assert_scalar <- function(x, expected) {
+  arg <- deparse(substitute(x))
+  predicate <- switch(
+    expected,
+    list = is_scalar_list,
+    atomic = is_scalar_atomic,
+    vector = is_scalar_vector,
+    numeric = is_scalar_numeric,
+    integer = is_scalar_integer,
+    double = is_scalar_double,
+    character = is_scalar_character,
+    logical = is_scalar_logical,
+    stop("Can't find a predicate for this scalar: ", expected, call. = FALSE)
+  )
+  if (!predicate(x)) {
+    msg <- sprintf("%s must be a scalar (%s).", sQuote(arg), expected)
+    throw_error("error_bad_scalar", msg)
+  }
+  invisible(x)
+}
+
+#' @export
+#' @rdname assert_type
+assert_function <- function(x) {
+  arg <- deparse(substitute(x))
+  if (!is.function(x)) {
+    msg <- sprintf("%s must be a function.", sQuote(arg))
+    throw_error("error_bad_type", msg)
   }
   invisible(x)
 }
@@ -491,7 +491,6 @@ assert_symmetric <- function(x) {
   invisible(x)
 }
 
-# Graph ========================================================================
 # Check Graph
 #
 # @param x A [`matrix`] to be checked.

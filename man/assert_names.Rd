@@ -2,18 +2,15 @@
 % Please edit documentation in R/assert.R
 \name{assert_names}
 \alias{assert_names}
-\alias{assert_dimnames}
 \alias{assert_rownames}
 \alias{assert_colnames}
 \title{Check Object Names}
 \usage{
-assert_names(x, expected)
+assert_names(x, expected = NULL)
 
-assert_dimnames(x, expected)
+assert_rownames(x, expected = NULL)
 
-assert_rownames(x, expected)
-
-assert_colnames(x, expected)
+assert_colnames(x, expected = NULL)
 }
 \arguments{
 \item{x}{An object to be checked.}

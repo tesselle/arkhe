@@ -80,28 +80,25 @@ expect_inherits(cnd[[1]], "error_bad_names")
 
 expect_identical(assert_names(k, expected = LETTERS[1:10]), k)
 
-## Dimnames --------------------------------------------------------------------
+## Row/column names ------------------------------------------------------------
 k <- matrix(1, nrow = 3, ncol = 3)
 z <- list(LETTERS[1:3], LETTERS[4:6])
-cnd <- arkhe:::catch_conditions(assert_dimnames(k, expected = z))
+
+cnd <- arkhe:::catch_conditions(assert_rownames(k))
 expect_inherits(cnd[[1]], "error_bad_names")
 
 cnd <- arkhe:::catch_conditions(assert_rownames(k, expected = z[[1]]))
 expect_inherits(cnd[[1]], "error_bad_names")
 
+cnd <- arkhe:::catch_conditions(assert_colnames(k))
+expect_inherits(cnd[[1]], "error_bad_names")
+
 cnd <- arkhe:::catch_conditions(assert_colnames(k, expected = z[[2]]))
 expect_inherits(cnd[[1]], "error_bad_names")
 
-dimnames(k) <- list(NULL, letters[4:6])
-cnd <- arkhe:::catch_conditions(assert_dimnames(k, expected = z))
-expect_inherits(cnd[[1]], "error_bad_names")
-
-dimnames(k) <- list(letters[1:3], letters[4:6])
-cnd <- arkhe:::catch_conditions(assert_dimnames(k, expected = z))
-expect_inherits(cnd[[1]], "error_bad_names")
-
 dimnames(k) <- z
-expect_identical(assert_dimnames(k, expected = z), k)
+expect_identical(assert_rownames(k, expected = z[[1]]), k)
+expect_identical(assert_colnames(k, expected = z[[2]]), k)
 
 # Assert missing/infinite/duplicated values ====================================
 ## Missing ---------------------------------------------------------------------

@@ -6,45 +6,49 @@ is_zero_numeric <- function(x, tolerance = sqrt(.Machine$double.eps)) {
   rep(FALSE, length(x))
 }
 
-# Helpers ======================================================================
-#' Utility Predicates
+# Attributes ===================================================================
+#' Attributes Predicates
 #'
-#' * `is_empty()` checks is an object is empty (any zero-length dimensions).
 #' * `has_length()` checks how long is an object.
-#' * `has_names()` checks if an object is named.
-#' * `has_duplicates()` checks if an object has duplicated elements.
-#' * `has_missing()` and `has_infinite()` check if an object contains missing
-#' or infinite values.
+#' * `is_empty()` checks is an object is empty (any zero-length dimensions).
 #' @param x A [`vector`] to be tested.
 #' @param n A length-one [`numeric`] vector specifying the length to test `x`
 #'  with. If `NULL`, returns `TRUE` if `x` has length greater than zero, and
 #'  `FALSE` otherwise.
-#' @param names A [`character`] vector specifying the names to test `x`
-#'  with. If `NULL`, returns `TRUE` if `x` has names, and `FALSE` otherwise.
-#' @param tolerance A [`numeric`] scalar giving the tolerance to check within
-#'  (for `numeric` vector).
-#' @param na.rm A [`logical`] scalar: should missing values (including `NaN`)
-#'  be omitted?
 #' @return A [`logical`] scalar.
 #' @family predicates
-#' @name predicate-utils
-#' @rdname predicate-utils
+#' @name predicate-attributes
+#' @rdname predicate-attributes
 NULL
 
 #' @export
-#' @rdname predicate-utils
+#' @rdname predicate-attributes
 has_length <- function(x, n = NULL) {
   if (is.null(n)) length(x) > 0 else length(x) == n
 }
+
 #' @export
-#' @rdname predicate-utils
+#' @rdname predicate-attributes
 is_empty <- function(x) {
   if (!is.null(dim(x))) nrow(x) == 0 || ncol(x) == 0
   else length(x) == 0
 }
 
+# Names ========================================================================
+#' Names Predicates
+#'
+#' Checks if an object is named.
+#' @param x A [`vector`] to be tested.
+#' @param names A [`character`] vector specifying the names to test `x`
+#'  with. If `NULL`, returns `TRUE` if `x` has names, and `FALSE` otherwise.
+#' @return A [`logical`] scalar.
+#' @family predicates
+#' @name predicate-names
+#' @rdname predicate-names
+NULL
+
 #' @export
-#' @rdname predicate-utils
+#' @rdname predicate-names
 has_names <- function(x, names = NULL) {
   if (is.null(names)) {
     has_length(names(x))
@@ -54,18 +58,66 @@ has_names <- function(x, names = NULL) {
 }
 
 #' @export
-#' @rdname predicate-utils
+#' @rdname predicate-names
+has_rownames <- function(x, names = NULL) {
+  if (is.null(names)) {
+    has_length(rownames(x))
+  } else {
+    identical(rownames(x), names)
+  }
+}
+
+#' @export
+#' @rdname predicate-names
+has_colnames <- function(x, names = NULL) {
+  if (is.null(names)) {
+    has_length(colnames(x))
+  } else {
+    identical(colnames(x), names)
+  }
+}
+
+# NA/NaN/Inf/duplicates ========================================================
+#' Utility Predicates
+#'
+#' * `has_missing()` and `has_infinite()` check if an object contains missing
+#' or infinite values.
+#' * `has_duplicates()` checks if an object has duplicated elements.
+#' @param x A [`vector`] to be tested.
+#' @param tolerance A [`numeric`] scalar giving the tolerance to check within
+#'  (for `numeric` vector).
+#' @param na.rm A [`logical`] scalar: should missing values (including `NaN`)
+#'  be omitted?
+#' @return A [`logical`] scalar.
+#' @family predicates
+#' @name predicate-data
+#' @rdname predicate-data
+NULL
+
+#' @export
+#' @rdname predicate-data
 has_missing <- function(x) {
   any(is.na(x))
 }
+
 #' @export
-#' @rdname predicate-utils
+#' @rdname predicate-data
 has_infinite <- function(x) {
   any(is.infinite(x))
 }
 
 #' @export
-#' @rdname predicate-utils
+#' @rdname predicate-data
+has_duplicates <- function(x) {
+  any(duplicated(x))
+}
+
+is_duplicated <- function(x) {
+  duplicated(x, fromLast = FALSE) | duplicated(x, fromLast = TRUE)
+}
+
+#' @export
+#' @rdname predicate-data
 is_unique <- function(x, tolerance = sqrt(.Machine$double.eps), na.rm = FALSE) {
   if (na.rm) x <- stats::na.omit(x)
   if (is.numeric(x)) {
@@ -75,11 +127,6 @@ is_unique <- function(x, tolerance = sqrt(.Machine$double.eps), na.rm = FALSE) {
     cte <- length(unique(x)) == 1
   }
   cte
-}
-#' @export
-#' @rdname predicate-utils
-has_duplicates <- function(x) {
-  any(duplicated(x))
 }
 
 # Type =========================================================================

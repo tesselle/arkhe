@@ -25,9 +25,11 @@ A \code{\link{logical}} scalar.
 \seealso{
 Other predicates: 
 \code{\link{is_scalar}},
+\code{\link{predicate-attributes}},
+\code{\link{predicate-data}},
+\code{\link{predicate-names}},
 \code{\link{predicate-numeric}},
 \code{\link{predicate-trend}},
-\code{\link{predicate-type}},
-\code{\link{predicate-utils}}
+\code{\link{predicate-type}}
 }
 \concept{predicates}
