@@ -1,12 +1,21 @@
 # SEEK
 
-seek <- function(x, margin = 2, select = NULL, ...) {
+seek <- function(x, margin = 2, select = NULL, names = NULL, ...) {
+  assert_filled(x)
   assert_length(margin, 1)
 
   dm <- dim(x)[[margin]]
   nm <- dimnames(x)[[margin]]
   if (is.null(nm)) return(NULL)
-  if (is.null(select)) return(seq_len(dm))
+
+  if (is.null(select)) {
+    if (!is.null(names)) {
+      assert_type(names, "character")
+      select <- function(i) match(names, i)
+    } else {
+      return(seq_len(dm))
+    }
+  }
 
   assert_function(select)
   i <- select(nm, ...)
@@ -23,8 +32,21 @@ seek <- function(x, margin = 2, select = NULL, ...) {
 setMethod(
   f = "seek_rows",
   signature = c(x = "data.frame"),
-  definition = function(x, select = NULL, ...) {
-    seek(x, margin = 1, select = select, ...)
+  definition = function(x, select = NULL, names = NULL, ...) {
+    # assert_rownames(x)
+    seek(x, margin = 1, select = select, names = names, ...)
+  }
+)
+
+#' @export
+#' @rdname seek
+#' @aliases seek_rows,matrix-method
+setMethod(
+  f = "seek_rows",
+  signature = c(x = "matrix"),
+  definition = function(x, select = NULL, names = NULL, ...) {
+    # assert_rownames(x)
+    seek(x, margin = 1, select = select, names = names, ...)
   }
 )
 
@@ -34,7 +56,20 @@ setMethod(
 setMethod(
   f = "seek_columns",
   signature = c(x = "data.frame"),
-  definition = function(x, select = NULL, ...) {
-    seek(x, margin = 2, select = select, ...)
+  definition = function(x, select = NULL, names = NULL, ...) {
+    # assert_colnames(x)
+    seek(x, margin = 2, select = select, names = names, ...)
+  }
+)
+
+#' @export
+#' @rdname seek
+#' @aliases seek_columns,matrix-method
+setMethod(
+  f = "seek_columns",
+  signature = c(x = "matrix"),
+  definition = function(x, select = NULL, names = NULL, ...) {
+    # assert_colnames(x)
+    seek(x, margin = 2, select = select, names = names, ...)
   }
 )

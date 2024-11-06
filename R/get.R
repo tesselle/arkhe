@@ -2,24 +2,24 @@
 
 #' @export
 #' @rdname get
-#' @aliases get_columns,data.frame-method
+#' @aliases get_columns,ANY-method
 setMethod(
   f = "get_columns",
-  signature = c(x = "data.frame"),
-  definition = function(x, select = NULL, ...) {
-    i <- seek_columns(x, select = select, ...)
+  signature = c(x = "ANY"),
+  definition = function(x, select = NULL, names = NULL, ...) {
+    i <- seek_columns(x, select = select, names = names, ...)
     x[, i, drop = FALSE]
   }
 )
 
 #' @export
 #' @rdname get
-#' @aliases get_rows,data.frame-method
+#' @aliases get_rows,ANY-method
 setMethod(
   f = "get_rows",
-  signature = c(x = "data.frame"),
-  definition = function(x, select = NULL, ...) {
-    i <- seek_rows(x, select = select, ...)
+  signature = c(x = "ANY"),
+  definition = function(x, select = NULL, names = NULL, ...) {
+    i <- seek_rows(x, select = select, names = names, ...)
     x[i, , drop = FALSE]
   }
 )

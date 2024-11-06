@@ -8,37 +8,50 @@
 \alias{seek_rows}
 \alias{seek_rows-method}
 \alias{seek_rows,data.frame-method}
+\alias{seek_rows,matrix-method}
 \alias{seek_columns,data.frame-method}
+\alias{seek_columns,matrix-method}
 \title{Search Rows/Columns by Name}
 \usage{
 seek_columns(x, ...)
 
 seek_rows(x, ...)
 
-\S4method{seek_rows}{data.frame}(x, select = NULL, ...)
+\S4method{seek_rows}{data.frame}(x, select = NULL, names = NULL, ...)
 
-\S4method{seek_columns}{data.frame}(x, select = NULL, ...)
+\S4method{seek_rows}{matrix}(x, select = NULL, names = NULL, ...)
+
+\S4method{seek_columns}{data.frame}(x, select = NULL, names = NULL, ...)
+
+\S4method{seek_columns}{matrix}(x, select = NULL, names = NULL, ...)
 }
 \arguments{
 \item{x}{An \R object (should be a \code{\link{matrix}} or a \code{\link{data.frame}}).}
 
 \item{...}{Further arguments to be passed to \code{select}.}
 
-\item{select}{A \code{\link{function}} to be applied to the row/colum names
-(e.g. \code{\link[=startsWith]{startsWith()}}). Must return a single \code{integer} or \code{logical} vector.}
+\item{select}{A \code{\link{function}} to be applied to the row/column names
+(e.g. \code{\link[=startsWith]{startsWith()}}) that returns an \code{integer} or \code{logical} vector.}
+
+\item{names}{A \code{\link{character}} vector of row/column names to look for.
+Only used if \code{select} is \code{NULL}.}
 }
 \value{
-An \code{\link{integer}} vector or \code{NULL}.
+An \code{\link{integer}} vector or \code{NULL} (if \code{x} does not have row/column names).
 }
 \description{
 Searches rows/columns by name in an array-like object.
 }
 \examples{
 ## Seek columns
-seek_columns(iris, select = startsWith, prefix = "Sepal")
+seek_columns(iris, select = startsWith, prefix = "Petal")
+seek_columns(iris, names = c("Petal.Length", "Petal.Width"))
 
 ## Get columns
-x <- get_columns(iris, select = startsWith, prefix = "Sepal")
+x <- get_columns(iris, select = startsWith, prefix = "Petal")
+head(x)
+
+x <- get_columns(iris, names = c("Petal.Length", "Petal.Width"))
 head(x)
 }
 \seealso{

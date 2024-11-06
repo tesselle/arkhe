@@ -1,4 +1,6 @@
 # arkhe 1.7.0.9000
+## Enhancements
+* `seek_rows()` and `seek_columns()` gained a new `names` argument.
 
 # arkhe 1.7.0
 ## New classes and methods

@@ -148,10 +148,13 @@ setGeneric(
 #'
 #' Searches rows/columns by name in an array-like object.
 #' @param x An \R object (should be a [`matrix`] or a [`data.frame`]).
-#' @param select A [`function`] to be applied to the row/colum names
-#'  (e.g. [startsWith()]). Must return a single `integer` or `logical` vector.
+#' @param select A [`function`] to be applied to the row/column names
+#'  (e.g. [startsWith()]) that returns an `integer` or `logical` vector.
+#' @param names A [`character`] vector of row/column names to look for.
+#'  Only used if `select` is `NULL`.
 #' @param ... Further arguments to be passed to `select`.
-#' @return An [`integer`] vector or `NULL`.
+#' @return
+#'  An [`integer`] vector or `NULL` (if `x` does not have row/column names).
 #' @example inst/examples/ex-seek.R
 #' @author N. Frerebeau
 #' @docType methods
@@ -174,7 +177,7 @@ setGeneric(
   def = function(x, ...) standardGeneric("seek_rows")
 )
 
-## Seek ------------------------------------------------------------------------
+## Get -------------------------------------------------------------------------
 #' Get Rows/Columns by Name
 #'
 #' Returns rows/columns selected by name in an array-like object.
