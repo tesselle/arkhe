@@ -1,4 +1,7 @@
 # arkhe 1.7.0.9000
+## New classes and methods
+* Add `assert_nrow` and `assert_ncol` to check the number of rows/columns.
+
 ## Enhancements
 * `seek_rows()` and `seek_columns()` gained a new `names` argument.
 * `assert_type()` gained new `allow_empty` and `allow_null` arguments.

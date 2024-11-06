@@ -72,19 +72,21 @@ assert_package <- function(x, ask = TRUE) {
 needs <- assert_package
 
 # Attributes ===================================================================
-#' Check Object Length/Dimensions
+#' Check Object Length(s)
 #'
 #' @param x An object to be checked.
 #' @param expected An appropriate expected value.
-#' @param empty A [`logical`] scalar: should empty objects be ignored?
+#' @param allow_empty A [`logical`] scalar: should [empty][is_empty()] object be
+#'  allowed?
+#' @param empty Deprecated.
 #' @return
 #'  Throws an error, if any, and returns `x` invisibly otherwise.
 #' @author N. Frerebeau
 #' @family checking methods
 #' @export
-assert_length <- function(x, expected, empty = FALSE) {
+assert_length <- function(x, expected, allow_empty = empty, empty = FALSE) {
   arg <- deparse(substitute(x))
-  if (!(empty & is_empty(x)) && !has_length(x, n = expected)) {
+  if (!(allow_empty && is_empty(x)) && !has_length(x, n = expected)) {
     msg <- sprintf("%s must be of length %d; not %d.", sQuote(arg),
                    expected, length(x))
     throw_error("error_bad_length", msg)
@@ -97,7 +99,7 @@ assert_length <- function(x, expected, empty = FALSE) {
 assert_lengths <- function(x, expected) {
   arg <- deparse(substitute(x))
   n <- lengths(x)
-  if (any(n != expected)) {
+  if (!all(n == expected)) {
     msg <- sprintf("Elements of %s must be of lengths %s; not %s.", sQuote(arg),
                    paste0(expected, collapse = ", "),
                    paste0(n, collapse = ", "))
@@ -106,8 +108,64 @@ assert_lengths <- function(x, expected) {
   invisible(x)
 }
 
+#' Check Object Dimensions
+#'
+#' @param x An object to be checked.
+#' @param expected An appropriate expected value.
+#' @return
+#'  Throws an error, if any, and returns `x` invisibly otherwise.
+#' @author N. Frerebeau
+#' @family checking methods
 #' @export
-#' @rdname assert_length
+assert_dim <- function(x, expected) {
+  arg <- deparse(substitute(x))
+  n <- dim(x)
+  if (!all(n == expected)) {
+    msg <- sprintf("%s must be of dimension %s; not %s.", sQuote(arg),
+                   paste0(expected, collapse = " x "),
+                   paste0(n, collapse = " x "))
+    throw_error("error_bad_dimensions", msg)
+  }
+  invisible(x)
+}
+
+#' @export
+#' @rdname assert_dim
+assert_nrow <- function(x, expected) {
+  arg <- deparse(substitute(x))
+  n <- nrow(x)
+  if (n != expected) {
+    txt <- ngettext(expected, "%s must have %s row; not %s.",
+                    "%s must have %s rows; not %s.")
+    msg <- sprintf(txt, sQuote(arg), expected, n)
+    throw_error("error_bad_dimensions", msg)
+  }
+  invisible(x)
+}
+
+#' @export
+#' @rdname assert_dim
+assert_ncol <- function(x, expected) {
+  arg <- deparse(substitute(x))
+  n <- ncol(x)
+  if (n != expected) {
+    txt <- ngettext(expected, "%s must have %s column; not %s.",
+                    "%s must have %s columns; not %s.")
+    msg <- sprintf(txt, sQuote(arg), expected, n)
+    throw_error("error_bad_dimensions", msg)
+  }
+  invisible(x)
+}
+
+#' Check Object Filling
+#'
+#' Checks if an object is (not) empty.
+#' @param x An object to be checked.
+#' @return
+#'  Throws an error, if any, and returns `x` invisibly otherwise.
+#' @author N. Frerebeau
+#' @family checking methods
+#' @export
 assert_empty <- function(x) {
   arg <- deparse(substitute(x))
   if (!is_empty(x)) {
@@ -118,25 +176,11 @@ assert_empty <- function(x) {
 }
 
 #' @export
-#' @rdname assert_length
+#' @rdname assert_empty
 assert_filled <- function(x) {
   arg <- deparse(substitute(x))
   if (is_empty(x)) {
     msg <- sprintf("%s must not be empty.", sQuote(arg))
-    throw_error("error_bad_dimensions", msg)
-  }
-  invisible(x)
-}
-
-#' @export
-#' @rdname assert_length
-assert_dimensions <- function(x, expected) {
-  arg <- deparse(substitute(x))
-  n <- dim(x)
-  if (any(n != expected)) {
-    msg <- sprintf("%s must be of dimension %s; not %s.", sQuote(arg),
-                   paste0(expected, collapse = " x "),
-                   paste0(n, collapse = " x "))
     throw_error("error_bad_dimensions", msg)
   }
   invisible(x)

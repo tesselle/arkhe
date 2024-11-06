@@ -3,37 +3,33 @@
 \name{assert_length}
 \alias{assert_length}
 \alias{assert_lengths}
-\alias{assert_empty}
-\alias{assert_filled}
-\alias{assert_dimensions}
-\title{Check Object Length/Dimensions}
+\title{Check Object Length(s)}
 \usage{
-assert_length(x, expected, empty = FALSE)
+assert_length(x, expected, allow_empty = empty, empty = FALSE)
 
 assert_lengths(x, expected)
-
-assert_empty(x)
-
-assert_filled(x)
-
-assert_dimensions(x, expected)
 }
 \arguments{
 \item{x}{An object to be checked.}
 
 \item{expected}{An appropriate expected value.}
 
-\item{empty}{A \code{\link{logical}} scalar: should empty objects be ignored?}
+\item{allow_empty}{A \code{\link{logical}} scalar: should \link[=is_empty]{empty} object be
+allowed?}
+
+\item{empty}{Deprecated.}
 }
 \value{
 Throws an error, if any, and returns \code{x} invisibly otherwise.
 }
 \description{
-Check Object Length/Dimensions
+Check Object Length(s)
 }
 \seealso{
 Other checking methods: 
 \code{\link{assert_constant}()},
+\code{\link{assert_dim}()},
+\code{\link{assert_empty}()},
 \code{\link{assert_infinite}()},
 \code{\link{assert_lower}()},
 \code{\link{assert_missing}()},

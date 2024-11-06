@@ -33,11 +33,11 @@ RoxygenNote: 7.3.2
 Collate: 
     'AllGenerics.R'
     'append.R'
+    'predicates.R'
+    'assert.R'
     'arkhe-deprecated.R'
     'arkhe-internal.R'
     'arkhe-package.R'
-    'predicates.R'
-    'assert.R'
     'assign.R'
     'clean.R'
     'compact.R'

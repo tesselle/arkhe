@@ -40,14 +40,14 @@ expect_identical(assert_function(mean), mean)
 
 # Assert object attributes =====================================================
 ## Length ----------------------------------------------------------------------
-cnd <- arkhe:::catch_conditions(assert_length(LETTERS, expected = 10, empty = FALSE))
+cnd <- arkhe:::catch_conditions(assert_length(LETTERS, expected = 10))
 expect_inherits(cnd[[1]], "error_bad_length")
-cnd <- arkhe:::catch_conditions(assert_length(LETTERS, expected = 10, empty = TRUE))
+cnd <- arkhe:::catch_conditions(assert_length(LETTERS, expected = 10, allow_empty = TRUE))
 expect_inherits(cnd[[1]], "error_bad_length")
-cnd <- arkhe:::catch_conditions(assert_length(numeric(0), expected = 10, empty = FALSE))
+cnd <- arkhe:::catch_conditions(assert_length(numeric(), expected = 10))
 expect_inherits(cnd[[1]], "error_bad_length")
 
-expect_equal(assert_length(numeric(0), expected = 10, empty = TRUE), numeric(0))
+expect_identical(assert_length(numeric(), expected = 10, allow_empty = TRUE), numeric())
 expect_identical(assert_length(LETTERS, expected = 26), LETTERS)
 
 ## Lengths ---------------------------------------------------------------------
@@ -69,6 +69,12 @@ expect_identical(assert_empty(k), k)
 ## Dimensions ------------------------------------------------------------------
 k <- matrix(1, nrow = 10, ncol = 5)
 cnd <- arkhe:::catch_conditions(assert_dimensions(k, expected = c(5, 10)))
+expect_inherits(cnd[[1]], "error_bad_dimensions")
+
+cnd <- arkhe:::catch_conditions(assert_nrow(k, expected = 5))
+expect_inherits(cnd[[1]], "error_bad_dimensions")
+
+cnd <- arkhe:::catch_conditions(assert_ncol(k, expected = 10))
 expect_inherits(cnd[[1]], "error_bad_dimensions")
 
 expect_identical(assert_dimensions(k, expected = c(10, 5)), k)

@@ -33,6 +33,8 @@ Check Data Types
 \seealso{
 Other checking methods: 
 \code{\link{assert_constant}()},
+\code{\link{assert_dim}()},
+\code{\link{assert_empty}()},
 \code{\link{assert_infinite}()},
 \code{\link{assert_length}()},
 \code{\link{assert_lower}()},

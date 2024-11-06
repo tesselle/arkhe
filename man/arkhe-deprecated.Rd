@@ -2,7 +2,11 @@
 % Please edit documentation in R/arkhe-deprecated.R
 \name{arkhe-deprecated}
 \alias{arkhe-deprecated}
+\alias{assert_dimensions}
 \title{Deprecated Functions in arkhe}
+\usage{
+assert_dimensions(x, expected)
+}
 \description{
 These functions still work but will be removed (defunct) in the next version.
 }
