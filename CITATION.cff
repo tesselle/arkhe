@@ -8,7 +8,7 @@ message: 'To cite package "arkhe" in publications use:'
 type: software
 license: GPL-3.0-or-later
 title: 'arkhe: Tools for Cleaning Rectangular Data'
-version: 1.7.0
+version: 1.8.0
 doi: 10.5281/zenodo.3526659
 identifiers:
 - description: The concept DOI.
@@ -62,6 +62,9 @@ identifiers:
 - description: The versioned DOI for version 1.7.0.
   type: doi
   value: 10.5281/zenodo.13121710
+- description: The CRAN DOI
+  type: doi
+  value: 10.32614/cran.package.arkhe
 abstract: A dependency-free collection of simple functions for cleaning rectangular
   data. This package allows to detect, count and replace values or discard rows/columns
   using a predicate function. In addition, it provides tools to check conditions and
@@ -71,7 +74,6 @@ authors:
   given-names: Nicolas
   email: nicolas.frerebeau@u-bordeaux-montaigne.fr
   orcid: https://orcid.org/0000-0001-5759-4944
-  affiliation: Université Bordeaux Montaigne
 preferred-citation:
   type: manual
   title: 'arkhe: Tools for Cleaning Rectangular Data'
@@ -80,12 +82,11 @@ preferred-citation:
     given-names: Nicolas
     email: nicolas.frerebeau@u-bordeaux-montaigne.fr
     orcid: https://orcid.org/0000-0001-5759-4944
-    affiliation: Université Bordeaux Montaigne
   year: '2024'
   institution:
     name: Université Bordeaux Montaigne
     address: Pessac, France
-  notes: R package version 1.7.0
+  notes: R package version 1.8.0
   url: https://packages.tesselle.org/arkhe/
   doi: 10.5281/zenodo.3526659
 repository: https://CRAN.R-project.org/package=arkhe
@@ -96,7 +97,6 @@ contact:
   given-names: Nicolas
   email: nicolas.frerebeau@u-bordeaux-montaigne.fr
   orcid: https://orcid.org/0000-0001-5759-4944
-  affiliation: Université Bordeaux Montaigne
 keywords:
 - data cleaning
 - statistics
@@ -123,7 +123,6 @@ references:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
   year: '2024'
-  doi: 10.32614/CRAN.package.methods
 - type: software
   title: stats
   abstract: 'R: A Language and Environment for Statistical Computing'
@@ -134,7 +133,6 @@ references:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
   year: '2024'
-  doi: 10.32614/CRAN.package.stats
 - type: software
   title: utils
   abstract: 'R: A Language and Environment for Statistical Computing'
@@ -145,7 +143,6 @@ references:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
   year: '2024'
-  doi: 10.32614/CRAN.package.utils
 - type: software
   title: tinytest
   abstract: 'tinytest: Lightweight and Feature Complete Unit Testing Framework'

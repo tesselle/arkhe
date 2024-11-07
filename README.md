@@ -49,7 +49,7 @@ To cite arkhe in publications use:
 Frerebeau N (2024). *arkhe: Tools for Cleaning Rectangular Data*.
 Université Bordeaux Montaigne, Pessac, France.
 <doi:10.5281/zenodo.3526659> <https://doi.org/10.5281/zenodo.3526659>, R
-package version 1.7.0.9000, <https://packages.tesselle.org/arkhe/>.
+package version 1.8.0, <https://packages.tesselle.org/arkhe/>.
 
 This package is a part of the tesselle project
 <https://www.tesselle.org>.
@@ -84,48 +84,51 @@ k <- sample(1:25, 3, FALSE)
 X[k] <- NA
 X
 #>      [,1] [,2] [,3] [,4] [,5]
-#> [1,]    1    7   10    2    6
-#> [2,]    9    7    7    3    5
-#> [3,]    6   NA    8   10    5
-#> [4,]    1   10    8    2   NA
-#> [5,]   NA    1    4    9    8
+#> [1,]   10   10   NA    7    7
+#> [2,]    6    4    7   10    3
+#> [3,]    7   10    5    9    6
+#> [4,]    7   10    4   NA    2
+#> [5,]   NA    9    6    9    7
 
 ## Count missing values in rows
 count(X, f = is.na, margin = 1)
-#> [1] 0 0 1 1 1
+#> [1] 1 0 0 1 1
+
 ## Count non-missing values in columns
 count(X, f = is.na, margin = 2, negate = TRUE)
-#> [1] 4 4 5 5 4
+#> [1] 4 5 4 4 5
 
 ## Find row with NA
 detect(X, f = is.na, margin = 1)
-#> [1] FALSE FALSE  TRUE  TRUE  TRUE
+#> [1]  TRUE FALSE FALSE  TRUE  TRUE
+
 ## Find column without any NA
 detect(X, f = is.na, margin = 2, negate = TRUE, all = TRUE)
-#> [1] FALSE FALSE  TRUE  TRUE FALSE
+#> [1] FALSE  TRUE FALSE FALSE  TRUE
 
 ## Remove row with any NA
 discard(X, f = is.na, margin = 1, all = FALSE)
 #>      [,1] [,2] [,3] [,4] [,5]
-#> [1,]    1    7   10    2    6
-#> [2,]    9    7    7    3    5
+#> [1,]    6    4    7   10    3
+#> [2,]    7   10    5    9    6
+
 ## Remove column with any NA
 discard(X, f = is.na, margin = 2, all = FALSE)
 #>      [,1] [,2]
-#> [1,]   10    2
-#> [2,]    7    3
-#> [3,]    8   10
-#> [4,]    8    2
-#> [5,]    4    9
+#> [1,]   10    7
+#> [2,]    4    3
+#> [3,]   10    6
+#> [4,]   10    2
+#> [5,]    9    7
 
 ## Replace NA with zeros
 replace_NA(X, value = 0)
 #>      [,1] [,2] [,3] [,4] [,5]
-#> [1,]    1    7   10    2    6
-#> [2,]    9    7    7    3    5
-#> [3,]    6    0    8   10    5
-#> [4,]    1   10    8    2    0
-#> [5,]    0    1    4    9    8
+#> [1,]   10   10    0    7    7
+#> [2,]    6    4    7   10    3
+#> [3,]    7   10    5    9    6
+#> [4,]    7   10    4    0    2
+#> [5,]    0    9    6    9    7
 ```
 
 ## Contributing

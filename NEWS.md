@@ -1,4 +1,4 @@
-# arkhe 1.7.0.9000
+# arkhe 1.8.0
 ## New classes and methods
 * Add `append_column()` to add a named vector as a column in a `data.frame`.
 * Add `assert_nrow()` and `assert_ncol()` to check the number of rows/columns.

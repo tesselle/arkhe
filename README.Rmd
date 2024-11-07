@@ -74,16 +74,19 @@ X
 
 ## Count missing values in rows
 count(X, f = is.na, margin = 1)
+
 ## Count non-missing values in columns
 count(X, f = is.na, margin = 2, negate = TRUE)
 
 ## Find row with NA
 detect(X, f = is.na, margin = 1)
+
 ## Find column without any NA
 detect(X, f = is.na, margin = 2, negate = TRUE, all = TRUE)
 
 ## Remove row with any NA
 discard(X, f = is.na, margin = 1, all = FALSE)
+
 ## Remove column with any NA
 discard(X, f = is.na, margin = 2, all = FALSE)
 
