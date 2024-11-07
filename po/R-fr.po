@@ -1,0 +1,273 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: arkhe 1.8.0\n"
+"POT-Creation-Date: 2024-11-07 12:08+0100\n"
+"PO-Revision-Date: 2024-11-07 11:00+0100\n"
+"Last-Translator: Nicolas Frerebeau <nicolas.frerebeau@u-bordeaux-montaigne."
+"fr>\n"
+"Language-Team: fr\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: assert.R:59
+msgid "Choice:"
+msgstr "Choix"
+
+#: assert.R:90
+msgid "%s must be of length %d; not %d."
+msgstr "%s doit être de longueur %d et non %d."
+
+#: assert.R:103
+msgid "Elements of %s must be of lengths %s; not %s."
+msgstr "Les éléments de %s doivent être de longueur %s et non %s."
+
+#: assert.R:124
+msgid "%s must be of dimension %s; not %s."
+msgstr "%s doit être de dimension %s et non %s."
+
+#: assert.R:172
+msgid "%s must be empty."
+msgstr "%s doit être vide."
+
+#: assert.R:183
+msgid "%s must not be empty."
+msgstr "%s ne doit pas être vide."
+
+#: assert.R:203
+msgid "%s must have names."
+msgstr "%s doit avoir des noms."
+
+#: assert.R:205
+msgid "%s must have the following names: %s."
+msgstr "%s doit avoir les noms suivants : %s."
+
+#: assert.R:219
+msgid "%s must have row names."
+msgstr "%s doit avoir des noms de ligne."
+
+#: assert.R:221
+msgid "%s must have the following row names: %s."
+msgstr "%s doit avoir les noms de ligne suivants : %s."
+
+#: assert.R:235
+msgid "%s must have column names."
+msgstr "%s doit avoir des noms de colonnes."
+
+#: assert.R:237
+msgid "%s must have the following column names: %s."
+msgstr "%s doit avoir les noms de colonnes suivants : %s."
+
+#: assert.R:300
+msgid "Elements of %s must be unique."
+msgstr "Les éléments de %s doivent être uniques."
+
+#: assert.R:326
+msgid "Can't find a predicate for this type: %s."
+msgstr "Impossible de trouver un prédicat pour ce type : %s."
+
+#: assert.R:340
+msgid "%s must be %s; not %s."
+msgstr "%s doit être %s et non %s."
+
+#: assert.R:350
+msgid "Can't find a predicate for this scalar: %s."
+msgstr "Impossible de trouver un prédicat pour ce scalaire : %s."
+
+#: assert.R:364
+msgid "%s must be a scalar (%s)."
+msgstr "%s doit être un scalaire (%s)."
+
+#: assert.R:375
+msgid "%s must be a function."
+msgstr "%s doit être une fonction."
+
+#: assert.R:401
+msgid "%s must contain integers (counts)."
+msgstr "%s doit contenir des nombres entiers."
+
+#: assert.R:416
+msgid "%s must contain positive numbers."
+msgstr "%s doit contenir des nombres positifs."
+
+#: assert.R:427
+msgid "%s must contain negative numbers."
+msgstr "%s doit contenir des nombres négatifs."
+
+#: assert.R:438
+msgid "%s must contain odd numbers."
+msgstr "%s doit contenir des nombres impairs."
+
+#: assert.R:449
+msgid "%s must contain even numbers."
+msgstr "%s doit contenir des nombres pairs."
+
+#: assert.R:467
+msgid "%s must be constant."
+msgstr "%s doit être constant."
+
+#: assert.R:478
+msgid "%s must be decreasing."
+msgstr "%s doit être décroissant."
+
+#: assert.R:489
+msgid "%s must be increasing."
+msgstr "%s doit être croissant."
+
+#: assert.R:508
+msgid "%s must be lower than %s."
+msgstr "%s doit être inférieur à %s."
+
+#: assert.R:521
+msgid "%s must be greater than %s."
+msgstr "%s doit être supérieur à %s."
+
+#: assert.R:540
+msgid "%s must be a square matrix, not %s."
+msgstr "%s doit être une matrice carrée et non %s."
+
+#: assert.R:551
+msgid "%s must be a symmetric matrix."
+msgstr "%s doit être une matrice symétrique."
+
+#: conditions.R:118
+msgid ""
+"<%s> instance initialization:\n"
+"%s"
+msgstr ""
+"<%s> instanciation:\n"
+"%s"
+
+#: describe.R:44
+msgid "%s of numeric values are zero."
+msgstr "%s des valeurs numériques sont égales à zéro."
+
+#: describe.R:59
+msgid "Data checking:"
+msgstr "Vérification des données :"
+
+#: discard.R:70
+msgid "Nothing to remove."
+msgstr "Rien à enlever."
+
+#: discard.R:76
+msgid "Removing %g %s out of %g (%s)."
+msgstr "Suppression de %g %s sur %g (%s)."
+
+#: assert.R:47
+msgid "Package %s is required."
+msgid_plural "Packages %s are required."
+msgstr[0] "Le package %s est requis."
+msgstr[1] "Les packages %s sont nécessaires."
+
+#: assert.R:54
+msgid "Do you want to install it?"
+msgid_plural "Do you want to install them?"
+msgstr[0] "Souhaitez-vous l'installer ?"
+msgstr[1] "Voulez-vous les installer ?"
+
+#: assert.R:138
+msgid "%s must have %s row; not %s."
+msgid_plural "%s must have %s rows; not %s."
+msgstr[0] "%s doit avoir %s ligne et non %s."
+msgstr[1] "%s doit avoir %s lignes et non %s."
+
+#: assert.R:152
+msgid "%s must have %s column; not %s."
+msgid_plural "%s must have %s columns; not %s."
+msgstr[0] "%s doit avoir %s colonne et non %s."
+msgstr[1] "%s doit avoir %s colonnes et non %s."
+
+#: assert.R:259
+msgid "%s must not contain missing values (%d detected)."
+msgid_plural "%s must not contain missing values (%d detected)."
+msgstr[0] "%s ne doit pas contenir de valeurs manquantes (%d détectée)."
+msgstr[1] "%s ne doit pas contenir de valeurs manquantes (%d détectées)."
+
+#: assert.R:280
+msgid "%s must not contain infinite values (%d detected)."
+msgid_plural "%s must not contain infinite values (%d detected)."
+msgstr[0] "%s ne doit pas contenir de valeurs infinies (%d détectée)."
+msgstr[1] "%s ne doit pas contenir de valeurs infinies (%d détectées)."
+
+#: describe.R:16
+msgid "%d observation"
+msgid_plural "%d observations"
+msgstr[0] "%d observation"
+msgstr[1] "%d observations"
+
+#: describe.R:17
+msgid "%d variable"
+msgid_plural "%d variables"
+msgstr[0] "%d variable"
+msgstr[1] "%d variables"
+
+#: describe.R:26
+msgid ""
+"\n"
+"%d missing value:"
+msgid_plural ""
+"\n"
+"%d missing values:"
+msgstr[0] ""
+"\n"
+"%d valeur manquante :"
+msgstr[1] ""
+"\n"
+"%d valeurs manquantes :"
+
+#: describe.R:28
+msgid "%d observation (%s) contains missing values."
+msgid_plural "%d observations (%s) contain missing values."
+msgstr[0] "%d observation (%s) contient des valeurs manquantes."
+msgstr[1] "%d observations (%s) contiennent des valeurs manquantes."
+
+#: describe.R:32
+msgid "%d variable (%s) contains missing values."
+msgid_plural "%d variables (%s) contain missing values."
+msgstr[0] "%d variable (%s) contient des valeurs manquantes."
+msgstr[1] "%d variables (%s) contiennent des valeurs manquantes."
+
+#: describe.R:38
+msgid "%d variable with no variance."
+msgid_plural "%d variables with no variance."
+msgstr[0] "%d variable de variance nulle."
+msgstr[1] "%d variables de variance nulle."
+
+#: describe.R:53
+msgid "%d numeric variable."
+msgid_plural "%d numeric variables."
+msgstr[0] "%d variable numérique."
+msgstr[1] "%d variables numériques."
+
+#: describe.R:54
+msgid "%d binary variable."
+msgid_plural "%d binary variables."
+msgstr[0] "%d variable binaire."
+msgstr[1] "%d variables binaires."
+
+#: describe.R:55
+msgid "%d categorial variable."
+msgid_plural "%d categorial variables."
+msgstr[0] "%d variable catégorielle."
+msgstr[1] "%d variables catégorielles."
+
+#: discard.R:65
+msgid "element"
+msgid_plural "elements"
+msgstr[0] "élément"
+msgstr[1] "éléments"
+
+#: discard.R:66
+msgid "row"
+msgid_plural "rows"
+msgstr[0] "ligne"
+msgstr[1] "lignes"
+
+#: discard.R:67
+msgid "column"
+msgid_plural "columns"
+msgstr[0] "colonne"
+msgstr[1] "colonnes"

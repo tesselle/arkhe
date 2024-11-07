@@ -16,22 +16,18 @@ mtx[, 1] <- 0 # Add zeros
 # Keep all
 clean_row <- keep_rows(mtx, f = is_zero, all = FALSE)
 expect_equal(clean_row, mtx)
-expect_message(keep_rows(mtx, f = is_zero, verbose = TRUE),
-               "No rows to remove")
+expect_message(keep_rows(mtx, f = is_zero, verbose = TRUE))
 
 clean_col <- keep_cols(mtx, f = is_zero, all = FALSE)
 expect_equal(clean_col, mtx)
-expect_message(keep_cols(mtx, f = is_zero, verbose = TRUE),
-               "No columns to remove")
+expect_message(keep_cols(mtx, f = is_zero, verbose = TRUE))
 
 # Remove rows
 clean_row <- keep_rows(mtx, f = is_zero, all = TRUE)
 expect_equal(dim(clean_row), c(1, 3))
-expect_message(keep_rows(mtx, f = is_zero, all = TRUE, verbose = TRUE),
-               "Removing 4 rows out of 5")
+expect_message(keep_rows(mtx, f = is_zero, all = TRUE, verbose = TRUE))
 
 # Remove columns
 clean_col <- keep_cols(mtx, f = is_zero, all = TRUE)
 expect_equal(dim(clean_col), c(5, 1))
-expect_message(keep_cols(mtx, f = is_zero, all = TRUE, verbose = TRUE),
-               "Removing 2 columns out of 3")
+expect_message(keep_cols(mtx, f = is_zero, all = TRUE, verbose = TRUE))

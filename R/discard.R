@@ -67,13 +67,13 @@ discard_message <- function(x, keep, margin,
   if (any(margin == 2)) what <- ngettext(drop, "column", "columns")
 
   if (drop == 0) {
-    msg <- sprintf("No %s to remove.", what)
+    msg <- tr_("Nothing to remove.")
   } else {
     pc <- sprintf("%0.3g%%", 100 * drop / length(keep))
     if (margin == 2 && !is.null(colnames(x))) {
       pc <- paste0(colnames(x)[!keep], collapse = ", ")
     }
-    msg <- "Removing %g %s out of %g (%s)."
+    msg <- tr_("Removing %g %s out of %g (%s).")
     msg <- sprintf(msg, drop, what, length(keep), pc)
   }
 

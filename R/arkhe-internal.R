@@ -1,5 +1,10 @@
 # HELPERS
 
+## https://michaelchirico.github.io/potools/articles/developers.html
+tr_ <- function(...) {
+  enc2utf8(gettext(paste0(...), domain = "R-arkhe"))
+}
+
 ## https://stackoverflow.com/questions/56191862/where-do-i-specify-random-seed-for-tests-in-r-package
 #' Evaluate an Expression with a Temporarily Seed
 #'

@@ -51,12 +51,12 @@ assert_package <- function(x, ask = TRUE) {
     if (ask && interactive()) {
       cat(
         err,
-        sprintf("Do you want to install %s?", ngettext(n, "it", "them")),
+        ngettext(n, "Do you want to install it?", "Do you want to install them?"),
         "1. Yes",
         "2. No",
         sep = "\n"
       )
-      install <- readline("Choice: ")
+      install <- readline(tr_("Choice: "))
     }
     if (install == "1") {
       utils::install.packages(miss)
@@ -87,8 +87,8 @@ needs <- assert_package
 assert_length <- function(x, expected, allow_empty = empty, empty = FALSE) {
   arg <- deparse(substitute(x))
   if (!(allow_empty && is_empty(x)) && !has_length(x, n = expected)) {
-    msg <- sprintf("%s must be of length %d; not %d.", sQuote(arg),
-                   expected, length(x))
+    txt <- tr_("%s must be of length %d; not %d.")
+    msg <- sprintf(txt, sQuote(arg), expected, length(x))
     throw_error("error_bad_length", msg)
   }
   invisible(x)
@@ -100,8 +100,8 @@ assert_lengths <- function(x, expected) {
   arg <- deparse(substitute(x))
   n <- lengths(x)
   if (!all(n == expected)) {
-    msg <- sprintf("Elements of %s must be of lengths %s; not %s.", sQuote(arg),
-                   paste0(expected, collapse = ", "),
+    txt <- tr_("Elements of %s must be of lengths %s; not %s.")
+    msg <- sprintf(txt, sQuote(arg), paste0(expected, collapse = ", "),
                    paste0(n, collapse = ", "))
     throw_error("error_bad_length", msg)
   }
@@ -121,8 +121,8 @@ assert_dim <- function(x, expected) {
   arg <- deparse(substitute(x))
   n <- dim(x)
   if (!all(n == expected)) {
-    msg <- sprintf("%s must be of dimension %s; not %s.", sQuote(arg),
-                   paste0(expected, collapse = " x "),
+    txt <- tr_("%s must be of dimension %s; not %s.")
+    msg <- sprintf(txt, sQuote(arg), paste0(expected, collapse = " x "),
                    paste0(n, collapse = " x "))
     throw_error("error_bad_dimensions", msg)
   }
@@ -169,7 +169,7 @@ assert_ncol <- function(x, expected) {
 assert_empty <- function(x) {
   arg <- deparse(substitute(x))
   if (!is_empty(x)) {
-    msg <- sprintf("%s must be empty.", sQuote(arg))
+    msg <- sprintf(tr_("%s must be empty."), sQuote(arg))
     throw_error("error_bad_dimensions", msg)
   }
   invisible(x)
@@ -180,7 +180,7 @@ assert_empty <- function(x) {
 assert_filled <- function(x) {
   arg <- deparse(substitute(x))
   if (is_empty(x)) {
-    msg <- sprintf("%s must not be empty.", sQuote(arg))
+    msg <- sprintf(tr_("%s must not be empty."), sQuote(arg))
     throw_error("error_bad_dimensions", msg)
   }
   invisible(x)
@@ -200,9 +200,9 @@ assert_names <- function(x, expected = NULL) {
   arg <- deparse(substitute(x))
   if (!has_names(x, names = expected)) {
     if (is.null(expected)) {
-      msg <- sprintf("%s must have names.", sQuote(arg))
+      msg <- sprintf(tr_("%s must have names."), sQuote(arg))
     } else {
-      msg <- sprintf("%s must have the following names: %s.",
+      msg <- sprintf(tr_("%s must have the following names: %s."),
                      sQuote(arg), paste0(expected, collapse = ", "))
     }
     throw_error("error_bad_names", msg)
@@ -216,9 +216,9 @@ assert_rownames <- function(x, expected = NULL) {
   arg <- deparse(substitute(x))
   if (!has_rownames(x, names = expected)) {
     if (is.null(expected)) {
-      msg <- sprintf("%s must have row names.", sQuote(arg))
+      msg <- sprintf(tr_("%s must have row names."), sQuote(arg))
     } else {
-      msg <- sprintf("%s must have the following row names: %s.",
+      msg <- sprintf(tr_("%s must have the following row names: %s."),
                      sQuote(arg), paste0(expected, collapse = ", "))
     }
     throw_error("error_bad_names", msg)
@@ -232,9 +232,9 @@ assert_colnames <- function(x, expected = NULL) {
   arg <- deparse(substitute(x))
   if (!has_colnames(x, names = expected)) {
     if (is.null(expected)) {
-      msg <- sprintf("%s must have column names.", sQuote(arg))
+      msg <- sprintf(tr_("%s must have column names."), sQuote(arg))
     } else {
-      msg <- sprintf("%s must have the following column names: %s.",
+      msg <- sprintf(tr_("%s must have the following column names: %s."),
                      sQuote(arg), paste0(expected, collapse = ", "))
     }
     throw_error("error_bad_names", msg)
@@ -256,8 +256,9 @@ assert_missing <- function(x) {
   arg <- deparse(substitute(x))
   n <- sum(is.na(x))
   if (n > 0) {
-    msg <- sprintf("%s must not contain missing values (%d detected).",
-                   sQuote(arg), n)
+    txt <- ngettext(n, "%s must not contain missing values (%d detected).",
+                    "%s must not contain missing values (%d detected).")
+    msg <- sprintf(txt, sQuote(arg), n)
     throw_error("error_data_missing", msg)
   }
   invisible(x)
@@ -276,8 +277,9 @@ assert_infinite <- function(x) {
   arg <- deparse(substitute(x))
   n <- sum(is.infinite(x))
   if (n > 0) {
-    msg <- sprintf("%s must not contain infinite values (%d detected).",
-                   sQuote(arg), n)
+    txt <- ngettext(n, "%s must not contain infinite values (%d detected).",
+                    "%s must not contain infinite values (%d detected).")
+    msg <- sprintf(txt, sQuote(arg), n)
     throw_error("error_data_infinite", msg)
   }
   invisible(x)
@@ -295,7 +297,7 @@ assert_infinite <- function(x) {
 assert_unique <- function(x) {
   arg <- deparse(substitute(x))
   if (has_duplicates(x)) {
-    msg <- sprintf("Elements of %s must be unique.", sQuote(arg))
+    msg <- sprintf(tr_("Elements of %s must be unique."), sQuote(arg))
     throw_error("error_data_duplicates", msg)
   }
   invisible(x)
@@ -321,6 +323,7 @@ assert_type <- function(x, expected, allow_empty = TRUE, allow_null = FALSE) {
   if (isFALSE(allow_empty)) assert_filled(x)
 
   arg <- deparse(substitute(x))
+  msg <- sprintf(tr_("Can't find a predicate for this type: %s."), expected)
   predicate <- switch(
     expected,
     list = is_list,
@@ -331,10 +334,10 @@ assert_type <- function(x, expected, allow_empty = TRUE, allow_null = FALSE) {
     double = is_double,
     character = is_character,
     logical = is_logical,
-    stop("Can't find a predicate for this type: ", expected, call. = FALSE)
+    stop(msg, call. = FALSE)
   )
   if (!predicate(x)) {
-    msg <- sprintf("%s must be %s; not %s.", sQuote(arg), expected, typeof(x))
+    msg <- sprintf(tr_("%s must be %s; not %s."), sQuote(arg), expected, typeof(x))
     throw_error("error_bad_type", msg)
   }
   invisible(x)
@@ -344,6 +347,7 @@ assert_type <- function(x, expected, allow_empty = TRUE, allow_null = FALSE) {
 #' @rdname assert_type
 assert_scalar <- function(x, expected) {
   arg <- deparse(substitute(x))
+  msg <- sprintf(tr_("Can't find a predicate for this scalar: %s."), expected)
   predicate <- switch(
     expected,
     list = is_scalar_list,
@@ -354,10 +358,10 @@ assert_scalar <- function(x, expected) {
     double = is_scalar_double,
     character = is_scalar_character,
     logical = is_scalar_logical,
-    stop("Can't find a predicate for this scalar: ", expected, call. = FALSE)
+    stop(msg, call. = FALSE)
   )
   if (!predicate(x)) {
-    msg <- sprintf("%s must be a scalar (%s).", sQuote(arg), expected)
+    msg <- sprintf(tr_("%s must be a scalar (%s)."), sQuote(arg), expected)
     throw_error("error_bad_scalar", msg)
   }
   invisible(x)
@@ -368,7 +372,7 @@ assert_scalar <- function(x, expected) {
 assert_function <- function(x) {
   arg <- deparse(substitute(x))
   if (!is.function(x)) {
-    msg <- sprintf("%s must be a function.", sQuote(arg))
+    msg <- sprintf(tr_("%s must be a function."), sQuote(arg))
     throw_error("error_bad_type", msg)
   }
   invisible(x)
@@ -394,7 +398,7 @@ NULL
 assert_count <- function(x, na.rm = FALSE, ...) {
   arg <- deparse(substitute(x))
   if (!all(is_whole(x, ...), na.rm = na.rm)) {
-    msg <- sprintf("%s must contain integers (counts).", sQuote(arg))
+    msg <- sprintf(tr_("%s must contain integers (counts)."), sQuote(arg))
     throw_error("error_bad_numeric", msg)
   }
   invisible(x)
@@ -409,7 +413,7 @@ assert_whole <- assert_count
 assert_positive <- function(x, na.rm = FALSE, ...) {
   arg <- deparse(substitute(x))
   if (!all(is_positive(x, ...), na.rm = na.rm)) {
-    msg <- sprintf("%s must contain positive numbers.", sQuote(arg))
+    msg <- sprintf(tr_("%s must contain positive numbers."), sQuote(arg))
     throw_error("error_bad_numeric", msg)
   }
   invisible(x)
@@ -420,7 +424,7 @@ assert_positive <- function(x, na.rm = FALSE, ...) {
 assert_negative <- function(x, na.rm = FALSE, ...) {
   arg <- deparse(substitute(x))
   if (!all(is_negative(x, ...), na.rm = na.rm)) {
-    msg <- sprintf("%s must contain negative numbers.", sQuote(arg))
+    msg <- sprintf(tr_("%s must contain negative numbers."), sQuote(arg))
     throw_error("error_bad_numeric", msg)
   }
   invisible(x)
@@ -431,7 +435,7 @@ assert_negative <- function(x, na.rm = FALSE, ...) {
 assert_odd <- function(x, na.rm = FALSE, ...) {
   arg <- deparse(substitute(x))
   if (!all(is_odd(x, ...), na.rm = na.rm)) {
-    msg <- sprintf("%s must contain odd numbers.", sQuote(arg))
+    msg <- sprintf(tr_("%s must contain odd numbers."), sQuote(arg))
     throw_error("error_bad_numeric", msg)
   }
   invisible(x)
@@ -442,7 +446,7 @@ assert_odd <- function(x, na.rm = FALSE, ...) {
 assert_even <- function(x, na.rm = FALSE, ...) {
   arg <- deparse(substitute(x))
   if (!all(is_even(x, ...), na.rm = na.rm)) {
-    msg <- sprintf("%s must contain even numbers.", sQuote(arg))
+    msg <- sprintf(tr_("%s must contain even numbers."), sQuote(arg))
     throw_error("error_bad_numeric", msg)
   }
   invisible(x)
@@ -460,7 +464,7 @@ assert_even <- function(x, na.rm = FALSE, ...) {
 assert_constant <- function(x, ...) {
   arg <- deparse(substitute(x))
   if (!is_constant(x, ...)) {
-    msg <- sprintf("%s must be constant.", sQuote(arg))
+    msg <- sprintf(tr_("%s must be constant."), sQuote(arg))
     throw_error("error_bad_numeric", msg)
   }
   invisible(x)
@@ -471,7 +475,7 @@ assert_constant <- function(x, ...) {
 assert_decreasing <- function(x, ...) {
   arg <- deparse(substitute(x))
   if (!is_decreasing(x, ...)) {
-    msg <- sprintf("%s must be decreasing.", sQuote(arg))
+    msg <- sprintf(tr_("%s must be decreasing."), sQuote(arg))
     throw_error("error_bad_numeric", msg)
   }
   invisible(x)
@@ -482,7 +486,7 @@ assert_decreasing <- function(x, ...) {
 assert_increasing <- function(x, ...) {
   arg <- deparse(substitute(x))
   if (!is_increasing(x, ...)) {
-    msg <- sprintf("%s must be increasing.", sQuote(arg))
+    msg <- sprintf(tr_("%s must be increasing."), sQuote(arg))
     throw_error("error_bad_numeric", msg)
   }
   invisible(x)
@@ -501,7 +505,8 @@ assert_lower <- function(x, y, ...) {
   arg_x <- deparse(substitute(x))
   arg_y <- deparse(substitute(y))
   if (!is_lower(x, y, ...)) {
-    msg <- sprintf("%s must be lower than %s.", sQuote(arg_x), sQuote(arg_y))
+    txt <- tr_("%s must be lower than %s.")
+    msg <- sprintf(txt, sQuote(arg_x), sQuote(arg_y))
     throw_error("error_bad_numeric", msg)
   }
   invisible(x)
@@ -513,7 +518,8 @@ assert_greater <- function(x, y, ...) {
   arg_x <- deparse(substitute(x))
   arg_y <- deparse(substitute(y))
   if (!is_greater(x, y, ...)) {
-    msg <- sprintf("%s must be greater than %s.", sQuote(arg_x), sQuote(arg_y))
+    txt <- tr_("%s must be greater than %s.")
+    msg <- sprintf(txt, sQuote(arg_x), sQuote(arg_y))
     throw_error("error_bad_numeric", msg)
   }
   invisible(x)
@@ -531,7 +537,7 @@ assert_square <- function(x) {
   arg <- deparse(substitute(x))
   if (!is_square(x)) {
     k <- paste0(dim(x), collapse = " x ")
-    msg <- sprintf("%s must be a square matrix, not %s.", sQuote(arg), k)
+    msg <- sprintf(tr_("%s must be a square matrix, not %s."), sQuote(arg), k)
     throw_error("error_bad_matrix", msg)
   }
   invisible(x)
@@ -542,7 +548,7 @@ assert_square <- function(x) {
 assert_symmetric <- function(x) {
   arg <- deparse(substitute(x))
   if (!is_symmetric(x)) {
-    msg <- sprintf("%s must be a symmetric matrix.", sQuote(arg))
+    msg <- sprintf(tr_("%s must be a symmetric matrix."), sQuote(arg))
     throw_error("error_bad_matrix", msg)
   }
   invisible(x)
@@ -560,7 +566,7 @@ assert_symmetric <- function(x) {
 # assert_dag <- function(x) {
 #   arg <- deparse(substitute(x))
 #   if (!is_dag(x)) {
-#     msg <- sprintf("%s must not contain cycles.", sQuote(arg))
+#     msg <- sprintf(tr_("%s must not contain cycles."), sQuote(arg))
 #     throw_error("error_bad_graph", msg)
 #   }
 #   invisible(x)

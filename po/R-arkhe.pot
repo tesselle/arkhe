@@ -1,0 +1,262 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: arkhe 1.8.0\n"
+"POT-Creation-Date: 2024-11-07 11:00+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Nicolas Frerebeau <nicolas.frerebeau@u-bordeaux-montaigne.fr>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: assert.R:59
+msgid "Choice:"
+msgstr ""
+
+#: assert.R:90
+msgid "%s must be of length %d; not %d."
+msgstr ""
+
+#: assert.R:103
+msgid "Elements of %s must be of lengths %s; not %s."
+msgstr ""
+
+#: assert.R:124
+msgid "%s must be of dimension %s; not %s."
+msgstr ""
+
+#: assert.R:172
+msgid "%s must be empty."
+msgstr ""
+
+#: assert.R:183
+msgid "%s must not be empty."
+msgstr ""
+
+#: assert.R:203
+msgid "%s must have names."
+msgstr ""
+
+#: assert.R:205
+msgid "%s must have the following names: %s."
+msgstr ""
+
+#: assert.R:219
+msgid "%s must have row names."
+msgstr ""
+
+#: assert.R:221
+msgid "%s must have the following row names: %s."
+msgstr ""
+
+#: assert.R:235
+msgid "%s must have column names."
+msgstr ""
+
+#: assert.R:237
+msgid "%s must have the following column names: %s."
+msgstr ""
+
+#: assert.R:300
+msgid "Elements of %s must be unique."
+msgstr ""
+
+#: assert.R:326
+msgid "Can't find a predicate for this type: %s."
+msgstr ""
+
+#: assert.R:340
+msgid "%s must be %s; not %s."
+msgstr ""
+
+#: assert.R:350
+msgid "Can't find a predicate for this scalar: %s."
+msgstr ""
+
+#: assert.R:364
+msgid "%s must be a scalar (%s)."
+msgstr ""
+
+#: assert.R:375
+msgid "%s must be a function."
+msgstr ""
+
+#: assert.R:401
+msgid "%s must contain integers (counts)."
+msgstr ""
+
+#: assert.R:416
+msgid "%s must contain positive numbers."
+msgstr ""
+
+#: assert.R:427
+msgid "%s must contain negative numbers."
+msgstr ""
+
+#: assert.R:438
+msgid "%s must contain odd numbers."
+msgstr ""
+
+#: assert.R:449
+msgid "%s must contain even numbers."
+msgstr ""
+
+#: assert.R:467
+msgid "%s must be constant."
+msgstr ""
+
+#: assert.R:478
+msgid "%s must be decreasing."
+msgstr ""
+
+#: assert.R:489
+msgid "%s must be increasing."
+msgstr ""
+
+#: assert.R:508
+msgid "%s must be lower than %s."
+msgstr ""
+
+#: assert.R:521
+msgid "%s must be greater than %s."
+msgstr ""
+
+#: assert.R:540
+msgid "%s must be a square matrix, not %s."
+msgstr ""
+
+#: assert.R:551
+msgid "%s must be a symmetric matrix."
+msgstr ""
+
+#: conditions.R:118
+msgid ""
+"<%s> instance initialization:\n"
+"%s"
+msgstr ""
+
+#: describe.R:44
+msgid "%s of numeric values are zero."
+msgstr ""
+
+#: describe.R:59
+msgid "Data checking:"
+msgstr ""
+
+#: discard.R:70
+msgid "Nothing to remove."
+msgstr ""
+
+#: discard.R:76
+msgid "Removing %g %s out of %g (%s)."
+msgstr ""
+
+#: assert.R:47
+msgid "Package %s is required."
+msgid_plural "Packages %s are required."
+msgstr[0] ""
+msgstr[1] ""
+
+#: assert.R:54
+msgid "Do you want to install it?"
+msgid_plural "Do you want to install them?"
+msgstr[0] ""
+msgstr[1] ""
+
+#: assert.R:138
+msgid "%s must have %s row; not %s."
+msgid_plural "%s must have %s rows; not %s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: assert.R:152
+msgid "%s must have %s column; not %s."
+msgid_plural "%s must have %s columns; not %s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: assert.R:259
+msgid "%s must not contain missing values (%d detected)."
+msgid_plural "%s must not contain missing values (%d detected)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: assert.R:280
+msgid "%s must not contain infinite values (%d detected)."
+msgid_plural "%s must not contain infinite values (%d detected)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: describe.R:16
+msgid "%d observation"
+msgid_plural "%d observations"
+msgstr[0] ""
+msgstr[1] ""
+
+#: describe.R:17
+msgid "%d variable"
+msgid_plural "%d variables"
+msgstr[0] ""
+msgstr[1] ""
+
+#: describe.R:26
+msgid "\n%d missing value:"
+msgid_plural "\n%d missing values:"
+msgstr[0] ""
+msgstr[1] ""
+
+#: describe.R:28
+msgid "%d observation (%s) contains missing values."
+msgid_plural "%d observations (%s) contain missing values."
+msgstr[0] ""
+msgstr[1] ""
+
+#: describe.R:32
+msgid "%d variable (%s) contains missing values."
+msgid_plural "%d variables (%s) contain missing values."
+msgstr[0] ""
+msgstr[1] ""
+
+#: describe.R:38
+msgid "%d variable with no variance."
+msgid_plural "%d variables with no variance."
+msgstr[0] ""
+msgstr[1] ""
+
+#: describe.R:53
+msgid "%d numeric variable."
+msgid_plural "%d numeric variables."
+msgstr[0] ""
+msgstr[1] ""
+
+#: describe.R:54
+msgid "%d binary variable."
+msgid_plural "%d binary variables."
+msgstr[0] ""
+msgstr[1] ""
+
+#: describe.R:55
+msgid "%d categorial variable."
+msgid_plural "%d categorial variables."
+msgstr[0] ""
+msgstr[1] ""
+
+#: discard.R:65
+msgid "element"
+msgid_plural "elements"
+msgstr[0] ""
+msgstr[1] ""
+
+#: discard.R:66
+msgid "row"
+msgid_plural "rows"
+msgstr[0] ""
+msgstr[1] ""
+
+#: discard.R:67
+msgid "column"
+msgid_plural "columns"
+msgstr[0] ""
+msgstr[1] ""

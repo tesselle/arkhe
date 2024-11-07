@@ -4,6 +4,7 @@
 * Add `assert_nrow()` and `assert_ncol()` to check the number of rows/columns.
 
 ## Enhancements
+* Translate into French.
 * `seek_rows()` and `seek_columns()` gained a new `names` argument.
 * `assert_type()` gained new `allow_empty` and `allow_null` arguments.
 

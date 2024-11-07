@@ -24,7 +24,6 @@ NULL
 
 #' @rdname conditions
 throw_error <- function(.subclass, message, call = NULL, ...) {
-  # TODO: gettext
   err <- structure(
     list(
       message = message,
@@ -115,8 +114,8 @@ catch_conditions <- function(expr) {
 check_class <- function(object, conditions) {
   cnd <- Filter(Negate(is_empty), conditions)
   if (has_length(cnd)) {
-    err <- sprintf("<%s> instance initialization:\n%s", class(object),
-                   paste0("* ", cnd, collapse = "\n"))
+    li <- paste0("* ", cnd, collapse = "\n")
+    err <- sprintf(tr_("<%s> instance initialization:\n%s"), class(object), li)
     throw_error("arkhe_error_class", err, call = NULL)
   }
 
