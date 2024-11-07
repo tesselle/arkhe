@@ -1,4 +1,4 @@
-# DATA CLEANING: APPEND
+# DEPRECATED
 #' @include assert.R
 NULL
 
@@ -11,4 +11,7 @@ NULL
 
 #' @export
 #' @rdname arkhe-deprecated
-assert_dimensions <- assert_dim
+assert_dimensions <- function(x, expected) {
+  # .Deprecated("assert_dim()", old = "assert_dimensions()")
+  assert_dim(x, expected)
+}
