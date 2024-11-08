@@ -10,11 +10,8 @@ seek <- function(x, margin = 2, select = NULL, names = NULL, ...) {
   if (is.null(nm)) return(NULL)
 
   if (is.null(select)) {
-    if (!is.null(names)) {
-      select <- function(i) match(names, i)
-    } else {
-      return(seq_len(dm))
-    }
+    if (is.null(names)) return(NULL)
+    select <- function(i) match(names, i)
   }
 
   assert_function(select)
@@ -22,7 +19,7 @@ seek <- function(x, margin = 2, select = NULL, names = NULL, ...) {
 
   if (is.logical(i)) i <- which(i)
   if (length(i) == 0 || all(is.na(i))) i <- NULL
-  if (!is.null(i)) assert_type(i, "integer")
+  assert_type(i, "integer", allow_null = TRUE)
   i
 }
 
@@ -33,7 +30,6 @@ setMethod(
   f = "seek_rows",
   signature = c(x = "data.frame"),
   definition = function(x, select = NULL, names = NULL, ...) {
-    # assert_rownames(x)
     seek(x, margin = 1, select = select, names = names, ...)
   }
 )
@@ -45,7 +41,6 @@ setMethod(
   f = "seek_rows",
   signature = c(x = "matrix"),
   definition = function(x, select = NULL, names = NULL, ...) {
-    # assert_rownames(x)
     seek(x, margin = 1, select = select, names = names, ...)
   }
 )
@@ -57,7 +52,6 @@ setMethod(
   f = "seek_columns",
   signature = c(x = "data.frame"),
   definition = function(x, select = NULL, names = NULL, ...) {
-    # assert_colnames(x)
     seek(x, margin = 2, select = select, names = names, ...)
   }
 )
@@ -69,7 +63,6 @@ setMethod(
   f = "seek_columns",
   signature = c(x = "matrix"),
   definition = function(x, select = NULL, names = NULL, ...) {
-    # assert_colnames(x)
     seek(x, margin = 2, select = select, names = names, ...)
   }
 )

@@ -37,7 +37,7 @@ seek_rows(x, ...)
 Only used if \code{select} is \code{NULL}.}
 }
 \value{
-An \code{\link{integer}} vector or \code{NULL} (if \code{x} does not have row/column names).
+An \code{\link{integer}} vector or \code{NULL}.
 }
 \description{
 Searches rows/columns by name in an array-like object.

@@ -154,7 +154,7 @@ setGeneric(
 #'  Only used if `select` is `NULL`.
 #' @param ... Further arguments to be passed to `select`.
 #' @return
-#'  An [`integer`] vector or `NULL` (if `x` does not have row/column names).
+#'  An [`integer`] vector or `NULL`.
 #' @example inst/examples/ex-seek.R
 #' @author N. Frerebeau
 #' @docType methods
