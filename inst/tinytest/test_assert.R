@@ -49,6 +49,7 @@ expect_inherits(cnd[[1]], "error_bad_length")
 
 expect_identical(assert_length(numeric(), expected = 10, allow_empty = TRUE), numeric())
 expect_identical(assert_length(LETTERS, expected = 26), LETTERS)
+expect_null(assert_length(NULL, expected = 10, allow_null = TRUE))
 
 ## Lengths ---------------------------------------------------------------------
 k <- list(1:10, 1:20)

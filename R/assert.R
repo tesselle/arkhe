@@ -77,14 +77,16 @@ needs <- assert_package
 #' @param x An object to be checked.
 #' @param expected An appropriate expected value.
 #' @param allow_empty A [`logical`] scalar: should [empty][is_empty()] object be
-#'  allowed?
-#' @param empty Deprecated.
+#'  ignored?
+#' @param allow_null A [`logical`] scalar: should `NULL` object be ignored?
 #' @return
 #'  Throws an error, if any, and returns `x` invisibly otherwise.
 #' @author N. Frerebeau
 #' @family checking methods
 #' @export
-assert_length <- function(x, expected, allow_empty = empty, empty = FALSE) {
+assert_length <- function(x, expected, allow_empty = FALSE, allow_null = FALSE) {
+  if (is.null(x) && isTRUE(allow_null)) return(invisible(NULL))
+
   arg <- deparse(substitute(x))
   if (!(allow_empty && is_empty(x)) && !has_length(x, n = expected)) {
     txt <- tr_("%s must be of length %d; not %d.")
@@ -312,7 +314,7 @@ assert_unique <- function(x) {
 #'  "`integer`", "`double`", "`character`" or "`logical`".
 #' @param allow_empty A [`logical`] scalar: should [empty][is_empty()] object be
 #'  allowed?
-#' @param allow_null A [`logical`] scalar: should `NULL` object be allowed?
+#' @param allow_null A [`logical`] scalar: should `NULL` object be ignored?
 #' @return
 #'  Throws an error, if any, and returns `x` invisibly otherwise.
 #' @author N. Frerebeau

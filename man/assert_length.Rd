@@ -5,7 +5,7 @@
 \alias{assert_lengths}
 \title{Check Object Length(s)}
 \usage{
-assert_length(x, expected, allow_empty = empty, empty = FALSE)
+assert_length(x, expected, allow_empty = FALSE, allow_null = FALSE)
 
 assert_lengths(x, expected)
 }
@@ -15,9 +15,9 @@ assert_lengths(x, expected)
 \item{expected}{An appropriate expected value.}
 
 \item{allow_empty}{A \code{\link{logical}} scalar: should \link[=is_empty]{empty} object be
-allowed?}
+ignored?}
 
-\item{empty}{Deprecated.}
+\item{allow_null}{A \code{\link{logical}} scalar: should \code{NULL} object be ignored?}
 }
 \value{
 Throws an error, if any, and returns \code{x} invisibly otherwise.

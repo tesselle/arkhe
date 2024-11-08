@@ -22,7 +22,7 @@ type. It must be one of "\code{list}", "\code{atomic}", "\code{vector}", "\code{
 \item{allow_empty}{A \code{\link{logical}} scalar: should \link[=is_empty]{empty} object be
 allowed?}
 
-\item{allow_null}{A \code{\link{logical}} scalar: should \code{NULL} object be allowed?}
+\item{allow_null}{A \code{\link{logical}} scalar: should \code{NULL} object be ignored?}
 }
 \value{
 Throws an error, if any, and returns \code{x} invisibly otherwise.
