@@ -76,6 +76,9 @@ remotes::install_github("tesselle/arkhe")
 ## Load the package
 library(arkhe)
 
+## Set seed for reproductibility
+set.seed(12345)
+
 ## Create a matrix
 X <- matrix(sample(1:10, 25, TRUE), nrow = 5, ncol = 5)
 
@@ -84,52 +87,67 @@ k <- sample(1:25, 3, FALSE)
 X[k] <- NA
 X
 #>      [,1] [,2] [,3] [,4] [,5]
-#> [1,]   10   10   NA    7    7
-#> [2,]    6    4    7   10    3
-#> [3,]    7   10    5    9    6
-#> [4,]    7   10    4   NA    2
-#> [5,]   NA    9    6    9    7
+#> [1,]    3    2    1    4    4
+#> [2,]   10    6    8    8   10
+#> [3,]    8   NA    7   10    7
+#> [4,]   NA   NA    6    3    2
+#> [5,]    8   10    1    9    4
 
 ## Count missing values in rows
 count(X, f = is.na, margin = 1)
-#> [1] 1 0 0 1 1
+#> [1] 0 0 1 2 0
 
 ## Count non-missing values in columns
 count(X, f = is.na, margin = 2, negate = TRUE)
-#> [1] 4 5 4 4 5
+#> [1] 4 3 5 5 5
 
 ## Find row with NA
 detect(X, f = is.na, margin = 1)
-#> [1]  TRUE FALSE FALSE  TRUE  TRUE
+#> [1] FALSE FALSE  TRUE  TRUE FALSE
 
 ## Find column without any NA
 detect(X, f = is.na, margin = 2, negate = TRUE, all = TRUE)
-#> [1] FALSE  TRUE FALSE FALSE  TRUE
+#> [1] FALSE FALSE  TRUE  TRUE  TRUE
 
 ## Remove row with any NA
 discard(X, f = is.na, margin = 1, all = FALSE)
 #>      [,1] [,2] [,3] [,4] [,5]
-#> [1,]    6    4    7   10    3
-#> [2,]    7   10    5    9    6
+#> [1,]    3    2    1    4    4
+#> [2,]   10    6    8    8   10
+#> [3,]    8   10    1    9    4
 
 ## Remove column with any NA
 discard(X, f = is.na, margin = 2, all = FALSE)
-#>      [,1] [,2]
-#> [1,]   10    7
-#> [2,]    4    3
-#> [3,]   10    6
-#> [4,]   10    2
-#> [5,]    9    7
+#>      [,1] [,2] [,3]
+#> [1,]    1    4    4
+#> [2,]    8    8   10
+#> [3,]    7   10    7
+#> [4,]    6    3    2
+#> [5,]    1    9    4
 
 ## Replace NA with zeros
 replace_NA(X, value = 0)
 #>      [,1] [,2] [,3] [,4] [,5]
-#> [1,]   10   10    0    7    7
-#> [2,]    6    4    7   10    3
-#> [3,]    7   10    5    9    6
-#> [4,]    7   10    4    0    2
-#> [5,]    0    9    6    9    7
+#> [1,]    3    2    1    4    4
+#> [2,]   10    6    8    8   10
+#> [3,]    8    0    7   10    7
+#> [4,]    0    0    6    3    2
+#> [5,]    8   10    1    9    4
 ```
+
+## Translation
+
+This package provides translations of user-facing communications, like
+messages, warnings and errors. The preferred language is by default
+taken from the locale. This can be overridden by setting of the
+environment variable `LANGUAGE` (you only need to do this once per
+session):
+
+``` r
+Sys.setenv(LANGUAGE = "<language code>")
+```
+
+Languages currently available are English (`en`) and French (`fr`).
 
 ## Contributing
 
