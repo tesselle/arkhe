@@ -21,10 +21,10 @@ A dependency-free collection of simple functions for cleaning rectangular data. 
 }
 \section{Package options}{
 
-\code{arkhe} uses the following \code{\link[=options]{options()}} to configure behavior:
+\pkg{arkhe} uses the following \code{\link[=options]{options()}} to configure behavior:
 \itemize{
 \item \code{arkhe.verbose}: a \code{\link{logical}} scalar. Should \R report extra information
-on progress? Defaults to \code{TRUE}.
+on progress? Defaults to \code{\link[=interactive]{interactive()}}.
 }
 }
 

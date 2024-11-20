@@ -8,9 +8,9 @@
 #'  }
 #'
 #' @section Package options:
-#'  `arkhe` uses the following [options()] to configure behavior:
+#'  \pkg{arkhe} uses the following [options()] to configure behavior:
 #'  * `arkhe.verbose`: a [`logical`] scalar. Should \R report extra information
-#'    on progress? Defaults to `TRUE`.
+#'    on progress? Defaults to [interactive()].
 #'
 #' @author
 #'  **Full list of authors and contributors** (alphabetic order):
