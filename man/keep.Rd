@@ -4,18 +4,18 @@
 \name{keep}
 \alias{keep}
 \alias{keep-method}
-\alias{keep_cols}
-\alias{keep_cols-method}
+\alias{keep_columns}
+\alias{keep_columns-method}
 \alias{keep_rows}
 \alias{keep_rows-method}
 \alias{keep,ANY-method}
 \alias{keep_rows,ANY-method}
-\alias{keep_cols,ANY-method}
+\alias{keep_columns,ANY-method}
 \title{Keep Rows/Columns Using a Predicate}
 \usage{
 keep(x, ...)
 
-keep_cols(x, ...)
+keep_columns(x, ...)
 
 keep_rows(x, ...)
 
@@ -40,7 +40,7 @@ keep_rows(x, ...)
   ...
 )
 
-\S4method{keep_cols}{ANY}(
+\S4method{keep_columns}{ANY}(
   x,
   f,
   negate = FALSE,

@@ -36,9 +36,9 @@ setMethod(
 
 #' @export
 #' @rdname keep
-#' @aliases keep_cols,ANY-method
+#' @aliases keep_columns,ANY-method
 setMethod(
-  f = "keep_cols",
+  f = "keep_columns",
   signature = c(x = "ANY"),
   definition = function(x, f, negate = FALSE, all = FALSE, na.rm = FALSE,
                         verbose = getOption("arkhe.verbose"), ...) {

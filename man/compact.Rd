@@ -4,24 +4,24 @@
 \name{compact}
 \alias{compact}
 \alias{compact-method}
-\alias{compact_cols}
-\alias{compact_cols-method}
+\alias{compact_columns}
+\alias{compact_columns-method}
 \alias{compact_rows}
 \alias{compact_rows-method}
 \alias{compact,ANY-method}
-\alias{compact_cols,ANY-method}
+\alias{compact_columns,ANY-method}
 \alias{compact_rows,ANY-method}
 \title{Remove Empty Rows/Columns}
 \usage{
 compact(x, ...)
 
-compact_cols(x, ...)
+compact_columns(x, ...)
 
 compact_rows(x, ...)
 
 \S4method{compact}{ANY}(x, margin = 1, na.rm = FALSE, verbose = getOption("arkhe.verbose"))
 
-\S4method{compact_cols}{ANY}(x, na.rm = FALSE, verbose = getOption("arkhe.verbose"))
+\S4method{compact_columns}{ANY}(x, na.rm = FALSE, verbose = getOption("arkhe.verbose"))
 
 \S4method{compact_rows}{ANY}(x, na.rm = FALSE, verbose = getOption("arkhe.verbose"))
 }

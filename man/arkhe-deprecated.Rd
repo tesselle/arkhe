@@ -3,9 +3,18 @@
 \name{arkhe-deprecated}
 \alias{arkhe-deprecated}
 \alias{assert_dimensions}
+\alias{compact_cols}
+\alias{discard_cols}
+\alias{keep_cols}
 \title{Deprecated Functions in arkhe}
 \usage{
-assert_dimensions(x, expected)
+assert_dimensions(...)
+
+compact_cols(...)
+
+discard_cols(...)
+
+keep_cols(...)
 }
 \description{
 These functions still work but will be removed (defunct) in the next version.

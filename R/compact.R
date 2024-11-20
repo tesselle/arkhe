@@ -24,9 +24,9 @@ setMethod(
 
 #' @export
 #' @rdname compact
-#' @aliases compact_cols,ANY-method
+#' @aliases compact_columns,ANY-method
 setMethod(
-  f = "compact_cols",
+  f = "compact_columns",
   signature = c(x = "ANY"),
   definition = function(x, na.rm = FALSE, verbose = getOption("arkhe.verbose")) {
     compact(x, margin = 2, na.rm = na.rm, verbose = verbose)

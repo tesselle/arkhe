@@ -9,9 +9,9 @@ expect_message(discard_rows(mtx, f = is_zero, verbose = TRUE))
 mtx[1, ] <- 0 # Add zeros
 
 ## Nothing to remove
-clean <- discard_cols(mtx, f = is_zero, all = TRUE)
+clean <- discard_columns(mtx, f = is_zero, all = TRUE)
 expect_equal(dim(clean), dim(mtx))
-expect_message(discard_cols(mtx, f = is_zero, all = TRUE, verbose = TRUE))
+expect_message(discard_columns(mtx, f = is_zero, all = TRUE, verbose = TRUE))
 
 mtx[, 1] <- 0 # Add zeros
 
@@ -22,7 +22,7 @@ expect_equal(ncol(clean_row), ncol(mtx))
 expect_message(discard_rows(mtx, f = is_zero, all = TRUE, verbose = TRUE))
 
 ## Remove columns
-clean_col <- discard_cols(mtx, f = is_zero, all = TRUE)
+clean_col <- discard_columns(mtx, f = is_zero, all = TRUE)
 expect_equal(ncol(clean_col), ncol(mtx) - 1L)
 expect_equal(nrow(clean_col), nrow(mtx))
-expect_message(discard_cols(mtx, f = is_zero, all = TRUE, verbose = TRUE))
+expect_message(discard_columns(mtx, f = is_zero, all = TRUE, verbose = TRUE))

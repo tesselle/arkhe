@@ -4,18 +4,18 @@
 \name{discard}
 \alias{discard}
 \alias{discard-method}
-\alias{discard_cols}
-\alias{discard_cols-method}
+\alias{discard_columns}
+\alias{discard_columns-method}
 \alias{discard_rows}
 \alias{discard_rows-method}
 \alias{discard,ANY-method}
 \alias{discard_rows,ANY-method}
-\alias{discard_cols,ANY-method}
+\alias{discard_columns,ANY-method}
 \title{Remove Rows/Columns Using a Predicate}
 \usage{
 discard(x, ...)
 
-discard_cols(x, ...)
+discard_columns(x, ...)
 
 discard_rows(x, ...)
 
@@ -40,7 +40,7 @@ discard_rows(x, ...)
   ...
 )
 
-\S4method{discard_cols}{ANY}(
+\S4method{discard_columns}{ANY}(
   x,
   f,
   negate = FALSE,

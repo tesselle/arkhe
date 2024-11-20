@@ -36,9 +36,9 @@ setMethod(
 
 #' @export
 #' @rdname discard
-#' @aliases discard_cols,ANY-method
+#' @aliases discard_columns,ANY-method
 setMethod(
-  f = "discard_cols",
+  f = "discard_columns",
   signature = c(x = "ANY"),
   definition = function(x, f, negate = FALSE, all = FALSE, na.rm = FALSE,
                         verbose = getOption("arkhe.verbose"), ...) {

@@ -64,10 +64,10 @@ setGeneric(
 )
 
 #' @rdname keep
-#' @aliases keep_cols-method
+#' @aliases keep_columns-method
 setGeneric(
-  name = "keep_cols",
-  def = function(x, ...) standardGeneric("keep_cols")
+  name = "keep_columns",
+  def = function(x, ...) standardGeneric("keep_columns")
 )
 
 #' @rdname keep
@@ -95,10 +95,10 @@ setGeneric(
 )
 
 #' @rdname discard
-#' @aliases discard_cols-method
+#' @aliases discard_columns-method
 setGeneric(
-  name = "discard_cols",
-  def = function(x, ...) standardGeneric("discard_cols")
+  name = "discard_columns",
+  def = function(x, ...) standardGeneric("discard_columns")
 )
 
 #' @rdname discard
@@ -130,10 +130,10 @@ setGeneric(
 )
 
 #' @rdname compact
-#' @aliases compact_cols-method
+#' @aliases compact_columns-method
 setGeneric(
-  name = "compact_cols",
-  def = function(x, ...) standardGeneric("compact_cols")
+  name = "compact_columns",
+  def = function(x, ...) standardGeneric("compact_columns")
 )
 
 #' @rdname compact

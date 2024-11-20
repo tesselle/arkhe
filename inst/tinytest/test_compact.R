@@ -16,7 +16,7 @@ expect_equal(nrow(clean_row), 4)
 expect_equal(ncol(clean_row), ncol(mtx0))
 
 ## Remove columns
-clean_col <- compact_cols(mtx0)
+clean_col <- compact_columns(mtx0)
 expect_equal(ncol(clean_col), 2)
 expect_equal(nrow(clean_col), nrow(mtx0))
 
@@ -38,7 +38,7 @@ expect_equal(nrow(clean_row), 4)
 expect_equal(ncol(clean_row), ncol(charBlank))
 
 ## Remove columns
-clean_col <- compact_cols(charBlank)
+clean_col <- compact_columns(charBlank)
 expect_equal(ncol(clean_col), 2)
 expect_equal(nrow(clean_col), nrow(charBlank))
 
@@ -51,7 +51,7 @@ bin <- matrix(c(FALSE, TRUE, TRUE, TRUE, FALSE,
 ## Nothing to remove
 clean <- compact_rows(bin)
 expect_equal(nrow(clean), 4)
-clean <- compact_cols(bin)
+clean <- compact_columns(bin)
 expect_equal(ncol(clean), 2)
 
 binNA <- bin
@@ -66,8 +66,8 @@ expect_equal(nrow(clean_row), 4)
 expect_equal(ncol(clean_row), ncol(binNA))
 
 ## Remove columns
-clean_col <- compact_cols(binNA) # Nothing to remove
+clean_col <- compact_columns(binNA) # Nothing to remove
 expect_equal(dim(clean_col), dim(binNA))
-clean_col <- compact_cols(binNA, na.rm = TRUE)
+clean_col <- compact_columns(binNA, na.rm = TRUE)
 expect_equal(ncol(clean_col), 2)
 expect_equal(nrow(clean_col), nrow(binNA))
