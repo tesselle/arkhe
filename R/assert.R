@@ -79,12 +79,13 @@ needs <- assert_package
 #' @param allow_empty A [`logical`] scalar: should [empty][is_empty()] object be
 #'  ignored?
 #' @param allow_null A [`logical`] scalar: should `NULL` object be ignored?
+#' @param empty Deprecated.
 #' @return
 #'  Throws an error, if any, and returns `x` invisibly otherwise.
 #' @author N. Frerebeau
 #' @family checking methods
 #' @export
-assert_length <- function(x, expected, allow_empty = FALSE, allow_null = FALSE) {
+assert_length <- function(x, expected, allow_empty = empty, allow_null = FALSE, empty = FALSE) {
   if (is.null(x) && isTRUE(allow_null)) return(invisible(NULL))
 
   arg <- deparse(substitute(x))
