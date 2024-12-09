@@ -49,7 +49,7 @@ To cite arkhe in publications use:
 Frerebeau N (2024). *arkhe: Tools for Cleaning Rectangular Data*.
 Université Bordeaux Montaigne, Pessac, France.
 <doi:10.5281/zenodo.3526659> <https://doi.org/10.5281/zenodo.3526659>, R
-package version 1.8.0, <https://packages.tesselle.org/arkhe/>.
+package version 1.9.0, <https://packages.tesselle.org/arkhe/>.
 
 This package is a part of the tesselle project
 <https://www.tesselle.org>.

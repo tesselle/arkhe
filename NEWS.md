@@ -1,4 +1,9 @@
-# arkhe 1.8.0.9000
+# arkhe 1.9.0
+## Enhancements
+* Allow `NULL` or empty values in `assert_length()` and `assert_type()`.
+
+## Bugfixes & changes
+* `seek_rows()` to `seek_columns()` return `NULL` if there is nothing to look for.
 
 # arkhe 1.8.0
 ## New classes and methods
