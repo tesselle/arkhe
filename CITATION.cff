@@ -92,11 +92,11 @@ preferred-citation:
   institution:
     name: Université Bordeaux Montaigne
     address: Pessac, France
-  notes: R package version 1.9.0
+  notes: R package version 1.9.0.9000
   url: https://packages.tesselle.org/arkhe/
   doi: 10.5281/zenodo.3526659
 repository: https://CRAN.R-project.org/package=arkhe
-repository-code: https://github.com/tesselle/arkhe
+repository-code: https://codeberg.org/tesselle/arkhe
 url: https://packages.tesselle.org/arkhe/
 contact:
 - family-names: Frerebeau
@@ -117,7 +117,7 @@ references:
   institution:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
-  year: '2024'
+  year: '2025'
   version: '>= 3.5'
 - type: software
   title: methods
@@ -128,7 +128,7 @@ references:
   institution:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
-  year: '2024'
+  year: '2025'
 - type: software
   title: stats
   abstract: 'R: A Language and Environment for Statistical Computing'
@@ -138,7 +138,7 @@ references:
   institution:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
-  year: '2024'
+  year: '2025'
 - type: software
   title: utils
   abstract: 'R: A Language and Environment for Statistical Computing'
@@ -148,7 +148,7 @@ references:
   institution:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
-  year: '2024'
+  year: '2025'
 - type: software
   title: tinytest
   abstract: 'tinytest: Lightweight and Feature Complete Unit Testing Framework'
@@ -161,6 +161,6 @@ references:
     name-particle: van der
     email: mark.vanderloo@gmail.com
     orcid: https://orcid.org/0000-0002-9807-4686
-  year: '2024'
+  year: '2025'
   doi: 10.32614/CRAN.package.tinytest
 

@@ -6,7 +6,7 @@
   "name": "arkhe: Tools for Cleaning Rectangular Data",
   "relatedLink": ["https://packages.tesselle.org/arkhe/", "https://CRAN.R-project.org/package=arkhe"],
   "codeRepository": "https://github.com/tesselle/arkhe",
-  "issueTracker": "https://github.com/tesselle/arkhe/issues",
+  "issueTracker": "https://codeberg.org/tesselle/arkhe/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
   "version": "1.9.0.9000",
   "programmingLanguage": {
@@ -96,7 +96,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "330.17KB",
+  "fileSize": "330.184KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",

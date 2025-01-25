@@ -17,8 +17,8 @@ Description: A dependency-free collection of simple functions for cleaning
     error messages.
 License: GPL (>= 3)
 URL: https://packages.tesselle.org/arkhe/,
-    https://github.com/tesselle/arkhe
-BugReports: https://github.com/tesselle/arkhe/issues
+    https://codeberg.org/tesselle/arkhe
+BugReports: https://codeberg.org/tesselle/arkhe/issues
 Depends: 
     R (>= 3.5)
 Imports: 
