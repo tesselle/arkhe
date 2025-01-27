@@ -5,9 +5,6 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/tesselle/arkhe/workflows/R-CMD-check/badge.svg)](https://github.com/tesselle/arkhe/actions)
-[![codecov](https://codecov.io/gh/tesselle/arkhe/branch/main/graph/badge.svg?token=3TUSMmF18Q)](https://app.codecov.io/gh/tesselle/arkhe)
-[![CodeFactor](https://www.codefactor.io/repository/github/tesselle/arkhe/badge/main)](https://www.codefactor.io/repository/github/tesselle/arkhe/overview/main)
 [![Dependencies](https://tinyverse.netlify.app/badge/arkhe)](https://cran.r-project.org/package=arkhe)
 
 <a href="https://tesselle.r-universe.dev/arkhe"
@@ -63,11 +60,11 @@ You can install the released version of **arkhe** from
 install.packages("arkhe")
 ```
 
-And the development version from [GitHub](https://github.com/) with:
+And the development version from [Codeberg](https://codeberg.org/) with:
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("tesselle/arkhe")
+remotes::install_git("https://codeberg.org/tesselle/arkhe")
 ```
 
 ## Usage
