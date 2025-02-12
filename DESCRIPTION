@@ -32,6 +32,8 @@ Suggests:
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
+X-schema.org-isPartOf: https://www.tesselle.org
+X-schema.org-keywords: data-cleaning, statistics, r-package
 Collate: 
     'AllGenerics.R'
     'append.R'

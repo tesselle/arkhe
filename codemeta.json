@@ -5,7 +5,7 @@
   "description": "A dependency-free collection of simple functions for cleaning rectangular data. This package allows to detect, count and replace values or discard rows/columns using a predicate function. In addition, it provides tools to check conditions and return informative error messages.",
   "name": "arkhe: Tools for Cleaning Rectangular Data",
   "relatedLink": ["https://packages.tesselle.org/arkhe/", "https://CRAN.R-project.org/package=arkhe"],
-  "codeRepository": "https://github.com/tesselle/arkhe",
+  "codeRepository": "https://codeberg.org/tesselle/arkhe",
   "issueTracker": "https://codeberg.org/tesselle/arkhe/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
   "version": "1.9.0.9000",
@@ -87,7 +87,9 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "330.184KB",
+  "isPartOf": "https://www.tesselle.org",
+  "keywords": ["data-cleaning", "statistics", "r-package"],
+  "fileSize": "330.04KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -107,9 +109,5 @@
       "sameAs": "https://doi.org/10.5281/zenodo.3526659"
     }
   ],
-  "releaseNotes": "https://github.com/tesselle/arkhe/blob/master/NEWS.md",
-  "readme": "https://github.com/tesselle/arkhe/blob/main/README.md",
-  "contIntegration": ["https://github.com/tesselle/arkhe/actions", "https://app.codecov.io/gh/tesselle/arkhe"],
-  "developmentStatus": "https://www.repostatus.org/#active",
-  "keywords": ["r-package", "data-cleaning", "statistics"]
+  "developmentStatus": "https://www.repostatus.org/#active"
 }
