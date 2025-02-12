@@ -1,5 +1,5 @@
 ## Read fake data
-artefacts <- read.csv(system.file("tinytest/fake.csv", package = "arkhe"))
+artefacts <- read.csv(system.file("tinytest", "fake.csv", package = "arkhe"))
 
 # Sparsity =====================================================================
 expect_equal(sparsity(artefacts, count = TRUE), 20)

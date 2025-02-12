@@ -1,5 +1,5 @@
 ## Read fake data
-artefacts <- read.csv(system.file("tinytest/fake.csv", package = "arkhe"))
+artefacts <- read.csv(system.file("tinytest", "fake.csv", package = "arkhe"))
 
 # Missing values ===============================================================
 ## Nothing to remove
