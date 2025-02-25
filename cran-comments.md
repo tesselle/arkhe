@@ -1,10 +1,12 @@
 ## Test environments
-* Local R installation: R 4.4.2
+* Ubuntu (local): R devel, release, oldrel
 * Windows (on win-builder): R devel, release, oldrel
 
 ## R CMD check results
 
 0 errors | 0 warnings | 0 note
+
+* This is a resubmission.
 
 ## revdepcheck results
 
