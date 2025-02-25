@@ -144,7 +144,8 @@ session):
 Sys.setenv(LANGUAGE = "<language code>")
 ```
 
-Languages currently available are English (`en`) and French (`fr`).
+Languages currently available are English (`en`), French (`fr`) and
+Spanish (`es`).
 
 ## Contributing
 

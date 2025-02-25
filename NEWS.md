@@ -1,4 +1,6 @@
 # arkhe 1.10.0.9000
+## Enhancements
+* Translate into Spanish.
 
 # arkhe 1.10.0
 ## Internals
