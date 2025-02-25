@@ -1,4 +1,6 @@
-# arkhe 1.9.0.9000
+# arkhe 1.10.0
+## Internals
+* Update package metadata.
 
 # arkhe 1.9.0
 ## Enhancements

@@ -14,7 +14,7 @@ A dependency-free collection of simple functions for cleaning rectangular data. 
 \tabular{ll}{
 \strong{Package:} \tab arkhe \cr
 \strong{Type:} \tab Package \cr
-\strong{Version:} \tab 1.9.0 \cr
+\strong{Version:} \tab 1.10.0 \cr
 \strong{License:} \tab GPL-3 \cr
 \strong{Zenodo:} \tab \doi{10.5281/zenodo.3526659} \cr
 }
@@ -31,8 +31,8 @@ on progress? Defaults to \code{\link[=interactive]{interactive()}}.
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://packages.tesselle.org/arkhe/}
   \item \url{https://codeberg.org/tesselle/arkhe}
+  \item \url{https://packages.tesselle.org/arkhe/}
   \item Report bugs at \url{https://codeberg.org/tesselle/arkhe/issues}
 }
 

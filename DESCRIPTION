@@ -1,6 +1,6 @@
 Package: arkhe
 Title: Tools for Cleaning Rectangular Data
-Version: 1.9.0.9000
+Version: 1.10.0
 Authors@R: c(
     person("Nicolas", "Frerebeau", , "nicolas.frerebeau@u-bordeaux-montaigne.fr", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-5759-4944", ROR = "03pbgwk21")),
@@ -11,7 +11,6 @@ Authors@R: c(
     person("CNRS", role = "fnd",
            comment = c(ROR = "02feahw73"))
   )
-Maintainer: Nicolas Frerebeau <nicolas.frerebeau@u-bordeaux-montaigne.fr>
 Description: A dependency-free collection of simple functions for cleaning
     rectangular data. This package allows to detect, count and replace
     values or discard rows/columns using a predicate function. In

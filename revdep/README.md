@@ -10,14 +10,14 @@
 |collate  |fr_FR.UTF-8                  |
 |ctype    |fr_FR.UTF-8                  |
 |tz       |Europe/Paris                 |
-|date     |2024-12-09                   |
+|date     |2025-02-25                   |
 |pandoc   |NA                           |
 
 # Dependencies
 
-|package |old   |new   |Δ  |
-|:-------|:-----|:-----|:--|
-|arkhe   |1.8.0 |1.9.0 |*  |
+|package |old   |new    |Δ  |
+|:-------|:-----|:------|:--|
+|arkhe   |1.9.0 |1.10.0 |*  |
 
 # Revdeps
 

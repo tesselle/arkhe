@@ -8,7 +8,7 @@ message: 'To cite package "arkhe" in publications use:'
 type: software
 license: GPL-3.0-or-later
 title: 'arkhe: Tools for Cleaning Rectangular Data'
-version: 1.9.0
+version: 1.10.0
 doi: 10.5281/zenodo.3526659
 identifiers:
 - description: The concept DOI.
@@ -88,11 +88,11 @@ preferred-citation:
     given-names: Nicolas
     email: nicolas.frerebeau@u-bordeaux-montaigne.fr
     orcid: https://orcid.org/0000-0001-5759-4944
-  year: '2024'
+  year: '2025'
   institution:
     name: Université Bordeaux Montaigne
     address: Pessac, France
-  notes: R package version 1.9.0.9000
+  notes: R package version 1.10.0
   url: https://packages.tesselle.org/arkhe/
   doi: 10.5281/zenodo.3526659
 repository: https://CRAN.R-project.org/package=arkhe
