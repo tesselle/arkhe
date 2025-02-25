@@ -2,12 +2,9 @@
 % Please edit documentation in R/assert.R
 \name{assert_package}
 \alias{assert_package}
-\alias{needs}
 \title{Check the Availability of a Package}
 \usage{
-assert_package(x, ask = TRUE)
-
-needs(x, ask = TRUE)
+assert_package(x, ask = interactive())
 }
 \arguments{
 \item{x}{A \code{\link{character}} vector naming the packages to check.}
@@ -27,8 +24,6 @@ package to check for the availability of a suggested package.
 
 If the required packages are not available and \R is running interactively,
 the user will be asked to install the packages.
-
-\code{needs()} is an alias for \code{assert_package()}.
 }
 \seealso{
 Other checking methods: 

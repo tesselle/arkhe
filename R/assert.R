@@ -30,35 +30,32 @@ validate <- function(expr) {
 #'
 #'  If the required packages are not available and \R is running interactively,
 #'  the user will be asked to install the packages.
-#'
-#'  `needs()` is an alias for `assert_package()`.
 #' @return Invisibly returns `NULL`.
 #' @family checking methods
 #' @author N. Frerebeau
 #' @export
-assert_package <- function(x, ask = TRUE) {
+assert_package <- function(x, ask = interactive()) {
   ok <- vapply(X = x, FUN = requireNamespace, FUN.VALUE = logical(1),
                quietly = TRUE)
 
   miss <- x[!ok]
   n <- length(miss)
 
-  if (n != 0) {
-    msg <- ngettext(n, "Package %s is required.", "Packages %s are required.")
-    pkg <- paste0(sQuote(miss), collapse = ", ")
-    err <- sprintf(msg, pkg)
-    install <- "0"
-    if (ask && interactive()) {
-      cat(
-        err,
-        ngettext(n, "Do you want to install it?", "Do you want to install them?"),
-        "1. Yes",
-        "2. No",
-        sep = "\n"
+  if (n > 0) {
+    err <- sprintf(
+      ngettext(n, "Package %s is required.", "Packages %s are required."),
+      paste0(sQuote(miss), collapse = ", ")
+    )
+    install <- FALSE
+    if (isTRUE(ask)) {
+      msg <- ngettext(n, "Do you want to install it?", "Do you want to install them?")
+      install <- utils::askYesNo(
+        msg = paste0(c(err, msg), collapse = "\n"),
+        default = FALSE,
+        prompts = gettext(c("Yes", "No", "Cancel"))
       )
-      install <- readline(tr_("Choice: "))
     }
-    if (install == "1") {
+    if (isTRUE(install)) {
       utils::install.packages(miss)
     } else {
       throw_error("error_missing_package", err)
@@ -66,10 +63,6 @@ assert_package <- function(x, ask = TRUE) {
   }
   invisible(NULL)
 }
-
-#' @export
-#' @rdname assert_package
-needs <- assert_package
 
 # Attributes ===================================================================
 #' Check Object Length(s)

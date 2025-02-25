@@ -2,12 +2,15 @@
 % Please edit documentation in R/arkhe-deprecated.R
 \name{arkhe-deprecated}
 \alias{arkhe-deprecated}
+\alias{needs}
 \alias{assert_dimensions}
 \alias{compact_cols}
 \alias{discard_cols}
 \alias{keep_cols}
 \title{Deprecated Functions in arkhe}
 \usage{
+needs(...)
+
 assert_dimensions(...)
 
 compact_cols(...)

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: arkhe 1.8.0\n"
-"POT-Creation-Date: 2024-11-07 11:00+0100\n"
+"Project-Id-Version: arkhe 1.9.0.9000\n"
+"POT-Creation-Date: 2025-02-25 04:05+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Nicolas Frerebeau <nicolas.frerebeau@u-bordeaux-montaigne.fr>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -11,123 +11,131 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: assert.R:59
-msgid "Choice:"
+#: assert.R:55
+msgid "Yes"
 msgstr ""
 
-#: assert.R:90
+#: assert.R:55
+msgid "No"
+msgstr ""
+
+#: assert.R:55
+msgid "Cancel"
+msgstr ""
+
+#: assert.R:86
 msgid "%s must be of length %d; not %d."
 msgstr ""
 
-#: assert.R:103
+#: assert.R:99
 msgid "Elements of %s must be of lengths %s; not %s."
 msgstr ""
 
-#: assert.R:124
+#: assert.R:120
 msgid "%s must be of dimension %s; not %s."
 msgstr ""
 
-#: assert.R:172
+#: assert.R:168
 msgid "%s must be empty."
 msgstr ""
 
-#: assert.R:183
+#: assert.R:179
 msgid "%s must not be empty."
 msgstr ""
 
-#: assert.R:203
+#: assert.R:199
 msgid "%s must have names."
 msgstr ""
 
-#: assert.R:205
+#: assert.R:201
 msgid "%s must have the following names: %s."
 msgstr ""
 
-#: assert.R:219
+#: assert.R:215
 msgid "%s must have row names."
 msgstr ""
 
-#: assert.R:221
+#: assert.R:217
 msgid "%s must have the following row names: %s."
 msgstr ""
 
-#: assert.R:235
+#: assert.R:231
 msgid "%s must have column names."
 msgstr ""
 
-#: assert.R:237
+#: assert.R:233
 msgid "%s must have the following column names: %s."
 msgstr ""
 
-#: assert.R:300
+#: assert.R:296
 msgid "Elements of %s must be unique."
 msgstr ""
 
-#: assert.R:326
+#: assert.R:322
 msgid "Can't find a predicate for this type: %s."
 msgstr ""
 
-#: assert.R:340
+#: assert.R:336
 msgid "%s must be %s; not %s."
 msgstr ""
 
-#: assert.R:350
+#: assert.R:346
 msgid "Can't find a predicate for this scalar: %s."
 msgstr ""
 
-#: assert.R:364
+#: assert.R:360
 msgid "%s must be a scalar (%s)."
 msgstr ""
 
-#: assert.R:375
+#: assert.R:371
 msgid "%s must be a function."
 msgstr ""
 
-#: assert.R:401
+#: assert.R:397
 msgid "%s must contain integers (counts)."
 msgstr ""
 
-#: assert.R:416
+#: assert.R:412
 msgid "%s must contain positive numbers."
 msgstr ""
 
-#: assert.R:427
+#: assert.R:423
 msgid "%s must contain negative numbers."
 msgstr ""
 
-#: assert.R:438
+#: assert.R:434
 msgid "%s must contain odd numbers."
 msgstr ""
 
-#: assert.R:449
+#: assert.R:445
 msgid "%s must contain even numbers."
 msgstr ""
 
-#: assert.R:467
+#: assert.R:463
 msgid "%s must be constant."
 msgstr ""
 
-#: assert.R:478
+#: assert.R:474
 msgid "%s must be decreasing."
 msgstr ""
 
-#: assert.R:489
+#: assert.R:485
 msgid "%s must be increasing."
 msgstr ""
 
-#: assert.R:508
+#: assert.R:504
 msgid "%s must be lower than %s."
 msgstr ""
 
-#: assert.R:521
+#: assert.R:517
 msgid "%s must be greater than %s."
 msgstr ""
 
-#: assert.R:540
+#: assert.R:536
 msgid "%s must be a square matrix, not %s."
 msgstr ""
 
-#: assert.R:551
+#: assert.R:547
 msgid "%s must be a symmetric matrix."
 msgstr ""
 
@@ -153,37 +161,37 @@ msgstr ""
 msgid "Removing %g %s out of %g (%s)."
 msgstr ""
 
-#: assert.R:47
+#: assert.R:46
 msgid "Package %s is required."
 msgid_plural "Packages %s are required."
 msgstr[0] ""
 msgstr[1] ""
 
-#: assert.R:54
+#: assert.R:51
 msgid "Do you want to install it?"
 msgid_plural "Do you want to install them?"
 msgstr[0] ""
 msgstr[1] ""
 
-#: assert.R:138
+#: assert.R:134
 msgid "%s must have %s row; not %s."
 msgid_plural "%s must have %s rows; not %s."
 msgstr[0] ""
 msgstr[1] ""
 
-#: assert.R:152
+#: assert.R:148
 msgid "%s must have %s column; not %s."
 msgid_plural "%s must have %s columns; not %s."
 msgstr[0] ""
 msgstr[1] ""
 
-#: assert.R:259
+#: assert.R:255
 msgid "%s must not contain missing values (%d detected)."
 msgid_plural "%s must not contain missing values (%d detected)."
 msgstr[0] ""
 msgstr[1] ""
 
-#: assert.R:280
+#: assert.R:276
 msgid "%s must not contain infinite values (%d detected)."
 msgid_plural "%s must not contain infinite values (%d detected)."
 msgstr[0] ""

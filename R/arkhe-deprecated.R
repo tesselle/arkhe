@@ -11,6 +11,13 @@ NULL
 
 #' @export
 #' @rdname arkhe-deprecated
+needs <- function(...) {
+  # .Deprecated("assert_package()", old = "needs()")
+  assert_package(...)
+}
+
+#' @export
+#' @rdname arkhe-deprecated
 assert_dimensions <- function(...) {
   # .Deprecated("assert_dim()", old = "assert_dimensions()")
   assert_dim(...)
