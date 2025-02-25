@@ -3,7 +3,7 @@ Title: Tools for Cleaning Rectangular Data
 Version: 1.10.0
 Authors@R: c(
     person("Nicolas", "Frerebeau", , "nicolas.frerebeau@u-bordeaux-montaigne.fr", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0001-5759-4944", ROR = "03pbgwk21")),
+           comment = c(ORCID = "0000-0001-5759-4944")),
     person("Brice", "Lebrun", role = "art",
            comment = c(ORCID = "0000-0001-7503-8685", "Logo designer")),
     person("Université Bordeaux Montaigne", role = "fnd",
