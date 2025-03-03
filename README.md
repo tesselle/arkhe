@@ -5,6 +5,8 @@
 
 <!-- badges: start -->
 
+[![Code
+coverage](https://packages.tesselle.org/arkhe/coverage/badge.svg)](https://packages.tesselle.org/arkhe/coverage/)
 [![Dependencies](https://tinyverse.netlify.app/badge/arkhe)](https://cran.r-project.org/package=arkhe)
 
 <a href="https://tesselle.r-universe.dev/arkhe"
