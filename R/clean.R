@@ -41,3 +41,22 @@ trim <- function(x, which = c("both", "left", "right"), squish = TRUE) {
 
   x
 }
+
+#' Wrap Character Strings to Format Paragraphs
+#'
+#' @param x A [`character`] vector of strings.
+#' @param width A positive [`integer`] giving the target column width for
+#'  wrapping lines in the output.
+#' @return A [`character`] vector of strings.
+#' @keywords internal
+#' @noRd
+wrap_strings <- function(x, width, ...) {
+  vapply(
+    X = x,
+    FUN = function(x, ...) {
+      paste0(strwrap(x, width = width, ...), collapse = "\n")
+    },
+    FUN.VALUE = character(1),
+    ...
+  )
+}
