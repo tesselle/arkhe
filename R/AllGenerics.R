@@ -651,6 +651,49 @@ setGeneric(
 )
 
 # Resampling ===================================================================
+#' Draw Uniform Random Sample
+#'
+#' Draws a random (sub)sample (with or without replacement).
+#' @param object A [`numeric`] vector.
+#' @param n A non-negative [`integer`] specifying the number of random vector
+#'  to draw.
+#' @param size A non-negative [`integer`] specifying the sample size.
+#' @param replace A [`logical`] scalar: should sampling be with replacement?
+#' @param ... Currently not used.
+#' @return
+#'  A `numeric` [`matrix`] with `n` rows and `size` columns.
+#' @example inst/examples/ex-resample.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family resampling methods
+#' @aliases resample_uniform-method
+setGeneric(
+  name = "resample_uniform",
+  def = function(object, ...) standardGeneric("resample_uniform")
+)
+
+#' Draw Multinomial Random Sample
+#'
+#' Draws a random (sub)sample from a multinomial distribution.
+#' @param object A length-\eqn{k} [`integer`] vector, specifying the probability
+#'  for the \eqn{k} classes; is internally normalized to sum to 1.
+#' @param n A non-negative [`integer`] specifying the number of random vector
+#'  to draw.
+#' @param size A non-negative [`integer`] specifying the sample size.
+#' @param ... Currently not used.
+#' @return
+#'  A `numeric` [`matrix`] with `n` rows and `k` columns.
+#' @seealso [stats::rmultinom()]
+#' @example inst/examples/ex-resample.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family resampling methods
+#' @aliases resample_multinomial-method
+setGeneric(
+  name = "resample_multinomial",
+  def = function(object, ...) standardGeneric("resample_multinomial")
+)
+
 ## Bootstrap -------------------------------------------------------------------
 #' Bootstrap Estimation
 #'
@@ -675,11 +718,10 @@ setGeneric(
 #'
 #'  If `f` is a `function`, `bootstrap()` returns the result of `f` applied to
 #'  the `n` values of `do`.
-#' @example inst/examples/ex-resample.R
+#' @example inst/examples/ex-bootstrap.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family resampling methods
-#' @rdname bootstrap
 #' @aliases bootstrap-method
 setGeneric(
   name = "bootstrap",
@@ -707,11 +749,10 @@ setGeneric(
 #'
 #'  If `f` is a `function`, `jackknife()` returns the result of `f` applied to
 #'  the leave-one-out values of `do`.
-#' @example inst/examples/ex-resample.R
+#' @example inst/examples/ex-jackknife.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family resampling methods
-#' @rdname jackknife
 #' @aliases jackknife-method
 setGeneric(
   name = "jackknife",

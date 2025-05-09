@@ -28,6 +28,15 @@ expect_equal_to_reference(confidence_multinomial(x),
 expect_equal_to_reference(confidence_multinomial(x, corrected = TRUE),
                           file = "_snaps/confidence_multinomial_corrected.rds")
 
+# Resample =====================================================================
+## Uniform distribution
+x <- rnorm(20)
+expect_identical(dim(resample_uniform(x, n = 10)), c(10L, 20L))
+
+## Multinomial distribution
+x <- sample(1:100, 20, TRUE)
+expect_identical(dim(resample_multinomial(x, n = 10)), c(10L, 20L))
+
 # Bootstrap ====================================================================
 bootstrap_summary <- arkhe:::with_seed({
   bootstrap(rnorm(20), n = 100, do = mean)

@@ -139,6 +139,25 @@ setMethod(
   }
 )
 
+confidence_bootstrap <- function(x, MLE = NULL, level = 0.95,
+                                 type = c("percentiles", "basic")) {
+  ## Validation
+  type <- match.arg(type, several.ok = FALSE)
+
+  if (type == "percentiles" | type == "basic") {
+    ## Percentile confidence interval
+    probs <- (1 + c(-level, level)) / 2
+    conf <- stats::quantile(x, probs = probs, names = FALSE)
+  }
+  if (type == "basic") {
+    ## Basic bootstrap confidence limits (Davison & Hinkley, 1997)
+    conf <- 2 * MLE - rev(conf)
+  }
+
+  names(conf) <- c("lower", "upper")
+  conf
+}
+
 zscore <- function(level, n, type = c("student", "normal")) {
   ## Validation
   type <- match.arg(type, several.ok = FALSE)
@@ -216,3 +235,32 @@ summary_jackknife <- function(x, hat) {
   names(results) <- c("original", "mean", "bias", "error")
   results
 }
+
+# Resample =====================================================================
+#' @export
+#' @rdname resample_uniform
+#' @aliases resample_uniform,numeric-method
+setMethod(
+  f = "resample_uniform",
+  signature = c(object = "numeric"),
+  definition = function(object, n, size = length(object), replace = FALSE, ...) {
+    spl <- replicate(
+      n = n,
+      expr = sample(object, size = size, replace = replace),
+      simplify = FALSE
+    )
+    do.call(rbind, spl)
+  }
+)
+
+#' @export
+#' @rdname resample_multinomial
+#' @aliases resample_multinomial,numeric-method
+setMethod(
+  f = "resample_multinomial",
+  signature = c(object = "numeric"),
+  definition = function(object, n, size = sum(object), ...) {
+    prob <- object / sum(object)
+    t(stats::rmultinom(n, size = size, prob = prob))
+  }
+)

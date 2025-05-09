@@ -1,4 +1,7 @@
 # arkhe 1.10.0.9000
+## New classes and methods
+* Add `resample_uniform()` and `resample_multinomial()` to draw random samples.
+
 ## Enhancements
 * Translate into Spanish.
 
