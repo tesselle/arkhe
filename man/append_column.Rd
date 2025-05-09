@@ -18,8 +18,8 @@ append_column(x, ...)
 
 \item{column}{A (named) \code{vector}.}
 
-\item{after}{A length-one \code{\link{numeric}} vector specifying a subscript,
-after which the new column is to be appended.}
+\item{after}{An \code{\link{integer}} specifying a subscript, after which the new
+column is to be appended.}
 
 \item{var}{A \code{\link{character}} string giving the name of the new column.}
 }

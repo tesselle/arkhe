@@ -263,8 +263,8 @@ setGeneric(
 #'
 #' @param x A [`data.frame`].
 #' @param column A (named) `vector`.
-#' @param after A length-one [`numeric`] vector specifying a subscript,
-#'  after which the new column is to be appended.
+#' @param after An [`integer`] specifying a subscript, after which the new
+#'  column is to be appended.
 #' @param var A [`character`] string giving the name of the new column.
 #' @param ... Currently not used.
 #' @details
