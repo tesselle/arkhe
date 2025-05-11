@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: arkhe 1.9.0.9000\n"
-"POT-Creation-Date: 2025-02-25 04:05+0100\n"
+"POT-Creation-Date: 2025-05-11 13:55+0200\n"
 "PO-Revision-Date: 2025-02-25 22:58+0000\n"
 "Last-Translator: nfrerebeau <nicolas.frerebeau@u-bordeaux-montaigne.fr>\n"
 "Language-Team: Spanish <https://translate.codeberg.org/projects/tesselle/"
@@ -165,6 +165,10 @@ msgstr "Nada que quitar."
 msgid "Removing %g %s out of %g (%s)."
 msgstr "Eliminando %g %s de %g (%s)."
 
+#: statistics.R:197
+msgid "Extreme order statistics used as endpoints."
+msgstr "Estadísticas de orden extremo utilizadas como puntos finales."
+
 #: assert.R:46
 msgid "Package %s is required."
 msgid_plural "Packages %s are required."
@@ -214,8 +218,12 @@ msgstr[0] "%d variable"
 msgstr[1] "%d variables"
 
 #: describe.R:26
-msgid "\n%d missing value:"
-msgid_plural "\n%d missing values:"
+msgid ""
+"\n"
+"%d missing value:"
+msgid_plural ""
+"\n"
+"%d missing values:"
 msgstr[0] ""
 "\n"
 "%d valor perdido:"

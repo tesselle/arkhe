@@ -28,6 +28,21 @@ expect_equal_to_reference(confidence_multinomial(x),
 expect_equal_to_reference(confidence_multinomial(x, corrected = TRUE),
                           file = "_snaps/confidence_multinomial_corrected.rds")
 
+# Bootstrap confidence interval ================================================
+x <- c(2.447, 1.381, 2.014, 1.572, 1.555, 1.622, 2.185, 1.691, 1.592,
+       1.517, 1.486, 1.723, 1.535, 1.309, 1.346, 1.692, 1.507, 1.340,
+       1.651, 1.737, 1.348, 1.474, 1.596, 1.890, 1.249, 1.606, 1.453,
+       1.418, 1.611, 1.658)
+
+expect_identical(
+  suppressWarnings(confidence_bootstrap(x, level = 0.95, t0 = 1.520, type = "basic")),
+  c(lower = 0.593, upper = 1.791)
+)
+expect_identical(
+  suppressWarnings(confidence_bootstrap(x, level = 0.95, t0 = 1.520, type = "percentiles")),
+  c(lower = 1.249, upper = 2.447)
+)
+
 # Resample =====================================================================
 ## Uniform distribution
 x <- rnorm(20)

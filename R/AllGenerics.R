@@ -604,7 +604,7 @@ setGeneric(
 
 #' Confidence Interval for Binomial Proportions
 #'
-#' Computes a Wald interval for a proportion at a desired level of significance.
+#' Computes Wald interval for a proportion at a desired level of significance.
 #' @param object A [`numeric`] vector giving the number of success.
 #' @param n A length-one [`numeric`] vector giving the number of trials.
 #' @param level A length-one [`numeric`] vector giving the confidence level.
@@ -628,7 +628,7 @@ setGeneric(
 
 #' Confidence Interval for Multinomial Proportions
 #'
-#' Computes a Wald interval for a proportion at a desired level of significance.
+#' Computes Wald interval for a proportion at a desired level of significance.
 #' @param object A [`numeric`] vector of positive integers giving the number of
 #'  occurrences of each class.
 #' @param level A length-one [`numeric`] vector giving the confidence level.
@@ -648,6 +648,35 @@ setGeneric(
 setGeneric(
   name = "confidence_multinomial",
   def = function(object, ...) standardGeneric("confidence_multinomial")
+)
+
+#' Nonparametric Bootstrap Confidence Interval
+#'
+#' Computes equi-tailed two-sided nonparametric confidence interval.
+#' @param object A [`numeric`] vector giving the bootstrap replicates of the
+#'  statistic of interest.
+#' @param level A length-one [`numeric`] vector giving the confidence level.
+#'  Must be a single number between \eqn{0} and \eqn{1}.
+#' @param type A [`character`] string giving the type of confidence
+#'  interval to be returned. It must be one "`basic`" (the default) or
+#'  "`percentiles`". Any unambiguous substring can be given.
+#' @param t0 A length-one [`numeric`] vector giving the observed value of the
+#'  statistic of interest. Must be defined if `type` is "`basic`".
+#' @param ... Currently not used.
+#' @return A length-two [`numeric`] vector giving the lower and upper confidence
+#'  limits.
+#' @references
+#'  Davison, A. C. & Hinkley, D. V. (1997). *Bootstrap Methods and Their
+#'  Application*. Cambridge Series on Statistical and Probabilistic Mathematics.
+#'  Cambridge: Cambridge University Press.
+#' @example inst/examples/ex-statistics.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family summary statistics
+#' @aliases confidence_bootstrap-method
+setGeneric(
+  name = "confidence_bootstrap",
+  def = function(object, ...) standardGeneric("confidence_bootstrap")
 )
 
 # Resampling ===================================================================
@@ -695,7 +724,7 @@ setGeneric(
 )
 
 ## Bootstrap -------------------------------------------------------------------
-#' Bootstrap Estimation
+#' Nonparametric Bootstrap Estimation
 #'
 #' Samples randomly from the elements of `object` with replacement.
 #' @param object A [`numeric`] vector.
@@ -705,6 +734,13 @@ setGeneric(
 #'  replications.
 #' @param f A [`function`] that takes a single numeric vector (the result of
 #'  `do`) as argument.
+#' @param level A length-one [`numeric`] vector giving the confidence level.
+#'  Must be a single number between \eqn{0} and \eqn{1}. Only used if `f` is
+#'  `NULL`.
+#' @param interval A [`character`] string giving the type of confidence
+#'  interval to be returned. It must be one "`basic`" (the default) or
+#'  "`percentiles`". Any unambiguous substring can be given. Only used if `f` is
+#'  `NULL`.
 #' @param ... Extra arguments to be passed to `do`.
 #' @return
 #'  If `f` is `NULL` (the default), `bootstrap()` returns a named `numeric`
@@ -713,7 +749,9 @@ setGeneric(
 #'   \item{`original`}{The observed value of `do` applied to `object`.}
 #'   \item{`mean`}{The bootstrap estimate of mean of `do`.}
 #'   \item{`bias`}{The bootstrap estimate of bias of `do`.}
-#'   \item{`error`}{he bootstrap estimate of standard error of `do`.}
+#'   \item{`error`}{The bootstrap estimate of standard error of `do`.}
+#'   \item{`lower`}{The lower limit of the bootstrap confidence interval at `level`.}
+#'   \item{`upper`}{The upper limit of the bootstrap confidence interval at `level`}
 #'  }
 #'
 #'  If `f` is a `function`, `bootstrap()` returns the result of `f` applied to
@@ -744,7 +782,7 @@ setGeneric(
 #'   \item{`original`}{The observed value of `do` applied to `object`.}
 #'   \item{`mean`}{The jackknife estimate of mean of `do`.}
 #'   \item{`bias`}{The jackknife estimate of bias of `do`.}
-#'   \item{`error`}{he jackknife estimate of standard error of `do`.}
+#'   \item{`error`}{The jackknife estimate of standard error of `do`.}
 #'  }
 #'
 #'  If `f` is a `function`, `jackknife()` returns the result of `f` applied to

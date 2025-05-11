@@ -5,11 +5,19 @@
 \alias{bootstrap}
 \alias{bootstrap-method}
 \alias{bootstrap,numeric-method}
-\title{Bootstrap Estimation}
+\title{Nonparametric Bootstrap Estimation}
 \usage{
 bootstrap(object, ...)
 
-\S4method{bootstrap}{numeric}(object, do, n, ..., f = NULL)
+\S4method{bootstrap}{numeric}(
+  object,
+  do,
+  n,
+  ...,
+  f = NULL,
+  level = 0.95,
+  interval = c("basic", "percentiles")
+)
 }
 \arguments{
 \item{object}{A \code{\link{numeric}} vector.}
@@ -24,6 +32,15 @@ replications.}
 
 \item{f}{A \code{\link{function}} that takes a single numeric vector (the result of
 \code{do}) as argument.}
+
+\item{level}{A length-one \code{\link{numeric}} vector giving the confidence level.
+Must be a single number between \eqn{0} and \eqn{1}. Only used if \code{f} is
+\code{NULL}.}
+
+\item{interval}{A \code{\link{character}} string giving the type of confidence
+interval to be returned. It must be one "\code{basic}" (the default) or
+"\code{percentiles}". Any unambiguous substring can be given. Only used if \code{f} is
+\code{NULL}.}
 }
 \value{
 If \code{f} is \code{NULL} (the default), \code{bootstrap()} returns a named \code{numeric}
@@ -32,7 +49,9 @@ vector with the following elements:
 \item{\code{original}}{The observed value of \code{do} applied to \code{object}.}
 \item{\code{mean}}{The bootstrap estimate of mean of \code{do}.}
 \item{\code{bias}}{The bootstrap estimate of bias of \code{do}.}
-\item{\code{error}}{he bootstrap estimate of standard error of \code{do}.}
+\item{\code{error}}{The bootstrap estimate of standard error of \code{do}.}
+\item{\code{lower}}{The lower limit of the bootstrap confidence interval at \code{level}.}
+\item{\code{upper}}{The upper limit of the bootstrap confidence interval at \code{level}}
 }
 
 If \code{f} is a \code{function}, \code{bootstrap()} returns the result of \code{f} applied to
@@ -51,7 +70,7 @@ bootstrap(x, do = mean, n = 100)
 quant <- function(x) { quantile(x, probs = c(0.25, 0.75)) }
 bootstrap(x, n = 100, do = mean, f = quant)
 
-## Get the n bootstrap values
+## Get the n bootstrap estimates
 bootstrap(x, n = 100, do = mean, f = function(x) { x })
 }
 \seealso{

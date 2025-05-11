@@ -44,6 +44,7 @@ Hyndman, R. J. (1996). Computing and graphing highest density regions.
 \seealso{
 Other summary statistics: 
 \code{\link{confidence_binomial}()},
+\code{\link{confidence_bootstrap}()},
 \code{\link{confidence_mean}()},
 \code{\link{confidence_multinomial}()},
 \code{\link{interval_credible}()}

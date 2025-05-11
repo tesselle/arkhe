@@ -2,6 +2,7 @@
 x <- seq(from = -4, to = 4, by = 0.01)
 y <- dnorm(x)
 
+mean(y)
 confidence_mean(y, type = "student")
 confidence_mean(y, type = "normal")
 

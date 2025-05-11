@@ -81,6 +81,9 @@ setMethod(
   f = "confidence_mean",
   signature = c(object = "numeric"),
   definition = function(object, level = 0.95, type = c("student", "normal")) {
+    ## Validation
+    assert_scalar(level, "numeric")
+
     z <- zscore(level = level, n = length(object), type = type)
     margin <- z * stats::sd(object) / sqrt(length(object))
     interval <- mean(object) + margin * c(-1, 1)
@@ -88,6 +91,18 @@ setMethod(
     interval
   }
 )
+
+zscore <- function(level, n, type = c("student", "normal")) {
+  ## Validation
+  type <- match.arg(type, several.ok = FALSE)
+
+  alpha <- 1 - level
+  switch(
+    type,
+    normal = stats::qnorm(1 - alpha / 2), # Large sample size
+    student = stats::qt(1 - alpha / 2, df = n - 1), # Small sample size
+  )
+}
 
 #' @export
 #' @rdname confidence_binomial
@@ -97,6 +112,8 @@ setMethod(
   signature = c(object = "numeric"),
   definition = function(object, n, level = 0.95, method = "wald",
                         corrected = FALSE) {
+    ## Validation
+    assert_scalar(level, "numeric")
     method <- match.arg(method, several.ok = FALSE)
 
     p <- object / n
@@ -122,6 +139,8 @@ setMethod(
   signature = c(object = "numeric"),
   definition = function(object, level = 0.95, method = "wald",
                         corrected = FALSE) {
+    ## Validation
+    assert_scalar(level, "numeric")
     method <- match.arg(method, several.ok = FALSE)
 
     n <- sum(object)
@@ -139,35 +158,61 @@ setMethod(
   }
 )
 
-confidence_bootstrap <- function(x, MLE = NULL, level = 0.95,
-                                 type = c("percentiles", "basic")) {
-  ## Validation
-  type <- match.arg(type, several.ok = FALSE)
+#' @export
+#' @rdname confidence_bootstrap
+#' @aliases confidence_bootstrap,numeric-method
+setMethod(
+  f = "confidence_bootstrap",
+  signature = c(object = "numeric"),
+  definition = function(object, level = 0.95, t0 = NULL,
+                        type = c("basic", "percentiles"), ...) {
+    ## Validation
+    assert_scalar(level, "numeric")
+    type <- match.arg(type, several.ok = FALSE)
 
-  if (type == "percentiles" | type == "basic") {
-    ## Percentile confidence interval
-    probs <- (1 + c(-level, level)) / 2
-    conf <- stats::quantile(x, probs = probs, names = FALSE)
+    if (type == "percentiles" | type == "basic") {
+      ## Percentile confidence interval
+      probs <- (1 + c(-level, level)) / 2
+      # conf <- stats::quantile(object, probs = probs, names = FALSE)
+      conf <- qq(object, probs)
+    }
+    if (type == "basic") {
+      ## Basic bootstrap confidence limits (Davison & Hinkley, 1997)
+      assert_scalar(t0, "numeric")
+      conf <- 2 * t0 - rev(conf)
+    }
+
+    names(conf) <- c("lower", "upper")
+    conf
   }
-  if (type == "basic") {
-    ## Basic bootstrap confidence limits (Davison & Hinkley, 1997)
-    conf <- 2 * MLE - rev(conf)
-  }
+)
 
-  names(conf) <- c("lower", "upper")
-  conf
-}
-
-zscore <- function(level, n, type = c("student", "normal")) {
-  ## Validation
-  type <- match.arg(type, several.ok = FALSE)
-
-  alpha <- 1 - level
-  switch(
-    type,
-    normal = stats::qnorm(1 - alpha / 2), # Large sample size
-    student = stats::qt(1 - alpha / 2, df = n - 1), # Small sample size
-  )
+# Copy from non-exported boot
+# Davison and Hinkley (1997), eq. 5.8
+qq <- function(x, alpha) {
+  x <- x[is.finite(x)]
+  R <- length(x)
+  rk <- (R + 1) * alpha
+  if (!all(rk > 1 & rk < R))
+    warning(tr_("Extreme order statistics used as endpoints."), call. = FALSE)
+  k <- trunc(rk)
+  inds <- seq_along(k)
+  out <- inds
+  kvs <- k[k > 0 & k < R]
+  tstar <- sort(x, partial = sort(union(c(1, R), c(kvs, kvs + 1))))
+  ints <- (k == rk)
+  if (any(ints)) out[inds[ints]] <- tstar[k[inds[ints]]]
+  out[k == 0] <- tstar[1L]
+  out[k == R] <- tstar[R]
+  not <- function(v) xor(rep(TRUE,length(v)), v)
+  temp <- inds[not(ints) & k != 0 & k != R]
+  temp1 <- stats::qnorm(alpha[temp])
+  temp2 <- stats::qnorm(k[temp] / (R + 1))
+  temp3 <- stats::qnorm((k[temp] + 1) / (R + 1))
+  tk <- tstar[k[temp]]
+  tk1 <- tstar[k[temp] + 1L]
+  out[temp] <- tk + (temp1 - temp2) / (temp3 - temp2) * (tk1 - tk)
+  out
 }
 
 # Bootstrap ====================================================================
@@ -177,7 +222,8 @@ zscore <- function(level, n, type = c("student", "normal")) {
 setMethod(
   f = "bootstrap",
   signature = c(object = "numeric"),
-  definition = function(object, do, n, ..., f = NULL) {
+  definition = function(object, do, n, ..., f = NULL,
+                        level = 0.95, interval = c("basic", "percentiles")) {
     hat <- do(object, ...)
 
     spl <- sample(object, size = length(object) * n, replace = TRUE)
@@ -185,18 +231,19 @@ setMethod(
     values <- apply(X = replicates, MARGIN = 2, FUN = do, ...)
 
     if (is.function(f)) return(f(values))
-    summary_bootstrap(values, hat)
+    summary_bootstrap(values, hat, level = level, interval = interval)
   }
 )
 
-summary_bootstrap <- function(x, hat) {
+summary_bootstrap <- function(x, hat, level = 0.95, interval = "basic") {
   n <- length(x)
   boot_mean <- mean(x)
   boot_bias <- boot_mean - hat
   boot_error <- stats::sd(x)
 
-  results <- c(hat, boot_mean, boot_bias, boot_error)
-  names(results) <- c("original", "mean", "bias", "error")
+  ci <- confidence_bootstrap(x, level = level, t0 = hat, type = interval)
+  results <- c(hat, boot_mean, boot_bias, boot_error, ci)
+  names(results) <- c("original", "mean", "bias", "error", "lower", "upper")
   results
 }
 

@@ -29,7 +29,7 @@ vector with the following elements:
 \item{\code{original}}{The observed value of \code{do} applied to \code{object}.}
 \item{\code{mean}}{The jackknife estimate of mean of \code{do}.}
 \item{\code{bias}}{The jackknife estimate of bias of \code{do}.}
-\item{\code{error}}{he jackknife estimate of standard error of \code{do}.}
+\item{\code{error}}{The jackknife estimate of standard error of \code{do}.}
 }
 
 If \code{f} is a \code{function}, \code{jackknife()} returns the result of \code{f} applied to

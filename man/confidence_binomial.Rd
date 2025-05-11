@@ -38,13 +38,14 @@ A length-two \code{\link{numeric}} vector giving the lower and upper confidence
 limits.
 }
 \description{
-Computes a Wald interval for a proportion at a desired level of significance.
+Computes Wald interval for a proportion at a desired level of significance.
 }
 \examples{
 ## Confidence interval for a mean
 x <- seq(from = -4, to = 4, by = 0.01)
 y <- dnorm(x)
 
+mean(y)
 confidence_mean(y, type = "student")
 confidence_mean(y, type = "normal")
 
@@ -56,6 +57,7 @@ confidence_multinomial(x)
 }
 \seealso{
 Other summary statistics: 
+\code{\link{confidence_bootstrap}()},
 \code{\link{confidence_mean}()},
 \code{\link{confidence_multinomial}()},
 \code{\link{interval_credible}()},

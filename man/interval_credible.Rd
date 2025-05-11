@@ -33,6 +33,7 @@ interval_hdr(faithful$eruptions)
 \seealso{
 Other summary statistics: 
 \code{\link{confidence_binomial}()},
+\code{\link{confidence_bootstrap}()},
 \code{\link{confidence_mean}()},
 \code{\link{confidence_multinomial}()},
 \code{\link{interval_hdr}()}
