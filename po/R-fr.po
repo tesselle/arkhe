@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: arkhe 1.8.0\n"
-"POT-Creation-Date: 2025-05-11 13:55+0200\n"
+"POT-Creation-Date: 2025-05-11 14:21+0200\n"
 "PO-Revision-Date: 2025-02-06 12:53+0000\n"
 "Last-Translator: nfrerebeau <nicolas.frerebeau@u-bordeaux-montaigne.fr>\n"
 "Language-Team: French <https://translate.codeberg.org/projects/tesselle/"
@@ -149,13 +149,13 @@ msgstr ""
 "<%s> instanciation:\n"
 "%s"
 
-#: describe.R:44
-msgid "%s of numeric values are zero."
-msgstr "%s des valeurs numériques sont égales à zéro."
-
-#: describe.R:59
+#: describe.R:78
 msgid "Data checking:"
 msgstr "Vérification des données :"
+
+#: describe.R:88
+msgid "%s of numeric values are zero"
+msgstr "%s des valeurs numériques sont égales à zéro"
 
 #: discard.R:70
 msgid "Nothing to remove."
@@ -205,67 +205,59 @@ msgid_plural "%s must not contain infinite values (%d detected)."
 msgstr[0] "%s ne doit pas contenir de valeurs infinies (%d détectée)."
 msgstr[1] "%s ne doit pas contenir de valeurs infinies (%d détectées)."
 
-#: describe.R:16
+#: describe.R:38
 msgid "%d observation"
 msgid_plural "%d observations"
 msgstr[0] "%d observation"
 msgstr[1] "%d observations"
 
-#: describe.R:17
+#: describe.R:39
 msgid "%d variable"
 msgid_plural "%d variables"
 msgstr[0] "%d variable"
 msgstr[1] "%d variables"
 
-#: describe.R:26
-msgid ""
-"\n"
-"%d missing value:"
-msgid_plural ""
-"\n"
-"%d missing values:"
-msgstr[0] ""
-"\n"
-"%d valeur manquante :"
-msgstr[1] ""
-"\n"
-"%d valeurs manquantes :"
+#: describe.R:48
+msgid "%d numeric variable"
+msgid_plural "%d numeric variables"
+msgstr[0] "%d variable numérique"
+msgstr[1] "%d variables numériques"
 
-#: describe.R:28
-msgid "%d observation (%s) contains missing values."
-msgid_plural "%d observations (%s) contain missing values."
-msgstr[0] "%d observation (%s) contient des valeurs manquantes."
-msgstr[1] "%d observations (%s) contiennent des valeurs manquantes."
+#: describe.R:49
+msgid "%d binary variable"
+msgid_plural "%d binary variables"
+msgstr[0] "%d variable binaire"
+msgstr[1] "%d variables binaires"
 
-#: describe.R:32
-msgid "%d variable (%s) contains missing values."
-msgid_plural "%d variables (%s) contain missing values."
-msgstr[0] "%d variable (%s) contient des valeurs manquantes."
-msgstr[1] "%d variables (%s) contiennent des valeurs manquantes."
+#: describe.R:50
+msgid "%d categorial variable"
+msgid_plural "%d categorial variables"
+msgstr[0] "%d variable catégorielle"
+msgstr[1] "%d variables catégorielles"
 
-#: describe.R:38
-msgid "%d variable with no variance."
-msgid_plural "%d variables with no variance."
-msgstr[0] "%d variable de variance nulle."
-msgstr[1] "%d variables de variance nulle."
+#: describe.R:64
+msgid "%d missing value:"
+msgid_plural "%d missing values:"
+msgstr[0] "%d valeur manquante :"
+msgstr[1] "%d valeurs manquantes :"
 
-#: describe.R:53
-msgid "%d numeric variable."
-msgid_plural "%d numeric variables."
-msgstr[0] "%d variable numérique."
-msgstr[1] "%d variables numériques."
+#: describe.R:66
+msgid "%d observation (%s) contains missing values"
+msgid_plural "%d observations (%s) contain missing values"
+msgstr[0] "%d observation (%s) contient des valeurs manquantes"
+msgstr[1] "%d observations (%s) contiennent des valeurs manquantes"
 
-#: describe.R:54
-msgid "%d binary variable."
-msgid_plural "%d binary variables."
-msgstr[0] "%d variable binaire."
-msgstr[1] "%d variables binaires."
+#: describe.R:70
+msgid "%d variable (%s) contains missing values"
+msgid_plural "%d variables (%s) contain missing values"
+msgstr[0] "%d variable (%s) contient des valeurs manquantes"
+msgstr[1] "%d variables (%s) contiennent des valeurs manquantes"
 
-#: describe.R:55
-msgid "%d categorial variable."
-msgid_plural "%d categorial variables."
-msgstr[0] "%d variable catégorielle."
-msgstr[1] "%d variables catégorielles."
+#: describe.R:82
+msgid "%d variable with no variance"
+msgid_plural "%d variables with no variance"
+msgstr[0] "%d variable de variance nulle"
+msgstr[1] "%d variables de variance nulle"
 
 #: discard.R:65
 msgid "element"

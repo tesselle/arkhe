@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: arkhe 1.10.0.9000\n"
-"POT-Creation-Date: 2025-05-11 13:55+0200\n"
+"POT-Creation-Date: 2025-05-11 14:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -145,12 +145,12 @@ msgid ""
 "%s"
 msgstr ""
 
-#: describe.R:44
-msgid "%s of numeric values are zero."
+#: describe.R:78
+msgid "Data checking:"
 msgstr ""
 
-#: describe.R:59
-msgid "Data checking:"
+#: describe.R:88
+msgid "%s of numeric values are zero"
 msgstr ""
 
 #: discard.R:70
@@ -201,57 +201,57 @@ msgid_plural "%s must not contain infinite values (%d detected)."
 msgstr[0] ""
 msgstr[1] ""
 
-#: describe.R:16
+#: describe.R:38
 msgid "%d observation"
 msgid_plural "%d observations"
 msgstr[0] ""
 msgstr[1] ""
 
-#: describe.R:17
+#: describe.R:39
 msgid "%d variable"
 msgid_plural "%d variables"
 msgstr[0] ""
 msgstr[1] ""
 
-#: describe.R:26
-msgid "\n%d missing value:"
-msgid_plural "\n%d missing values:"
+#: describe.R:48
+msgid "%d numeric variable"
+msgid_plural "%d numeric variables"
 msgstr[0] ""
 msgstr[1] ""
 
-#: describe.R:28
-msgid "%d observation (%s) contains missing values."
-msgid_plural "%d observations (%s) contain missing values."
+#: describe.R:49
+msgid "%d binary variable"
+msgid_plural "%d binary variables"
 msgstr[0] ""
 msgstr[1] ""
 
-#: describe.R:32
-msgid "%d variable (%s) contains missing values."
-msgid_plural "%d variables (%s) contain missing values."
+#: describe.R:50
+msgid "%d categorial variable"
+msgid_plural "%d categorial variables"
 msgstr[0] ""
 msgstr[1] ""
 
-#: describe.R:38
-msgid "%d variable with no variance."
-msgid_plural "%d variables with no variance."
+#: describe.R:64
+msgid "%d missing value:"
+msgid_plural "%d missing values:"
 msgstr[0] ""
 msgstr[1] ""
 
-#: describe.R:53
-msgid "%d numeric variable."
-msgid_plural "%d numeric variables."
+#: describe.R:66
+msgid "%d observation (%s) contains missing values"
+msgid_plural "%d observations (%s) contain missing values"
 msgstr[0] ""
 msgstr[1] ""
 
-#: describe.R:54
-msgid "%d binary variable."
-msgid_plural "%d binary variables."
+#: describe.R:70
+msgid "%d variable (%s) contains missing values"
+msgid_plural "%d variables (%s) contain missing values"
 msgstr[0] ""
 msgstr[1] ""
 
-#: describe.R:55
-msgid "%d categorial variable."
-msgid_plural "%d categorial variables."
+#: describe.R:82
+msgid "%d variable with no variance"
+msgid_plural "%d variables with no variance"
 msgstr[0] ""
 msgstr[1] ""
 

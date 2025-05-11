@@ -12,7 +12,7 @@ NULL
 #' @export
 #' @rdname arkhe-deprecated
 needs <- function(...) {
-  # .Deprecated("assert_package()", old = "needs()")
+  .Deprecated("assert_package()", old = "needs()")
   assert_package(...)
 }
 

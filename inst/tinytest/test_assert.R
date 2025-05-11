@@ -4,7 +4,7 @@ expect_inherits(validate(mean(c("a", "b", "c"))), "character")
 expect_length(validate(mean(c("a", "b", "c"))), 1)
 
 # Missing package ==============================================================
-cnd <- arkhe:::catch_conditions(needs("ABC123XYZ", ask = FALSE))
+cnd <- arkhe:::catch_conditions(assert_package("ABC123XYZ", ask = FALSE))
 expect_inherits(cnd[[1]], "error_missing_package")
 
 # Assert type ==================================================================

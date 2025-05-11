@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: arkhe 1.9.0.9000\n"
-"POT-Creation-Date: 2025-05-11 13:55+0200\n"
+"POT-Creation-Date: 2025-05-11 14:21+0200\n"
 "PO-Revision-Date: 2025-02-25 22:58+0000\n"
 "Last-Translator: nfrerebeau <nicolas.frerebeau@u-bordeaux-montaigne.fr>\n"
 "Language-Team: Spanish <https://translate.codeberg.org/projects/tesselle/"
@@ -149,13 +149,13 @@ msgstr ""
 "<%s>inicialización de instancia:\n"
 "%s"
 
-#: describe.R:44
-msgid "%s of numeric values are zero."
-msgstr "%s de los valores numéricos son cero."
-
-#: describe.R:59
+#: describe.R:78
 msgid "Data checking:"
 msgstr "Verificación de datos:"
+
+#: describe.R:88
+msgid "%s of numeric values are zero"
+msgstr "%s de los valores numéricos son cero"
 
 #: discard.R:70
 msgid "Nothing to remove."
@@ -205,67 +205,59 @@ msgid_plural "%s must not contain infinite values (%d detected)."
 msgstr[0] "%s no debe contener valores infinitos (%d detectado)."
 msgstr[1] "%s no debe contener valores infinitos (%d detectados)."
 
-#: describe.R:16
+#: describe.R:38
 msgid "%d observation"
 msgid_plural "%d observations"
 msgstr[0] "%d observación"
 msgstr[1] "%d observaciones"
 
-#: describe.R:17
+#: describe.R:39
 msgid "%d variable"
 msgid_plural "%d variables"
 msgstr[0] "%d variable"
 msgstr[1] "%d variables"
 
-#: describe.R:26
-msgid ""
-"\n"
-"%d missing value:"
-msgid_plural ""
-"\n"
-"%d missing values:"
-msgstr[0] ""
-"\n"
-"%d valor perdido:"
-msgstr[1] ""
-"\n"
-"%d valores perdidos:"
+#: describe.R:48
+msgid "%d numeric variable"
+msgid_plural "%d numeric variables"
+msgstr[0] "%d variable numérica"
+msgstr[1] "%d variables numéricas"
 
-#: describe.R:28
-msgid "%d observation (%s) contains missing values."
-msgid_plural "%d observations (%s) contain missing values."
-msgstr[0] "%d observación (%s) contiene valores perdidos."
-msgstr[1] "%d observaciones (%s) contiene valores perdidos."
+#: describe.R:49
+msgid "%d binary variable"
+msgid_plural "%d binary variables"
+msgstr[0] "%d variable binaria"
+msgstr[1] "%d variables binarias"
 
-#: describe.R:32
-msgid "%d variable (%s) contains missing values."
-msgid_plural "%d variables (%s) contain missing values."
-msgstr[0] "%d variable (%s) contiene valores perdidos."
-msgstr[1] "%d variables (%s) contienen valores perdidos."
+#: describe.R:50
+msgid "%d categorial variable"
+msgid_plural "%d categorial variables"
+msgstr[0] "%d variable categorial"
+msgstr[1] "%d variables categoriales"
 
-#: describe.R:38
-msgid "%d variable with no variance."
-msgid_plural "%d variables with no variance."
-msgstr[0] "%d variable con varianza igual a cero."
-msgstr[1] "%d variables con varianza igual a cero."
+#: describe.R:64
+msgid "%d missing value:"
+msgid_plural "%d missing values:"
+msgstr[0] "%d valor perdido:"
+msgstr[1] "%d valores perdidos:"
 
-#: describe.R:53
-msgid "%d numeric variable."
-msgid_plural "%d numeric variables."
-msgstr[0] "%d variable numérica."
-msgstr[1] "%d variables numéricas."
+#: describe.R:66
+msgid "%d observation (%s) contains missing values"
+msgid_plural "%d observations (%s) contain missing values"
+msgstr[0] "%d observación (%s) contiene valores perdidos"
+msgstr[1] "%d observaciones (%s) contiene valores perdidos"
 
-#: describe.R:54
-msgid "%d binary variable."
-msgid_plural "%d binary variables."
-msgstr[0] "%d variable binaria."
-msgstr[1] "%d variables binarias."
+#: describe.R:70
+msgid "%d variable (%s) contains missing values"
+msgid_plural "%d variables (%s) contain missing values"
+msgstr[0] "%d variable (%s) contiene valores perdidos"
+msgstr[1] "%d variables (%s) contienen valores perdidos"
 
-#: describe.R:55
-msgid "%d categorial variable."
-msgid_plural "%d categorial variables."
-msgstr[0] "%d variable categorial."
-msgstr[1] "%d variables categoriales."
+#: describe.R:82
+msgid "%d variable with no variance"
+msgid_plural "%d variables with no variance"
+msgstr[0] "%d variable con varianza igual a cero"
+msgstr[1] "%d variables con varianza igual a cero"
 
 #: discard.R:65
 msgid "element"
