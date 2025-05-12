@@ -658,10 +658,19 @@ setGeneric(
 #' @param level A length-one [`numeric`] vector giving the confidence level.
 #'  Must be a single number between \eqn{0} and \eqn{1}.
 #' @param type A [`character`] string giving the type of confidence
-#'  interval to be returned. It must be one "`basic`" (the default) or
-#'  "`percentiles`". Any unambiguous substring can be given.
+#'  interval to be returned. It must be one "`basic`" (the default),
+#'  "`student`", "`normal`" or "`percentiles`". Any unambiguous substring can be
+#'  given.
 #' @param t0 A length-one [`numeric`] vector giving the observed value of the
-#'  statistic of interest. Must be defined if `type` is "`basic`".
+#'  statistic of interest. Must be defined if `type` is "`basic`", "`student`"
+#'  or "`normal`".
+#' @param var_t0 A length-one [`numeric`] vector giving an estimate of the
+#'  variance of the statistic of interest. Must be defined if `type` is
+#'  "`student`". If `var_t0` is undefined and `type` is "`normal`, it defaults
+#'  to `var(object)`.
+#' @param var_t A [`numeric`] vector giving the variances of the bootstrap
+#'  replicates of the variable of interest. Must be defined if `type` is
+#' "`student`".
 #' @param ... Currently not used.
 #' @return A length-two [`numeric`] vector giving the lower and upper confidence
 #'  limits.
@@ -669,7 +678,8 @@ setGeneric(
 #'  Davison, A. C. & Hinkley, D. V. (1997). *Bootstrap Methods and Their
 #'  Application*. Cambridge Series on Statistical and Probabilistic Mathematics.
 #'  Cambridge: Cambridge University Press.
-#' @example inst/examples/ex-statistics.R
+#' @seealso [bootstrap()]
+#' @example inst/examples/ex-bootstrap.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family summary statistics
@@ -738,9 +748,9 @@ setGeneric(
 #'  Must be a single number between \eqn{0} and \eqn{1}. Only used if `f` is
 #'  `NULL`.
 #' @param interval A [`character`] string giving the type of confidence
-#'  interval to be returned. It must be one "`basic`" (the default) or
-#'  "`percentiles`". Any unambiguous substring can be given. Only used if `f` is
-#'  `NULL`.
+#'  interval to be returned. It must be one "`basic`" (the default), "`normal`"
+#'  or "`percentiles`" (see [confidence_bootstrap()]). Any unambiguous substring
+#'  can be given. Only used if `f` is `NULL`.
 #' @param ... Extra arguments to be passed to `do`.
 #' @return
 #'  If `f` is `NULL` (the default), `bootstrap()` returns a named `numeric`
@@ -756,6 +766,11 @@ setGeneric(
 #'
 #'  If `f` is a `function`, `bootstrap()` returns the result of `f` applied to
 #'  the `n` values of `do`.
+#' @references
+#'  Davison, A. C. & Hinkley, D. V. (1997). *Bootstrap Methods and Their
+#'  Application*. Cambridge Series on Statistical and Probabilistic Mathematics.
+#'  Cambridge: Cambridge University Press.
+#' @seealso [confidence_bootstrap()]
 #' @example inst/examples/ex-bootstrap.R
 #' @author N. Frerebeau
 #' @docType methods

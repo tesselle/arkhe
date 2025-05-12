@@ -29,18 +29,31 @@ expect_equal_to_reference(confidence_multinomial(x, corrected = TRUE),
                           file = "_snaps/confidence_multinomial_corrected.rds")
 
 # Bootstrap confidence interval ================================================
-x <- c(2.447, 1.381, 2.014, 1.572, 1.555, 1.622, 2.185, 1.691, 1.592,
-       1.517, 1.486, 1.723, 1.535, 1.309, 1.346, 1.692, 1.507, 1.340,
-       1.651, 1.737, 1.348, 1.474, 1.596, 1.890, 1.249, 1.606, 1.453,
-       1.418, 1.611, 1.658)
+x <- c(73.75, 99.667, 100.917, 79.583, 96.917, 96.333, 46.5, 117.5,
+       123.25, 68.083, 77, 94, 72.417, 99.083, 122.333, 72.417, 94.25,
+       90, 83.5, 106.917, 95.25, 119.417, 114.25, 65.5, 133.75, 139.5,
+       89, 142.667, 98.167, 113.5)
+y <- c(349.807, 1266.241, 1265.77, 335.965, 1332.381, 1300.963, 136.604,
+       1134.438, 2339.516, 343.77, 414.958, 260.972, 313.937, 1300.992,
+       1439.713, 292.131, 1344.793, 1555.306, 288.16, 1389.354, 1260.655,
+       1288.423, 519.724, 146.618, 2412.891, 1267.188, 1361.083, 2228.755,
+       1461.22, 1135.91)
 
 expect_identical(
-  suppressWarnings(confidence_bootstrap(x, level = 0.95, t0 = 1.520, type = "basic")),
-  c(lower = 0.593, upper = 1.791)
+  suppressWarnings(round(confidence_bootstrap(x, level = 0.95, t0 = 108.083, type = "normal"), 3)),
+  c(lower = 73.588, upper = 163.716)
 )
 expect_identical(
-  suppressWarnings(confidence_bootstrap(x, level = 0.95, t0 = 1.520, type = "percentiles")),
-  c(lower = 1.249, upper = 2.447)
+  suppressWarnings(confidence_bootstrap(x, level = 0.95, t0 = 108.083, type = "basic")),
+  c(lower = 73.499, upper = 169.666)
+)
+expect_identical(
+  suppressWarnings(round(confidence_bootstrap(x, level = 0.95, t0 = 108.083, var_t0 = 1417.715, var_t = y, type = "student"), 3)),
+  c(lower = 74.852, upper = 306.475)
+)
+expect_identical(
+  suppressWarnings(confidence_bootstrap(x, level = 0.95, type = "percentiles")),
+  c(lower = 46.5, upper = 142.667)
 )
 
 # Resample =====================================================================

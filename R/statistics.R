@@ -164,16 +164,26 @@ setMethod(
 setMethod(
   f = "confidence_bootstrap",
   signature = c(object = "numeric"),
-  definition = function(object, level = 0.95, t0 = NULL,
-                        type = c("basic", "percentiles"), ...) {
+  definition = function(object, level = 0.95,
+                        type = c("basic", "normal", "student", "percentiles"),
+                        t0 = NULL, var_t0 = NULL, var_t = NULL, ...) {
     ## Validation
-    assert_scalar(level, "numeric")
     type <- match.arg(type, several.ok = FALSE)
+    assert_scalar(level, "numeric")
+    if (is.null(var_t)) {
+      fin <- which(is.finite(object))
+    } else {
+      assert_length(var_t, length(object))
+      assert_type(var_t, "numeric")
+      fin <- which(is.finite(object) & is.finite(var_t))
+      var_t <- var_t[fin]
+    }
+    object <- object[fin]
 
     if (type == "percentiles" | type == "basic") {
       ## Percentile confidence interval
-      probs <- (1 + c(-level, level)) / 2
       # conf <- stats::quantile(object, probs = probs, names = FALSE)
+      probs <- (1 + c(-level, level)) / 2
       conf <- qq(object, probs)
     }
     if (type == "basic") {
@@ -181,13 +191,31 @@ setMethod(
       assert_scalar(t0, "numeric")
       conf <- 2 * t0 - rev(conf)
     }
+    if (type == "normal") {
+      ## Normal approximation (Davison & Hinkley, 1997)
+      assert_scalar(t0, "numeric")
+      if (is.null(var_t0)) var_t0 <- stats::var(object)
+
+      bias <- mean(object) - t0
+      zscore <- sqrt(var_t0) * stats::qnorm((1 + level) / 2)
+      conf <- c(t0 - bias - zscore, t0 - bias + zscore)
+    }
+    if (type == "student") {
+      ## Studentized bootstrap confidence limits (Davison & Hinkley, 1997)
+      assert_scalar(t0, "numeric")
+      assert_scalar(var_t0, "numeric")
+
+      probs <- (1 + c(level, -level)) / 2
+      zscore <- (object - t0) / sqrt(var_t)
+      conf <- t0 - sqrt(var_t0) * qq(zscore, probs)
+    }
 
     names(conf) <- c("lower", "upper")
     conf
   }
 )
 
-# Copy from non-exported boot
+# Copy non-exported from boot
 # Davison and Hinkley (1997), eq. 5.8
 qq <- function(x, alpha) {
   x <- x[is.finite(x)]
@@ -222,8 +250,10 @@ qq <- function(x, alpha) {
 setMethod(
   f = "bootstrap",
   signature = c(object = "numeric"),
-  definition = function(object, do, n, ..., f = NULL,
-                        level = 0.95, interval = c("basic", "percentiles")) {
+  definition = function(object, do, n, ..., f = NULL, level = 0.95,
+                        interval = c("basic", "normal", "percentiles")) {
+    interval <- match.arg(interval, several.ok = FALSE)
+
     hat <- do(object, ...)
 
     spl <- sample(object, size = length(object) * n, replace = TRUE)

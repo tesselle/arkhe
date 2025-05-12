@@ -16,7 +16,7 @@ bootstrap(object, ...)
   ...,
   f = NULL,
   level = 0.95,
-  interval = c("basic", "percentiles")
+  interval = c("basic", "normal", "percentiles")
 )
 }
 \arguments{
@@ -38,9 +38,9 @@ Must be a single number between \eqn{0} and \eqn{1}. Only used if \code{f} is
 \code{NULL}.}
 
 \item{interval}{A \code{\link{character}} string giving the type of confidence
-interval to be returned. It must be one "\code{basic}" (the default) or
-"\code{percentiles}". Any unambiguous substring can be given. Only used if \code{f} is
-\code{NULL}.}
+interval to be returned. It must be one "\code{basic}" (the default), "\code{normal}"
+or "\code{percentiles}" (see \code{\link[=confidence_bootstrap]{confidence_bootstrap()}}). Any unambiguous substring
+can be given. Only used if \code{f} is \code{NULL}.}
 }
 \value{
 If \code{f} is \code{NULL} (the default), \code{bootstrap()} returns a named \code{numeric}
@@ -71,9 +71,19 @@ quant <- function(x) { quantile(x, probs = c(0.25, 0.75)) }
 bootstrap(x, n = 100, do = mean, f = quant)
 
 ## Get the n bootstrap estimates
-bootstrap(x, n = 100, do = mean, f = function(x) { x })
+(z <- bootstrap(x, n = 100, do = mean, f = function(x) { x }))
+
+## Basic bootstrap confidence interval
+confidence_bootstrap(z, level = 0.95, type = "basic", t0 = mean(x))
+}
+\references{
+Davison, A. C. & Hinkley, D. V. (1997). \emph{Bootstrap Methods and Their
+Application}. Cambridge Series on Statistical and Probabilistic Mathematics.
+Cambridge: Cambridge University Press.
 }
 \seealso{
+\code{\link[=confidence_bootstrap]{confidence_bootstrap()}}
+
 Other resampling methods: 
 \code{\link{jackknife}()},
 \code{\link{resample_multinomial}()},

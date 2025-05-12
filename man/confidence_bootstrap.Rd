@@ -12,8 +12,10 @@ confidence_bootstrap(object, ...)
 \S4method{confidence_bootstrap}{numeric}(
   object,
   level = 0.95,
+  type = c("basic", "normal", "student", "percentiles"),
   t0 = NULL,
-  type = c("basic", "percentiles"),
+  var_t0 = NULL,
+  var_t = NULL,
   ...
 )
 }
@@ -26,12 +28,23 @@ statistic of interest.}
 \item{level}{A length-one \code{\link{numeric}} vector giving the confidence level.
 Must be a single number between \eqn{0} and \eqn{1}.}
 
-\item{t0}{A length-one \code{\link{numeric}} vector giving the observed value of the
-statistic of interest. Must be defined if \code{type} is "\code{basic}".}
-
 \item{type}{A \code{\link{character}} string giving the type of confidence
-interval to be returned. It must be one "\code{basic}" (the default) or
-"\code{percentiles}". Any unambiguous substring can be given.}
+interval to be returned. It must be one "\code{basic}" (the default),
+"\code{student}", "\code{normal}" or "\code{percentiles}". Any unambiguous substring can be
+given.}
+
+\item{t0}{A length-one \code{\link{numeric}} vector giving the observed value of the
+statistic of interest. Must be defined if \code{type} is "\code{basic}", "\code{student}"
+or "\code{normal}".}
+
+\item{var_t0}{A length-one \code{\link{numeric}} vector giving an estimate of the
+variance of the statistic of interest. Must be defined if \code{type} is
+"\code{student}". If \code{var_t0} is undefined and \code{type} is "\code{normal}, it defaults
+to \code{var(object)}.}
+
+\item{var_t}{A \code{\link{numeric}} vector giving the variances of the bootstrap
+replicates of the variable of interest. Must be defined if \code{type} is
+"\code{student}".}
 }
 \value{
 A length-two \code{\link{numeric}} vector giving the lower and upper confidence
@@ -41,19 +54,20 @@ limits.
 Computes equi-tailed two-sided nonparametric confidence interval.
 }
 \examples{
-## Confidence interval for a mean
-x <- seq(from = -4, to = 4, by = 0.01)
-y <- dnorm(x)
+x <- rnorm(20)
 
-mean(y)
-confidence_mean(y, type = "student")
-confidence_mean(y, type = "normal")
+## Bootstrap
+bootstrap(x, do = mean, n = 100)
 
-## Confidence interval for a propotion
-confidence_binomial(118, n = 236)
+## Estimate the 25th and 95th percentiles
+quant <- function(x) { quantile(x, probs = c(0.25, 0.75)) }
+bootstrap(x, n = 100, do = mean, f = quant)
 
-x <- c(35, 74, 22, 69)
-confidence_multinomial(x)
+## Get the n bootstrap estimates
+(z <- bootstrap(x, n = 100, do = mean, f = function(x) { x }))
+
+## Basic bootstrap confidence interval
+confidence_bootstrap(z, level = 0.95, type = "basic", t0 = mean(x))
 }
 \references{
 Davison, A. C. & Hinkley, D. V. (1997). \emph{Bootstrap Methods and Their
@@ -61,6 +75,8 @@ Application}. Cambridge Series on Statistical and Probabilistic Mathematics.
 Cambridge: Cambridge University Press.
 }
 \seealso{
+\code{\link[=bootstrap]{bootstrap()}}
+
 Other summary statistics: 
 \code{\link{confidence_binomial}()},
 \code{\link{confidence_mean}()},
