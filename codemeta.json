@@ -89,7 +89,7 @@
   },
   "isPartOf": "https://www.tesselle.org",
   "keywords": ["data-cleaning", "statistics", "r-package"],
-  "fileSize": "361.464KB",
+  "fileSize": "361.461KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
