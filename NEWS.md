@@ -1,4 +1,4 @@
-# arkhe 1.10.0.9000
+# arkhe 1.11.0
 ## New classes and methods
 * Add `resample_uniform()` and `resample_multinomial()` to draw random samples.
 * Add `confidence_bootstrap()` to compute bootstrap confidence intervals.

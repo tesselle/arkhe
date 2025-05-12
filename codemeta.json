@@ -8,13 +8,13 @@
   "codeRepository": "https://codeberg.org/tesselle/arkhe",
   "issueTracker": "https://codeberg.org/tesselle/arkhe/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "1.10.0",
+  "version": "1.11.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.4.2 (2024-10-31)",
+  "runtimePlatform": "R version 4.5.0 (2025-04-11)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -89,7 +89,7 @@
   },
   "isPartOf": "https://www.tesselle.org",
   "keywords": ["data-cleaning", "statistics", "r-package"],
-  "fileSize": "330.324KB",
+  "fileSize": "361.464KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -104,7 +104,7 @@
       "name": "{arkhe: Tools for Cleaning Rectangular Data}",
       "identifier": "10.5281/zenodo.3526659",
       "url": "https://packages.tesselle.org/arkhe/",
-      "description": "R package version 1.10.0",
+      "description": "R package version 1.11.0",
       "@id": "https://doi.org/10.5281/zenodo.3526659",
       "sameAs": "https://doi.org/10.5281/zenodo.3526659"
     }
