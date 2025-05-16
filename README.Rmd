@@ -17,8 +17,9 @@ Sys.setenv(LANGUAGE = "en") # Force locale
 # arkhe <img width=120px src="man/figures/logo.png" align="right" />
 
 <!-- badges: start -->
-[![Code coverage](https://packages.tesselle.org/arkhe/coverage/badge.svg)](https://packages.tesselle.org/arkhe/coverage/)
-[![Dependencies](https://tinyverse.netlify.app/badge/arkhe)](https://cran.r-project.org/package=arkhe)
+[![status-badge](https://ci.codeberg.org/api/badges/14688/status.svg)](https://ci.codeberg.org/repos/14688){.pkgdown-devel}
+[![Code coverage](https://packages.tesselle.org/arkhe/coverage/badge.svg)](https://packages.tesselle.org/arkhe/coverage/){.pkgdown-devel}
+[![Dependencies](https://tinyverse.netlify.app/badge/arkhe)](https://cran.r-project.org/package=arkhe){.pkgdown-devel}
 
 [![r-universe](https://tesselle.r-universe.dev/badges/arkhe)](https://tesselle.r-universe.dev/arkhe){.pkgdown-devel}
 [![CRAN Version](https://www.r-pkg.org/badges/version/arkhe)](https://cran.r-project.org/package=arkhe){.pkgdown-release}
