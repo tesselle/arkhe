@@ -37,6 +37,7 @@ on progress? Defaults to \code{\link[=interactive]{interactive()}}.
 Useful links:
 \itemize{
   \item \url{https://codeberg.org/tesselle/arkhe}
+  \item \url{https://tesselle.r-universe.dev/arkhe}
   \item \url{https://packages.tesselle.org/arkhe/}
   \item Report bugs at \url{https://codeberg.org/tesselle/arkhe/issues}
 }
