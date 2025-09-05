@@ -77,6 +77,6 @@ discard_message <- function(x, keep, margin,
     msg <- sprintf(msg, drop, what, length(keep), pc)
   }
 
-  if (verbose) message(msg)
+  if (isTRUE(verbose)) message(msg)
   invisible(msg)
 }
